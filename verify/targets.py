@@ -1,0 +1,96 @@
+"""Canonical anchor objects and shared predicates.
+
+These objects are the repository's reality checks: any candidate
+impossibility argument must be consistent with their existence (see
+docs/protocol/sanity-checks.md).  Everything here is re-verified by
+verify/checks/f6_known_squares.py — nothing is trusted from the literature.
+"""
+
+from math import isqrt
+
+
+def is_square(n: int) -> bool:
+    return n >= 0 and isqrt(n) ** 2 == n
+
+
+# ---------------------------------------------------------------------------
+# Line index sets
+
+LINES_3 = [
+    (0, 1, 2), (3, 4, 5), (6, 7, 8),        # rows
+    (0, 3, 6), (1, 4, 7), (2, 5, 8),        # columns
+    (0, 4, 8), (2, 4, 6),                   # diagonals
+]
+
+LINES_4 = [
+    (0, 1, 2, 3), (4, 5, 6, 7), (8, 9, 10, 11), (12, 13, 14, 15),   # rows
+    (0, 4, 8, 12), (1, 5, 9, 13), (2, 6, 10, 14), (3, 7, 11, 15),   # columns
+    (0, 5, 10, 15), (3, 6, 9, 12),                                  # diagonals
+]
+
+
+def line_sums(entries, lines):
+    return [sum(entries[i] for i in line) for line in lines]
+
+
+def is_magic(entries, lines):
+    s = line_sums(entries, lines)
+    return all(x == s[0] for x in s)
+
+
+# ---------------------------------------------------------------------------
+# AB1 — the Bremner–Sallows square (1997): the unique known example (up to
+# symmetry and scaling) of a 3x3 magic square with SEVEN square entries.
+# Row-major.  Entries at indices 3 and 8 are not perfect squares.
+
+AB1 = [
+    373**2, 289**2, 565**2,
+    360721, 425**2, 23**2,
+    205**2, 527**2, 222121,
+]
+AB1_MAGIC_SUM = 541875
+AB1_NONSQUARE_INDICES = (3, 8)
+
+# AB1 in the Lucas coordinates of docs/foundations/F1-parametrization.md
+# (grid: [c+u, c-u-v, c+v / c-u+v, c, c+u-v / c-v, c+u+v, c-u]):
+AB1_LUCAS = {"c": 425**2, "u": 373**2 - 425**2, "v": 565**2 - 425**2}
+# = c 180625, u -41496, v 138600.
+
+# ---------------------------------------------------------------------------
+# Euler's 4x4 magic square of squares (letter to Lagrange, 1770).
+# All ten lines (4 rows, 4 columns, 2 diagonals) sum to 8515; all sixteen
+# entries are distinct perfect squares.  Existence for n = 4 (indeed for all
+# n >= 4, Rome–Yamagishi 2024) is why no impossibility argument may be
+# insensitive to the order n.
+
+EULER4 = [
+    68**2, 29**2, 41**2, 37**2,
+    17**2, 31**2, 79**2, 32**2,
+    59**2, 28**2, 23**2, 61**2,
+    11**2, 77**2, 8**2, 49**2,
+]
+EULER4_MAGIC_SUM = 8515
+
+
+# ---------------------------------------------------------------------------
+# Pythagorean-decomposition helpers (the F2 dictionary)
+
+def proper_decompositions(m: int):
+    """All {e, f} with e^2 + f^2 = m^2 and 0 < e <= f, as sorted pairs."""
+    out = []
+    m2 = m * m
+    e = 1
+    while 2 * e * e <= m2:
+        f2 = m2 - e * e
+        f = isqrt(f2)
+        if f * f == f2:
+            out.append((e, f))
+        e += 1
+    return out
+
+
+def congrua(m: int):
+    """The set D(m) = {2ef : e^2+f^2 = m^2, e,f > 0} of congrua of m.
+    d in D(m) iff (m^2 - d, m^2, m^2 + d) is a 3-term AP of positive squares
+    (Theorem F2.2)."""
+    return {2 * e * f for (e, f) in proper_decompositions(m)}
