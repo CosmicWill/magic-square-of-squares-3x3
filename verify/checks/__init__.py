@@ -14,6 +14,8 @@ MODULES = [
     "a2_function_field",
     "a3_congrua",
     "a4_eight_squares",
+    "a5_surface",
+    "a6_bounds",
 ]
 
 

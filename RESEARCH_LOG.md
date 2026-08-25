@@ -178,3 +178,27 @@ $(\mathbb{Z}/2)^2$. The eighth-square condition is a second 2-cover over
 this rank-3 family — Open Task A4-T1: compute its genus; $\ge 2$ would
 give the first unconditional finiteness theorem for 8-square candidates
 on the fiber (via Faltings).
+
+---
+
+## 2026-08-25 — Entry 6: A5/A6 — geometry nuggets and the bound ladder (M7)
+
+**A5 (surface):** explicit model verified — X is cut by exactly 6
+independent quadrics in P^8 (rank computed exactly); every point with
+all nine coordinates nonzero is SMOOTH (Jacobian = 2 M diag(x), rank 6);
+X is an iterated double cover of the Lucas plane branched over the
+9-line arrangement with (t2, t3) = (12, 8) — the concrete Hirzebruch-
+style route to the missing invariants. F_p point counts (all divisible
+by 64, dominated by the degeneracy locus; nondegenerate locus EMPTY for
+p < 59 by F5.3): Lang philosophy in miniature. Problems P1 (Picard),
+P2 (Brauer-Manin), P3 (curve enumeration — the keystone, = A2-T1), P4
+(Cain reconciliation) posed precisely.
+
+**A6 (bounds):** the ladder — m <= 8,000 (independent direct
+implementation), m <= 300,000 (desert sieve; centers to 9e10, and not
+even three APs realizable), centers <= 1e6 of any kind incl. all
+8-square classes (taxonomy sweep); Morgenstern 1e14 CITED-only. The
+three congrua implementations cross-validated elementwise. Sieve design
+recorded (wheel: roots coprime to 6, offsets 0 mod 24, centers with
+prod(2a_i+1) >= 9); compiled-sieve push deliberately deferred (A6-T1) —
+bounds cannot settle the problem (F5).
