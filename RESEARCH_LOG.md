@@ -146,3 +146,35 @@ rank 1, torsion (Z/2)^2).
 
 **Gap question A3-Q posed:** a Selmer-type invariant for the four-twist
 system with same-m gluing that would explain the desert over Q.
+
+---
+
+## 2026-08-25 — Entry 5: A4 — the eight-square case (M6)
+
+**Taxonomy proven** (classes C/E/K by the non-square cell, orbit sizes
+1/4/4) and each class reduced to an explicit additive pattern in
+$\widetilde D(c)$. Class E *requires* an additive triple at a square
+center — dead to center $9\times10^{10}$ by A3.3, conjecturally empty
+(A3.C). Sweep of ALL centers $\le 10^6$: no quadruple, no class-K
+pattern, hence **no 8-square magic square with center $\le 10^6$**
+(first-party bound). Census re-found AB1 (and its $2^2$-scale at
+$850^2$) as the only $\ge 7$-square configurations in range —
+independent uniqueness confirmation.
+
+**Discovery:** the additive desert is a *square-center* phenomenon: four
+additive triples exist below $10^6$, all at NON-square centers — the
+primitive ones at $c = 157441$ (congrua 19800, 135240, 155040; a
+6-square fully magic square) and $c = 411625$. Whatever blocks additive
+triples at square centers is genuinely about squareness, not density —
+exactly the arithmetic the main problem turns on. A3.C sharpened
+accordingly.
+
+**The AB1 fiber computed:** fixing the $v$-slot at $t_1 = 7/11$, the
+one-extra-square condition is the quartic
+$(85Y)^2 = 1681x^4-28900x^3+3362x^2+28900x+1681$ with AB1 at $x = 3/4$;
+PARI certifies its Jacobian ($y^2 = x^3+3362x^2-846513044x+2769975186072$,
+minimal $y^2 = x^3-53142545x+58165355025$) has **rank 3**, torsion
+$(\mathbb{Z}/2)^2$. The eighth-square condition is a second 2-cover over
+this rank-3 family — Open Task A4-T1: compute its genus; $\ge 2$ would
+give the first unconditional finiteness theorem for 8-square candidates
+on the fiber (via Faltings).
