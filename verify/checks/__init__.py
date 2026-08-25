@@ -11,7 +11,8 @@ MODULES = [
     "sanity_gauntlet",
     # populated milestone by milestone:
     "a1_hill_machinery",
-    # "a2_function_field", "a3_congrua",
+    "a2_function_field",
+    # "a3_congrua",
     # "a4_eight_squares",
 ]
 

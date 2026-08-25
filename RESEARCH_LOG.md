@@ -87,3 +87,35 @@ abstract advertises no descent or minimality mechanism. Verdict:
 UNRESOLVED (text unavailable; not refuted, not validated); the method
 space as described cannot contain a correct proof; checklist §5 of the
 doc prepared for when the text is accessible. The program continues.
+
+---
+
+## 2026-08-25 — Entry 3: A2 — the function-field attack (M4)
+
+**The big one landed.** Lemma A2.L ("pairs of conics"): over an
+algebraically closed constant field, the system $aX^2+bY^2 = P^2$,
+$cX^2+dY^2 = Q^2$ with $ad \ne bc$, $abcd \ne 0$, $\gcd(X,Y)=1$ has only
+constant solutions — proved by a degree-halving Fermat descent whose
+nondegeneracy conditions **self-propagate** (the new parameter tuple
+$(1,-\theta,1,-\bar\theta)$ has $a'd'-b'c' = \theta-\bar\theta \ne 0$ and
+$a'b'c'd' = \theta\bar\theta = 1$ automatically). Consequences, both
+PROVEN unconditionally for char $\notin\{2,3\}$:
+
+- **A2.4**: every 4-term AP of squares in $k[t]$ is a square multiple of a
+  constant one (primitive $\Rightarrow$ constant). Sharp: over
+  $\mathbb{F}_{13}[t]$ the scaled-constant 4-AP $(2g)^2,(6g)^2,(4g)^2,(3g)^2$
+  exists because $4,10,3,9$ are squares in AP in $\mathbb{F}_{13}$ —
+  caught while writing the theorem statement, hypothesis added.
+- **A2.5**: same for square-congruum 3-APs; over $\mathbb{Q}[t]$ outright
+  (constant layer killed by F3.2b).
+- **A2.3** (independent, effective): Mason–Stothers proof of the
+  congruum theorem over $-1$-nonsquare constant fields.
+
+**Frontier isolated:** the full conjecture (no MSS3 over $k[t]$ beyond
+square-scaled constants) is exactly "no nondegenerate rational curves on
+the BTVA surface"; Lemma A2.L cannot reach it (3-variable quadrics do not
+factor). Exhaustive searches (complete per center degree by Prop. A2.1):
+no MSS3 with nonconstant center over $\mathbb{F}_q[t]$ for q=3 (deg M<=5),
+5 (<=4), 7/11/13 (<=3), 17/19/23 (<=2). Open Task A2-T1 recorded — in our
+judgment the most tractable path to a genuinely new theorem in this
+problem complex.
