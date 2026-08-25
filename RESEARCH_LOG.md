@@ -202,3 +202,33 @@ three congrua implementations cross-validated elementwise. Sieve design
 recorded (wheel: roots coprime to 6, offsets 0 mod 24, centers with
 prod(2a_i+1) >= 9); compiled-sieve push deliberately deferred (A6-T1) —
 bounds cannot settle the problem (F5).
+
+---
+
+## 2026-08-25 — Entry 7: M8 wrap-up — state of the program
+
+**Suite:** 53 checks, all green at FULL bounds (~15 s total); CI runs the
+FAST profile with clean SKIPs where PARI is absent. Every PROVEN claim
+has its machine-checkable content covered; every VERIFIED claim is
+reproducible by a named command.
+
+**What we believe the most promising next moves are, in order:**
+1. A2-T1 / A5-P3 (the keystone): enumerate the finitely many genus ≤ 1
+   curves on X (BTVA) and check each is degenerate — settles the
+   function-field conjecture over char-0 constants and turns
+   "probably finitely many" into a structured finiteness statement.
+2. A3.C via A3-Q: explain the square-center additive desert. The
+   157441 example shows it is genuinely about squareness. A proof would
+   kill class E of the 8-square problem outright — the first
+   impossibility theorem anyone would have proven in this family.
+3. A4-T1: genus of the eighth-square condition over the rank-3 AB1
+   fiber; genus ≥ 2 gives unconditional Faltings-finiteness there.
+4. F3-T1 and F5-T1 are self-contained write-up tasks with known
+   endpoints.
+
+**Honest bottom line:** the open problem remains open, exactly as
+expected. The program's value is the verified structure now in place:
+the obstruction cannot be local (F5), cannot be congruence+order (A1.1),
+is invisible to function fields below the rational-curve frontier (A2),
+and manifests concretely as the square-center additive desert (A3/A4) —
+which is where we would dig next.
