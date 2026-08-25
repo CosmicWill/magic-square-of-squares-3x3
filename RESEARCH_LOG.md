@@ -119,3 +119,30 @@ no MSS3 with nonconstant center over $\mathbb{F}_q[t]$ for q=3 (deg M<=5),
 5 (<=4), 7/11/13 (<=3), 17/19/23 (<=2). Open Task A2-T1 recorded — in our
 judgment the most tractable path to a genuinely new theorem in this
 problem complex.
+
+---
+
+## 2026-08-25 — Entry 4: A3 — simultaneous congrua, the additive desert, the descent gap (M5)
+
+**The additive desert (new first-party exhaustive fact, Theorem A3.3):**
+for every $m \le 300{,}000$, no two congrua of $m$ sum to a congruum of
+$m$ — the level-3 additive pattern (which would produce a 7-square magic
+square of the never-seen three-full-AP type) never occurs, although
+69,398 centers in range have $\ge 4$ congrua available. Conjecture A3.C
+(no additive triple exists for any $m$) posed as a realistic intermediate
+impossibility target strictly weaker than the full problem.
+
+**Theorem A3.K (derived independently of the literature):** no quadratic
+field admits a center-zero magic square of nine distinct squares (the
+configuration forces $i \in K$, and rank $E_1(\mathbb{Q}(i)) = 0$);
+$\mathbb{Q}(i,\sqrt n)$ works for every congruent $n$ via
+rank $E_1(\mathbb{Q}(i,\sqrt n)) = 2\,\mathrm{rank}\,E_n(\mathbb{Q})$.
+Fully explicit witness for $n = 5$: $L(0, 41^2, 720)$ with entries
+$\{0, \pm 41^2, \pm 720, \pm 49^2, \pm 31^2\}$ — squares of
+$41, 49i, 12\sqrt5, 31i, 0, 31, 12i\sqrt5, 49, 41i$ — verified in exact
+quartic-algebra arithmetic and added to the falsification gauntlet as
+anchor (e). PARI certifies the rank inputs (E_1..E_4 rank 0, E_5,6,7
+rank 1, torsion (Z/2)^2).
+
+**Gap question A3-Q posed:** a Selmer-type invariant for the four-twist
+system with same-m gluing that would explain the desert over Q.

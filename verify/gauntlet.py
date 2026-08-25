@@ -29,6 +29,12 @@ TARGETS = [
     Target("F_499 distinct-entry solution", "fp",
            {"p": 499, "cuv": targets.FP_WITNESSES[499]}),
     Target("mod-2^32 witness", "mod2n", dict(targets.MOD2N_WITNESS)),
+    # center-zero magic square of nine distinct squares over Q(i, sqrt5)
+    # (docs/attacks/A3-simultaneous-congrua.md, Theorem A3.K; verified by
+    # a3.kominers_witness).  Kills any obstruction argument that is
+    # insensitive to the base field.
+    Target("Q(i,sqrt5) center-zero solution", "number_field",
+           {"field": "Q(i, sqrt5)", "c": 0, "u": 41 ** 2, "v": 720}),
 ]
 
 
