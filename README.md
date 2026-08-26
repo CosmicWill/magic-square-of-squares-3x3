@@ -140,6 +140,10 @@ Beyond reproving the foundations from scratch, the program produced:
 | AB1 fiber Jacobian has certified rank 3, torsion $(\mathbb{Z}/2)^2$ | VERIFIED (PARI) | A4 |
 | $X$: 6 quadrics, rank exact; smooth off coordinate hyperplanes; arrangement $(t_2,t_3) = (12,8)$; $\mathbb{F}_p$ counts | PROVEN/VERIFIED | A5 |
 | Bound ladder (three cross-validated implementations) | VERIFIED | A6 |
+| Genus ≤ 1 curves on $X$ over plane **lines**: complete classification (only $u{=}0$, $v{=}0$: genus 0 degenerate; $c{=}0$: genus 1, no nondegenerate $\mathbb{Q}$-points via F3.2) | PROVEN | A7 |
+| Every nonconstant $k(t)$-MSS3 has Lucas-image degree ≥ 2 | PROVEN | A7 |
+| Resolution invariants: $K^2 = 576$, $c_2 = 768$, $\chi(\mathcal{O}) = 112$, $s_2 = -192 < 0$ (hyperbolicity is nodal); 256 $A_1$ nodes located | VERIFIED | A7 |
+| Conic layer: 216 exact candidate conics (tangent-to-5 complete; 5-triple; 4-triple pencils; symmetric), zero genus ≤ 1 components | VERIFIED; completeness OPEN | A7 |
 | **The open problem itself** | **OPEN — no claim** | everywhere |
 
 **Open tasks:** F3-T1 (close the quartic (Q) descent), F5-T1 (Weil-bound

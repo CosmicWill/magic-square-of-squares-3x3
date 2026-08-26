@@ -88,7 +88,11 @@ exactly what the open problem asks to establish over $\mathbb{Q}$.
 - **P3 (curve enumeration — the keystone).** BTVA (CITED) prove $X$ is
   algebraically quasi-hyperbolic: finitely many curves of genus
   $\le 1$. **Enumerate them and check each lies in the degeneracy
-  locus.** This single computation would: (i) settle Conjecture A2.C
+  locus.** *Now underway in [A7](A7-curve-enumeration.md): the line
+  layer is completely classified (Theorem A7.3), the resolution's
+  invariants are computed ($K^2 = 576$, $c_2 = 768$, $\chi(\mathcal{O})
+  = 112$, $s_2 = -192 < 0$ — the hyperbolicity is carried by the 256
+  nodes), and the first conic sweeps are clean.* This single computation would: (i) settle Conjecture A2.C
   over $\bar{\mathbb{Q}}$ (no nondegenerate rational curves = no
   function-field solutions), and (ii) reduce the rational-point question
   to genus-$\ge 2$ curves + finitely many sporadic points, i.e. prove

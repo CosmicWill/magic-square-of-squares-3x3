@@ -232,3 +232,59 @@ the obstruction cannot be local (F5), cannot be congruence+order (A1.1),
 is invisible to function fields below the rational-curve frontier (A2),
 and manifests concretely as the square-center additive desert (A3/A4) —
 which is where we would dig next.
+
+---
+
+## 2026-08-26 — Entry 8: Front 1 launched; state-of-the-field sweep (M9, phase R/W)
+
+User chose Front 1 (curve enumeration on X) and asked for a duplication
+check first, offering to acquire unfetchable papers. Sweep (~35 searches
++ agent; keyword-negative, citation-graph access unavailable): **nobody
+has enumerated the low-genus curves on X**, computed its Picard/NS
+lattice or Brauer group, or proven its genus ≤ 1 curves degenerate.
+Decisive method fact: BTVA's finiteness is Jouanolou-based — structurally
+non-effective; the singularity-passage refinements in their abstract are
+for Barth's sextic and the cuboid surface, not X. Their Magma code lives
+in arXiv ancillary files (unfetchable here). The Stoll–Testa cuboid
+computation is the worked template for our M10. papers/WANTED.md
+committed with the prioritized acquisition list; fetch attempts at
+cecm.sfu.ca and scottkom.com confirmed blocked.
+
+---
+
+## 2026-08-26 — Entry 9: A7 — the line theorem, invariants, conic sweeps (M9)
+
+**Theorem A7.3 (new, PROVEN):** complete classification of genus ≤ 1
+curves on X with line image. Machinery: the (Z/2)^8-cover splitting
+lemma with genus g = 1 + 2^(k-2)(r_eff - 4), and for lines the rigidity
+k = r - 1, so genus ≤ 1 ⟺ r ≤ 4 ⟺ the line passes ≥ 2 multiple points
+in patterns (3,3,3)/(3,3,2,1)/(3,2,2,2) — 69 candidates, mechanically
+swept. Verdict: exactly u=0, v=0 (genus 0, 64 components each — the
+classical 3-AP families, entry-degenerate) and c=0 (genus 1, 16
+components — the center-zero curve gamma^2 = alpha^2+beta^2, delta^2 =
+alpha^2-beta^2, whose rational points are all degenerate by OUR F3.2,
+and which carries the Q(i,sqrt5) witness of A3.K: the catalog and the
+descent-gap analysis meet exactly where they should).
+
+**Corollary A7.4 (new, unconditional):** every nonconstant k(t) magic
+square of squares has Lucas-image degree ≥ 2.
+
+**Invariants (VERIFIED, discovery):** chi_top(X~) = 768, K^2 = 576 (two
+independent routes), chi(O) = 112 (Noether integral), s2 = -192 < 0 —
+and no intermediate double plane has s2 > 0. The naive Bogomolov route
+is closed: **the quasi-hyperbolicity of X is carried by its 256 A_1
+nodes** (which we located: 32 over each triple point). The effective
+enumeration must go through orbifold-Miyaoka with node contributions or
+BTVA's differentials (acquisition P1/P4/P6). Also b_2 = 766 + 4q: the
+NS lattice is far larger than the cuboid surface's — M10 should work on
+intermediate quotients.
+
+**Conic layer:** exact analyzer (tangency = free absorption; conjugate
+pairs as Galois columns); budget lemma; sweeps of 216 candidates
+(tangent-to-5 complete for its class; 5-triple conics; 4-triple pencils
+at rational tangency parameters; symmetric families): zero genus ≤ 1
+components. High stakes noted: a genus-0 conic hit would DISPROVE A2.C
+(conic entries are automatically distinct and nonzero). The showcase
+circle u^2+v^2 = c^2 — tangent to four lines at four triple points! —
+still has genus 9. Remaining conic configurations and extension-field
+coefficients: precisely scoped for M10 in the A7 roadmap.

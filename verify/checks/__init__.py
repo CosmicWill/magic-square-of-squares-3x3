@@ -15,6 +15,7 @@ MODULES = [
     "a3_congrua",
     "a4_eight_squares",
     "a5_surface",
+    "a7_curves",
     "a6_bounds",
 ]
 

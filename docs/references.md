@@ -64,6 +64,19 @@ honestly:
 | D. Flores, "Existence of K-multimagic squares…," arXiv:2411.01091. | EXISTENCE-VERIFIED |
 | S. D. Kominers, "Center-zero magic squares of squares over number fields" (recent; venue unconfirmed). Solutions over ℚ(i,√n); degree 4 minimal. | SUMMARY-ONLY |
 
+## Curve enumeration & effective hyperbolicity (Front 1 / A7; added 2026-08-26)
+
+| Ref | Provenance |
+|---|---|
+| M. Stoll, D. Testa, "The surface parametrizing cuboids," arXiv:1009.0388 (2010). Picard lattice + curve enumeration on the sister (cuboid) surface — the worked template. | SUMMARY-ONLY |
+| K. Horie, T. Yamauchi, "The L-function of the surface parametrizing cuboids," arXiv:2512.22520 (2025). Full Picard Galois module of that surface. | EXISTENCE-VERIFIED |
+| S. Lu, Y. Miyaoka, "Bounding curves in algebraic surfaces by genus and Chern numbers," Math. Res. Lett. 2 (1995) 663–676. | SUMMARY-ONLY |
+| Y. Miyaoka, "The orbibundle Miyaoka–Yau–Sakai inequality and an effective Bogomolov–McQuillan theorem," Publ. RIMS 44 (2008) 403–417. Effective canonical-degree bounds with orbifold ($A_1$) contributions. | SUMMARY-ONLY |
+| F. Hirzebruch, "Arrangements of lines and algebraic surfaces," Progr. Math. 36 (1983) 113–140; Barthel–Hirzebruch–Höfer, Vieweg (1987). Cover invariants from arrangement combinatorics. | SUMMARY-ONLY |
+| P. Pokora, "Hirzebruch-type inequalities viewed as tools in combinatorics," Electron. J. Combin. 28 (2021); G. Urzúa, J. Alg. Geom. 19 (2010) 335–365. Practical formula sources. | EXISTENCE-VERIFIED |
+| N. Bruin, N. Ilten, Z. Xu, "Local Euler characteristics of $A_n$-singularities and their application to hyperbolicity," EPIGA 9 (2025), arXiv:2312.01722. The $A_1$-node toolkit. | SUMMARY-ONLY |
+| BTVA ancillary Magma code, `arxiv.org/src/1912.08908/anc` (per N. Bruin's SFU publications page). | EXISTENCE-VERIFIED (unfetched) |
+
 ## Claimed proofs (unaccepted; audited here)
 
 | Ref | Provenance |
