@@ -29,6 +29,21 @@ differentials and its application to quasi-hyperbolicity"**
   Algebra & Number Theory 16 (2022) 1377–1405,
   doi:10.2140/ant.2022.16.1377.
 
+## P1.5 — NEW top priority after the BTVA digest (2026-08-26)
+
+**García-Fritz & Urzúa — "Families of explicit quasi-hyperbolic and
+hyperbolic surfaces"**, Math. Z. (cited by BTVA as "to appear"; search
+by exact title — an arXiv version should exist, and Urzúa's UC Chile
+page lists his papers).
+
+*Why (this is now the load-bearing item):* BTVA's cuboid theorem is
+powered by a symmetric differential **descended to the base plane**
+(their $\omega_7 = \phi^*(\eta)/(y_1y_2y_3z^2)$), and they credit this
+cyclic-cover viewpoint to García-Fritz–Urzúa, who proved "every genus
+≤ 1 curve on the cuboid surface passes through ≥ 2 nodes" that way.
+Our M11 plan (A7 roadmap item 2) is exactly the magic-square analogue
+on the Lucas plane — their paper is the worked method.
+
 ## P2 — free expository anchor
 
 **Várilly-Alvarado — "The geometric disposition of Diophantine
@@ -68,7 +83,10 @@ fails and the hyperbolicity genuinely lives in the 256 nodes. Miyaoka's
 orbifold version (nodes contribute) is then the natural effective tool;
 we need its exact hypotheses and constants.
 
-## P5 — cover-invariant formulas (to certify our stratification numbers)
+## P5 — cover-invariant formulas *(priority LOWERED 2026-08-26: our
+stratification numbers are now independently certified by BTVA's
+complete-intersection Chern formulas, so these are context, not
+load-bearing)*
 
 - **Hirzebruch — "Arrangements of lines and algebraic surfaces"**,
   Progr. Math. 36 (1983) 113–140; free scan:
