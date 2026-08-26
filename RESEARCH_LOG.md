@@ -288,3 +288,60 @@ components. High stakes noted: a genus-0 conic hit would DISPROVE A2.C
 circle u^2+v^2 = c^2 — tangent to four lines at four triple points! —
 still has genus 9. Remaining conic configurations and extension-field
 coefficients: precisely scoped for M10 in the A7 roadmap.
+
+## 2026-08-26 — Entry 10: BTVA acquired and digested; their X numbers reproduced (M10-A)
+
+The repository owner uploaded the arXiv source tarball of BTVA
+(arXiv:1912.08908v3 = Algebra & Number Theory 16 (2022) 1377-1405) —
+the P1 item of papers/WANTED.md. Archived in papers/1912.08908/
+(tarball + full .tex + the authors' ancillary Magma files), READ end to
+end; provenance upgraded in docs/references.md. Digest in A7 §7;
+reproduction suite `verify/checks/a7_btva.py` on top of
+`compute/btva_bounds.py` (exact rational arithmetic).
+
+**The P1 questions, answered.** (a) The sweep's "Theorem 1.5" snippet
+was the perfect-cuboid theorem (`thm:CuboidIntro`) — the paper contains
+NO node-passage refinement, NO curve list, and NO ancillary code for
+the magic-square surface; its complete X-content is quasi-hyperbolicity
+(256 nodes > ell_min(8) = 217) plus "sections from m = 47 on, h^0 >=
+8448", and it explicitly calls X "out of range of current computational
+techniques" for the explicit special-curve method. Our enumeration
+program is non-duplicative — now confirmed from the primary source.
+(b) Their model of X is our model; 256 ordinary double points stated,
+matching our count. (c) No effective degree bound anywhere in the body
+(Jouanolou finiteness), as predicted. (d) anc/ = Barth sextic + cuboid
+scripts only.
+
+**Reproductions (all exact, all green):** chi^0 first-values table;
+chi^0 + chi^1 = chi(s) across their three independently printed
+piecewise families (to m = 2000); ell_min table 73/145/217/145/0;
+their CI Chern formulas give (K^2, c_2) = (576, 768) at n = 8 — equal
+to our branched-cover stratification values from M9 (two fully
+independent routes now agree); **X: bound positive exactly from m = 47
+with value 8448** (proved for all m >= 47 via Cauchy root bounds) and
+growth (160/27)m^3; cuboid partial-information calibration (r = 35
+poles, leading coefficient 1/108, threshold 862, r minimal); Barth
+decic 160/15755; Sarti 28/7646. Also: the Serre-duality (BO) route
+fails for X (leading -160/27; would need 315 nodes) — the chi^1 bound
+is the one that works, by a 39-node margin.
+
+**Three display-level errata found** (their conclusions all verify):
+"3n^2 - 27 + 66" for 3n^2 - 27n + 66 in the quadric-CI display; a
+missing S^47 in the section-7 restatement of the X bound; and the
+Barth-decic displayed piecewise bound matching ell = 339 (all 12
+coefficients) instead of the correct ell = 345 that its stated
+conclusions use.
+
+**Strategic outcome.** The direct route ("compute their differentials
+on X, intersect base loci") is confirmed closed at current technology —
+but the cuboid proof's real engine turns out to be a *base-descended*
+differential: omega = phi^*(eta)/(y1 y2 y3 z^2) with eta a degree-2
+symmetric differential on P^2 whose integral curves they classify
+completely (a conic + its tangents). The X-analogue — eta on the Lucas
+plane with entry-line-monomial denominator, regularity checked by
+exactly our M9 absorption calculus along the nine branch lines, then an
+integral-curve classification — would constrain genus <= 1 curves of
+ALL image degrees at once, bypassing the infeasible module computation.
+Precedent: García-Fritz–Urzúa got "every genus <= 1 curve through >= 2
+nodes" for the cuboid this way. That is now A7 roadmap item 2 and the
+lead candidate for M11.

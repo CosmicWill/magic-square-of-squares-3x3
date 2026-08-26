@@ -1,29 +1,33 @@
 # WANTED — sources to acquire, in priority order
 
 Compiled 2026-08-26 after the Front-1 state-of-the-field sweep (~35
-searches; see RESEARCH_LOG entry 8). **P1 is the single most important
-item.** Everything here is currently known to us only through search
-snippets.
+searches; see RESEARCH_LOG entry 8). Everything here is currently known
+to us only through search snippets, except where marked ACQUIRED.
 
-## P1 — the load-bearing paper (and its code)
+## P1 — the load-bearing paper (and its code) — ✅ ACQUIRED 2026-08-26
 
 **Bruin, Thomas, Várilly-Alvarado — "Explicit computation of symmetric
 differentials and its application to quasi-hyperbolicity"**
-- arXiv PDF (v3, Oct 2021): https://arxiv.org/pdf/1912.08908
-- **Ancillary files (Magma code!)**: https://arxiv.org/src/1912.08908/anc
-  — downloads as a tarball; per Nils Bruin's SFU publications page the
-  Magma code for the paper lives here, *not* on GitHub. Please grab the
-  whole thing.
-- Published version (nice-to-have): Algebra & Number Theory 16 (2022)
-  1377–1405, doi:10.2140/ant.2022.16.1377.
-
-*Why:* we need (a) the actual statement of what the paper proves about
-the magic-squares surface (a snippet hints at a "Theorem 1.5" with a
-"hyperplane section / ≥ 6 singularities" clause — unconfirmed), (b) their
-model of X and node analysis (256 nodes?), (c) whether any effective
-bound hides in the body (their method is Jouanolou-finiteness, so we
-expect NOT), (d) whether the ancillary Magma covers the magic-square
-case or only Barth/cuboid.
+- ✅ arXiv **source** tarball v3 *including the ancillary Magma files*,
+  uploaded by the repository owner; archived in
+  [`papers/1912.08908/`](1912.08908/) and digested (provenance now
+  **READ** in `docs/references.md`; reproductions in
+  `verify/checks/a7_btva.py`).
+- Answers to the four questions we posed: (a) the snippet's
+  "Theorem 1.5" is the **perfect-cuboid** theorem (`thm:CuboidIntro`),
+  *not* about the magic-square surface — for $X_{\mathrm{ms}}$ the paper
+  proves bare quasi-hyperbolicity (`thm:magicsquares`) plus the bound
+  $h^0(S^{47}\Omega^1) \ge 8448$, nothing about node passage; (b) their
+  model is our model (7 line-sum equations in ℙ⁸) and they state 256
+  ordinary double points, matching our derivation; (c) **no** effective
+  curve-degree bound anywhere in the body — Jouanolou finiteness, as
+  expected, and they say $X_{\mathrm{ms}}$ is "out of range of current
+  computational techniques" for the explicit method; (d) the ancillary
+  Magma covers **only** Barth's sextic and the cuboid — no magic-square
+  script exists.
+- Published version (nice-to-have, for page-numbered citations only):
+  Algebra & Number Theory 16 (2022) 1377–1405,
+  doi:10.2140/ant.2022.16.1377.
 
 ## P2 — free expository anchor
 

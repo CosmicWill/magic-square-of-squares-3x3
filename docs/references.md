@@ -4,8 +4,9 @@ Because this working environment cannot fetch most primary sources (general
 web fetching is proxy-blocked; PyPI/apt only), we flag every reference
 honestly:
 
-- **READ** — primary source read in full here. *(None yet; flag exists so the
-  ledger can improve.)*
+- **READ** — primary source read in full here (uploaded by the
+  repository owner into [papers/](../papers/) when the proxy blocks
+  direct fetching).
 - **SUMMARY-ONLY** — content known through search-result summaries and
   secondary descriptions; theorem statements from these are never
   load-bearing for this repository's PROVEN claims (we reprove what we need).
@@ -58,7 +59,7 @@ honestly:
 
 | Ref | Provenance |
 |---|---|
-| N. Bruin, J. Thomas, A. Várilly-Alvarado, "Explicit computation of symmetric differentials and its application to quasi-hyperbolicity," *Algebra & Number Theory* 16 (2022) 1377–1405; arXiv:1912.08908. Magic-square-of-squares surface is algebraically quasi-hyperbolic (finitely many curves of genus ≤ 1). | SUMMARY-ONLY |
+| N. Bruin, J. Thomas, A. Várilly-Alvarado, "Explicit computation of symmetric differentials and its application to quasi-hyperbolicity," *Algebra & Number Theory* 16 (2022) 1377–1405; arXiv:1912.08908. Magic-square-of-squares surface is algebraically quasi-hyperbolic (finitely many curves of genus ≤ 1). | **READ** (v3 source in [papers/1912.08908/](../papers/1912.08908/); magic-square numbers independently reproduced, `verify/checks/a7_btva.py`; digest in [A7 §7](attacks/A7-curve-enumeration.md)) |
 | A. Várilly-Alvarado, "The geometric disposition of Diophantine equations," *Notices AMS* (2021). | SUMMARY-ONLY |
 | N. Rome, S. Yamagishi, "On the existence of magic squares of powers," arXiv:2406.09364; *Research in Number Theory* (2025). n×n magic squares of squares exist for all n ≥ 4; **n = 3 is the only open order**. | SUMMARY-ONLY |
 | D. Flores, "Existence of K-multimagic squares…," arXiv:2411.01091. | EXISTENCE-VERIFIED |
@@ -75,7 +76,9 @@ honestly:
 | F. Hirzebruch, "Arrangements of lines and algebraic surfaces," Progr. Math. 36 (1983) 113–140; Barthel–Hirzebruch–Höfer, Vieweg (1987). Cover invariants from arrangement combinatorics. | SUMMARY-ONLY |
 | P. Pokora, "Hirzebruch-type inequalities viewed as tools in combinatorics," Electron. J. Combin. 28 (2021); G. Urzúa, J. Alg. Geom. 19 (2010) 335–365. Practical formula sources. | EXISTENCE-VERIFIED |
 | N. Bruin, N. Ilten, Z. Xu, "Local Euler characteristics of $A_n$-singularities and their application to hyperbolicity," EPIGA 9 (2025), arXiv:2312.01722. The $A_1$-node toolkit. | SUMMARY-ONLY |
-| BTVA ancillary Magma code, `arxiv.org/src/1912.08908/anc` (per N. Bruin's SFU publications page). | EXISTENCE-VERIFIED (unfetched) |
+| BTVA ancillary Magma code, `arxiv.org/src/1912.08908/anc` (per N. Bruin's SFU publications page). | **READ** (acquired with the source, [papers/1912.08908/anc/](../papers/1912.08908/anc/): Barth sextic + perfect cuboid **only** — no magic-square script) |
+| J. Wahl, "Second Chern class and Riemann–Roch for vector bundles on resolutions of surface singularities," Math. Ann. 295 (1993) 81–110. Local $\chi^0/\chi^1$ framework used by BTVA. | SUMMARY-ONLY (used through BTVA's statements, which we re-verified numerically) |
+| N. García-Fritz, G. Urzúa, "Families of explicit quasi-hyperbolic and hyperbolic surfaces," Math. Z. (to appear at BTVA's writing). Base-descended differentials on cyclic covers; for the cuboid surface: every genus ≤ 1 curve passes through ≥ 2 nodes. | SUMMARY-ONLY (known through BTVA's citation; the model for A7 roadmap item 2) |
 
 ## Claimed proofs (unaccepted; audited here)
 

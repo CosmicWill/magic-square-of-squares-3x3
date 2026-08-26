@@ -144,6 +144,7 @@ Beyond reproving the foundations from scratch, the program produced:
 | Every nonconstant $k(t)$-MSS3 has Lucas-image degree ≥ 2 | PROVEN | A7 |
 | Resolution invariants: $K^2 = 576$, $c_2 = 768$, $\chi(\mathcal{O}) = 112$, $s_2 = -192 < 0$ (hyperbolicity is nodal); 256 $A_1$ nodes located | VERIFIED | A7 |
 | Conic layer: 216 exact candidate conics (tangent-to-5 complete; 5-triple; 4-triple pencils; symmetric), zero genus ≤ 1 components | VERIFIED; completeness OPEN | A7 |
+| BTVA (arXiv:1912.08908) READ from acquired source; its $X$ results reproduced exactly from our invariants ($\ell_{\min}(8)=217$; sections from $m = 47$, $h^0 \ge 8448$); no enumeration/node refinement for $X$ exists there; 3 display errata found | VERIFIED | A7 §7, papers/1912.08908 |
 | **The open problem itself** | **OPEN — no claim** | everywhere |
 
 **Open tasks:** F3-T1 (close the quartic (Q) descent), F5-T1 (Weil-bound

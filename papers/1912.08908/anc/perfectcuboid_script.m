@@ -1,0 +1,236 @@
+SetColumns(0);
+SetLogFile("perfectcuboid.out");
+SetEchoInput(true);
+k:=Rationals();
+
+//define cuboid surface
+P6<x1,x2,x3,y1,y2,y3,z>:=ProjectiveSpace(k,6);
+F:=[x1^2+x2^2-y3^2,x1^2+x3^2-y2^2,x2^2+x3^2-y1^2,
+    x1^2+y1^2-z^2,x2^2+y2^2-z^2,x3^2+y3^2-z^2];
+X:=Scheme(P6,F);
+R:=Parent(P6.1);
+
+//define module representing the structure sheaf of X
+OX:=quo<RModule(R,[0])|[[f]:f in F]>;
+
+//define module with generators <dx1,dx2,...,dz>
+//(each of weight 1); modulo defining equations in each
+//coordinate, as well as modulo the relations we get from df=0
+//for each defining equation f.
+v:=[P6.i: i in [1..7]];
+preDX:=quo<RModule(R,[1,1,1,1,1,1,1])
+  |[[i eq j select f else 0: i in [1..7]]:j in [1..7],f in F] cat
+   [[Derivative(f,x): x in v]: f in F]>;
+
+//define module R21 with generators x1*dx2 - x2*dx1 etc.
+//(of weight 2). This is of rank 21
+//We take note that I describes the chosen order of the basis.
+I:=[ <j,i>: i in [j+1..7], j in [1..6] ];
+MR:=Matrix([v[i[1]]*preDX.i[2]-v[i[2]]*preDX.i[1]: i in I]);
+R21:=RModule(R,[2: i in [1..#I]]);
+
+//The module R21 has an obvious homomorphism to preDX.
+//The module DX representing Omega_X (at least at nonsingular points)
+//is the image of this map. We construct it as a quotient
+//of R21.
+krn:=Kernel(Homomorphism(R21,preDX,MR));
+DX,R21toDX:=quo<R21|krn>;
+
+//We construct the second tensor power of DX
+time T2DX,toT2DX:=TensorProduct(DX,DX);
+
+//and construct the symmetric square as an appropriate quotient.
+J:=[<i,j>: i in [j..Rank(DX)], j in [1..Rank(DX)]];
+time S2DX,T2DXtoS2DX:=quo<T2DX|[toT2DX(DX.j[1],DX.j[2])-toT2DX(DX.j[2],DX.j[1]): j in J]>;
+
+//We check that J properly encodes the order of the generators: for a pair j1,j2 in I, we consider the
+//product of the corresponding generators of DX. We check that the order encoded in J actually matches
+//by mapping through the structure maps.
+assert Matrix([T2DXtoS2DX(toT2DX(<DX.i[1],DX.i[2]>)+toT2DX(<DX.i[2],DX.i[1]>)): i in J]) eq 2*IdentityMatrix(R,231);
+
+//Now we just take the double dual.
+time Md,mp:=Hom(S2DX,OX);
+time hatS2DX,mp2:=Hom(Md,OX);
+
+//Check the grading of hatS2DX. Note there is one entry in grade -1.
+assert Grading(hatS2DX) eq [ 0, 0, 0, 0, 0, 0, -1 ];
+
+//The relation between S2DX and hatS2DX is given by the pairing they have with their duals.
+//We write out the pairing matrix of the degree 0 part of hatS2DX with the dual.
+B:=[Eltseq(Matrix(mp2(w))) : w in Basis(hatS2DX)[1..6] cat [c*hatS2DX.7: c in [x1,x2,x3,y1,y2,y3,z]]];
+
+//We similarly have a matrix
+A:=[Eltseq(Matrix(mp(Md.i))): i in [1..Rank(Md)]];
+
+//We refer to the variables [x1,x2,x3,y1,y2,y3,z] by their index.
+//we run through all 7 affine patches (indexed by p0)
+//and choose two other variables p1,p2 as prospective local parameters.
+//any nonsingular point on X lies in one of these affine patches and has local parameters
+//for at least one choice of p1,p2.
+//
+//for instance at a point with x1=1 and x2,x3 as local parameters, we have that the differentials
+//x1dx2+x2dx1=dx2 and x1dx3+x3dx1=dx3 form a basis for the cotangent space.
+//
+//We have that S2DX base changed to the function field K of X is a 3-dimensional vector space and,
+//since it is isomorphic to its dual, isomorphic to hatS2DX base changed to X. A choice of basis would be
+//dx2^2, dx2*dx3, dx3^2. We choose a 3-dimensional subspace of the dual and take the
+//3x3 submatrix A' describing the duality pairing between the spaces.
+//[this choice of subspace is something that in principle could introduce
+//a larger failure locus, so we might need to vary over that too]
+//
+//We take the corresponding 3 columns of B to get a matrix B' and compute:
+//B' * transpose(A')^(-1)
+//This expresses the generators of the grade 0 part of hatS2DX with respect to dx2^2, dx2*dx3, dx3^2.
+//As we see, the only denominators that are introduced come from det(A').
+//
+//We loop through all possible choices of p0, p1, p2 below and record det(A'). We should see that
+//for any nonsingular point on X there is at least one choice for A' so that det(A') does not vanish at the point.
+//In other words, we should find that the locus defined by [det(A')=0 for all A'] is supported
+//on the singular locus of X.
+
+L:=[];
+for p0 in [1..7] do
+    for p1 in [p: p in [1..6] | p ne p0] do
+        for p2 in [p: p in [p1+1..7] | p ne p0] do
+            i1:=(p0 lt p1) select Index(I,<p0,p1>) else Index(I,<p1,p0>);
+            i2:=(p0 lt p2) select Index(I,<p0,p2>) else Index(I,<p2,p0>);
+            if i2 gt i1 then
+                i1,i2:=Explode(<i2,i1>);
+            end if;
+            j1:=Index(J,<i1,i1>);
+            j2:=Index(J,<i1,i2>);
+            j3:=Index(J,<i2,i2>);
+            Jsel:=[j1,j2,j3];
+            colsel:=[1,3,7];
+            L cat:=Minors(Matrix([a[Jsel]: a in A]),3);
+        end for;
+    end for;
+end for;
+
+//we check
+assert SingularSubscheme(X) eq ReducedSubscheme(Scheme(X,L));
+
+//We select the parameters used for the representations in the article
+p0:=1; //x1=1
+p1:=2; //use dx2, dx3
+p2:=3;
+//
+i1:=Index(I,<p0,p1>);
+i2:=Index(I,<p0,p2>);
+print "<i1,i2> =",<i1, i2>;
+j1:=Index(J,<i1,i1>);
+j2:=Index(J,<i2,i1>);
+j3:=Index(J,<i2,i2>);
+print "<j1,j2,j3> =",<j1, j2, j3>;
+
+//check of representations given in article
+Jsel:=[j1,j2,j3];
+colsel:=[1,3,7];
+Bsub:=Matrix([b[colsel]:b in B]);
+Asub:=Matrix([a[Jsel]:a in A[colsel]]);
+C:=Bsub*Transpose(Adjoint(Asub));
+
+X1:=1;
+R<X2,X3,Y1,Y2,Y3,Z>:=PolynomialRing(k,6,"elim",[6,5,4,3]);
+K:=FieldOfFractions(R);
+AssignNames(~K,Names(R));
+Xaff:=ideal<R|[Evaluate(g,[1,X2,X3,Y1,Y2,Y3,Z]): g in DefiningPolynomials(X)]>;
+Caff:=[NormalForm(Evaluate(g,[1,X2,X3,Y1,Y2,Y3,Z]),Xaff): g in Eltseq(C)];
+det:=NormalForm(Evaluate(Determinant(Asub),[1,X2,X3,Y1,Y2,Y3,Z]),Xaff);
+function testeq(a,b)
+  return Numerator(a)*Denominator(b)-Numerator(b)*Denominator(a) in Xaff;
+end function;
+
+forms:=[[Caff[i]/det: i in [1+3*j..3*j+3] ]: j in [0..12]];
+
+forms;
+
+//check that the equations match what is listed in the article
+[testeq(L[i],F[i]): i in [1..#L]] where F:=forms[1] where L:=[-1/2*X2*X3/Y3^2/Z^2, 1/Z^2,-1/2*X2*X3/Y2^2/Z^2];
+[testeq(L[i],F[i]): i in [1..#L]] where F:=forms[2] where L:=[1/2*X3*(Y1^2+Y3^2)/Y3^2/Y1^2/Z^2,-X2/Y1^2/Z^2,-1/2*X3/Y1^2/Z^2];
+[testeq(L[i],F[i]): i in [1..#L]] where F:=forms[3] where L:=[-1/2*(X3^2-1)*X2/Y3^2/Y1^2/Z, X3/Y1^2/Z,-1/2*X2/Y1^2/Z];
+[testeq(L[i],F[i]): i in [1..#L]] where F:=forms[4] where L:=[1/2*1/Y3^2/Z,0,-1/2*1/Y2^2/Z];
+[testeq(L[i],F[i]): i in [1..#L]] where F:=forms[5] where L:=[1/2*X2/Y1^2/Z^2, X3/Y1^2/Z^2, -1/2*X2*(Y1^2+Y2^2)/Y2^2/Y1^2/Z^2];
+[testeq(L[i],F[i]): i in [1..#L]] where F:=forms[6] where L:=[-1/2*X3/Y1^2/Z,X2/Y1^2/Z,-1/2*X3*(X2^2-1)/Y2^2/Y1^2/Z];
+[testeq(L[i],F[i]): i in [1..#L]] where F:=forms[7] where L:=[1/2*(X3^2+1)/Y1/Y2/Y3/Z^2,-X2*X3/Y1/Y2/Y3/Z^2,1/2*(X2^2+1)/Y1/Y2/Y3/Z^2];
+
+//we determine the hyperplanes spanned by singularities. We need to base extend to Q(i) for that.
+k<i>:=QuadraticField(-1);
+//define cuboid surface
+P6<x1,x2,x3,y1,y2,y3,z>:=ProjectiveSpace(k,6);
+F:=[x1^2+x2^2-y3^2,x1^2+x3^2-y2^2,x2^2+x3^2-y1^2,
+    x1^2+y1^2-z^2,x2^2+y2^2-z^2,x3^2+y3^2-z^2];
+X:=Scheme(P6,F);
+sing:=Support(SingularSubscheme(X));
+assert #sing eq 48;
+
+//we determine the 1,2,3,4,5,6-dimensional linear spaces spanned by singularities.
+S1:={EchelonForm(Matrix([Eltseq(p)])): p in sing};#S1;
+S2:={EchelonForm(Matrix(Setseq(a))): a in Subsets(S1,2)};#S2;
+S3:={M: a in S1, b in S2 | Rank(M) eq 3 where M:=EchelonForm(VerticalJoin(a,b))};#S3;
+S4:={M: a in S1, b in S3 | Rank(M) eq 4 where M:=EchelonForm(VerticalJoin(a,b))};#S4;
+S5:={M: a in S1, b in S4 | Rank(M) eq 5 where M:=EchelonForm(VerticalJoin(a,b))};#S5;
+S6:={M: a in S1, b in S5 | Rank(M) eq 6 where M:=EchelonForm(VerticalJoin(a,b))};#S6;
+
+//get the coefficient vector of the defining equation of each hyperplane
+V:={KernelMatrix(Transpose(M))[1]:M in S6};
+
+mp1:=map<P6->P6|[x2,x1,x3,y2,y1,y3,z]>;
+mp2:=map<P6->P6|[x2,x3,x1,y2,y3,y1,z]>;
+mp3:=map<P6->P6|[-x1,x2,x3,y1,y2,y3,z]>;
+mp4:=map<P6->P6|[x1,x2,x3,-y1,y2,y3,z]>;
+mp5:=map<P6->P6|[x1,x2,x3,-y1,y2,y3,-z]>;
+Gamma:=sub<GL(7,k)|[Matrix(m):m in [mp1,mp2,mp3,mp4,mp5]]>;
+//-1 lies in Gamma which has determinant -1, so we can take the intersection with SL(7,k).
+assert -Gamma!(1) in Gamma;
+Gamma:=Kernel(hom<Gamma->GL(1,k)|[Matrix(1,1,[Determinant(m)]): m in OrderedGenerators(Gamma)]>);
+//Check that Gamma equals its own transpose, so we do not need to distinguish between the two.
+forall{m: m in Gamma | Transpose(m) in Gamma};
+
+function LC(v)
+    for i in [1..7] do
+        if v[i] ne 0 then
+            return v[i];
+        end if;
+    end for;
+end function;
+
+OrbitRepresentatives:=[];
+W:=V;
+repeat
+    w:=Rep(W);
+    Append(~OrbitRepresentatives,w);
+    O:={v/LC(v): v in Orbit(Gamma,w)};
+    assert O subset W;
+    W diff:= O;
+until #W eq 0;
+
+//number of orbit representatives of hyperplanes spanned by singularities
+#OrbitRepresentatives;
+
+//we reduce X and the hyperplanes mod p and determine which of the hyperplanes
+//contain a curve of genus 0 or 1 in reduction. That list includes the hyperplanes
+//of interest to us and those are the ones to analyse in more detail/
+p:=1097;
+ok:=IntegerRing(k);
+_,mp:=ResidueClassField(ok,Factor(p*ok)[1][1]);
+Fp:=Codomain(mp);
+P6p<x1,x2,x3,y1,y2,y3,z>:=ProjectiveSpace(Fp,6);
+Xp:=Scheme(P6p,[x1^2+x2^2-y3^2,x1^2+x3^2-y2^2,x2^2+x3^2-y1^2,
+    x1^2+y1^2-z^2,x2^2+y2^2-z^2,x3^2+y3^2-z^2]);
+planes_p:=[[mp(c): c in Eltseq(v)]: v in OrbitRepresentatives];
+curves:=[Scheme(Xp,&+[v[i]*P6p.i: i in [1..7]]): v in planes_p];
+
+indices:=[];
+for i in [1..#curves] do
+    g:=[Genus(Curve(c)): c in PrimaryComponents(ReducedSubscheme(curves[i]))| Dimension(c) eq 1];
+    if 0 in g or 1 in g then
+        print "Hyperplane of interest:", &+[v[i]*P6.i: i in [1..7]] where v:=OrbitRepresentatives[i];
+        Append(~indices,i);
+    end if;
+end for;
+
+//decomposing these hyperplane sections and checking the curve components is straightforward
+//and it yields only curves as listed  in the paper.
+
+quit;

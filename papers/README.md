@@ -23,3 +23,9 @@ provenance) unless a primary source lands in this directory.
 Copyright note: only upload what you may lawfully store in this
 repository (arXiv PDFs and open-access journal PDFs are fine; if the
 repo is public, prefer arXiv versions over paywalled publisher PDFs).
+
+**Acquired so far:**
+
+| Source | Directory | Status |
+|---|---|---|
+| BTVA, arXiv:1912.08908v3 (source + ancillary Magma) | [1912.08908/](1912.08908/) | READ & digested 2026-08-26 (A7 §7; `verify --only a7btva`) |
