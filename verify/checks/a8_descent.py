@@ -322,3 +322,67 @@ def _(ctx):
     require(vals[7] == 384 and all(vals[m] > 0 for m in range(7, 12)))
     ctx.note("chi-hat < 0 for m <= 6, = +384 at m = 7: "
              "first nonzero m is in {3..7}")
+
+
+@check("a8.z_properness", DOC)
+def _(ctx):
+    """The common-direction locus Z of the six m = 4 differentials
+    (the plane points where the six binary direction-quartics share a
+    projective root) is a PROPER closed subset of the Lucas plane:
+    exact computation shows the quartics are coprime at rational base
+    points, so dim Z <= 1 and a common integral curve of the 6-system
+    must be one of the finitely many curve components of Z (Lemma
+    A8.6)."""
+    from compute.special_locus import common_direction_gcd
+    for pt in ((F(2), F(5, 7)), (F(-4), F(11, 5))):
+        g = common_direction_gcd(pt)
+        require(len(g) == 1 and g[0] == 1,
+                f"common direction at {pt}: gcd {g}")
+    ctx.note("six quartics coprime at 2 rational points: Z proper")
+
+
+@check("a8.z_catalogue", DOC)
+def _(ctx):
+    """Exact special-line tests against the 6-system: all nine entry
+    lines lie in Z (their own direction is a common root of the six
+    quartics along them — the consistency floor for the Z-scan), while
+    the pencil carriers v = 0 and u = 0 and the six distinctness lines
+    are NOT integral curves.  u = 0, invisible in the (c, v)-chart, is
+    tested by the chart-2 slice formula (with the regularity degree
+    bound deg N_k <= 14 asserted); its verdict must agree with v = 0
+    by the transpose symmetry (c:u:v) -> (c:v:u), which preserves the
+    invariant 6-space and swaps the two lines."""
+    from compute.special_locus import catalogue_tests
+    t = catalogue_tests()
+    entry = {k: v for k, v in t.items() if k.startswith("entry")}
+    require(len(entry) == 9 and all(entry.values()),
+            f"entry lines not all in Z: {entry}")
+    others = {k: v for k, v in t.items() if not k.startswith("entry")}
+    require(len(others) == 8 and not any(others.values()),
+            f"a non-branch special line became integral: {others}")
+    require(t["u=0 integral"] == t["v=0 integral"],
+            "transpose symmetry violated")
+    ctx.note("9 entry lines in Z; u=0, v=0 and the 6 distinctness "
+             "lines all non-integral (u=0 by the chart-2 slice)")
+
+
+@check("a8.z_scan", DOC)
+def _(ctx):
+    """Certificate A8.7 (mod p): along exact generic rational lines
+    (nine pairwise-distinct entry-line crossings each, certified
+    exactly), the gcd of all 15 pairwise resultants of the six
+    direction-quartics has degree exactly 72 = 9 x 8 — the nine
+    entry-line crossings with multiplicity 8 each and NOTHING else.
+    So mod p the curve part of Z is exactly the nine entry lines, and
+    with Lemma A8.6 every complete genus-0 curve on X passes through a
+    node (Theorem A8.8).  FAST: first test line at both primes; FULL:
+    all 3 lines x 2 primes."""
+    from compute.special_locus import (SCAN_PRIMES, TEST_LINES,
+                                       z_certificate)
+    lines = TEST_LINES if ctx.profile == "FULL" else TEST_LINES[:1]
+    cert = z_certificate(lines=lines, primes=SCAN_PRIMES)
+    require(cert["ok"], f"Z-scan structure changed: {cert}")
+    degs = {r["pair_degs"] for r in cert["runs"].values()}
+    require(degs == {(92, 96)}, f"pair resultant degrees moved: {degs}")
+    ctx.note(f"{len(cert['runs'])} line/prime scans: gcd degree 72 = "
+             "9 crossings x mult 8, zero extra roots")

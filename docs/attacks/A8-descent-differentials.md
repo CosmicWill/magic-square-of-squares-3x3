@@ -5,9 +5,13 @@ García-Fritz–Urzúa READ in full); §2 structure of the arrangement
 **PROVEN** (machine-checked); §3 the decomposition theorem **PROVEN**;
 §4 the local calculus **PROVEN** (with the executable engine as its
 implementation); §5 first results **VERIFIED** — notably
-$q(\widetilde X) = 0$ and $h^0(X^\circ, S^2\Omega^1) = 0$; §6 the
-Vojta/GFU deficit analysis (honest negative); §7 roadmap. Verification:
-`python3 -m verify --only a8`.
+$q(\widetilde X) = 0$, $h^0(X^\circ, S^2\Omega^1) = 0$ and the six
+explicit invariant sections at $m_{\min} = 4$; §6 the Vojta/GFU
+deficit analysis (honest negative); §7 the special-curve locus:
+**Lemma A8.6 PROVEN**, **Certificate A8.7 VERIFIED (2 primes)**,
+**Theorem A8.8 — every complete genus-0 curve on $X$ passes through a
+node — PROVEN modulo the certificate's exact upgrade** (task A8-T3);
+§8 roadmap. Verification: `python3 -m verify --only a8`.
 
 ## 0. Goal
 
@@ -235,7 +239,7 @@ and with $\ge 2$ independent sections in hand, BTVA's explicit
 special-curve machinery (their §`s:resultants`) is applicable to $X$
 for the first time: every complete genus-0 curve on $X$ avoiding the
 nodes lies in the resultant locus $\operatorname{res}(\omega_i,
-\omega_j)$ — the next milestone computes it.
+\omega_j)$ — computed in §7 below.
 
 **The full $m = 4$ spectrum** (all 51 orbits, saturated mod-$p$; run
 record in `compute/data_m4_spectrum.json`): **every non-trivial
@@ -281,35 +285,204 @@ $\ge r + 2\nu$, $\nu$ = vanishing order of $\eta$ at the triple
 point) — are the continuation, joined with §5's spaces once a
 nonzero $m$ is located.
 
-## 7. Roadmap
+## 7. The special-curve locus and node passage (M11-D)
 
-1. **$m = 3, \dots, 7$ surveys** ($m = 3$ exact running; mod-$p$ fast
-   path for the larger degrees — a zero nullity mod $p$ proves the
-   $\mathbb{Q}$-nullity is zero). By Theorem A8.4 a nonzero degree
-   exists by $m = 7$: locate it, extract explicit generators, and
-   BTVA's resultant corollary applies to $X$ at $n = 8$ — the full
-   explicit program.
+The continuation §6 called for, executed with §5's spaces
+(`compute/special_locus.py`; checks `a8.z_properness`,
+`a8.z_catalogue`, `a8.z_scan`).
+
+Write the six invariant generators of $H^0(X^\circ, S^4\Omega^1)$ as
+$\omega_a = \pi^*\eta_a$ with
+$\eta_a = D^{-1}\sum_{k=0}^4 N^{(a)}_k(c, v)\, dc^k\, dv^{4-k}$,
+$D = \prod \ell_{(a,b)}^2$ (Theorem A8.5). At a plane point $P$ the
+**direction quartic** of $\eta_a$ is the binary form $F_a(P; dc, dv) =
+\sum_k N^{(a)}_k(P)\, dc^k dv^{4-k}$ (the common denominator cancels
+from root conditions), and the **special-curve locus** is
+$$Z \;=\; \bigl\{P \in \mathbb{P}^2 : F_1(P), \dots, F_6(P) \text{
+have a common projective root}\bigr\},$$
+a closed subset (the image of the incidence variety in
+$\mathbb{P}^2 \times \mathbb{P}^1$ under the proper first projection).
+Every numerator coefficient $N_k$ has total degree $\le 14 = d_N - 9$
+(asserted at load; for $N_0$ this is exactly regularity of $\eta$
+along $u = 0$, see below).
+
+**Lemma A8.6 (unconditional reduction). PROVEN.** Let $C \subset X$ be
+a complete curve of geometric genus $0$ containing none of the 256
+nodes. Then:
+
+1. its Lucas image $\pi(C)$ avoids all 8 triple points of the
+   arrangement — in particular $\pi(C)$ is **not** an entry line
+   (each carries 2, 3 or 4 triple points, A7 §3) and **not** a pencil
+   carrier $u = 0$, $v = 0$ (3 each, §2);
+2. $\pi(C)$ is a common integral curve of the whole six-dimensional
+   system: at a general point $P$ of $\pi(C)$ the tangent direction is
+   a common root of $F_1(P), \dots, F_6(P)$ — so $\pi(C) \subseteq Z$;
+3. $Z$ is a **proper** closed subset of the plane (exact certificate:
+   the six quartics are coprime at rational points, `a8.z_properness`),
+   so $\pi(C)$ is one of its finitely many curve components; and
+   $\deg \pi(C) \ge 3$ by Theorems A7.3 + A7.6.
+
+*Proof.* (1) The fibre of $\pi$ over a triple point consists of nodes
+only: three branch lines meet there, the local $(\mathbb{Z}/2)^3$
+subcover is $z_i^2 = \ell_i$ — eliminating, the $A_1$ cone
+$z_3^2 = \alpha z_1^2 + \beta z_2^2$ — and the remaining
+$(\mathbb{Z}/2)^5$ acts freely, giving the $8 \times 32 = 256$ count
+(A7 §5). $C \to \pi(C)$ is surjective (complete curve, finite $\pi$),
+so a triple point on $\pi(C)$ would put a point of $C$ in a nodal
+fibre. (2) On the normalization $\nu: \mathbb{P}^1 \to C \subset
+X^\circ$ ($X^\circ$ is smooth), $S^4$ of the cotangent restriction
+$\nu^*\Omega^1_{X^\circ} \twoheadrightarrow \Omega^1_{\mathbb{P}^1}$
+sends each $\omega_a$ to a global section of
+$\mathcal{O}_{\mathbb{P}^1}(-8) = 0$. By (1), $\pi(C)$ is not a branch
+line, so $\pi \circ \nu$ maps $\mathbb{P}^1$ dominantly (and
+separably, char 0) to $\pi(C)$, and $0 = \nu^*\omega_a =
+(\pi\nu)^*\eta_a$ forces $\eta_a$ to restrict to zero on $\pi(C)$:
+at a general $P \in \pi(C)$ off the arrangement the tangent direction
+annuls every $F_a(P)$. (3) Properness: a point with coprime quartics
+lies off $Z$; closed $\ne \mathbb{P}^2$ means $\dim Z \le 1$. The
+degree bound is A7.6 with A7.3 (no genus-0 curve over any line except
+the entry-degenerate families over $u{=}0/v{=}0$, excluded in (1); no
+genus $\le 1$ curve over any conic). $\blacksquare$
+
+**Exact catalogue facts** (`a8.z_catalogue`, all six generators,
+exact rational arithmetic):
+
+- **all nine entry lines lie in $Z$**: along $\ell_{(a,b)}$, the
+  line's own direction is a common root of all six direction quartics.
+  (This is *root containment at the poles*, not integrality — and it
+  is the consistency floor for the scan below: $Z$'s curve part
+  contains at least these nine lines.)
+- **$v = 0$ is not integral**, and neither are the six distinctness
+  lines $u = \pm v$, $u = \pm 2v$, $2u = \pm v$ (horizontal lines
+  $v = k$ in the chart).
+- **$u = 0$ is not integral.** The $(c,v)$-chart cannot see $u = 0$;
+  in the chart $c = 1$ with $(y, z) = (u/c, v/c)$ one computes
+  $$\eta = y^{-13} \textstyle\sum_k (-1)^k \widetilde N_k\, dy^k
+  (y\,dz - z\,dy)^{4-k} \big/ \widetilde D, \qquad
+  \widetilde N_k = y^{23} N_k(1/y, z/y),$$
+  whose $dz^4$-component is $y^{-9}\widetilde N_0/\widetilde D$.
+  Since $\pi$ is étale over $u = 0$ away from the three
+  $B$-triple-points, $\eta$ is regular there, forcing $y^9 \mid
+  \widetilde N_0$, i.e. $\deg N_0 \le 14$ (holds); the pullback to
+  $\{y = 0\}$ is then $([y^9]\widetilde N_0)(z)\, dz^4 /
+  (1 - z^2)^6$, so $u = 0$ is integral iff the total-degree-14 part
+  of $N_0$ vanishes — it does **not** (generators 2 and 6 carry
+  degree-14 terms). Cross-check: the transpose symmetry
+  $(c{:}u{:}v) \mapsto (c{:}v{:}u)$ preserves the invariant 6-space
+  and swaps $u = 0 \leftrightarrow v = 0$, so the two verdicts must
+  agree — they do.
+
+**Certificate A8.7 (the curve part of $Z$). VERIFIED (mod $p$: 2
+primes $\times$ 3 exact lines $\times$ all 15 pairs;
+`a8.z_scan`).** For each of three exact rational test lines $L$ —
+certified generic on the fly: the nine entry-line crossing parameters
+are pairwise distinct rationals, so $L$ avoids every multiple point of
+the arrangement — and each of $p \in \{999999937,\ 1000003919\}$,
+interpolate the fifteen restricted resultants
+$R_{ab}(t) = \operatorname{Res}_{(dc:dv)}\bigl(F_a|_{L(t)},
+F_b|_{L(t)}\bigr) \bmod p$ (degrees 92–96, against the a-priori bound
+$8 \times 14 = 112$) and form $g_L = \gcd_{a<b} R_{ab}$. **In all six
+scans:**
+$$\deg g_L = 72 = 9 \times 8: \text{ the nine entry-line crossings,
+each of multiplicity exactly } 8, \text{ and nothing else.}$$
+Since $Z \cap L \subseteq V(g_L)$ (a common root of all six quartics
+is in particular a common root of every pair), and the nine entry
+lines already lie in $Z$ (catalogue) and account for the *entire*
+gcd, **the curve part of $Z$ mod $p$ is exactly the nine entry
+lines**: any further curve component would meet every test line, and
+(the lines avoiding the multiple points) generically in a
+non-crossing point — a root of $g_L$ with no room to exist.
+
+*What is and is not certified.* The computation is exact linear
+algebra mod two independent 30-bit primes; by Gauss's lemma the
+primitive $\mathbb{Q}$-gcd reduces to a divisor of $g_L$ mod each
+prime, so over $\mathbb{Q}$: $\deg \gcd \le 72$ and every root of the
+$\mathbb{Q}$-gcd reduces into the crossing set modulo **both** primes.
+A curve component of $Z_{\overline{\mathbb{Q}}}$ beyond the nine lines
+would have to thread all three test lines through residues of
+crossings at both primes simultaneously — no such component is
+visible, but the *exact* statement ($Z$'s curve part over
+$\overline{\mathbb{Q}}$ = the nine lines) awaits the exact bivariate
+gcd / primary decomposition, recorded as **task A8-T3**. Everything
+upstream (Lemma A8.6, the catalogue) is exact.
+
+**Theorem A8.8 (node passage for rational curves). PROVEN modulo
+Certificate A8.7** (which is VERIFIED at two primes; exact upgrade =
+A8-T3). **Every complete curve of geometric genus 0 on $X$ — every
+rational curve on $X^\circ$'s closure — passes through at least one
+of the 256 nodes.** Equivalently: on the resolution $\widetilde X$,
+every rational curve meets the exceptional $(-2)$-locus.
+
+*Proof.* Suppose $C$ avoids the nodes. Lemma A8.6 puts $\pi(C)$ inside
+the curve part of $Z$ but off the entry lines; Certificate A8.7 says
+the curve part of $Z$ consists of the entry lines alone. $\blacksquare$
+
+**Non-vacuity.** $X$ *does* carry complete rational curves — the
+$64 + 64$ entry-degenerate AP-family components over $u = 0$ and
+$v = 0$ (Theorem A7.3). The theorem is sharp on them and they verify
+it independently: their images carry the $B$- resp. $A$-triple points,
+whose fibres are nodal (Lemma A8.6(1)) — the classical families all
+pass through nodes, as the theorem demands.
+
+**Placement.** BTVA prove node-passage refinements for the Barth
+sextic (their Theorem `thm:barth`) and the cuboid surface
+(`thm:CuboidIntro`), and state that $X$ is out of range of their
+explicit machinery; GFU §3 and Stoll–Testa's lattice method give the
+cuboid statements independently. Theorem A8.8 is the **first
+node-passage statement for the magic-square surface itself**, at the
+minimal symmetric degree $m_{\min} = 4$ — and it is exactly the
+geometric mechanism behind the classical phenomenology: every known
+rational family on $X$ is nodal, i.e. degenerate through the
+triple-point structure. Strengthening "$\ge 1$ node" to "$\ge 2$
+nodes" (the cuboid-grade statement) needs the node-extension layer —
+which elements of the 6-space extend over which exceptional
+$(-2)$-curves — scheduled as the next milestone (§8 item 3).
+
+## 8. Roadmap
+
+1. ~~$m = 3, 4$ surveys~~ **done** (§5): $m_{\min} = 4$, six invariant
+   generators stored. Remaining: **$m = 5, 6, 7$ mod-$p$ surveys**
+   (growth of the section ring; $\hat\chi(7) = +384$ guarantees
+   $h^0 \ge 384$ by $m = 7$ — is the ring generated at $m = 4$?).
 2. ~~Cuboid positive control~~ **done** (§4): $h^0 = 13$ reproduced
    exactly, fingerprint and element-level.
-3. **Node-extension layer**: which elements of $V_S$ extend over which
-   exceptional curves (the $\chi^0$-conditions, computed on the cone
-   model $w_3^2 = \alpha w_1^2 + \beta w_2^2$) — the input to
-   node-passage theorems à la GFU §3 / BTVA cuboid Theorem 1.2.
-4. **Sub-cover Segre scan**: $s_2$ (orbifold-corrected) of all
+3. **Node-extension layer** — now the route from Theorem A8.8's
+   "$\ge 1$ node" to the cuboid-grade "$\ge 2$ nodes": which elements
+   of the 6-space extend over which exceptional curves (the
+   $\chi^0$-conditions, computed on the cone model $w_3^2 = \alpha
+   w_1^2 + \beta w_2^2$), then GFU §3 / BTVA cuboid-Theorem-1.2-style
+   counting against $C \cdot E$.
+4. **A8-T3 (exact upgrade of Certificate A8.7):** identify the curve
+   part of $Z$ over $\overline{\mathbb{Q}}$ exactly — the bivariate
+   resultants $\operatorname{Res}(F_a, F_b) \in \mathbb{Q}[c, v]$
+   (degree $\le 112$ each) via modular interpolation + rational
+   reconstruction, then their exact gcd/primary decomposition. Until
+   then Theorem A8.8 carries the mod-$p$ tag honestly.
+5. **Sub-cover Segre scan**: $s_2$ (orbifold-corrected) of all
    intermediate quotients, hunting for a Lu–Miyaoka-eligible quotient
    ($K^2 > c_2$); the M9 double-plane scan says none exists at the
    bottom level.
-5. The two-conic + two-pencil structure of §2 as a source of special
+6. The two-conic + two-pencil structure of §2 as a source of special
    curves/fibrations on $X$ (each conic's tangent-line family is a
    1-parameter family of 6-tangency lines — compare the M10-B budget).
 
-## 8. What the verify script proves mechanically
+## 9. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py`: the §2 structural facts (grid-line
-triples, pencil base points on $u{=}0/v{=}0$, both conic splits with
-smoothness); the quadric control at $m = 1, 2$; $q = 0$ (all orbits,
-$m = 1$); the $m = 2$ survey (FULL: all 51 orbits with saturation;
-FAST: pinned sample) with total $0$; orbit-equivariance of the solver
-on a full orbit; the $d\ell_1 d\ell_2$ near-trap rejected for exactly
-the chart-2 reason; character-count bookkeeping ($51$ orbits covering
-$256$).
+`verify/checks/a8_descent.py` (16 checks): the §2 structural facts
+(grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
+splits with smoothness); the quadric control at $m = 1, 2$; the
+$d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
+$q = 0$ (all orbits, $m = 1$); the $m = 2$ survey (FULL: all 51
+orbits with saturation; FAST: pinned sample) with total $0$;
+orbit-equivariance of the solver on a full orbit; character-count
+bookkeeping (51 orbits covering 256); the cuboid control (§4:
+$h^0 = 13$, 16-character fingerprint, element memberships); mod-$p$
+soundness (rank drops under reduction — a zero nullity mod $p$ is a
+proof); the $m = 3$ survey (zero); the six $m = 4$ generators
+re-verified from scratch against the exact condition system plus the
+mod-$p$ ceiling ($h^0 = 6$ certified); the stored $m = 4$ spectrum
+record (only the trivial character); the $\hat\chi$ bracket; and §7's
+three: $Z$ proper (exact), the special-line catalogue (exact,
+including the chart-2 $u = 0$ slice and the transpose-symmetry
+agreement), and the $Z$-scan certificate (3 lines $\times$ 2 primes,
+structure pinned to $72 = 9 \times 8 + 0$).

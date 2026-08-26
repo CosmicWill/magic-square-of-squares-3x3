@@ -530,3 +530,57 @@ Ops note: an overly broad pkill killed both background surveys once
 (the redundant exact m=3 AND the m=4 survey — restarted parallelized);
 the m=3 exact run was retired as redundant (its zero already proven by
 saturated mod-p at two degree bounds).
+
+## 2026-08-26 — Entry 15: NODE PASSAGE — every complete genus-0 curve on X meets a node (M11-D)
+
+**The resultant-locus program is executed** (compute/special_locus.py;
+checks a8.z_properness, a8.z_catalogue, a8.z_scan — the whole module,
+6-scan certificate included, runs in ~3 s).
+
+The six invariant m = 4 generators give six binary direction-quartics
+F_a(P; dc, dv) = sum_k N_k^(a)(P) dc^k dv^(4-k); the special-curve
+locus Z is the set of plane points where all six share a projective
+root. Structure established:
+
+- Lemma A8.6 (PROVEN, unconditional): a node-avoiding complete
+  genus-0 curve on X has Lucas image avoiding all 8 triple points
+  (their pi-fibres consist of nodes only: the (Z/2)^3 local cover is
+  the A_1 cone, the residual (Z/2)^5 acts freely — 8 x 32 = 256), of
+  degree >= 3 (A7.3 + A7.6), and contained in Z (the whole 6-space is
+  invariant, so integrality descends: genus 0 kills sections of
+  O(-8), and off the branch lines pullback is injective on rational
+  symmetric differentials).
+- Exact catalogue (PROVEN): all nine entry lines lie in Z; v = 0,
+  u = 0 and the six distinctness lines are NOT integral. u = 0 —
+  invisible in the (c,v)-chart — is tested by a chart-2 slice
+  formula: regularity along u = 0 forces deg N_0 <= 14 (it holds,
+  = dN - 9), and the restriction is the degree-14 part of N_0 over
+  (1-z^2)^6; verdict cross-checked by the transpose symmetry
+  swapping u=0 <-> v=0.
+- Certificate A8.7 (VERIFIED mod p): along 3 exact rational lines
+  (each certified generic: nine pairwise-distinct crossings) at 2
+  primes (999999937, 1000003919), the gcd of all 15 pairwise
+  resultants Res(F_a, F_b) — degrees 92..96 against the a-priori
+  bound 8 x 14 = 112 — has degree exactly 72 = 9 crossings x
+  multiplicity 8, NOTHING else, in all six scans. The nine entry
+  lines account for the entire gcd: mod p, the curve part of Z is
+  exactly the nine entry lines.
+
+**Theorem A8.8 (node passage for rational curves): every complete
+curve of geometric genus 0 on X passes through at least one of the
+256 nodes** — equivalently, every rational curve on the resolution
+meets the (-2)-locus. PROVEN modulo the certificate's exact upgrade
+(A8-T3: exact bivariate gcd / primary decomposition of Z; until then
+the mod-p tag stays on honestly). Non-vacuous and sharp: the 64 + 64
+classical AP-families over u=0 / v=0 are complete rational curves on
+X, their images carry the A-/B-triple points, and they duly pass
+through nodes. BTVA prove node-passage only for Barth's sextic and
+the cuboid and declare X out of range; this is the first such
+statement for the magic-square surface, at m_min = 4.
+
+Next: the node-extension layer (which of the six sections extend over
+which exceptional (-2)-curves — the chi^0-conditions on the cone
+model) to push ">= 1 node" toward the cuboid-grade ">= 2 nodes"
+(A8 §8 item 3); m = 5..7 surveys for the section-ring growth; A8-T3.
+
+Suite: 90 checks green (FULL).

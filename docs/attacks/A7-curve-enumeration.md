@@ -332,14 +332,17 @@ $z_3^2 = a z_1^2 + b z_2^2$: $A_1$), resolved crepantly. Consequences:
    $q(\widetilde X) = 0$ (so $b_2 = 766$, $h^{1,1} = 544$); and
    $h^0(X^\circ, S^2\Omega^1) = 0$ — the $m = 2$ explicit program that
    powers BTVA's cuboid theorem is *empty* on $X$, not merely
-   infeasible.
+   infeasible. Since then: $m_{\min} = 4$ with six invariant sections
+   (A8 §5), and the special-curve locus executed — **Theorem A8.8:
+   every complete genus-0 curve on $X$ passes through a node** (PROVEN
+   modulo the mod-$p$ Certificate A8.7; A8 §7).
 3. ~~◆ Orbifold-Miyaoka with 256 $A_1$ points (P4/P6)~~ **resolved
    negative** (papers acquired and read, A8 §1): the Lu–Miyaoka /
    Miyaoka-2008 effective bounds require $K^2 > c_2$, and $X$ has
    $576 < 768$ — still $576 < 640$ after the $A_1$-orbifold correction.
    The route survives only on intermediate quotients (none eligible at
    the double-plane level by the M9 scan); a full sub-cover Segre scan
-   is A8 roadmap item 4.
+   is A8 roadmap item 5.
 4. ~~Finish the conic layer~~ **done** (M10-B): Lemma A7.5 sharpened
    the class list to C1–C6, all swept exactly (quadratic fields and
    elimination certificates included) — Theorem A7.6: **no genus ≤ 1
@@ -352,8 +355,12 @@ $z_3^2 = a z_1^2 + b z_2^2$: $A_1$), resolved crepantly. Consequences:
    with manageable $b_2$, compute its NS lattice with Galois action, and
    enumerate low classes there; curves on $X$ map to curves on every
    quotient, so quotient bounds constrain $X$.
-7. If ever a candidate section of $\hat S^m\Omega^1_X(-\lfloor m/2
-   \rfloor H)$ becomes computable (by item 2 or new tooling), BTVA's
+7. **Executed in plane-descended form** (A8 §7, M11-D): with the six
+   $m = 4$ sections of item 2, the resultant-locus mechanism ran on
+   the Lucas plane — Theorem A8.8 (node passage for genus 0). The
+   $\mathbb{P}^8$-side variant below stays open for the genus-1 and
+   hyperplane refinements: if a section of $\hat S^m\Omega^1_X(-\lfloor
+   m/2 \rfloor H)$ *with the $H$-twist* becomes computable, BTVA's
    Corollary `C:explicit_resultant_locus` applies verbatim at $n = 8$:
    every genus-0 curve on $X$ is in the resultant locus, in finitely
    many node-spanned hyperplanes, or passes through **≥ 9 nodes spanning
