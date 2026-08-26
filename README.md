@@ -148,7 +148,9 @@ Beyond reproving the foundations from scratch, the program produced:
 | BTVA (arXiv:1912.08908) READ from acquired source; its $X$ results reproduced exactly from our invariants ($\ell_{\min}(8)=217$; sections from $m = 47$, $h^0 \ge 8448$); no enumeration/node refinement for $X$ exists there; 3 display errata found | VERIFIED | A7 §7, papers/1912.08908 |
 | Descent decomposition: $H^0(X^\circ, S^m\Omega^1) = \bigoplus_{256}$ plane-level linear problems (executes BTVA's "out of range" step by another route) | PROVEN | A8 |
 | $q(\widetilde X) = 0$, hence $b_2 = 766$, $h^{1,1} = 544$ (all 256 characters at $m=1$; matches classical pencil-character theory) | VERIFIED | A8 |
-| $h^0(X^\circ, S^2\Omega^1) = 0$ — the $m=2$ explicit-differential program (13-dimensional on the cuboid) is **empty** on $X$ | VERIFIED (positive control pending: cuboid engine, A8 §4) | A8 |
+| $h^0(X^\circ, S^2\Omega^1) = 0$ — the $m=2$ explicit-differential program (13-dimensional on the cuboid) is **empty** on $X$ | VERIFIED (methodology positively controlled) | A8 |
+| **Cuboid control passed**: the same engine reproduces BTVA's $h^0(X_{\mathrm{pc}}, \hat S^2\Omega^1) = 13$ exactly — full 16-character fingerprint + element-level generator membership | VERIFIED | A8 §4 |
+| First-section bracket: $\chi(X,\hat S^m\Omega^1) < 0$ for $m \le 6$, $= +384$ at $m = 7$ ⟹ first nonzero symmetric degree on $X^\circ$ is in $\{3..7\}$ (vs BTVA's $m \ge 47$ on $Y$) | PROVEN (h²-vanishing PROVEN-CLASSICAL) | A8 |
 | Lu–Miyaoka / orbibundle-MYS effective bounds inapplicable to $X$: $K^2 = 576 < 640 = c_2^{\mathrm{orb}} < 768 = c_2$ | READ + computed | A8 §1 |
 | **The open problem itself** | **OPEN — no claim** | everywhere |
 

@@ -145,8 +145,9 @@ dimension is recomputed at numerator-degree bound $+2$ and required
 to agree (saturation); the 8 grid symmetries organize the 256
 characters into 51 orbits.
 
-**Controls.** (i) The two-line sub-cover is $\mathbb{P}^1 \times
-\mathbb{P}^1$: the engine returns $0$ for all its characters at
+**Controls — all passing.** (i) The two-line sub-cover is
+$\mathbb{P}^1 \times \mathbb{P}^1$: the engine returns $0$ for all its
+characters at
 $m = 1, 2, 3$, as it must (no global symmetric differentials — note
 the instructive near-trap: $\eta = d\ell_1 d\ell_2$ pulls back to the
 affinely-regular $4\,dx_1 dx_2$, and the engine correctly rejects it
@@ -156,11 +157,25 @@ classical Zariski/Esnault–Viehweg picture: irregularity of abelian
 line-arrangement covers comes from pencil sub-arrangements attached to
 characters, and our even characters contain no pencils. (iii)
 Orbit-equivariance and saturation are asserted mechanically.
-(iv) The gold-standard *positive* control — reproducing
-$h^0(\hat S^2\Omega^1) = 13$ on the cuboid surface by the same descent
-(over $\mathbb{Q}(i)$, with a conic branch component) — is scheduled
-as the next milestone; until it passes, the §5 numbers carry that
-caveat explicitly.
+(iv) **The gold-standard positive control PASSES**
+(`compute/descent_cuboid.py`, `a8.cuboid_control`): the perfect-cuboid
+surface is a $(\mathbb{Z}/2)^4$ cover of $\mathbb{P}^2$ branched on
+four $\mathbb{Q}$-irreducible conics (three line-pairs and the
+circle; its 48 nodes sit over the 3 line-pair vertices and the 6
+tangency points with the circle — all codimension 2, so the same
+divisorial theorem applies, with a pole allowance of $|T|$ along the
+étale line $x_1 = 0$ from the projective balancing
+$\omega \cdot \prod_T \mathrm{root}_i / x_1^{|T|}$). Running the same
+methodology there reproduces BTVA's Magma-computed
+$h^0(X_{\mathrm{pc}}, \hat S^2\Omega^1) = 13$ **exactly**, including
+the full 16-character fingerprint read off their Table 1
+($3, 3, 3, 1, 1, 1, 1$ on $\varnothing, \{z\}, \{y_1y_2y_3\},$ the
+three $y$-pairs, $\{y_1y_2y_3z\}$; zero on the other nine), with
+element-level membership of their descended generators ($\omega_4
+\mapsto dc^2/Q_3 - dv^2/Q_2$, $\omega_7 \mapsto (Q_2\,dc^2 - 2cv\,
+dc\,dv + Q_3\,dv^2)/Q_4$, and $x_2\omega_7, x_3\omega_7$) — and
+$q(X_{\mathrm{pc}}') = 0$ at $m = 1$. The §5 zeros no longer carry a
+pending-control caveat.
 
 ## 5. First results (VERIFIED, `a8.q_zero` / `a8.m2_survey`)
 
@@ -174,13 +189,30 @@ Stoll–Testa question "is $\rho$ maximal?" is now well-posed for $X$.)*
 **Theorem A8.3 (no quadratic symmetric differentials).**
 $$h^0(X^\circ, S^2\Omega^1) \;=\; h^0(X, \hat S^2\Omega^1_X) \;=\; 0:$$
 all 256 character eigenspaces vanish at $m = 2$ (51 orbit
-representatives, saturation-checked). Contrast: the perfect-cuboid
-surface has $h^0(\hat S^2\Omega^1) = 13$ (BTVA), which powers their
-entire explicit program there. **For the magic-square surface the
+representatives, saturation-checked; methodology positively controlled
+by the cuboid reproduction of §4). Contrast: the perfect-cuboid
+surface has $h^0(\hat S^2\Omega^1) = 13$ (BTVA — now independently
+**re-derived by this engine**), which powers their entire explicit
+program there. **For the magic-square surface the
 $m = 2$ explicit program is not merely out of computational range — its
 input space is empty.** Any future explicit-resultant attack must work
 at $m \ge 3$ (the corresponding surveys run on this engine; $m = 3$ in
 progress at the time of writing).
+
+**Theorem A8.4 (the first-section bracket).** With our verified
+$(K^2, c_2, \ell) = (576, 768, 256)$ and the exact $A_1$ local Euler
+characteristic, Blache's local-global formula gives
+$$\chi(X, \hat S^m\Omega^1_X) = \chi(Y, S^m\Omega^1_Y) +
+256\,\chi_{\mathrm{loc}}(m) =
+-624,\ -1344,\ -1360,\ -1632,\ -560,\ \mathbf{+384}$$
+for $m = 2, \dots, 7$ (`a8.chi_hat_bracket`; note the near-miss at
+$m = 6$). Since $h^2(X, \hat S^m\Omega^1_X) = 0$ for $m \ge 3$
+(Bogomolov–De Oliveira / Deschamps, as invoked in BTVA's Leray lemma —
+PROVEN-CLASSICAL/CITED), $h^0(X^\circ, S^7\Omega^1) \ge 384$:
+**the first nonzero symmetric degree on $X^\circ$ lies in
+$\{3, \dots, 7\}$** — far below BTVA's resolution-level guarantee
+$m \ge 47$, and within reach of this engine (a mod-$p$ fast path
+proves zeros cheaply; only nonzero candidates need exact runs).
 
 ## 6. The Vojta/GFU route: a structural deficit (honest analysis)
 
@@ -217,12 +249,14 @@ nonzero $m$ is located.
 
 ## 7. Roadmap
 
-1. **$m = 3, 4$ surveys** (engine as-is; $m = 3$ running). First
-   nonzero $m$ ⟹ explicit generators ⟹ BTVA's resultant corollary
-   applies to $X$ at $n = 8$ — the full explicit program.
-2. **Cuboid positive control** (M11-B): extend the engine to
-   $\mathbb{Q}(i)$ coefficients and a conic branch component;
-   reproduce $h^0 = 13$ and the 13 generators of BTVA's Table 1.
+1. **$m = 3, \dots, 7$ surveys** ($m = 3$ exact running; mod-$p$ fast
+   path for the larger degrees — a zero nullity mod $p$ proves the
+   $\mathbb{Q}$-nullity is zero). By Theorem A8.4 a nonzero degree
+   exists by $m = 7$: locate it, extract explicit generators, and
+   BTVA's resultant corollary applies to $X$ at $n = 8$ — the full
+   explicit program.
+2. ~~Cuboid positive control~~ **done** (§4): $h^0 = 13$ reproduced
+   exactly, fingerprint and element-level.
 3. **Node-extension layer**: which elements of $V_S$ extend over which
    exceptional curves (the $\chi^0$-conditions, computed on the cone
    model $w_3^2 = \alpha w_1^2 + \beta w_2^2$) — the input to

@@ -214,6 +214,18 @@ def surface_p3(d):
     return ci_invariants(3, (d,))
 
 
+def chi_hat(K2, chi, ell, m):
+    """chi(X, hat-S^m Omega^1_X) for a surface X with ell A_1 nodes and
+    resolution invariants (K^2, chi): by Blache's local-global formula
+    (BTVA's proof of P:local_chi), chi(X, hat-S^m) = chi(Y, S^m) +
+    ell * chi(s, S^m).  For X_ms this first turns positive at m = 7
+    (value 384); with h^2(X, hat-S^m) = 0 for m >= 3 (Bogomolov-
+    De Oliveira / Deschamps, as used in BTVA's lem:Leray) this gives
+    h^0(X - nodes, S^m Omega^1) >= chi_hat(m), hence guaranteed
+    sections at m = 7."""
+    return chi_sym(K2, chi, m) + ell * chi_local_A1(m)
+
+
 def main():
     print("== local Euler characteristics at an A_1 node ==")
     row = [int(chi0_A1(m)) for m in range(1, 13)]

@@ -452,3 +452,41 @@ need 9 lines tangent to one conic, we have 6) — properly so, since X
 does have genus <= 1 curves; the productive continuations are the
 zero-deficit sub-cover statements and GFU-§3-style node-passage
 bounds, both scoped in the A8 roadmap. Suite: 81 checks green.
+
+## 2026-08-26 — Entry 13: the cuboid control PASSES; first-section bracket {3..7} (M11-B)
+
+**The decisive validation.** The descent engine, pointed at the
+perfect-cuboid surface (a (Z/2)^4 cover of P^2 branched on four
+Q-irreducible conics — three line pairs and the circle; 48 nodes over
+the 3 line-pair vertices (8 each) and the 6 tangencies with the circle
+(4 each), all codim 2), reproduces BTVA's Magma-computed
+h^0(X_pc, hat-S^2 Omega^1) = 13 EXACTLY — and not just the total: the
+full 16-character fingerprint read off their Table 1 (dims 3, 3, 3 on
+the trivial, z-, and y1y2y3-characters; 1 on each y-pair and on
+y1y2y3z; 0 on the other nine), with element-level membership of their
+descended generators (omega_4 -> dc^2/Q3 - dv^2/Q2 in V_{z};
+omega_7 -> (Q2 dc^2 - 2cv dcdv + Q3 dv^2)/Q4 and x2·, x3·omega_7 in
+V_{y1y2y3}), plus q(X_pc') = 0 at m = 1. New machinery exercised:
+mod-conic divisibility conditions (adapted bases with unit partials),
+singular branch conics, and the |T|-pole allowance along the etale
+line x1 = 0 from projective balancing. First run, no tuning.
+compute/descent_cuboid.py; check a8.cuboid_control.
+
+The A8 zeros for the magic-square surface (q = 0; h^0(S^2) = 0 across
+all 256 characters) therefore stand with their positive control in
+place — the pending-caveat is retired.
+
+**Theorem A8.4 (first-section bracket).** chi(X, hat-S^m) =
+chi(Y, S^m) + 256 chi_loc(m) = -624, -1344, -1360, -1632, -560, +384
+for m = 2..7 (near-miss at m = 6). With the classical h^2-vanishing
+(m >= 3; PROVEN-CLASSICAL via BO/Deschamps as in BTVA's Leray lemma):
+h^0(X - nodes, S^7 Omega^1) >= 384. So the FIRST NONZERO SYMMETRIC
+DEGREE on X-minus-nodes lies in {3, ..., 7} — dramatically below
+BTVA's m >= 47 guarantee on the resolution. The m = 3 exact survey is
+running; m = 4..6 will go through a mod-p fast path (nullity mod p = 0
+proves Q-nullity = 0). Locating the first nonzero m and extracting
+explicit generators would put BTVA's own resultant corollary to work
+on X at n = 8 — the full explicit special-curve program that has never
+been executed on this surface.
+
+Suite: 83 checks green.

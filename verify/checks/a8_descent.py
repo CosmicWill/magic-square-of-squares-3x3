@@ -148,3 +148,56 @@ def _(ctx):
     require(sum(o for _, o in orbs) == 256)
     require(all(len(k) % 2 == 0 for k, _ in orbs))
     ctx.note("51 symmetry orbits covering all 256 even characters")
+
+
+@check("a8.cuboid_control", DOC)
+def _(ctx):
+    """THE POSITIVE CONTROL: the same descent methodology, run on the
+    perfect-cuboid surface (a (Z/2)^4 cover of P^2 branched on four
+    Q-irreducible conics), reproduces BTVA's Magma-computed
+    h^0(X_pc, hat-S^2 Omega^1) = 13 -- including the full 16-character
+    fingerprint read off their Table 1, and element-level membership of
+    their descended generators omega_4, omega_7, x_2 omega_7,
+    x_3 omega_7."""
+    from compute.descent_cuboid import (EXPECTED_M2, _in_space,
+                                        cuboid_eigenspace_dim, spectrum,
+                                        table1_membership)
+    if ctx.profile == "FULL":
+        spec = spectrum(2, saturate=True)
+        require(sum(spec.values()) == 13, f"total {sum(spec.values())}")
+        want = {T: EXPECTED_M2.get(T, 0) for T in spec}
+        require(spec == want, "character fingerprint mismatch")
+        # extra control: q(cuboid resolution) = 0
+        require(all(cuboid_eigenspace_dim(T, 1) == 0 for T in spec),
+                "cuboid q != 0")
+        note = "all 16 characters"
+    else:
+        for T, d in EXPECTED_M2.items():
+            require(cuboid_eigenspace_dim(tuple(sorted(T)), 2) == d,
+                    f"V_{sorted(T)} != {d}")
+        for T in ((1,), (1, 4), (2, 3, 4)):
+            require(cuboid_eigenspace_dim(T, 2) == 0, f"V_{T} != 0")
+        note = "7 nonzero + 3 zero characters"
+    for name, T, nums in table1_membership():
+        ok, dim = _in_space(T, 2, nums)
+        require(ok, f"{name} not in computed V_{sorted(T)}")
+    ctx.note(f"cuboid: h^0 = 13 EXACTLY as BTVA ({note}); "
+             "Table-1 memberships verified")
+
+
+@check("a8.chi_hat_bracket", DOC)
+def _(ctx):
+    """chi(X, hat-S^m Omega^1) = chi(Y, S^m) + 256 chi_loc(m) is
+    negative for m = 2..6 (near-miss -560 at m = 6) and turns positive
+    at m = 7 with value 384; with the classical h^2-vanishing (m >= 3)
+    this guarantees sections at m = 7, so the first nonzero symmetric
+    degree on X - nodes lies in {3, ..., 7} (m = 2 excluded by
+    a8.m2_survey)."""
+    from compute.btva_bounds import XMS, chi_hat
+    K2, chi, ell = XMS["K2"], XMS["chi"], XMS["ell"]
+    vals = {m: chi_hat(K2, chi, ell, m) for m in range(2, 12)}
+    require(vals[2] == -624 and vals[6] == -560, "chi-hat changed")
+    require(all(vals[m] < 0 for m in range(2, 7)))
+    require(vals[7] == 384 and all(vals[m] > 0 for m in range(7, 12)))
+    ctx.note("chi-hat < 0 for m <= 6, = +384 at m = 7: "
+             "first nonzero m is in {3..7}")
