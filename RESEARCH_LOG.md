@@ -584,3 +584,48 @@ model) to push ">= 1 node" toward the cuboid-grade ">= 2 nodes"
 (A8 §8 item 3); m = 5..7 surveys for the section-ring growth; A8-T3.
 
 Suite: 90 checks green (FULL).
+
+## 2026-08-26 — Entry 16: THEOREM A8.8 MADE UNCONDITIONAL — the exact special-curve locus (M11-E / A8-T3 closed)
+
+The mod-p caveat lasted one commit. compute/z_exact.py (~5 s,
+a8.z_exact) computes the two pairwise resultants R_12 =
+Res(F_1, F_2), R_34 = Res(F_3, F_4) EXACTLY in Z[c, v] and identifies
+Z's curve part over Q-bar:
+
+- Provably exact CRT: the six generators have 2-3-digit integer
+  coefficients once content-free, so the permutation-expansion bound
+  |coeff(Res)| <= prod_rows l1(row) is ~10^24 and THREE 30-bit primes
+  make the 113 x 113 grid interpolation provably complete — no
+  Hadamard slack, no sampling. Independently spot-verified at six
+  integer points against exact integer Sylvester determinants.
+  R_12: total degree 96, 864 terms, <= 15-digit coefficients.
+  R_34: degree 92.
+- Exact peeling over Z (synthetic division by the monic-in-c entry
+  lines): R_12 = (prod l^8) l_(0,0)^4 C_12 (deg C_12 = 20),
+  R_34 = (prod l^8) l_(-1,0)^2 l_(1,0)^2 l_(0,-1)^4 l_(0,1)^4 C_34
+  (deg C_34 = 8); no entry line divides a cofactor.
+- Coprimality of C_12, C_34 over Q in the sound direction: their
+  v-leading coefficients stay alive mod p = 999999937, and
+  Res_v(C_12, C_34)(c_0 = 2) != 0 mod p, so a common factor with
+  deg_v >= 1 is impossible (Gauss + lc_v divisibility); deg_v = 0
+  common factors die by the exact v-content gcd (= 1).
+
+Hence gcd(R_12, R_34) = prod over all nine lines of l^8, up to a
+constant — the SAME divisor the M11-D line scans measured (their
+crossing multiplicity 8 = these gcd exponents; two independent
+computations agree). An irreducible curve inside Z divides both
+resultants, so it is an entry line:
+
+  THEOREM A8.7' (exact): the curve part of Z over Q-bar is contained
+  in the nine entry lines. PROVEN.
+  THEOREM A8.8: every complete genus-0 curve on X passes through at
+  least one of the 256 nodes. PROVEN — UNCONDITIONAL.
+
+The exact resultants are committed (compute/data_z_resultants.json,
+38 KiB) and the verify check re-derives the whole certificate from
+the stored generators on every run, FULL and FAST, comparing against
+the stored file. A8-T3 is closed the day it was opened; docs, ledger
+and roadmaps updated (remaining §7-adjacent work: node-extension
+layer toward ">= 2 nodes", m = 5..7 surveys).
+
+Suite: 91 checks green (FULL).

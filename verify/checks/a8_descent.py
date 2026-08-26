@@ -386,3 +386,40 @@ def _(ctx):
     require(degs == {(92, 96)}, f"pair resultant degrees moved: {degs}")
     ctx.note(f"{len(cert['runs'])} line/prime scans: gcd degree 72 = "
              "9 crossings x mult 8, zero extra roots")
+
+
+@check("a8.z_exact", DOC)
+def _(ctx):
+    """Theorem A8.7-exact (A8-T3 closed): the EXACT bivariate
+    resultants R_12, R_34 in Z[c, v] — proven exact by CRT over 30-bit
+    primes whose product exceeds twice the rigorous l1 determinant
+    bound, and independently spot-verified against exact integer
+    Sylvester determinants — factor as prod l_(a,b)^e x cofactor with
+    every entry line appearing to exponent >= 8 in both, gcd exponents
+    exactly 8, and the two peeled cofactors certified COPRIME over Q
+    (sound direction: nonzero Res_v evaluation mod p with alive
+    v-leading coefficients + exact v-content gcd).  Hence
+    gcd(R_12, R_34) = prod l^8 up to constant, the curve part of Z is
+    contained in the nine entry lines over Q-bar, and Theorem A8.8
+    (node passage) is UNCONDITIONAL.  Both profiles recompute the
+    whole certificate from the stored generators (~5 s) and compare
+    against the committed data file."""
+    from compute.z_exact import compute_certificate, load
+    cert, Rs = compute_certificate(verbose=False)
+    require(cert["ok"], "certificate structure broken")
+    require(all(v == 8 for v in cert["gcd_exponents"].values()),
+            f"gcd exponents changed: {cert['gcd_exponents']}")
+    for pr in cert["pairs"]:
+        require(all(e >= 8 for e in
+                    (int(x) for x in pr["line_exponents"].values())),
+                f"a line exponent dropped below 8: {pr}")
+    require(cert["coprime"]["resv_mod"] != 0)
+    stored_cert, stored_Rs = load()
+    require([R for (R, _, _) in Rs] == stored_Rs,
+            "stored resultants differ from the recomputation")
+    require(stored_cert["gcd_exponents"] == cert["gcd_exponents"])
+    degs = tuple(pr["total_deg"] for pr in cert["pairs"])
+    require(degs == (96, 92), f"resultant degrees moved: {degs}")
+    ctx.note("exact R_12 (deg 96), R_34 (deg 92); gcd = prod l^8 x "
+             "const, cofactors coprime over Q: Z's curve part = the "
+             "nine entry lines over Q-bar — Theorem A8.8 unconditional")

@@ -155,13 +155,13 @@ Beyond reproving the foundations from scratch, the program produced:
 | **First explicit symmetric differentials on $X$**: $\dim V_\varnothing(m{=}4) = 6$, certified (6 exact verified generators + mod-$p$ upper bound); $m_{\min} = 4$ — BTVA's "out of range" computation executed; their explicit special-curve machinery now applicable to $X$ | VERIFIED (generators stored & re-verified in-repo) | A8, `compute/data_m4_generators.py` |
 | Lu–Miyaoka / orbibundle-MYS effective bounds inapplicable to $X$: $K^2 = 576 < 640 = c_2^{\mathrm{orb}} < 768 = c_2$ | READ + computed | A8 §1 |
 | Unconditional reduction (Lemma A8.6): a node-avoiding complete genus-0 curve on $X$ has Lucas image of degree ≥ 3, off all triple points, inside the proper common-root locus $Z$ of the six $m{=}4$ quartics; the nine entry lines lie in $Z$; $u{=}0$, $v{=}0$ and the six distinctness lines are not integral | PROVEN (exact certificates) | A8 §7 |
-| **Node passage (Theorem A8.8): every complete genus-0 curve on $X$ passes through ≥ 1 of the 256 nodes** — first node-passage statement for the magic-square surface (BTVA prove these only for Barth/cuboid) | PROVEN modulo Cert A8.7: $Z$-scan VERIFIED (2 primes × 3 exact lines × 15 pairs, gcd ≡ 9 crossings × mult 8); exact upgrade = A8-T3 | A8 §7 |
+| **Node passage (Theorem A8.8): every complete genus-0 curve on $X$ passes through ≥ 1 of the 256 nodes** — first node-passage statement for the magic-square surface (BTVA prove these only for Barth/cuboid) | **PROVEN, unconditional** (Theorem A8.7′: exact resultants by provably complete CRT, $\gcd(R_{12}, R_{34}) = \prod \ell^8$, coprime cofactors; the 2-prime $Z$-scan stands as independent consistency) | A8 §7 |
 | **The open problem itself** | **OPEN — no claim** | everywhere |
 
 **Open tasks:** F3-T1 (close the quartic (Q) descent), F5-T1 (Weil-bound
 proof of $\mathbb{F}_p$ solvability for all $p \ge 107$), A2-T1 = A5-P3
 (enumerate the finitely many low-genus curves on $X$ — the keystone),
 A3-Q (a Selmer-type invariant explaining the desert), A4-T1 (genus of
-the eighth-square cover over the rank-3 fiber), A6-T1 (compiled sieve),
-A8-T3 (exact identification of the special-curve locus $Z$, upgrading
-Theorem A8.8's certificate from mod-$p$ to $\overline{\mathbb{Q}}$).
+the eighth-square cover over the rank-3 fiber), A6-T1 (compiled sieve).
+(A8-T3 — the exact identification of the special-curve locus — was
+closed the day it was opened: Theorem A8.7′.)

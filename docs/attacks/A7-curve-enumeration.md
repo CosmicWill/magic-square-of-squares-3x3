@@ -333,9 +333,9 @@ $z_3^2 = a z_1^2 + b z_2^2$: $A_1$), resolved crepantly. Consequences:
    $h^0(X^\circ, S^2\Omega^1) = 0$ — the $m = 2$ explicit program that
    powers BTVA's cuboid theorem is *empty* on $X$, not merely
    infeasible. Since then: $m_{\min} = 4$ with six invariant sections
-   (A8 §5), and the special-curve locus executed — **Theorem A8.8:
-   every complete genus-0 curve on $X$ passes through a node** (PROVEN
-   modulo the mod-$p$ Certificate A8.7; A8 §7).
+   (A8 §5), and the special-curve locus executed exactly — **Theorem
+   A8.8: every complete genus-0 curve on $X$ passes through a node**
+   (PROVEN, unconditional; A8 §7).
 3. ~~◆ Orbifold-Miyaoka with 256 $A_1$ points (P4/P6)~~ **resolved
    negative** (papers acquired and read, A8 §1): the Lu–Miyaoka /
    Miyaoka-2008 effective bounds require $K^2 > c_2$, and $X$ has
@@ -355,9 +355,10 @@ $z_3^2 = a z_1^2 + b z_2^2$: $A_1$), resolved crepantly. Consequences:
    with manageable $b_2$, compute its NS lattice with Galois action, and
    enumerate low classes there; curves on $X$ map to curves on every
    quotient, so quotient bounds constrain $X$.
-7. **Executed in plane-descended form** (A8 §7, M11-D): with the six
+7. **Executed in plane-descended form** (A8 §7, M11-D/E): with the six
    $m = 4$ sections of item 2, the resultant-locus mechanism ran on
-   the Lucas plane — Theorem A8.8 (node passage for genus 0). The
+   the Lucas plane — Theorem A8.8 (node passage for genus 0,
+   unconditional via the exact Theorem A8.7′). The
    $\mathbb{P}^8$-side variant below stays open for the genus-1 and
    hyperplane refinements: if a section of $\hat S^m\Omega^1_X(-\lfloor
    m/2 \rfloor H)$ *with the $H$-twist* becomes computable, BTVA's

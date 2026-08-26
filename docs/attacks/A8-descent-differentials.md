@@ -8,10 +8,11 @@ implementation); §5 first results **VERIFIED** — notably
 $q(\widetilde X) = 0$, $h^0(X^\circ, S^2\Omega^1) = 0$ and the six
 explicit invariant sections at $m_{\min} = 4$; §6 the Vojta/GFU
 deficit analysis (honest negative); §7 the special-curve locus:
-**Lemma A8.6 PROVEN**, **Certificate A8.7 VERIFIED (2 primes)**,
-**Theorem A8.8 — every complete genus-0 curve on $X$ passes through a
-node — PROVEN modulo the certificate's exact upgrade** (task A8-T3);
-§8 roadmap. Verification: `python3 -m verify --only a8`.
+**Lemma A8.6 PROVEN**, Certificate A8.7 (mod-$p$ scan) upgraded the
+same day by **Theorem A8.7′ PROVEN** (exact resultants, exact gcd),
+so **Theorem A8.8 — every complete genus-0 curve on $X$ passes
+through a node — is PROVEN, unconditional**; §8 roadmap.
+Verification: `python3 -m verify --only a8`.
 
 ## 0. Goal
 
@@ -398,24 +399,72 @@ algebra mod two independent 30-bit primes; by Gauss's lemma the
 primitive $\mathbb{Q}$-gcd reduces to a divisor of $g_L$ mod each
 prime, so over $\mathbb{Q}$: $\deg \gcd \le 72$ and every root of the
 $\mathbb{Q}$-gcd reduces into the crossing set modulo **both** primes.
-A curve component of $Z_{\overline{\mathbb{Q}}}$ beyond the nine lines
-would have to thread all three test lines through residues of
-crossings at both primes simultaneously — no such component is
-visible, but the *exact* statement ($Z$'s curve part over
-$\overline{\mathbb{Q}}$ = the nine lines) awaits the exact bivariate
-gcd / primary decomposition, recorded as **task A8-T3**. Everything
-upstream (Lemma A8.6, the catalogue) is exact.
+The scan alone left the *exact* statement open (the former task
+A8-T3) — **closed the same day by Theorem A8.7′ below**; the scan
+stands as an independent consistency check of the exact factorization
+(its per-crossing multiplicity 8 is exactly the gcd exponent below).
 
-**Theorem A8.8 (node passage for rational curves). PROVEN modulo
-Certificate A8.7** (which is VERIFIED at two primes; exact upgrade =
-A8-T3). **Every complete curve of geometric genus 0 on $X$ — every
-rational curve on $X^\circ$'s closure — passes through at least one
-of the 256 nodes.** Equivalently: on the resolution $\widetilde X$,
-every rational curve meets the exceptional $(-2)$-locus.
+**Theorem A8.7′ (exact identification of $Z$; A8-T3 closed).
+PROVEN** (`a8.z_exact`, `compute/z_exact.py`, ~5 s; exact resultants
+stored in `compute/data_z_resultants.json`). *The curve part of $Z$
+over $\overline{\mathbb{Q}}$ is contained in the nine entry lines.*
+
+*Proof, machine-executed.* $Z \subseteq V(R_{12}) \cap V(R_{34})$ for
+the pairwise resultants $R_{ab} = \operatorname{Res}_{(dc:dv)}(F_a,
+F_b) \in \mathbb{Z}[c, v]$ (a point of $Z$ makes *every* pair share a
+root; the universal binary-form resultant also vanishes when a form
+degenerates, so the containment needs no genericity). The two
+resultants are computed **exactly**:
+
+- *Provably exact CRT.* Interpolate the $8 \times 8$ Sylvester
+  determinant on a $113 \times 113$ grid modulo 30-bit primes. Every
+  coefficient of the determinant is bounded by $\prod_{\text{rows}}
+  (\ell^1\text{-norm of the row})$ — the permutation expansion — and
+  the prime product exceeds twice that bound ($B \approx 10^{24}$,
+  three primes suffice: the six generators have 2–3-digit integer
+  coefficients after clearing content). Independently spot-verified
+  at six integer points against exact integer Sylvester determinants.
+  Result: $R_{12}$ of total degree 96 (864 terms, $\le 15$-digit
+  coefficients), $R_{34}$ of degree 92.
+- *Exact peeling.* Synthetic division over $\mathbb{Z}$ by the
+  monic-in-$c$ linear forms $\ell_{(a,b)}$ gives the exact
+  multiplicities: every entry line divides **both** resultants to
+  order $\ge 8$, with
+  $$R_{12} = \Bigl(\prod \ell^{8}\Bigr) \ell_{(0,0)}^{4}\, C_{12},
+  \qquad R_{34} = \Bigl(\prod \ell^{8}\Bigr)
+  \ell_{(-1,0)}^{2}\ell_{(1,0)}^{2}\ell_{(0,-1)}^{4}\ell_{(0,1)}^{4}
+  \, C_{34},$$
+  with cofactors $C_{12}$ (degree 20), $C_{34}$ (degree 8) divisible
+  by no entry line.
+- *Coprime cofactors, sound direction.* A common irreducible factor
+  $H$ (WLOG primitive in $\mathbb{Z}[c,v]$, by Gauss) with $\deg_v H
+  \ge 1$ has $\operatorname{lc}_v(H) \mid \operatorname{lc}_v(C_{ab})$
+  in $\mathbb{Z}[c]$; the prime $p = 999999937$ keeps both
+  $\operatorname{lc}_v$'s alive, so $H \bmod p$ would be a common
+  positive-$v$-degree factor of the reductions — impossible:
+  $\operatorname{Res}_v(C_{12}, C_{34})$ evaluated at $c_0 = 2$
+  (where neither $\operatorname{lc}_v$ vanishes) is nonzero mod $p$.
+  Common factors with $\deg_v = 0$ are excluded by the exact
+  $v$-content gcd over $\mathbb{Q}$ ($= 1$).
+
+Hence in the UFD $\mathbb{Q}[c, v]$ (and coprimality persists over
+$\overline{\mathbb{Q}}$: Euclid in $\mathbb{Q}(c)[v]$ plus the
+univariate content gcd are field-stable),
+$$\gcd(R_{12}, R_{34}) \;=\; \prod_{(a,b)} \ell_{(a,b)}^{\,8}
+\quad (\text{up to a nonzero constant}),$$
+and an irreducible curve $V(H) \subseteq Z$ forces $H \mid R_{12}$,
+$H \mid R_{34}$, so $H$ is an entry line. $\blacksquare$
+
+**Theorem A8.8 (node passage for rational curves). PROVEN —
+unconditional.** **Every complete curve of geometric genus 0 on $X$ —
+every rational curve on $X^\circ$'s closure — passes through at least
+one of the 256 nodes.** Equivalently: on the resolution
+$\widetilde X$, every rational curve meets the exceptional
+$(-2)$-locus.
 
 *Proof.* Suppose $C$ avoids the nodes. Lemma A8.6 puts $\pi(C)$ inside
-the curve part of $Z$ but off the entry lines; Certificate A8.7 says
-the curve part of $Z$ consists of the entry lines alone. $\blacksquare$
+the curve part of $Z$ but off the entry lines; Theorem A8.7′ says the
+curve part of $Z$ consists of entry lines alone. $\blacksquare$
 
 **Non-vacuity.** $X$ *does* carry complete rational curves — the
 $64 + 64$ entry-degenerate AP-family components over $u = 0$ and
@@ -452,12 +501,12 @@ $(-2)$-curves — scheduled as the next milestone (§8 item 3).
    $\chi^0$-conditions, computed on the cone model $w_3^2 = \alpha
    w_1^2 + \beta w_2^2$), then GFU §3 / BTVA cuboid-Theorem-1.2-style
    counting against $C \cdot E$.
-4. **A8-T3 (exact upgrade of Certificate A8.7):** identify the curve
-   part of $Z$ over $\overline{\mathbb{Q}}$ exactly — the bivariate
-   resultants $\operatorname{Res}(F_a, F_b) \in \mathbb{Q}[c, v]$
-   (degree $\le 112$ each) via modular interpolation + rational
-   reconstruction, then their exact gcd/primary decomposition. Until
-   then Theorem A8.8 carries the mod-$p$ tag honestly.
+4. ~~A8-T3 (exact upgrade of Certificate A8.7)~~ **done the same
+   day** (Theorem A8.7′, §7): exact $R_{12}, R_{34}$ by provably
+   complete CRT, exact line-peeling, coprime cofactors — Theorem
+   A8.8 is unconditional. (The full 15-pair exact gcd and the exact
+   *scheme* structure of $Z$ — its finitely many isolated points —
+   remain available extensions if ever needed.)
 5. **Sub-cover Segre scan**: $s_2$ (orbifold-corrected) of all
    intermediate quotients, hunting for a Lu–Miyaoka-eligible quotient
    ($K^2 > c_2$); the M9 double-plane scan says none exists at the
@@ -468,7 +517,7 @@ $(-2)$-curves — scheduled as the next milestone (§8 item 3).
 
 ## 9. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py` (16 checks): the §2 structural facts
+`verify/checks/a8_descent.py` (17 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
 splits with smoothness); the quadric control at $m = 1, 2$; the
 $d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
@@ -482,7 +531,11 @@ proof); the $m = 3$ survey (zero); the six $m = 4$ generators
 re-verified from scratch against the exact condition system plus the
 mod-$p$ ceiling ($h^0 = 6$ certified); the stored $m = 4$ spectrum
 record (only the trivial character); the $\hat\chi$ bracket; and §7's
-three: $Z$ proper (exact), the special-line catalogue (exact,
+four: $Z$ proper (exact), the special-line catalogue (exact,
 including the chart-2 $u = 0$ slice and the transpose-symmetry
-agreement), and the $Z$-scan certificate (3 lines $\times$ 2 primes,
-structure pinned to $72 = 9 \times 8 + 0$).
+agreement), the $Z$-scan certificate (3 lines $\times$ 2 primes,
+structure pinned to $72 = 9 \times 8 + 0$), and the **exact**
+certificate (recomputes $R_{12}, R_{34}$ with the provably complete
+CRT, re-peels, re-witnesses coprimality, and compares against the
+stored data file — Theorem A8.7′/A8.8 re-proved from scratch on
+every FULL and FAST run).
