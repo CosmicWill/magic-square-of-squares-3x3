@@ -629,3 +629,64 @@ and roadmaps updated (remaining §7-adjacent work: node-extension
 layer toward ">= 2 nodes", m = 5..7 surveys).
 
 Suite: 91 checks green (FULL).
+
+## 2026-08-26 — Entry 17: THE RESOLUTION CARRIES A SYMMETRIC DIFFERENTIAL — h^0(Ytilde, S^4) = 1 (M11-F)
+
+The node-extension layer, executed (compute/node_extension.py;
+checks a8.node_tau, a8.node_extension; ~25 s total).
+
+Local calculus (Lemma A8.9): every one of the 8 triple points is a
+3-term ARITHMETIC PROGRESSION of entry lines (rows, columns and
+diagonals of the grid: l_A + l_C = 2 l_B), so the local (Z/2)^3
+subcover is always the SAME cone z_3^2 = (z_1^2+z_2^2)/2 — with the
+integer parametrization q_1 = s^2+2st-t^2, q_2 = -s^2+2st+t^2,
+q_3 = s^2+t^2 (q_1^2 + q_2^2 = 2 q_3^2). For an invariant germ, tau
+= minimal (s,t)-order (even, >= 0); the resolution chart (s^2, t/s)
+gives ord >= ceil((tau+4-2j)/2) per component: EXTENSION iff
+tau >= 4, else pole order 2 - tau/2 <= 2.
+
+The exact tau-table (all 8 points; B's via the transpose): at EVERY
+triple point the filtration is dim 6 / 4 / 4 / 0 (tau >= 0/2/4/6) —
+tau jumps 0 -> 4, pole orders in {2, 0}. The 6-space is an explicit
+D4-representation (sigma: eta_1 <-> eta_2 up to 4, eta_3 <-> eta_6;
+flips diagonal; all pinned). Extension-subspace lattice: pairwise
+dim 2 (22 pairs) or 3 (the five middle-pencil pairs + D+D-);
+A-/B-triples dim 2; and the GLOBAL intersection is 1-dimensional:
+
+  W = <eta_4>, certified directly (tau(eta_4) = 4 at the 5 visible
+  points AND tau(sigma* eta_4) = 4, covering the 3 B-points).
+
+Restriction to X - nodes is injective on resolution sections, so
+
+  h^0(Ytilde, S^4 Omega^1) = 1  (and 0 for m <= 3):
+
+THE RESOLUTION OF THE MAGIC-SQUARE SURFACE CARRIES A UNIQUE
+SYMMETRIC QUARTIC DIFFERENTIAL eta* = eta_4 — at m = 4, against
+BTVA's resolution-level guarantee m >= 47. eta* spans the trivial
+D4-line.
+
+Consequences (all PROVEN, exact):
+- Theorem A8.11: EVERY complete genus-0 curve on X — through nodes
+  or not — has Lucas image an integral curve of the single web
+  eta*. The classical AP families comply: u=0 and v=0 ARE
+  eta*-integral (and the six distinctness lines are not — matching
+  A7.3's list of genus-0 line images exactly).
+- Theorem A8.12: every complete genus-0 curve has Ctilde . E >= 4 on
+  the resolution (some section restricts nonzero by A7.3 + A8.7';
+  poles in {0,2}). Cuboid benchmark: C.E >= 8 (Stoll-Testa Lemma
+  21); ours is the first bound of this type for X.
+- Theorem A8.13 (pattern dichotomy): a genus-0 curve with node
+  pattern S (triple points visited; S nonempty by A8.8) has image
+  integral for V_S = the intersection of the visited extension
+  subspaces (dim >= 2 for |S| <= 2). Consistency verified exactly:
+  u=0 is integral for the FULL 2-dim B-triple space <eta_3, eta_4>
+  and v=0 for the A-triple space <eta_4, eta_6> — exactly what the
+  AP components' patterns S = {B's} resp. {A's} demand.
+
+Next (M11-G): per-pattern resultant loci — run the exact A8.7'
+machinery on the subsystems V_S to classify their integral curves,
+turning the dichotomy into "|S| >= k or an explicit finite list";
+then the single-web analysis of eta* (GFU §2-style). The endgame is
+a Stoll-Testa-grade classification of all rational curves on X.
+
+Suite: 93 checks green (FULL).

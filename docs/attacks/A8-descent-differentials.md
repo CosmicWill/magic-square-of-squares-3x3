@@ -11,8 +11,12 @@ deficit analysis (honest negative); §7 the special-curve locus:
 **Lemma A8.6 PROVEN**, Certificate A8.7 (mod-$p$ scan) upgraded the
 same day by **Theorem A8.7′ PROVEN** (exact resultants, exact gcd),
 so **Theorem A8.8 — every complete genus-0 curve on $X$ passes
-through a node — is PROVEN, unconditional**; §8 roadmap.
-Verification: `python3 -m verify --only a8`.
+through a node — is PROVEN, unconditional**; §8 the node-extension
+layer: **$h^0(\widetilde X, S^4\Omega^1) = 1$** (the resolution's
+unique symmetric quartic differential $\eta_\star = \eta_4$, PROVEN),
+universal $\eta_\star$-integrality of rational curves,
+$\widetilde C \cdot E \ge 4$, and the node-pattern dichotomy; §9
+roadmap. Verification: `python3 -m verify --only a8`.
 
 ## 0. Goal
 
@@ -487,7 +491,127 @@ nodes" (the cuboid-grade statement) needs the node-extension layer —
 which elements of the 6-space extend over which exceptional
 $(-2)$-curves — scheduled as the next milestone (§8 item 3).
 
-## 8. Roadmap
+## 8. The node-extension layer (M11-F)
+
+Which of the six differentials survive onto the **resolution**
+$\widetilde X \to X$?  (`compute/node_extension.py`; checks
+`a8.node_tau`, `a8.node_extension`.)
+
+**Lemma A8.9 (local extension calculus). PROVEN.** Every one of the
+8 triple points is the base of a 3-term *arithmetic progression* of
+entry lines ($\ell_A + \ell_C = 2\ell_B$: rows, columns and diagonals
+of the grid are APs), so the local $(\mathbb{Z}/2)^3$ subcover is
+always the same cone $z_3^2 = (z_1^2 + z_2^2)/2$, $z_1^2 = \ell_A$,
+$z_2^2 = \ell_C$ — rationally parametrized by its smooth double
+cover $\mathbb{C}^2_{(s,t)}$ via
+$$q_1 = s^2 + 2st - t^2, \quad q_2 = -s^2 + 2st + t^2, \quad
+q_3 = s^2 + t^2, \qquad q_1^2 + q_2^2 = 2q_3^2 .$$
+For $\omega = \pi^*\eta$ near a node, write the invariant germ on
+$\mathbb{C}^2_{(s,t)}$ as $\sum f_k\, ds^k dt^{4-k}$ and let
+$\tau(\eta, P)$ be the minimal coefficient order ($=$ minimal
+$(s,t)$-order of the pulled-back numerator differential minus
+$\operatorname{ord} = 24$ of $(\ell_A\ell_B\ell_C)^2$).  Then $\tau$
+is even (invariance) and $\ge 0$ (regularity on $X^\circ$ +
+Hartogs), and in the resolution chart $(\xi, w) = (s^2, t/s)$ the
+$d\xi^j dw^{4-j}$-component of $\widetilde\omega$ has
+$$\operatorname{ord}_\xi \ge \Bigl\lceil \tfrac{\tau + 4 - 2j}{2}
+\Bigr\rceil, \qquad j = 0, \dots, 4$$
+(each $dt = w\,ds + s\,dw$ spends an $s$ on every $dw$; both charts
+by $s \leftrightarrow t$ symmetry).  So $\widetilde\omega$ **extends
+across the exceptional curve iff $\tau \ge 4$**, and otherwise has
+pole order $2 - \tau/2 \le 2$ along it.  All 32 nodes over one
+triple point see the same $\tau$ (the residual $(\mathbb{Z}/2)^5$
+acts freely and the space is invariant). $\blacksquare$
+
+**Theorem A8.10 (the $\tau$-table and the resolution section).
+PROVEN (exact; `a8.node_tau`, `a8.node_extension`).** At every one
+of the 8 triple points the filtration of the 6-space is
+$$\dim V_{\tau \ge 0} = 6, \quad V_{\tau \ge 2} = V_{\tau \ge 4} =
+4, \quad V_{\tau \ge 6} = 0$$
+— a 4-dimensional subspace extends over each point's 32 exceptional
+curves, the rest have pole order exactly 2 ($\tau$ jumps $0 \to 4$).
+The visible half of the $\tau$-table (columns $A_0, A_\pm$ = column
+pencils, $D_\pm$ = diagonals; the $B$-columns follow by the
+transpose):
+
+| | $A_0$ | $A_+$ | $A_-$ | $D_+$ | $D_-$ |
+|---|---|---|---|---|---|
+| $\eta_1$ | 0 | 0 | 0 | 0 | 0 |
+| $\eta_2$ | 4 | 0 | 0 | 0 | 0 |
+| $\eta_3$ | 4 | 0 | 0 | 0 | 0 |
+| $\eta_4$ | **4** | **4** | **4** | **4** | **4** |
+| $\eta_5$ | 0 | 0 | 0 | 4 | 4 |
+| $\eta_6$ | 4 | 4 | 4 | 0 | 0 |
+
+The grid symmetries act on the 6-space as an explicit
+$D_4$-representation (the transpose $\sigma$ swaps $\eta_1
+\leftrightarrow \eta_2$ up to a factor 4 and $\eta_3 \leftrightarrow
+\eta_6$, fixing $\eta_4, \eta_5$; the flips act diagonally;
+$\sigma r$ has order 4 — all pinned by `a8.node_extension`), and the
+intersection lattice of the eight extension subspaces is: pairwise
+dimension 2 (22 pairs) or 3 (exactly the five middle-pencil pairs
+$A_0B_0, A_0B_\pm, A_\pm B_0$ and $D_+D_-$), $A$- and $B$-triples of
+dimension 2, and
+$$W \;=\; \bigcap_{P \,\text{triple}} V_{\tau \ge 4}(P) \;=\;
+\langle \eta_4 \rangle, \qquad \dim W = 1,$$
+certified **directly**: $\tau(\eta_4) = 4$ at the five visible
+points and $\tau(\sigma^*\eta_4) = 4$ again (covering the three
+$B$-points).  Since restriction to $X \smallsetminus \{\text{nodes}\}
+= \widetilde X \smallsetminus E$ is injective on
+$H^0(\widetilde X, S^4\Omega^1)$,
+$$h^0(\widetilde X, S^4\Omega^1_{\widetilde X}) \;=\; 1
+\qquad (\text{and} \;=0 \text{ for } S^m,\ m \le 3),$$
+**the resolution itself carries a unique symmetric quartic
+differential** $\widetilde\omega_\star$ ($\eta_\star := \eta_4$,
+spanning the trivial $D_4$-line) — at $m = 4$, against BTVA's
+resolution-level guarantee $m \ge 47$.
+
+**Theorem A8.11 (universal integrality). PROVEN.** *Every* complete
+curve of geometric genus 0 on $X$ — through nodes or not — has Lucas
+image an integral curve of the single differential $\eta_\star$.
+(Strict transform meets $\widetilde\omega_\star$ regular; the
+restriction to the normalization is a section of
+$\mathcal{O}_{\mathbb{P}^1}(-8) = 0$; the image is not an entry line
+by A7.3, so vanishing descends.)  Exact consistency: $u = 0$ and
+$v = 0$ — the carriers of the classical AP families — **are**
+$\eta_\star$-integral, while no single non-branch special line
+beyond them is ($v = \pm1, \pm2, \pm\tfrac12$ all fail), matching
+A7.3 exactly: the only genus-0 line images are $u = 0$ and $v = 0$.
+
+**Theorem A8.12 (exceptional-degree bound). PROVEN.** On the
+resolution, every complete genus-0 curve $C$ (strict transform
+$\widetilde C \not\subseteq E$) satisfies
+$$\widetilde C \cdot E \;\ge\; 4 .$$
+*Proof.* Some $\omega$ in the 6-space restricts nonzero to
+$\widetilde C$ (else the image is a common integral curve of all
+six, forcing it into an entry line by Theorem A8.7′ — impossible by
+A7.3).  That $\omega$ has pole orders $\in \{0, 2\}$ along the
+$E$'s (Theorem A8.10), so its restriction is a nonzero section of a
+line bundle of degree $\le -8 + 2\,\widetilde C \cdot E$.
+$\blacksquare$  (Compare Stoll–Testa/GFU on the cuboid:
+$C \cdot E \ge 8$ for rational non-conic curves — this is the first
+bound of that type for $X$.)
+
+**Theorem A8.13 (pattern dichotomy). PROVEN.** Let $C$ be a complete
+genus-0 curve on $X$ with node pattern $S \subseteq \{8\ \text{triple
+points}\}$ (the triple points whose nodes $C$ meets; $S \ne
+\varnothing$ by Theorem A8.8).  Then the Lucas image of $C$ is a
+common integral curve of the subspace $V_S = \bigcap_{P \in S}
+V_{\tau \ge 4}(P)$, of dimension per the lattice above ($\ge 2$
+whenever $|S| \le 2$, $\supseteq \langle\eta_4\rangle$ always).
+Exact consistency with the classical families: the components over
+$u = 0$ have $S \subseteq \{B_0, B_\pm\}$, and $u = 0$ is indeed
+integral for the full 2-dimensional $B$-triple space $\langle \eta_3,
+\eta_4 \rangle$ (mutatis mutandis $v = 0$ and $\langle \eta_4, \eta_6
+\rangle$) — verified exactly.  **Consequence:** any genus-0 curve
+whose nodes sit over at most 2 triple points has image inside the
+resultant locus of a $\ge 2$-dimensional subsystem — a finite,
+explicitly computable curve list.  Identifying those per-pattern
+loci (the same exact machinery as Theorem A8.7′, applied to the
+subsystems) is the next milestone; the endgame is a
+Stoll–Testa-grade classification of all rational curves on $X$.
+
+## 9. Roadmap
 
 1. ~~$m = 3, 4$ surveys~~ **done** (§5): $m_{\min} = 4$, six invariant
    generators stored. Remaining: **$m = 5, 6, 7$ mod-$p$ surveys**
@@ -495,12 +619,17 @@ $(-2)$-curves — scheduled as the next milestone (§8 item 3).
    $h^0 \ge 384$ by $m = 7$ — is the ring generated at $m = 4$?).
 2. ~~Cuboid positive control~~ **done** (§4): $h^0 = 13$ reproduced
    exactly, fingerprint and element-level.
-3. **Node-extension layer** — now the route from Theorem A8.8's
-   "$\ge 1$ node" to the cuboid-grade "$\ge 2$ nodes": which elements
-   of the 6-space extend over which exceptional curves (the
-   $\chi^0$-conditions, computed on the cone model $w_3^2 = \alpha
-   w_1^2 + \beta w_2^2$), then GFU §3 / BTVA cuboid-Theorem-1.2-style
-   counting against $C \cdot E$.
+3. ~~Node-extension layer~~ **done** (§8, M11-F): the $\tau$-calculus
+   on the uniform AP-cone, the full extension lattice,
+   $h^0(\widetilde X, S^4\Omega^1) = 1 = \langle\eta_4\rangle$,
+   universal $\eta_\star$-integrality, $\widetilde C \cdot E \ge 4$,
+   and the pattern dichotomy.  **Remaining (M11-G): the per-pattern
+   resultant loci** — run the Theorem-A8.7′ machinery on the
+   subsystems $V_S$ ($|S| \le 2$, and the $A$-/$B$-triples) to
+   classify their integral curves, turning the dichotomy into
+   "every rational curve has $|S| \ge k$ or lies in an explicit
+   finite list"; then the single-web analysis of $\eta_\star$
+   (GFU-§2-style) toward the full enumeration.
 4. ~~A8-T3 (exact upgrade of Certificate A8.7)~~ **done the same
    day** (Theorem A8.7′, §7): exact $R_{12}, R_{34}$ by provably
    complete CRT, exact line-peeling, coprime cofactors — Theorem
@@ -515,9 +644,9 @@ $(-2)$-curves — scheduled as the next milestone (§8 item 3).
    curves/fibrations on $X$ (each conic's tangent-line family is a
    1-parameter family of 6-tangency lines — compare the M10-B budget).
 
-## 9. What the verify script proves mechanically
+## 10. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py` (17 checks): the §2 structural facts
+`verify/checks/a8_descent.py` (19 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
 splits with smoothness); the quadric control at $m = 1, 2$; the
 $d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
@@ -538,4 +667,12 @@ structure pinned to $72 = 9 \times 8 + 0$), and the **exact**
 certificate (recomputes $R_{12}, R_{34}$ with the provably complete
 CRT, re-peels, re-witnesses coprimality, and compares against the
 stored data file — Theorem A8.7′/A8.8 re-proved from scratch on
-every FULL and FAST run).
+every FULL and FAST run); and §8's two: the $\tau$-table +
+filtration $6/4/4/0$ at the visible triple points (with parity and
+regularity asserted inside the $\tau$-computation), and the
+node-extension bundle — $D_4$-representation matrices pinned,
+extension lattice pinned ($22 \times 2 + 6 \times 3$, triples,
+$W = \langle\eta_4\rangle$ with direct $\tau$-certification through
+the transpose), and the AP-family dichotomy consistency ($u = 0$
+integral for the $B$-triple space, $v = 0$ for the $A$-triple
+space).

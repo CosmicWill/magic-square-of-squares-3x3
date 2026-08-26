@@ -423,3 +423,106 @@ def _(ctx):
     ctx.note("exact R_12 (deg 96), R_34 (deg 92); gcd = prod l^8 x "
              "const, cofactors coprime over Q: Z's curve part = the "
              "nine entry lines over Q-bar — Theorem A8.8 unconditional")
+
+
+@check("a8.node_tau", DOC)
+def _(ctx):
+    """Lemma A8.9 + the tau table (Theorem A8.10): every triple point
+    is an AP-pencil with local cone z3^2 = (z1^2+z2^2)/2, and the
+    exact local pullback through q1 = s^2+2st-t^2, q2 = -s^2+2st+t^2
+    gives, at EVERY visible triple point, the filtration
+    dim V_(tau>=0,2,4,6) = 6,4,4,0: a 4-dimensional subspace of the
+    six m = 4 differentials extends across the 32 exceptional
+    (-2)-curves there, the rest have pole order exactly 2 (tau jumps
+    0 -> 4, no tau = 2).  tau_of asserts parity (even coefficients:
+    the invariance) and regularity (tau >= 0) internally.  FAST: two
+    representative points; FULL: all five visible."""
+    from compute.node_extension import VISIBLE, filtration, tau_of
+    from compute.special_locus import numerator_forms
+    forms = numerator_forms()
+    TABLE = {"A0": [0, 4, 4, 4, 0, 4], "A+": [0, 0, 0, 4, 0, 4],
+             "A-": [0, 0, 0, 4, 0, 4], "D+": [0, 0, 0, 4, 4, 0],
+             "D-": [0, 0, 0, 4, 4, 0]}
+    tags = list(VISIBLE) if ctx.profile == "FULL" else ["A0", "D+"]
+    for tag in tags:
+        taus = [tau_of(Ns, tag) for Ns in forms]
+        require(taus == TABLE[tag], f"tau table moved at {tag}: {taus}")
+        dims, _ = filtration(tag, forms)
+        require(dims == {0: 6, 2: 4, 4: 4, 6: 0, 8: 0},
+                f"filtration moved at {tag}: {dims}")
+    ctx.note(f"{len(tags)} triple points: filtration 6/4/4/0, tau in "
+             "{0, 4}, pole orders in {2, 0}")
+
+
+@check("a8.node_extension", DOC)
+def _(ctx):
+    """Theorems A8.10-A8.13: the D4 grid representation on the
+    6-space (three involutions pinned; sigma*r of order 4; eta_4
+    spans the invariant line), the extension-subspace lattice
+    (pairwise dims 22 x 2 + 6 x 3 with the six dim-3 pairs pinned;
+    A-/B-triples of dim 2), and the resolution section: the
+    intersection of ALL EIGHT extension subspaces is exactly
+    <eta_4>, re-certified DIRECTLY (tau = 4 at the five visible
+    points for omega* and for sigma* omega*, covering the B-points),
+    so h^0(Ytilde, S^4 Omega^1) = 1 and every rational curve on the
+    resolution is an eta*-integral curve.  Consistency against the
+    classical AP families: u = 0 and v = 0 are integral for omega*
+    (asserted inside wstar_vector) AND for the full 2-dimensional
+    B-triple resp. A-triple spaces — exactly what the pattern
+    dichotomy demands for the genus-0 components over those lines."""
+    from compute.node_extension import (ALL_TAGS, extension_spaces,
+                                        intersect, is_identity,
+                                        mat_mul, rep_matrices,
+                                        wstar_vector)
+    from compute.special_locus import (is_zero, numerator_forms,
+                                       restrict_line, restrict_u0)
+    mats = rep_matrices()
+    require(all(is_identity(mat_mul(Mx, Mx)) for Mx in mats.values()),
+            "grid generators are no longer involutions")
+    E4 = [F(0)] * 6
+    E4[3] = F(1)
+    require(all(Mx[3] == E4 for Mx in mats.values()),
+            "eta_4 no longer spans the trivial line")
+    sig = mats["sigma"]
+    require(sig[0][1] == F(1, 4) and sig[1][0] == 4
+            and sig[2][5] == 1 and sig[5][2] == 1 and sig[4][4] == 1,
+            "sigma matrix moved")
+    sr = mat_mul(sig, mats["r"])
+    require(not is_identity(mat_mul(sr, sr))
+            and is_identity(mat_mul(mat_mul(sr, sr), mat_mul(sr, sr))),
+            "sigma*r must have order 4 (D4)")
+    spaces = extension_spaces()
+    dims = {(t1, t2): len(intersect(spaces, [t1, t2]))
+            for t1, t2 in combinations(ALL_TAGS, 2)}
+    vals = sorted(dims.values())
+    require(vals.count(2) == 22 and vals.count(3) == 6,
+            f"pairwise lattice moved: {dims}")
+    require({k for k, v in dims.items() if v == 3} ==
+            {("A0", "B0"), ("A0", "B+"), ("A0", "B-"),
+             ("A+", "B0"), ("A-", "B0"), ("D+", "D-")},
+            "the six dim-3 pairs moved")
+    A3 = intersect(spaces, ["A0", "A+", "A-"])
+    B3 = intersect(spaces, ["B0", "B+", "B-"])
+    require(len(A3) == 2 and len(B3) == 2)
+    w, _ = wstar_vector(spaces)  # asserts dim W = 1, direct tau,
+    require(w == [0, 0, 0, 1, 0, 0], f"omega* moved: {w}")
+
+    forms = numerator_forms()
+
+    def combo(vec):
+        out = [dict() for _ in range(5)]
+        for a, Ns in enumerate(forms):
+            for k in range(5):
+                for ij, v in Ns[k].items():
+                    out[k][ij] = out[k].get(ij, F(0)) + vec[a] * v
+        return [{ij: v for ij, v in c.items() if v} for c in out]
+
+    for b in A3:
+        require(is_zero(restrict_line(combo(b), (F(0), F(0)),
+                                      (F(1), F(0)))),
+                "v=0 not integral for the A-triple space")
+    for b in B3:
+        require(is_zero(restrict_u0(combo(b))),
+                "u=0 not integral for the B-triple space")
+    ctx.note("h^0(resolution, S^4 Omega^1) = 1 = <eta_4>; D4-rep and "
+             "lattice pinned; AP-family dichotomy consistent")
