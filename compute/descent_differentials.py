@@ -171,82 +171,18 @@ def line_poly(a, b):
     return out
 
 
-def eigenspace_dim(S, m, dN=None, return_basis=False, lines=None):
+def eigenspace_dim(S, m, dN=None, return_basis=False, lines=None,
+                   modp=False):
     """dim V_S for the character given by the subset S of GRID (|S| even),
     at symmetric degree m.  dN = numerator degree bound (auto if None;
-    correctness requires saturation, checked by the caller)."""
-    if lines is None:
-        lines = GRID
-    S = set(S)
-    eps = {ab: (1 if ab in S else 0) for ab in lines}
-    pj = {ab: (m - eps[ab]) // 2 for ab in lines}      # denominator power
-    dD = sum(pj.values())
-    if dN is None:
-        dN = dD + m + 1
-    # unknowns: coefficients of N_i (i = 0..m; N_i is the numerator of the
-    # dc^i dv^(m-i)-coefficient), degrees <= dN
-    monos = [(i, j) for i in range(dN + 1) for j in range(dN + 1 - i)]
-    unknowns = [(i, mono) for i in range(m + 1) for mono in monos]
-    uidx = {u: t for t, u in enumerate(unknowns)}
-    N = []
-    for i in range(m + 1):
-        P = {}
-        for mono in monos:
-            P[mono] = {uidx[(i, mono)]: F(1)}
-        N.append(P)
-
-    rows = []
-
-    def add_zero_rows(linpoly):
-        for key, row in linpoly.items():
-            if row:
-                rows.append(row)
-
-    # ---- per-line conditions (chart 1)
-    for (a, b) in lines:
-        e = eps[(a, b)]
-        p = pj[(a, b)]
-        # adapted combos: coefficient of df^k dv^(m-k) is
-        #   Ntilde_k = sum_{i>=k} C(i,k) (-b)^(i-k) N_i
-        for k in range(m + 1):
-            t = p + ceil_div(e - k, 2)
-            if t <= 0:
-                continue
-            Nt = lin_zero()
-            for i in range(k, m + 1):
-                Nt = lin_add(Nt, N[i], F(comb(i, k)) * F(-b) ** (i - k))
-            # l^t | Nt: derivatives 0..t-1 vanish along c = -a - b v
-            D = Nt
-            for r_ord in range(t):
-                add_zero_rows(lin_subs_c(D, a, b))
-                D = lin_dc(D)
-
-    # ---- chart-2 regularity along u = 0 (y = 0)
-    # coefficient of dy^(m-t) dz^t is, up to sign and unit,
-    #   y^(dD + dN - 2m + t) * Phi_t / Dtilde,
-    #   Phi_t = sum_{i <= m-t} C(m-i, t) (-z)^(m-i-t) (-1)^i * Ntilde2_i
-    # with Ntilde2_i = y^dN N_i(1/y, z/y);  condition: y^(K_t) | Phi_t
-    # where K_t = max(0, 2m - t - dD + dN) ... wait: total y-power is
-    #   -2m + t - (-dD) - dN ... assembled below explicitly.
-    for t in range(m + 1):
-        Phi = lin_zero()
-        for i in range(0, m - t + 1):
-            Ni2 = lin_chart2(N[i], dN)
-            zpow = {(0, m - i - t): F(1)}
-            term = lin_scale_poly(Ni2, zpow)
-            Phi = lin_add(Phi, term,
-                          F(comb(m - i, t)) * F(-1) ** (m - i - t)
-                          * F(-1) ** i)
-        # y-exponent of the coefficient: -2m + t + dD - dN  (from dc/dv
-        # factors: y^{-2m} * y^t; numerator y^{-dN}; denominator y^{-dD})
-        K = 2 * m - t - dD + dN
-        if K <= 0:
-            continue
-        # need y^K | Phi: kill coefficients of y^0..y^(K-1)
-        for (yi, zj), row in Phi.items():
-            if yi < K and row:
-                rows.append(row)
-
+    correctness requires saturation, checked by the caller).  With
+    modp=True, computes the nullity modulo MODP_PRIME instead: a result
+    of 0 PROVES the exact dimension is 0 (rank can only drop mod p); a
+    positive result is an upper bound needing exact confirmation."""
+    rows, unknowns, dN = _assemble_rows(S, m, dN, lines)
+    if modp:
+        assert not return_basis
+        return nullspace_dim_modp(rows, len(unknowns))
     dim, basis = nullspace_dim(rows, len(unknowns),
                                return_basis=return_basis)
     if return_basis:
@@ -254,8 +190,267 @@ def eigenspace_dim(S, m, dN=None, return_basis=False, lines=None):
     return dim
 
 
+def survey_modp(m, sizes=(0, 2, 4, 6, 8), verbose=True, saturate=True):
+    """Fast mod-p survey: returns (proved_zero, candidates) where
+    candidates maps orbit representatives with positive mod-p nullity
+    (an upper bound; exact confirmation required) to that bound.
+    proved_zero is True iff every orbit has mod-p nullity 0 -- which
+    PROVES h^0 vanishes at this m (rank only drops mod p), at the
+    stabilized degree bound (checked at +2 like the exact survey)."""
+    candidates = {}
+    for key, orbsize in character_orbits(sizes):
+        d = eigenspace_dim(key, m, modp=True)
+        if saturate:
+            dD = sum((m - (1 if ab in key else 0)) // 2 for ab in GRID)
+            d2 = eigenspace_dim(key, m, dN=dD + m + 3, modp=True)
+            assert d == d2, (f"mod-p degree bound not saturated at "
+                             f"{sorted(key)}: {d} vs {d2}")
+        if d:
+            candidates[tuple(sorted(key))] = (orbsize, d)
+            if verbose:
+                print(f"  candidate S = {sorted(key)} (orbit {orbsize}): "
+                      f"mod-p nullity {d}")
+    return (not candidates), candidates
+
+
 def ceil_div(a, b):
     return -((-a) // b)
+
+
+MODP_PRIME = 1_000_003_919
+
+
+def nullspace_dim_modp(rows, nunk, p=MODP_PRIME):
+    """Nullity of the row system modulo p.  Since rank drops (never
+    rises) under reduction mod p, nullity_p >= nullity_Q: a ZERO
+    nullity mod p is a PROOF that the exact nullity is zero; a positive
+    value is only an upper bound.  Dense numpy elimination (int64;
+    p^2 < 2^63 required); falls back to pure Python if numpy is
+    absent."""
+    try:
+        import numpy as np
+    except ImportError:
+        return _nullspace_dim_modp_pure(rows, nunk, p)
+    if not rows:
+        return nunk
+    A = np.zeros((len(rows), nunk), dtype=np.int64)
+    for r, row in enumerate(rows):
+        for c, v in row.items():
+            num = v.numerator % p
+            den = pow(v.denominator % p, p - 2, p)
+            A[r, c] = (num * den) % p
+    rank = 0
+    rr = 0
+    for col in range(nunk):
+        piv = None
+        for r in range(rr, len(rows)):
+            if A[r, col]:
+                piv = r
+                break
+        if piv is None:
+            continue
+        if piv != rr:
+            A[[rr, piv]] = A[[piv, rr]]
+        inv = pow(int(A[rr, col]), p - 2, p)
+        A[rr] = (A[rr] * inv) % p
+        mask = np.ones(len(rows), dtype=bool)
+        mask[rr] = False
+        factors = A[mask, col].copy()
+        nz = factors != 0
+        if nz.any():
+            idx = np.where(mask)[0][nz]
+            A[idx] = (A[idx] - factors[nz, None] * A[rr][None, :]) % p
+        rank += 1
+        rr += 1
+        if rr == len(rows):
+            break
+    return nunk - rank
+
+
+def nullspace_basis_modp(rows, nunk, p=MODP_PRIME):
+    """Nullspace basis mod p (list of length-nunk int lists), via dense
+    numpy RREF."""
+    import numpy as np
+    if not rows:
+        return [[1 if i == j else 0 for i in range(nunk)]
+                for j in range(nunk)]
+    A = np.zeros((len(rows), nunk), dtype=np.int64)
+    for r, row in enumerate(rows):
+        for c, v in row.items():
+            num = v.numerator % p
+            den = pow(v.denominator % p, p - 2, p)
+            A[r, c] = (num * den) % p
+    pivcols = []
+    rr = 0
+    for col in range(nunk):
+        piv = None
+        for r in range(rr, len(rows)):
+            if A[r, col]:
+                piv = r
+                break
+        if piv is None:
+            continue
+        if piv != rr:
+            A[[rr, piv]] = A[[piv, rr]]
+        inv = pow(int(A[rr, col]), p - 2, p)
+        A[rr] = (A[rr] * inv) % p
+        others = A[:, col].copy()
+        others[rr] = 0
+        nz = np.nonzero(others)[0]
+        if len(nz):
+            A[nz] = (A[nz] - others[nz, None] * A[rr][None, :]) % p
+        pivcols.append((col, rr))
+        rr += 1
+        if rr == len(rows):
+            break
+    pivset = {c for c, _ in pivcols}
+    basis = []
+    for fc in range(nunk):
+        if fc in pivset:
+            continue
+        vec = [0] * nunk
+        vec[fc] = 1
+        for col, r in pivcols:
+            vec[col] = int((-A[r, fc]) % p)
+        basis.append(vec)
+    return basis
+
+
+def _ratrec(x, p, bound=None):
+    """Wang rational reconstruction of x mod p: a/b with
+    |a|, b <= bound (default sqrt(p/2)), or None."""
+    if bound is None:
+        bound = int((p // 2) ** 0.5)
+    a0, a1 = p, x % p
+    b0, b1 = 0, 1
+    while a1 > bound:
+        q = a0 // a1
+        a0, a1 = a1, a0 - q * a1
+        b0, b1 = b1, b0 - q * b1
+    if abs(b1) > bound or b1 == 0:
+        return None
+    from math import gcd
+    if gcd(abs(a1), abs(b1)) != 1:
+        return None
+    return F(a1, b1)
+
+
+def certified_eigenspace(S, m, dN=None, lines=None, primes=None):
+    """Rigorous dimension + generators without exact elimination:
+    (1) mod-p nullity gives an upper bound d_p; (2) the mod-p nullspace
+    basis is rationally reconstructed (over one prime, or CRT over
+    several if needed) and each candidate vector is verified EXACTLY
+    against the rational row system -- verified vectors are genuine
+    elements, so their count is a lower bound.  Returns (dim, basis,
+    unknowns, dN, certified) where certified=True means lower == upper
+    (dimension proven) and basis holds exact verified vectors."""
+    if lines is None:
+        lines = GRID
+    if primes is None:
+        primes = [MODP_PRIME, 999999937]
+    rows, unknowns, dN = _assemble_rows(S, m, dN, lines)
+    d_up = None
+    exact_basis = []
+    for p in primes:
+        bas_p = nullspace_basis_modp(rows, len(unknowns), p)
+        d_up = len(bas_p) if d_up is None else min(d_up, len(bas_p))
+        exact_basis = []
+        ok = True
+        for vec_p in bas_p:
+            vec = []
+            for x in vec_p:
+                r = _ratrec(x, p)
+                if r is None:
+                    ok = False
+                    break
+                vec.append(r)
+            if not ok:
+                break
+            if all(_row_apply(row, vec) == 0 for row in rows):
+                exact_basis.append(vec)
+            else:
+                ok = False
+                break
+        if ok and len(exact_basis) == d_up:
+            return d_up, exact_basis, unknowns, dN, True
+    return d_up, exact_basis, unknowns, dN, False
+
+
+def _row_apply(row, vec):
+    return sum(v * vec[c] for c, v in row.items())
+
+
+def _assemble_rows(S, m, dN, lines):
+    """Row system for V_S (shared by the exact, mod-p, and certified
+    paths)."""
+    if lines is None:
+        lines = GRID
+    S = set(S)
+    eps = {ab: (1 if ab in S else 0) for ab in lines}
+    pj = {ab: (m - eps[ab]) // 2 for ab in lines}
+    dD = sum(pj.values())
+    if dN is None:
+        dN = dD + m + 1
+    monos = [(i, j) for i in range(dN + 1) for j in range(dN + 1 - i)]
+    unknowns = [(i, mono) for i in range(m + 1) for mono in monos]
+    uidx = {u: t for t, u in enumerate(unknowns)}
+    N = []
+    for i in range(m + 1):
+        N.append({mono: {uidx[(i, mono)]: F(1)} for mono in monos})
+    rows = []
+    for (a, b) in lines:
+        e, p = eps[(a, b)], pj[(a, b)]
+        for k in range(m + 1):
+            t = p + ceil_div(e - k, 2)
+            if t <= 0:
+                continue
+            Nt = lin_zero()
+            for i in range(k, m + 1):
+                Nt = lin_add(Nt, N[i], F(comb(i, k)) * F(-b) ** (i - k))
+            D = Nt
+            for _ in range(t):
+                for _, row in lin_subs_c(D, a, b).items():
+                    if row:
+                        rows.append(row)
+                D = lin_dc(D)
+    for t in range(m + 1):
+        Phi = lin_zero()
+        for i in range(0, m - t + 1):
+            Ni2 = lin_chart2(N[i], dN)
+            term = lin_scale_poly(Ni2, {(0, m - i - t): F(1)})
+            Phi = lin_add(Phi, term,
+                          F(comb(m - i, t)) * F(-1) ** (m - i - t)
+                          * F(-1) ** i)
+        K = 2 * m - t - dD + dN
+        if K <= 0:
+            continue
+        for (yi, zj), row in Phi.items():
+            if yi < K and row:
+                rows.append(row)
+    return rows, unknowns, dN
+
+
+def _nullspace_dim_modp_pure(rows, nunk, p):
+    pivots = {}
+    for row in rows:
+        r = {}
+        for c, v in row.items():
+            x = (v.numerator % p) * pow(v.denominator % p, p - 2, p) % p
+            if x:
+                r[c] = x
+        while r:
+            col = min(r)
+            if col in pivots:
+                piv = pivots[col]
+                fac = r[col] * pow(piv[col], p - 2, p) % p
+                for cc, vv in piv.items():
+                    r[cc] = (r.get(cc, 0) - fac * vv) % p
+                    if r[cc] == 0:
+                        del r[cc]
+            else:
+                pivots[col] = r
+                break
+    return nunk - len(pivots)
 
 
 def nullspace_dim(rows, nunk, return_basis=False):

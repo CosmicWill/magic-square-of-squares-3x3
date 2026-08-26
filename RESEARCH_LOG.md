@@ -490,3 +490,43 @@ on X at n = 8 — the full explicit special-curve program that has never
 been executed on this surface.
 
 Suite: 83 checks green.
+
+## 2026-08-26 — Entry 14: FIRST EXPLICIT SYMMETRIC DIFFERENTIALS ON X — m_min = 4, h^0(S^4) = 6 (M11-C)
+
+**The "out of range" computation is executed.** With the mod-p fast
+path (a zero nullity mod p PROVES the exact zero — rank only drops
+under reduction; validated against the cuboid's nonzero 13-fingerprint
+and the exact m=2 dims), the surveys give:
+
+  m = 1: 0    m = 2: 0    m = 3: 0 (all 256 characters, saturated)
+  m = 4: h^0(X - nodes, S^4 Omega^1) = 6 — ONLY the trivial character.
+
+The m = 4 trivial eigenspace is certified sandwich-style: six exact
+rational vectors verified against the exact condition system (dim >=
+6) meeting the mod-p nullity (dim <= 6) — no exact elimination needed
+(mod-p RREF -> rational reconstruction -> exact row verification).
+The six generators are stored with exact coefficients in
+compute/data_m4_generators.py (numerators over prod l_(a,b)^2, degree
+<= 23) and re-verified from scratch by a8.m4_generators; the 51-orbit
+spectrum record is compute/data_m4_spectrum.json (a8.m4_spectrum).
+
+So the first nonzero symmetric degree on the magic-square surface is
+m_min = 4 — against BTVA's resolution-level guarantee m >= 47 — and
+ALL six first differentials are Galois-invariant: they descend from
+orbifold symmetric differentials of (P^2, (1/2) sum of the nine entry
+lines). The Lucas plane itself carries the hyperbolicity data.
+(Contrast the cuboid: its m = 2 space of 13 spreads over seven
+characters.)
+
+Consequence: BTVA's explicit special-curve machinery is applicable to
+X for the first time. With any two independent omega_i among the six:
+every complete genus-0 curve on X avoiding the nodes lies in
+res(omega_i, omega_j) (their s:resultants, intro passage on X-level
+sections); node-passage refinements follow the cuboid template. The
+next milestone (M11-D) computes the resultant locus and intersects
+over the 15 pairs.
+
+Ops note: an overly broad pkill killed both background surveys once
+(the redundant exact m=3 AND the m=4 survey — restarted parallelized);
+the m=3 exact run was retired as redundant (its zero already proven by
+saturated mod-p at two degree bounds).

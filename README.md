@@ -151,6 +151,8 @@ Beyond reproving the foundations from scratch, the program produced:
 | $h^0(X^\circ, S^2\Omega^1) = 0$ — the $m=2$ explicit-differential program (13-dimensional on the cuboid) is **empty** on $X$ | VERIFIED (methodology positively controlled) | A8 |
 | **Cuboid control passed**: the same engine reproduces BTVA's $h^0(X_{\mathrm{pc}}, \hat S^2\Omega^1) = 13$ exactly — full 16-character fingerprint + element-level generator membership | VERIFIED | A8 §4 |
 | First-section bracket: $\chi(X,\hat S^m\Omega^1) < 0$ for $m \le 6$, $= +384$ at $m = 7$ ⟹ first nonzero symmetric degree on $X^\circ$ is in $\{3..7\}$ (vs BTVA's $m \ge 47$ on $Y$) | PROVEN (h²-vanishing PROVEN-CLASSICAL) | A8 |
+| $h^0(X^\circ, S^3\Omega^1) = 0$ (saturated mod-$p$ proof, all 256 characters) | VERIFIED | A8 |
+| **First explicit symmetric differentials on $X$**: $\dim V_\varnothing(m{=}4) = 6$, certified (6 exact verified generators + mod-$p$ upper bound); $m_{\min} = 4$ — BTVA's "out of range" computation executed; their explicit special-curve machinery now applicable to $X$ | VERIFIED (generators stored & re-verified in-repo) | A8, `compute/data_m4_generators.py` |
 | Lu–Miyaoka / orbibundle-MYS effective bounds inapplicable to $X$: $K^2 = 576 < 640 = c_2^{\mathrm{orb}} < 768 = c_2$ | READ + computed | A8 §1 |
 | **The open problem itself** | **OPEN — no claim** | everywhere |
 

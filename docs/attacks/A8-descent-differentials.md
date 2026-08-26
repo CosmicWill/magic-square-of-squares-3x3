@@ -214,6 +214,40 @@ $\{3, \dots, 7\}$** — far below BTVA's resolution-level guarantee
 $m \ge 47$, and within reach of this engine (a mod-$p$ fast path
 proves zeros cheaply; only nonzero candidates need exact runs).
 
+**Theorem A8.5 (first sections at $m = 4$ — the "out of range"
+computation, executed).** $h^0(X^\circ, S^3\Omega^1) = 0$ (all 256
+characters, proved by saturated mod-$p$ elimination — a zero nullity
+mod $p$ proves the exact zero, since rank only drops under reduction),
+while at $m = 4$ the **trivial character** carries
+$$\dim V_\varnothing(4) = 6,$$
+certified sandwich-style: six exact rational vectors *verified against
+the exact condition system* (dimension $\ge 6$) meeting the mod-$p$
+nullity ($\le 6$). **These are the first explicit symmetric
+differentials ever computed on the magic-square surface** — six
+invariant sections of $S^4\Omega^1$ on $X^\circ$, i.e. six elements of
+$H^0(X, \hat S^4\Omega^1_X)$, with exact coefficients stored in
+`compute/data_m4_generators.py` (numerators over the denominator
+$\prod_{(a,b)} \ell_{(a,b)}^2$, re-verified from scratch by
+`a8.m4_generators`). So the first nonzero symmetric degree is exactly
+$$m_{\min} = 4 \qquad (\text{vs BTVA's resolution-level guarantee }
+m \ge 47),$$
+and with $\ge 2$ independent sections in hand, BTVA's explicit
+special-curve machinery (their §`s:resultants`) is applicable to $X$
+for the first time: every complete genus-0 curve on $X$ avoiding the
+nodes lies in the resultant locus $\operatorname{res}(\omega_i,
+\omega_j)$ — the next milestone computes it.
+
+**The full $m = 4$ spectrum** (all 51 orbits, saturated mod-$p$; run
+record in `compute/data_m4_spectrum.json`): **every non-trivial
+character vanishes**, so
+$$h^0(X^\circ, S^4\Omega^1) \;=\; h^0(X, \hat S^4\Omega^1_X) \;=\; 6,
+\qquad \text{all of it Galois-invariant.}$$
+The first symmetric differentials on $X$ descend from *orbifold*
+symmetric differentials of the pair $(\mathbb{P}^2, \tfrac12
+\sum_{(a,b)} \ell_{(a,b)})$ — the Lucas plane itself carries them.
+(Compare the cuboid, where the $m = 2$ space spreads over seven
+characters.)
+
 ## 6. The Vojta/GFU route: a structural deficit (honest analysis)
 
 For GFU's Theorem 4.1/5.1-style conclusions one needs $\omega$ on

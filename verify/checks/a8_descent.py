@@ -185,6 +185,127 @@ def _(ctx):
              "Table-1 memberships verified")
 
 
+@check("a8.modp_soundness", DOC)
+def _(ctx):
+    """The mod-p fast path (a zero nullity mod p proves the exact
+    dimension is zero, since rank only drops under reduction) agrees
+    with the exact engine on discriminating cases: the cuboid's full
+    16-character fingerprint (nonzero dims included) and X's m = 2
+    samples."""
+    from compute.descent_cuboid import (EXPECTED_M2,
+                                        cuboid_eigenspace_dim)
+    subsets = ([tuple(sorted(T)) for T in EXPECTED_M2]
+               + [(1,), (2, 4), (1, 2, 4)])
+    for T in subsets:
+        want = EXPECTED_M2.get(frozenset(T), 0)
+        require(cuboid_eigenspace_dim(T, 2, modp=True) == want,
+                f"cuboid mod-p mismatch at {T}")
+    for S in ((), ((0, 0), (1, 1))):
+        require(eigenspace_dim(S, 2, modp=True) == eigenspace_dim(S, 2))
+    ctx.note("mod-p nullities == exact dims on cuboid fingerprint "
+             "(incl. nonzero) and X samples")
+
+
+@check("a8.m3_survey", DOC)
+def _(ctx):
+    """h^0(X - nodes, S^3 Omega^1) = 0: every character has mod-p
+    nullity zero (a proof of exact vanishing at the stabilized degree
+    bound).  First nonzero symmetric degree now bracketed in
+    {4, ..., 7}.  FULL: all 51 orbits, saturated; FAST: samples."""
+    from compute.descent_differentials import survey_modp
+    if ctx.profile == "FULL":
+        zero, cands = survey_modp(3, verbose=False)
+        require(zero, f"unexpected m=3 candidates: {cands}")
+        ctx.note("all 51 orbits: h^0(S^3) = 0; first nonzero m in {4..7}")
+    else:
+        for S in ((), ((0, 0), (1, 1)), ((1, 0), (-1, 0)),
+                  ((1, 0), (-1, 0), (0, 1), (0, -1))):
+            require(eigenspace_dim(S, 3, modp=True) == 0)
+        ctx.note("sampled characters: zero at m=3")
+
+
+@check("a8.m4_generators", DOC)
+def _(ctx):
+    """Theorem A8.5 (first sections): the six stored generators of
+    V_empty(m = 4) -- the first explicit symmetric differentials on the
+    magic-square surface -- satisfy the exact rational condition system
+    (dim >= 6), are linearly independent, and the mod-p nullity is 6
+    (dim <= 6): dim V_empty(4) = 6 exactly.  m <= 3 vanishes
+    identically (a8.m2_survey, a8.m3_survey), so m = 4 is the FIRST
+    nonzero symmetric degree on X - nodes."""
+    from compute.data_m4_generators import DN, GENERATORS
+    from compute.descent_differentials import (_assemble_rows,
+                                               _row_apply,
+                                               nullspace_dim_modp)
+    require(len(GENERATORS) == 6)
+    rows, unknowns, dN = _assemble_rows((), 4, DN, None)
+    idx = {u: t for t, u in enumerate(unknowns)}
+    vecs = []
+    for g in GENERATORS:
+        vec = [F(0)] * len(unknowns)
+        for i, part in g.items():
+            for mono, val in part.items():
+                vec[idx[(int(i), (int(mono[0]), int(mono[1])))]] = F(val)
+        vecs.append(vec)
+    todo = vecs if ctx.profile == "FULL" else vecs[:2]
+    for gi, vec in enumerate(todo):
+        for row in rows:
+            require(_row_apply(row, vec) == 0,
+                    f"generator {gi} fails an exact condition row")
+    # independence over F_p (implies independence over Q)
+    p = 1_000_003_919
+    mat = [[x.numerator % p * pow(x.denominator, p - 2, p) % p
+            for x in vec] for vec in vecs]
+    basis = []
+    for row in mat:
+        row = row[:]
+        for b in basis:
+            piv = next(j for j, x in enumerate(b) if x)
+            if row[piv]:
+                fac = row[piv] * pow(b[piv], p - 2, p) % p
+                row = [(x - fac * y) % p for x, y in zip(row, b)]
+        if any(row):
+            basis.append(row)
+    require(len(basis) == 6, "generators not independent")
+    if ctx.profile == "FULL":
+        require(nullspace_dim_modp(rows, len(unknowns)) == 6,
+                "mod-p upper bound changed")
+        note = "all 6 verified exactly; dim == 6 certified"
+    else:
+        note = "2 of 6 verified exactly (FULL does all + upper bound)"
+    ctx.note(f"first sections at m = 4: {note}")
+
+
+@check("a8.m4_spectrum", DOC)
+def _(ctx):
+    """The complete m = 4 spectrum: the stored 51-orbit survey record
+    says only the trivial character is nonzero (total 6); its
+    bookkeeping is validated and a sample of nontrivial orbits is
+    recomputed mod p (each zero being a proof of exact vanishing)."""
+    import json
+    import os
+    path = os.path.join(os.path.dirname(__file__), "..", "..",
+                        "compute", "data_m4_spectrum.json")
+    data = json.load(open(path))
+    require(len(data) == 51 and sum(r["orbit"] for r in data) == 256)
+    nz = [r for r in data if r["d"]]
+    require(len(nz) == 1 and nz[0]["S"] == [] and nz[0]["d"] == 6,
+            f"spectrum record changed: {nz}")
+    require(sum(r["orbit"] * r["d"] for r in data) == 6)
+    sample = [((0, 0), (1, 1)), ((1, 0), (-1, 0)),
+              ((1, 0), (-1, 0), (0, 1), (0, -1))]
+    if ctx.profile == "FULL":
+        sample += [((0, 0), (1, 0), (0, 1), (1, 1)),
+                   tuple(ab for ab in GRID if ab != (0, 0)),
+                   ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1), (1, 1)),
+                   ((1, 1), (1, -1), (-1, 1), (-1, -1))]
+    for S in sample:
+        require(eigenspace_dim(S, 4, modp=True) == 0,
+                f"nontrivial character {S} nonzero at m=4?!")
+    ctx.note(f"h^0(S^4) = 6, all invariant; {len(sample)} nontrivial "
+             "orbits re-proved zero")
+
+
 @check("a8.chi_hat_bracket", DOC)
 def _(ctx):
     """chi(X, hat-S^m Omega^1) = chi(Y, S^m) + 256 chi_loc(m) is

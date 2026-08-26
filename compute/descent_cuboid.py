@@ -45,7 +45,8 @@ from math import comb
 
 from compute.descent_differentials import (ceil_div, lin_add, lin_chart2,
                                            lin_scale_poly, lin_zero,
-                                           nullspace_dim)
+                                           nullspace_dim,
+                                           nullspace_dim_modp)
 
 # branch conics as constant polynomials {(i,j): coeff} in (c, v),
 # with (reduction variable, q_c, q_v) data
@@ -116,8 +117,9 @@ def lin_reduce_mod(P, q, var):
     return {k: r for k, r in P.items() if r}
 
 
-def cuboid_eigenspace_dim(T, m, dN=None, return_basis=False):
-    """dim V_T on the cuboid surface at symmetric degree m."""
+def cuboid_eigenspace_dim(T, m, dN=None, return_basis=False, modp=False):
+    """dim V_T on the cuboid surface at symmetric degree m (modp=True:
+    nullity mod MODP_PRIME -- an upper bound; 0 proves exact 0)."""
     T = set(T)
     eps = {j: (1 if j in T else 0) for j in CONICS}
     pj = {j: (m - eps[j]) // 2 for j in CONICS}
@@ -199,6 +201,9 @@ def cuboid_eigenspace_dim(T, m, dN=None, return_basis=False):
             if yi < K and row:
                 rows.append(row)
 
+    if modp:
+        assert not return_basis
+        return nullspace_dim_modp(rows, len(unknowns))
     dim, basis = nullspace_dim(rows, len(unknowns),
                                return_basis=return_basis)
     if return_basis:
