@@ -690,3 +690,31 @@ then the single-web analysis of eta* (GFU §2-style). The endgame is
 a Stoll-Testa-grade classification of all rational curves on X.
 
 Suite: 93 checks green (FULL).
+
+## 2026-08-26 — Entry 18: TWO NODES — singleton patterns excluded at all eight triple points (M11-G)
+
+Theorem A8.14 (PROVEN, compute/pattern_loci.py, a8.pattern_singletons,
+~45 s): EVERY COMPLETE GENUS-0 CURVE ON X MEETS NODES OVER AT LEAST
+TWO DISTINCT TRIPLE POINTS — in particular passes through >= 2
+distinct nodes. The magic-square analogue of BTVA's cuboid Theorem
+1.2 (">= 2 of the 48 nodes"), by a different mechanism: extension
+subspaces instead of E-vanishing counting.
+
+Proof shape: a singleton pattern S = {P} forces the Lucas image into
+the curve part of Z(V_P) for the 4-dimensional extension subsystem
+V_P (Theorem A8.13); the A8.7'-machinery applied at EACH of the
+eight triple points — two basis-pair resultants, provably exact CRT,
+entry lines peeling to order >= 8, peeled cofactors witnessed
+coprime over Q — pins that curve part inside the nine entry lines;
+genus-0 curves have no entry-line images (A7.3). The first basis
+pair choice (b0b1, b0b2) succeeded at all eight points (cofactor
+degrees 8..24; B-point bases via the exact transpose transfer).
+
+Consistency: the classical AP families visit THREE triple points
+each (their images u=0 / v=0 carry the B- resp. A-triples).
+
+Next (M11-H): the |S| = 2 loci (dim-2/3 subsystems, one resultant +
+component analysis vs the six outside triple points), aiming at
+|S| >= 3; then the eta*-web analysis toward full enumeration.
+
+Suite: 94 checks green (FULL).

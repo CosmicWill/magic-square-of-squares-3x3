@@ -526,3 +526,30 @@ def _(ctx):
                 "u=0 not integral for the B-triple space")
     ctx.note("h^0(resolution, S^4 Omega^1) = 1 = <eta_4>; D4-rep and "
              "lattice pinned; AP-family dichotomy consistent")
+
+
+@check("a8.pattern_singletons", DOC)
+def _(ctx):
+    """Theorem A8.14: every complete genus-0 curve on X meets nodes
+    over >= 2 distinct triple points (hence passes through >= 2
+    distinct nodes).  Certified per triple point by the exact
+    A8.7'-machinery applied to the 4-dimensional extension subsystem
+    V_P: two basis-pair resultants (provably exact CRT +
+    spot-verification), every entry line peeling to order >= 8 in
+    both (asserted inside), and the peeled cofactors witnessed
+    COPRIME over Q — so the curve part of Z(V_P) is contained in the
+    nine entry lines, and a singleton node pattern would force a
+    genus-0 curve with an entry-line image (impossible, A7.3).
+    FAST: A0 and B0 (the latter exercising the transpose-transferred
+    bases); FULL: all eight triple points."""
+    from compute.node_extension import ALL_TAGS
+    from compute.pattern_loci import all_singletons
+    tags = ALL_TAGS if ctx.profile == "FULL" else ("A0", "B0")
+    certs = all_singletons(tags)  # raises if any point fails
+    require(set(certs) == set(tags))
+    for tag, c in certs.items():
+        require(c["witness"]["resv_mod"] != 0)
+        require(c["pairs"] == ((0, 1), (0, 2)),
+                f"certificate shape moved at {tag}: {c['pairs']}")
+    ctx.note(f"{len(tags)} triple points: Z(V_P) curve part = entry "
+             "lines only; singleton node patterns impossible")

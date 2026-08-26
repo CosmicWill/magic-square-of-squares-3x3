@@ -15,8 +15,10 @@ through a node — is PROVEN, unconditional**; §8 the node-extension
 layer: **$h^0(\widetilde X, S^4\Omega^1) = 1$** (the resolution's
 unique symmetric quartic differential $\eta_\star = \eta_4$, PROVEN),
 universal $\eta_\star$-integrality of rational curves,
-$\widetilde C \cdot E \ge 4$, and the node-pattern dichotomy; §9
-roadmap. Verification: `python3 -m verify --only a8`.
+$\widetilde C \cdot E \ge 4$, the node-pattern dichotomy, and
+**Theorem A8.14 PROVEN: every genus-0 curve meets nodes over $\ge 2$
+distinct triple points**; §9 roadmap. Verification:
+`python3 -m verify --only a8`.
 
 ## 0. Goal
 
@@ -606,9 +608,36 @@ integral for the full 2-dimensional $B$-triple space $\langle \eta_3,
 \rangle$) — verified exactly.  **Consequence:** any genus-0 curve
 whose nodes sit over at most 2 triple points has image inside the
 resultant locus of a $\ge 2$-dimensional subsystem — a finite,
-explicitly computable curve list.  Identifying those per-pattern
-loci (the same exact machinery as Theorem A8.7′, applied to the
-subsystems) is the next milestone; the endgame is a
+explicitly computable curve list.
+
+**Theorem A8.14 (two triple points). PROVEN**
+(`compute/pattern_loci.py`, `a8.pattern_singletons`; ~45 s for all
+eight points).  *Every complete curve of geometric genus 0 on $X$
+meets nodes over at least **two distinct triple points** of the
+arrangement — in particular it passes through at least two distinct
+nodes.*
+
+*Proof, machine-executed.*  Suppose the node pattern is $S = \{P\}$.
+By Theorem A8.13 the Lucas image is a common integral curve of the
+4-dimensional $V_P$, so it lies in the curve part of $Z(V_P)$; and
+for **each** of the eight triple points that curve part is contained
+in the nine entry lines, by the Theorem-A8.7′ machinery applied to
+the subsystem: two basis-pair resultants, computed provably exactly
+(CRT past the $\ell^1$ bound, independently spot-verified), have
+every entry line peeling off to order $\ge 8$ and **coprime peeled
+cofactors** (witnessed over $\mathbb{Q}$; the first basis-pair
+choice $(b_0b_1, b_0b_2)$ succeeds at all eight points, with
+cofactor degrees 8–24).  A genus-0 curve has no entry-line image
+(Theorem A7.3), contradiction.  $\blacksquare$
+
+This is the magic-square analogue of BTVA's cuboid Theorem 1.2
+("genus $\le 1$ curves pass through $\ge 2$ of the 48 nodes") — for
+genus 0, by a different mechanism (extension subspaces instead of
+$E$-vanishing counting).  The classical families comply with room to
+spare: the AP components over $u = 0$ and $v = 0$ visit **three**
+triple points each.  Pushing to $|S| \ge 3$ (the $|S| = 2$ loci:
+dimension-2 or 3 subsystems, one resultant each plus component
+analysis) is the natural continuation; the endgame is a
 Stoll–Testa-grade classification of all rational curves on $X$.
 
 ## 9. Roadmap
@@ -623,13 +652,13 @@ Stoll–Testa-grade classification of all rational curves on $X$.
    on the uniform AP-cone, the full extension lattice,
    $h^0(\widetilde X, S^4\Omega^1) = 1 = \langle\eta_4\rangle$,
    universal $\eta_\star$-integrality, $\widetilde C \cdot E \ge 4$,
-   and the pattern dichotomy.  **Remaining (M11-G): the per-pattern
-   resultant loci** — run the Theorem-A8.7′ machinery on the
-   subsystems $V_S$ ($|S| \le 2$, and the $A$-/$B$-triples) to
-   classify their integral curves, turning the dichotomy into
-   "every rational curve has $|S| \ge k$ or lies in an explicit
-   finite list"; then the single-web analysis of $\eta_\star$
-   (GFU-§2-style) toward the full enumeration.
+   and the pattern dichotomy; **singleton patterns excluded (M11-G,
+   Theorem A8.14): every genus-0 curve visits $\ge 2$ triple points**.
+   **Remaining (M11-H): the $|S| = 2$ loci** — dimension-2/3
+   subsystems, one resultant each plus irreducible-component analysis
+   (does each extra component pass through a triple point outside
+   $S$?), aiming at $|S| \ge 3$; then the single-web analysis of
+   $\eta_\star$ (GFU-§2-style) toward the full enumeration.
 4. ~~A8-T3 (exact upgrade of Certificate A8.7)~~ **done the same
    day** (Theorem A8.7′, §7): exact $R_{12}, R_{34}$ by provably
    complete CRT, exact line-peeling, coprime cofactors — Theorem
@@ -646,7 +675,7 @@ Stoll–Testa-grade classification of all rational curves on $X$.
 
 ## 10. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py` (19 checks): the §2 structural facts
+`verify/checks/a8_descent.py` (20 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
 splits with smoothness); the quadric control at $m = 1, 2$; the
 $d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
@@ -673,6 +702,8 @@ regularity asserted inside the $\tau$-computation), and the
 node-extension bundle — $D_4$-representation matrices pinned,
 extension lattice pinned ($22 \times 2 + 6 \times 3$, triples,
 $W = \langle\eta_4\rangle$ with direct $\tau$-certification through
-the transpose), and the AP-family dichotomy consistency ($u = 0$
+the transpose), the AP-family dichotomy consistency ($u = 0$
 integral for the $B$-triple space, $v = 0$ for the $A$-triple
-space).
+space), and the eight singleton-pattern certificates (Theorem
+A8.14: subsystem resultants exactly, entry lines peel to $\ge 8$,
+cofactors coprime).
