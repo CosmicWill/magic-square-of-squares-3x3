@@ -16,6 +16,7 @@ MODULES = [
     "a4_eight_squares",
     "a5_surface",
     "a7_curves",
+    "a7_conics",
     "a7_btva",
     "a6_bounds",
 ]

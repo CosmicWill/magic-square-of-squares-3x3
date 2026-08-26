@@ -345,3 +345,49 @@ ALL image degrees at once, bypassing the infeasible module computation.
 Precedent: García-Fritz–Urzúa got "every genus <= 1 curve through >= 2
 nodes" for the cuboid this way. That is now A7 roadmap item 2 and the
 lead candidate for M11.
+
+## 2026-08-26 — Entry 11: the conic layer is closed (Theorem A7.6) (M10-B)
+
+**Lemma A7.5 (sharp conic budget).** For a smooth conic every entry
+line through one of its points is transversal or THE tangent there, so
+per-point profiles are forced: (s,t) = (mu,0) or (mu-1,1). With total
+multiplicity 18 and the genus formula, genus 0 over a conic needs >= 5
+tangent entry lines, and genus 1 needs exactly 4 effective points with
+tangency count T in {3,4} realizing EXACTLY six type-multiset classes
+C1-C6. The case analysis is itself machine-verified
+(a7cc.budget_lemma regenerates the six signatures exhaustively).
+
+**Theorem A7.6: no curve of geometric genus <= 1 on X has conic image
+(char 0).** Legs: (1) T>=5 is complete and rational — a smooth conic
+tangent to five entry lines has a smooth dual through five rational
+dual points, so no concurrent triple among them (98 of 126 5-subsets
+die here) and the unique dual conic is rational (28 candidates, swept
+in M9, zero hits). (2) Pencil classes C1/C4: members = common roots of
+nine discriminant quadratics — resolved exactly over Q and Q(sqrt D)
+by a new field-generic analyzer (validated: agrees with the M9
+analyzer on all 216 rational candidates); collinear point sets (47 and
+822; the 8 triple points carry exactly 10 collinear 3-subsets) admit
+only reducible conics. (3) Linear classes C3/C5/C6 (tangent-at-a-
+multiple-point conditions are linear: Mp || l): 10,932 systems; unique
+solutions analyzed; degenerate solution spaces skipped only with PROOF
+of all-member reducibility (det cubic vanishing on a {0..3}^d grid
+vanishes identically). (4) Net class C2: 46 nets x 126 tangency
+4-subsets; pairwise Sylvester z-resultants after a basis change making
+all leading coefficients nonzero constants (the naive formal resultant
+vanishes spuriously — caught and fixed); constant gcd certifies
+emptiness over Qbar: 5792/5796 certified, and the 4 surviving
+candidates are all the SAME conic — the circle u^2+v^2 = c^2, genus 9.
+Total: 1265 irreducible conics analyzed across all classes, ZERO of
+genus <= 1, zero unresolved flags.
+
+**Corollaries.** Every genus <= 1 curve on X (char 0) has Lucas-image
+degree >= 3; every nonconstant k(t) magic square of squares with
+char k = 0 has image degree >= 3 (was: >= 2). Conjecture A2.C is now a
+statement about degree >= 3 images. The circle — tangent to four lines
+AT four triple points and still genus 9 — is the unique near-miss of
+the entire layer, found independently by two different engines.
+
+New code: compute/conic_complete.py (exact Q(sqrt D) layer, field-
+generic analyzer, linear-condition solver, pencil disc-root engine,
+elimination certificates); verify/checks/a7_conics.py (7 checks).
+Suite: 74 checks green.

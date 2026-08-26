@@ -4,9 +4,11 @@
 see caveats), with the BTVA questions **resolved by acquisition** (§7);
 §2 machinery and §3 **Theorem A7.3 PROVEN** (complete
 classification of genus ≤ 1 curves over plane lines, with the
-no-rational-points corollary via our own F3.2); §4 conic layer: budget
-lemma **PROVEN**, three systematic sweeps **VERIFIED** (0 hits),
-completeness for conics honestly **OPEN** (scoped); §5 invariants
+no-rational-points corollary via our own F3.2); §4 conic layer now
+**CLOSED**: sharp budget lemma A7.5 **PROVEN** and **Theorem A7.6
+PROVEN** (no genus ≤ 1 curve on $X$ has conic image; every genus ≤ 1
+curve has Lucas-image degree ≥ 3 in characteristic 0) by exhaustive
+exact sweeps of all six residual classes; §5 invariants
 **VERIFIED** with a structural discovery ($s_2 < 0$: the hyperbolicity
 lives in the nodes); §6 roadmap; §7 the BTVA digest — the paper READ,
 its magic-square numbers **VERIFIED** (exact reproduction from our own
@@ -165,7 +167,9 @@ $r = 6$, genus 17; the $(u{\pm}v)$-type carry 3, $r = 5$, genus 5). ∎
 **Corollary A7.4 (new, unconditional).** Every nonconstant magic square
 of squares over $k(t)$ ($\operatorname{char} k \notin \{2,3\}$) has
 Lucas-plane image of **degree ≥ 2**: the only genus-0 curves on $X$ over
-lines are the entry-degenerate families above. Moreover every genus ≤ 1
+lines are the entry-degenerate families above. *(For
+$\operatorname{char} k = 0$ this is strengthened to degree ≥ 3 by
+Theorem A7.6 below.)* Moreover every genus ≤ 1
 curve on $X$ with line image either is entry-degenerate or (the $c = 0$
 elliptic components) carries no nondegenerate rational point — the
 latter by F3.2, i.e. by Fermat's own descent, proven in this repository.
@@ -178,47 +182,108 @@ genus-0 component over a conic would be a nondegenerate rational curve
 on $X$** — a function-field magic square of squares, disproving A2.C.
 The stakes are correspondingly high.
 
-**Lemma A7.5 (conic budget). PROVEN.** For a smooth conic, total
-collision multiplicity is 18; a collision point is effective unless every
-restricted form has even multiplicity there (for a smooth conic: exactly
-the *free tangency* points, one line tangent and no other line through
-the point). Per-point multiplicities are bounded by 4 (tangent line at a
-triple point), 3 (transversal triple or tangent-at-double), 2, 1.
-Consequently $r_{\mathrm{eff}} \le 4$ forces
-$$\#\{\text{tangencies}\} \;\ge\; 9 - 2\,r_{\mathrm{eff}} + 
-(\text{tangencies at multiple points}) \;\ge\; 1,$$
-and in the $r_{\mathrm{eff}} = 3$ (potentially rational) regime the
-conic must carry **at least five tangencies or pass through at least
-four triple points** (case bookkeeping in the doc's checked sweep
-classes below).
+**Lemma A7.5 (sharp conic budget). PROVEN.** Let $C$ be a smooth conic
+and $p \in C$ a point of the arrangement, lying on $\mu(p) \in
+\{1,2,3\}$ entry lines. Every line through a point of a smooth conic
+meets it there with multiplicity 1 (transversal) or 2 (the unique
+tangent line), so the transversal/tangent counts at $p$ are forced:
+$$(s_p, t_p) \in \{(\mu(p), 0),\ (\mu(p)-1, 1)\},$$
+$p$ is branch-effective iff $s_p \ge 1$ (free iff $(s,t) = (0,1)$: a
+tangency at a *simple* point), and $\sum_p (s_p + 2t_p) = 18$. Since
+multiple points of the arrangement are rational and $s_p \le 3$,
+writing $T$ for the number of tangent entry lines
+($\sum_p s_p = 18 - 2T$):
 
-**Sweeps run (all exact arithmetic; `compute/conic_pullbacks.py`,
-re-run by `a7.conics`): 216 irreducible candidate conics, zero genus
-≤ 1 components.**
+- **genus 0** on a component forces $r_{\mathrm{eff}} \le 3$, hence
+  $18 - 2T \le 9$, i.e. $T \ge 5$;
+- **genus 1** forces $r_{\mathrm{eff}} = 4$ exactly (with $\le 4$
+  points, $\sum s_p \le 12$ needs $T \ge 3$; $r_{\mathrm{eff}} \le 3$
+  is the genus-0 case), and if $T \le 4$ the multiset of effective
+  point types is **exactly one of six classes**:
+  $$\begin{array}{ll}
+  \text{C1: } 4 \times (3,0)\text{-triple} + 3 \text{ free} &
+  \text{C2: } 3 \times (3,0)\text{-triple} + (1,0)\text{-simple} + 4
+  \text{ free}\\
+  \text{C3: } 3 \times (3,0)\text{-triple} + (1,1)\text{-double} + 3
+  \text{ free} &
+  \text{C4: } 2 \times (3,0)\text{-triple} + 2 \times
+  (2,0)\text{-double} + 4 \text{ free}\\
+  \text{C5: } 2\times(3,0)\text{-tr.} + (2,0)\text{-db.} +
+  (2,1)\text{-tr.} + 3 \text{ free} &
+  \text{C6: } 2 \times (3,0)\text{-triple} + 2 \times
+  (2,1)\text{-triple} + 2 \text{ free.}
+  \end{array}$$
+  ($(s,t)$-triple/double = passage through a triple/double point with
+  $t = 1$ meaning the conic's tangent line there is an entry line.)
 
-1. *Tangent-to-5*: for each 5-subset of the nine lines, the unique conic
-   tangent to all five (via the dual conic), when irreducible. This
-   class is **complete** for any low-genus conic with ≥ 5 tangencies —
-   which includes every $r_{\mathrm{eff}} \le 3$ configuration with
-   $\le 3$ triple-point passages.
-2. *Through-5-triples*: all conics through five of the eight triple
-   points.
-3. *4-triple pencils*: for each of the 70 pencils of conics through four
-   triple points, every member tangent to at least one entry line at a
-   rational pencil parameter. Complete for low-genus conics through ≥ 4
-   triples (any such must be tangent somewhere, by the budget), up to
-   the rational-parameter caveat below.
-4. Symmetric families (e.g. $u^2 + v^2 = \alpha c^2$); the showcase
-   $u^2{+}v^2 = c^2$, tangent to four lines *at four triple points*, is
-   verified to give $k = 4$, $r_{\mathrm{eff}} = 6$, genus **9** — a
-   measure of how hard the budget is to satisfy.
+*Proof.* The alphabet is forced as stated; the genus formula of Lemma
+A7.1 gives $g \le 1 \Rightarrow r_{\mathrm{eff}} \le 4$ in every
+$k$-branch; the class list is the exhaustive enumeration of type
+multisets under the multiplicity identity — machine-checked as such by
+`a7cc.budget_lemma`, which regenerates exactly these six signatures. ∎
 
-**Honestly open for conics (scoped for M10):** mixed configurations with
-exactly 3–4 tangencies and ≤ 3 triple-point passages (finitely many
-polynomial systems, enumerated in §6), and conics with *irrational*
-coefficients (Galois pairs; the analyzer is currently
-$\mathbb{Q}$-exact). No claim of completeness is made beyond the swept
-classes.
+**Theorem A7.6 (no low-genus curves over conics). PROVEN (exhaustive
+exact computation, characteristic 0).** No curve of geometric genus
+$\le 1$ on $X$ has conic image in the Lucas plane. Consequently (with
+Theorem A7.3) **every genus $\le 1$ curve on $X_{\bar{\mathbb{Q}}}$ has
+Lucas-image degree $\ge 3$**, and every nonconstant magic square of
+squares over $k(t)$, $\operatorname{char} k = 0$, has Lucas-image
+degree $\ge 3$ (over $\operatorname{char} p > 3$ the degree-$\ge 2$
+statement of Corollary A7.4 stands).
+
+*Proof structure* (each leg mechanical, `python3 -m verify --only
+a7cc`; engines in `compute/conic_complete.py`):
+
+1. **$T \ge 5$.** A smooth conic tangent to five entry lines has a
+   *smooth* dual conic through their five rational dual points; so no
+   three of the five lines are concurrent (no 3 collinear points on a
+   smooth conic), and the dual is the *unique* conic through those five
+   points — in particular rational. Of the 126 5-subsets, 98 contain a
+   concurrent triple (no smooth tangent conic exists; the through-duals
+   system yields a line pair) and 28 give the unique rational
+   candidate, all swept in M9: **zero genus $\le 1$**
+   (`a7cc.t5_completeness` + `a7.conics`).
+2. **C1, C4** (4-point pencils: 70 quadruples of triples, 1848
+   triple-pairs × double-pairs). Members tangent to $\ge 3$ (resp.
+   $\ge 4$) lines are common roots of the nine restriction-discriminant
+   binary quadratics — rational or *quadratic-irrational*, handled
+   exactly in $\mathbb{Q}(\sqrt D)$ by a field-generic analyzer
+   (validated against the M9 analyzer on all 216 rational candidates).
+   Point sets with three collinear members (47 resp. 822; the 10
+   collinear triple-triples live on $c$, the four $(u{\pm}v)$ lines,
+   and $u{=}0$, $v{=}0$) admit only reducible conics. Result: one
+   irreducible member in C1 — **the circle** $u^2{+}v^2 = c^2$, genus
+   9 — and eight in C4, all genus 33. **Zero genus $\le 1$.**
+3. **C3, C5, C6** (tangent-at-a-multiple-point classes: 1104, 6048,
+   3780 linear systems of $\ge 5$ conditions; "tangent to $\ell$ at
+   $p$" is the linear condition $Mp \parallel \ell$). Unique solutions
+   analyzed exactly; degenerate systems are skipped only with *proof*
+   of reducibility — a determinant cubic vanishing on a grid
+   $\{0..3\}^d$ vanishes identically (degree 3 < 4 per variable) — and
+   pencil fallbacks re-enter the engine of leg 2. 1252 irreducible
+   solutions analyzed: **zero genus $\le 1$.**
+4. **C2** (46 non-collinear triple-nets; tangency to 4 of the 9 lines
+   on a net of conics). For each net and 4-subset, common zeros of the
+   four discriminant quadrics are confined by pairwise $z$-resultants
+   (Sylvester-exact, after a basis change making every leading
+   coefficient a nonzero constant — otherwise the formal resultant
+   vanishes spuriously); the gcd of the six resultants being constant
+   **certifies emptiness over $\bar{\mathbb{Q}}$** (plus direct checks
+   at the two loci the chart misses). 5792 of 5796 net-subsets are so
+   certified; the 4 surviving candidate solutions are all **the circle
+   again** (tangent to $c{\pm}u$, $c{\pm}v$ through the other four
+   triples — genus 9). Candidate roots resolve in degree $\le 2$;
+   any deeper algebraic root would be flagged (none is). **Zero genus
+   $\le 1$.** ∎
+
+The circle $u^2{+}v^2 = c^2$ — tangent to four lines at four triple
+points, genus 9, rediscovered independently by the C1 and C2 engines —
+is the unique "near miss" of the whole conic layer, a measure of how
+rigid the budget is. The M9 caveats (irrational coefficients, mixed
+configurations) are hereby **closed**: every genus $\le 1$ conic-image
+curve would satisfy one of the rational class systems, whose solutions
+the sweeps resolve completely (pencil classes in degree $\le 2$; net
+classes by elimination certificates).
 
 ## 5. Invariants of the resolution (VERIFIED) — and where the hyperbolicity lives
 
@@ -282,12 +347,14 @@ $z_3^2 = a z_1^2 + b z_2^2$: $A_1$), resolved crepantly. Consequences:
    $K \cdot C = 3 H \cdot C$ with $H \cdot C$ expressible through $d$
    and the component splitting — a bound $B$ makes §3's analysis a
    *finite* sweep over $d$.
-4. Finish the conic layer: the two remaining finite configuration
-   families (3 triples + 2 tangencies: 56×36 resultant systems; 1–2
-   triples + 3–4 tangencies), plus extension-field coefficients.
+4. ~~Finish the conic layer~~ **done** (M10-B): Lemma A7.5 sharpened
+   the class list to C1–C6, all swept exactly (quadratic fields and
+   elimination certificates included) — Theorem A7.6: **no genus ≤ 1
+   curve over conics**; image degree ≥ 3 in characteristic 0.
 5. Cubic images: the same machinery applies (nodal cubics are rational);
-   the budget tightens (27 total multiplicity) — enumerate the
-   analogous special-position classes.
+   the budget tightens (27 total multiplicity; the smooth-point
+   alphabet gains $(s,t)$ options at nodes/cusps of the cubic) —
+   enumerate the analogous special-position classes.
 6. Stoll–Testa lattice route on a *quotient*: pick an intermediate cover
    with manageable $b_2$, compute its NS lattice with Galois action, and
    enumerate low classes there; curves on $X$ map to curves on every
@@ -404,6 +471,19 @@ ties to F3.2's exhaustive check; `cover_invariants()` values asserted
 exact analysis $(k, r_{\mathrm{eff}}, g) = (4, 6, 9)$; the conic sweeps
 re-run (bounded in FAST) with zero hits; cross-module consistency of the
 `ENTRY_LINES` data.
+
+`verify/checks/a7_conics.py` (§4, M10-B): the $\mathbb{Q}(\sqrt D)$
+arithmetic layer (square testing, inversion, quartic $\mathbb{Z}$-
+splitting, exact gcd) unit-tested; the field-generic analyzer equal to
+the M9 analyzer on all 216 rational candidates; **the budget lemma's
+case analysis regenerated mechanically** (all admissible type multisets
+under the multiplicity identity: genus 0 forces $T \ge 5$, genus 1
+residual = exactly C1–C6); the tangent-to-5 dual-conic completeness
+argument (28 candidate vs 98 concurrent-killed 5-subsets); the five
+pure classes swept with pinned bookkeeping (systems/skips/analyzed
+counts) and zero hits or unresolved flags; the C2 elimination
+certificates (5792/5796 empty, 4 candidates = the genus-9 circle); the
+10 collinear triple-triples identified line by line.
 
 `verify/checks/a7_btva.py` (§7): the $A_1$ local-Euler identities and
 first-values table; CI-formula ↔ cover-stratification agreement at

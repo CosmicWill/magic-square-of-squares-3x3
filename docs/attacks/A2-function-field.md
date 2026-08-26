@@ -252,13 +252,18 @@ What we know:
    curves exist over $\bar{\mathbb{Q}}$ — but not, as far as we can
    verify, that the nondegenerate count is zero. A2.C over
    $\bar{\mathbb{Q}}$ is exactly "that count is zero".
-   **Progress ([A7](A7-curve-enumeration.md), Corollary A7.4, PROVEN):**
+   **Progress ([A7](A7-curve-enumeration.md), Corollary A7.4 and
+   Theorem A7.6, PROVEN):**
    every genus ≤ 1 curve on $X$ whose Lucas-plane image is a *line* is
    classified — the rational ones are entry-degenerate and the sole
    elliptic family (center-zero) has no nondegenerate rational points by
-   F3.2. Hence **any nonconstant $k(t)$-MSS3 has plane image of degree
-   ≥ 2**, and the systematic conic sweeps of A7 (216 exact candidates)
-   found no genus ≤ 1 component either.
+   F3.2 — and the conic layer is now **closed**: no genus ≤ 1 curve on
+   $X$ has conic image at all (sharp budget lemma + exhaustive exact
+   sweeps of the six residual classes). Hence any nonconstant
+   $k(t)$-MSS3 has plane image of degree ≥ 2 for
+   $\operatorname{char} k \notin \{2,3\}$, and **degree ≥ 3 in
+   characteristic 0**: A2.C is now a statement about images of degree
+   ≥ 3.
 2. **Why Lemma A2.L does not finish it.** The lemma's mechanism needs
    binary forms (two variables) so that conics factor into linear
    pieces. The MSS3 system is (after eliminating $u, v$)

@@ -141,9 +141,9 @@ Beyond reproving the foundations from scratch, the program produced:
 | $X$: 6 quadrics, rank exact; smooth off coordinate hyperplanes; arrangement $(t_2,t_3) = (12,8)$; $\mathbb{F}_p$ counts | PROVEN/VERIFIED | A5 |
 | Bound ladder (three cross-validated implementations) | VERIFIED | A6 |
 | Genus ≤ 1 curves on $X$ over plane **lines**: complete classification (only $u{=}0$, $v{=}0$: genus 0 degenerate; $c{=}0$: genus 1, no nondegenerate $\mathbb{Q}$-points via F3.2) | PROVEN | A7 |
-| Every nonconstant $k(t)$-MSS3 has Lucas-image degree ≥ 2 | PROVEN | A7 |
+| Every nonconstant $k(t)$-MSS3 has Lucas-image degree ≥ 2 (char ∉ {2,3}); degree ≥ 3 in char 0 | PROVEN | A7 |
 | Resolution invariants: $K^2 = 576$, $c_2 = 768$, $\chi(\mathcal{O}) = 112$, $s_2 = -192 < 0$ (hyperbolicity is nodal); 256 $A_1$ nodes located | VERIFIED | A7 |
-| Conic layer: 216 exact candidate conics (tangent-to-5 complete; 5-triple; 4-triple pencils; symmetric), zero genus ≤ 1 components | VERIFIED; completeness OPEN | A7 |
+| **Conic layer closed**: sharp budget lemma (six residual classes) + exhaustive exact sweeps ($\mathbb{Q}(\sqrt D)$ pencil roots, elimination certificates): no genus ≤ 1 curve on $X$ has conic image; genus ≤ 1 ⟹ Lucas-image degree ≥ 3 (char 0); nonconstant $k(t)$-MSS3 needs degree ≥ 3 | PROVEN (Thm A7.6) | A7 §4 |
 | BTVA (arXiv:1912.08908) READ from acquired source; its $X$ results reproduced exactly from our invariants ($\ell_{\min}(8)=217$; sections from $m = 47$, $h^0 \ge 8448$); no enumeration/node refinement for $X$ exists there; 3 display errata found | VERIFIED | A7 §7, papers/1912.08908 |
 | **The open problem itself** | **OPEN — no claim** | everywhere |
 

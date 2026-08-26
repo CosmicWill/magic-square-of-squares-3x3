@@ -90,13 +90,16 @@ exactly what the open problem asks to establish over $\mathbb{Q}$.
   algebraically quasi-hyperbolic: finitely many curves of genus
   $\le 1$. **Enumerate them and check each lies in the degeneracy
   locus.** *Now underway in [A7](A7-curve-enumeration.md): the line
-  layer is completely classified (Theorem A7.3), the resolution's
+  layer (Theorem A7.3) **and the conic layer (Theorem A7.6)** are
+  completely classified — no genus ≤ 1 curve on $X$ has line image
+  beyond the three degenerate families, and none has conic image at
+  all, so every genus ≤ 1 curve has plane image of degree ≥ 3 (char 0);
+  the resolution's
   invariants are computed ($K^2 = 576$, $c_2 = 768$, $\chi(\mathcal{O})
   = 112$, $s_2 = -192 < 0$ — the hyperbolicity is carried by the 256
-  nodes) and now confirmed against BTVA's complete-intersection Chern
-  formulas (A7 §7), their magic-square bounds ($m \ge 47$,
-  $h^0 \ge 8448$) are exactly reproduced from our invariants, and the
-  first conic sweeps are clean. The paper itself contains no
+  nodes) and confirmed against BTVA's complete-intersection Chern
+  formulas (A7 §7), and their magic-square bounds ($m \ge 47$,
+  $h^0 \ge 8448$) are exactly reproduced from our invariants. The paper itself contains no
   enumeration for $X$ and calls the explicit-differentials route out of
   computational range there — P3 remains open and non-duplicative.* This single computation would: (i) settle Conjecture A2.C
   over $\bar{\mathbb{Q}}$ (no nondegenerate rational curves = no
