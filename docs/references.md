@@ -69,16 +69,16 @@ honestly:
 
 | Ref | Provenance |
 |---|---|
-| M. Stoll, D. Testa, "The surface parametrizing cuboids," arXiv:1009.0388 (2010). Picard lattice + curve enumeration on the sister (cuboid) surface — the worked template. | SUMMARY-ONLY |
-| K. Horie, T. Yamauchi, "The L-function of the surface parametrizing cuboids," arXiv:2512.22520 (2025). Full Picard Galois module of that surface. | EXISTENCE-VERIFIED |
-| S. Lu, Y. Miyaoka, "Bounding curves in algebraic surfaces by genus and Chern numbers," Math. Res. Lett. 2 (1995) 663–676. | SUMMARY-ONLY |
-| Y. Miyaoka, "The orbibundle Miyaoka–Yau–Sakai inequality and an effective Bogomolov–McQuillan theorem," Publ. RIMS 44 (2008) 403–417. Effective canonical-degree bounds with orbifold ($A_1$) contributions. | SUMMARY-ONLY |
+| M. Stoll, D. Testa, "The surface parametrizing cuboids," arXiv:1009.0388**v2** (updated 2025). Picard lattice ($\rho = 64$ maximal, disc $-2^{28}$), Aut (order 1536), Brauer group, all curves with $C\cdot K \le 6$; Lemma 21: rational non-conic $C\cdot E \ge 8$, genus-1 $\ge 4$. | **READ** (PDF in [papers/](../papers/); intro + main theorems digested; lattice details on demand) |
+| K. Horie, T. Yamauchi, "The L-function of the surface parametrizing cuboids," arXiv:2512.22520v3 (2026). Full $L$-function and $\operatorname{Pic}(\bar S)$ as Galois module. | **READ** (PDF in papers/; main theorem digested) |
+| S. Lu, Y. Miyaoka, "Bounding curves in algebraic surfaces by genus and Chern numbers," Math. Res. Lett. 2 (1995) 663–676. Effective $CK$ bounds — requires $K^2 > c_2$. | **READ** (PDF in papers/; main theorems digested — hypotheses FAIL for $X$: $576 < 768$, see A8 §1) |
+| Y. Miyaoka, "The orbibundle Miyaoka–Yau–Sakai inequality and an effective Bogomolov–McQuillan theorem," Publ. RIMS 44 (2008) 403–417. Orbibundle MYS inequality; $CK \le a(g-1)+b$ when $K^2 > c_2$. | **READ** (PDF in papers/; main theorems digested — orbifold-corrected $c_2 = 640 > 576 = K^2$ still fails for $X$, A8 §1) |
 | F. Hirzebruch, "Arrangements of lines and algebraic surfaces," Progr. Math. 36 (1983) 113–140; Barthel–Hirzebruch–Höfer, Vieweg (1987). Cover invariants from arrangement combinatorics. | SUMMARY-ONLY |
 | P. Pokora, "Hirzebruch-type inequalities viewed as tools in combinatorics," Electron. J. Combin. 28 (2021); G. Urzúa, J. Alg. Geom. 19 (2010) 335–365. Practical formula sources. | EXISTENCE-VERIFIED |
-| N. Bruin, N. Ilten, Z. Xu, "Local Euler characteristics of $A_n$-singularities and their application to hyperbolicity," EPIGA 9 (2025), arXiv:2312.01722. The $A_1$-node toolkit. | SUMMARY-ONLY |
+| N. Bruin, N. Ilten, Z. Xu, "Local Euler characteristics of $A_n$-singularities and their application to hyperbolicity," EPIGA 9 (2025), arXiv:2312.01722. Wahl local Euler characteristics for all $A_n$; explicit-regular-differential machinery. | **READ** (PDF in papers/; framework digested; $n=1$ case already reproduced in `a7btva.*`) |
 | BTVA ancillary Magma code, `arxiv.org/src/1912.08908/anc` (per N. Bruin's SFU publications page). | **READ** (acquired with the source, [papers/1912.08908/anc/](../papers/1912.08908/anc/): Barth sextic + perfect cuboid **only** — no magic-square script) |
 | J. Wahl, "Second Chern class and Riemann–Roch for vector bundles on resolutions of surface singularities," Math. Ann. 295 (1993) 81–110. Local $\chi^0/\chi^1$ framework used by BTVA. | SUMMARY-ONLY (used through BTVA's statements, which we re-verified numerically) |
-| N. García-Fritz, G. Urzúa, "Families of explicit quasi-hyperbolic and hyperbolic surfaces," Math. Z. (to appear at BTVA's writing). Base-descended differentials on cyclic covers; for the cuboid surface: every genus ≤ 1 curve passes through ≥ 2 nodes. | SUMMARY-ONLY (known through BTVA's citation; the model for A7 roadmap item 2) |
+| N. García-Fritz, G. Urzúa, "Families of explicit quasi-hyperbolic and hyperbolic surfaces," arXiv:1804.07671; Math. Z. Vojta-method towers of cyclic covers branched on $\omega$-integral curves; toric local calculus; cuboid: genus ≤ 1 ⟹ ≥ 2 nodes, rational non-conic $C\cdot E \ge 8$. | **READ in full** (PDF in [papers/](../papers/); the method source for [A8](attacks/A8-descent-differentials.md)) |
 
 ## Claimed proofs (unaccepted; audited here)
 

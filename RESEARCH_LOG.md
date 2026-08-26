@@ -391,3 +391,64 @@ New code: compute/conic_complete.py (exact Q(sqrt D) layer, field-
 generic analyzer, linear-condition solver, pencil disc-root engine,
 elimination certificates); verify/checks/a7_conics.py (7 checks).
 Suite: 74 checks green.
+
+## 2026-08-26 — Entry 12: six Tier-1 papers ingested; A8 launched — the descent computation (M10-C, M11-A)
+
+The owner uploaded all six Tier-1 PDFs (García-Fritz–Urzúa
+arXiv:1804.07671 — the guessed ID was right; Stoll–Testa 1009.0388v2
+(2025 update!); Horie–Yamauchi 2512.22520; Lu–Miyaoka MRL 1995;
+Miyaoka Publ. RIMS 2008; Bruin–Ilten–Xu 2312.01722). All in papers/,
+provenance upgraded (GFU READ in full; others READ to main-theorem
+depth). Three digests matter strategically: (1) GFU's Vojta machinery
+(omega-integral curves, cyclic-cover towers, toric local calculus,
+node-passage bounds on the cuboid); (2) Stoll–Testa 2025: the cuboid
+benchmark trio — BTVA (>=7 nodes spanning P^6), GFU (>=2 nodes;
+rational non-conic C.E >= 8), lattice (C.E >= 8 / >= 4) — nothing
+analogous exists for X; (3) the NEGATIVE: Lu–Miyaoka/Miyaoka-2008
+effective bounds need K^2 > c_2, and X has 576 < 768, still 576 < 640
+after the A_1-orbifold correction — the old A7 roadmap item
+"orbifold-Miyaoka" is closed for the full surface.
+
+**A8 (new attack doc): descent of symmetric differentials.** Theorem
+A8.1: H^0(X - nodes, S^m Omega^1) decomposes under the (Z/2)^8 Galois
+group into 256 character eigenspaces V_S (S = even sets of entry
+lines), and each V_S is a finite exact linear-algebra problem ON THE
+LUCAS PLANE: membership is divisorial (poles of bundle sections live
+in codim 1; nodes and multiple-point fibers are codim 2), with
+explicit per-line order conditions from the double-cover local model
+f = w^2. This replaces BTVA's infeasible P^8 Groebner route ("out of
+range of current computational techniques") — the structure they did
+not use is the abelian cover.
+
+**Engine** (compute/descent_differentials.py): exact sparse linear
+algebra over Q; two charts (u=1 sees all nine lines; c=1 sees u=0);
+saturation-checked degree bounds; 8 grid symmetries reduce 256
+characters to 51 orbits. Controls: the two-line sub-cover (= P^1 x
+P^1) returns 0 in all characters at m=1,2,3; the instructive near-trap
+eta = dl1*dl2 (pullback 4 dx1 dx2, affinely regular) is rejected for
+exactly its order-4 pole over u=0; orbit equivariance; and m=1 equals
+the classical Zariski/Esnault–Viehweg prediction. Structural facts
+proven en route: the 8 triple points are the 8 lines-of-three of the
+3x3 grid; the two 3-pencil systems have base points on v=0 / u=0
+(where the degenerate curve families live); the nine lines split as
+"6 tangents of a smooth conic + a 3-line pencil" in two ways.
+
+**Results.** (m=1) q(X~) = 0: hence b_1 = 0, b_2 = 766 (M9's
+b_2 = 766 + 4q resolved), h^{1,1} = 544. (m=2) ALL 256 characters
+vanish: h^0(X - nodes, S^2 Omega^1) = 0. Contrast the cuboid's
+13-dimensional space, which powers the entire BTVA/GFU explicit
+program there. So on the magic-square surface the m=2 program is not
+"out of range" — ITS INPUT SPACE IS EMPTY. Any explicit-differential
+attack must start at m >= 3 (survey running). Honest caveat, recorded
+in A8 §4: the gold-standard positive control (reproducing the
+cuboid's 13 by the same descent, over Q(i) with a conic branch
+component) is the next milestone; until it passes, the zeros carry
+that caveat.
+
+Also in A8 §6: the Vojta/GFU route has a structural deficit on the
+full 9-line cover (every pencil-theta or conic-dual differential pays
+4 per 3 lines covered; Bott kills cheaper sections; balance would
+need 9 lines tangent to one conic, we have 6) — properly so, since X
+does have genus <= 1 curves; the productive continuations are the
+zero-deficit sub-cover statements and GFU-§3-style node-passage
+bounds, both scoped in the A8 roadmap. Suite: 81 checks green.

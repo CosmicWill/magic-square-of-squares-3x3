@@ -29,7 +29,7 @@ differentials and its application to quasi-hyperbolicity"**
   Algebra & Number Theory 16 (2022) 1377–1405,
   doi:10.2140/ant.2022.16.1377.
 
-## P1.5 — NEW top priority after the BTVA digest (2026-08-26)
+## P1.5 — ✅ ACQUIRED 2026-08-26 (arXiv:1804.07671, READ in full; the A8 method source)
 
 **García-Fritz & Urzúa — "Families of explicit quasi-hyperbolic and
 hyperbolic surfaces"**, Math. Z. (cited by BTVA as "to appear"; search
@@ -54,7 +54,7 @@ equations"**, Notices AMS 68 (2021) 1291–1300. Free:
 *Why:* the citable source for "6 quadrics in ℙ⁸" and the "256 ordinary
 double points" claim we have independently derived and want to confirm.
 
-## P3 — the worked template on the sister surface
+## P3 — ✅ ACQUIRED 2026-08-26 (both PDFs in papers/, main theorems digested)
 
 - **Stoll & Testa — "The surface parametrizing cuboids"**:
   https://arxiv.org/abs/1009.0388 (also
@@ -67,7 +67,7 @@ want for X: resolve the nodes, compute Pic with Galois action, enumerate
 low-degree classes, identify the 32 known conics. Our M10 would follow
 their playbook step by step.
 
-## P4 — the effective-bound machinery
+## P4 — ✅ ACQUIRED 2026-08-26 (both PDFs; verdict: hypotheses fail for X — K²=576 < c₂, even orbifold-corrected 640; route closed, see A8 §1)
 
 - **Lu & Miyaoka — "Bounding curves in algebraic surfaces by genus and
   Chern numbers"**, Math. Res. Lett. 2 (1995) 663–676:
@@ -97,7 +97,7 @@ load-bearing)*
 - (Book, if easy: Barthel–Hirzebruch–Höfer, *Geradenkonfigurationen und
   algebraische Flächen*, Vieweg 1987.)
 
-## P6 — current-generation node toolkit
+## P6 — ✅ ACQUIRED 2026-08-26 (PDF in papers/, framework digested)
 
 **Bruin, Ilten, Xu — "Local Euler characteristics of A_n-singularities
 and their application to hyperbolicity"**, EPIGA 9 (2025), open access:

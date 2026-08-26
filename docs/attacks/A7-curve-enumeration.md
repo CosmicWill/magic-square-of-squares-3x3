@@ -324,29 +324,22 @@ $z_3^2 = a z_1^2 + b z_2^2$: $A_1$), resolved crepantly. Consequences:
    in the paper (no explicit differentials for $X$, no effective bound);
    but it hands us the exact $A_1$ local-Euler toolkit and a proof
    template that *descends to the base plane* (item 2).
-2. **Base-descended symmetric differentials on the Lucas plane (the new
-   lead).** BTVA's cuboid theorem is powered not by surface-level module
-   computations but by one differential of the form
-   $\omega = \phi^*(\eta)/(y_1y_2y_3z^2)$ with $\eta$ a degree-2
-   symmetric differential **on $\mathbb{P}^2$** whose integral curves
-   they classify completely (a conic and its tangent lines). The
-   $X$-analogue: find $\eta$ on the Lucas plane, with denominator a
-   monomial in the nine entry lines, such that $\pi^*(\eta)/(\prod
-   \ell_i^{a_i})$ is regular on $X - S$ (a *local* double-cover
-   computation along each branch line — tractable by exactly our §4
-   absorption calculus), then classify $\eta$'s integral curves. Success
-   would constrain genus ≤ 1 curves of **all** image degrees at once —
-   bypassing the "out of range" module computation entirely. Precedent:
-   García-Fritz–Urzúa did this for the cuboid surface via
-   $\mathbb{P}^1 \times \mathbb{P}^1$ and got "every genus ≤ 1 curve
-   passes through ≥ 2 nodes" (cited by BTVA, `GarciaFritzUrzua`); no
-   analogue exists for $X$.
-3. ◆ Orbifold-Miyaoka with 256 $A_1$ points (P4/P6): extract an
-   effective canonical-degree bound $K \cdot C \le B$ for genus ≤ 1
-   curves; each plane-image degree $d$ satisfies
-   $K \cdot C = 3 H \cdot C$ with $H \cdot C$ expressible through $d$
-   and the component splitting — a bound $B$ makes §3's analysis a
-   *finite* sweep over $d$.
+2. **Base-descended symmetric differentials on the Lucas plane** —
+   **launched as [A8](A8-descent-differentials.md)** (M11, with
+   García-Fritz–Urzúa arXiv:1804.07671 now READ as the method source).
+   First results: the full character decomposition of
+   $H^0(X^\circ, S^m\Omega^1)$ into 256 plane-level linear problems;
+   $q(\widetilde X) = 0$ (so $b_2 = 766$, $h^{1,1} = 544$); and
+   $h^0(X^\circ, S^2\Omega^1) = 0$ — the $m = 2$ explicit program that
+   powers BTVA's cuboid theorem is *empty* on $X$, not merely
+   infeasible.
+3. ~~◆ Orbifold-Miyaoka with 256 $A_1$ points (P4/P6)~~ **resolved
+   negative** (papers acquired and read, A8 §1): the Lu–Miyaoka /
+   Miyaoka-2008 effective bounds require $K^2 > c_2$, and $X$ has
+   $576 < 768$ — still $576 < 640$ after the $A_1$-orbifold correction.
+   The route survives only on intermediate quotients (none eligible at
+   the double-plane level by the M9 scan); a full sub-cover Segre scan
+   is A8 roadmap item 4.
 4. ~~Finish the conic layer~~ **done** (M10-B): Lemma A7.5 sharpened
    the class list to C1–C6, all swept exactly (quadratic fields and
    elimination certificates included) — Theorem A7.6: **no genus ≤ 1

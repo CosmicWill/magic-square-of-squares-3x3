@@ -64,7 +64,8 @@ exploratory checks, which SKIP cleanly when the tools are absent.
 |---|---|
 | `docs/00-problem-statement.md` | Definitions, symmetry group, primitivity, status |
 | `docs/foundations/F1…F6` | The structural theory, proven from first principles |
-| `docs/attacks/A1…A6` | The attack lines (each with an honest verdict) |
+| `docs/attacks/A1…A8` | The attack lines (each with an honest verdict) |
+| `papers/` | Acquired primary sources (uploaded; provenance-tracked) |
 | `docs/protocol/` | Status taxonomy and the falsification gauntlet |
 | `docs/references.md` | Literature, with provenance flags |
 | `verify/` | The mechanical verification suite (`python3 -m verify`) |
@@ -145,6 +146,10 @@ Beyond reproving the foundations from scratch, the program produced:
 | Resolution invariants: $K^2 = 576$, $c_2 = 768$, $\chi(\mathcal{O}) = 112$, $s_2 = -192 < 0$ (hyperbolicity is nodal); 256 $A_1$ nodes located | VERIFIED | A7 |
 | **Conic layer closed**: sharp budget lemma (six residual classes) + exhaustive exact sweeps ($\mathbb{Q}(\sqrt D)$ pencil roots, elimination certificates): no genus ≤ 1 curve on $X$ has conic image; genus ≤ 1 ⟹ Lucas-image degree ≥ 3 (char 0); nonconstant $k(t)$-MSS3 needs degree ≥ 3 | PROVEN (Thm A7.6) | A7 §4 |
 | BTVA (arXiv:1912.08908) READ from acquired source; its $X$ results reproduced exactly from our invariants ($\ell_{\min}(8)=217$; sections from $m = 47$, $h^0 \ge 8448$); no enumeration/node refinement for $X$ exists there; 3 display errata found | VERIFIED | A7 §7, papers/1912.08908 |
+| Descent decomposition: $H^0(X^\circ, S^m\Omega^1) = \bigoplus_{256}$ plane-level linear problems (executes BTVA's "out of range" step by another route) | PROVEN | A8 |
+| $q(\widetilde X) = 0$, hence $b_2 = 766$, $h^{1,1} = 544$ (all 256 characters at $m=1$; matches classical pencil-character theory) | VERIFIED | A8 |
+| $h^0(X^\circ, S^2\Omega^1) = 0$ — the $m=2$ explicit-differential program (13-dimensional on the cuboid) is **empty** on $X$ | VERIFIED (positive control pending: cuboid engine, A8 §4) | A8 |
+| Lu–Miyaoka / orbibundle-MYS effective bounds inapplicable to $X$: $K^2 = 576 < 640 = c_2^{\mathrm{orb}} < 768 = c_2$ | READ + computed | A8 §1 |
 | **The open problem itself** | **OPEN — no claim** | everywhere |
 
 **Open tasks:** F3-T1 (close the quartic (Q) descent), F5-T1 (Weil-bound

@@ -18,6 +18,7 @@ MODULES = [
     "a7_curves",
     "a7_conics",
     "a7_btva",
+    "a8_descent",
     "a6_bounds",
 ]
 

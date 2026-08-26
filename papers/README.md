@@ -29,3 +29,9 @@ repo is public, prefer arXiv versions over paywalled publisher PDFs).
 | Source | Directory | Status |
 |---|---|---|
 | BTVA, arXiv:1912.08908v3 (source + ancillary Magma) | [1912.08908/](1912.08908/) | READ & digested 2026-08-26 (A7 §7; `verify --only a7btva`) |
+| García-Fritz–Urzúa, arXiv:1804.07671 | `1804.07671-garcia-fritz-urzua.pdf` | READ in full 2026-08-26 (A8 method source) |
+| Stoll–Testa, arXiv:1009.0388v2 (2025 update) | `1009.0388-stoll-testa.pdf` | READ (main theorems) 2026-08-26 |
+| Horie–Yamauchi, arXiv:2512.22520v3 | `2512.22520-horie-yamauchi.pdf` | READ (main theorem) 2026-08-26 |
+| Lu–Miyaoka, MRL 2 (1995) | `lu-miyaoka-1995-mrl2.pdf` | READ (main theorems; hypotheses fail for X) 2026-08-26 |
+| Miyaoka, Publ. RIMS 44 (2008) | `miyaoka-2008-orbibundle-rims44.pdf` | READ (main theorems; hypotheses fail for X) 2026-08-26 |
+| Bruin–Ilten–Xu, arXiv:2312.01722 | `2312.01722-bruin-ilten-xu.pdf` | READ (framework) 2026-08-26 |
