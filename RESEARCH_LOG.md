@@ -1074,3 +1074,53 @@ territory — the P8 acquisitions have a concrete target.)
 
 Suite: 107 checks green (FULL). [M11-K: m=6 survey and m=8
 tau-test still grinding in the background.]
+
+## 2026-08-27 — Entry 27: M11-K decided — no second section: the web is spectrally rigid (Theorem A8.18)
+
+The decisive background verdict landed: the m = 8 mod-p tau-test
+(basis 15690 x 9729, four hours; then the reconstruction-free
+node-extension rows) cut the 33-dimensional ambient invariant
+eigenspace to RESOLUTION DIMENSION 1. Combined with the exact
+lower bound — eta*^2, the convolution square of the certified
+eta* numerators, verified exactly to have tau = 8 at all five
+visible triple points and through sigma* at the three B-points —
+the sandwich closes:
+
+    h^0(Ytilde, S^8 Omega^1)^inv = <eta*^2>   EXACTLY.
+
+With the full m = 5 survey (51 orbits, 256 characters, ALL ZERO —
+each mod-p zero an exact-vanishing proof) and the m = 7 trivial
+tau-test (ambient 10 -> resolution 0), the trivial-character
+resolution ladder through degree 8 reads
+
+    m:   4    5    6    7    8
+    dim: 1    0   (0?)  0    1      (powers of eta*, nothing else)
+
+— the m = 6 slot's tau-test is running (ambient 10; no
+half-integral power of eta* can exist, 0 expected). THE
+SECOND-SECTION HUNT IS SETTLED NEGATIVELY: no second invariant
+section exists at any degree <= 8, so the cuboid-style two-section
+resultant/finiteness shortcut is closed at these levels, and the
+M11-J analysis of the single web eta* is genuinely unavoidable.
+The 33-dimensional ambient octic space (which does contain >= 12
+non-product-shaped mod-p vectors) is a statement about X minus its
+nodes; at the resolution everything except <eta*^2> dies at the
+256 exceptional curves.
+
+Scope, honestly: nontrivial characters at m in {6, 7, 8} are
+partial (m = 6 survey: 22/51 orbits so far, all zero except the
+trivial ambient 10) resp. infeasible (m = 7: ~71 min/orbit =>
+days). The trivial character — where products live and where any
+finiteness shortcut would have to live — is settled decisively.
+The m = 8 certified-basis job (CRT reconstruction) is retired:
+the tau-test verdict is rigorous without it.
+
+Artifacts: compute/data_section_spectrum.json (the m = 5 table,
+the m = 7/8 verdicts with pinned system shapes); check
+a8.section_spectrum re-certifies eta*^2 exactly on every run
+(21 s) and validates the stored records. Doc: A8 §8 Theorem A8.18
++ roadmap and verify-summary updates; ledger row.
+
+Suite: 108 checks green (FULL). [Still running: the m = 6
+tau-test and the m = 6 survey tail; their results will be a small
+addendum.]

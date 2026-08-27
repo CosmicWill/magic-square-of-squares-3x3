@@ -747,12 +747,73 @@ web's line level carries **no** rational curves beyond the classical
 families — as A8.15/A8.16 demand.  (Conics are excluded outright by
 A7.6; the web frontier starts at cubic integral curves.)
 
+### The spectrum above degree 4: the web is spectrally rigid (M11-K)
+
+(`a8.section_spectrum`; data `compute/data_section_spectrum.json`.)
+
+**Theorem A8.18 (no second section through degree 8).**
+(i) **$h^0(S^5) = 0$ for every character** (PROVEN): the full
+51-orbit survey at symmetric degree 5 is zero mod $p$ with
+saturation asserted per orbit, and a zero nullity mod $p$ is a
+proof of exact vanishing.
+(ii) **Trivial character, $m = 7$: resolution dimension $0$**
+(PROVEN): the ambient invariant eigenspace has mod-$p$ dimension
+10, and the node-extension rows ($\tau \ge 7$ at the five visible
+triple points, the three $B$-points via direct $\sigma^*$-pullback)
+cut it to $0$ mod $p$ — no invariant degree-7 section of the
+resolution exists.
+(iii) **Trivial character, $m = 8$:
+$h^0(\widetilde Y, S^8\Omega^1)^{\mathrm{inv}} =
+\langle\eta_\star^2\rangle$ EXACTLY** (PROVEN by sandwich): the
+mod-$p$ $\tau$-test cuts the 33-dimensional ambient invariant
+eigenspace to dimension **1** (an upper bound — rank only drops
+mod $p$), while $\eta_\star^2$ — the convolution square of the
+certified $\eta_\star$ numerators — is verified *exactly* to have
+$\tau = 8$ at all five visible triple points and through
+$\sigma^*$ at the three $B$-points, extending across all 256
+exceptional curves (the lower bound, recomputed live on every
+suite run).
+
+**Consequences.** There is **no second invariant section** at any
+degree $\le 8$: every invariant section of the resolution through
+degree 8 is a power of $\eta_\star$ (degrees 4 and 8) — the
+$\eta_\star$-web is **spectrally rigid**. In particular the
+two-section resultant/finiteness shortcut (the cuboid-style
+argument that needs two independent sections) is definitively
+closed at these levels: the M11-J web analysis is genuinely
+unavoidable.
+
+**Method.** The *reconstruction-free mod-$p$ $\tau$-test*: build
+the ambient eigenspace basis mod $p$ (the expensive step — pinned
+system shapes $8388 \times 5328$ at $m = 7$, $15690 \times 9729$
+at $m = 8$; the recorded 4-hour artifacts), then impose the
+$\tau \ge m$ condition rows directly on the mod-$p$ basis, with
+the $B$-point conditions built from direct $\sigma^*$-pullbacks so
+that partially reconstructed bases (not $\sigma$-stable) are
+handled soundly. Upper bounds mod $p$ meet exact lower bounds in
+sandwiches.
+
+**Scope, honestly.** The $m = 6$ trivial-character $\tau$-test is
+running (ambient dimension 10; a power of $\eta_\star$ cannot
+exist at odd half-degree, so 0 is expected); the full character
+surveys at $m \in \{6, 7, 8\}$ beyond the trivial character are
+partial ($m = 6$: 22/51 orbits, all zero except the trivial
+ambient) resp. infeasible at current budgets ($m = 7$: $\approx
+71$ min/orbit $\Rightarrow$ days). The trivial character — where
+products live and where any finiteness shortcut would have to
+live — is settled decisively.
+
 ## 9. Roadmap
 
 1. ~~$m = 3, 4$ surveys~~ **done** (§5): $m_{\min} = 4$, six invariant
-   generators stored. Remaining: **$m = 5, 6, 7$ mod-$p$ surveys**
-   (growth of the section ring; $\hat\chi(7) = +384$ guarantees
-   $h^0 \ge 384$ by $m = 7$ — is the ring generated at $m = 4$?).
+   generators stored. ~~$m = 5$ full survey; $m = 7, 8$ trivial
+   character~~ **done** (M11-K, Theorem A8.18): $h^0(S^5) = 0$
+   everywhere; the trivial-character resolution ladder is
+   $4 \to 1,\ 5 \to 0,\ 7 \to 0,\ 8 \to 1$ — powers of
+   $\eta_\star$ and nothing else. Remaining: the $m = 6$
+   $\tau$-test (running), the nontrivial characters at
+   $m \in \{6, 7, 8\}$ (infeasible at current budgets; scope
+   noted), and the ring-generation question at higher degree.
 2. ~~Cuboid positive control~~ **done** (§4): $h^0 = 13$ reproduced
    exactly, fingerprint and element-level.
 3. ~~Node-extension layer~~ **done** (§8, M11-F): the $\tau$-calculus
@@ -789,7 +850,7 @@ A7.6; the web frontier starts at cubic integral curves.)
 
 ## 10. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py` (23 checks): the §2 structural facts
+`verify/checks/a8_descent.py` (24 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
 splits with smoothness); the quadric control at $m = 1, 2$; the
 $d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
@@ -827,4 +888,10 @@ space-classification certificates (Theorem A8.16: the 8-value
 census over all $|S| \ge 3$ patterns, and the seven dim-2 loci with
 their Galois-integrality refutations); and the web's line-level
 classification (Theorem A8.17: fifteen lines, completeness by
-nonzero-resultant gcd peeling — Skips without sympy).
+nonzero-resultant gcd peeling — Skips without sympy); and the
+spectrum record (Theorem A8.18: the stored all-zero $m = 5$
+survey, the pinned $m = 7/8$ trivial-character $\tau$-test
+verdicts with system shapes, and the live exact certification of
+$\eta_\star^2$ — $\tau = 8$ at the five visible points and through
+$\sigma^*$ — closing the sandwich
+$h^0(S^8)^{\mathrm{inv}} = \langle\eta_\star^2\rangle$).

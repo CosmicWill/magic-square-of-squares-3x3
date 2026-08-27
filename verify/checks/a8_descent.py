@@ -306,6 +306,57 @@ def _(ctx):
              "orbits re-proved zero")
 
 
+@check("a8.section_spectrum", DOC)
+def _(ctx):
+    """The spectrum above degree 4 (M11-K). (i) The stored m = 5
+    survey (51 orbits, 256 characters, mod p with per-orbit
+    saturation) is ALL ZERO — h^0(S^5) = 0 for every character,
+    each mod-p zero proving exact vanishing. (ii) The stored
+    reconstruction-free mod-p tau-tests give the trivial-character
+    RESOLUTION ladder: m = 7 -> 0 and m = 8 -> 1 (upper bounds:
+    rank only drops mod p). (iii) The m = 8 lower bound is
+    recomputed LIVE and EXACTLY here: eta*^2 — the convolution
+    square of the certified eta* numerators — has tau = 8 at all
+    five visible triple points and, via sigma*, at the three
+    B-points: it extends across all 256 exceptional curves.
+    Sandwich: h^0(Ytilde, S^8 Omega^1)^inv = <eta*^2> EXACTLY —
+    no second invariant section; the eta*-web is spectrally rigid
+    through degree 8, and with m = 5, 7 zero the invariant odd
+    degrees vanish. (The 4-hour mod-p basis runs are recorded
+    artifacts; their system shapes are pinned.)"""
+    import json
+    import os
+    path = os.path.join(os.path.dirname(__file__), "..", "..",
+                        "compute", "data_section_spectrum.json")
+    data = json.load(open(path))
+    m5 = data["m5"]["survey"]
+    require(len(m5) == 51 and sum(r["orbit"] for r in m5) == 256)
+    require(all(r["d"] == 0 for r in m5), "m = 5 spectrum nonzero?!")
+    require((data["m7"]["trivial_ambient_modp"],
+             data["m7"]["trivial_resolution_modp"]) == (10, 0))
+    require((data["m8"]["trivial_ambient_modp"],
+             data["m8"]["trivial_resolution_modp"]) == (33, 1))
+    require((data["m8"]["system_rows"],
+             data["m8"]["system_unknowns"]) == (15690, 9729))
+    from compute.node_extension import (VISIBLE, padd, pmul,
+                                        sigma_numerators_m, tau_of_m,
+                                        wstar_vector)
+    _, Wn = wstar_vector()
+    N8 = [dict() for _ in range(9)]
+    for i in range(5):
+        for j in range(5):
+            N8[i + j] = padd(N8[i + j], pmul(Wn[i], Wn[j]))
+    for tag in VISIBLE:
+        require(tau_of_m(N8, tag, 8) >= 8, f"eta*^2 fails at {tag}")
+    sN8 = sigma_numerators_m(N8, 8, 28)
+    for tag in VISIBLE:
+        require(tau_of_m(sN8, tag, 8) >= 8,
+                f"sigma* eta*^2 fails at {tag}")
+    ctx.note("m = 5: zero for all 256 characters; trivial resolution "
+             "ladder 7 -> 0, 8 -> 1 with eta*^2 certified exactly: "
+             "h^0(S^8)^inv = <eta*^2>")
+
+
 @check("a8.chi_hat_bracket", DOC)
 def _(ctx):
     """chi(X, hat-S^m Omega^1) = chi(Y, S^m) + 256 chi_loc(m) is
