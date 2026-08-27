@@ -414,6 +414,155 @@ def wstar_vector(spaces=None):
 
 
 # ---------------------------------------------------------------------------
+# arbitrary symmetric degree m (M11-K): the same local calculus with
+# denominator order 12*floor(m/2) (pole depth floor(m/2) on the three
+# pencil lines, each pulling back with order 4), parity tau == m mod 2,
+# and extension across E iff tau >= m (chart bound ord_xi(B_j) >=
+# ceil((tau + m - 2j)/2), worst j = m).  Trivial character only: the
+# germ is honestly invariant there.
+
+
+def local_pullback_m(Ns, tag, m):
+    """As `local_pullback` for a degree-m invariant differential with
+    numerators Ns (m+1 dicts, chart u = 1, denominator
+    prod l^floor(m/2))."""
+    (c0, v0), lines = VISIBLE[tag]
+    (aA, bA), (aB, bB), (aC, bC) = lines
+    assert c0 + aA + bA * v0 == 0 and c0 + aC + bC * v0 == 0
+    QA, QC = pmul(Q1, Q1), pmul(Q2, Q2)
+    vloc = pscal(padd(QC, pscal(QA, F(-1))), F(1) / (bC - bA))
+    cpoly = padd(padd(QA, pscal(vloc, -bA)), {(0, 0): c0})
+    vpoly = padd(vloc, {(0, 0): v0})
+    lB = padd(padd(cpoly, {(0, 0): F(aB)}), pscal(vpoly, F(bB)))
+    assert lB == pmul(Q3, Q3)
+    dc = dpoly(cpoly)
+    dv = dpoly(vpoly)
+
+    def form_mul(f, g):
+        out = [{} for _ in range(len(f) + len(g) - 1)]
+        for i, a in enumerate(f):
+            for j, b in enumerate(g):
+                out[i + j] = padd(out[i + j], pmul(a, b))
+        return out
+
+    def form_pow(f, n):
+        out = [{(0, 0): F(1)}]
+        for _ in range(n):
+            out = form_mul(out, list(f))
+        return out
+
+    total = [{} for _ in range(m + 1)]
+    for k in range(m + 1):
+        piece = form_mul(form_pow(dc, k), form_pow(dv, m - k))
+        comp = psub(Ns[k], cpoly, vpoly)
+        for i in range(m + 1):
+            total[i] = padd(total[i], pmul(comp, piece[i]))
+    return total
+
+
+def tau_of_m(Ns, tag, m):
+    """tau at the triple point `tag` for a degree-m invariant
+    differential; asserts parity (tau == m mod 2 via even/odd
+    coefficient orders) and regularity (tau >= 0)."""
+    P = local_pullback_m(Ns, tag, m)
+    assert any(P), "identically zero pullback"
+    par = m % 2
+    assert not any((i + j) % 2 != par
+                   for c in P for (i, j), v in c.items() if v), \
+        "parity violated"
+    tau = min(ordmin(c) for c in P if c) - 12 * (m // 2)
+    assert tau >= 0, f"regularity violated at {tag}: tau = {tau}"
+    return tau
+
+
+def filtration_m(tag, forms, m, upto=None):
+    """{w: dim V_(tau >= w)} at a visible triple point for a list of
+    degree-m numerator tuples, plus the basis of V_(tau >= m) (the
+    subspace extending across the 32 exceptional curves there)."""
+    upto = upto if upto is not None else m + 2
+    dord = 12 * (m // 2)
+    n = len(forms)
+    pulls = [local_pullback_m(Ns, tag, m) for Ns in forms]
+    dims, basism = {}, None
+    for w in range(m % 2, upto + 1, 2):
+        rows = {}
+        for gi, P in enumerate(pulls):
+            for ci, c in enumerate(P):
+                for (i, j), v in c.items():
+                    if i + j < dord + w:
+                        rows.setdefault((ci, i, j), [F(0)] * n)[gi] = v
+        ns = nullspace(list(rows.values()), n)
+        dims[w] = len(ns)
+        if w == m:
+            basism = ns
+    return dims, basism
+
+
+def sigma_numerators_m(Ns, m, degb):
+    """Transpose pullback for a degree-m invariant differential whose
+    numerators have total degree <= degb (= dN - (2m + 1), the chart-2
+    regularity bound, asserted); requires and asserts v^m dividing."""
+    for N in Ns:
+        assert all(i + j <= degb for (i, j), v in N.items() if v), \
+            "degree bound violated for sigma at this m"
+    out = [dict() for _ in range(m + 1)]
+    for k in range(m + 1):
+        Nt = {}
+        for (i, j), val in Ns[k].items():
+            key = (i, degb - i - j)
+            Nt[key] = Nt.get(key, F(0)) + val
+        for r in range(k + 1):
+            term = pmul(Nt, {(k - r, r): F(comb(k, r) * (-1) ** (k - r))})
+            out[r] = padd(out[r], pscal(term, F((-1) ** (m - k))))
+    res = []
+    for compo in out:
+        assert all(j >= m for (_, j) in compo), "v^m does not divide"
+        res.append({(i, j - m): v for (i, j), v in compo.items()})
+    return res
+
+
+def resolution_dim_m(forms, m, degb):
+    """dim of the subspace of span(forms) extending across ALL 256
+    exceptional curves (tau >= m at the five visible triple points
+    AND at the three B-points via the exact transpose transfer):
+    a lower-bound contribution to h^0(Ytilde, S^m Omega^1) from this
+    (trivial-character) space, and exact for it."""
+    n = len(forms)
+    conds = []
+    for tag in VISIBLE:
+        _, bm = filtration_m(tag, forms, m, upto=m)
+        conds += annihilator(bm, n) if bm is not None else []
+    # transpose transfer: sigma* of each basis element in coordinates
+    sig_forms = [sigma_numerators_m(Ns, m, degb) for Ns in forms]
+    Msig = [_solve_in_span_n(sN, forms, m) for sN in sig_forms]
+    for btag, atag in SIGMA_PAIRS:
+        _, bm = filtration_m(atag, forms, m, upto=m)
+        for row in annihilator(bm, n):
+            conds.append([sum(Msig[a][b] * row[b] for b in range(n))
+                          for a in range(n)])
+    return len(nullspace(conds, n))
+
+
+def _solve_in_span_n(target, basis_forms, m):
+    keys = set()
+    for comp in range(m + 1):
+        for B in basis_forms:
+            keys |= {(comp, ij) for ij in B[comp]}
+        keys |= {(comp, ij) for ij in target[comp]}
+    rows, rhs = [], []
+    for (comp, ij) in sorted(keys):
+        rows.append([B[comp].get(ij, F(0)) for B in basis_forms])
+        rhs.append(target[comp].get(ij, F(0)))
+    n = len(basis_forms)
+    aug = [row + [r] for row, r in zip(rows, rhs)]
+    red, piv_cols, rank = _rref(aug, n)
+    for r in range(rank, len(red)):
+        assert all(x == 0 for x in red[r]), "sigma leaves the space!"
+    x = [F(0)] * n
+    for r, col in enumerate(piv_cols):
+        x[col] = red[r][n]
+    return x
+
 
 def main():
     forms = numerator_forms()
