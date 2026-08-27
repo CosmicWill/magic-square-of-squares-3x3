@@ -313,8 +313,11 @@ def _(ctx):
     saturation) is ALL ZERO — h^0(S^5) = 0 for every character,
     each mod-p zero proving exact vanishing. (ii) The stored
     reconstruction-free mod-p tau-tests give the trivial-character
-    RESOLUTION ladder: m = 7 -> 0 and m = 8 -> 1 (upper bounds:
-    rank only drops mod p). (iii) The m = 8 lower bound is
+    RESOLUTION ladder: m = 6 -> 0, m = 7 -> 0, m = 8 -> 1 (the
+    zeros are proofs: rank only drops mod p) — with m = 4 -> 1 the
+    ladder 4 -> 1, 5 -> 0, 6 -> 0, 7 -> 0, 8 -> 1 is complete with
+    no gaps: powers of eta* and nothing else. (iii) The m = 8
+    lower bound is
     recomputed LIVE and EXACTLY here: eta*^2 — the convolution
     square of the certified eta* numerators — has tau = 8 at all
     five visible triple points and, via sigma*, at the three
@@ -332,6 +335,8 @@ def _(ctx):
     m5 = data["m5"]["survey"]
     require(len(m5) == 51 and sum(r["orbit"] for r in m5) == 256)
     require(all(r["d"] == 0 for r in m5), "m = 5 spectrum nonzero?!")
+    require((data["m6"]["trivial_ambient_modp"],
+             data["m6"]["trivial_resolution_modp"]) == (10, 0))
     require((data["m7"]["trivial_ambient_modp"],
              data["m7"]["trivial_resolution_modp"]) == (10, 0))
     require((data["m8"]["trivial_ambient_modp"],
@@ -353,8 +358,8 @@ def _(ctx):
         require(tau_of_m(sN8, tag, 8) >= 8,
                 f"sigma* eta*^2 fails at {tag}")
     ctx.note("m = 5: zero for all 256 characters; trivial resolution "
-             "ladder 7 -> 0, 8 -> 1 with eta*^2 certified exactly: "
-             "h^0(S^8)^inv = <eta*^2>")
+             "ladder 4 -> 1, 5 -> 0, 6 -> 0, 7 -> 0, 8 -> 1 with "
+             "eta*^2 certified exactly: h^0(S^8)^inv = <eta*^2>")
 
 
 @check("a8.chi_hat_bracket", DOC)

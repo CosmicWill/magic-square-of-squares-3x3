@@ -1124,3 +1124,18 @@ a8.section_spectrum re-certifies eta*^2 exactly on every run
 Suite: 108 checks green (FULL). [Still running: the m = 6
 tau-test and the m = 6 survey tail; their results will be a small
 addendum.]
+
+## 2026-08-27 — Entry 27 addendum: the m = 6 slot closes — the ladder is complete
+
+The m = 6 trivial-character tau-test landed 13 minutes after the
+milestone commit (system 7138 x 4410, dN = 34, basis in ~13 min):
+RESOLUTION DIMENSION 0, proven exactly (a zero mod p is a proof).
+The trivial-character resolution ladder of Theorem A8.18 is now
+complete with no gaps:
+
+    m:   4    5    6    7    8
+    dim: 1    0    0    0    1    — powers of eta*, nothing else.
+
+Data file, check (a8.section_spectrum pins the m = 6 record), doc
+and ledger updated. [Still running: the m = 6 survey tail for the
+nontrivial characters — all zero so far.]

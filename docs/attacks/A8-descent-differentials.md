@@ -20,7 +20,11 @@ pattern-counting theorems **A8.14–A8.15 PROVEN: every genus-0 curve
 meets nodes over $\ge 3$ distinct triple points — sharp**, and the
 classification **Theorem A8.16 PROVEN: $\dim \ge 2$ patterns are
 exactly the classical AP components — every other rational curve
-lives on the $\eta_\star$-web**; §9 roadmap. Verification:
+lives on the $\eta_\star$-web**; the spectrum **Theorem A8.18
+PROVEN: the web is spectrally rigid — the trivial-character
+resolution ladder $4 \to 1,\ 5 \to 0,\ 6 \to 0,\ 7 \to 0,\ 8 \to 1$
+is complete, $h^0(S^8)^{\mathrm{inv}} = \langle\eta_\star^2\rangle$,
+no second section**; §9 roadmap. Verification:
 `python3 -m verify --only a8`.
 
 ## 0. Goal
@@ -756,12 +760,14 @@ A7.6; the web frontier starts at cubic integral curves.)
 51-orbit survey at symmetric degree 5 is zero mod $p$ with
 saturation asserted per orbit, and a zero nullity mod $p$ is a
 proof of exact vanishing.
-(ii) **Trivial character, $m = 7$: resolution dimension $0$**
-(PROVEN): the ambient invariant eigenspace has mod-$p$ dimension
-10, and the node-extension rows ($\tau \ge 7$ at the five visible
-triple points, the three $B$-points via direct $\sigma^*$-pullback)
-cut it to $0$ mod $p$ — no invariant degree-7 section of the
-resolution exists.
+(ii) **Trivial character, $m = 6$ and $m = 7$: resolution
+dimension $0$** (PROVEN): the ambient invariant eigenspaces have
+mod-$p$ dimension 10 each, and the node-extension rows
+($\tau \ge m$ at the five visible triple points, the three
+$B$-points via direct $\sigma^*$-pullback) cut both to $0$ mod
+$p$ — no invariant degree-6 or degree-7 section of the resolution
+exists. The trivial-character resolution ladder is complete with
+no gaps: $4 \to 1,\ 5 \to 0,\ 6 \to 0,\ 7 \to 0,\ 8 \to 1$.
 (iii) **Trivial character, $m = 8$:
 $h^0(\widetilde Y, S^8\Omega^1)^{\mathrm{inv}} =
 \langle\eta_\star^2\rangle$ EXACTLY** (PROVEN by sandwich): the
@@ -793,15 +799,13 @@ that partially reconstructed bases (not $\sigma$-stable) are
 handled soundly. Upper bounds mod $p$ meet exact lower bounds in
 sandwiches.
 
-**Scope, honestly.** The $m = 6$ trivial-character $\tau$-test is
-running (ambient dimension 10; a power of $\eta_\star$ cannot
-exist at odd half-degree, so 0 is expected); the full character
-surveys at $m \in \{6, 7, 8\}$ beyond the trivial character are
-partial ($m = 6$: 22/51 orbits, all zero except the trivial
-ambient) resp. infeasible at current budgets ($m = 7$: $\approx
-71$ min/orbit $\Rightarrow$ days). The trivial character — where
+**Scope, honestly.** The full character surveys at
+$m \in \{6, 7, 8\}$ beyond the trivial character are partial
+($m = 6$: survey in progress, all nontrivial orbits so far zero)
+resp. infeasible at current budgets ($m = 7$: $\approx 71$
+min/orbit $\Rightarrow$ days). The trivial character — where
 products live and where any finiteness shortcut would have to
-live — is settled decisively.
+live — is settled decisively at every degree $4 \le m \le 8$.
 
 ## 9. Roadmap
 
@@ -809,9 +813,8 @@ live — is settled decisively.
    generators stored. ~~$m = 5$ full survey; $m = 7, 8$ trivial
    character~~ **done** (M11-K, Theorem A8.18): $h^0(S^5) = 0$
    everywhere; the trivial-character resolution ladder is
-   $4 \to 1,\ 5 \to 0,\ 7 \to 0,\ 8 \to 1$ — powers of
-   $\eta_\star$ and nothing else. Remaining: the $m = 6$
-   $\tau$-test (running), the nontrivial characters at
+   complete: $4 \to 1,\ 5 \to 0,\ 6 \to 0,\ 7 \to 0,\ 8 \to 1$ — powers of
+   $\eta_\star$ and nothing else. Remaining: the nontrivial characters at
    $m \in \{6, 7, 8\}$ (infeasible at current budgets; scope
    noted), and the ring-generation question at higher degree.
 2. ~~Cuboid positive control~~ **done** (§4): $h^0 = 13$ reproduced
