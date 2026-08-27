@@ -723,6 +723,30 @@ on $X$ is reduced to the algebraic integral curves of the single
 web $\eta_\star$** — the GFU-§2-style analysis of that web is the
 whole remaining frontier.
 
+The web's **degree-1 level is closed** (M11-J opening;
+`compute/web_lines.py`, `a8.web_lines`, exact, $< 1$ s):
+
+**Theorem A8.17 (the fifteen integral lines). PROVEN.**  The
+$\eta_\star$-integral lines in $\mathbb{P}^2_{\overline{\mathbb{Q}}}$
+are exactly fifteen: the nine entry lines, the pencil carriers
+$u = 0$ and $v = 0$, and the four $\mathbb{Q}(\sqrt3)$-lines
+$$\sqrt3\, c \;=\; \pm u \pm v,$$
+each passing through exactly one diagonal triple point $D_\pm$ and
+through no other triple point.  *Proof:* every affine line is
+$c = a + bv$ or $v = k$; the restriction's $t$-coefficients give a
+system in $\mathbb{Z}[a,b]$; two nonzero $a$-resultants (sound by
+the Bézout identity — identically-zero pair resultants are skipped)
+have exact gcd peeling as $b^{24}(b^2-1)^{24}(3b^2-1)^6$ **down to a
+constant**, so $b \in \{0, \pm1, \pm 1/\sqrt3\}$; the per-candidate
+exact gcds over $\mathbb{Q}$ resp. $\mathbb{Q}(\sqrt3)$ pin 13
+points, all verified integral by exact substitution; $v = k$ reduces
+to $k^2 = 0$; $u = 0$ is the chart-2 slice.  $\blacksquare$
+By Theorem A7.3 the $X$-components over the four $\sqrt3$-lines all
+have genus $\ge 2$ (their only triple point is a single $D$), so the
+web's line level carries **no** rational curves beyond the classical
+families — as A8.15/A8.16 demand.  (Conics are excluded outright by
+A7.6; the web frontier starts at cubic integral curves.)
+
 ## 9. Roadmap
 
 1. ~~$m = 3, 4$ surveys~~ **done** (§5): $m_{\min} = 4$, six invariant
@@ -742,11 +766,13 @@ whole remaining frontier.
    exactly the classical AP components.**  Remaining — the single
    frontier — **M11-J: the $\eta_\star$-web** (GFU-§2-style analysis
    of the one resolution differential): its algebraic integral
-   curves of degree $\ge 3$ through $\ge 3$ triple points; entry
-   lines/$u{=}0$/$v{=}0$ are integral, the six distinctness lines
-   are not; a complete line-level classification of the web, then
-   low degrees, then structural finiteness questions (a single
-   $S^4$-web has no two-section resultant to fall back on).
+   curves of degree $\ge 3$ through $\ge 3$ triple points.  ~~The
+   line level~~ **closed** (Theorem A8.17: exactly 15 integral
+   lines; the four new $\sqrt3$-lines carry only genus $\ge 2$);
+   conics excluded by A7.6.  Next: cubic/low-degree integral curves
+   (the same elimination with more coefficients), the web's
+   discriminant geometry, and structural finiteness questions (a
+   single $S^4$-web has no two-section resultant to fall back on).
 4. ~~A8-T3 (exact upgrade of Certificate A8.7)~~ **done the same
    day** (Theorem A8.7′, §7): exact $R_{12}, R_{34}$ by provably
    complete CRT, exact line-peeling, coprime cofactors — Theorem
@@ -763,7 +789,7 @@ whole remaining frontier.
 
 ## 10. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py` (22 checks): the §2 structural facts
+`verify/checks/a8_descent.py` (23 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
 splits with smoothness); the quadric control at $m = 1, 2$; the
 $d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
@@ -799,4 +825,6 @@ coprime cofactors / point-evaluation prefilters / carrier-line
 peeling / the degree-18 irreducibility certificates), and the
 space-classification certificates (Theorem A8.16: the 8-value
 census over all $|S| \ge 3$ patterns, and the seven dim-2 loci with
-their Galois-integrality refutations).
+their Galois-integrality refutations); and the web's line-level
+classification (Theorem A8.17: fifteen lines, completeness by
+nonzero-resultant gcd peeling — Skips without sympy).

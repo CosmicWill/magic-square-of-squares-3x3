@@ -801,3 +801,38 @@ SINGLE WEB eta* — the resolution's unique symmetric quartic
 differential. M11-J opens the web analysis (GFU §2-style).
 
 Suite: 96 checks green (FULL).
+
+## 2026-08-26 — Entry 21: THE WEB'S LINE LEVEL — fifteen integral lines, four of them new (M11-J opening)
+
+Theorem A8.17 (PROVEN, compute/web_lines.py, a8.web_lines, < 1 s):
+the eta*-web has EXACTLY FIFTEEN integral lines over Qbar — the nine
+entry lines, u = 0, v = 0, and a genuine discovery:
+
+    FOUR NEW LINES OVER Q(sqrt3):   sqrt3 c = +-u +- v,
+
+each passing through exactly one diagonal triple point D+- and no
+other triple point. By A7.3 the X-components over these lines all
+have genus >= 2 (a line through only one triple point crosses the
+arrangement too often), so the web's line level carries no rational
+curves beyond the classical families — exactly as A8.15/A8.16
+demand. (Had a genus-0 component lived there, its pattern would
+have size 1 — contradicting the three-triple-points theorem. The
+edifice is consistent.)
+
+Method: the restriction of eta* to c = a + b v gives 11 coefficient
+equations in Z[a,b]; two NONZERO a-resultants (identically-zero pair
+resultants certify nothing and are skipped — caught a vacuous first
+attempt; nonzero ones are sound by the Bezout identity) have exact
+gcd peeling as b^24 (b^2-1)^24 (3b^2-1)^6 down to a CONSTANT, so
+b in {0, +-1, +-1/sqrt3}; per-candidate exact gcds over Q resp.
+Q(sqrt3) (reusing conic_complete's field arithmetic) pin 13 points,
+each verified integral by substitution; v = k reduces to k^2 = 0;
+u = 0 is the chart-2 slice. Conics are excluded by A7.6 wholesale:
+the web frontier starts at CUBIC integral curves.
+
+Also caught en route: a truncation bug in a throwaway script
+(int(Fraction) silently floors) produced a wrong Groebner basis on
+the first pass — the repo module clears denominators exactly and
+cross-checks the 15 lines by direct substitution.
+
+Suite: 97 checks green (FULL).

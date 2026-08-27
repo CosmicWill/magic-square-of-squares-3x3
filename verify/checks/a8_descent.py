@@ -623,3 +623,32 @@ def _(ctx):
              "lines + v=0 (A-cluster) / u=0 (B-cluster) only; "
              "dim V_S >= 2 => classical; 200 patterns reduced to "
              "the eta*-web")
+
+
+@check("a8.web_lines", DOC)
+def _(ctx):
+    """Theorem A8.17 (the eta*-web at degree 1): the integral lines
+    of the single web eta* are exactly FIFTEEN — the nine entry
+    lines, u = 0, v = 0, and four Q(sqrt3)-lines sqrt3 c = +-u +- v
+    (each through exactly one diagonal triple point; their
+    X-components all have genus >= 2 by A7.3, so they carry no
+    rational curves — consistent with A8.15/A8.16).  The fifteen are
+    verified integral by exact substitution (Q and Q(sqrt3)
+    arithmetic); completeness: two NONZERO a-resultants of the
+    coefficient system (sound by the Bezout identity) have exact gcd
+    peeling as b^24 (b^2-1)^24 (3b^2-1)^6 down to a CONSTANT, so
+    every solution's b is a known candidate, and the per-candidate
+    exact gcds over Q resp. Q(sqrt3) pin 13 family-II points; v = k
+    reduces to k^2 = 0 and u = 0 is the chart-2 slice.  Skips
+    without sympy (used only for the two resultants)."""
+    try:
+        import sympy as sp
+    except ImportError:
+        raise Skip("sympy unavailable for the resultant step")
+    from compute.web_lines import classify, nonzero_resultants
+    cert = classify(res_pair=nonzero_resultants(sp))
+    require(cert["complete"] and cert["n_solutions"] == 13)
+    require(cert["gcd_exponents_b_b2m1_3b2m1"][2] >= 1)
+    ctx.note("15 integral lines exactly: 9 entry + u=0 + v=0 + four "
+             "sqrt3-lines (genus >= 2 upstairs); web degree-1 level "
+             "closed")
