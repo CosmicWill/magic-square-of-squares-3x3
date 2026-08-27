@@ -106,6 +106,74 @@ def _(ctx):
              f"{bound}; h(-75) = 2, h(-507) = 4, h(-1875) = 10")
 
 
+@check("a9.gluing_law", DOC)
+def _(ctx):
+    """Lemma A9.1, the gluing-representation law: for every point
+    v = (x, y, z) of S(3 m^2) the three cross-vectors (0, -z, y),
+    (z, 0, -x), (-y, x, 0) lie in v-perp with norms EXACTLY the
+    co-norms 3 m^2 - x^2 etc. — so the Gauss class of each magic
+    line represents the co-norm of each of its three entries.
+    Consequences verified on every primitive point of the sample
+    spheres: the co-norm triple of an actual point is
+    chi_p-coherent for every odd p | 3 m^2 (Theorem A9.3 necessity
+    in action — may never fail), and (Lemma A9.4) all coordinates
+    are odd, forcing the orthogonal lattice EVEN (the Gauss map
+    lands in even-form classes)."""
+    from compute.sphere_classes import primitive_points_full
+    from compute.sphere_gluing import (even_lattice, gluing_identity,
+                                       point_coherence)
+    sample = (5, 13, 25, 65) if ctx.profile == "FULL" else (5, 13)
+    tot = 0
+    for m in sample:
+        pts = primitive_points_full(3 * m * m)
+        require(pts, f"no points at m = {m}")
+        require(all(gluing_identity(v) for v in pts))
+        require(all(point_coherence(v, m) for v in pts),
+                f"coherence FAILED on an actual point, m = {m}")
+        require(all(even_lattice(v) for v in pts),
+                f"odd/even structure failed at m = {m}")
+        tot += len(pts)
+    ctx.note(f"cross-vector law + on-sphere coherence + even "
+             f"lattices on {tot} points ({len(sample)} spheres)")
+
+
+@check("a9.coherence", DOC)
+def _(ctx):
+    """Theorem A9.3's bite, pinned: chi_p-coherence of the eight
+    co-norm triples (center lines (2m^2, 2m^2 +- X) for X in {U, V,
+    U+V, U-V}; four outer lines) is NECESSARY for a congrua pair
+    (U, V) to extend to a magic square of squares with center m^2
+    (each line would be a sphere point, and A9.1 + genus invariance
+    force its triple coherent). Kill table pinned: 10/12 ordered
+    pairs die at m = 65 (survivors exactly the two imprimitive
+    branches together), 6/12 at m = 145 (survivors exactly the
+    pairs involving the 5-branch congruum 21000), 0 at the prime
+    powers 25, 125 — the first obstruction beyond the classical
+    24 | d layer. Window refinement at m = 13: the slice classes
+    sit STRICTLY inside the classes representing 2 m^2."""
+    from compute.sphere_gluing import pair_obstruction, window_refinement
+    expect = {25: (2, 0), 65: (12, 10), 85: (12, 10), 125: (6, 0),
+              130: (12, 10), 145: (12, 6)}
+    sample = ((25, 65, 85, 125, 130, 145) if ctx.profile == "FULL"
+              else (25, 65, 145))
+    for m in sample:
+        total, killed, alive = pair_obstruction(m)
+        require((total, killed) == expect[m],
+                f"kill table moved at m = {m}: {(total, killed)}")
+    _, _, alive65 = pair_obstruction(65)
+    require(set(alive65) == {(3000, 4056), (4056, 3000)},
+            f"survivor structure moved at m = 65: {alive65}")
+    _, _, alive145 = pair_obstruction(145)
+    require(all(21000 in pr for pr in alive145) and len(alive145) == 6,
+            f"survivor structure moved at m = 145: {alive145}")
+    slc, rep, strict = window_refinement(13)
+    require(strict and len(slc) == 2 and len(rep) == 5,
+            f"window moved at m = 13: {len(slc)} vs {len(rep)}")
+    ctx.note(f"kill table pinned on {len(sample)} centers; survivors "
+             "characterized at 65/145; slice STRICTLY inside "
+             "Rep(2m^2) at m = 13")
+
+
 @check("a9.gauss_map", DOC)
 def _(ctx):
     """The Gauss orthogonal-lattice map on the magic-square spheres:

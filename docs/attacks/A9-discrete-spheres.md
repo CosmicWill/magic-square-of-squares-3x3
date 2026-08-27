@@ -2,8 +2,10 @@
 
 **Status:** §1 dictionary **PROVEN** (exact identities, machine-checked
 by `a9.dictionary`); §2 tension **quantified** (`a9.tension`); §3 the
-class-group program **open** (A9-T1). Verification:
-`python3 -m verify --only a9`.
+class-group program (A9-T1) has two layers landed — the Eisenstein
+anchor / Gauss map / slice confinement, and the gluing law with its
+**coherence obstruction** (Theorem A9.3: necessity proven, bite
+measured). Verification: `python3 -m verify --only a9`.
 
 ## 0. Origin
 
@@ -127,15 +129,76 @@ while the ambient class number grows linearly in $m$: **the
 through-center lines of any magic square are exponentially
 class-confined**, the outer lines are not. A magic configuration
 needs its four through-center points inside this thin class window
-*and* its four outer points glued to them — the next A9-T1 step is
-to express that gluing as relations under Gauss composition and ask
-what the confinement forbids.
+*and* its four outer points glued to them — which the next layer
+turns into an obstruction.
 
-**Still open in A9-T1:** the composition *action* itself
-(quaternionic/Venkov, beyond the class map), the configuration
-relations, and the genus-character layer. **A9-T2 (acquisitions,
-backlog):** Duke (Invent. Math. 92, 1988), Aka–Einsiedler–Shapira,
-Venkov — see [papers/WANTED.md](../../papers/WANTED.md) P8.
+### The gluing law and the coherence obstruction (second layer)
+
+(`compute/sphere_gluing.py`; checks `a9.gluing_law`,
+`a9.coherence`.)
+
+**Lemma A9.1 (the gluing-representation law; PROVEN — one-line
+proof, machine-verified on 960 points).** For $v = (x,y,z)$ with
+$|v|^2 = n$, the cross-vectors $(0,-z,y),\ (z,0,-x),\ (-y,x,0)$ lie
+in $v^\perp \cap \mathbb{Z}^3$ with norms $n - x^2$, $n - y^2$,
+$n - z^2$. Hence **the Gauss class of every magic line represents
+the co-norm $3m^2 - e$ of each of its three entries** — the entries
+of a line are visible inside its class. (This is how gluing reaches
+composition: shared entries force shared represented values.)
+
+**Lemma A9.4 (even lattices; PROVEN).** All points of
+$\mathcal{S}(3m^2)$ have all-odd coordinates ($m$ odd), and
+$w \cdot v = 0$ with $v \equiv (1,1,1) \bmod 2$ forces $|w|^2 \equiv
+(\sum_i w_i)^2 \equiv 0 \bmod 2$: every orthogonal lattice is
+*even*.
+
+**Genus-character invariance (classical; machine-validated).** For
+each odd $p \mid 3m^2$ the Legendre character $\chi_p$ is constant
+on the values of a class coprime to the discriminant — validated by
+brute enumeration per sphere; the 2-adic candidate characters
+correctly *fail* here ($n \equiv 3 \bmod 4$) and are excluded.
+
+**Theorem A9.3 (the coherence obstruction; necessity PROVEN via
+A9.1 + invariance).** In a magic square of squares with center
+$m^2$ and Lucas differences $U, V$ (so $U, V, U{+}V, U{-}V \in
+D(m)$), every one of the 8 lines forces its **co-norm triple** to be
+$\chi_p$-coherent (all members coprime to $p$ share one character
+value) for every odd $p \mid 3m^2$: the four center lines give
+$(2m^2,\ 2m^2 \pm X)$ for $X \in \{U, V, U{+}V, U{-}V\}$, and the
+four outer lines give
+$(2m^2{+}U,\ 2m^2{-}U{-}V,\ 2m^2{+}V)$,
+$(2m^2{-}V,\ 2m^2{+}U{+}V,\ 2m^2{-}U)$,
+$(2m^2{+}U,\ 2m^2{-}U{+}V,\ 2m^2{-}V)$,
+$(2m^2{+}V,\ 2m^2{+}U{-}V,\ 2m^2{-}U)$.
+
+**The measured bite (pinned in `a9.coherence`).** Applied to
+*ordered congrua pairs* $(U,V) \in D(m)^2$ — a necessary condition
+for a pair to extend to a magic square, requiring **no** assumption
+that $U \pm V$ are congrua — the obstruction kills **10 of 12**
+pairs at $m = 65, 85, 130$ (survivors: exactly the two imprimitive
+branches paired with each other, e.g. $(3000, 4056)$ at $m=65$, the
+$5\cdot(5,12,13)$ and $13\cdot(3,4,5)$ branches), **6 of 12** at
+$m = 145$ (survivors: exactly the six pairs involving the 5-branch
+congruum $21000$), and **nothing** at the prime powers $25, 125$.
+This is the first necessary condition on extending congrua pairs
+beyond the classical $24 \mid d$ layer (A3/F4) — cross-branch
+gluing at multi-prime hypotenuses is mostly *arithmetically
+incoherent*.
+
+**Window refinement (measured).** The slice classes sit **strictly**
+inside the classes representing $2m^2$ (at $m = 13$: 2 classes
+against 5): the confinement window of §3 is genuinely finer than
+the representation condition that A9.1 alone imposes.
+
+**Still open in A9-T1:** what kills the surviving same-branch pairs
+— genus characters cannot separate within a genus, so the next
+level is the class/spinor structure under composition
+(quaternionic/Venkov, Aka–Einsiedler–Shapira joint-equidistribution
+territory), plus the full 9-entry gluing (the corner entries appear
+in *two* outer lines each, forcing shared representations between
+their classes). **A9-T2 (acquisitions, backlog):** Duke (Invent.
+Math. 92, 1988), Aka–Einsiedler–Shapira, Venkov — see
+[papers/WANTED.md](../../papers/WANTED.md) P8.
 
 ## 4. What the verify script proves mechanically
 
@@ -147,4 +210,7 @@ table (max sphere size vs $L_3 = L_4 = 0$); and the class layer:
 the two independent $h(-3m^2)$ computations agreeing with pinned
 values, and the Gauss-map profile ($r_3^* = 24h$ asserted per
 sphere, uniform fibers, the slice-concentration law) on the pinned
-sample.
+sample; the cross-vector gluing law, on-sphere coherence, and even
+lattices on every point of 4 spheres (960 points), and the pinned
+coherence kill table with its survivor structure and the strict
+window inclusion at $m = 13$.

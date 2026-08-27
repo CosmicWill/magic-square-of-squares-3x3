@@ -914,3 +914,46 @@ relations against it.
 
 Suite: 101 checks green (FULL). [M11-K still grinding: m=6 survey
 and the m=8 tau-test elimination.]
+
+## 2026-08-27 — Entry 24: A9-T1 second layer — the gluing law and the coherence obstruction
+
+The user's directive: push the outer-line gluing through Gauss
+composition against the slice window and see what it forbids. It
+forbids most of the cross-branch pairings.
+
+THE GLUING LAW (Lemma A9.1; one-line proof, machine-verified on 960
+points): for v = (x, y, z) on S(n) the cross-vectors (0,-z,y),
+(z,0,-x), (-y,x,0) lie in v^perp with norms n - x^2, n - y^2,
+n - z^2. So the Gauss class of every magic LINE represents the
+co-norm 3m^2 - e of each of its ENTRIES — gluing (shared entries)
+becomes shared represented values between classes: the bridge from
+configuration to composition. Bonus (Lemma A9.4): all-odd
+coordinates force every orthogonal lattice EVEN.
+
+THE OBSTRUCTION (Theorem A9.3): the genus characters chi_p (odd
+p | 3 m^2; machine-validated as class invariants per sphere, the
+2-adic candidates correctly failing since n == 3 mod 4) must be
+constant on each line's co-norm triple. In Lucas differences (U, V)
+the 8 lines give 8 explicit triples among 2m^2 +- {0, U, V, U+V,
+U-V}; necessity is proven, and NO assumption that U +- V are
+congrua is needed — it applies to bare congrua PAIRS.
+
+THE BITE (measured, pinned in a9.coherence): ordered congrua pairs
+killed — 10/12 at m = 65, 85, 130 (survivors: exactly the two
+imprimitive branches paired together), 6/12 at m = 145 (survivors:
+exactly the pairs involving the 5-branch congruum 21000), 0 at the
+prime powers 25, 125. Cross-branch gluing at multi-prime
+hypotenuses is mostly arithmetically incoherent — the first
+necessary condition on extending congrua pairs to magic squares
+beyond the classical 24 | d layer (A3/F4). Also measured: the
+slice window sits STRICTLY inside Rep(2m^2) (2 vs 5 classes at
+m = 13) — confinement is finer than representation alone.
+
+Open next: what kills the surviving same-branch pairs (genus
+characters cannot separate within a genus — class/spinor structure
+under composition, Venkov / Aka–Einsiedler–Shapira territory), and
+the full 9-entry gluing: each corner entry lies on TWO outer lines,
+forcing shared representations between those classes.
+
+Suite: 103 checks green (FULL). [M11-K: m=6 survey and the m=8
+tau-test still grinding in the background.]
