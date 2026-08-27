@@ -1005,3 +1005,72 @@ fourth sieve lives there.
 Suite: 104 checks green (FULL). [M11-K: m=6 survey and m=8
 tau-test re-armed after two container restarts; checkpoint-resume
 added to the survey runner.]
+
+## 2026-08-27 — Entry 26: A9-T1 fourth layer — the sieve pushed to theory: local certificates and the composition frontier
+
+The user's directive: push the representation sieve toward theory.
+Done, in three moves — with one soundness correction the process
+itself forced.
+
+THE CORRECTION (found by the anatomy's own assertion, fixed,
+controlled): the content enumeration behind the representation
+sieve looped over odd point contents — justified by the all-odd
+lemma, which needs m ODD. For even centers every coordinate of
+every point has 2-adic valuation exactly v_2(m) (three squares
+summing to 0 mod 4 are all even: the sphere reduces to the odd
+sphere), so the true content is 2^(v_2(m)) times odd. Fixed; all
+22 kills STAND with identical signatures, and the even centers
+now exactly reproduce their odd cores (850 = 2.425, 962 = 2.481,
+pairs 4x the odd pairs) — the controls now run at even centers
+too. Lesson banked: the machinery's own positive controls catch
+this class of bug; extend them wherever the hypothesis quietly
+narrows.
+
+MOVE 1 — GAUSS COMPOSITION (compute/sphere_composition.py,
+a9.composition): composition of primitive classes via united
+representatives, with determinant +1 ENFORCED — the first draft
+completed (x, y) to GL2 with det -1 half the time, silently
+inverting classes, and the group axioms caught it (every f o f
+came out trivial). Verified: identity/inverse/closure/orders —
+Cl(-507) = Z/4, Cl(-3.65^2) = Z/12 x Z/2 (pinned order
+multisets) — and GAUSS'S PRINCIPAL GENUS THEOREM (squares =
+trivial-character genus) machine-checked. So "invisible to every
+character" now rigorously means "inside a coset of Cl^2".
+
+MOVE 2 — THE LOCAL CRITERION (a9.local_criterion): classical
+local lattice theory, derived and validated: odd w > 0 is
+represented by SOME primitive class of disc -3k^2 iff inert
+primes divide it to even order; at p | k valuations below 2 v_p(k)
+are even with pinned character (and the anisotropic p == 2 mod 3
+keeps parity above); and the pinned signs extend to an OCCURRING
+character vector — the occurring vectors form an index-2 subgroup
+whose annihilator, derived from the data, is supported at 3
+alone: every class value's 3-free part is == 1 mod 3 (the
+norm-residue law of the Eisenstein family; my first guess at the
+relation — product of all chi_p = +1 — was WRONG, exposed by 438
+mismatches, and the derived relation then validated with ZERO
+mismatches on 9000 values across three discriminants).
+
+MOVE 3 — THE ANATOMY THEOREM (a9.kill_anatomy): all 57 killed
+lines behind the m <= 1200 pair desert classified:
+  21 L0 — provably LOCAL: a single co-norm value violates the
+     validated criterion at every stratum (all 24 values
+     certified);
+   0 genus-mismatch;
+  36 GLOBAL — provably BEYOND-LOCAL: every value locally fine, a
+     single genus admits all three (same-genus witnesses pinned,
+     e.g. a 45-class genus at m = 425 with representing sets of
+     sizes 45/8/2 and empty triple intersection), no class
+     represents the triple. These kills live inside cosets of
+     Cl^2: no congruence or character argument can ever prove
+     them.
+THE SHARPEST INSTANCE: at m = 725 BOTH pairs die exclusively
+through GLOBAL kills — that part of the pair desert exists ONLY
+because of composition structure. The fourth sieve is the class
+group proper, and the open question is now precise: what
+invariant of (2m^2, 2m^2 +- X) separates the three representing
+sets inside one genus? (Venkov / Aka-Einsiedler-Shapira
+territory — the P8 acquisitions have a concrete target.)
+
+Suite: 107 checks green (FULL). [M11-K: m=6 survey and m=8
+tau-test still grinding in the background.]

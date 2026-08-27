@@ -2,13 +2,17 @@
 
 **Status:** §1 dictionary **PROVEN** (exact identities, machine-checked
 by `a9.dictionary`); §2 tension **quantified** (`a9.tension`); §3 the
-class-group program (A9-T1) has three layers landed — the
+class-group program (A9-T1) has four layers landed — the
 Eisenstein anchor / Gauss map / slice confinement; the gluing law
 with its **coherence obstruction** (Theorem A9.3: necessity proven,
-bite measured); and the **three-sieve pair desert**
+bite measured); the **three-sieve pair desert**
 (positivity + coherence + representation kill every ordered congrua
-pair for every center $m \le 1200$). Verification:
-`python3 -m verify --only a9`.
+pair for every center $m \le 1200$); and the **anatomy of the
+kills** — Gauss composition implemented, the principal genus
+theorem machine-verified, a validated local criterion certifying
+21 of the 57 killed lines as local and **36 as strictly beyond
+every character (inside cosets of $\mathrm{Cl}^2$)**.
+Verification: `python3 -m verify --only a9`.
 
 ## 0. Origin
 
@@ -238,20 +242,86 @@ This is not a new desert *bound* (A3's quadruple search reaches
 much further); it is the first structural *explanation* at the
 pair level: three arithmetic obstructions, each proven necessary
 and none requiring any square-testing search, jointly annihilate
-every candidate pair in range. The natural next questions: does
-the three-sieve annihilation persist for all $m$ (a proof would
-need the representation obstruction made theoretical — spinor
-genus / composition structure), and what fourth sieve appears
-where it first fails?
+every candidate pair in range.
 
-**Still open in A9-T1:** pushing the representation obstruction
-from measurement to theory — genus characters cannot separate
-within a genus, so the next level is the class/spinor structure
-under composition (quaternionic/Venkov, Aka–Einsiedler–Shapira
-joint-equidistribution territory), plus the full 9-entry gluing
-(the corner entries appear in *two* outer lines each, forcing
-shared representations between their classes). **A9-T2
-(acquisitions, backlog):** Duke (Invent. Math. 92, 1988),
+### The anatomy of the kills: local certificates and the composition frontier (fourth layer)
+
+(`compute/sphere_composition.py`; checks `a9.composition`,
+`a9.local_criterion`, `a9.kill_anatomy`.)
+
+**A soundness correction first (honesty protocol).** The original
+content enumeration behind the representation sieve looped over
+*odd* point contents, justified by the all-odd lemma — which
+requires $m$ odd. For **even** centers every point of
+$\mathcal{S}(3m^2)$ has each coordinate of 2-adic valuation
+*exactly* $v_2(m)$ (three squares summing to $0 \bmod 4$ are all
+even, so the sphere reduces to the odd sphere), and the true
+content is $2^{v_2(m)} \cdot \text{odd}$ — never matched by the
+odd-only loop. Fixed; **all 22 kills stand with identical
+signatures**, the even centers now exactly reproducing their odd
+cores ($850 = 2\cdot425$, $962 = 2\cdot481$, with pairs
+$4\times$ the odd-core pairs — a strong consistency check), and
+the never-kill-a-real-line controls now also run at the even
+centers.
+
+**Gauss composition, implemented and verified
+(`a9.composition`).** Composition of primitive classes via united
+representatives (with determinant $+1$ enforced — an improper
+change of variables silently inverts the class, a bug the group
+axioms caught). Verified as a group with pinned structure:
+$\mathrm{Cl}(-507) \cong \mathbb{Z}/4$,
+$\mathrm{Cl}(-3\cdot65^2) \cong \mathbb{Z}/12 \times \mathbb{Z}/2$
+(full order multisets). **Gauss's principal genus theorem — the
+squares are exactly the trivial-character genus — is
+machine-verified**, so "invisible to every genus character"
+rigorously means "inside a coset of $\mathrm{Cl}^2$". The
+occurring character vectors form an index-2 subgroup of
+$\{\pm1\}^\mu$ whose derived annihilator is supported at 3 alone:
+**every value of every class has 3-free part $\equiv 1 \bmod 3$**
+(the norm-residue law of the Eisenstein family).
+
+**The local criterion (`a9.local_criterion`).** Classical local
+lattice theory gives an exact criterion for an odd $w > 0$ to be
+represented by *some* primitive class of disc $-3k^2$: inert
+primes divide $w$ to even order; at $p \mid k$ with $e = v_p(k)$,
+valuations below $2e$ are even with pinned character, and the
+anisotropic case $p \equiv 2 \bmod 3$ forces even valuation above
+too; the pinned signs must extend to an occurring vector (the
+$\chi_3$ norm-residue law). **Validated exhaustively: criterion
+$=$ brute-force class search for every odd $w \le 6000$ at three
+sample discriminants (9000 values, zero mismatches).**
+
+**The anatomy theorem (`a9.kill_anatomy`, measured and
+certified).** Every one of the **57 killed lines** behind the 22
+representation kills is classified:
+
+- **21 are L0 — provably local**: a single co-norm value violates
+  the validated local criterion at every stratum (all 24 such
+  values certified);
+- **0 are genus-mismatch**;
+- **36 are GLOBAL — provably beyond-local**: every value passes
+  the local criterion, *a single genus admits all three values*
+  (with same-genus witnesses, e.g. at $m = 425$ a 45-class genus
+  with per-value representing sets of sizes $45/8/2$ and empty
+  triple intersection), yet **no single class represents the
+  triple**. By the verified principal genus theorem these kills
+  live inside cosets of $\mathrm{Cl}^2$ — no congruence or
+  character condition can ever see them.
+
+**The sharpest instance: $m = 725$.** *Both* pairs at $m = 725$
+die exclusively through GLOBAL kills — that part of the pair
+desert exists *only* because of composition structure. **The
+fourth sieve is the class group proper.**
+
+**Still open in A9-T1:** the *law* governing which classes
+represent which co-norm triples inside a genus — the composition
+word problem on the prime ideal classes (quaternionic/Venkov,
+Aka–Einsiedler–Shapira joint-equidistribution territory), now
+with a precise question: *what invariant of
+$(2m^2, 2m^2 \pm X)$ separates the three representing sets
+inside one genus?* Plus the full 9-entry gluing (corner entries
+tie pairs of outer-line classes). **A9-T2 (acquisitions,
+backlog):** Duke (Invent. Math. 92, 1988),
 Aka–Einsiedler–Shapira, Venkov — see
 [papers/WANTED.md](../../papers/WANTED.md) P8.
 
@@ -268,7 +338,12 @@ sphere, uniform fibers, the slice-concentration law) on the pinned
 sample; the cross-vector gluing law, on-sphere coherence, and even
 lattices on every point of 4 spheres (960 points), the pinned
 coherence kill table with its survivor structure and the strict
-window inclusion at $m = 13$; and the three-sieve pair desert —
+window inclusion at $m = 13$; the three-sieve pair desert —
 positivity/coherence/representation totals pinned to $m \le 1200$
 with zero survivors, the $U{+}V$-diagonal unrepresentability in
-all 22 passing pairs, and the never-kill-a-real-line controls.
+all 22 passing pairs, and the never-kill-a-real-line controls
+(odd and even centers); and the fourth layer — composition group
+laws with pinned class-group structures, the principal genus
+theorem, the exhaustively validated local criterion (9000 values),
+and the pinned kill anatomy ($21$ L0 $+$ $0$ GENUS $+$ $36$
+GLOBAL with all certifications).

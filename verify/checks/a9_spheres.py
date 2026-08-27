@@ -218,9 +218,112 @@ def _(ctx):
                     f"control broken (actual line killed) at m={m}")
     require(center_line_control(425, 54600))
     require(center_line_control(481, 29760))
+    if ctx.profile == "FULL":
+        # even centers: the point content's 2-part is forced to
+        # v_2(m) (the sphere reduces to the odd sphere), and the
+        # actual center lines must still land in their candidate
+        # sets — guards the content enumeration at even m
+        require(center_line_control(850, 218400))
+        require(center_line_control(962, 119040))
     ctx.note(f"m <= {bound}: {tot} pairs -> {npos} positivity + "
              f"{ncoh} coherence + {npass} representation = 0 left; "
              "controls pass")
+
+
+@check("a9.composition", DOC)
+def _(ctx):
+    """Gauss composition, implemented exactly and verified as a
+    group on the Eisenstein-family class groups: identity, inverses,
+    closure, and the full element-order multiset pinned
+    (Cl(-507) = Z/4; Cl(-3.65^2) = Z/12 x Z/2 by orders). Gauss's
+    PRINCIPAL GENUS THEOREM — the squares are exactly the
+    trivial-character genus — is machine-checked, so 'invisible to
+    every genus character' rigorously means 'inside a coset of
+    Cl^2'. The occurring character vectors form an index-2 subgroup
+    whose derived annihilator is supported at 3 alone: every class
+    value's 3-free part is == 1 (mod 3) (the norm-residue law of
+    the family)."""
+    from compute.sphere_composition import (genus_relation,
+                                            group_check,
+                                            principal_genus_check)
+    h, orders = group_check(-507)
+    require((h, orders) == (4, [1, 2, 4, 4]),
+            f"Cl(-507) moved: {(h, orders)}")
+    pg, ngen, sizes = principal_genus_check(-507)
+    require(pg and (ngen, sizes) == (2, [2, 2]))
+    require(genus_relation(-507)[1] == 1)  # annihilator = {chi_3}
+    if ctx.profile == "FULL":
+        h, orders = group_check(-12675)
+        require(h == 24 and orders ==
+                [1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6,
+                 12, 12, 12, 12, 12, 12, 12, 12],
+                f"Cl(-12675) moved: {(h, orders)}")
+        pg, ngen, sizes = principal_genus_check(-12675)
+        require(pg and (ngen, sizes) == (4, [6, 6, 6, 6]))
+        require(genus_relation(-12675)[1] == 1)
+    ctx.note("composition group laws + principal genus theorem + "
+             "the chi_3 norm-residue relation verified")
+
+
+@check("a9.local_criterion", DOC)
+def _(ctx):
+    """The local representability criterion (inert parity, ramified
+    valuation/character laws, the chi_3 norm-residue relation)
+    validated EXHAUSTIVELY against brute-force class enumeration:
+    criterion(w) == (some class represents w) for every odd w up to
+    the bound, at the pinned sample discriminants."""
+    from compute.sphere_composition import validate_local_criterion
+    if ctx.profile == "FULL":
+        n1 = validate_local_criterion(-12675, 6000)
+        n2 = validate_local_criterion(-3 * 145 * 145, 6000)
+        n3 = validate_local_criterion(-3 * 425 * 425, 6000)
+        ctx.note(f"criterion == brute force on {n1 + n2 + n3} odd "
+                 "values across discs -12675, -63075, -541875")
+    else:
+        n1 = validate_local_criterion(-12675, 3000)
+        ctx.note(f"criterion == brute force on {n1} odd values "
+                 "(disc -12675)")
+
+
+@check("a9.kill_anatomy", DOC)
+def _(ctx):
+    """The anatomy of the representation kills behind the pair
+    desert, pinned: every killed line is L0 (a single co-norm value
+    PROVABLY locally impossible — certified against the validated
+    local criterion at every stratum), GENUS, or GLOBAL (a genus
+    admits all three values but no class does — beyond every
+    character, inside a coset of Cl^2). FULL: all 11 passers — 57
+    killed lines = 21 L0 + 0 GENUS + 36 GLOBAL, all 24 L0 values
+    locally certified, all 36 GLOBAL lines locally fine; the even
+    centers 850/962 reproduce the anatomy of their odd cores
+    425/481 at stratum g = 2; at m = 725 BOTH pairs die through
+    GLOBAL kills alone — that part of the desert is invisible to
+    every congruence argument. FAST: the 425/481 subset."""
+    from compute.sphere_composition import PASSERS_1200, anatomy
+    if ctx.profile == "FULL":
+        rows, totals, cert = anatomy()
+        require(totals == {"L0": 21, "GENUS": 0, "GLOBAL": 36},
+                f"anatomy moved: {totals}")
+        require(cert == (24, 24, 36, 36), f"certification: {cert}")
+        by = {(m, U, V): row for m, U, V, row in rows}
+        require(all(v == "GLOBAL" for _, v, _ in
+                    by[(725, 122400, 282576)] +
+                    by[(725, 171600, 282576)]),
+                "m = 725 pure-global signature moved")
+        require([(i, v) for i, v, _ in by[(850, 218400, 388416)]] ==
+                [(i, v) for i, v, _ in by[(425, 54600, 97104)]])
+        require([(i, v) for i, v, _ in by[(962, 119040, 567840)]] ==
+                [(i, v) for i, v, _ in by[(481, 29760, 141960)]])
+        ctx.note("57 kills = 21 L0 (all locally certified) + 0 GENUS "
+                 "+ 36 GLOBAL (all locally fine); 725 pure-global; "
+                 "850/962 double 425/481")
+    else:
+        rows, totals, cert = anatomy(PASSERS_1200[:2])
+        require(totals == {"L0": 5, "GENUS": 0, "GLOBAL": 5},
+                f"anatomy moved: {totals}")
+        require(cert[0] == cert[1] and cert[2] == cert[3])
+        ctx.note("425/481 subset: 5 L0 + 5 GLOBAL, certifications "
+                 "pass")
 
 
 @check("a9.gauss_map", DOC)

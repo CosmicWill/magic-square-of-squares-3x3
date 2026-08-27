@@ -244,22 +244,34 @@ def even_forms(disc):
 def line_classes(tri, n):
     """THE REPRESENTATION OBSTRUCTION.  All sound candidates for the
     Gauss class of a hypothetical line with co-norm triple tri on
-    S(n): pairs (g, f) where g is the point's possible content (odd,
-    g^2 | n, g^2 | every co-norm) and f an even class of disc
-    -4 n / g^2 representing the whole triple / g^2 (Lemma A9.1 —
-    the cross-vectors lie in the SATURATED orthogonal lattice of the
-    reduced point).  Empty => the line cannot exist as a sphere
-    point => the pair cannot extend to a magic square."""
+    S(n): pairs (g, f) where g is the point's possible content and
+    f an even class of disc -4 n / g^2 representing the whole
+    triple / g^2 (Lemma A9.1 — the cross-vectors lie in the
+    SATURATED orthogonal lattice of the reduced point).  The 2-part
+    of g is FORCED: writing 4^k || n (k = v_2 of the center m),
+    every point of S(n) is exactly 2^k times a point of the odd
+    sphere S(n/4^k) == 3 mod 8, whose coordinates are ALL ODD
+    (residues mod 4: three squares summing to 0 mod 4 are all
+    even); so v_2(g) = k exactly, the odd part g_odd satisfies
+    g_odd^2 | n and g^2 | every co-norm, and Lemma A9.4 applies at
+    the reduced level (even lattice).  Empty => the line cannot
+    exist as a sphere point => the pair cannot extend to a magic
+    square."""
     G = gcd(gcd(tri[0], tri[1]), tri[2])
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
     out = []
-    g = 1
-    while g * g <= n:
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
         if n % (g * g) == 0 and G % (g * g) == 0:
             t3 = [t // (g * g) for t in tri]
             for f in even_forms(-4 * (n // (g * g))):
                 if all(represents(f, t) for t in t3):
                     out.append((g, f))
-        g += 2
+        d += 2
     return out
 
 
