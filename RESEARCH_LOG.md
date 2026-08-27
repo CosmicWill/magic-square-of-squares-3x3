@@ -957,3 +957,51 @@ forcing shared representations between those classes.
 
 Suite: 103 checks green (FULL). [M11-K: m=6 survey and the m=8
 tau-test still grinding in the background.]
+
+## 2026-08-27 — Entry 25: A9-T1 third layer — the three-sieve pair desert
+
+An honest correction opens this entry: looking again at entry 24's
+coherence "survivors", every one of them has U + V > m^2 — the
+smallest edge entry m^2 - U - V would be NEGATIVE. Positivity, the
+most elementary sieve of all, kills them trivially; the character
+sieve had been measured in isolation. Stacking the sieves turned
+the correction into the strongest A9 result so far.
+
+THE THREE SIEVES (each proven necessary for a pair (U, V) in
+D(m)^2 to extend to a magic square of squares with center m^2):
+(1) POSITIVITY: U + V <= m^2. (2) COHERENCE: Theorem A9.3's
+chi_p-constancy on all eight co-norm triples. (3) REPRESENTATION:
+each triple must be represented by a SINGLE even class at an
+admissible discriminant -4(3m^2)/g^2, g over the possible contents
+(odd, g^2 | 3m^2, g^2 | the triple) — necessity by Lemmas A9.1 +
+A9.4 applied to the reduced point; strictly stronger than the
+character layer, since same genus is not same class.
+
+THE RESULT (measured, pinned in a9.pair_desert): for EVERY center
+m <= 1200, EVERY ordered congrua pair dies. 153 centers with
+|D| >= 2, 1782 ordered pairs: 1608 killed by positivity, 152 by
+coherence, and all 22 character-passers (11 unordered — first at
+m = 425 with (54600, 97104); centers 425, 481, 725, 845, 850,
+901, 925, 962, 1025) killed by representation. Zero remain. In
+every one of the 22, the U+V diagonal center line's triple
+(2m^2, 2m^2 +- (U+V)) is representable by NO class — the class
+group bites strictly beyond genus, the first time the
+representation level does work characters cannot.
+
+SOUNDNESS CONTROLS (built into the check): the actual U- and
+V-center lines — which exist as sphere points — always have
+nonempty candidate sets (the machinery never kills a real line),
+and their actual (content, reduced class) pairs are verified to
+lie in their own lines' candidate sets.
+
+The framing, honestly: not a new desert BOUND (A3's quadruple
+search reaches much further); the first structural EXPLANATION of
+the pair desert — three arithmetic obstructions, none needing any
+square-testing search, jointly annihilate the range. Open: make
+the representation sieve theoretical (spinor/composition — the P8
+acquisitions), find where the three sieves first fail, and what
+fourth sieve lives there.
+
+Suite: 104 checks green (FULL). [M11-K: m=6 survey and m=8
+tau-test re-armed after two container restarts; checkpoint-resume
+added to the survey runner.]

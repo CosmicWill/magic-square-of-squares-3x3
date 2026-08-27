@@ -174,6 +174,55 @@ def _(ctx):
              "Rep(2m^2) at m = 13")
 
 
+@check("a9.pair_desert", DOC)
+def _(ctx):
+    """The three-sieve pair desert: every ordered congrua pair
+    (U, V) at every center m^2 in range is killed by one of three
+    PROVEN-NECESSARY conditions — (1) positivity U + V <= m^2 (the
+    smallest edge entry m^2 - U - V must be a square, so >= 0);
+    (2) chi_p-coherence of the eight co-norm triples (Theorem A9.3);
+    (3) REPRESENTATION: each triple must be represented by a single
+    even class at an admissible discriminant -4(3m^2)/g^2 (Lemmas
+    A9.1 + A9.4; strictly stronger than characters — same genus is
+    not same class). Pinned: FULL m <= 1200 — 153 centers, 1782
+    pairs, 1608 positivity / 152 coherence / 22 representation
+    (passers exactly at m = 425, 481, 725, 845, 850, 901, 925, 962,
+    1025), 0 remain; the U+V diagonal line is unrepresentable in
+    every passing pair, and lines 0/1 (the ACTUAL U- and V-center
+    lines) always have candidates — the machinery never kills a
+    line that exists. Round-trip control: the actual center-line
+    points' (content, class) lie in their own candidate sets."""
+    from compute.sphere_gluing import (center_line_control,
+                                       joint_survey, rep_verdict)
+    if ctx.profile == "FULL":
+        bound, expect = 1200, (153, 1782, 1608, 152, 22)
+        centers_expect = {425, 481, 725, 845, 850, 901, 925, 962,
+                          1025}
+    else:
+        bound, expect = 500, (50, 466, 434, 28, 4)
+        centers_expect = {425, 481}
+    nc, tot, npos, ncoh, passers = joint_survey(bound)
+    npass = sum(len(v) for v in passers.values())
+    require((nc, tot, npos, ncoh, npass) == expect,
+            f"sieve totals moved: {(nc, tot, npos, ncoh, npass)}")
+    require(set(passers) == centers_expect,
+            f"passer centers moved: {sorted(passers)}")
+    for m, prs in passers.items():
+        for (U, V) in prs:
+            counts, empty = rep_verdict(m, U, V)
+            require(empty, f"pair SURVIVES representation: "
+                    f"m={m} {(U, V)} — investigate immediately")
+            require(2 in empty,
+                    f"U+V diagonal representable at m={m} {(U, V)}")
+            require(counts[0] > 0 and counts[1] > 0,
+                    f"control broken (actual line killed) at m={m}")
+    require(center_line_control(425, 54600))
+    require(center_line_control(481, 29760))
+    ctx.note(f"m <= {bound}: {tot} pairs -> {npos} positivity + "
+             f"{ncoh} coherence + {npass} representation = 0 left; "
+             "controls pass")
+
+
 @check("a9.gauss_map", DOC)
 def _(ctx):
     """The Gauss orthogonal-lattice map on the magic-square spheres:

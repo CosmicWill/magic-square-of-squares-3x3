@@ -40,12 +40,38 @@ and 6/12 at m = 145 (survivors: exactly the pairs involving the
 5-branch congruum 21000), while prime-power hypotenuses lose
 nothing.  This is the first necessary condition on extending congrua
 pairs to magic squares beyond the classical 24-divisibility layer
-(A3/F4).
+(A3/F4).  (Caveat measured later: the m <= 150 coherence-survivors
+are all impossible anyway by POSITIVITY, U + V > m^2 — the two
+sieves are complementary, see below.)
+
+THE THREE-SIEVE PAIR DESERT (measured; check a9.pair_desert).
+Stack three proven-necessary conditions on an ordered congrua pair
+(U, V) at center m^2:
+
+  1. POSITIVITY: U + V <= m^2 (else the smallest edge entry
+     m^2 - U - V is negative — not a square).
+  2. COHERENCE: Theorem A9.3 (genus characters).
+  3. REPRESENTATION: each of the 8 co-norm triples must be
+     represented by a single class — some even class of disc
+     -4.(3 m^2)/g^2 (g = the point's possible content: odd,
+     g^2 | 3 m^2, g^2 | the whole triple) representing all three
+     scaled co-norms.  Strictly stronger than characters: same
+     genus does not mean same class.
+
+Result: for EVERY center m <= 1200 every ordered pair dies —
+1782 pairs: 1608 by positivity, 152 by coherence, 22 by
+representation (11 unordered, first at m = 425), 0 remain.  The
+U+V diagonal center line is unrepresentable in all 22 cases.
+Positive control: the actual U- and V-center lines (which exist as
+sphere points) always land in their own candidate sets — the
+machinery never kills a real line.  This gives the A3 pair desert
+its first structural explanation: three arithmetic obstructions,
+each proven necessary, jointly annihilate the range.
 
 Run:  python3 -m compute.sphere_gluing
 """
 
-from math import gcd
+from math import gcd, isqrt
 
 from compute.congrua_search import congrua_sets
 from compute.sphere_classes import (orthogonal_form,
@@ -110,42 +136,158 @@ def even_lattice(v):
     return a % 2 == 0 and b % 2 == 0 and c % 2 == 0
 
 
+def pair_lines(n2, U, V):
+    """The eight co-norm triples of a square with center co-norm n2
+    = 2 m^2 and Lucas differences (U, V): four center lines, four
+    outer lines.  Invariant as a SET under U <-> V."""
+    return [(n2, n2 + U, n2 - U), (n2, n2 + V, n2 - V),
+            (n2, n2 + U + V, n2 - U - V),
+            (n2, n2 + U - V, n2 - U + V),
+            (n2 + U, n2 - U - V, n2 + V),
+            (n2 - V, n2 + U + V, n2 - U),
+            (n2 + U, n2 - U + V, n2 - V),
+            (n2 + V, n2 + U - V, n2 - U)]
+
+
+def coherent_pair(m, U, V, ps=None):
+    """Theorem A9.3's test: every line triple chi_p-coherent."""
+    n2 = 2 * m * m
+    if ps is None:
+        ps = odd_primes(3 * m * m)
+    for p in ps:
+        for tri in pair_lines(n2, U, V):
+            vals = {legendre(t, p) for t in tri}
+            vals.discard(0)
+            if len(vals) > 1:
+                return False
+    return True
+
+
 def pair_obstruction(m):
     """The coherence test on every ordered congrua pair (U, V) of
     center m^2 (U = column difference, V = row difference): returns
     (total, killed, surviving_pairs)."""
     D = dict(congrua_sets(m)).get(m, set())
-    n2 = 2 * m * m
     ps = odd_primes(3 * m * m)
-    Ds = sorted(D)
     total, killed, alive = 0, 0, []
-    for U in Ds:
-        for V in Ds:
+    for U in sorted(D):
+        for V in sorted(D):
             if V == U:
                 continue
-            lines = [(n2, n2 + U, n2 - U), (n2, n2 + V, n2 - V),
-                     (n2, n2 + U + V, n2 - U - V),
-                     (n2, n2 + U - V, n2 - U + V),
-                     (n2 + U, n2 - U - V, n2 + V),
-                     (n2 - V, n2 + U + V, n2 - U),
-                     (n2 + U, n2 - U + V, n2 - V),
-                     (n2 + V, n2 + U - V, n2 - U)]
-            ok = True
-            for p in ps:
-                for tri in lines:
-                    vals = {legendre(t, p) for t in tri}
-                    vals.discard(0)
-                    if len(vals) > 1:
-                        ok = False
-                        break
-                if not ok:
-                    break
             total += 1
-            if ok:
+            if coherent_pair(m, U, V, ps):
                 alive.append((U, V))
             else:
                 killed += 1
     return total, killed, alive
+
+
+def joint_survey(bound):
+    """The three-sieve pair survey over all centers m <= bound with
+    |D(m)| >= 2: kill each ordered pair by POSITIVITY (U + V > m^2:
+    the smallest edge entry m^2 - U - V would be negative, and a
+    square cannot be) or by COHERENCE (Theorem A9.3); returns
+    (centers, total, pos_killed, coh_killed, passers_by_m)."""
+    centers = total = npos = ncoh = 0
+    passers = {}
+    for m, D in congrua_sets(bound):
+        if len(D) < 2:
+            continue
+        centers += 1
+        ps = odd_primes(3 * m * m)
+        for U in sorted(D):
+            for V in sorted(D):
+                if V == U:
+                    continue
+                total += 1
+                if U + V > m * m:
+                    npos += 1
+                elif not coherent_pair(m, U, V, ps):
+                    ncoh += 1
+                else:
+                    passers.setdefault(m, []).append((U, V))
+    return centers, total, npos, ncoh, passers
+
+
+def represents(f, t):
+    """Exact: does the positive definite form f = (a, b, c)
+    represent t >= 1?  (4a Q = (2ax + by)^2 + (4ac - b^2) y^2.)"""
+    a, b, c = f
+    n4 = 4 * a * c - b * b
+    Y = isqrt(4 * a * t // n4) + 1
+    for y in range(-Y, Y + 1):
+        d2 = 4 * a * t - n4 * y * y
+        if d2 < 0:
+            continue
+        r = isqrt(d2)
+        if r * r != d2:
+            continue
+        if (-b * y + r) % (2 * a) == 0 or (-b * y - r) % (2 * a) == 0:
+            return True
+    return False
+
+
+_EVEN_FORMS = {}
+
+
+def even_forms(disc):
+    """All reduced EVEN forms (a, c even; b automatic) of the given
+    negative discriminant — every orthogonal lattice of an all-odd
+    sphere point reduces to one of these (Lemma A9.4)."""
+    if disc not in _EVEN_FORMS:
+        from compute.sphere_classes import reduced_forms
+        _EVEN_FORMS[disc] = [f for f in reduced_forms(disc)
+                             if f[0] % 2 == 0 and f[2] % 2 == 0]
+    return _EVEN_FORMS[disc]
+
+
+def line_classes(tri, n):
+    """THE REPRESENTATION OBSTRUCTION.  All sound candidates for the
+    Gauss class of a hypothetical line with co-norm triple tri on
+    S(n): pairs (g, f) where g is the point's possible content (odd,
+    g^2 | n, g^2 | every co-norm) and f an even class of disc
+    -4 n / g^2 representing the whole triple / g^2 (Lemma A9.1 —
+    the cross-vectors lie in the SATURATED orthogonal lattice of the
+    reduced point).  Empty => the line cannot exist as a sphere
+    point => the pair cannot extend to a magic square."""
+    G = gcd(gcd(tri[0], tri[1]), tri[2])
+    out = []
+    g = 1
+    while g * g <= n:
+        if n % (g * g) == 0 and G % (g * g) == 0:
+            t3 = [t // (g * g) for t in tri]
+            for f in even_forms(-4 * (n // (g * g))):
+                if all(represents(f, t) for t in t3):
+                    out.append((g, f))
+        g += 2
+    return out
+
+
+def rep_verdict(m, U, V):
+    """Per-line candidate counts and the empty (killed) line indices
+    for the pair (U, V) at center m^2."""
+    n = 3 * m * m
+    counts, empty = [], []
+    for i, tri in enumerate(pair_lines(2 * m * m, U, V)):
+        c = line_classes(tri, n)
+        counts.append(len(c))
+        if not c:
+            empty.append(i)
+    return counts, empty
+
+
+def center_line_control(m, U):
+    """Positive control (soundness of the killing machinery): the
+    U-center line EXISTS as the point (m, sqrt(m^2+U), sqrt(m^2-U)),
+    and its actual (content, reduced orthogonal class) must appear
+    in the candidate set of its own co-norm triple."""
+    from compute.sphere_classes import orthogonal_form
+    rp, rm = isqrt(m * m + U), isqrt(m * m - U)
+    assert rp * rp == m * m + U and rm * rm == m * m - U
+    g = gcd(gcd(m, rp), rm)
+    f = orthogonal_form((m // g, rp // g, rm // g))
+    tri = (2 * m * m, 2 * m * m + U, 2 * m * m - U)
+    return (g, f) in line_classes(tri, 3 * m * m)
 
 
 def window_refinement(m):
@@ -155,7 +297,6 @@ def window_refinement(m):
     n = 3 * m * m
     pts = primitive_points_full(n)
     slc = {orthogonal_form(v) for v in pts if m in v or -m in v}
-    from math import isqrt
     rep = set()
     for f in reduced_forms(-4 * n):
         a, b, c = f
@@ -192,6 +333,23 @@ def main():
     print("THEOREM A9.3: coherence is necessary (proven) and kills "
           "most cross-branch pairs (measured) — the first "
           "obstruction beyond the classical layer.")
+    print()
+    centers, total, npos, ncoh, passers = joint_survey(700)
+    npass = sum(len(v) for v in passers.values())
+    print(f"THREE-SIEVE SURVEY m <= 700: {centers} centers, {total} "
+          f"ordered pairs; positivity kills {npos}, coherence kills "
+          f"{ncoh}, pass both: {npass}")
+    for m, prs in sorted(passers.items()):
+        for (U, V) in prs:
+            counts, empty = rep_verdict(m, U, V)
+            print(f"  m={m} ({U},{V}): representation counts {counts}"
+                  f" -> {'KILLED (empty lines ' + str(empty) + ')' if empty else 'SURVIVES'}")
+    print(f"controls: actual U-center lines pass line_classes at "
+          f"m=425: {center_line_control(425, 54600)}, "
+          f"m=481: {center_line_control(481, 29760)}")
+    print("PAIR DESERT: positivity + coherence + representation kill "
+          "every ordered congrua pair for every center m <= 700 "
+          "(and <= 1200 in the FULL check).")
 
 
 if __name__ == "__main__":

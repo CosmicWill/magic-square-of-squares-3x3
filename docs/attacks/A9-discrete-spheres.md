@@ -2,10 +2,13 @@
 
 **Status:** §1 dictionary **PROVEN** (exact identities, machine-checked
 by `a9.dictionary`); §2 tension **quantified** (`a9.tension`); §3 the
-class-group program (A9-T1) has two layers landed — the Eisenstein
-anchor / Gauss map / slice confinement, and the gluing law with its
-**coherence obstruction** (Theorem A9.3: necessity proven, bite
-measured). Verification: `python3 -m verify --only a9`.
+class-group program (A9-T1) has three layers landed — the
+Eisenstein anchor / Gauss map / slice confinement; the gluing law
+with its **coherence obstruction** (Theorem A9.3: necessity proven,
+bite measured); and the **three-sieve pair desert**
+(positivity + coherence + representation kill every ordered congrua
+pair for every center $m \le 1200$). Verification:
+`python3 -m verify --only a9`.
 
 ## 0. Origin
 
@@ -190,14 +193,66 @@ inside the classes representing $2m^2$ (at $m = 13$: 2 classes
 against 5): the confinement window of §3 is genuinely finer than
 the representation condition that A9.1 alone imposes.
 
-**Still open in A9-T1:** what kills the surviving same-branch pairs
-— genus characters cannot separate within a genus, so the next
-level is the class/spinor structure under composition
-(quaternionic/Venkov, Aka–Einsiedler–Shapira joint-equidistribution
-territory), plus the full 9-entry gluing (the corner entries appear
-in *two* outer lines each, forcing shared representations between
-their classes). **A9-T2 (acquisitions, backlog):** Duke (Invent.
-Math. 92, 1988), Aka–Einsiedler–Shapira, Venkov — see
+### The three-sieve pair desert (third layer)
+
+(Check `a9.pair_desert`.) An honest postscript first: the
+coherence "survivors" of the kill table above are all *trivially*
+impossible — for every one of them $U + V > m^2$, so the smallest
+edge entry $m^2 - U - V$ would be negative. The character sieve
+was measured there in isolation; the two sieves turn out to be
+**complementary** (positivity kills the large-sum pairs characters
+miss, characters kill the small-sum pairs positivity misses). So
+stack the proven-necessary conditions:
+
+1. **Positivity:** $U + V \le m^2$.
+2. **Coherence:** Theorem A9.3.
+3. **Representation (the class level proper):** each of the 8
+   co-norm triples must be *represented by a single class* — some
+   even class of discriminant $-4 \cdot 3m^2/g^2$, where $g$ runs
+   over the hypothetical point's possible contents (odd,
+   $g^2 \mid 3m^2$, $g^2$ dividing the whole triple), representing
+   all three scaled co-norms. Necessity is Lemma A9.1 + Lemma A9.4
+   applied to the reduced point (the cross-vectors lie in the
+   *saturated* orthogonal lattice); it is **strictly stronger than
+   the character test** — same genus does not mean same class.
+
+**Result (measured, pinned): for every center $m \le 1200$, every
+ordered congrua pair dies.** Of 1782 ordered pairs across the 153
+centers with $|D(m)| \ge 2$: **1608** die by positivity, **152**
+by coherence, and the **22** that pass both (11 unordered, the
+first at $m = 425$: $(54600, 97104)$; also $m = 481, 725, 845,
+850, 901, 925, 962, 1025$) are all killed by representation —
+in every one of the 22 cases the $U{+}V$ diagonal center line's
+triple $(2m^2,\, 2m^2 \pm (U{+}V))$ is representable by **no**
+class at any admissible discriminant, and usually most outer lines
+too. Zero pairs remain.
+
+Two soundness controls are built into the check: the *actual* $U$-
+and $V$-center lines (which exist as sphere points whenever
+$U, V \in D(m)$) always have nonempty candidate sets — the
+machinery never kills a line that exists — and the actual points'
+(content, reduced class) pairs are verified to lie in their own
+lines' candidate sets.
+
+This is not a new desert *bound* (A3's quadruple search reaches
+much further); it is the first structural *explanation* at the
+pair level: three arithmetic obstructions, each proven necessary
+and none requiring any square-testing search, jointly annihilate
+every candidate pair in range. The natural next questions: does
+the three-sieve annihilation persist for all $m$ (a proof would
+need the representation obstruction made theoretical — spinor
+genus / composition structure), and what fourth sieve appears
+where it first fails?
+
+**Still open in A9-T1:** pushing the representation obstruction
+from measurement to theory — genus characters cannot separate
+within a genus, so the next level is the class/spinor structure
+under composition (quaternionic/Venkov, Aka–Einsiedler–Shapira
+joint-equidistribution territory), plus the full 9-entry gluing
+(the corner entries appear in *two* outer lines each, forcing
+shared representations between their classes). **A9-T2
+(acquisitions, backlog):** Duke (Invent. Math. 92, 1988),
+Aka–Einsiedler–Shapira, Venkov — see
 [papers/WANTED.md](../../papers/WANTED.md) P8.
 
 ## 4. What the verify script proves mechanically
@@ -211,6 +266,9 @@ the two independent $h(-3m^2)$ computations agreeing with pinned
 values, and the Gauss-map profile ($r_3^* = 24h$ asserted per
 sphere, uniform fibers, the slice-concentration law) on the pinned
 sample; the cross-vector gluing law, on-sphere coherence, and even
-lattices on every point of 4 spheres (960 points), and the pinned
+lattices on every point of 4 spheres (960 points), the pinned
 coherence kill table with its survivor structure and the strict
-window inclusion at $m = 13$.
+window inclusion at $m = 13$; and the three-sieve pair desert —
+positivity/coherence/representation totals pinned to $m \le 1200$
+with zero survivors, the $U{+}V$-diagonal unrepresentability in
+all 22 passing pairs, and the never-kill-a-real-line controls.
