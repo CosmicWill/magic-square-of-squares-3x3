@@ -554,6 +554,126 @@ def all_pairs(tags=None):
     return {tagS: pair_certificate(tagS, spaces) for tagS in pairs}
 
 
+# ---------------------------------------------------------------------------
+# the |S| >= 3 classification layer (M11-I): Theorem A8.16
+#
+# Census: over ALL node patterns S with |S| >= 3, the subspace V_S
+# takes exactly EIGHT values — seven of dimension 2 and <eta_4> — so
+# the classification of genus-0 curves with dim V_S >= 2 reduces to
+# seven exact locus computations.  For each space W the integral
+# curves of Z(W) are: the entry lines, plus v = 0 (the A-cluster
+# only) or u = 0 (the B-cluster only); every other cofactor component
+# is killed by the GALOIS-INTEGRALITY argument: the leftover K is
+# certified irreducible over Q, and if ANY Qbar-component of V(K)
+# were an integral curve then all its conjugates would be (W is
+# defined over Q), forcing the identity K | F(grad K) — refuted by a
+# nonzero pseudo-remainder mod p.  Hence:
+#
+#   THEOREM A8.16.  A complete genus-0 curve on X whose node pattern
+#   S has dim V_S >= 2 is one of the 128 classical AP components
+#   (image v = 0 with S = {A0, A+, A-}, or u = 0 with {B0, B+, B-}).
+#   EVERY OTHER complete genus-0 curve on X has V_S = <eta_star>:
+#   the rational-curve problem on X is reduced to the eta*-web.
+
+
+def space_census():
+    """All patterns |S| >= 3, grouped by the RREF-canonical V_S.
+    Asserts the census: exactly 8 distinct spaces, dims {2: 7, 1: 1},
+    the dim-1 space being <eta_4>."""
+    spaces = extension_spaces()
+
+    def canon(basis):
+        mat = [row[:] for row in basis]
+        rank, piv = 0, []
+        for col in range(6):
+            p = next((r for r in range(rank, len(mat))
+                      if mat[r][col] != 0), None)
+            if p is None:
+                continue
+            mat[rank], mat[p] = mat[p], mat[rank]
+            pv = mat[rank][col]
+            mat[rank] = [x / pv for x in mat[rank]]
+            for r in range(len(mat)):
+                if r != rank and mat[r][col] != 0:
+                    f = mat[r][col]
+                    mat[r] = [x - f * y
+                              for x, y in zip(mat[r], mat[rank])]
+            piv.append(col)
+            rank += 1
+        return tuple(tuple(row) for row in mat[:rank])
+
+    from collections import defaultdict
+    by_space = defaultdict(list)
+    for k in range(3, 9):
+        for S in combinations(ALL_TAGS, k):
+            by_space[canon(intersect(spaces, list(S)))].append(S)
+    dims = sorted(len(key) for key in by_space)
+    assert dims == [1] + [2] * 7, f"census changed: dims {dims}"
+    e4 = ((F(0), F(0), F(0), F(1), F(0), F(0)),)
+    assert e4 in by_space, "the dim-1 space is no longer <eta_4>"
+    return by_space
+
+
+def space_certificate(basis_vecs):
+    """The exact classification of the integral curves of Z(W) for a
+    2-dimensional space W: returns a certificate dict.  Asserts the
+    structure that Theorem A8.16 needs: entry-line exponents >= 8;
+    the affine cofactor = (v=0)-powers x K with K certified
+    irreducible over Q and its integrality REFUTED (so, by the
+    Galois-integrality argument, no component of V(K) is integral)."""
+    forms = numerator_forms()
+    basis = [combo_int(v, forms) for v in basis_vecs]
+    bf = []
+    for vec in basis_vecs:
+        out = [dict() for _ in range(M + 1)]
+        for a, Ns in enumerate(forms):
+            if vec[a] == 0:
+                continue
+            for k in range(M + 1):
+                for ij, val in Ns[k].items():
+                    out[k][ij] = out[k].get(ij, F(0)) + F(vec[a]) * val
+        bf.append([{ij: v for ij, v in c.items() if v} for c in out])
+    from compute.special_locus import (is_zero, restrict_line,
+                                       restrict_u0)
+    v0 = all(is_zero(restrict_line(B, (F(0), F(0)), (F(1), F(0))))
+             for B in bf)
+    u0 = all(is_zero(restrict_u0(B)) for B in bf)
+    _, exps, cof = _peeled_resultant(basis[0], basis[1])
+    assert all(e >= 8 for e in exps.values())
+    v0_mult = 0
+    while True:
+        q, rem = divide_affine_line(cof, (0, 0, 1))
+        if rem:
+            break
+        cof, v0_mult = {ij: x for ij, x in q.items() if x}, v0_mult + 1
+    assert (v0_mult > 0) == v0, "v=0 divisibility vs integrality"
+    deg = max((i + j for (i, j) in cof), default=0)
+    cert = {"v0_integral": v0, "u0_integral": u0, "v0_mult": v0_mult,
+            "leftover_deg": deg}
+    if deg:
+        assert irreducible_over_Q(cof), "leftover K not certified"
+        assert not is_integral_modp(basis, cof), \
+            "leftover K integrality not refuted!"
+        cert["leftover_hits"] = sorted(
+            t for t in TRIPLE_POINTS if eval_proj(cof, t) == 0)
+    return cert
+
+
+def classify_spaces(which=None):
+    """Certificates for the seven dim-2 spaces (Theorem A8.16); the
+    conclusion requires: v=0 integral exactly for the A-cluster, u=0
+    exactly for the B-cluster, and every leftover refuted."""
+    census = space_census()
+    dim2 = sorted((k for k in census if len(k) == 2),
+                  key=lambda k: str(k))
+    if which is not None:
+        dim2 = [dim2[i] for i in which]
+    out = {}
+    for key in dim2:
+        out[key] = space_certificate([list(row) for row in key])
+    return out, census
+
+
 def main():
     certs = all_singletons()
     for tag, c in certs.items():
@@ -580,6 +700,22 @@ def main():
     else:
         print(f"{bad} pattern(s) with surviving candidates — "
               "deeper analysis required before any |S| >= 3 claim.")
+    print()
+    scerts, census = classify_spaces()
+    nA = nB = 0
+    for key, cert in scerts.items():
+        tag = ("A-cluster" if cert["v0_integral"] else
+               "B-cluster" if cert["u0_integral"] else "other")
+        nA += cert["v0_integral"]
+        nB += cert["u0_integral"]
+        print(f"dim-2 space [{tag}]: v0={cert['v0_integral']} "
+              f"u0={cert['u0_integral']} leftover deg "
+              f"{cert['leftover_deg']} (irreducible, refuted)")
+    assert nA == 1 and nB == 1
+    n1 = sum(len(v) for k, v in census.items() if len(k) == 1)
+    print(f"THEOREM A8.16: dim V_S >= 2 => classical AP component; "
+          f"the other {n1} patterns have V_S = <eta*> — the "
+          "rational-curve problem is reduced to the eta*-web.")
 
 
 if __name__ == "__main__":

@@ -15,10 +15,12 @@ through a node — is PROVEN, unconditional**; §8 the node-extension
 layer: **$h^0(\widetilde X, S^4\Omega^1) = 1$** (the resolution's
 unique symmetric quartic differential $\eta_\star = \eta_4$, PROVEN),
 universal $\eta_\star$-integrality of rational curves,
-$\widetilde C \cdot E \ge 4$, the node-pattern dichotomy, and the
+$\widetilde C \cdot E \ge 4$, the node-pattern dichotomy, the
 pattern-counting theorems **A8.14–A8.15 PROVEN: every genus-0 curve
-meets nodes over $\ge 3$ distinct triple points — sharp** (the
-classical families attain 3); §9 roadmap. Verification:
+meets nodes over $\ge 3$ distinct triple points — sharp**, and the
+classification **Theorem A8.16 PROVEN: $\dim \ge 2$ patterns are
+exactly the classical AP components — every other rational curve
+lives on the $\eta_\star$-web**; §9 roadmap. Verification:
 `python3 -m verify --only a8`.
 
 ## 0. Goal
@@ -674,14 +676,52 @@ cofactor.  The 28 patterns die three ways:
 
 Since patterns of size 0, 1, 2 are now all impossible (A8.8, A8.14,
 A8.15) and size 3 is attained, the pattern-counting layer is
-**complete**.  What remains is classification at $|S| = 3$: which
-integral curves beyond the classical families do the triple-pattern
-subsystems admit?  (For the $A$-/$B$-triples, the 2-dimensional
-spaces $\langle\eta_4, \eta_6\rangle$/$\langle\eta_3, \eta_4\rangle$;
-for mixed triples, down to $\langle\eta_4\rangle$ — the
-$\eta_\star$-web itself.)  That, and the GFU-§2-style analysis of the
-$\eta_\star$-web, is the road to a Stoll–Testa-grade classification
-of all rational curves on $X$.
+**complete** — and the classification layer above it closes too:
+
+**Theorem A8.16 ($\dim \ge 2$ patterns are classical). PROVEN**
+(`a8.pattern_spaces`, ~50 s).  *Census: over all node patterns
+$|S| \ge 3$, the subspace $V_S$ takes exactly **eight** values —
+seven of dimension 2, namely the $A$-cluster $\langle\eta_4,
+\eta_6\rangle$ (the $A$-triple and every 2-of-3-$A$'s-plus-$B_0$
+pattern), the $B$-cluster $\langle\eta_3, \eta_4\rangle$, the
+central-line space $\langle\eta_3 + \eta_6, \eta_4\rangle$ (patterns
+inside $\{A_0, B_0, D_\pm\}$ — the four triple points **on the
+central entry line**), and four spaces for the coherent outer
+triples $\{A_\pm, B_\pm, D_\pm\}$ — which are exactly the triples of
+triple points **on the four outer entry lines** $\ell_{(\pm1,\pm1)}$
+— plus $\langle\eta_4\rangle$ for the remaining 200 patterns.  A
+complete genus-0 curve whose pattern has $\dim V_S \ge 2$ is one of
+the 128 classical AP components: image $v = 0$ with $S = \{A_0,
+A_\pm\}$, or $u = 0$ with $S = \{B_0, B_\pm\}$; the other seventeen
+$\dim$-2 patterns are impossible.*
+
+*Proof, machine-executed.*  For each of the seven spaces $W$ the
+integral curves of $Z(W)$ are classified exactly: the entry lines
+(excluded for genus 0 by A7.3); $v = 0$ — integral precisely for the
+$A$-cluster (exact restriction); $u = 0$ — precisely for the
+$B$-cluster (exact chart-2 slice); and the peeled affine cofactor's
+non-line part $K$ (degrees 8, 8, 12, 18, 18, 18, 18), certified
+**irreducible over $\mathbb{Q}$** with the integrality identity
+$K \mid F(\partial_v K, -\partial_c K)$ **refuted** mod $p$.  The
+refutation kills every $\overline{\mathbb{Q}}$-component at once:
+$W$ is defined over $\mathbb{Q}$, so integrality of a
+$\mathbb{Q}$-irreducible curve is Galois-all-or-none, and if all
+components were integral then $F(\nabla K)$ would vanish on each,
+forcing the (squarefree) $K$ to divide it.  An image for a pattern
+in the cluster must then be $v = 0$ or $u = 0$; those carry exactly
+the family-triple patterns, and their genus-0 components are the
+classical families (A7.3).  $\blacksquare$
+
+**Corollary (the web reduction).**  Every complete genus-0 curve on
+$X$ other than the 128 classical AP components has $V_S =
+\langle\eta_\star\rangle$: the only symmetric quartic differential
+extending over all the nodes it meets is the resolution section
+itself.  Its Lucas image is an $\eta_\star$-integral curve of degree
+$\ge 3$ (A7.3/A7.6) through $\ge 3$ triple points, with pattern
+among the 200 listed $\dim$-1 subsets.  **The rational-curve problem
+on $X$ is reduced to the algebraic integral curves of the single
+web $\eta_\star$** — the GFU-§2-style analysis of that web is the
+whole remaining frontier.
 
 ## 9. Roadmap
 
@@ -696,13 +736,17 @@ of all rational curves on $X$.
    $h^0(\widetilde X, S^4\Omega^1) = 1 = \langle\eta_4\rangle$,
    universal $\eta_\star$-integrality, $\widetilde C \cdot E \ge 4$,
    and the pattern dichotomy; singleton patterns excluded (M11-G,
-   Theorem A8.14); **two-point patterns excluded (M11-H, Theorem
-   A8.15): every genus-0 curve visits $\ge 3$ triple points — SHARP.
-   The pattern-counting layer is complete.**  Remaining (M11-I): the
-   $|S| = 3$ *classification* — integral curves of the triple-pattern
-   subsystems beyond the classical families (down to the
-   $\eta_\star$-web for mixed triples), GFU-§2-style; the road to the
-   full rational-curve classification.
+   Theorem A8.14); two-point patterns excluded (M11-H, Theorem
+   A8.15: $\ge 3$ triple points, sharp); **the classification layer
+   closed (M11-I, Theorem A8.16): $\dim V_S \ge 2$ patterns are
+   exactly the classical AP components.**  Remaining — the single
+   frontier — **M11-J: the $\eta_\star$-web** (GFU-§2-style analysis
+   of the one resolution differential): its algebraic integral
+   curves of degree $\ge 3$ through $\ge 3$ triple points; entry
+   lines/$u{=}0$/$v{=}0$ are integral, the six distinctness lines
+   are not; a complete line-level classification of the web, then
+   low degrees, then structural finiteness questions (a single
+   $S^4$-web has no two-section resultant to fall back on).
 4. ~~A8-T3 (exact upgrade of Certificate A8.7)~~ **done the same
    day** (Theorem A8.7′, §7): exact $R_{12}, R_{34}$ by provably
    complete CRT, exact line-peeling, coprime cofactors — Theorem
@@ -719,7 +763,7 @@ of all rational curves on $X$.
 
 ## 10. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py` (21 checks): the §2 structural facts
+`verify/checks/a8_descent.py` (22 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
 splits with smoothness); the quadric control at $m = 1, 2$; the
 $d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
@@ -750,6 +794,9 @@ the transpose), the AP-family dichotomy consistency ($u = 0$
 integral for the $B$-triple space, $v = 0$ for the $A$-triple
 space), the eight singleton-pattern certificates (Theorem A8.14:
 subsystem resultants exactly, entry lines peel to $\ge 8$, cofactors
-coprime), and the 28 two-point-pattern certificates (Theorem A8.15:
+coprime), the 28 two-point-pattern certificates (Theorem A8.15:
 coprime cofactors / point-evaluation prefilters / carrier-line
-peeling / the degree-18 irreducibility certificates).
+peeling / the degree-18 irreducibility certificates), and the
+space-classification certificates (Theorem A8.16: the 8-value
+census over all $|S| \ge 3$ patterns, and the seven dim-2 loci with
+their Galois-integrality refutations).

@@ -762,3 +762,42 @@ projective point evaluation, affine-line division, sound-direction
 integrality refutation via mod-p pseudo-remainders.
 
 Suite: 95 checks green (FULL).
+
+## 2026-08-26 — Entry 20: THE CLASSIFICATION LAYER CLOSES — dim >= 2 patterns are classical; everything else is the eta*-web (M11-I)
+
+Theorem A8.16 (PROVEN, a8.pattern_spaces, ~50 s): a complete genus-0
+curve on X whose node pattern S has dim V_S >= 2 is one of the 128
+classical AP components (image v=0 with S = {A0,A+,A-}, or u=0 with
+{B0,B+,B-}).
+
+The census: over ALL patterns |S| >= 3, V_S takes exactly EIGHT
+values — seven of dimension 2 and <eta_4>. The seven have beautiful
+geometric meaning:
+- the A-cluster <eta4,eta6> (A-triple + each 2-A's-plus-B0 pattern)
+  and the B-cluster <eta3,eta4> (dual);
+- the central-line space <eta3+eta6,eta4>: patterns inside
+  {A0,B0,D+,D-} — exactly the four triple points ON the central
+  entry line;
+- four outer spaces for the coherent triples {A±,B±,D±} — exactly
+  the triples of triple points ON the outer entry lines l_(±1,±1).
+
+Per space, the integral curves of Z(W) are classified exactly: entry
+lines; v=0 precisely for the A-cluster; u=0 precisely for the
+B-cluster; and the leftover cofactors K (degrees 8/8/12/18^4) are
+certified irreducible over Q with the integrality identity
+K | F(grad K) REFUTED mod p. The refutation kills every
+Qbar-component at once: W is defined over Q, so integrality of a
+Q-irreducible curve is Galois-all-or-none, and all-integral would
+force the identity (K squarefree). Hence dim >= 2 patterns force
+image u=0/v=0 — classical — and the 17 non-family dim-2 patterns
+are IMPOSSIBLE.
+
+COROLLARY (the web reduction): every complete genus-0 curve on X
+other than the 128 classical AP components has V_S = <eta*>: its
+image is an eta*-integral curve of degree >= 3 through >= 3 triple
+points, pattern among 200 listed dim-1 subsets. THE RATIONAL-CURVE
+PROBLEM ON X IS REDUCED TO THE ALGEBRAIC INTEGRAL CURVES OF THE
+SINGLE WEB eta* — the resolution's unique symmetric quartic
+differential. M11-J opens the web analysis (GFU §2-style).
+
+Suite: 96 checks green (FULL).

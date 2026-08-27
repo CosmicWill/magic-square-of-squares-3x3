@@ -584,3 +584,42 @@ def _(ctx):
     require(n == (28 if ctx.profile == "FULL" else 4))
     ctx.note(f"{n} two-point patterns excluded; with a8.pattern_"
              "singletons: |S| >= 3 for every genus-0 curve (sharp)")
+
+
+@check("a8.pattern_spaces", DOC)
+def _(ctx):
+    """Theorem A8.16: a complete genus-0 curve whose node pattern S
+    has dim V_S >= 2 is one of the 128 classical AP components.
+    Census (asserted): over ALL patterns |S| >= 3 the subspace V_S
+    takes exactly 8 values — seven of dimension 2 (the A-cluster
+    <eta4,eta6>, the B-cluster <eta3,eta4>, the central-line space
+    <eta3+eta6,eta4>, and four outer-entry-line spaces) and
+    <eta_4>.  For each dim-2 space, the integral curves of its locus
+    are classified exactly: entry lines always; v = 0 exactly for
+    the A-cluster; u = 0 exactly for the B-cluster; and every
+    leftover cofactor K (degrees 8/8/12/18x4) is certified
+    IRREDUCIBLE over Q with the integrality identity K | F(grad K)
+    REFUTED mod p — by Galois conjugacy, integrality of a
+    Q-irreducible curve is all-or-none, and all-integral would force
+    that identity, so NO component of V(K) is integral.  Hence
+    dim V_S >= 2 forces image u=0 or v=0 (classical, with S the
+    family triple); the 17 other dim-2 patterns are impossible; the
+    200 dim-1 patterns have V_S = <eta*> — the rational-curve
+    problem on X is reduced to the eta*-web.  Both profiles run the
+    full census and all seven certificates."""
+    from compute.pattern_loci import classify_spaces
+    scerts, census = classify_spaces()
+    require(len(scerts) == 7)
+    nA = sum(1 for c in scerts.values() if c["v0_integral"])
+    nB = sum(1 for c in scerts.values() if c["u0_integral"])
+    require(nA == 1 and nB == 1, "cluster integrality moved")
+    degs = sorted(c["leftover_deg"] for c in scerts.values())
+    require(degs == [8, 8, 12, 18, 18, 18, 18],
+            f"leftover degrees moved: {degs}")
+    n1 = sum(len(v) for k, v in census.items() if len(k) == 1)
+    n2 = sum(len(v) for k, v in census.items() if len(k) == 2)
+    require((n1, n2) == (200, 19), f"pattern counts moved: {(n1, n2)}")
+    ctx.note("7 dim-2 spaces classified: integral curves = entry "
+             "lines + v=0 (A-cluster) / u=0 (B-cluster) only; "
+             "dim V_S >= 2 => classical; 200 patterns reduced to "
+             "the eta*-web")
