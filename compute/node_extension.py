@@ -523,23 +523,30 @@ def sigma_numerators_m(Ns, m, degb):
 
 def resolution_dim_m(forms, m, degb):
     """dim of the subspace of span(forms) extending across ALL 256
-    exceptional curves (tau >= m at the five visible triple points
-    AND at the three B-points via the exact transpose transfer):
-    a lower-bound contribution to h^0(Ytilde, S^m Omega^1) from this
-    (trivial-character) space, and exact for it."""
+    exceptional curves: tau >= m at the five visible triple points,
+    and at the three B-points via tau(sigma* eta, A-tag) >= m — the
+    B-conditions are built DIRECTLY from the pulled-back
+    sigma*-numerators of the basis (linear in the same coordinates),
+    so the span need not be sigma-stable (a partially reconstructed
+    basis usually is not).  A lower-bound contribution to
+    h^0(Ytilde, S^m Omega^1) from this (trivial-character) space,
+    exact for the span."""
     n = len(forms)
+    dord = 12 * (m // 2)
     conds = []
     for tag in VISIBLE:
         _, bm = filtration_m(tag, forms, m, upto=m)
         conds += annihilator(bm, n) if bm is not None else []
-    # transpose transfer: sigma* of each basis element in coordinates
     sig_forms = [sigma_numerators_m(Ns, m, degb) for Ns in forms]
-    Msig = [_solve_in_span_n(sN, forms, m) for sN in sig_forms]
-    for btag, atag in SIGMA_PAIRS:
-        _, bm = filtration_m(atag, forms, m, upto=m)
-        for row in annihilator(bm, n):
-            conds.append([sum(Msig[a][b] * row[b] for b in range(n))
-                          for a in range(n)])
+    for _btag, atag in SIGMA_PAIRS:
+        pulls = [local_pullback_m(sN, atag, m) for sN in sig_forms]
+        rows = {}
+        for gi, P in enumerate(pulls):
+            for ci, c in enumerate(P):
+                for (i, j), v in c.items():
+                    if i + j < dord + m:
+                        rows.setdefault((ci, i, j), [F(0)] * n)[gi] = v
+        conds += list(rows.values())
     return len(nullspace(conds, n))
 
 
