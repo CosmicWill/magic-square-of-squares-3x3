@@ -84,3 +84,54 @@ def _(ctx):
             f"sphere sizes changed: max {big}")
     ctx.note(f"max sphere size {big} vs L3 = L4 = 0 for all "
              f"m <= {bound}: abundance without compatibility")
+
+
+@check("a9.class_numbers", DOC)
+def _(ctx):
+    """The Eisenstein anchor: the ring class number h(-3 m^2)
+    (conductor-m order of Q(sqrt-3)) computed two independent ways —
+    primitive reduced-form enumeration vs the conductor formula
+    (m/3) prod_(p|m) (1 - chi_-3(p)/p) with h(-3) = 1 — agrees for
+    every valid m in range; sample values pinned."""
+    from compute.sphere_classes import h_disc, h_eisenstein
+    bound = 60 if ctx.profile == "FULL" else 30
+    for m in range(1, bound):
+        D = -3 * m * m
+        if D % 4 in (0, 1):
+            require(h_disc(D) == h_eisenstein(m),
+                    f"class-number mismatch at m = {m}")
+    require(h_eisenstein(5) == 2 and h_eisenstein(13) == 4
+            and h_eisenstein(25) == 10 and h_eisenstein(9) == 3)
+    ctx.note(f"conductor formula == reduced-form count for m < "
+             f"{bound}; h(-75) = 2, h(-507) = 4, h(-1875) = 10")
+
+
+@check("a9.gauss_map", DOC)
+def _(ctx):
+    """The Gauss orthogonal-lattice map on the magic-square spheres:
+    (i) the counting identity r3*(3 m^2) = 24 h(-3 m^2) (8 = 24/3 at
+    m = 1, the extra units) — asserted inside analyze() for every
+    sampled m: the sphere's size IS an Eisenstein ring class number;
+    (ii) fibers are uniform (torsor behavior); (iii) SLICE
+    CONCENTRATION: the primitive through-center points (the A3
+    congrua slice) are nonempty iff every odd prime factor of m is
+    == 1 (mod 4), and then number 48 * 2^(w-1) in at most 2^w
+    classes (w = count of such prime factors) — exponentially
+    class-confined while the ambient class number grows linearly.
+    FAST: m in {1, 5, 13}; FULL adds {9, 17, 25, 29, 65}."""
+    from compute.sphere_classes import analyze
+    expect = {1: (1, [8], 8, 1), 5: (1, [48], 48, 1),
+              13: (2, [48], 48, 2), 9: (3, [24], 0, 0),
+              17: (3, [48], 48, 2), 25: (5, [48], 48, 2),
+              29: (5, [48], 48, 2), 65: (6, [96], 96, 4)}
+    sample = ((1, 5, 13, 9, 17, 25, 29, 65) if ctx.profile == "FULL"
+              else (1, 5, 13))
+    for m in sample:
+        r = analyze(m)  # asserts r3* = 24 h internally
+        hit, fib, spts, scls = expect[m]
+        require(r["classes_hit"] == hit and r["fibers"] == fib,
+                f"class profile moved at m = {m}: {r}")
+        require((r["slice_points"], r["slice_classes"]) == (spts, scls),
+                f"slice profile moved at m = {m}: {r}")
+    ctx.note(f"{len(sample)} spheres: r3* = 24 h verified, fibers "
+             "uniform, slice exponentially class-confined")

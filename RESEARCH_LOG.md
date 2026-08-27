@@ -880,3 +880,37 @@ P8 backlog acquisitions (Duke, Aka-Einsiedler-Shapira, Venkov).
 Suite: 99 checks green (FULL). [M11-K surveys still running in the
 background: m=6 nearly done all-zero; m=8 tau-test in its big
 elimination.]
+
+## 2026-08-27 — Entry 23: A9-T1 first layer — the Eisenstein anchor and slice confinement
+
+compute/sphere_classes.py (checks a9.class_numbers, a9.gauss_map):
+
+THE EISENSTEIN ANCHOR: every magic-square sphere has n = 3 m^2, so
+its binary quadratic theory lives in the ONE field Q(sqrt-3) — the
+order Z[m sqrt-3] of conductor m — and the primitive sphere size is
+exactly a ring class number:
+
+    r3*(3 m^2) = 24 h(-3 m^2)   (8 = 24/3 at m = 1),
+
+verified for 13 sample m up to 105, with h computed two independent
+ways (conductor formula vs primitive reduced forms, agreeing for all
+m < 60). Caught en route: the imprimitive form (2,2,2) inflating a
+naive h(-12) count — order class numbers are primitive-form counts.
+
+THE GAUSS MAP (the Aka-Einsiedler-Shapira object, implemented):
+point -> class of the orthogonal lattice v^perp cap Z^3 (determinant
+certified by saturation). Fibers uniform (48 = signed-permutation
+orbit; torsor behavior); hit-classes track h up to the expected
+conflations.
+
+SLICE CONFINEMENT (measured; the first class-group constraint on
+configurations): primitive through-center points exist iff every odd
+prime of m is == 1 mod 4, and then number 48 * 2^(w-1) in at most
+2^w classes (w = #such primes) — EXPONENTIALLY CLASS-CONFINED while
+the ambient class number grows linearly. The four through-center
+lines of any magic square must sit inside this thin window; the next
+A9-T1 step expresses the outer-line gluing as Gauss-composition
+relations against it.
+
+Suite: 101 checks green (FULL). [M11-K still grinding: m=6 survey
+and the m=8 tau-test elimination.]

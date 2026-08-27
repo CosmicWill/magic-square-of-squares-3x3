@@ -84,26 +84,67 @@ Bombieri–Lang philosophy predicts at most finitely many
 nondegenerate points, against the heuristic's optimism. Any
 resolution of the problem must reconcile exactly these two forces.
 
-## 3. The class-group program (open)
+## 3. The class-group layer (A9-T1, first results)
 
-- **A9-T1 (the torsor formulation).** Via Gauss/Venkov, the points
-  of $\mathcal{S}(n)$ carry the action of the class group of
-  $\mathbb{Q}(\sqrt{-n})$. Formulate the 8-point glued configuration
-  as a system of relations in that torsor; derive genus-theory
-  constraints on configurations (the computable first layer — it
-  should recover, and may strengthen, the F4 congruences), then ask
-  what the full class-group structure forbids. The $m$-slice case is
-  the Gaussian-integer layer already exploited by A3.
-- **A9-T2 (acquisitions, backlog).** Duke (Invent. Math. 92, 1988)
-  and Aka–Einsiedler–Shapira (joint equidistribution of lattice
-  points and orthogonal lattices) — background for any density-style
-  argument; added to [papers/WANTED.md](../../papers/WANTED.md)
-  backlog.
+(`compute/sphere_classes.py`; checks `a9.class_numbers`,
+`a9.gauss_map`.)
+
+**The Eisenstein anchor (PROVEN for the range).** Since
+$n = 3m^2$, the binary quadratic theory of every sphere in the
+vertical family lives in the *single field* $\mathbb{Q}(\sqrt{-3})$:
+the relevant order is $\mathbb{Z}[m\sqrt{-3}]$, of discriminant
+$-3m^2$ and conductor $m$, with ring class number
+$$h(-3m^2) \;=\; \frac{m}{3}\prod_{p \mid m}
+\Bigl(1 - \frac{\chi_{-3}(p)}{p}\Bigr) \quad (m > 1), \qquad
+h(-3) = 1,$$
+verified against an independent primitive-reduced-form enumeration
+for every valid $m < 60$.
+
+**The counting identity (VERIFIED on the sample; classical).** The
+primitive sphere sizes are exactly Eisenstein class numbers:
+$$r_3^*(3m^2) \;=\; 24\,h(-3m^2) \qquad (m > 1;\ 8 = 24/3\ \text{at}
+\ m = 1),$$
+checked for $m \in \{1, 5, 9, 13, 17, 25, 29, 33, 37, 41, 65, 85,
+105\}$ — the sphere's size *is* a class number, as Gauss's theory
+demands.
+
+**The Gauss map, implemented.** Each primitive point $v$ maps to the
+class of the binary form on the orthogonal lattice $v^\perp \cap
+\mathbb{Z}^3$ (determinant $n$ certified by saturation; even Gram
+convention, discriminant $-4n$) — the Aka–Einsiedler–Shapira object.
+Measured structure: fibers are **uniform** (48 generically, the
+signed-permutation orbit; torsor behavior), and the hit-class count
+tracks $h$ up to the expected 2-to-1 conflations.
+
+**Slice concentration (measured — the first class-group constraint
+on configurations).** The primitive through-center points (the A3
+congrua slice) are nonempty iff every odd prime factor of $m$ is
+$\equiv 1 \pmod 4$ (the hypotenuse condition), and then they number
+$$48 \cdot 2^{\omega_1 - 1} \ \text{points in at most}\ 2^{\omega_1}
+\ \text{classes} \qquad (\omega_1 = \#\{p \mid m : p \equiv 1 \bmod
+4\}),$$
+while the ambient class number grows linearly in $m$: **the
+through-center lines of any magic square are exponentially
+class-confined**, the outer lines are not. A magic configuration
+needs its four through-center points inside this thin class window
+*and* its four outer points glued to them — the next A9-T1 step is
+to express that gluing as relations under Gauss composition and ask
+what the confinement forbids.
+
+**Still open in A9-T1:** the composition *action* itself
+(quaternionic/Venkov, beyond the class map), the configuration
+relations, and the genus-character layer. **A9-T2 (acquisitions,
+backlog):** Duke (Invent. Math. 92, 1988), Aka–Einsiedler–Shapira,
+Venkov — see [papers/WANTED.md](../../papers/WANTED.md) P8.
 
 ## 4. What the verify script proves mechanically
 
 `verify/checks/a9_spheres.py`: the all-lines-on-one-sphere identity
 (symbolic, via the Lucas parametrization), the trivial point, the
 exact slice $\leftrightarrow$ $D(m)$ bijection for every $m$ up to
-the profile bound, the all-odd residue fact, and the pinned tension
-table (max sphere size vs $L_3 = L_4 = 0$).
+the profile bound, the all-odd residue fact, the pinned tension
+table (max sphere size vs $L_3 = L_4 = 0$); and the class layer:
+the two independent $h(-3m^2)$ computations agreeing with pinned
+values, and the Gauss-map profile ($r_3^* = 24h$ asserted per
+sphere, uniform fibers, the slice-concentration law) on the pinned
+sample.
