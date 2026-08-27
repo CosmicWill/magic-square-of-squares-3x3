@@ -718,3 +718,47 @@ component analysis vs the six outside triple points), aiming at
 |S| >= 3; then the eta*-web analysis toward full enumeration.
 
 Suite: 94 checks green (FULL).
+
+## 2026-08-26 — Entry 19: THREE TRIPLE POINTS, SHARP — the pattern-counting layer is complete (M11-H)
+
+Theorem A8.15 (PROVEN, a8.pattern_pairs, ~90 s for all 28 patterns):
+EVERY COMPLETE GENUS-0 CURVE ON X MEETS NODES OVER AT LEAST THREE
+DISTINCT TRIPLE POINTS — hence >= 3 distinct nodes — AND THE BOUND
+IS SHARP: the classical AP components over u=0 / v=0 have pattern
+exactly {B0, B+, B-} resp. {A0, A+, A-}.
+
+A pattern-{P,Q} image must contain P and Q, avoid the other six
+triple points, be integral for the pencil V_S = V_P cap V_Q (for
+dim 2, Z(V_S) = V(Res) EXACTLY), and not be an entry line (A7.3).
+The 28 patterns die three ways:
+- 6 (the dim-3 lattice pairs): coprime peeled cofactors — Z(V_S)
+  curve part = entry lines;
+- 10: the peeled cofactor does not vanish at P or Q (exact
+  projective evaluation); where the PQ-line divides first (the
+  pencil carriers for A-A / B-B pairs) it is excluded by the third
+  family point it carries — exactly the AP-family mechanism — and
+  divided out;
+- 12 (outer points of different families): the cofactor is a
+  degree-18 curve through ALL EIGHT triple points, PROVEN
+  irreducible over Q (restrictions to degree-preserving rational
+  lines, squarefree over Q, mod-p factor-degree subset-sums empty
+  across 3 lines x 8 primes; one line/prime even gives an
+  irreducible restriction mod p). A rational point on a
+  Q-irreducible curve lies on EVERY Galois-conjugate component, and
+  the six outside triple points are rational and on the curve: every
+  component excluded.
+
+With A8.8 (|S| >= 1), A8.14 (>= 2) and A8.15 (>= 3, attained), the
+pattern-COUNTING story is closed. What remains is CLASSIFICATION at
+|S| = 3: the integral curves of the triple-pattern subsystems beyond
+the classical families (A-/B-triples: the 2-spaces <eta_4, eta_6> /
+<eta_3, eta_4>; mixed triples: down to the eta*-web itself) — the
+road to a Stoll-Testa-grade classification of all rational curves
+on X (M11-I).
+
+New machinery: sympy-free bivariate irreducibility certificates
+(DDF degree subset-sums over multiple lines/primes), exact
+projective point evaluation, affine-line division, sound-direction
+integrality refutation via mod-p pseudo-remainders.
+
+Suite: 95 checks green (FULL).

@@ -15,9 +15,10 @@ through a node — is PROVEN, unconditional**; §8 the node-extension
 layer: **$h^0(\widetilde X, S^4\Omega^1) = 1$** (the resolution's
 unique symmetric quartic differential $\eta_\star = \eta_4$, PROVEN),
 universal $\eta_\star$-integrality of rational curves,
-$\widetilde C \cdot E \ge 4$, the node-pattern dichotomy, and
-**Theorem A8.14 PROVEN: every genus-0 curve meets nodes over $\ge 2$
-distinct triple points**; §9 roadmap. Verification:
+$\widetilde C \cdot E \ge 4$, the node-pattern dichotomy, and the
+pattern-counting theorems **A8.14–A8.15 PROVEN: every genus-0 curve
+meets nodes over $\ge 3$ distinct triple points — sharp** (the
+classical families attain 3); §9 roadmap. Verification:
 `python3 -m verify --only a8`.
 
 ## 0. Goal
@@ -633,12 +634,54 @@ cofactor degrees 8–24).  A genus-0 curve has no entry-line image
 This is the magic-square analogue of BTVA's cuboid Theorem 1.2
 ("genus $\le 1$ curves pass through $\ge 2$ of the 48 nodes") — for
 genus 0, by a different mechanism (extension subspaces instead of
-$E$-vanishing counting).  The classical families comply with room to
-spare: the AP components over $u = 0$ and $v = 0$ visit **three**
-triple points each.  Pushing to $|S| \ge 3$ (the $|S| = 2$ loci:
-dimension-2 or 3 subsystems, one resultant each plus component
-analysis) is the natural continuation; the endgame is a
-Stoll–Testa-grade classification of all rational curves on $X$.
+$E$-vanishing counting).  And it is not the end:
+
+**Theorem A8.15 (three triple points — SHARP). PROVEN**
+(`a8.pattern_pairs`; all 28 two-point patterns, ~90 s).  *Every
+complete curve of geometric genus 0 on $X$ meets nodes over at least
+**three** distinct triple points — in particular through at least
+three distinct nodes.  The bound is sharp: the classical AP
+components over $u = 0$ and $v = 0$ have node pattern exactly
+$\{B_0, B_\pm\}$ resp. $\{A_0, A_\pm\}$.*
+
+*Proof, machine-executed.*  A pattern-$\{P, Q\}$ image contains $P$
+and $Q$ (their nodes map there), avoids the other six triple points,
+is integral for $V_S = V_P \cap V_Q$, and is not an entry line
+(A7.3).  For a 2-dimensional pencil $V_S$, $Z(V_S) = V(\operatorname
+{Res})$ *exactly*, so the image is a component of the peeled
+cofactor.  The 28 patterns die three ways:
+
+- **6 pairs** (the dim-3 lattice pairs): two of the three basis-pair
+  resultants have coprime peeled cofactors — $Z(V_S)$'s curve part
+  is the entry lines, as in Theorem A8.14.
+- **10 pairs**: the peeled cofactor does not vanish at $P$ or at $Q$
+  (exact projective evaluation), so no component passes through
+  both.  (Where the line $PQ$ divides first — the pencil carriers
+  $v = 0$, $u = 0$ for the $A$- and $B$-family pairs — the line is
+  excluded by the third family point it carries, exactly the
+  AP-family mechanism, and divided out until the quotient misses
+  $P$ or $Q$.)
+- **12 pairs** (outer points of different families): the cofactor is
+  a degree-18 curve through **all eight** triple points, PROVEN
+  irreducible over $\mathbb{Q}$ — restrictions to degree-preserving
+  rational lines, squarefree over $\mathbb{Q}$, with mod-$p$
+  factor-degree subset-sums *empty* across lines and primes (one
+  line/prime pair even gives an irreducible restriction mod $p$).
+  A $\mathbb{Q}$-rational point on a $\mathbb{Q}$-irreducible curve
+  lies on **every** Galois-conjugate $\overline{\mathbb{Q}}$-
+  component; the six outside triple points are rational and on the
+  curve, so every component hits them: excluded.  $\blacksquare$
+
+Since patterns of size 0, 1, 2 are now all impossible (A8.8, A8.14,
+A8.15) and size 3 is attained, the pattern-counting layer is
+**complete**.  What remains is classification at $|S| = 3$: which
+integral curves beyond the classical families do the triple-pattern
+subsystems admit?  (For the $A$-/$B$-triples, the 2-dimensional
+spaces $\langle\eta_4, \eta_6\rangle$/$\langle\eta_3, \eta_4\rangle$;
+for mixed triples, down to $\langle\eta_4\rangle$ — the
+$\eta_\star$-web itself.)  That, and the GFU-§2-style analysis of the
+$\eta_\star$-web, is the road to a Stoll–Testa-grade classification
+of all rational curves on $X$.
 
 ## 9. Roadmap
 
@@ -652,13 +695,14 @@ Stoll–Testa-grade classification of all rational curves on $X$.
    on the uniform AP-cone, the full extension lattice,
    $h^0(\widetilde X, S^4\Omega^1) = 1 = \langle\eta_4\rangle$,
    universal $\eta_\star$-integrality, $\widetilde C \cdot E \ge 4$,
-   and the pattern dichotomy; **singleton patterns excluded (M11-G,
-   Theorem A8.14): every genus-0 curve visits $\ge 2$ triple points**.
-   **Remaining (M11-H): the $|S| = 2$ loci** — dimension-2/3
-   subsystems, one resultant each plus irreducible-component analysis
-   (does each extra component pass through a triple point outside
-   $S$?), aiming at $|S| \ge 3$; then the single-web analysis of
-   $\eta_\star$ (GFU-§2-style) toward the full enumeration.
+   and the pattern dichotomy; singleton patterns excluded (M11-G,
+   Theorem A8.14); **two-point patterns excluded (M11-H, Theorem
+   A8.15): every genus-0 curve visits $\ge 3$ triple points — SHARP.
+   The pattern-counting layer is complete.**  Remaining (M11-I): the
+   $|S| = 3$ *classification* — integral curves of the triple-pattern
+   subsystems beyond the classical families (down to the
+   $\eta_\star$-web for mixed triples), GFU-§2-style; the road to the
+   full rational-curve classification.
 4. ~~A8-T3 (exact upgrade of Certificate A8.7)~~ **done the same
    day** (Theorem A8.7′, §7): exact $R_{12}, R_{34}$ by provably
    complete CRT, exact line-peeling, coprime cofactors — Theorem
@@ -675,7 +719,7 @@ Stoll–Testa-grade classification of all rational curves on $X$.
 
 ## 10. What the verify script proves mechanically
 
-`verify/checks/a8_descent.py` (20 checks): the §2 structural facts
+`verify/checks/a8_descent.py` (21 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic
 splits with smoothness); the quadric control at $m = 1, 2$; the
 $d\ell_1 d\ell_2$ near-trap rejected for exactly the chart-2 reason;
@@ -704,6 +748,8 @@ extension lattice pinned ($22 \times 2 + 6 \times 3$, triples,
 $W = \langle\eta_4\rangle$ with direct $\tau$-certification through
 the transpose), the AP-family dichotomy consistency ($u = 0$
 integral for the $B$-triple space, $v = 0$ for the $A$-triple
-space), and the eight singleton-pattern certificates (Theorem
-A8.14: subsystem resultants exactly, entry lines peel to $\ge 8$,
-cofactors coprime).
+space), the eight singleton-pattern certificates (Theorem A8.14:
+subsystem resultants exactly, entry lines peel to $\ge 8$, cofactors
+coprime), and the 28 two-point-pattern certificates (Theorem A8.15:
+coprime cofactors / point-evaluation prefilters / carrier-line
+peeling / the degree-18 irreducibility certificates).

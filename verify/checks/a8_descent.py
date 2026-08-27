@@ -553,3 +553,34 @@ def _(ctx):
                 f"certificate shape moved at {tag}: {c['pairs']}")
     ctx.note(f"{len(tags)} triple points: Z(V_P) curve part = entry "
              "lines only; singleton node patterns impossible")
+
+
+@check("a8.pattern_pairs", DOC)
+def _(ctx):
+    """Theorem A8.15 (SHARP): every complete genus-0 curve on X meets
+    nodes over >= 3 distinct triple points — the classical AP
+    families attain exactly 3.  All 28 two-point patterns are
+    excluded: a pattern-{P,Q} image must contain P and Q, avoid the
+    other six triple points, be integral for V_S = V_P cap V_Q, and
+    not be an entry line (A7.3).  Certificates: 6 dim-3 pairs by
+    coprime peeled cofactors (Z(V_S) curve part = entry lines); 10
+    pairs by the peeled cofactor not vanishing at P or Q (no
+    component through both); 12 pairs by the PQ-line analysis plus a
+    deg-18 cofactor PROVEN irreducible over Q (degree-preserving line
+    restrictions, mod-p factor-degree subset-sums empty across
+    lines/primes) that hits Q-rational outside triple points — and a
+    rational point on a Q-irreducible curve lies on EVERY Galois
+    conjugate component, so all its components are excluded.  FAST:
+    one representative of each certificate kind; FULL: all 28."""
+    from compute.pattern_loci import all_pairs
+    pairs = None if ctx.profile == "FULL" else [
+        ("A0", "B0"), ("A0", "A+"), ("A0", "D+"), ("A+", "B+")]
+    certs = all_pairs(pairs)
+    for tagS, cert in certs.items():
+        require(cert["excluded"],
+                f"pattern {tagS} no longer excluded: {cert}")
+        require(not cert["survivors"])
+    n = len(certs)
+    require(n == (28 if ctx.profile == "FULL" else 4))
+    ctx.note(f"{n} two-point patterns excluded; with a8.pattern_"
+             "singletons: |S| >= 3 for every genus-0 curve (sharp)")
