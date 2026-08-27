@@ -121,3 +121,15 @@ quantify how much hyperbolicity the nodes buy.
 - Morgenstern / Boyer pages (save-as-PDF of
   http://www.multimagie.com/English/SquaresOfSquaresSearch.htm and
   .../Morgenstern17.htm). *(Turns the CITED search bounds into READ.)*
+
+## P8 — discrete-sphere background (A9; backlog, descriptive use only)
+
+- W. Duke, "Hyperbolic distribution problems and half-integral weight
+  Maass forms," Invent. Math. 92 (1988) 73–90. (Equidistribution of
+  lattice points on spheres — Linnik's problem.)
+- M. Aka, M. Einsiedler, U. Shapira, "Integer points on spheres and
+  their orthogonal lattices," Invent. Math. 206 (2016) 379–396.
+  (Joint equidistribution; the modern structure of S(n).)
+- B. A. Venkov, "On the arithmetic of quaternions" (1922/1929
+  series). (Class-group parametrization of S(n) — the A9-T1 input;
+  any modern exposition, e.g. via Shemanske or Elkies notes, serves.)

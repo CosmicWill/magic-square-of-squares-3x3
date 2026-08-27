@@ -836,3 +836,47 @@ the first pass — the repo module clears denominators exactly and
 cross-checks the 15 lines by direct substitution.
 
 Suite: 97 checks green (FULL).
+
+## 2026-08-27 — Entry 22: A9 — the discrete-sphere model (owner's picture, made exact)
+
+New attack file A9 (docs/attacks/A9-discrete-spheres.md;
+compute/discrete_spheres.py; checks a9.dictionary, a9.tension),
+formalizing the owner's geometric brainstorm: the problem as lattice
+points on spheres.
+
+The dictionary (PROVEN, machine-checked): with center entry m^2,
+every magic line sums to 3 m^2, so a magic square of squares is
+EIGHT POINTS OF THE SINGLE DISCRETE SPHERE S(3 m^2) in root
+coordinates, glued by shared coordinates (center on 4 lines, square
+corners on 3, edges on 2); the trivial point (m, m, m) is the
+all-equal square; and the m-SLICE (points with a coordinate = m)
+bijects exactly with A3's congrua set D(m) via
+(e, f) -> (|e-f|, m, e+f) — A3 is the discrete-circle slice of the
+sphere model. Parity shadow: 3 m^2 == 3 (mod 8) forces all-odd
+coordinates on every representation.
+
+A subtlety the checks enforce (caught by a failing first draft): the
+square's 8 MAGIC lines are the zero-sum label triples, while the 8
+TRIPLE POINTS of the arrangement are the grid-collinear triples —
+exactly four of which are magic lines (A0, B0, D+-: genuine sphere
+collapses, and precisely the four triple points on the central entry
+line that organize the A8 §8 classification), while the outer four
+(A+-, B+-) are oblique. The A8 counting theorems read: any
+1-parameter family of solutions passes through >= 3 of these eight
+degeneration points.
+
+The tension, quantified (a9.tension): by m <= 200 the sphere reaches
+64 points (abundance ~ class numbers; Duke equidistribution), while
+the compatibility ladder on the slice — an MSS3 needs an additive
+quadruple in D(m) — stays at L3 = L4 = 0 (consistent with A3's far
+larger desert). Abundance without compatibility: the counting
+heuristics' optimism against the Bombieri-Lang scarcity our surface
+theorems support.
+
+Open: A9-T1 (the class-group torsor formulation of the 8-point glued
+configuration via Gauss/Venkov, genus-theory constraints first);
+P8 backlog acquisitions (Duke, Aka-Einsiedler-Shapira, Venkov).
+
+Suite: 99 checks green (FULL). [M11-K surveys still running in the
+background: m=6 nearly done all-zero; m=8 tau-test in its big
+elimination.]

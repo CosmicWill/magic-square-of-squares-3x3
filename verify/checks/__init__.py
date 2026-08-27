@@ -19,6 +19,7 @@ MODULES = [
     "a7_conics",
     "a7_btva",
     "a8_descent",
+    "a9_spheres",
     "a6_bounds",
 ]
 
