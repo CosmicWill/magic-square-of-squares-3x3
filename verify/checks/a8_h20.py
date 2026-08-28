@@ -49,3 +49,45 @@ def _(ctx):
              "rho >= 16 + t3) + 9 Horikawa characters (K^2 = 2, chi = 4); "
              "sum = 111 = chi(O) - 1: the abelian-cover formula confirmed "
              "against Noether")
+
+
+@check("a8.web_cubics", DOC)
+def _(ctx):
+    """Theorem A8.19 (M11-J-2 opening): the eta*-web has NO integral
+    graph cubic (linear in c or in v) through >= 3 triple points —
+    the six univariate incidence families have constant-or-x^k gcds
+    (exact, stdlib), and (FULL, sympy) the seven 2-parameter
+    families' eliminations are Qbar-complete with every solution a
+    known integral line."""
+    from compute.web_cubics import (finish_two_param,
+                                    gcd_roots_rational,
+                                    run_univariate_slices,
+                                    classify_solution)
+    uni = run_univariate_slices()
+    for name, (deg, roots) in uni.items():
+        require(roots is not None, f"{name}: system vanished?!")
+        if "a0=0" in name or "v0=0" in name:
+            require(deg == 2 and roots == [__import__(
+                "fractions").Fraction(0)], (name, deg, roots))
+        else:
+            require(deg == 0, f"{name}: nonconstant gcd {deg}")
+    if ctx.bound(full=1, fast=0):
+        try:
+            import sympy  # noqa: F401
+        except ImportError:
+            from ..framework import Skip
+            raise Skip("sympy needed for the 2-parameter families")
+        res = finish_two_param(verbose=False)
+        require(len(res) == 7)
+        for name, (complete, sols) in res.items():
+            require(complete, f"{name}: irrational y-candidates")
+            for entry in sols:
+                y0, roots = entry[0], entry[1]
+                require(roots != "ALL x", f"{name}: degenerate family")
+                require(entry[2], f"{name}: x-gcd not split")
+                for x0 in roots:
+                    deg, g = classify_solution(name, y0, x0)
+                    require(deg <= 1, f"{name}: nonlinear solution!")
+    ctx.note("A8.19: no integral graph cubics through >= 3 triple "
+             "points — all thirteen incidence families contain only "
+             "the known integral lines as degenerate members")

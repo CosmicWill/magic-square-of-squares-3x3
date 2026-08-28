@@ -1831,3 +1831,31 @@ proven sieve law is not a proven desert; the actuarial reading cuts
 both ways; papers pending peer review), the resolution paths updated
 (the desert in Diophantine form; the abc bridge; Conjecture E), and
 the reproduce commands brought current.
+
+## 2026-08-28 — Entry 45: M12-C opens — Theorem A8.19: no integral graph cubics
+
+The cubic campaign's first slice is closed exactly, by the A8.17
+machinery one notch up (compute/web_cubics.py; a8.web_cubics, FAST
+stdlib + FULL sympy, both green).
+
+THEOREM A8.19 (PROVEN): no eta*-integral cubic through >= 3 triple
+points of the branch arrangement is a graph (linear in c or in v).
+The proof is incidence-first: the eight triple points sit on three
+v-levels and three c-levels plus infinity, so a c-graph must take
+one A-point and BOTH D-points — the closed univariate families
+c = (1 - v^2)(a0 + bv) — while a v-graph automatically passes B0
+triply, giving three univariate and seven 2-parameter families.
+Exact outcomes: the univariate gcds are nonzero constants at
+a0, v0 = +-1 and b^2-only at 0; the 2-parameter eliminations have
+resultant gcds splitting COMPLETELY into rational linears
+(Qbar-completeness), per-candidate x-gcds likewise; and every
+surviving parameter point is a KNOWN INTEGRAL LINE (v = 0, c = 0,
+or an entry line v = +-1 +- c) — a degenerate family member, never
+a cubic.
+
+CONSEQUENCE: any new rational curve on X with cubic Lucas image has
+genuine degree->= 2 terms in BOTH coordinates. The continuing M12-C
+body: per-configuration <= 6-parameter eliminations over the 56
+triple-point triples (cut by D4 symmetry and A8.16's pattern
+constraint), with the validated restriction_system machinery as the
+engine. Suite 125.

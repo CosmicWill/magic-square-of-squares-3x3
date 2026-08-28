@@ -812,6 +812,51 @@ character — where products live and where any finiteness shortcut
 would have to live — is settled decisively at every degree
 $4 \le m \le 8$.
 
+### The cubic level opens: the graph slices are closed (M11-J-2, M12-C)
+
+*(2026-08-28; `compute/web_cubics.py`, check `a8.web_cubics` —
+exact, stdlib for the univariate families, sympy resultants for the
+two-parameter ones, in the A8.17 pattern.)*
+
+**Theorem A8.19 (no integral graph cubics). PROVEN.** No
+$\eta_\star$-integral cubic passing through $\ge 3$ triple points of
+the branch arrangement is a *graph* — a curve whose defining
+polynomial is linear in $c$ ($c = f(v)$) or linear in $v$
+($v = g(c)$).
+
+*Proof shape.* Incidence first: the eight triple points are the three
+finite $A$-points $(\mp a, 0)$ on $v = 0$, the three $B$-points
+$(-b : 0 : 1)$ on $u = 0$ at infinity, and $D_\pm = (0, \pm 1)$. A
+$c$-graph meets each $v$-level once and its only point at infinity is
+$(1{:}0{:}0)$ (a double point, not a triple point), so $\ge 3$ triple
+points forces one $A$-point plus **both** $D$-points — the closed
+families $c = (1 - v^2)(a_0 + b v)$, $a_0 \in \{-1, 0, 1\}$, each
+**univariate** in $b$. A $v$-graph automatically passes
+$B_0 = (0{:}0{:}1)$ (triply) and meets each $c$-level once, giving
+three univariate families $v = (1-c^2)(v_0 + b c)$ and seven
+two-parameter families. The restriction of $\eta_\star$ gives exact
+polynomial systems; the six univariate gcds over $\mathbb{Q}$ are
+**nonzero constants** at $a_0, v_0 = \pm 1$ and $b^2 \cdot$const at
+$0$ (so $b = 0$ only); the seven two-parameter eliminations
+(nonzero resultant pairs, Bézout-sound) have gcds whose factor lists
+split **completely into rational linears** — candidate-completeness
+over $\overline{\mathbb{Q}}$ — and every per-candidate exact
+$x$-gcd splits likewise. Every surviving parameter point classifies
+as a **known integral line** ($v = 0$, $c = 0$, or an entry line
+$v = \pm 1 \pm c$) — a degenerate member of the family, never a
+cubic. $\blacksquare$
+
+**Consequence.** Any new rational curve on $X$ with cubic Lucas
+image has an image whose defining form carries genuine
+degree-$\ge 2$ terms in *both* $c$ and $v$ — the remaining
+(non-graph) body of the cubic level: per triple-point configuration
+a $\le 6$-parameter elimination (56 configurations of 3 of the 8
+triple points, cut down by the $D_4$ symmetries and by A8.16's
+$\dim V_S \le 1$ pattern constraint). That is the continuing M12-C
+campaign; the machinery (`restriction_system` — exact restriction of
+$\eta_\star$ to any parametrized family) is built and validated
+against A8.17.
+
 ## 9. Roadmap
 
 1. ~~$m = 3, 4$ surveys~~ **done** (§5): $m_{\min} = 4$, six invariant
