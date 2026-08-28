@@ -1595,3 +1595,14 @@ This is the first PROVEN structural theorem about the fourth
 sieve's fine structure — W4's opening theorem — and it sharpens
 H-align: the alignment question now concerns only the phantom
 sums and the outer lines.
+
+## 2026-08-28 — Entry 38 addendum: the full-corpus A9.6 sweep is green
+
+The one-time FULL-corpus run of a9.center_cap completed: all 5,292
+representation-killed pairs certified — 10,584 constructive
+certificates (the actual sphere point, its content, the even
+orthogonal form, and the three representation checks, for BOTH real
+center lines of every pair), zero failures; rep_verdict spot checks
+confirm killed-line indices exclude 0 and 1 throughout. The suite
+keeps the 2,000-pair stride at FULL profile for runtime hygiene;
+this entry records the complete sweep.
