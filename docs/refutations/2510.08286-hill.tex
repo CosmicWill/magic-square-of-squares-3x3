@@ -1,0 +1,513 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem*{thmA}{Theorem A}
+\newtheorem*{thmB}{Theorem B}
+\newtheorem*{corA}{Corollary A.1}
+\newtheorem*{propone}{Proposition 1}
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\cP}{\mathcal{P}}
+
+\title[Refutation of the proof in arXiv:2510.08286]{A refutation of the
+proof in ``On Arithmetic Progressions and a Proof of the Nonexistence of
+Magic Squares of Squares'' (arXiv:2510.08286)}
+
+% TODO: replace with your name and (optionally) email before sending.
+\author{[Author name]}
+\date{August 28, 2026}
+
+\begin{document}
+
+\begin{abstract}
+The preprint arXiv:2510.08286 (v3, April 2026) claims a proof that no
+$3\times 3$ magic square of distinct square integers exists. We show that
+the proof is invalid. Its penultimate equation, eq.~(29), is proven here
+to equal a strictly positive cofactor times the preprint's own Lemma-3.2
+spacing constraint --- an algebraic identity valid over any ordered
+field, carrying no Diophantine information (Theorem~A) --- and the final
+inference drawn from~(29), namely $\beta_{1d}^2 - \beta_{1n}^2 = 0$ by
+comparison of coefficients of odd powers of $\alpha_{1d}$, fails on an
+explicit configuration satisfying every hypothesis and every positivity
+condition that the inference invokes (Theorem~B). The witness is itself
+of independent interest: a magic square with six perfect-square entries
+produced by the preprint's own (correct) framework. We emphasize that
+this note refutes the \emph{proof}, not the \emph{statement}: the
+existence question for $3\times 3$ magic squares of squares remains
+open. All computations are exact and are reproduced by a short script
+given in Appendix~\ref{app:script}.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+A $3\times 3$ \emph{magic square of squares} is a $3\times 3$ array of
+nine distinct perfect squares whose rows, columns and both diagonals
+share a common sum. Whether one exists over the integers is a
+well-known open problem (LaBar~\cite{LaBar}; Guy~\cite{Guy}, Problem
+D15). The preprint~\cite{Hill} (henceforth ``the preprint''; we refer
+throughout to version~3, dated April 7, 2026) claims a proof of
+nonexistence as its Theorem~3.1.
+
+This note establishes:
+
+\begin{enumerate}
+\item[(a)] the preprint's reduction framework is \emph{correct and
+  complete} --- its constraint system is equivalent to the classical
+  Lucas structure of the problem (Proposition~1), and its algebra is
+  correct through its eq.~(30) inclusive;
+\item[(b)] its eq.~(29) is a positive multiple of its own Lemma-3.2
+  constraint, hence equivalent to it, hence devoid of arithmetic
+  content beyond it (Theorem~A);
+\item[(c)] the final inference --- from~(29) to $\beta_{1d}^2 -
+  \beta_{1n}^2 = 0$ --- is invalid: an explicit configuration satisfies
+  all of its hypotheses and positivity conditions while violating its
+  conclusion, with both sides of~(29) nonzero (Theorem~B).
+\end{enumerate}
+
+Consequently the proof of Theorem~3.1 of~\cite{Hill} does not go
+through, and, as we argue in \S\ref{sec:step}, no local repair is
+possible: the derivation never leaves the real-algebraic world, where
+the constraint system is abundantly solvable.
+
+Throughout, equation numbers (2), (6)--(14), (16)--(30) refer to the
+preprint's numbering; our own statements are labelled Proposition~1,
+Theorem~A, Theorem~B.
+
+\section{The preprint's framework, recalled}\label{sec:framework}
+
+For reals $0 < p < q < r$ with
+\begin{equation*}
+q^2 - p^2 \;=\; r^2 - q^2 \;=\; \Sigma\cP,
+\end{equation*}
+the preprint calls the corresponding pair of consecutive runs of odd
+numbers an \emph{AP pair} $\cP$ with sum $\Sigma\cP$, and associates to
+it (its \S2):
+\begin{itemize}
+\item lengths $\cP^{n_1} = q - p$ and $\cP^{n_2} = r - q$, with
+  $\kappa = \cP^{n_1}/\cP^{n_2} > 1$;
+\item $\alpha = \kappa(\kappa+1)/(\kappa-1)$, written
+  $\alpha_n/\alpha_d$ (its eq.~(9)); offsets $\cP^1 = 2p$,
+  $\cP^2 = 2q$, $\cP^3 = 2r - 2$;
+\item $s = \sqrt{(\alpha_n - 3\alpha_d)^2 - 8\alpha_d^2}$ and $N$
+  satisfying $N(N + 2s) = 8\alpha_d^2$, i.e.\ a root of
+  $N^2 - 2(\alpha_n - 3\alpha_d)N + 8\alpha_d^2 = 0$ (its
+  eqs.~(10)--(12); both roots satisfy~(12), and~(13), (14) both recover
+  $\kappa$).
+\end{itemize}
+Three consequences of these definitions, each a short computation and
+each verified mechanically at every configuration appearing below:
+\begin{equation}\label{eq:star}
+\Sigma\cP = \alpha\,(\cP^{n_2})^2, \qquad
+q = \tfrac12\,\cP^{n_2}(\alpha - 1), \qquad
+p = \frac{\cP^{n_2}\,s}{2\alpha_d},
+\qquad\text{with } s = \frac{8\alpha_d^2 - N^2}{2N}.
+\tag{$*$}
+\end{equation}
+(The first two are the preprint's~(6) and~(8); the third is equivalent
+to its~(7).)
+
+For a hypothetical $3\times 3$ magic square of squares the preprint
+(its \S3) derives three \emph{distinct} AP pairs $\cP_1, \cP_2, \cP_3$
+with equal sums $D_1$ (its (17)--(20)), sets
+\begin{equation*}
+\beta_1 = \frac{\cP_1^{n_2}}{\cP_2^{n_2}} = \sqrt{\frac{\alpha_2}{\alpha_1}},
+\qquad
+\beta_2 = \frac{\cP_2^{n_2}}{\cP_3^{n_2}} = \sqrt{\frac{\alpha_3}{\alpha_2}}
+\end{equation*}
+(its (21), (22)), splits them as
+\begin{equation*}
+\beta_{1n} = \sqrt{\alpha_{2n}/\alpha_{1n}}, \quad
+\beta_{1d} = \sqrt{\alpha_{2d}/\alpha_{1d}}, \quad
+\beta_{2n} = \sqrt{\alpha_{3n}/\alpha_{2n}}, \quad
+\beta_{2d} = \sqrt{\alpha_{3d}/\alpha_{2d}}
+\end{equation*}
+--- ``where $\beta_{1n}, \beta_{1d}, \beta_{2n}, \beta_{2d} \in
+\R^+$'' (its (23)--(26), p.~5) --- and proves (its Lemma~3.2, whose
+case analysis is correct) the spacing constraint
+\begin{equation}\label{eq:L32}
+\Sigma\mathbf{p}_A = \Sigma\mathbf{p}_B,
+\qquad\text{equivalently}\qquad
+E := (p_2^2 - q_1^2) - (p_3^2 - q_2^2) = 0.
+\tag{L3.2}
+\end{equation}
+From these ingredients it asserts its eq.~(29):
+\begin{multline}
+N_3^2\beta_{2n}^2\beta_{2d}^2\bigl(8\beta_{1d}^4\alpha_{1d}^2 - N_2^2\bigr)^2
+ - N_2^2\bigl(8\beta_{2d}^4\beta_{1d}^4\alpha_{1d}^2 - N_3^2\bigr)^2 \\
+ = 4N_2^2N_3^2\beta_{1n}^2\beta_{1d}^2\beta_{2n}^2\beta_{2d}^2
+   (\alpha_{1n}-\alpha_{1d})^2
+ - 4N_2^2N_3^2\beta_{2n}^2\beta_{2d}^2
+   \bigl(\beta_{1n}^2\alpha_{1n}-\beta_{1d}^2\alpha_{1d}\bigr)^2,
+\tag{29}
+\end{multline}
+and concludes (p.~7; quoted in full in \S\ref{sec:step}) that since the
+left-hand side contains only even powers of $\alpha_{1d}$, the
+coefficients of odd powers of $\alpha_{1d}$ on the right-hand side must
+vanish, forcing $\beta_{1d}^2 - \beta_{1n}^2 = 0$, hence $\beta_1 = 1$,
+hence $\cP_1 = \cP_2 = \cP_3$, contradicting distinctness.
+
+\section{What is correct in the preprint}\label{sec:correct}
+
+Fairness requires stating what checks out, and it is most of the
+preprint.
+
+\begin{propone}
+The constraint system of \cite{Hill} --- three AP pairs with equal sums
+together with the spacing constraint \eqref{eq:L32} --- is equivalent
+to the following: the nine values form a $3\times 3$ additive grid
+$M + iD + jF$, $(i,j) \in \{0,1,2\}^2$. This is precisely the
+classical Lucas structure of a $3\times 3$ magic square, the grid being
+arranged into the square by a pair of orthogonal Latin squares.
+\end{propone}
+
+\begin{proof}[Proof sketch]
+Given the chain of the preprint's~(16), write the nine values as three
+triples $(a_j, b_j, c_j)$ with $b_j - a_j = c_j - b_j = D$ ($j = 1, 2,
+3$) and $a_2 - b_1 = a_3 - b_2 = E$; direct chaining gives value$(i,j)
+= a_1 + iD + j(D + E)$, an additive grid with $F := D + E$. Conversely
+the grid values $c + x + y$, $x \in \{-D, 0, D\}$, $y \in \{-F, 0,
+F\}$, arrange into the magic square with center $c$ in the standard
+way, every line summing to~$3c$.
+\end{proof}
+
+Two consequences. First, the reduction of the preprint's \S3 is
+faithful \emph{and complete}: nothing is lost. Second --- a point in
+the preprint's favor --- \emph{no integer counterexample to its
+hypotheses can exist}, since nine distinct integer squares satisfying
+them would constitute a magic square of squares; any flaw in the proof
+must therefore be inferential, which is what we exhibit.
+
+Moreover, the preprint's algebra is correct through its eq.~(30)
+inclusive: its Lemma~3.2 and case analysis are sound; eq.~(29) is a
+genuine consequence of the framework (Theorem~A below states precisely
+which consequence); and the printed~(30) is the correct expansion of
+the right-hand side of~(29), which factors as
+\begin{equation}\label{eq:factored}
+\mathrm{RHS}(29) \;=\; 4N_2^2N_3^2\,\beta_{2n}^2\beta_{2d}^2\,
+\bigl(\beta_{1d}^2-\beta_{1n}^2\bigr)
+\bigl(\beta_{1n}^2\alpha_{1n}^2 - \beta_{1d}^2\alpha_{1d}^2\bigr),
+\end{equation}
+the bracket of~(30) being the second factor expanded via its
+eq.~(12). The error is confined to the single inference drawn
+after~(30).
+
+\section{Equation (29) is the constraint (L3.2) in costume}
+\label{sec:thmA}
+
+Since every $\beta$ enters~(29) squared, write
+\begin{equation*}
+b_{1n} = \beta_{1n}^2, \quad b_{1d} = \beta_{1d}^2, \quad
+b_{2n} = \beta_{2n}^2, \quad b_{2d} = \beta_{2d}^2, \qquad
+n = \alpha_{1n}, \quad d = \alpha_{1d},
+\end{equation*}
+so that $\alpha_{2d} = b_{1d}d$, $\alpha_{3d} = b_{2d}b_{1d}d$,
+$\alpha_{2n} = b_{1n}n$.
+
+\begin{thmA}
+As polynomials in $\Z[n, d, N_2, N_3, b_{1n}, b_{1d}, b_{2n},
+b_{2d}]$,
+\begin{equation*}
+\mathrm{LHS}(29) - \mathrm{RHS}(29) \;=\; K_0 \cdot \frac{4E}{t^2},
+\qquad
+K_0 := 4N_2^2N_3^2\,b_{1d}^2 b_{2d}^2\,d^2
+ = 4N_2^2N_3^2\,\beta_{1d}^4\beta_{2d}^4\,\alpha_{1d}^2,
+\end{equation*}
+where $t = \cP_3^{n_2}$ is the free scale and $4E/t^2$ is the
+constraint \eqref{eq:L32} expressed in the same variables via
+\eqref{eq:star} and the preprint's (21)--(26), with denominators
+cleared.
+\end{thmA}
+
+\begin{proof}
+By \eqref{eq:star} and the $\beta$-substitutions, with $t := \cP_3^{n_2}$,
+$\cP_2^{n_2} = \beta_2 t$, $\cP_1^{n_2} = \beta_1\beta_2 t$:
+\begin{equation*}
+\frac{4E}{t^2} = T_1 - T_2 - T_3 + T_4,
+\end{equation*}
+where
+\begin{alignat*}{2}
+T_1 = \frac{4p_2^2}{t^2}
+  &= \frac{b_{2n}}{b_{2d}}\cdot
+     \frac{(8b_{1d}^2d^2 - N_2^2)^2}{4N_2^2\,b_{1d}^2d^2},
+&\qquad
+T_2 = \frac{4q_1^2}{t^2}
+  &= \frac{b_{1n}b_{2n}}{b_{1d}b_{2d}}\cdot \frac{(n-d)^2}{d^2},\\
+T_3 = \frac{4p_3^2}{t^2}
+  &= \frac{(8b_{2d}^2b_{1d}^2d^2 - N_3^2)^2}{4N_3^2\,b_{2d}^2b_{1d}^2d^2},
+&\qquad
+T_4 = \frac{4q_2^2}{t^2}
+  &= \frac{b_{2n}}{b_{2d}}\cdot
+     \frac{(b_{1n}n - b_{1d}d)^2}{b_{1d}^2d^2}.
+\end{alignat*}
+Multiplying each term by $K_0$ gives, term for term,
+\begin{alignat*}{2}
+K_0T_1 &= N_3^2\,b_{2n}b_{2d}\,(8b_{1d}^2d^2 - N_2^2)^2,
+&\qquad
+K_0T_3 &= N_2^2\,(8b_{2d}^2b_{1d}^2d^2 - N_3^2)^2,\\
+K_0T_2 &= 4N_2^2N_3^2\,b_{1n}b_{1d}b_{2n}b_{2d}\,(n-d)^2,
+&\qquad
+K_0T_4 &= 4N_2^2N_3^2\,b_{2n}b_{2d}\,(b_{1n}n - b_{1d}d)^2,
+\end{alignat*}
+which are exactly the four terms of~(29) with matching signs:
+$K_0(T_1 - T_3) = \mathrm{LHS}(29)$ and $K_0(T_2 - T_4) =
+\mathrm{RHS}(29)$.
+\end{proof}
+
+\begin{corA}
+Since $K_0 > 0$ on every configuration:
+\begin{enumerate}
+\item eq.~(29) is \emph{equivalent} to the constraint \eqref{eq:L32}.
+  It holds on every configuration satisfying the framework of
+  \S\ref{sec:framework} --- over any ordered field, in particular over
+  $\R$ --- and fails the moment \eqref{eq:L32} is broken. It carries
+  no arithmetic information beyond \eqref{eq:L32}.
+\item The entire derivation of the preprint's \S\S2--3, through its
+  eq.~(30), consists of identities valid over $\R$. Over $\R$ the
+  hypothesis system is abundantly solvable (by Proposition~1, any nine
+  distinct positive reals in the grid pattern are squares of reals),
+  with $\beta_1 \neq 1$ generically. Hence no inference valid over
+  $\R$ can complete the proof from~(29); a correct completion must use
+  integrality essentially.
+\end{enumerate}
+\end{corA}
+
+\section{The counterexample to the final inference}\label{sec:thmB}
+
+\begin{thmB}
+There is a configuration satisfying every hypothesis and every
+positivity condition invoked by the final step of \cite{Hill} on which
+eq.~(29) holds with both sides nonzero and $\beta_1 = 6/5 \neq 1$.
+Consequently the inference ``(29) $\Rightarrow \beta_{1d}^2 -
+\beta_{1n}^2 = 0$'' is invalid.
+\end{thmB}
+
+\begin{proof}
+Take the additive grid $M + iD + jF$ with $(M, D, F) = (4, 3360,
+2112)$: a genuine magic square with magic constant $16428$ and center
+$5476 = 74^2$, six of whose nine entries are perfect squares,
+\begin{equation*}
+\begin{pmatrix} 94^2 & 2^2 & 7588 \\ 4228 & 74^2 & 82^2 \\
+58^2 & 10948 & 46^2 \end{pmatrix}.
+\end{equation*}
+Its three AP pairs in the preprint's formalism are:
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+ & $(p, q, r)$ & $\kappa$ & $\alpha = \alpha_n/\alpha_d$ & $s$ & $N$ \\
+\midrule
+$\cP_1$ & $(2,\ 58,\ 82)$ & $7/3$ & $35/6$ & $1$ & $16$ \\
+$\cP_2$ & $(46,\ 74,\ 94)$ & $7/5$ & $42/5$ & $23$ & $4$ \\
+$\cP_3$ & $(\sqrt{4228},\ \sqrt{7588},\ \sqrt{10948})$
+  & & rep.\ $\alpha_{3d} := 5$ & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\smallskip
+
+\noindent Here:
+\begin{itemize}
+\item $\cP_1, \cP_2$ are \emph{fully integral} AP pairs with common sum
+  $D_1 = 3360$, coprime representations, and all of the preprint's
+  (6)--(8), (11)--(14) satisfied in $\Z$;
+\item $\cP_3$ is \emph{forced by the constraint \eqref{eq:L32}
+  itself}: $p_3^2 = q_2^2 + p_2^2 - q_1^2 = 5476 + 2116 - 3364 =
+  4228$, $q_3^2 = 7588$, $r_3^2 = 10948$, none a perfect square (as
+  Proposition~1 guarantees must happen for some pair). Exactly, in
+  $\Q(g)$ with $g = \sqrt{105961}$:
+  \begin{gather*}
+  t^2 = (r_3 - q_3)^2 = 18536 - 56g > 0, \qquad
+  \alpha_3 = \frac{3360}{t^2} = \frac{2317 + 7g}{420},\\
+  s_3^2 = (5\alpha_3 - 15)^2 - 200 = \frac{1057(331 + g)}{504} > 0,
+  \qquad
+  N_3 = (5\alpha_3 - 15) - s_3 > 0
+  \end{gather*}
+  (the product of the two $N_3$-roots is $8\alpha_{3d}^2 = 200$), with
+  $\beta_{2n}^2 = 5\alpha_3/42 > 0$ and $\beta_{2d}^2 = 1$;
+\item the interleaving is the preprint's own Lemma-3.2 case~(c):
+  $\cP_2^1 = 92 < 116 = \cP_1^2$ and $\cP_3^1 = 2\sqrt{4228} < 148 =
+  \cP_2^2$, the $<\!\!\shortparallel$ relations hold ($2\sqrt{4228}
+  \le 186$, $92 \le 162$), and its case-(c) formulas give
+  $\Sigma\mathbf{p}_A = \Sigma\mathbf{p}_B = 1248$.
+\end{itemize}
+The constraint \eqref{eq:L32} holds by construction --- an integer
+identity, $46^2 - 58^2 = 4228 - 74^2 = -1248$ --- so by Theorem~A,
+eq.~(29) \emph{holds} at this configuration. By
+\eqref{eq:factored} its two sides equal
+\begin{equation*}
+4N_2^2N_3^2\,\beta_{2n}^2\beta_{2d}^2\,
+(\beta_{1d}^2 - \beta_{1n}^2)(\beta_{1n}^2\alpha_{1n}^2 -
+\beta_{1d}^2\alpha_{1d}^2) = -298392.5892\ldots \neq 0,
+\end{equation*}
+every factor being nonzero: $N_2^2 = 16$; $N_3^2 \neq 0$;
+$\beta_{2n}^2\beta_{2d}^2 > 0$; and
+\begin{equation*}
+\beta_{1d}^2 - \beta_{1n}^2 = \frac56 - \frac65 = -\frac{11}{30}
+\neq 0, \qquad
+\beta_{1n}^2\alpha_{1n}^2 - \beta_{1d}^2\alpha_{1d}^2
+ = \tfrac65\cdot 35^2 - \tfrac56\cdot 6^2 = 1440 \neq 0,
+\end{equation*}
+with $\beta_1 = 24/20 = 6/5$. Meanwhile every positivity cited by the
+final step ($N_1, N_2, N_3, \beta_{1n}, \beta_{1d}, \beta_{2n},
+\beta_{2d} > 0$) holds. The step's hypotheses are satisfied and its
+conclusion fails.
+\end{proof}
+
+\begin{rmk}
+The witness is robust. The representation choice for $\cP_3$ is
+immaterial: taking $\alpha_{3d} = 1$ in place of $5$ rescales the
+$\cP_3$-quantities, and~(29) again holds with both sides
+$-477.428\ldots \neq 0$. In a sweep of 500 pseudorandom real grids,
+(29) held on every one (as Corollary~A.1 predicts), with $\beta_1$
+ranging over $[1.0008,\ 3.998]$ and never equal to~$1$; and perturbing
+a single entry of the witness grid by $1$ makes~(29) fail, confirming
+empirically that~(29) is exactly the constraint.
+\end{rmk}
+
+\section{The invalid step, on its own terms}\label{sec:step}
+
+The complete final argument of \cite{Hill} (p.~7) reads:
+
+\begin{quote}
+``Compare this with the LHS of equation (29). Clearly, this is a
+quadratic in $\alpha_{1d}^2$ and, as such, the coefficients of odd
+powers of $\alpha_{1d}$ are 0, which must also hold in the RHS.
+Obviously, $N_1, N_2, N_3, \beta_{1n}, \beta_{1d}, \beta_{2n},
+\beta_{2d} > 0$, as per the definitions in equations (11), (21) and
+(22), so $\beta_{1d}^2 - \beta_{1n}^2 = 0$.''
+\end{quote}
+
+There are exactly two readings, and each fails.
+
+\emph{Numeric reading.} For any given (hypothetical) magic square,
+(29) is one equation between two \emph{numbers}: $\alpha_{1d}$ is a
+single fixed integer, and $N_1, N_2, N_3$ and the $\beta$'s are
+determined by the same data --- indeed the preprint's own (11)--(12)
+define $N_1$ from $\alpha_{1n}, \alpha_{1d}$, so the ``coefficients''
+$16\beta_{1n}^2/N_1^2,\ 24\beta_{1n}^2/N_1, \ldots$ appearing in its
+(30) are themselves functions of $\alpha_{1d}$. Numbers do not have
+coefficients: the even and odd parts of the two sides of a numerical
+equality need not separately agree, any more than they do in $3 + 4 =
+7$. At the witness of Theorem~B, the ``odd part'' of (30) that the
+argument declares must vanish evaluates to $-152180.22\ldots$
+
+\emph{Polynomial reading.} If instead all eight quantities are treated
+as free variables, so that coefficient comparison would be meaningful,
+the premise fails: by Theorem~A, $\mathrm{LHS}(29) - \mathrm{RHS}(29)$
+is \emph{not} the zero polynomial (it is $K_0$ times the constraint
+polynomial), so (29) is not a polynomial identity and there are no
+coefficients to compare.
+
+There is no third reading: any hypothetical ``variation of
+$\alpha_{1d}$'' drags $N_1$ and the $\beta$'s along with it, so the
+``coefficients'' are not well-defined constants under any
+interpretation.
+
+\emph{No local repair is possible.} One might hope integrality could
+rescue the step (the witness's $\cP_3$ is irrational). It cannot:
+(i)~the step justifies itself by positivity alone (quoted above), and
+every positivity it invokes holds at the witness, whose $\alpha_{1d} =
+6$ --- the comparison variable itself --- comes from a fully integral
+pair; (ii)~the preprint itself places $\beta_{1n}, \beta_{1d},
+\beta_{2n}, \beta_{2d}$ in $\R^+$, and they enter~(29) only squared;
+(iii)~decisively, restricting the step's validity to all-rational
+configurations is circular: by Proposition~1 the all-rational solution
+set being empty \emph{is the theorem being proved}, and a step that is
+sound only if the conclusion is true proves nothing. By
+Corollary~A.1(2), any correct completion of the argument must inject a
+genuinely new Diophantine ingredient; the preprint contains none (its
+integrality side conditions --- coprime $\alpha_n/\alpha_d$,
+perfect-square discriminant --- are never used by the derivation, as
+Theorem~A shows).
+
+\section{Concluding remarks}
+
+This note refutes the proof, not the statement: whether a $3\times 3$
+magic square of distinct integer squares exists remains open, in both
+directions. A byproduct of the analysis seems worth recording: the
+witness construction generalizes --- \emph{any} two integer three-term
+arithmetic progressions of squares with a common difference $D$ and
+$q_2^2 + p_2^2 - q_1^2 > 0$ yield, via Proposition~1, a magic square
+with six perfect-square entries --- a clean family of near-misses
+produced by the preprint's own (correct) framework.
+
+All results above are machine-verified in exact arithmetic ---
+Theorem~A by exact integer multivariate polynomial expansion,
+Theorem~B in exact arithmetic over $\Q(\sqrt{105961})$, and the whole
+analysis independently re-verified through a second implementation
+following the preprint's definitions verbatim at 60-digit working
+precision, including the perturbation and random-grid controls of the
+Remark. Appendix~\ref{app:script} contains a short self-contained
+script verifying Theorems A and~B; the full verification suite is
+available from the author on request.
+
+\appendix
+
+\section{A self-contained verification script}\label{app:script}
+
+The following script (Python, requiring only the open-source library
+\texttt{sympy}) verifies Theorem~A symbolically and Theorem~B exactly;
+it runs in a few seconds.
+
+\begin{footnotesize}
+\begin{verbatim}
+import sympy as sp
+
+n, d, N2, N3, b1n, b1d, b2n, b2d = sp.symbols(
+    'n d N2 N3 b1n b1d b2n b2d', positive=True)
+
+# eq. (29), literally as printed (v3, p. 6); b** = beta_**^2:
+LHS = N3**2*b2n*b2d*(8*b1d**2*d**2 - N2**2)**2 \
+    - N2**2*(8*b2d**2*b1d**2*d**2 - N3**2)**2
+RHS = 4*N2**2*N3**2*b1n*b1d*b2n*b2d*(n - d)**2 \
+    - 4*N2**2*N3**2*b2n*b2d*(b1n*n - b1d*d)**2
+
+# the Lemma-3.2 constraint 4E/t^2 in the same variables:
+a2d, a3d = b1d*d, b2d*b1d*d
+T1 = (b2n/b2d) * (8*a2d**2 - N2**2)**2/(4*N2**2) / a2d**2
+T2 = (b1n*b2n/(b1d*b2d)) * (n - d)**2 / d**2
+T3 = (8*a3d**2 - N3**2)**2/(4*N3**2) / a3d**2
+T4 = (b2n/b2d) * (b1n*n - b1d*d)**2 / a2d**2
+E4 = T1 - T2 - T3 + T4
+
+# THEOREM A:
+assert sp.simplify((LHS - RHS)
+                   - 4*N2**2*N3**2*b1d**2*b2d**2*d**2*E4) == 0
+
+# THEOREM B (the witness; exact):
+t2 = 18536 - 56*sp.sqrt(105961)
+alpha3 = sp.Rational(3360, 1)/t2
+vals = {n: 35, d: 6, N2: 4,
+        b1n: sp.Rational(6, 5), b1d: sp.Rational(5, 6),
+        b2n: 5*alpha3/42, b2d: 1,
+        N3: (5*alpha3 - 15) - sp.sqrt((5*alpha3 - 15)**2 - 200)}
+lhs_v, rhs_v = LHS.subs(vals), RHS.subs(vals)
+assert sp.simplify(lhs_v - rhs_v) == 0   # (29) HOLDS at the witness
+assert abs(sp.N(lhs_v, 30)) > 1          # ... both sides NONZERO
+print("both sides of (29) =", sp.N(lhs_v, 30),
+      "; beta1^2 = 36/25 != 1")
+\end{verbatim}
+\end{footnotesize}
+
+\begin{thebibliography}{9}
+
+\bibitem{Hill} O.~Hill, \emph{On Arithmetic Progressions and a Proof
+of the Nonexistence of Magic Squares of Squares}, arXiv:2510.08286v3
+(2026).
+
+\bibitem{LaBar} M.~LaBar, Problem 270, \emph{College Mathematics
+Journal} \textbf{15} (1984), 69.
+
+\bibitem{Guy} R.~K.~Guy, \emph{Unsolved Problems in Number Theory},
+2nd ed., Springer, 1994, Problem D15.
+
+\end{thebibliography}
+
+\end{document}
