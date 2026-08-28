@@ -1,11 +1,12 @@
 # A1 — Audit of the claimed proof arXiv:2510.08286 (Hill, Oct 2025)
 
-**Status:** paper text **unobtainable** in this environment (fetch attempts
-logged below); machinery reconstruction **PROVEN** equivalent to the F2
-layer; boundary meta-theorem A1.1 **PROVEN** with executable witnesses;
-overall verdict on the paper: **UNRESOLVED — not refuted, not validated —
-with a proven constraint on where a valid proof must live** that the
-paper's own abstract gives no sign of meeting.
+**Status:** paper text **ACQUIRED 2026-08-28** (v3, Apr 2026 —
+`papers/2510.08286v3-hill.pdf`; the audit below through §5 predates the
+text and stands unchanged); machinery reconstruction **PROVEN** equivalent
+to the F2 layer; boundary meta-theorem A1.1 **PROVEN** with executable
+witnesses; verdict on the paper: **PRELIMINARY — invalid as written**, crux
+located at its eq. (29) coefficient-comparison step (§6); formal re-audit
+with executable counterexample pending.
 Verification: `python3 -m verify --only a1`.
 
 ## 1. The object under audit
@@ -144,3 +145,65 @@ strictly between consecutive squares), or genuine factorization input
 - [ ] Would the argument survive over $\mathbb{F}_p$, $p \ge 107$
       ([F5.3](../foundations/F5-local-solubility.md))? It must fail
       there — identify the step that does.
+
+## 6. Addendum 2026-08-28 — the text in hand: first pass against the checklist (PRELIMINARY)
+
+The v3 text (7 pages) was acquired in the full-access sweep
+(RESEARCH_LOG entry 29) and read in full. Version history: v1
+2025-10-09, v2 2025-10-19, v3 2026-04-07 ("updated notation,
+particularly around singular APs"); still math.GM; still no endorsement,
+refutation, or acceptance anywhere we could find.
+
+**Checklist item 1 — descent/minimality: CONFIRMED ABSENT.** The proof
+of its Theorem 3.1 is: encode the 8 line relations as equal-sum AP data
+(its §2–3 — a faithful match to our §2 dictionary, including the
+$\kappa, \alpha$ reparametrization of a 3-term AP of squares); derive a
+single algebraic relation, its eq. (29), among the derived quantities
+$N_2, N_3, \alpha_{1d}, \beta_{1n}, \beta_{1d}, \beta_{2n}, \beta_{2d}$;
+then conclude. No infinite descent, no minimal counterexample, no
+height/size argument, no factorization input appears anywhere.
+
+**The crux (where it collapses).** From eq. (29) the paper argues: the
+LHS contains only even powers of $\alpha_{1d}$, "and as such, the
+coefficients of odd powers of $\alpha_{1d}$ are 0, which must also hold
+in the RHS" — forcing the RHS prefactor
+$\beta_{1d}^2 - \beta_{1n}^2 = 0$, i.e. $\beta_1 = 1$, hence
+$\mathcal{P}_1 = \mathcal{P}_2 = \mathcal{P}_3$, contradiction. This is
+**coefficient comparison applied to a single numerical equation, not a
+polynomial identity in a free variable**: for any actual (hypothetical)
+magic square, $\alpha_{1d}$ is one fixed integer, and the "coefficients"
+are themselves functions of quantities ($N_1$ via its eqs. (11)–(12),
+the $\beta$'s via (21)–(26)) that are *algebraically dependent on*
+$\alpha_{1d}$ and on each other. Nothing makes eq. (29) hold for a range
+of $\alpha_{1d}$ values with everything else fixed, which is what
+equating coefficients requires. (Note also its $\beta_{1n}, \beta_{1d}$
+are defined by square roots — eqs. (23)–(26) — so they are not even
+rational functions of the integer data; the "polynomial in
+$\alpha_{1d}$" framing is doubly unfounded.)
+
+This is the precise realization of §4.2's prediction: an endgame that
+draws a structural conclusion (here "odd coefficients vanish") from
+relations that only hold as one exact numerical instance. It is a
+sibling of the congruence-endgame fallacy bounded by Theorem A1.1 —
+not literally within A1.1's stated hypothesis class (the endgame is a
+polynomial-identity claim, not a congruence), so A1.1 is not itself the
+refutation; the refutation is the direct invalidity of the
+coefficient-comparison step.
+
+**What remains for the formal re-audit (scheduled):**
+1. re-derive its eq. (29) symbolically from the dictionary (its
+   (7)–(8), (13)–(14), (21)–(28) + Lemma 3.2) and confirm the derivation
+   is otherwise sound;
+2. produce an **executable counterexample**: a near-miss configuration
+   (e.g. a row-system of Euler's 4×4 via `a1.dictionary`, or an A1.1
+   pseudo-solution) satisfying every hypothesis actually used up to
+   eq. (29) with $\beta_1 \neq 1$ — exhibiting that (29) does not force
+   $\beta_{1d}^2 = \beta_{1n}^2$;
+3. checklist items 2–5 (sign cases in its (16) ordering trichotomy;
+   Lemma 3.2's case split; the 4×4-row test; the $\mathbb{F}_p$ test —
+   note the proof as written never uses positivity beyond ordering, so
+   F5.3 already implies *some* step must fail over $\mathbb{F}_p$).
+
+Until the re-audit lands, the formal repo verdict moves from UNRESOLVED
+to **PRELIMINARY: invalid as written (crux located)** — and the program
+continues unchanged.
