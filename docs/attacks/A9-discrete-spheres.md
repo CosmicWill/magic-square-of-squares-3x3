@@ -505,6 +505,62 @@ $u_+v_+ = (3m^2 - d_1^2)(3m^2 - d_2^2)$ land on the real side
 companion's content is genuinely two-sided. Proving A9.C2 proves
 $k_c \ge 1$ modulo the (single known) syzygy exception.
 
+### Toward A9.C2: the sandwich, the losslessness, and the product atlas
+
+*(2026-08-28, the A9.C2 session; `compute/gram_sieve.py` (A9.8
+layer), check `a9.gram_sandwich`.)*
+
+**Theorem A9.8 (the Gram sandwich; PROVEN).** For values $w_1, w_2$
+and determinant $N$:
+$$\exists t:\ w_1w_2 - t^2 = N \;\Longrightarrow\;
+\text{some even class of disc } -4N \text{ represents both } w_i
+\;\Longrightarrow\; \exists t, k \ge 1:\ w_1w_2 - t^2 = Nk^2.$$
+*Proof.* Right implication: Theorem A9.7. Left (index-one
+sufficiency): the form $(w_1, 2t, w_2)$ has discriminant
+$4t^2 - 4w_1w_2 = -4N$, is positive definite and even, and represents
+$w_1$ and $w_2$ at $(1,0)$ and $(0,1)$. $\blacksquare$
+
+**The losslessness finding (measured, pinned).** On all **264**
+line-pairs of the eleven passers, the exact pairwise layer (some
+even class represents both values, computed with the full class
+lists) coincides with the Gram layer **165 = 165, zero
+discrepancies**, sandwich violations zero; plain $k=1$ passes only
+2 of 264, so the higher-index solvability is doing real work and is
+empirically *sufficient* as well as necessary here. (**Conjecture
+A9.C3**: for these discriminant families the Gram equation is
+exactly equivalent to pairwise representability — the sieve without
+any class enumeration.)
+
+**The $\mathbb{Z}[i]$ root-grid dictionary (PROVEN, elementary).**
+With $s_j = e_j + f_j$, $d_j = e_j - f_j$ (so $s_j^2 = m^2 + U$,
+$d_j^2 = m^2 - U$ for $j = 1$, likewise $V$), the **ten co-norm
+values are exactly the sums $x^2 + y^2$ over the root grid**
+$x \in \{d_1, m, s_1\}$, $y \in \{d_2, m, s_2\}$, subject to the
+column law $d_j^2 + s_j^2 = 2m^2$ — equivalently
+$s_j - i\,d_j = (1-i)(e_j + i f_j)$ in $\mathbb{Z}[i]$: every value
+is a Gaussian norm, every pairwise product a norm of a product, and
+the Gram question ($t^2 + 3m^2k^2$-representability) is a
+$\mathbb{Q}(i)$-norm vs $\mathbb{Q}(\sqrt{-3})$-norm interplay —
+$\mathbb{Q}(\zeta_{12})$ arithmetic. In particular
+$A_+A_- = 4m^4 - W^2$ ($W = U{+}V$), and its Gram equation
+rearranges to $W^2 + t^2 = m^2(4m^2 - 3k^2)$; in the real case
+$W = 2ef$ it factors through Eisenstein norms,
+$A_+A_- = 4(e^4 + e^2f^2 + f^4) = 4\,N(e+f\omega)N(e-f\omega)$.
+
+**The product atlas (measured, pinned).** Classifying all 24 named
+products per passer (6 free, 6 phantom, 4 cross-real, 8
+real-phantom): the free products fail **never** (0/66, as A9.6+A9.7
+force); the failure ranking is phantom-phantom first —
+$\pi(A_+,A_-)$ fails in **11/11** passers, $\pi(B_+,B_-)$ in 9/11 —
+then real-phantom crosses, then cross-real (rare). On the wider
+corpus the $A$-product does pass in the (three) patterns whose line
+2 survives, so the universal law is A9.C2 proper — *some phantom
+product fails whenever any product fails* — which now stands
+verified on **41/41** examined pairs at the Gram layer, with the
+transfer mechanism (why real-phantom failures drag phantom failures
+along) as the remaining proof gap, to be attacked through the
+$\mathbb{Z}[\zeta_{12}]$ factorization of the atlas.
+
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 
 *(2026-08-28; `compute/actuarial_model.py`; sample artifacts

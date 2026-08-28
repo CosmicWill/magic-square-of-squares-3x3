@@ -162,3 +162,137 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# --------------------------------------------------------------- A9.8 layer
+
+def gram_pair_k1(w1, w2, N):
+    """Index-one sufficiency (Theorem A9.8): exists t with
+    w1 w2 - t^2 = N exactly?  If so, the even form (w1, 2t, w2) has
+    disc -4N and represents both values: the pair IS representable
+    by a single class."""
+    d = w1 * w2 - N
+    if d < 0:
+        return False
+    t = isqrt(d)
+    return t * t == d
+
+
+def exact_pair_alive(w1, w2, n):
+    """The exact pairwise layer: does some even class at some
+    admissible stratum represent BOTH values?  (Strata as in
+    gram_line_ok / line_classes.)"""
+    from compute.sphere_gluing import even_forms
+    G = gcd(w1, w2)
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G % (g * g) == 0:
+            t1, t2 = w1 // (g * g), w2 // (g * g)
+            for f in even_forms(-4 * (n // (g * g))):
+                if represents(f, t1) and represents(f, t2):
+                    return True
+        d += 2
+    return False
+
+
+def line_k1_ok(tri, n):
+    """Some stratum where all three pairs pass at index one."""
+    G = gcd(gcd(tri[0], tri[1]), tri[2])
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G % (g * g) == 0:
+            N = n // (g * g)
+            th = [t // (g * g) for t in tri]
+            if (gram_pair_k1(th[0], th[1], N) and
+                    gram_pair_k1(th[0], th[2], N) and
+                    gram_pair_k1(th[1], th[2], N)):
+                return True
+        d += 2
+    return False
+
+
+def sandwich_census():
+    """Three-layer pair census over the 11 passers: for every one of
+    the 8 lines x 3 pairs, classify (k1, exact, gram) and verify the
+    sandwich k1 => exact => gram; locate A9.C2 at each layer."""
+    from itertools import combinations
+    tot = {"k1": 0, "exact": 0, "gram": 0, "pairs": 0}
+    sandwich_viol = 0
+    c2_gram = c2_exact = pairs_n = 0
+    for m, U, V in PASSERS_1200:
+        n = 3 * m * m
+        lines = pair_lines(2 * m * m, U, V)
+        line_exact_fail = []
+        for i, tri in enumerate(lines):
+            fail = False
+            for w1, w2 in combinations(tri, 2):
+                tot["pairs"] += 1
+                # per-pair layers, stratum-aware via the line helpers
+                # (pair-level strata: reuse exact_pair_alive/gram on
+                # the pair's own gcd strata)
+                k1 = False
+                G = gcd(w1, w2)
+                base, nn = 1, n
+                while nn % 4 == 0:
+                    nn //= 4
+                    base *= 2
+                dd = 1
+                while (base * dd) ** 2 <= n:
+                    g = base * dd
+                    if n % (g * g) == 0 and G % (g * g) == 0:
+                        if gram_pair_k1(w1 // (g * g), w2 // (g * g),
+                                        n // (g * g)):
+                            k1 = True
+                            break
+                    dd += 2
+                ex = exact_pair_alive(w1, w2, n)
+                gr = gram_pair_ok_strata(w1, w2, n)
+                tot["k1"] += k1
+                tot["exact"] += ex
+                tot["gram"] += gr
+                if (k1 and not ex) or (ex and not gr):
+                    sandwich_viol += 1
+                    print(f"  *** SANDWICH VIOLATION m={m} line {i} "
+                          f"({w1},{w2}): k1={k1} exact={ex} gram={gr}")
+                if not ex:
+                    fail = True
+            if fail:
+                line_exact_fail.append(i)
+        pairs_n += 1
+        if line_exact_fail:
+            if 2 in line_exact_fail or 3 in line_exact_fail:
+                c2_exact += 1
+        print(f"m={m} ({U},{V}): exact-pairwise-failing lines "
+              f"{line_exact_fail}")
+    print(f"pairs {tot['pairs']}: k1-pass {tot['k1']}, exact-pass "
+          f"{tot['exact']}, gram-pass {tot['gram']}; sandwich "
+          f"violations {sandwich_viol}")
+    print(f"C2 at exact-pairwise layer: phantom failure present in "
+          f"{c2_exact} of the pairs with any failure")
+
+
+def gram_pair_ok_strata(w1, w2, n):
+    G = gcd(w1, w2)
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G % (g * g) == 0:
+            if gram_pair_ok(w1 // (g * g), w2 // (g * g),
+                            n // (g * g)):
+                return True
+        d += 2
+    return False

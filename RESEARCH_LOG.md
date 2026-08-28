@@ -1643,3 +1643,45 @@ A9.C2 proves k_c >= 1 modulo the pinned syzygy exception. W4 now has
 a named law candidate, a proven necessity theorem, a one-line local
 unification, and a single explicit counterexample-to-pairwise
 sufficiency to study. Suite 119.
+
+## 2026-08-28 — Entry 40: the A9.C2 session — the sandwich, the losslessness, the root-grid dictionary, the product atlas
+
+The conjecture is not yet proven, but the session built its proof
+scaffold and pinned four findings (check a9.gram_sandwich; suite 120):
+
+1. THEOREM A9.8 (PROVEN, the Gram sandwich): k=1 solvability of
+   w1 w2 - t^2 = N implies pairwise representability outright (the
+   form (w1, 2t, w2) has disc -4N, is even, and represents both
+   values at the basis vectors), which implies the k >= 1 Gram
+   equation (A9.7). The pairwise layer is sandwiched by computable
+   Diophantine conditions.
+2. LOSSLESSNESS (measured; Conjecture A9.C3): on ALL 264 line-pairs
+   of the eleven passers, the exact pairwise layer (full class-list
+   computation) coincides with the Gram layer: 165 = 165, zero
+   discrepancies, zero sandwich violations, and k=1 alone passes
+   only 2/264 — higher-index Gram solvability is empirically
+   sufficient. If A9.C3 holds, the representation sieve's pairwise
+   layer needs NO class enumeration at all.
+3. THE Z[i] ROOT-GRID DICTIONARY (PROVEN, elementary, and the
+   language for the eventual proof): with s_j = e_j + f_j,
+   d_j = e_j - f_j, the ten co-norm values are exactly the sums
+   x^2 + y^2 over the grid {d1, m, s1} x {d2, m, s2} with the column
+   law d^2 + s^2 = 2m^2 (equivalently s - id = (1-i)(e+if)): every
+   value is a Gaussian norm, every product a norm of a product, and
+   the Gram question is a Q(i)-norm vs Q(sqrt(-3))-norm interplay —
+   Q(zeta_12) arithmetic. Notably A+A- = 4m^4 - W^2 with Gram
+   equation W^2 + t^2 = m^2(4m^2 - 3k^2); in the real case it
+   factors through Eisenstein norms 4 N(e+f w) N(e-f w).
+4. THE PRODUCT ATLAS (measured, pinned): free products fail NEVER
+   (0/66 — forced by A9.6+A9.7); the universal failer on the
+   anatomy set is the phantom-phantom product pi(A+, A-): 11/11
+   passers (pi(B+, B-): 9/11), then real-phantom crosses, then
+   cross-real; on the wider corpus the A-product does pass exactly
+   in the patterns whose line 2 survives — so the target remains
+   A9.C2 proper (some phantom product fails whenever any fails),
+   now verified 41/41 at the Gram layer.
+
+REMAINING GAP: the transfer lemma — why real-phantom failures drag
+phantom failures along — to be attacked through the zeta_12
+factorization of the atlas. Proving A9.C2 yields k_c >= 1 modulo
+the single pinned syzygy exception.

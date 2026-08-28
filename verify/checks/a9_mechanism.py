@@ -256,3 +256,77 @@ def _(ctx):
     ctx.note(f"A9.7 sound on {len(passers)} passers ({killed} kills, "
              f"{explained} gram-explained); phantom Gram-kill present "
              f"in every pair; syzygy exception(s): {exceptions}")
+
+
+@check("a9.gram_sandwich", DOC)
+def _(ctx):
+    """Theorem A9.8 (sandwich) and the A9.C2 session findings, pinned:
+    on the passers, k1 => exact-pairwise => gram with zero violations;
+    exact and gram layers coincide (losslessness, Conjecture A9.C3);
+    free products never fail; ph(A+,A-) fails on every passer; some
+    phantom product fails whenever any product fails (A9.C2 at the
+    Gram layer)."""
+    from itertools import combinations
+    from math import gcd as _gcd
+    from compute.gram_sieve import (exact_pair_alive, gram_pair_k1,
+                                    gram_pair_ok_strata)
+    from compute.sphere_composition import PASSERS_1200
+    from compute.sphere_gluing import pair_lines
+
+    n_p = ctx.bound(full=11, fast=2)
+    passers = PASSERS_1200[:n_p] if n_p < 11 else PASSERS_1200
+    k1_t = ex_t = gr_t = pair_t = 0
+    aa_fail = c2 = withfail = 0
+    for m, U, V in passers:
+        n = 3 * m * m
+        n2 = 2 * m * m
+        # free products never fail; ph(A+,A-) verdict; C2
+        for w1, w2 in ((n2, n2 + U), (n2, n2 - U), (n2 + U, n2 - U),
+                       (n2, n2 + V), (n2, n2 - V), (n2 + V, n2 - V)):
+            require(gram_pair_ok_strata(w1, w2, n), "free product fails?!")
+        Ap, Am = n2 + U + V, n2 - U - V
+        Bp, Bm = n2 + U - V, n2 - U + V
+        if not gram_pair_ok_strata(Ap, Am, n):
+            aa_fail += 1
+        phantom_fail = any(not gram_pair_ok_strata(w1, w2, n)
+                           for w1, w2 in ((n2, Ap), (n2, Am), (Ap, Am),
+                                          (n2, Bp), (n2, Bm), (Bp, Bm)))
+        any_fail = False
+        for tri in pair_lines(n2, U, V):
+            for w1, w2 in combinations(tri, 2):
+                pair_t += 1
+                k1 = False
+                G = _gcd(w1, w2)
+                base, nn = 1, n
+                while nn % 4 == 0:
+                    nn //= 4
+                    base *= 2
+                dd = 1
+                while (base * dd) ** 2 <= n:
+                    g = base * dd
+                    if n % (g * g) == 0 and G % (g * g) == 0 and \
+                            gram_pair_k1(w1 // (g * g), w2 // (g * g),
+                                         n // (g * g)):
+                        k1 = True
+                        break
+                    dd += 2
+                ex = exact_pair_alive(w1, w2, n)
+                gr = gram_pair_ok_strata(w1, w2, n)
+                require(not (k1 and not ex), "A9.8 left violated")
+                require(not (ex and not gr), "A9.7 violated")
+                require(ex == gr, "losslessness (A9.C3) violated")
+                k1_t += k1
+                ex_t += ex
+                gr_t += gr
+                if not gr:
+                    any_fail = True
+        if any_fail:
+            withfail += 1
+            require(phantom_fail, f"A9.C2 violated at m={m}")
+            c2 += 1
+    if n_p >= 11:
+        require((pair_t, k1_t, ex_t, gr_t) == (264, 2, 165, 165))
+        require(aa_fail == 11 and c2 == withfail == 11)
+    ctx.note(f"A9.8 sandwich + A9.C3 losslessness on {pair_t} pairs; "
+             f"free products all pass; ph(A+,A-) fails {aa_fail}/"
+             f"{len(passers)}; A9.C2 holds {c2}/{withfail}")
