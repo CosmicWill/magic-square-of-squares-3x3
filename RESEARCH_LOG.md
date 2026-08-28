@@ -1796,3 +1796,38 @@ explicit integer system; the W4 all-m theorem hunt is a question
 about integer points on small explicit varieties; and the ladder
 A9.6 -> A9.7 -> A9.8/A9.8.1 -> A9.9 -> A9.10 -> A9.11 -> A9.12,
 built in two days from a sampling regularity, is complete.
+
+## 2026-08-28 — Entry 44: the telescope catches — first golden centers at m = 185²; and the PROGRESS memo refreshed
+
+THE EVENT. The desert leg toward 10^5 found the first ordered congrua
+pairs in the program's history to survive all three sieves: at
+m = 34,225 = 185^2 (a perfect-square center root, |D(m)| = 12), the
+unordered pair (108786216, 718725000) is GOLDEN in both orders
+(verified end-to-end: positivity, coherence, all 8 lines
+representable — and Theorem A9.12's Diophantine law agrees with the
+class computation on every line, its first live confirmation on
+fresh data; check a9.golden).
+
+THE READING. The actuarial model predicted first survivors in the
+10^4.5–10^5 decade; observed onset 10^4.53. The model is validated in
+order of magnitude, and the honest scientific outcome the decision
+rule anticipated has arrived: THE SIEVES' TOTALITY BELOW 3x10^4 WAS A
+SMALL-NUMBERS PHENOMENON, NOT AN ALL-M LAW. The strong form of the
+W4 sieve-totality hypothesis is refuted; the pair desert's depth is
+additive-structural (the additive desert stands at 10^7, and indeed
+U ± V are not in D(m) at the golden center — it is sieve-transparent,
+not a square candidate). W6's telescope works as designed: golden
+centers are now being collected as they appear (the leg continues,
+checkpointed, past m = 50,297 at this writing).
+
+THE MEMO. docs/PROGRESS.md fully refreshed: header (124 checks, the
+M12 wave), Front 1 gains the H^{2,0} atlas item and the m = 6
+full-character vanishing, Front 2 rewritten around the proven ladder
+A9.6–A9.12 and the true depth of the desert (perfect to 3x10^4,
+golden onset at 34,225, additive desert 10^7), the convergence
+sharpened (where fully resolved, the obstruction is an explicit
+elementary law — located and named), the calibrations extended (a
+proven sieve law is not a proven desert; the actuarial reading cuts
+both ways; papers pending peer review), the resolution paths updated
+(the desert in Diophantine form; the abc bridge; Conjecture E), and
+the reproduce commands brought current.

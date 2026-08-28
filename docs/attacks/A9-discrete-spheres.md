@@ -331,6 +331,22 @@ Aka–Einsiedler–Shapira, Venkov — see
 `compute/desert_extension.py`; checks `a9.kill_mechanism`,
 `a9.desert_ext`.)*
 
+**Update 2026-08-28 (later): the first golden centers.** The leg
+toward $10^5$ found them: at $m = 34{,}225 = 185^2$ (a perfect-square
+center root; $|D(m)| = 12$), the unordered pair
+$(108786216,\ 718725000)$ **passes all three sieves in both orders**
+— the first sieve-transparent congrua pair ever observed (check
+`a9.golden`; the A9.12 Diophantine law agrees with the class
+computation on every line, its first live confirmation). The
+actuarial model's prediction (first survivors in the
+$10^{4.5}$–$10^5$ decade) is validated in order of magnitude: **the
+sieves' totality below $3\times10^4$ was a small-numbers phenomenon,
+not an all-$m$ law** — the honest outcome the decision rule
+anticipated. The golden center is *not* a magic-square candidate:
+$U \pm V \notin D(m)$ (and the additive desert covers $m \le 10^7$);
+it is the first calibration point where the class-group layer goes
+transparent, and the W6 telescope's first catch.
+
 **The desert extends 25× with zero survivors (VERIFIED($3\times10^4$)).**
 The three sieves annihilate **every** ordered congrua pair for every
 center $m \le 30{,}000$: 6,101 centers, 146,914 ordered pairs —

@@ -2,19 +2,22 @@
 
 *A standing honest assessment: what has genuinely been achieved, what it
 means, and what it does not mean. Updated at milestones (last:
-2026-08-28, after the full-access literature sweep and the A1 formal
-re-audit). Every claim below carries the repository's provenance tags
-and is enforced by the verification suite (`python3 -m verify`,
-currently 111 checks); the
-[README ledger](../README.md#claims-ledger) is the row-by-row
-record.*
+2026-08-28, after the M12 wave: the literature sweep and Hill
+refutation, the $H^{2,0}$ atlas, the fourth-sieve ladder
+A9.6–A9.12, the desert at $3\times10^4$ and the first golden centers,
+and the additive desert at $10^7$). Every claim below carries the
+repository's provenance tags and is enforced by the verification suite
+(`python3 -m verify`, currently 124 checks); the
+[README ledger](../README.md#claims-ledger) is the row-by-row record,
+and [ROADMAP.md](ROADMAP.md) is the standing battle plan.*
 
 ## The one-sentence truth
 
 **The existence question is untouched — by us and by everyone — but this
 program has built, on two independent fronts, a detailed structural map
-of *why* the problem is hard, and several pieces of that map are new
-mathematics about a well-studied object.**
+of *why* the problem is hard; several pieces of that map are new
+mathematics, and the sphere front's obstruction is now a proven
+elementary law rather than a mystery.**
 
 The repository's standing banner applies to every line of this memo: the
 open problem remains open, and nothing here claims otherwise.
@@ -30,9 +33,8 @@ symmetric differentials that drive it is "out of range of current
 computational techniques", and no one had enumerated the low-genus
 curves or made the finiteness explicit for $X$. That gap is where this
 program worked, via descent along the $(\mathbb{Z}/2)^8$ cover of the
-Lucas plane (Theorem A8.1). The results, in ascending order of
-consequence — all first-party, machine-verified, and unconditional
-unless flagged:
+Lucas plane (Theorem A8.1). The results — all first-party,
+machine-verified, and unconditional unless flagged:
 
 1. **The spectrum is computed.** $h^0$ of symmetric differentials on
    the open surface, all 256 characters, degrees through 8; on the
@@ -41,9 +43,10 @@ unless flagged:
    gaps: $4 \to 1,\ 5 \to 0,\ 6 \to 0,\ 7 \to 0,\ 8 \to 1$ — every
    invariant section through degree 8 is a power of $\eta_\star$
    (PROVEN by sandwich; the $m = 8$ lower bound $\eta_\star^2$ is
-   re-certified exactly on every suite run). The abstract finiteness
-   theorem now has one explicit object carrying it — and the
-   cuboid-style *two-section* finiteness shortcut is provably
+   re-certified exactly on every suite run), with full-character
+   vanishing now also at degrees 5 and 6 (the 10.3-hour survey).
+   The abstract finiteness theorem has one explicit object carrying
+   it — and the cuboid-style *two-section* shortcut is provably
    unavailable at these degrees.
 
 2. **The structure theory of rational curves.** Every complete genus-0
@@ -56,23 +59,34 @@ unless flagged:
    $\eta_\star$, of degree $\ge 3$, and the web's line and conic levels
    are closed with nothing new (Theorem A8.17 + the A7.6/M10-B budget).
    **Any hypothetical new 1-parameter family of near-solutions is
-   cornered into one explicit, finitely-checkable system.** This is,
-   to the best of our (reachable-literature) knowledge, the analogue
-   for $X$ of what Stoll–Testa did for the perfect-cuboid surface —
-   and $X$ had nothing like it before.
+   cornered into one explicit, finitely-checkable system.**
 
-3. **No local obstruction** (F5, long established here): the system is
+3. **The motive fragments (M12-A, the $H^{2,0}$ atlas).** The
+   canonical bundle decomposes over the 256 characters with no
+   singular corrections (every sub-arrangement point is ADE —
+   verified); $h^{2,0}$ census: **84 K3 characters + 9 Horikawa
+   characters** ($K^2 = 2$, $\chi = 4$, on the Noether line), total
+   $111 = \chi(\mathcal{O}) - 1$, cross-confirming Noether; only 19
+   orbit types govern the entire transcendental structure, with
+   proven K3 Picard bounds $\rho \ge 16 + t_3$. The W2
+   Picard/Brauer/$L$-function program is now a finite list of
+   classical objects.
+
+4. **No local obstruction** (F5, long established here): the system is
    solvable modulo every prime power — whatever excludes magic squares
    of squares, it is not a congruence.
 
-*The frontier on this front:* the web's cubic level (M11-J-2), then the
-arithmetic endgame (Picard lattice as Galois module, Brauer–Manin — the
-cuboid template exists in the acquired literature).
+*The frontier on this front:* the web's cubic level (M11-J-2 = ROADMAP
+M12-C), the exact K3 lattices of the 16 orbit types (M13-A), then the
+arithmetic endgame (Picard/Galois, Brauer–Manin — Conjecture E and the
+twist-descent formulation of ROADMAP W3). The $m = 7$
+nontrivial-character survey runs orbit-checkpointed in the background.
 
 ## Front 2: the discrete spheres (A9)
 
 The owner's geometric picture — the square as lattice points on spheres
-— made exact and pushed into class-group territory:
+— made exact, pushed through class-group territory, and now resolved
+into an elementary law:
 
 1. **The dictionary (PROVEN).** A magic square of squares with center
    $m^2$ is 8 points of the single sphere $\mathcal{S}(3m^2)$ glued by
@@ -80,47 +94,72 @@ The owner's geometric picture — the square as lattice points on spheres
    the whole family lives in one field, $\mathbb{Q}(\sqrt{-3})$, with
    $r_3^*(3m^2) = 24\,h(-3m^2)$.
 
-2. **The three-sieve pair desert (each sieve PROVEN necessary; the
-   annihilation VERIFIED to $m \le 3\times10^4$).** Positivity,
-   genus-character coherence (Theorem A9.3, via the gluing law A9.1:
-   each line's Gauss class represents its entries' co-norms), and
-   single-class representation kill **every** ordered congrua pair for
-   **every** center $m \le 30{,}000$ — 146,914 pairs at 6,101 centers:
-   122,630/18,992/5,292, **zero golden centers**. The A3 desert,
-   previously a search fact, has named arithmetic causes, and the
-   additive desert itself now stands VERIFIED to $m \le 10^7$.
+2. **The three-sieve pair desert, and its true depth.** Positivity,
+   genus-character coherence (Theorem A9.3), and single-class
+   representation kill **every** ordered congrua pair for **every**
+   center $m \le 30{,}000$ — 146,914 pairs at 6,101 centers
+   (VERIFIED($3\times10^4$), zero survivors) — and the additive desert
+   itself stands VERIFIED to $m \le 10^7$ (99.3M pairs, zero
+   triples). **But the sieves' totality is probabilistic, not a law:**
+   the calibrated actuarial model predicted first sieve-transparent
+   centers in the $10^{4.5}$–$10^5$ decade, and the extension found
+   them exactly there — the first **golden centers** at
+   $m = 34{,}225 = 185^2$ (pair $(108786216, 718725000)$, both
+   orders; `a9.golden`). Golden means the class-group layer goes
+   transparent; it is *not* a square candidate ($U \pm V \notin D(m)$;
+   the additive desert covers it). The desert's depth is
+   additive-structural, not sieve-eternal — measured, predicted, and
+   now observed.
 
-3. **The anatomy and its mechanism (the deepest findings on this
-   front).** Of the 57 line kills behind the $m \le 1200$ core: 21
-   provably local, **36 provably beyond every congruence and character
-   condition** (inside cosets of $\mathrm{Cl}^2$; principal genus
-   theorem machine-verified). The M12-B probe (2026-08-28) determined
-   the mechanism of all 36: **six are quartic-character (Rédei/4-rank)
-   kills** — all at $m = 481/962$, every separator of order exactly 4
-   — and **thirty admit no character certificate at all** (Lemma A9.5:
-   4-rank 0 makes it impossible), being product-set geometry of prime
-   ideal classes; the ideal-product law is machine-verified EXACT on
-   every conductor-coprime kill value. The fourth sieve is
-   reciprocity's shadow where 4-rank bites and prime-class alignment
-   everywhere else.
+3. **The fourth-sieve ladder (A9.6–A9.12) — the front's deepest
+   result, all PROVEN.** The kills that lie provably beyond every
+   congruence and character condition (M12-B: 36 of 57, inside cosets
+   of $\mathrm{Cl}^2$; six quartic-Rédei kills at $m = 481/962$; the
+   ideal-product law EXACT on all conductor-coprime values) are
+   nevertheless governed by an **elementary Diophantine law**:
+   - **A9.6**: real lines never die — the $U$- and $V$-center lines
+     carry actual sphere points; only the phantom $U\pm V$ lines can
+     be killed (the center cap, a theorem for all $m$);
+   - **A9.7/A9.7.1**: pairwise Gram necessity
+     ($w_iw_j = t^2 + Nk^2$); $\chi_p$-coherence is exactly its local
+     shadow;
+   - **A9.8/A9.8.1**: the sandwich ($k{=}1$ solvability $\Rightarrow$
+     representability $\Rightarrow$ Gram), and the free identities
+     (the column law $d^2 + s^2 = 2m^2$ *is* the real lines' witness);
+   - **A9.9**: the rank-2 syzygy ($\det_3 = 0$) — with pairwise Gram
+     it explains 57/57 anatomy kills;
+   - **A9.10/A9.11**: sufficiency — $q = 1$ witnesses certify
+     constructively, and the full overlattice lemma (per-prime chain;
+     the 2-adic case closed by the family's $8 \mid U$,
+     co-norms $\equiv 2 \bmod 8$ congruences forcing an anisotropic
+     norm space with unique even-maximal lattice) covers every $q$;
+   - **Theorem A9.12 (= C4)**: *a line is representable iff its
+     elementary system — three pair equations plus the syzygy — has a
+     nondegenerate integer witness.* Verified as an exact equivalence
+     on all 88 anatomy lines, corpus samples, and the golden center's
+     8 lines. **The class group was the language, never the
+     mechanism.**
 
-*The frontier on this front:* the fourth sieve is now a PROVEN
-elementary Diophantine law (Theorems A9.6–A9.12, 2026-08-28: pair
-equations + syzygy ⟺ representability; the class group was the
-language, never the mechanism); the frontier is the all-$m$ desert
-theorem in its Diophantine form, and the A9.C2 companion at the
-witness level.
+*The frontier on this front:* the desert in its Diophantine form (why
+do the phantom/outer systems fail so persistently — the A9.C2
+companion at the witness level, now elementary), the conductor-
+entangled extension of the ideal-product law, and the golden-center
+regime opening above $3\times10^4$ (W6's telescope, now catching).
 
 ## The convergence — the program's central structural finding
 
-The two fronts were built independently and say the same thing: **the
-obstruction to a 3×3 magic square of squares is genuinely global
-arithmetic.** No congruence excludes it (F5, and the 36 beyond-genus
-kills); what excludes candidate configurations in every range we can
-reach is class-group structure (sphere side) and the rigidity of one
-global differential (surface side). This is the signature of the
-hardest class of Diophantine problems — and it is now located, not just
-suspected.
+The two fronts were built independently and still say the same thing,
+now more precisely: **the obstruction to a 3×3 magic square of squares
+is genuinely global arithmetic — and where we have fully resolved it
+(the sphere front), it is an explicit, elementary, machine-checkable
+law, not a transcendental mystery.** No congruence excludes the square
+(F5; the beyond-genus kills); what excludes candidate configurations
+in every reachable range is the rigidity of one global differential
+(surface side) and the Diophantine witness systems of A9.12 (sphere
+side) — with the additive coupling, not the class layer, as the
+desert's deep cause. This remains the signature of the hardest class
+of Diophantine problems; the program's contribution is to have
+*located and named* the mechanisms.
 
 ## Honest calibration — what none of this does
 
@@ -130,51 +169,65 @@ suspected.
   M11-J would yield "no new families" plus — *conditionally on
   Bombieri–Lang* — "at most finitely many squares". Finitely many is
   not zero.
-- **Range-verified is not proven-for-all-$m$**: the slice confinement,
-  the pair desert ($m \le 3\times10^4$), and the sieve anatomy are exact
-  within their stated ranges and conjectural beyond them; the spectral
-  rigidity is through degree 8, trivial character plus full-character
-  vanishing at degrees 5 and 6 (nontrivial characters at
-  $m \in \{7,8\}$: unsurveyed, scope-noted).
+- **A proven sieve law is not a proven desert.** Theorem A9.12 says
+  exactly *when* a line survives the representation sieve; it does not
+  say the sieves kill every pair forever — indeed they provably do
+  not (the golden centers). The desert facts remain range-verified:
+  pair desert perfect to $3\times10^4$, additive desert to $10^7$,
+  slice confinement and anatomy exact in their stated ranges,
+  conjectural beyond. Spectral rigidity is through degree 8, trivial
+  character plus full-character vanishing at degrees 5–6 (nontrivial
+  characters at $m \in \{7,8\}$: survey in progress, scope-noted).
+- **The actuarial reading cuts both ways.** The random model
+  (measured inputs, stated dependence caveats) correctly predicted
+  the golden onset — evidence that sieve-survival is statistical.
+  The same model expects the *additive* coincidences an actual square
+  needs to be far rarer still; nothing here converts that heuristic
+  into a theorem.
 - **Novelty is claimed relative to a full-access literature sweep**
-  (2026-08-28, RESEARCH_LOG entry 30: the WANTED backlog is cleared,
-  and the field's own pages confirm nothing new on either surface since
-  BTVA 2022 / Bruin–Ilten–Xu 2025; the earlier caveat about unreachable
-  citation databases no longer applies). Everything is machine-verified;
-  nothing is peer-reviewed.
+  (2026-08-28, RESEARCH_LOG entry 30: the WANTED backlog cleared; the
+  field's own pages confirm nothing new on either surface since BTVA
+  2022 / Bruin–Ilten–Xu 2025). Everything is machine-verified;
+  **nothing is peer-reviewed** — the A8 and A9 ladders are paper-ready
+  claims awaiting external eyes (ROADMAP W8).
 - **The one claimed proof in the field is refuted, not the problem
-  solved**: the A1 re-audit (entry 31) proves the arXiv:2510.08286v3
-  argument invalid — its eq. (29) is an identity-multiple of its own
+  solved**: the A1 re-audit proves the arXiv:2510.08286v3 argument
+  invalid — its eq. (29) is an identity-multiple of its own
   constraint, and its final inference fails on an explicit six-square
-  witness. That is a statement about a paper, not about the problem,
-  which remains open in both directions.
-- The multi-hour mod-$p$ computations are recorded artifacts with
-  pinned system shapes; the suite re-verifies exactly what is cheap
-  enough to re-verify (including the $\eta_\star^2$ certification,
-  live, in exact arithmetic).
+  witness. A statement about a paper, not about the problem.
+- The multi-hour computations are recorded artifacts with pinned
+  system shapes; the suite re-verifies exactly what is cheap enough
+  to re-verify (the $\eta_\star^2$ certification, the sampled desert
+  kills, the golden center's lines, live, in exact arithmetic).
 
 ## What an actual resolution would still require
 
 Three known-shaped paths, all hard, none with a visible finish line:
-**(i)** the arithmetic endgame on $X$ — Picard/Galois module, then a
-Brauer–Manin-type global obstruction (deep, but the cuboid literature
-provides the template); **(ii)** upgrading the sphere sieves from
-range-verified to all-$m$ theorems via composition/spinor theory;
-**(iii)** something genuinely new. In the other direction, existence
-would need a construction or a search far beyond current bounds — the
+**(i)** the arithmetic endgame on $X$ — Picard/Galois module through
+the 19-orbit atlas, then a Brauer–Manin/twist-descent global
+obstruction (Conjecture E; the cuboid literature provides the
+template); **(ii)** the desert as a theorem in its now-elementary
+Diophantine form — why the phantom and outer witness systems fail,
+uniformly enough to matter, with the golden regime showing exactly
+where uniformity ends; **(iii)** something genuinely new (the
+abc/Vojta bridge of A2 §6 is formulated; the naive route is a
+recorded FAILED-ATTEMPT). In the other direction, existence would
+need a construction or a search far beyond current bounds — the
 structure found here is evidence *against* accessible solutions and
 proof of nothing asymptotic.
 
 ## Reproducing the state
 
 ```sh
-python3 -m verify            # 108 checks, FULL bounds
-python3 -m verify --only a8  # the surface front
-python3 -m verify --only a9  # the sphere front
+python3 -m verify              # 124 checks, FULL bounds
+python3 -m verify --only a8    # the surface front (incl. the atlas)
+python3 -m verify --only a9    # the sphere front (incl. the ladder)
+python3 -m verify --only c4    # Theorem A9.12 end-to-end
 ```
 
 Attack documents: [A8](attacks/A8-descent-differentials.md) (surface),
 [A9](attacks/A9-discrete-spheres.md) (spheres), with A1–A7 and the
-foundations F1–F6 linked from the [README](../README.md).
+foundations F1–F6 linked from the [README](../README.md); the battle
+plan is [ROADMAP.md](ROADMAP.md).
 [RESEARCH_LOG.md](../RESEARCH_LOG.md) is the dated narrative,
-entries 1–33.
+entries 1–44.

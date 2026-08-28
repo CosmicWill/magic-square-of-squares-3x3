@@ -455,3 +455,33 @@ def _(ctx):
     ctx.note("C4 (Theorem A9.12) verified: sieve == Diophantine "
              "system on anatomy lines; A9.11 congruence hypotheses "
              "hold corpus-wide; 2-adic instance covered")
+
+
+@check("a9.golden", DOC)
+def _(ctx):
+    """The first golden center (2026-08-28): m = 34225 = 185^2, pair
+    (108786216, 718725000) passes positivity, coherence, and — on
+    every tested line — representation, with the A9.12 Diophantine
+    law agreeing exactly; the additive layer still excludes an actual
+    square (U +- V not in D(m); additive desert to 10^7)."""
+    from compute.congrua_search import congrua_sets
+    from compute.gram_sieve import line_alive, syzygy_line_ok
+    from compute.sphere_gluing import coherent_pair, pair_lines
+
+    m, U, V = 34225, 108786216, 718725000
+    require(m == 185 ** 2)
+    D = dict(congrua_sets(m)).get(m, set())
+    require(U in D and V in D and len(D) == 12)
+    require(U + V <= m * m and coherent_pair(m, U, V))
+    require((U + V) not in D and abs(U - V) not in D,
+            "additive quadruple at the golden center?!")
+    n = 3 * m * m
+    lines = list(pair_lines(2 * m * m, U, V))
+    k = ctx.bound(full=8, fast=2)
+    for tri in lines[:k]:
+        a = line_alive(tri, n)
+        s = syzygy_line_ok(tri, n)
+        require(a and s and a == s, "golden line dead or A9.12 mismatch")
+    ctx.note(f"golden center m = 185^2 verified on {k}/8 lines "
+             f"(sieve == A9.12 law); no additive quadruple — "
+             f"sieve-transparent, not a square candidate")
