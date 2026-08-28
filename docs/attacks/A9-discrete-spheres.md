@@ -396,6 +396,50 @@ now lives in the joint behavior of prime classes at algebraically
 coupled arguments — exactly Venkov/quaternionic territory (W9's
 probe is next), with the 1,006-pair corpus as its test bed.
 
+### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
+
+*(2026-08-28; `compute/actuarial_model.py`; sample artifacts
+`data_actuarial_smallm.json` (40 pairs, $m \le 6000$, pinned by
+`a9.actuarial_sample`) and `data_actuarial_sample.json` (120 pairs,
+full range). Status: heuristic — CONJECTURED-class reasoning on
+measured inputs; nothing here is load-bearing for any PROVEN claim.)*
+
+**Measured inputs.** On stratified samples of the stage-3 (rep-killed)
+corpus, the full 8-line kill scan gives: per-line kill probability
+$p \approx 0.70$–$0.73$, **flat in $m$** (bands to $3\times10^4$ —
+notable in itself: representing sets grow with $h \sim m$, yet the
+coupled co-norms hold the kill rate constant); outer lines die at
+$\approx 95\%$, center lines at $\approx 49\%$.
+
+**Two law-shaped regularities** (VERIFIED on 160 sampled pairs,
+candidate lemmas for W4):
+1. **The center cap:** the number of killed center lines is always
+   1 or 2 — never 0, never 3 or 4. The four center triples share the
+   value $2m^2$ and their offsets obey $X_3 = X_1 + X_2$,
+   $X_4 = X_1 - X_2$; "at most two of the four center lines can be
+   simultaneously unrepresentable" looks provable from the gluing
+   algebra, and "every kill includes a center kill" ties the death
+   of a pair to the class-constrained through-center slice (first
+   layer) rather than the loosely-constrained outer lines — even
+   though outer lines individually die more often.
+2. Consequently the killed-line count caps at **6 of 8** (98/120 at
+   exactly 6), and a truncated-binomial (independent-lines) fit is
+   demonstrably wrong in shape.
+
+**The model and its reading.** Under the (imperfect) independence
+baseline, $\mathbb{E}[\text{golden} \le 3\times10^4] \approx 0.2$–$0.4$
+— **the desert's perfect record to $3\times10^4$ is expected, not yet
+evidence for an all-$m$ law.** The expectation crosses 1 near
+$m \sim 10^5$ and reaches $\sim 10^2$ by $10^6$ (stage-3 density
+fitted as $\sim M^{1.7}$ from $22 \to 5292$; survival held at the
+pooled $(1-p)^8 \approx 4$–$7 \times 10^{-5}$; the measured line
+dependence widens the honest uncertainty to at least an order of
+magnitude each way). **Decision rule adopted:** the running $10^5$
+leg is the model's first real test; a zero-golden outcome at $10^6$
+would strain every variant of the random model and constitute genuine
+evidence that the fourth sieve is a law (W4) — while a golden center
+found is W6's telescope working as designed. Either outcome pays.
+
 ## 4. What the verify script proves mechanically
 
 `verify/checks/a9_spheres.py`: the all-lines-on-one-sphere identity

@@ -142,3 +142,28 @@ def _(ctx):
     require(n_triples == 0, "additive triple found in live re-run")
     ctx.note(f"additive desert VERIFIED(10^7) via artifact; live "
              f"re-run clean to {bound}")
+
+
+@check("a9.actuarial_sample", DOC)
+def _(ctx):
+    """W6 actuarial v1 regularities, pinned on the small-m sample
+    artifact (40 stage-3 pairs, m <= 6000): center-line kills always
+    in {1, 2} (the center cap), outer <= 4, total <= 6; one sampled
+    row's full line-kill count re-verified live."""
+    path = os.path.join(DATA, "data_actuarial_smallm.json")
+    with open(path, encoding="utf-8") as fh:
+        art = json.load(fh)
+    rows = art["rows"]
+    require(len(rows) == 40 and art["mcap"] == 6000)
+    for m, U, V, kt, kc, ko in rows:
+        require(m <= 6000)
+        require(kt == kc + ko, "count split")
+        require(1 <= kc <= 2, f"center cap violated: kc={kc} at {m}")
+        require(0 <= ko <= 4 and kt <= 6)
+    # live re-verification of the first sampled row
+    from compute.actuarial_model import killed_line_count
+    m, U, V, kt, kc, ko = rows[0]
+    require(tuple(killed_line_count(m, U, V)) == (kt, kc, ko),
+            "live recount mismatch")
+    ctx.note("center cap (kc in {1,2}) holds on all 40 sampled kills; "
+             "outer <= 4; k <= 6; first row re-verified live")

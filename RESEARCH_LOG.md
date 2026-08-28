@@ -1526,3 +1526,38 @@ Z at a Wronskian/derivative step. The autopsy (A2 §6) found otherwise:
 Suite 116 checks. M12 board: A, B, D, E done; C (cubic campaign)
 and the actuarial model are the remaining near-term items; F (m = 7)
 grinding in the background at ~87 min/orbit.
+
+## 2026-08-28 — Entry 37: the actuarial model v1 — the desert's record is expected, and two new regularities
+
+W6's decision instrument is built (compute/actuarial_model.py; A9 §3
+actuarial subsection; check a9.actuarial_sample). Measured inputs from
+line-level kill scans on 160 sampled stage-3 pairs: per-line kill
+probability ~0.70-0.73 and FLAT in m (itself notable — representing
+sets grow with h ~ m yet the coupled co-norms hold the rate constant);
+outer lines die at ~95%, center lines at ~49%.
+
+THE VERDICT: under the independence baseline E[golden <= 3x10^4] ~
+0.2-0.4 — the desert's perfect record so far is EXPECTED, not yet
+evidence for an all-m law. The expectation crosses 1 near m ~ 10^5
+and reaches ~10^2 by 10^6. Decision rule adopted: the running 10^5
+leg is the model's first real test; zero golden at 10^6 would strain
+every variant of the random model and constitute genuine evidence
+that the fourth sieve is a law; a golden center found is the
+telescope working. Either outcome pays.
+
+TWO LAW-SHAPED REGULARITIES (candidate lemmas for W4, verified on
+all 160 sampled kills, pinned on the 40-pair small-m artifact):
+1. THE CENTER CAP: killed center lines number always 1 or 2 — never
+   0, never 3-4. The four center triples share the value 2m^2 with
+   offsets obeying X3 = X1 + X2, X4 = X1 - X2; "at most two center
+   lines can be simultaneously unrepresentable" looks provable from
+   the gluing algebra.
+2. EVERY KILL INCLUDES A CENTER KILL: the death of a pair always
+   involves the class-constrained through-center slice — even though
+   outer lines individually die more often. The k-distribution is
+   therefore capped at 6/8 (98/120 at exactly 6) and the independent-
+   lines model is wrong in shape (honest uncertainty band noted in
+   the doc).
+
+Suite 117 checks. Background: desert toward 10^5; m = 7 survey; the
+full 120-pair instrumented sample (artifact dump) re-running.
