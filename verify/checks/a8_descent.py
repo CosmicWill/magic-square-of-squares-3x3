@@ -311,7 +311,10 @@ def _(ctx):
     """The spectrum above degree 4 (M11-K). (i) The stored m = 5
     survey (51 orbits, 256 characters, mod p with per-orbit
     saturation) is ALL ZERO — h^0(S^5) = 0 for every character,
-    each mod-p zero proving exact vanishing. (ii) The stored
+    each mod-p zero proving exact vanishing; the stored m = 6
+    survey has ONLY the trivial character nonzero (ambient 10),
+    whose resolution subspace the tau-test kills — so
+    h^0(Ytilde, S^6 Omega^1) = 0 outright, all 256 characters. (ii) The stored
     reconstruction-free mod-p tau-tests give the trivial-character
     RESOLUTION ladder: m = 6 -> 0, m = 7 -> 0, m = 8 -> 1 (the
     zeros are proofs: rank only drops mod p) — with m = 4 -> 1 the
@@ -335,6 +338,11 @@ def _(ctx):
     m5 = data["m5"]["survey"]
     require(len(m5) == 51 and sum(r["orbit"] for r in m5) == 256)
     require(all(r["d"] == 0 for r in m5), "m = 5 spectrum nonzero?!")
+    m6s = data["m6"]["survey"]
+    require(len(m6s) == 51 and sum(r["orbit"] for r in m6s) == 256)
+    nz6 = [r for r in m6s if r["d"]]
+    require(len(nz6) == 1 and nz6[0]["S"] == [] and nz6[0]["d"] == 10,
+            f"m = 6 spectrum record changed: {nz6}")
     require((data["m6"]["trivial_ambient_modp"],
              data["m6"]["trivial_resolution_modp"]) == (10, 0))
     require((data["m7"]["trivial_ambient_modp"],
@@ -357,7 +365,7 @@ def _(ctx):
     for tag in VISIBLE:
         require(tau_of_m(sN8, tag, 8) >= 8,
                 f"sigma* eta*^2 fails at {tag}")
-    ctx.note("m = 5: zero for all 256 characters; trivial resolution "
+    ctx.note("m = 5, 6: zero for all 256 characters (resolution); "
              "ladder 4 -> 1, 5 -> 0, 6 -> 0, 7 -> 0, 8 -> 1 with "
              "eta*^2 certified exactly: h^0(S^8)^inv = <eta*^2>")
 

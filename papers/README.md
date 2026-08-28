@@ -5,7 +5,7 @@ most of the web — the egress proxy allowed only PyPI, apt, and GitHub git
 traffic — so literature knowledge was SUMMARY-ONLY unless a primary source
 landed in this directory. On 2026-08-28 the program ran on the owner's
 local machine with full web access and cleared the entire WANTED backlog;
-see RESEARCH_LOG entry 29.)
+see RESEARCH_LOG entry 30.)
 
 **Workflow:**
 
@@ -37,12 +37,12 @@ repo is public, prefer arXiv versions over paywalled publisher PDFs).
 | Miyaoka, Publ. RIMS 44 (2008) | `miyaoka-2008-orbibundle-rims44.pdf` | READ (main theorems; hypotheses fail for X) 2026-08-26 |
 | Bruin–Ilten–Xu, arXiv:2312.01722 | `2312.01722-bruin-ilten-xu.pdf` | READ (framework) 2026-08-26 |
 
-**Acquired in the 2026-08-28 full-access sweep** (RESEARCH_LOG entry 29;
+**Acquired in the 2026-08-28 full-access sweep** (RESEARCH_LOG entry 30;
 digestion status tracked in `docs/references.md`):
 
 | Source | File | Status |
 |---|---|---|
-| Hill, arXiv:2510.08286**v3** (Apr 2026) — the claimed proof under A1 audit | `2510.08286v3-hill.pdf` | READ in full 2026-08-28; A1 re-audit pending (see A1 §6) |
+| Hill, arXiv:2510.08286**v3** (Apr 2026) — the claimed proof under A1 audit | `2510.08286v3-hill.pdf` | READ in full 2026-08-28; **proof refuted** (A1 §7; `docs/refutations/`) |
 | Bremner, "On squares of squares" I, Acta Arith. 88 (1999) | `bremner-1999-squares-of-squares-I-aa88.pdf` | acquired; digest pending (unblocks A4 cross-check) |
 | Bremner, "On squares of squares II", Acta Arith. 99 (2001) | `bremner-2001-squares-of-squares-II-aa99.pdf` | acquired; digest pending |
 | Rome–Yamagishi, arXiv:2406.09364v2 | `2406.09364-rome-yamagishi.pdf` | acquired; digest pending |

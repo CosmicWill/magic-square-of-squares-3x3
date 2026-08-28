@@ -1155,7 +1155,20 @@ machine-verified, not peer-reviewed), and the three known-shaped
 paths to an actual resolution. README front matter links it. To be
 updated at milestones.
 
-## 2026-08-28 — Entry 29: the full-access literature sweep — backlog cleared, Hill v3 in hand, the frontier confirmed ours
+## 2026-08-28 — Entry 29: the m = 6 survey completes — h^0(Ytilde, S^6) = 0 outright
+
+The 10.3-hour m = 6 character survey (checkpoint-resumed across
+three container restarts) finished: all 51 orbits, 256 characters,
+and the ONLY nonzero ambient eigenspace is the trivial character
+(dimension 10) — whose resolution subspace the tau-test already
+proved zero. Combined: h^0(Ytilde, S^6 Omega^1) = 0 for EVERY
+character, and m = 6 joins m = 5 as a fully settled degree.
+Theorem A8.18's scope note shrinks to the nontrivial characters at
+m in {7, 8} only. Survey table stored in
+data_section_spectrum.json; check, doc, ledger, and PROGRESS memo
+updated.
+
+## 2026-08-28 — Entry 30: the full-access literature sweep — backlog cleared, Hill v3 in hand, the frontier confirmed ours
 
 The program ran for the first time on the owner's local machine with
 unrestricted web access. One session cleared the entire WANTED backlog
@@ -1232,9 +1245,9 @@ Pillot → pose the A9-T1 composition question precisely; (5) read
 Bruin–Creutz alongside Stoll–Testa/Horie–Yamauchi as the endgame
 template pair.
 
-## 2026-08-28 — Entry 30: the A1 formal re-audit — Hill's claimed proof is refuted
+## 2026-08-28 — Entry 31: the A1 formal re-audit — Hill's claimed proof is refuted
 
-With the v3 text in hand (entry 29), the §5 checklist and the §6
+With the v3 text in hand (entry 30), the §5 checklist and the §6
 preliminary diagnosis were pushed to a complete formal re-audit, and
 the outcome is stronger than the preliminary verdict: **the claimed
 proof of arXiv:2510.08286v3 is refuted**, with the entire analysis
@@ -1291,7 +1304,7 @@ construction generalizes (any two triples T₁, T₂ of a common congruum
 D with q₂² + p₂² − q₁² > 0 give one) and could feed F6/A4 as a
 family of rank-style near-miss anchors if ever useful.
 
-## 2026-08-28 — Entry 31: the refutation, audited — adversarial controls on our own reading of Hill
+## 2026-08-28 — Entry 32: the refutation, audited — adversarial controls on our own reading of Hill
 
 Prompted by the owner's (correct) insistence that refuting someone's
 paper demands maximal certainty, the A1 §7 refutation was itself put
@@ -1324,7 +1337,7 @@ circularity: restricting the step to all-rational configurations makes
 its soundness equivalent to the theorem it is meant to prove. The
 refutation stands at the highest standard we can impose on it.
 
-## 2026-08-28 — Entry 32: the standalone refutation document
+## 2026-08-28 — Entry 33: the standalone refutation document
 
 The A1 §7 refutation now has a self-contained, shareable write-up:
 docs/refutations/2510.08286-hill.md — written to be handed directly to

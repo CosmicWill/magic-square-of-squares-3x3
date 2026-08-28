@@ -154,7 +154,7 @@ strictly between consecutive squares), or genuine factorization input
 ## 6. Addendum 2026-08-28 — the text in hand: first pass against the checklist (PRELIMINARY)
 
 The v3 text (7 pages) was acquired in the full-access sweep
-(RESEARCH_LOG entry 29) and read in full. Version history: v1
+(RESEARCH_LOG entry 30) and read in full. Version history: v1
 2025-10-09, v2 2025-10-19, v3 2026-04-07 ("updated notation,
 particularly around singular APs"); still math.GM; still no endorsement,
 refutation, or acceptance anywhere we could find.

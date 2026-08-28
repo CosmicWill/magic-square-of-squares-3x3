@@ -18,7 +18,7 @@ honestly:
 - **ACQUIRED** — primary-source PDF is in [papers/](../papers/) but not
   yet digested here; theorem statements from it are not yet load-bearing.
   (Most ACQUIRED tags date to the 2026-08-28 full-access sweep,
-  RESEARCH_LOG entry 29.)
+  RESEARCH_LOG entry 30.)
 
 ## Problem origin and surveys
 

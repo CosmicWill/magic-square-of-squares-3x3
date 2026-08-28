@@ -5,7 +5,7 @@ searches; see RESEARCH_LOG entry 8). Everything here is currently known
 to us only through search snippets, except where marked ACQUIRED.
 
 > **2026-08-28 — backlog cleared.** The full-access sweep (RESEARCH_LOG
-> entry 29) acquired every remaining item below: P2 ✅, P5 ✅, P7 ✅
+> entry 30) acquired every remaining item below: P2 ✅, P5 ✅, P7 ✅
 > (Hill at **v3**, Apr 2026; Rome–Yamagishi published, RNT 11:91),
 > P8 ✅ (Duke ×2, Aka–Einsiedler–Shapira, plus Ellenberg–Michel–Venkatesh
 > arXiv:1001.0897 as the modern Venkov exposition, the Schulze-Pillot

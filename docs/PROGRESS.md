@@ -123,16 +123,17 @@ suspected.
 - **Range-verified is not proven-for-all-$m$**: the slice confinement,
   the pair desert ($m \le 1200$), and the sieve anatomy are exact
   within their stated ranges and conjectural beyond them; the spectral
-  rigidity is through degree 8, trivial character (nontrivial
-  characters at $m \in \{6,7,8\}$: partial, scope-noted).
+  rigidity is through degree 8, trivial character plus full-character
+  vanishing at degrees 5 and 6 (nontrivial characters at
+  $m \in \{7,8\}$: unsurveyed, scope-noted).
 - **Novelty is claimed relative to a full-access literature sweep**
-  (2026-08-28, RESEARCH_LOG entry 29: the WANTED backlog is cleared,
+  (2026-08-28, RESEARCH_LOG entry 30: the WANTED backlog is cleared,
   and the field's own pages confirm nothing new on either surface since
   BTVA 2022 / Bruin–Ilten–Xu 2025; the earlier caveat about unreachable
   citation databases no longer applies). Everything is machine-verified;
   nothing is peer-reviewed.
 - **The one claimed proof in the field is refuted, not the problem
-  solved**: the A1 re-audit (entry 30) proves the arXiv:2510.08286v3
+  solved**: the A1 re-audit (entry 31) proves the arXiv:2510.08286v3
   argument invalid — its eq. (29) is an identity-multiple of its own
   constraint, and its final inference fails on an explicit six-square
   witness. That is a statement about a paper, not about the problem,
@@ -166,4 +167,4 @@ Attack documents: [A8](attacks/A8-descent-differentials.md) (surface),
 [A9](attacks/A9-discrete-spheres.md) (spheres), with A1–A7 and the
 foundations F1–F6 linked from the [README](../README.md).
 [RESEARCH_LOG.md](../RESEARCH_LOG.md) is the dated narrative,
-entries 1–27.
+entries 1–33.
