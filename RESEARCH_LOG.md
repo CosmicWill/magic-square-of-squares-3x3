@@ -1154,3 +1154,16 @@ range-verified is not all-m; novelty modulo reachable literature;
 machine-verified, not peer-reviewed), and the three known-shaped
 paths to an actual resolution. README front matter links it. To be
 updated at milestones.
+
+## 2026-08-28 — Entry 29: the m = 6 survey completes — h^0(Ytilde, S^6) = 0 outright
+
+The 10.3-hour m = 6 character survey (checkpoint-resumed across
+three container restarts) finished: all 51 orbits, 256 characters,
+and the ONLY nonzero ambient eigenspace is the trivial character
+(dimension 10) — whose resolution subspace the tau-test already
+proved zero. Combined: h^0(Ytilde, S^6 Omega^1) = 0 for EVERY
+character, and m = 6 joins m = 5 as a fully settled degree.
+Theorem A8.18's scope note shrinks to the nontrivial characters at
+m in {7, 8} only. Survey table stored in
+data_section_spectrum.json; check, doc, ledger, and PROGRESS memo
+updated.

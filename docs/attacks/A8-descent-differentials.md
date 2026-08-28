@@ -768,6 +768,11 @@ $B$-points via direct $\sigma^*$-pullback) cut both to $0$ mod
 $p$ — no invariant degree-6 or degree-7 section of the resolution
 exists. The trivial-character resolution ladder is complete with
 no gaps: $4 \to 1,\ 5 \to 0,\ 6 \to 0,\ 7 \to 0,\ 8 \to 1$.
+Moreover the **full** $m = 6$ character survey is complete (51
+orbits, 256 characters, 10.3 h): only the trivial character has a
+nonzero ambient eigenspace, so with the $\tau$-test,
+**$h^0(\widetilde Y, S^6\Omega^1) = 0$ outright — every
+character** — and $m = 6$ joins $m = 5$ as a fully settled degree.
 (iii) **Trivial character, $m = 8$:
 $h^0(\widetilde Y, S^8\Omega^1)^{\mathrm{inv}} =
 \langle\eta_\star^2\rangle$ EXACTLY** (PROVEN by sandwich): the
@@ -799,13 +804,13 @@ that partially reconstructed bases (not $\sigma$-stable) are
 handled soundly. Upper bounds mod $p$ meet exact lower bounds in
 sandwiches.
 
-**Scope, honestly.** The full character surveys at
-$m \in \{6, 7, 8\}$ beyond the trivial character are partial
-($m = 6$: survey in progress, all nontrivial orbits so far zero)
-resp. infeasible at current budgets ($m = 7$: $\approx 71$
-min/orbit $\Rightarrow$ days). The trivial character — where
-products live and where any finiteness shortcut would have to
-live — is settled decisively at every degree $4 \le m \le 8$.
+**Scope, honestly.** The nontrivial characters at
+$m \in \{7, 8\}$ remain unsurveyed (infeasible at current budgets:
+$m = 7$ at $\approx 71$ min/orbit $\Rightarrow$ days); degrees
+$5$ and $6$ are settled for **all** characters, and the trivial
+character — where products live and where any finiteness shortcut
+would have to live — is settled decisively at every degree
+$4 \le m \le 8$.
 
 ## 9. Roadmap
 

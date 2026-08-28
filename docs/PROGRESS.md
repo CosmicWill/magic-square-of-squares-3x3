@@ -122,8 +122,9 @@ suspected.
 - **Range-verified is not proven-for-all-$m$**: the slice confinement,
   the pair desert ($m \le 1200$), and the sieve anatomy are exact
   within their stated ranges and conjectural beyond them; the spectral
-  rigidity is through degree 8, trivial character (nontrivial
-  characters at $m \in \{6,7,8\}$: partial, scope-noted).
+  rigidity is through degree 8, trivial character plus full-character
+  vanishing at degrees 5 and 6 (nontrivial characters at
+  $m \in \{7,8\}$: unsurveyed, scope-noted).
 - **Novelty is claimed only relative to the literature we could
   reach** (citation databases unreachable from this environment; the
   searches are documented). Everything is machine-verified; nothing is
