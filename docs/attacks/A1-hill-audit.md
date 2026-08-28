@@ -201,6 +201,11 @@ sharpens them to PROVEN statements.)*
 
 ## 7. The formal re-audit (2026-08-28) — the proof is refuted
 
+> *A self-contained, shareable write-up of this refutation — suitable
+> for sending to the author or a third party, with a standalone
+> verification script — is at
+> [docs/refutations/2510.08286-hill.md](../refutations/2510.08286-hill.md).*
+
 All statements in this section are machine-verified by
 `a1.eq29_identity`, `a1.eq29_witness`, and `a1.hill_grid` (exact
 arithmetic throughout: integer multivariate polynomial expansion,

@@ -1323,3 +1323,33 @@ outside his framework" objection is closed three ways, decisively by
 circularity: restricting the step to all-rational configurations makes
 its soundness equivalent to the theorem it is meant to prove. The
 refutation stands at the highest standard we can impose on it.
+
+## 2026-08-28 — Entry 32: the standalone refutation document
+
+The A1 §7 refutation now has a self-contained, shareable write-up:
+docs/refutations/2510.08286-hill.md — written to be handed directly to
+the paper's author or any third party, with no dependence on the
+repository's internal language. Contents: the paper's framework
+recalled in its own notation; what is CORRECT in the paper stated
+fairly (the encoding is faithful and complete; the algebra through
+(30) checks out); Theorem 1 (eq. (29) = positive cofactor x the
+Lemma-3.2 constraint, with a term-by-term proof checkable by hand);
+Theorem 2 (the six-square witness, all data exact, every positivity
+verified); the final step quoted verbatim and analyzed under both
+possible readings (numeric: numbers have no coefficients; polynomial:
+the premise is a provably nonzero polynomial); the no-local-repair
+argument (positivity-only justification, R+ betas per the paper
+itself, circularity of a rationality restriction); scope (the problem
+remains open); and an embedded ~40-line sympy script verifying both
+theorems (also stored as compute/hill_refutation_standalone.py and run
+green from the repo). Cross-linked from A1 §7, the README headline and
+ledger row.
+
+Contact route for the author identified: the arXiv abstract page for
+2510.08286 carries the standard "From: Oscar Hill [view email]"
+submitter link (arxiv.org/show-email/8a625028/2510.08286), visible to
+logged-in arXiv users — the author-consented channel, and the only
+one that identifies the actual submitter with certainty (a same-named
+Cambridge CS PhD student found in open search does NOT list the paper
+on his profiles, so no identification was assumed). The owner will
+make contact personally.

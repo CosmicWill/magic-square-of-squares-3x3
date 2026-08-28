@@ -109,7 +109,8 @@ Beyond reproving the foundations from scratch, the program produced:
    arXiv:2510.08286** (v3): its eq. (29) is proven to be an identity-
    multiple of its own spacing constraint, and its final inference fails
    on an explicit magic square with six perfect-square entries.
-   ([A1 §7](docs/attacks/A1-hill-audit.md))
+   ([A1 §7](docs/attacks/A1-hill-audit.md); standalone write-up:
+   [docs/refutations/2510.08286-hill.md](docs/refutations/2510.08286-hill.md))
 6. **A four-square-theorem reduction chain** ending in one classical
    quartic, each step machine-verified
    ([F3](docs/foundations/F3-no-four-term-ap.md)); the exact
@@ -134,7 +135,7 @@ Beyond reproving the foundations from scratch, the program produced:
 | $\mathbb{F}_p$ (distinct entries) solvable iff $p \in \{59,73,83,97\}$ or $p \ge 107$, for $p < 1000$ | VERIFIED | F5 |
 | AB1 & Euler 4×4 anchors; $D(425)$ admits no MSS3 | VERIFIED | F6 |
 | Pseudo-solutions defeat congruence+order endgames (any modulus) | PROVEN | A1 |
-| Hill arXiv:2510.08286 (v3 READ) | **Proof REFUTED (PROVEN)**: its eq. (29) = positive cofactor × its own Lemma-3.2 constraint (identity; no Diophantine content); the "(29) ⟹ β₁ = 1" coefficient step fails on an explicit witness (magic square $(4,3360,2112)$-grid, six square entries, β₁ = 6/5, both sides of (29) ≠ 0). Encoding proven faithful & complete (= Lucas grid). Problem statement untouched | A1 §7; `a1.eq29_identity`, `a1.eq29_witness`, `a1.hill_grid` |
+| Hill arXiv:2510.08286 (v3 READ) | **Proof REFUTED (PROVEN)**: its eq. (29) = positive cofactor × its own Lemma-3.2 constraint (identity; no Diophantine content); the "(29) ⟹ β₁ = 1" coefficient step fails on an explicit witness (magic square $(4,3360,2112)$-grid, six square entries, β₁ = 6/5, both sides of (29) ≠ 0). Encoding proven faithful & complete (= Lucas grid). Problem statement untouched | A1 §7; [refutations/2510.08286-hill](docs/refutations/2510.08286-hill.md); `a1.eq29_identity`, `a1.eq29_witness`, `a1.hill_grid` |
 | $k[t]$: primitive 4-APs of squares constant; square-congruum APs constant; $\mathbb{Q}[t]$ outright | PROVEN | A2 |
 | No MSS3 over $\mathbb{F}_q[t]$, nonconstant center, tabulated $(q, \deg)$ ranges | VERIFIED | A2 |
 | Full $k[t]$ conjecture = no nondegenerate rational curves on $X$ | CONJECTURED (A2.C); Open A2-T1 | A2 |
