@@ -1606,3 +1606,40 @@ center lines of every pair), zero failures; rep_verdict spot checks
 confirm killed-line indices exclude 0 and 1 throughout. The suite
 keeps the 2,000-pair stride at FULL profile for runtime hygiene;
 this entry records the complete sweep.
+
+## 2026-08-28 — Entry 39: the Gram sieve — the fourth sieve is (almost) a principal-form law
+
+Hunting the k_c >= 1 companion produced something larger than the
+companion. THEOREM A9.7 (PROVEN, one paragraph): two independent
+vectors of norms w1, w2 in a rank-2 lattice of determinant N have
+w1 w2 = t^2 + N k^2 with t their inner product and k >= 1 the index
+of the spanned sublattice — so a line represented by a single class
+needs EVERY pairwise product of its co-norms to be of that form; at
+the top stratum, representable by the PRINCIPAL form x^2 + 3m^2 y^2
+with y >= 1. PROP A9.7.1: reducing mod p | 3m^2 recovers exactly the
+chi_p-coherence of Theorem A9.3 — the coherence sieve is the local
+shadow of the Gram sieve, and the Gram sieve's global content
+(principal-class representability, not just everywhere-locally) is
+beyond all genus characters — precisely where M12-B located the 36
+GLOBAL kills.
+
+THE CENSUS (a9.gram_sieve): zero soundness violations anywhere (the
+theorem, confirmed on every line of every examined pair); the Gram
+sieve EXPLAINS 56 OF THE 57 anatomy kills — the ARC mechanism is, in
+all but one case, the principal-form Gram condition. The single
+exception (m = 725, pair (171600, 282576), line 5: killed yet
+pairwise-Gram-alive) is the one known kill needing the third-vector
+syzygy layer. On the corpus sample: every pair's phantom kill (line
+2 or 3) is a Gram failure, 30/30 — the companion reduces to
+arithmetic of the Gram equations.
+
+HYPOTHESES REFINED: H-align -> H-GRAM (representation sieve = Gram
+sieve + rare syzygy corrections); the companion becomes CONJECTURE
+A9.C2: any Gram failure among the eight lines forces one on line 2
+or 3 — a pure statement about ten products, with first analysis
+recorded (both Brahmagupta pairings of u+ v+ land on the real
+t^2 - 3m^2 k^2 side: no outer product passes for free). Proving
+A9.C2 proves k_c >= 1 modulo the pinned syzygy exception. W4 now has
+a named law candidate, a proven necessity theorem, a one-line local
+unification, and a single explicit counterexample-to-pairwise
+sufficiency to study. Suite 119.

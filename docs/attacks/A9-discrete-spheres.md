@@ -446,6 +446,65 @@ reasons*". The measured companion — every corpus kill includes line
 reads: *the pair desert dies, always, at the additive coupling*,
 never merely at the outer entries.
 
+### The Gram sieve (A9.7) — the fourth sieve is (almost) a principal-form law
+
+*(2026-08-28, the $k_c \ge 1$ companion hunt; `compute/gram_sieve.py`,
+check `a9.gram_sieve`.)*
+
+**Theorem A9.7 (pairwise Gram necessity; PROVEN).** Let $L$ be a
+positive-definite rank-2 lattice with $\det L = N$, and let $w_1, w_2$
+be norms of vectors $x_1, x_2 \in L$. If $x_1, x_2$ are independent,
+then $t := \langle x_1, x_2\rangle$ and the index
+$k := [L : \mathbb{Z}x_1 + \mathbb{Z}x_2] \ge 1$ satisfy
+$$w_1 w_2 \;=\; t^2 + N k^2$$
+(det of the Gram matrix of the sublattice is $k^2 \det L$); if
+proportional, $w_1w_2 = t^2$ is a perfect square. **Hence a line whose
+co-norm triple is represented by a single class of determinant $N$
+has every pairwise product $w_iw_j$ of the form $t^2 + Nk^2$,
+$k \ge 1$ (or a perfect square)** — at the top stratum
+$N = 3m^2$: representable by the *principal* form $x^2 + 3m^2y^2$
+with $y \ge 1$. The line-level test (`gram_line_ok`: some admissible
+content stratum passes all three pairs) is a machine-checkable
+necessary condition for representability. $\blacksquare$
+
+**Proposition A9.7.1 (coherence is the local Gram layer).** For an
+odd prime $p \mid 3m^2$, reducing $w_1w_2 = t^2 + 3m^2k^2$ modulo $p$
+forces $w_1w_2 \equiv t^2$, i.e. $\chi_p(w_1) = \chi_p(w_2)$ whenever
+both are nonzero mod $p$ — exactly the pairwise
+$\chi_p$-coherence of Theorem A9.3. *The coherence sieve is the local
+shadow of the Gram sieve; the Gram sieve's global content
+(representability by the principal class, not merely everywhere
+locally) is beyond all genus characters* — precisely where the
+M12-B anatomy located the 36 GLOBAL kills.
+
+**The census (measured, pinned).** On the eleven $\le 1200$ passers
+(the M12-B anatomy set) and a 30-pair corpus sample ($m \le 4000$):
+
+- **soundness: zero violations** — no representable line fails the
+  Gram test, on every line of every pair examined (the theorem,
+  confirmed on data);
+- **the Gram sieve explains 56 of the 57 anatomy kills** — including
+  the beyond-genus GLOBAL kills: the ARC mechanism of M12-B *is*, in
+  all but one case, the principal-form Gram condition. The single
+  exception — $m = 725$, pair $(171600, 282576)$, line 5 — is killed
+  but pairwise-Gram-alive: the one known kill requiring the
+  third-vector (syzygy) layer beyond pairwise Gram;
+- **the companion, mechanized:** in all 30 sampled corpus pairs a
+  phantom line (2 or 3) is killed, and in all 30 the phantom kill is
+  a *Gram failure*. Every observed kill pattern contains line 2 or 3.
+
+**Refined working hypotheses.** (**H-Gram**, replacing H-align's
+vague form): *the representation sieve equals the Gram sieve plus
+rare syzygy corrections* — the fourth sieve is the principal-norm
+law $w_iw_j \in \{t^2 + 3m^2k^2\}$. (**A9.C2**, the companion at
+Gram level): *any Gram failure among the eight lines forces a Gram
+failure on line 2 or 3* — now a pure statement about the arithmetic
+of the ten products; first analysis: both Brahmagupta pairings of
+$u_+v_+ = (3m^2 - d_1^2)(3m^2 - d_2^2)$ land on the real side
+($t^2 - 3m^2k^2$), so no outer product passes for free — the
+companion's content is genuinely two-sided. Proving A9.C2 proves
+$k_c \ge 1$ modulo the (single known) syzygy exception.
+
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 
 *(2026-08-28; `compute/actuarial_model.py`; sample artifacts

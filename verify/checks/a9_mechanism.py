@@ -219,3 +219,40 @@ def _(ctx):
     ctx.note(f"A9.6 certificates verified on {checked} corpus pairs "
              f"(both real center lines each); rep_verdict spot checks "
              f"({len(small)}) confirm killed lines exclude 0, 1")
+
+
+@check("a9.gram_sieve", DOC)
+def _(ctx):
+    """Theorem A9.7 (pairwise Gram necessity) and its census: no
+    alive line ever fails the Gram test (soundness — the theorem on
+    data); the Gram sieve explains 56/57 anatomy kills (the single
+    syzygy exception pinned at m=725 pair 2 line 5); every sampled
+    corpus pair's phantom kill is a Gram failure (the k_c >= 1
+    companion, mechanized)."""
+    from compute.gram_sieve import pair_census
+    from compute.sphere_composition import PASSERS_1200
+
+    n = ctx.bound(full=11, fast=3)
+    passers = PASSERS_1200 if n >= 11 else \
+        [p for p in PASSERS_1200 if p[0] in (425, 481, 725)][:n]
+    killed = explained = 0
+    exceptions = []
+    for m, U, V in passers:
+        cen = pair_census(m, U, V)
+        for i, (alive, gok) in enumerate(cen):
+            require(not (alive and not gok),
+                    f"A9.7 violated at m={m} line {i}")
+            if not alive:
+                killed += 1
+                if not gok:
+                    explained += 1
+                else:
+                    exceptions.append((m, U, V, i))
+        require(any(not cen[i][0] and not cen[i][1] for i in (2, 3)),
+                f"companion/Gram fails at m={m}")
+    if n >= 11:
+        require(killed == 57 and explained == 56, (killed, explained))
+        require(exceptions == [(725, 171600, 282576, 5)], exceptions)
+    ctx.note(f"A9.7 sound on {len(passers)} passers ({killed} kills, "
+             f"{explained} gram-explained); phantom Gram-kill present "
+             f"in every pair; syzygy exception(s): {exceptions}")
