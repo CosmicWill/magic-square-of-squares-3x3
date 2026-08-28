@@ -30,7 +30,9 @@ See [docs/00-problem-statement.md](docs/00-problem-statement.md) for precise
 definitions and [docs/references.md](docs/references.md) for the literature
 with provenance flags. **For the standing honest assessment of what this
 program has genuinely achieved — and what it has not — read
-[docs/PROGRESS.md](docs/PROGRESS.md).**
+[docs/PROGRESS.md](docs/PROGRESS.md). For the strategic battle plan toward
+an actual proof — the workstreams, milestones, and creative bets — read
+[docs/ROADMAP.md](docs/ROADMAP.md).**
 
 ## Quickstart
 

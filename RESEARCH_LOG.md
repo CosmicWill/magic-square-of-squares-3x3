@@ -1366,3 +1366,52 @@ one that identifies the actual submitter with certainty (a same-named
 Cambridge CS PhD student found in open search does NOT list the paper
 on his profiles, so no identification was assumed). The owner will
 make contact personally.
+
+## 2026-08-28 — Entry 34: the strategic roadmap — nine workstreams toward a proof
+
+With both fronts at named frontiers, the sweep digested, and the
+field's only claimed proof refuted, the program now has a standing
+battle plan: docs/ROADMAP.md. The doctrine: both directions count;
+every argument passes the gauntlet (we now know FOUR ways proofs of
+this problem die); force concentrates where the convergence finding
+points — exact global-arithmetic laws.
+
+The nine workstreams, with their first actions:
+W1 close M11-J -> prove A2.C -> the unconditional k[t] theorem (the
+   ripest fruit; paper #1);
+W2 the motive atlas of X — extend the A8 character machinery from
+   differentials to H^{2,0} (111 forms, 256 characters), classify
+   the sub-arrangement double covers, then the Stoll-Testa/
+   Horie-Yamauchi program: Pic with Galois action, Brauer, L-function;
+W3 the endgame stated honestly as Conjecture E (all rational points
+   degenerate) attacked by descent on (Z/2)^8-twists with Brauer
+   obstructions — F4 reinterpreted as the local half of that descent;
+W4 THE FLAGSHIP BET (H-Redei): the 36 beyond-genus kills as exact
+   Redei-symbol identities — reciprocity, not equidistribution; first
+   action: full Redei computation at m = 725; ties the sphere front
+   to 2-Selmer structure of coupled congruent-number twists;
+W5 the abc bridge: autopsy exactly where the A2.L degree-halving
+   descent breaks over Z; formulate inequality (*); aim at the
+   conditional capstone (effective abc => explicit bound + finite
+   check = complete conditional resolution);
+W6 the telescope: extend the pair desert past 1200 until golden
+   centers appear, search only there; plus the actuarial model that
+   decides W4-vs-W6 resource allocation;
+W7 exact Hurwitz-class-number counting identities (Sturm-style
+   finish if a signed count is modular; obstacle named honestly);
+W8 force multiplication: papers 1-2 to arXiv, then engage
+   Varilly-Alvarado/Bruin/Stoll — W2/W3 are literally their
+   specialties; timing: after W1 lands as the calling card;
+W9 wild reserve, timeboxed: Buium arithmetic jets avatar of
+   eta_star, quaternionic norm-identity reformulation, governing
+   fields for the kill family.
+
+Milestones M12-A..M15 defined with acceptance criteria (suite-
+verified, tagged, logged). Near-term order: M12-A (H^{2,0} atlas,
+cheap and unlocking), M12-B (m=725 Redei session), M12-C (cubic
+cloud campaign), M12-D (desert extension in background), M12-E
+(A2.L autopsy). The honest odds are stated in the roadmap's §5: the
+boulder is real, but the plan concentrates on the only three
+mechanisms matching the obstruction's proven profile — class-field
+reciprocity, cover descent with Brauer classes, and height descent —
+and every rung of the ladder is real mathematics on its own.
