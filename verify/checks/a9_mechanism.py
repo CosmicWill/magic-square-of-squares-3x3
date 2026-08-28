@@ -369,3 +369,45 @@ def _(ctx):
     ctx.note(f"A9.9 sound; syzygy system explains {explained}/{killed} "
              f"kills on {len(passers)} passers (full profile pins "
              f"57/57 incl. the pairwise survivor)")
+
+
+@check("a9.q1_sufficiency", DOC)
+def _(ctx):
+    """Theorem A9.10 (q = 1 sufficiency) and its census: 28/31 alive
+    lines carry constructive q = 1 witnesses (representability proven
+    with no class computation); the q = 1 test still fails all 57
+    kills; the three q > 1 boundary lines are pinned with their
+    witness indices (425/850 line 4: q = 77 with identical reduced
+    witness under doubling; 1025 line 6: q = 31)."""
+    from compute.gram_sieve import line_alive, syzygy_q1_line_ok
+    from compute.sphere_composition import PASSERS_1200
+    from compute.sphere_gluing import pair_lines
+
+    n_p = ctx.bound(full=11, fast=3)
+    passers = PASSERS_1200 if n_p >= 11 else \
+        [p for p in PASSERS_1200 if p[0] in (425, 481, 725)][:n_p]
+    boundary = []
+    kills = expl = alive_q1 = 0
+    for m, U, V in passers:
+        n = 3 * m * m
+        for i, tri in enumerate(pair_lines(2 * m * m, U, V)):
+            alive = line_alive(tri, n)
+            q1 = syzygy_q1_line_ok(tri, n)
+            if alive:
+                if q1:
+                    alive_q1 += 1
+                else:
+                    boundary.append((m, i))
+            else:
+                kills += 1
+                expl += not q1
+    require(kills == expl, "q1 test passed on a killed line")
+    if n_p >= 11:
+        require((alive_q1, kills) == (28, 57), (alive_q1, kills))
+        require(sorted(boundary) == [(425, 4), (850, 4), (1025, 6)],
+                boundary)
+    else:
+        require(sorted(boundary) in ([], [(425, 4)]), boundary)
+    ctx.note(f"A9.10 certifies {alive_q1} alive lines constructively; "
+             f"q=1 test fails all {kills} kills; boundary (q>1) "
+             f"lines: {sorted(boundary)}")

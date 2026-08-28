@@ -1724,3 +1724,35 @@ Suite 121. The W4 ladder after one day: A9.6 (real lines never die)
 -> A9.7 (Gram necessity; coherence = its local shadow) -> A9.8
 (sandwich) + A9.8.1 (free identities) -> A9.9 (syzygy) + C3/C4
 (exactness, measured perfect). One conjecture from a law.
+
+## 2026-08-28 — Entry 42: C4 sufficiency, half proven — Theorem A9.10 and the q-census
+
+THEOREM A9.10 (PROVEN): a syzygy witness system generates a lattice
+M = (Z^3/ker G, G) that is AUTOMATICALLY EVEN (even diagonal, factor
+2 on cross terms) with det M = N q^2, q = k12/|v3| for the primitive
+kernel vector v (whose coordinates are exactly the pair-sublattice
+indices). If q = 1, M itself is an even determinant-N lattice
+representing all three values: representability proven
+constructively, no class computation. For real lines the sphere
+point IS the kernel vector (v = (m, d1, s1) on line 0, matching
+A9.8.1), so real lines carry q = 1 witnesses by construction.
+
+THE q-CENSUS (a9.q1_sufficiency; one sign bug found and fixed en
+route — det3 = b3 + 2 T-product, so the code's matched sign is the
+negative of the true pattern; the earlier syzygy check was
+sign-agnostic and unaffected): 28 OF 31 alive lines admit q = 1
+witnesses — A9.10 certifies them outright — and the q = 1 test
+still fails ALL 57 kills. Exactly three boundary lines have only
+q > 1 witnesses: m = 425 line 4 and its even double m = 850 line 4
+(IDENTICAL reduced witness, q = 77 = 7*11), and m = 1025 line 6
+(q = 31). There the true representing lattice contains the witness
+lattice at index q, and the remaining sufficiency gap is precisely:
+does the discriminant group of a q-witness always admit an isotropic
+subgroup of order q (an even overlattice of index q)? Three explicit
+instances now pinned for dissection.
+
+C4 status: necessity PROVEN (A9.9); sufficiency PROVEN for q = 1
+witnesses (A9.10), covering 28/31 alive lines on the anatomy set;
+the isotropic-overlattice gap remains, with the striking doubling
+rigidity (425 -> 850 preserves the reduced witness exactly) as the
+first structural clue. Suite 122.

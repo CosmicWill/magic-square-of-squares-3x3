@@ -375,3 +375,92 @@ def syzygy_census():
                           f"line {i}")
     print(f"soundness violations: {viol}; kills {killed}, "
           f"syzygy-explained {explained}")
+
+
+# ----------------------------------------------------------- A9.10 q-layer
+
+def _cross(r1, r2):
+    return (r1[1]*r2[2] - r1[2]*r2[1],
+            r1[2]*r2[0] - r1[0]*r2[2],
+            r1[0]*r2[1] - r1[1]*r2[0])
+
+
+def witness_q(w, T, N):
+    """For a syzygy witness (w = (w1,w2,w3), T = (T12,T13,T23) with
+    det3 = 0): the primitive kernel vector v of the Gram G and the
+    index ratio q with det M = N q^2 (M = the lattice the witness
+    generates).  Returns q as a Fraction, or None if degenerate."""
+    from fractions import Fraction
+    w1, w2, w3 = w
+    T12, T13, T23 = T
+    G = ((w1, T12, T13), (T12, w2, T23), (T13, T23, w3))
+    for i, j in ((0, 1), (0, 2), (1, 2)):
+        v = _cross(G[i], G[j])
+        if any(v):
+            break
+    else:
+        return None
+    g = gcd(gcd(abs(v[0]), abs(v[1])), abs(v[2]))
+    v = tuple(x // g for x in v)
+    # det(M12) = w1 w2 - T12^2 = N k12^2 ; [M : M12] = |v3| etc.
+    if v[2] == 0:
+        return None
+    k12s = w1 * w2 - T12 * T12
+    q2 = Fraction(k12s, N * v[2] * v[2])
+    return q2  # = q^2
+
+
+def syzygy_q1_line_ok(tri, n):
+    """The refined (q = 1) Diophantine test: a witness whose
+    generated lattice has det exactly N — by Theorem A9.10 such a
+    witness PROVES representability (sufficiency direction)."""
+    G0 = gcd(gcd(tri[0], tri[1]), tri[2])
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G0 % (g * g) == 0:
+            N = n // (g * g)
+            w = tuple(t // (g * g) for t in tri)
+            W12 = pair_witnesses(w[0], w[1], N)
+            W13 = pair_witnesses(w[0], w[2], N)
+            W23 = pair_witnesses(w[1], w[2], N)
+            for t12, _ in W12:
+                for t13, _ in W13:
+                    for t23, _ in W23:
+                        b3 = (w[0]*w[1]*w[2] - w[0]*t23*t23
+                              - w[1]*t13*t13 - w[2]*t12*t12)
+                        for s in (1, -1):
+                            # det3 = b3 + 2*T12*T13*T23 = 0 with
+                            # T = (s*t12, t13, t23) requires
+                            # b3 == -s * 2 t12 t13 t23
+                            if b3 != -s * 2 * t12 * t13 * t23:
+                                continue
+                            q2 = witness_q(w, (s*t12, t13, t23), N)
+                            if q2 == 1:
+                                return True
+        d += 2
+    return False
+
+
+def q_census():
+    """Do alive lines always admit a q = 1 witness (so that A9.10
+    proves their representability constructively)?  And does the
+    q = 1 restriction keep explaining all kills?"""
+    alive_no_q1 = kills = expl = 0
+    for m, U, V in PASSERS_1200:
+        n = 3 * m * m
+        for i, tri in enumerate(pair_lines(2 * m * m, U, V)):
+            alive = line_alive(tri, n)
+            q1 = syzygy_q1_line_ok(tri, n)
+            if alive and not q1:
+                alive_no_q1 += 1
+                print(f"  alive WITHOUT q=1 witness: m={m} line {i}")
+            if not alive:
+                kills += 1
+                expl += not q1
+    print(f"alive-without-q1: {alive_no_q1}; kills {kills}, "
+          f"q1-test-explained {expl}")

@@ -598,6 +598,34 @@ in elementary Diophantine arithmetic**, with no class groups
 anywhere: the all-$m$ theorem hunt (W4) becomes a problem about
 integer points on explicit varieties.
 
+**Theorem A9.10 (q = 1 sufficiency; PROVEN).** A syzygy witness
+system generates a lattice: $M := (\mathbb{Z}^3/\ker G,\ G)$ is a
+positive rank-2 lattice, **automatically even** (diagonal $w_i$
+even, cross terms carry the factor 2), with
+$\det M = N q^2$, where $q = k_{12}/|v_3|$ for the primitive kernel
+vector $v$ of $G$ (indeed $|v| = (r_{23}, r_{13}, r_{12})$, the
+pair-sublattice indices). **If the witness has $q = 1$, then $M$
+itself is an even lattice of determinant $N$ representing
+$w_1, w_2, w_3$ — representability is proven constructively, with
+no class computation.** For the real lines the sphere point *is*
+the kernel vector ($v = (m, d_1, s_1)$ for line 0, matching
+A9.8.1's $k$-values), so real lines carry $q = 1$ witnesses by
+construction. $\blacksquare$
+
+**The $q$-census (measured, pinned).** On the eleven passers:
+**28 of the 31 alive lines admit $q = 1$ witnesses** — Theorem
+A9.10 certifies their representability outright — and the
+$q = 1$-restricted test still fails on **all 57 kills**. Exactly
+three alive boundary lines have only $q > 1$ witnesses:
+$m = 425$ line 4 and its even double $m = 850$ line 4 (identical
+reduced witness, $q = 77$), and $m = 1025$ line 6 ($q = 31$).
+There the actual representing lattice contains the witness lattice
+at index $q$, and full C4-sufficiency needs precisely: *the
+discriminant group $D(M)$ of a $q$-witness admits an isotropic
+subgroup of order $q$* (equivalently an even overlattice of index
+$q$) — the pinned open gap, now with three explicit instances to
+dissect.
+
 **Lemma A9.8.1 (the free identities; PROVEN).** The real lines' pair
 witnesses are the column law itself: for line 0,
 $(t, k) = (md_1, s_1)$ solves $n_2 u_+ - t^2 = 3m^2k^2$ *because*
