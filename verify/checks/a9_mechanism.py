@@ -150,20 +150,24 @@ def _(ctx):
     artifact (40 stage-3 pairs, m <= 6000): center-line kills always
     in {1, 2} (the center cap), outer <= 4, total <= 6; one sampled
     row's full line-kill count re-verified live."""
-    path = os.path.join(DATA, "data_actuarial_smallm.json")
-    with open(path, encoding="utf-8") as fh:
-        art = json.load(fh)
-    rows = art["rows"]
-    require(len(rows) == 40 and art["mcap"] == 6000)
-    for m, U, V, kt, kc, ko in rows:
-        require(m <= 6000)
-        require(kt == kc + ko, "count split")
-        require(1 <= kc <= 2, f"center cap violated: kc={kc} at {m}")
-        require(0 <= ko <= 4 and kt <= 6)
+    pinned = {"data_actuarial_smallm.json": (40, 6000),
+              "data_actuarial_sample.json": (120, 30000)}
+    for name, (nrows, mcap) in pinned.items():
+        with open(os.path.join(DATA, name), encoding="utf-8") as fh:
+            art = json.load(fh)
+        rows = art["rows"]
+        require(len(rows) == nrows, name)
+        for m, U, V, kt, kc, ko in rows:
+            require(m <= mcap)
+            require(kt == kc + ko, "count split")
+            require(1 <= kc <= 2, f"center cap violated: kc={kc} at {m}")
+            require(0 <= ko <= 4 and kt <= 6)
+    rows = json.load(open(os.path.join(
+        DATA, "data_actuarial_smallm.json"), encoding="utf-8"))["rows"]
     # live re-verification of the first sampled row
     from compute.actuarial_model import killed_line_count
     m, U, V, kt, kc, ko = rows[0]
     require(tuple(killed_line_count(m, U, V)) == (kt, kc, ko),
             "live recount mismatch")
-    ctx.note("center cap (kc in {1,2}) holds on all 40 sampled kills; "
+    ctx.note("center cap (kc in {1,2}) holds on all 160 sampled kills (both artifacts, m to 29725); "
              "outer <= 4; k <= 6; first row re-verified live")
