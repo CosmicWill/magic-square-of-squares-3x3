@@ -13,6 +13,7 @@ MODULES = [
     "a1_hill_machinery",
     "a1_eq29",
     "a2_function_field",
+    "a2_transplant",
     "a3_congrua",
     "a4_eight_squares",
     "a5_surface",

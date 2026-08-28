@@ -324,7 +324,7 @@ computation — one focused session, highest information density),
 | M12-B | ✅ **DONE 2026-08-28** — verdict: H-Rédei refuted as universal (30/36 ARC kills, Lemma A9.5), confirmed as the 4-rank layer (6/36, all separators order exactly 4, all at 481/962); ideal-product law EXACT 62/62; hypothesis refined to **H-align** (A9 §3 fifth layer, `a9.kill_mechanism`) | W4 |
 | M12-C | M11-J cubic level closed; degree-bound lemma attempted | W1 |
 | M12-D | ✅ **EXCEEDED 2026-08-28** — desert VERIFIED($3\times10^4$), zero golden centers (5,292 rep kills, 240× anatomy corpus; `a9.desert_ext` pins both frozen artifacts); extension toward $10^5$ running; additive desert VERIFIED($10^7$) as a bonus (`a3.additive_ext`); actuarial model still to build | W6 |
-| M12-E | A2.L transplant autopsy; inequality (★) formulated | W5 |
+| M12-E | ✅ **DONE 2026-08-28** — autopsy verdict: A2.L transplants (no derivative wall in the descent — F3 *is* the transplant; class/unit friction finite); the true wall is dimensional, and the Wronskian wall lives at the geometry-finish (Vojta) level. (★-V) and (★-abc) formulated; naive-abc recorded FAILED-ATTEMPT (realized triples abc-cheap, q ≤ 0.43); the squarefull-enrichment lever measured (0.674 vs 0.279, ratio 2.41) (A2 §6, `a2.abc_probe`) | W5 |
 | M12-F | m = 7 nontrivial-character survey (A8.18 scope closure) — running, orbit-checkpointed | W1/A8 |
 | M13-A | $\operatorname{Pic}(\widetilde X)$ with Galois action | W2 |
 | M13-B | The fourth-sieve law: spinor/Rédei theorem for a residue family of $m$ | W4 |

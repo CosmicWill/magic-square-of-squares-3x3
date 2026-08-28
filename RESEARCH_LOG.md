@@ -1489,3 +1489,40 @@ checkpointed) is running. The sieves' perfect record deepens the
 central question: either the fourth-sieve law (H-align) is a
 theorem, or the first golden center is hiding above 30,000 — each
 leg sharpens both W4 and W6.
+
+## 2026-08-28 — Entry 36: M12-E — the transplant autopsy corrects its own expectation
+
+While the desert (toward 10^5) and the m = 7 survey run in the
+background, the W5 milestone executed as pure theory + one light
+probe. The roadmap expected the function-field descent to break over
+Z at a Wronskian/derivative step. The autopsy (A2 §6) found otherwise:
+
+1. LEMMA A2.L TRANSPLANTS. The descent uses no derivatives at all —
+   its four ingredients (conic factorization, unit-square step,
+   height-halving, no differentiation) all survive over Z: class
+   groups intrude finitely (h = 1 for our systems), real-quadratic
+   units branch finitely, height-halving is Fermat's own step. F3's
+   from-scratch four-squares proof IS the transplanted A2.4.
+2. THE TRUE WALL IS DIMENSIONAL, in both worlds: MSS3 is not
+   binary-reducible, so the descent never starts. Over k(t) the gap
+   is closed by symmetric differentials — which differentiate
+   CURVES; the arithmetic analogue must differentiate POINTS, which
+   is precisely Vojta. The Wronskian wall is real but lives at the
+   geometry-finish level, not in the descent.
+3. THE BRIDGES FORMULATED. (*-V): effective Vojta for (X, K_X) rel
+   the degenerate divisor => explicit H_0 + finite search =
+   conditional finiteness with bound (the honest M15 shape; the crux
+   is the size of H_0). (*-abc): the probe (compute/abc_probe.py,
+   a2.abc_probe) shows the bare ternary relation is abc-CHEAP — the
+   one realized triple to 2x10^5 (nonsquare center 157441:
+   19800 + 135240 = 155040) has quality 0.430, none exceeds 1, and
+   naive-abc is recorded as a FAILED-ATTEMPT. But the lever is real
+   and measured: D(m^2)-elements are squarefull-enriched (mean
+   log s(d)/log d = 0.674 at square centers vs 0.279 at nonsquare,
+   ratio 2.41 — every representation of m^2 forces a g^2 factor).
+   The correct inequality must couple all four quadruple relations
+   and the nine-square grid; its measured inputs are now pinned.
+
+Suite 116 checks. M12 board: A, B, D, E done; C (cubic campaign)
+and the actuarial model are the remaining near-term items; F (m = 7)
+grinding in the background at ~87 min/orbit.

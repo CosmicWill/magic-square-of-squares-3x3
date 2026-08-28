@@ -309,7 +309,71 @@ generator, `python3 -m compute.ff_search` variants, ~2 min total, on
    fields, and the target is a finite computation away from BTVA's
    published result.
 
-## 6. What the verify script proves mechanically
+## 6. The $\mathbb{Z}$-transplant autopsy (M12-E, ROADMAP W5)
+
+*(2026-08-28; `compute/abc_probe.py`, check `a2.abc_probe`. The
+roadmap asked: dissect exactly where the degree-halving descent fails
+over $\mathbb{Z}$, expecting a Wronskian/derivative wall. The autopsy
+returns a sharper — and different — diagnosis.)*
+
+**Step-by-step transplant of Lemma A2.L.** The proof has four
+ingredients; over a number ring their fates are:
+
+| step | over $\bar k[t]$ | over $\mathbb{Z}$ | verdict |
+|---|---|---|---|
+| factor the conic | split in $\bar k[t]$ | work in $\mathbb{Z}[\sqrt{a}\,]$-type orders; for our systems ($\mathbb{Z}[\sqrt2]$, $\mathbb{Z}[\sqrt3]$) class number 1; in the general recursion, class groups intrude (finitely) | survives, with class-group bookkeeping |
+| coprime × coprime $=$ square $\Rightarrow$ each a unit·square | units of $\bar k[t]$ are squares | real-quadratic unit groups are infinite and **not** all squares ($1+\sqrt2$ has norm $-1$): finite twist branching by $\mathcal{O}^\times/(\mathcal{O}^\times)^2$ | survives, finitely branched |
+| degree halving $\deg R \le n/2$ | linear algebra in degrees | height halving $H(R) \ll H(X,Y)^{1/2}$ — the same linear algebra | **survives** |
+| no derivatives used | — | — | **no Wronskian wall at this level** |
+
+**Conclusion 1 (the corrected diagnosis).** Lemma A2.L *transplants*:
+for binary systems the descent runs over $\mathbb{Z}$ exactly as
+Fermat ran it — indeed [F3](../foundations/F3-no-four-term-ap.md)'s
+proven-from-scratch four-squares theorem *is* the transplanted A2.4,
+with the units/class steps as classical bookkeeping. The expected
+"derivative wall" does not exist at the A2.L level, because A2.L
+never differentiates.
+
+**Conclusion 2 (where the wall actually is).** The obstruction is
+**dimensional and identical in both worlds** (§5.2): the MSS3 system
+is not binary-reducible — irreducible conics in $\ge 3$ variables do
+not factor, so the descent never starts. Over $k(t)$ that gap is
+closed by geometry: symmetric differentials constrain *curves*
+because curves have derivatives (A8; the road to A2.C). The
+arithmetic analogue must constrain *points* — and "differentiating a
+point" is precisely what Vojta's conjecture (the arithmetic Second
+Main Theorem) axiomatizes. The Wronskian wall is real, but it lives
+at the geometry-finish level, not in the descent.
+
+**The two candidate bridges (formulated, open).**
+
+- **(★-V) Effective Vojta for $(X, K_X)$ relative to the degenerate
+  divisor:** would give an explicit height bound $H_0$ with every
+  nondegenerate rational point of height $\le H_0$ — reducing MSS3 to
+  a finite verified search *iff* $H_0$ is computable and searchable.
+  This is the honest shape of the "proof modulo a standard
+  conjecture" capstone (M15): conditional **finiteness with explicit
+  bound**, not emptiness; the quantitative crux is the size of $H_0$.
+- **(★-abc) The quadruple-coincidence inequality:** probing data
+  (`abc_probe`): the *bare* ternary relation $d_1 + d_2 = d_3$ in a
+  congrua set carries **no** abc-tension — the one realized triple
+  with center $\le 2\times10^5$ (the classical non-square center
+  $c = 157441$: $19800 + 135240 = 155040$) has quality only
+  $q = 0.430$, and no realized triple has $q > 1$. A naive abc
+  obstruction is therefore a FAILED-ATTEMPT and is recorded as such.
+  **But the lever exists**: at square centers the elements of
+  $D(m^2)$ are systematically squarefull-enriched — mean
+  $\log s(d)/\log d = 0.674$ against $0.279$ at non-square centers
+  (ratio 2.41; $s$ = squarefull part) — because every representation
+  $m^2 = e^2 + f^2$ is a $g$-scaled primitive triple, forcing
+  $g^2 \mid d$. A correct (★-abc) must therefore couple **all four**
+  quadruple relations and the nine-square grid (where the enriched
+  numbers are simultaneously differences of squares in eight ways),
+  not the bare ternary sum. Formulating that inequality — and
+  checking whether the coupled quality exceeds 1 — is the remaining
+  W5 task; the constants above are its measured inputs.
+
+## 7. What the verify script proves mechanically
 
 `verify/checks/a2_function_field.py`:
 
