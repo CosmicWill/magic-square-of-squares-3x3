@@ -104,10 +104,12 @@ The owner's geometric picture — the square as lattice points on spheres
    reciprocity's shadow where 4-rank bites and prime-class alignment
    everywhere else.
 
-*The frontier on this front:* the law governing representing classes
-inside a genus — Gauss composition / spinor structure (the P8
-acquisitions now have a precise question to answer), and the fourth
-sieve where the three sieves first fail beyond 1200.
+*The frontier on this front:* the fourth sieve is now a PROVEN
+elementary Diophantine law (Theorems A9.6–A9.12, 2026-08-28: pair
+equations + syzygy ⟺ representability; the class group was the
+language, never the mechanism); the frontier is the all-$m$ desert
+theorem in its Diophantine form, and the A9.C2 companion at the
+witness level.
 
 ## The convergence — the program's central structural finding
 

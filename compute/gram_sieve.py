@@ -464,3 +464,92 @@ def q_census():
                 expl += not q1
     print(f"alive-without-q1: {alive_no_q1}; kills {kills}, "
           f"q1-test-explained {expl}")
+
+
+# ------------------------------------------------------- A9.11 overlattice
+
+def line_witness_qs(tri, n):
+    """All (stratum g, q^2) over the line's syzygy witnesses."""
+    from fractions import Fraction
+    G0 = gcd(gcd(tri[0], tri[1]), tri[2])
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    out = set()
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G0 % (g * g) == 0:
+            N = n // (g * g)
+            w = tuple(t // (g * g) for t in tri)
+            for t12, _ in pair_witnesses(w[0], w[1], N):
+                for t13, _ in pair_witnesses(w[0], w[2], N):
+                    for t23, _ in pair_witnesses(w[1], w[2], N):
+                        b3 = (w[0]*w[1]*w[2] - w[0]*t23*t23
+                              - w[1]*t13*t13 - w[2]*t12*t12)
+                        for s in (1, -1):
+                            if b3 != -s * 2 * t12 * t13 * t23:
+                                continue
+                            q2 = witness_q(w, (s*t12, t13, t23), N)
+                            if q2 is not None:
+                                out.add((g, q2))
+        d += 2
+    return out
+
+
+def line_certified(tri, n):
+    """Is the line certified representable by A9.10 (q = 1) or A9.11
+    (some witness with integer q, gcd(q, 2N) = 1)?"""
+    from math import isqrt as _is
+    for g, q2 in line_witness_qs(tri, n):
+        if q2 == 1:
+            return "A9.10"
+        if q2.denominator == 1:
+            r = _is(q2.numerator)
+            if r * r == q2.numerator:
+                N = n // (g * g)
+                if gcd(r, 2 * N) == 1:
+                    return "A9.11"
+    return None
+
+
+def certification_census(sample_corpus=25):
+    """Every alive line of the anatomy set (and a corpus sample) must
+    be certified by A9.10 or A9.11; killed lines never are."""
+    stats = {"A9.10": 0, "A9.11": 0, None: 0}
+    bad = 0
+    for m, U, V in PASSERS_1200:
+        n = 3 * m * m
+        for i, tri in enumerate(pair_lines(2 * m * m, U, V)):
+            alive = line_alive(tri, n)
+            cert = line_certified(tri, n)
+            if alive:
+                stats[cert] += 1
+                if cert is None:
+                    bad += 1
+                    print(f"  ALIVE UNCERTIFIED: m={m} line {i}")
+            else:
+                if cert is not None:
+                    bad += 1
+                    print(f"  KILLED-BUT-CERTIFIED (C4 necessity "
+                          f"violated?!): m={m} line {i}")
+    print(f"anatomy alive lines: {stats}  (violations: {bad})")
+    import json as _json
+    with open(STATE, encoding="utf-8") as fh:
+        corpus = _json.load(fh)["rep_killed_pairs"]
+    corpus = [r for r in corpus if r[0] <= 2500]
+    stride = max(1, len(corpus) // sample_corpus)
+    cstats = {"A9.10": 0, "A9.11": 0, None: 0}
+    cbad = 0
+    for m, U, V in corpus[::stride][:sample_corpus]:
+        n = 3 * m * m
+        for tri in pair_lines(2 * m * m, U, V):
+            alive = line_alive(tri, n)
+            cert = line_certified(tri, n)
+            if alive:
+                cstats[cert] += 1
+                cbad += cert is None
+            elif cert is not None:
+                cbad += 1
+    print(f"corpus-sample alive lines: {cstats}  (violations: {cbad})")

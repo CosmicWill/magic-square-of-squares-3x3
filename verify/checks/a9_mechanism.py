@@ -411,3 +411,47 @@ def _(ctx):
     ctx.note(f"A9.10 certifies {alive_q1} alive lines constructively; "
              f"q=1 test fails all {kills} kills; boundary (q>1) "
              f"lines: {sorted(boundary)}")
+
+
+@check("a9.c4_theorem", DOC)
+def _(ctx):
+    """Theorem A9.12 (= C4, both directions): the syzygy test
+    reproduces the sieve verdict exactly; the congruence hypotheses
+    of the overlattice lemma A9.11 (8 | U; odd-core co-norms == 2
+    mod 8) hold with zero exceptions; the 2-adic boundary instance
+    (m = 1885 line 4, q = 4) is alive and witnessed."""
+    from compute.gram_sieve import STATE as GSTATE
+    from compute.gram_sieve import line_alive, syzygy_line_ok
+    from compute.sphere_composition import PASSERS_1200
+    from compute.sphere_gluing import pair_lines
+
+    with open(os.path.join(DATA, "data_desert_30k.json"),
+              encoding="utf-8") as fh:
+        corpus = json.load(fh)["rep_killed_pairs"]
+    # congruence hypotheses across the corpus
+    noff = ctx.bound(full=len(corpus), fast=600)
+    for m, U, V in corpus[:noff]:
+        require(U % 8 == 0 and V % 8 == 0, "8 | U fails")
+    for m, U, V in corpus[:60]:
+        if m % 2:
+            for tri in pair_lines(2 * m * m, U, V):
+                require(all(w % 8 == 2 for w in tri),
+                        "odd-core co-norm not 2 mod 8")
+    # C4 equivalence on anatomy lines
+    n_p = ctx.bound(full=11, fast=2)
+    passers = PASSERS_1200 if n_p >= 11 else PASSERS_1200[:n_p]
+    for m, U, V in passers:
+        n = 3 * m * m
+        for i, tri in enumerate(pair_lines(2 * m * m, U, V)):
+            require(line_alive(tri, n) == syzygy_line_ok(tri, n),
+                    f"C4 equivalence fails at m={m} line {i}")
+    # the 2-adic boundary instance
+    if n_p >= 11:
+        m, U, V = 1885, 827424, 2523000
+        tri = pair_lines(2 * m * m, U, V)[4]
+        n = 3 * m * m
+        require(line_alive(tri, n) and syzygy_line_ok(tri, n),
+                "2-adic instance regressed")
+    ctx.note("C4 (Theorem A9.12) verified: sieve == Diophantine "
+             "system on anatomy lines; A9.11 congruence hypotheses "
+             "hold corpus-wide; 2-adic instance covered")

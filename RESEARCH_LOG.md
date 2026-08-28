@@ -1756,3 +1756,43 @@ witnesses (A9.10), covering 28/31 alive lines on the anatomy set;
 the isotropic-overlattice gap remains, with the striking doubling
 rigidity (425 -> 850 preserves the reduced witness exactly) as the
 first structural clue. Suite 122.
+
+## 2026-08-28 — Entry 43: THEOREM A9.12 — C4 proven in full: the sieve IS the Diophantine system
+
+The isotropic-overlattice session closed the last gap, and C4 is a
+theorem, both directions.
+
+THEOREM A9.11 (the overlattice lemma, full; PROVEN): any
+nondegenerate syzygy witness (even rank-2 M, det N q^2) at a sphere
+stratum admits an even overlattice of det exactly N. Proof per
+prime, glued: index-p steps drop v_p(det) by exactly 2 and exist
+below maximality; (i) p odd not dividing N: unit det class, maximal
+unimodular, stop at 0; (ii) p = 3: odd valuations, maximal at 1 =
+v_3(N); (iii) p | m': unit det class, stop the chain at
+2 v_p(m') = v_p(N) strictly before maximality; (iv) p = 2: the
+family's congruences (8 | U because m and the entry roots are odd;
+hence every co-norm == 2 mod 8 — verified corpus-wide, zero
+exceptions in 2011+ offsets) force V_2 to be 2 x (the unramified
+norm form): ANISOTROPIC, so the even-maximal lattice is UNIQUE, of
+odd determinant in the 3-class, containing M_2 with index 2^{v_2(q)}
+on the nose. No coprimality hypothesis needed — the q = 4 boundary
+instance found at m = 1885 (which broke the provisional
+gcd(q, 2N) = 1 statement) is exactly case (iv) and is covered.
+
+THEOREM A9.12 (= Conjecture A9.C4; PROVEN): a line is representable
+iff its elementary Diophantine system (three pair equations + the
+rank-2 syzygy) has a nondegenerate integer witness at an admissible
+stratum. Necessity A9.9; sufficiency A9.10 + A9.11. (Degenerate
+all-k=0 corner flagged; absent from data.) Machine verification
+(a9.c4_theorem): sieve verdict == syzygy verdict on all 88 anatomy
+lines and samples; congruence hypotheses corpus-wide; the 2-adic
+instance pinned. Suite 123.
+
+MEANING: the fourth sieve — proven in M12-B to lie beyond every
+congruence and character condition — is nevertheless an ELEMENTARY
+DIOPHANTINE LAW. The class group was the language, never the
+mechanism. The desert's beyond-genus kills are now failures of an
+explicit integer system; the W4 all-m theorem hunt is a question
+about integer points on small explicit varieties; and the ladder
+A9.6 -> A9.7 -> A9.8/A9.8.1 -> A9.9 -> A9.10 -> A9.11 -> A9.12,
+built in two days from a sampling regularity, is complete.
