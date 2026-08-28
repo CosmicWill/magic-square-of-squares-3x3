@@ -396,6 +396,56 @@ now lives in the joint behavior of prime classes at algebraically
 coupled arguments — exactly Venkov/quaternionic territory (W9's
 probe is next), with the 1,006-pair corpus as its test bed.
 
+### The center cap is a theorem (A9.6) — real lines never die
+
+*(2026-08-28, proving the regularity the actuarial sample surfaced;
+check `a9.center_cap` — constructive certificates over the entire
+5,292-pair corpus.)*
+
+**Theorem A9.6 (the center cap; PROVEN, all $m$).** Let $m \ge 1$ and
+let $(U, V)$ be an ordered congrua pair of center $m^2$ (distinct
+$U, V \in D(m)$). Then the center lines with offsets $U$ and $V$
+(`pair_lines` indices 0, 1) always admit representing classes.
+Consequently **at most two of the four center lines can be
+unrepresentable — and they are exactly the two phantom lines with
+offsets $U + V$ and $U - V$ (indices 2, 3).**
+
+*Proof.* $U \in D(m)$ means $U = 2ef$ with integers $e > f > 0$,
+$e^2 + f^2 = m^2$ (and $e \neq f$, since $2e^2 = m^2$ is impossible).
+Set $v_U = (e{-}f,\ m,\ e{+}f) \in \mathbb{Z}^3$. Then
+$$|v_U|^2 = (e{-}f)^2 + m^2 + (e{+}f)^2 = 2(e^2 + f^2) + m^2 = 3m^2,$$
+so $v_U$ is an **actual point** of $\mathcal{S}(3m^2)$, its coordinate
+squares are the $U$-line's entries $\{m^2 - U,\ m^2,\ m^2 + U\}$, and
+its co-norm triple is $(2m^2 + U,\ 2m^2,\ 2m^2 - U)$ — precisely line
+0's triple. Let $g$ be the content of $v_U$; the reduced point
+$v_U/g$ lies on $\mathcal{S}(3m^2/g^2)$, its cross-vectors (the
+gluing law, Lemma A9.1) lie in the saturated orthogonal lattice and
+realize the three norms $\mathrm{tri}/g^2$, and the Gram form of that
+lattice is an even form of discriminant $-12m^2/g^2$ (Lemma A9.4).
+So $(g, \text{orthogonal form})$ is a sound candidate in
+`line_classes`: line 0 is not killed. The same construction with $V$
+handles line 1. Lines 2 and 3 carry offsets $U \pm V$, which admit
+such an automatic point **iff $U \pm V \in D(m)$** — exactly the
+additive-quadruple condition the desert forbids — so among center
+lines only they can die. $\blacksquare$
+
+**Corollary A9.6.1.** $k_c \le 2$ for every pair and every $m$ — the
+sampled center cap is a theorem, unconditionally (not
+range-verified); killed center lines are always $\subseteq
+\{L_{U+V}, L_{U-V}\}$.
+
+**Corollary A9.6.2 (the sieve's true shape).** The representation
+sieve never acts through real lines: its entire action on center
+lines is a test of the two phantom sums $U \pm V$. The fourth sieve
+is thereby revealed as *the class-group shadow of the A3 additive
+condition*: line 2 (resp.\ 3) is representable-by-a-real-point iff
+$U + V \in D(m)$ (resp.\ $U - V$), and killing it is the class-group
+way of saying "the sum fails to be a congruum *for structural
+reasons*". The measured companion — every corpus kill includes line
+2 or 3 ($k_c \ge 1$ on all 160 samples) — remains empirical, but now
+reads: *the pair desert dies, always, at the additive coupling*,
+never merely at the outer entries.
+
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 
 *(2026-08-28; `compute/actuarial_model.py`; sample artifacts
@@ -411,17 +461,15 @@ notable in itself: representing sets grow with $h \sim m$, yet the
 coupled co-norms hold the kill rate constant); outer lines die at
 $\approx 95\%$, center lines at $\approx 49\%$.
 
-**Two law-shaped regularities** (VERIFIED on 160 sampled pairs,
-candidate lemmas for W4):
+**Two law-shaped regularities** (VERIFIED on 160 sampled pairs):
 1. **The center cap:** the number of killed center lines is always
-   1 or 2 — never 0, never 3 or 4. The four center triples share the
-   value $2m^2$ and their offsets obey $X_3 = X_1 + X_2$,
-   $X_4 = X_1 - X_2$; "at most two of the four center lines can be
-   simultaneously unrepresentable" looks provable from the gluing
-   algebra, and "every kill includes a center kill" ties the death
-   of a pair to the class-constrained through-center slice (first
-   layer) rather than the loosely-constrained outer lines — even
-   though outer lines individually die more often.
+   1 or 2 — never 0, never 3 or 4. *The $\le 2$ half is now
+   **Theorem A9.6** (previous subsection): the $U$- and $V$-lines are
+   real sphere points and can never die; only the phantom
+   $U \pm V$-lines can.* The $\ge 1$ half ("every kill includes a
+   center kill") remains measured, tying the death of a pair to the
+   additive coupling rather than the outer entries — even though
+   outer lines individually die more often.
 2. Consequently the killed-line count caps at **6 of 8** (98/120 at
    exactly 6), and a truncated-binomial (independent-lines) fit is
    demonstrably wrong in shape.

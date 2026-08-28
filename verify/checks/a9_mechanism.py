@@ -171,3 +171,51 @@ def _(ctx):
             "live recount mismatch")
     ctx.note("center cap (kc in {1,2}) holds on all 160 sampled kills (both artifacts, m to 29725); "
              "outer <= 4; k <= 6; first row re-verified live")
+
+
+@check("a9.center_cap", DOC)
+def _(ctx):
+    """Theorem A9.6 (the center cap): for every congrua pair, the
+    U- and V-center lines carry the ACTUAL sphere points
+    v = (e-f, m, e+f), whose saturated orthogonal even forms
+    represent their co-norm triples — constructive certificates over
+    the representation-kill corpus; plus rep_verdict spot checks that
+    killed lines never include indices 0, 1."""
+    from math import gcd, isqrt
+    from compute.sphere_classes import orthogonal_form
+    from compute.sphere_gluing import represents, rep_verdict
+
+    with open(os.path.join(DATA, "data_desert_30k.json"),
+              encoding="utf-8") as fh:
+        corpus = json.load(fh)["rep_killed_pairs"]
+    nmax = ctx.bound(full=2000, fast=400)
+    stride = max(1, len(corpus) // nmax)
+    checked = 0
+    for m, U, V in corpus[::stride][:nmax]:
+        n = 3 * m * m
+        for X in (U, V):
+            s, d = isqrt(m * m + X), isqrt(m * m - X)
+            require(s * s == m * m + X and d * d == m * m - X,
+                    f"offset {X} not a congruum of {m}?!")
+            v = (d, m, s)
+            require(sum(t * t for t in v) == n, "not on the sphere")
+            g = gcd(d, gcd(m, s))
+            vr = tuple(t // g for t in v)
+            f = orthogonal_form(vr)
+            require(all(t % 2 == 0 for t in f), "orthogonal form not even")
+            tri = (2 * m * m + X, 2 * m * m, 2 * m * m - X)
+            require(all(t % (g * g) == 0 for t in tri), "content")
+            require(all(represents(f, t // (g * g)) for t in tri),
+                    f"gluing certificate failed at m={m}, X={X}")
+        checked += 1
+    # sharp spot check: the sieve itself never kills lines 0, 1
+    spots = ctx.bound(full=3, fast=1)
+    small = [r for r in corpus if r[0] <= 1400][:spots]
+    for m, U, V in small:
+        counts, empty = rep_verdict(m, U, V)
+        require(0 not in empty and 1 not in empty,
+                f"real center line killed at {m}?!")
+        require(counts[0] > 0 and counts[1] > 0)
+    ctx.note(f"A9.6 certificates verified on {checked} corpus pairs "
+             f"(both real center lines each); rep_verdict spot checks "
+             f"({len(small)}) confirm killed lines exclude 0, 1")

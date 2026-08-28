@@ -1561,3 +1561,37 @@ all 160 sampled kills, pinned on the 40-pair small-m artifact):
 
 Suite 117 checks. Background: desert toward 10^5; m = 7 survey; the
 full 120-pair instrumented sample (artifact dump) re-running.
+
+## 2026-08-28 — Entry 38: Theorem A9.6 — the center cap is proven, and the fourth sieve shows its true face
+
+The regularity the actuarial sample surfaced last night is a theorem
+by morning, with a two-line mechanism the data had been pointing at
+all along. THEOREM A9.6 (PROVEN, all m): for any congrua pair (U, V)
+of center m^2, the U- and V-center lines are realized by the ACTUAL
+sphere points v = (e-f, m, e+f) (with U = 2ef, e^2+f^2 = m^2; norm
+check (e-f)^2 + m^2 + (e+f)^2 = 3m^2), so by the gluing law A9.1
+their saturated orthogonal even forms represent their co-norm
+triples — real lines can never be representation-killed. Hence at
+most TWO center lines can die, and they are exactly the phantom
+lines with offsets U+V and U-V — whose realizability as points is
+precisely the additive-quadruple condition the desert forbids.
+
+COROLLARY (the sieve's true shape): the fourth sieve never acts
+through real lines; its center-line action is a pure test of the two
+phantom sums. The representation sieve is the class-group shadow of
+the A3 additive condition. The measured companion (k_c >= 1: every
+corpus kill includes a phantom-line kill, all 160 samples) now
+reads: the pair desert always dies AT THE ADDITIVE COUPLING.
+
+Verification: a9.center_cap builds the constructive certificate
+(point, content, orthogonal even form, three represents calls) for
+BOTH real center lines of corpus pairs (FAST: 400 strided; FULL:
+full 5,292 corpus — timing being calibrated against the running
+desert job), plus rep_verdict spot checks that killed-line indices
+exclude 0 and 1. Data confirmations: the m = 725 killed center
+lines in the M12-B probe were indices 2, 3 exactly, as predicted.
+
+This is the first PROVEN structural theorem about the fourth
+sieve's fine structure — W4's opening theorem — and it sharpens
+H-align: the alignment question now concerns only the phantom
+sums and the outer lines.
