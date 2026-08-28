@@ -323,7 +323,7 @@ computation — one focused session, highest information density),
 | M12-A | ✅ **DONE 2026-08-28** — the atlas: 84 K3 + 9 Horikawa characters, $t_3$-census, $\rho \ge 16+t_3$, 19 orbit types (A8 §10, `a8.h20_atlas`) | W2 |
 | M12-B | ✅ **DONE 2026-08-28** — verdict: H-Rédei refuted as universal (30/36 ARC kills, Lemma A9.5), confirmed as the 4-rank layer (6/36, all separators order exactly 4, all at 481/962); ideal-product law EXACT 62/62; hypothesis refined to **H-align** (A9 §3 fifth layer, `a9.kill_mechanism`) | W4 |
 | M12-C | M11-J cubic level closed; degree-bound lemma attempted | W1 |
-| M12-D | ✅ **EXCEEDED 2026-08-28** — desert VERIFIED($10^4$), zero golden centers (1,006 rep kills, 50× anatomy corpus; `a9.desert_ext`); extension to $3\times10^4$ running; additive desert VERIFIED($10^7$) as a bonus (`a3.additive_ext`); actuarial model still to build | W6 |
+| M12-D | ✅ **EXCEEDED 2026-08-28** — desert VERIFIED($3\times10^4$), zero golden centers (5,292 rep kills, 240× anatomy corpus; `a9.desert_ext` pins both frozen artifacts); extension toward $10^5$ running; additive desert VERIFIED($10^7$) as a bonus (`a3.additive_ext`); actuarial model still to build | W6 |
 | M12-E | A2.L transplant autopsy; inequality (★) formulated | W5 |
 | M12-F | m = 7 nontrivial-character survey (A8.18 scope closure) — running, orbit-checkpointed | W1/A8 |
 | M13-A | $\operatorname{Pic}(\widetilde X)$ with Galois action | W2 |

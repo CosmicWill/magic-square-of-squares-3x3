@@ -81,12 +81,12 @@ The owner's geometric picture — the square as lattice points on spheres
    $r_3^*(3m^2) = 24\,h(-3m^2)$.
 
 2. **The three-sieve pair desert (each sieve PROVEN necessary; the
-   annihilation VERIFIED to $m \le 10^4$).** Positivity, genus-character
-   coherence (Theorem A9.3, via the gluing law A9.1: each line's Gauss
-   class represents its entries' co-norms), and single-class
-   representation kill **every** ordered congrua pair for **every**
-   center $m \le 10{,}000$ — 32,850 pairs at 1667 centers:
-   28,028/3,816/1,006, **zero golden centers**. The A3 desert,
+   annihilation VERIFIED to $m \le 3\times10^4$).** Positivity,
+   genus-character coherence (Theorem A9.3, via the gluing law A9.1:
+   each line's Gauss class represents its entries' co-norms), and
+   single-class representation kill **every** ordered congrua pair for
+   **every** center $m \le 30{,}000$ — 146,914 pairs at 6,101 centers:
+   122,630/18,992/5,292, **zero golden centers**. The A3 desert,
    previously a search fact, has named arithmetic causes, and the
    additive desert itself now stands VERIFIED to $m \le 10^7$.
 
@@ -129,7 +129,7 @@ suspected.
   Bombieri–Lang* — "at most finitely many squares". Finitely many is
   not zero.
 - **Range-verified is not proven-for-all-$m$**: the slice confinement,
-  the pair desert ($m \le 10^4$), and the sieve anatomy are exact
+  the pair desert ($m \le 3\times10^4$), and the sieve anatomy are exact
   within their stated ranges and conjectural beyond them; the spectral
   rigidity is through degree 8, trivial character plus full-character
   vanishing at degrees 5 and 6 (nontrivial characters at

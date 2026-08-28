@@ -1474,3 +1474,18 @@ orbit-checkpointed, ~overnight-to-days, closes another A8.18 scope
 slot when done). Suite: 115 checks. Docs updated: A8 §10 (atlas), A9
 fifth layer (mechanism + desert), A3.3 (10^7), PROGRESS, README
 ledger (three new rows), ROADMAP milestone board.
+
+## 2026-08-28 — Entry 35 addendum: the desert holds at 3x10^4
+
+The overnight leg landed: the three-sieve pair desert is total to
+m <= 30,000 — 146,914 ordered pairs at 6,101 centers, killed
+122,630 (positivity) + 18,992 (coherence) + 5,292 (representation),
+ZERO golden centers (frozen artifact data_desert_30k.json, pinned
+alongside the 10^4 artifact by a9.desert_ext; 9,357 s for the
+10^4 -> 3x10^4 leg). The representation-kill anatomy corpus now
+stands at 5,292 pairs — 240x the original 22. Docs/ledger/PROGRESS
+updated to VERIFIED(3x10^4); the next leg (toward 10^5,
+checkpointed) is running. The sieves' perfect record deepens the
+central question: either the fourth-sieve law (H-align) is a
+theorem, or the first golden center is hiding above 30,000 — each
+leg sharpens both W4 and W6.

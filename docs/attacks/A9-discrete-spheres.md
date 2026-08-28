@@ -331,14 +331,16 @@ Aka–Einsiedler–Shapira, Venkov — see
 `compute/desert_extension.py`; checks `a9.kill_mechanism`,
 `a9.desert_ext`.)*
 
-**The desert extends 8.3× with zero survivors (VERIFIED($10^4$)).**
+**The desert extends 25× with zero survivors (VERIFIED($3\times10^4$)).**
 The three sieves annihilate **every** ordered congrua pair for every
-center $m \le 10{,}000$: 1667 centers, 32,850 ordered pairs —
-28,028 positivity + 3,816 coherence + **1,006 representation** kills,
-**no golden center** (frozen artifact `data_desert_10k.json`; sampled
-representation kills re-verified live on every suite run). The
-representation-kill corpus grew from 22 pairs to 1,006 — the anatomy
-sample for the fourth-sieve law is now fifty times larger.
+center $m \le 30{,}000$: 6,101 centers, 146,914 ordered pairs —
+122,630 positivity + 18,992 coherence + **5,292 representation**
+kills, **no golden center** (frozen artifacts `data_desert_10k.json`
+[1667 / 32,850 = 28,028 + 3,816 + 1,006] and `data_desert_30k.json`;
+sampled representation kills re-verified live on every suite run;
+the extension toward $10^5$ runs checkpointed). The
+representation-kill corpus grew from 22 pairs to 5,292 — the anatomy
+sample for the fourth-sieve law is now 240 times larger.
 
 **Lemma A9.5 (inverse-closure; PROVEN).** *Representing sets are
 inverse-closed ($f$ and $\bar f$ represent the same integers), so a

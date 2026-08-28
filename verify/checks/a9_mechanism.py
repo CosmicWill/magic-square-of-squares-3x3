@@ -60,34 +60,41 @@ def _(ctx):
 
 @check("a9.desert_ext", DOC)
 def _(ctx):
-    """M12-D: the three-sieve pair desert extends to m <= 10^4 with
-    ZERO golden centers (frozen artifact data_desert_10k.json:
-    1667 centers, 32850 ordered pairs = 28028 positivity + 3816
-    coherence + 1006 representation).  Pinned totals plus a live
-    re-verification of a deterministic sample of the representation
-    kills and of the artifact's internal consistency."""
-    path = os.path.join(DATA, "data_desert_10k.json")
-    with open(path, encoding="utf-8") as fh:
-        st = json.load(fh)
-    require(st["done_upto"] == 10000)
-    t = st["totals"]
-    require((t["centers"], t["pairs"], t["pos"], t["coh"], t["rep"]) ==
-            (1667, 32850, 28028, 3816, 1006), t)
-    require(t["pos"] + t["coh"] + t["rep"] == t["pairs"], "partition")
-    require(st["golden"] == [], "GOLDEN CENTER recorded?!")
-    require(len(st["rep_killed_pairs"]) == 1006)
-    require(all(m <= 10000 for m, _, _ in st["rep_killed_pairs"]))
+    """M12-D: the three-sieve pair desert extends to m <= 3x10^4 with
+    ZERO golden centers (frozen artifacts data_desert_10k.json and
+    data_desert_30k.json; at 3x10^4: 6101 centers, 146914 ordered
+    pairs = 122630 positivity + 18992 coherence + 5292
+    representation).  Pinned totals plus a live re-verification of a
+    deterministic sample of the representation kills and of the
+    artifacts' internal consistency."""
+    pinned = {"data_desert_10k.json":
+              (10000, 1667, 32850, 28028, 3816, 1006),
+              "data_desert_30k.json":
+              (30000, 6101, 146914, 122630, 18992, 5292)}
+    for name, (upto, c, pr, po, ch, rp) in pinned.items():
+        with open(os.path.join(DATA, name), encoding="utf-8") as fh:
+            st = json.load(fh)
+        require(st["done_upto"] == upto, name)
+        t = st["totals"]
+        require((t["centers"], t["pairs"], t["pos"], t["coh"],
+                 t["rep"]) == (c, pr, po, ch, rp), (name, t))
+        require(t["pos"] + t["coh"] + t["rep"] == t["pairs"],
+                "partition")
+        require(st["golden"] == [], "GOLDEN CENTER recorded?!")
+        require(len(st["rep_killed_pairs"]) == rp)
+        require(all(m <= upto for m, _, _ in st["rep_killed_pairs"]))
     # live re-verification of sampled representation kills
     from compute.desert_extension import pair_killed_by_representation
     from compute.sphere_gluing import coherent_pair
     k = ctx.bound(full=6, fast=2)
-    sample = st["rep_killed_pairs"][:: max(1, 1006 // k)][:k]
+    sample = st["rep_killed_pairs"][:: max(1, len(
+        st["rep_killed_pairs"]) // k)][:k]
     for m, U, V in sample:
         require(U + V <= m * m, "sampled pair fails positivity?!")
         require(coherent_pair(m, U, V), "sampled pair incoherent?!")
         require(pair_killed_by_representation(m, U, V),
                 f"sampled pair ({m},{U},{V}) not rep-killed on re-run")
-    ctx.note(f"pair desert VERIFIED(10^4): zero golden centers; "
+    ctx.note(f"pair desert VERIFIED(3x10^4): zero golden centers; "
              f"{len(sample)} representation kills re-verified live")
 
 
