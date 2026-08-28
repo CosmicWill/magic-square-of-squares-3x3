@@ -1139,3 +1139,18 @@ complete with no gaps:
 Data file, check (a8.section_spectrum pins the m = 6 record), doc
 and ledger updated. [Still running: the m = 6 survey tail for the
 nontrivial characters — all zero so far.]
+
+## 2026-08-28 — Entry 28: the PROGRESS memo — a standing honest self-assessment
+
+At the owner's request after the step-back review: docs/PROGRESS.md
+now carries the standing state-of-the-program assessment — the
+one-sentence truth (the existence question untouched, the structural
+map genuinely new), the two fronts with their theorem chains and
+frontiers, the convergence finding (the obstruction is genuinely
+global arithmetic: no congruence excludes the square, and the deep
+sieve kills live beyond every character, inside cosets of Cl^2),
+the honest calibrations (rational curves are not rational points;
+range-verified is not all-m; novelty modulo reachable literature;
+machine-verified, not peer-reviewed), and the three known-shaped
+paths to an actual resolution. README front matter links it. To be
+updated at milestones.
