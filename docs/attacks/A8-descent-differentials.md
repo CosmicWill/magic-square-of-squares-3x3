@@ -856,7 +856,58 @@ $4 \le m \le 8$.
    curves/fibrations on $X$ (each conic's tangent-line family is a
    1-parameter family of 6-tangency lines — compare the M10-B budget).
 
-## 10. What the verify script proves mechanically
+## 10. The $H^{2,0}$ character atlas (M12-A) — the motive fragments into 84 K3s and 9 Horikawa surfaces
+
+*(2026-08-28, ROADMAP W2 first action; `compute/h20_atlas.py`, check
+`a8.h20_atlas`.)*
+
+The same descent that decomposes symmetric differentials decomposes
+the canonical bundle. For the character $\chi_S$ ($S$ an even subset
+of the nine entry lines), standard abelian-cover theory gives, on the
+smooth model,
+$$H^{2,0}(\widetilde X)_{\chi_S} \;=\; H^0(\mathbb{P}^2,
+\mathcal{O}(|S|/2 - 3)),$$
+**valid without corrections** because every singular point of every
+sub-arrangement is negligible (ADE) for the double cover: the maximum
+number of concurrent entry lines is 3 (nodes give $A_1$, ordinary
+triple points give $D_4$, both canonical) — verified point-by-point
+for all 256 sub-arrangements. Hence $h^{2,0}(\chi_S) =
+\binom{|S|/2-1}{2}$, and the census (PROVEN-CLASSICAL formula,
+machine-checked):
+
+| $\|S\|$ | characters | $h^{2,0}$ each | total | quotient $Y_S = X/\ker\chi_S$ |
+|---|---|---|---|---|
+| 0, 2, 4 | 163 | 0 | 0 | rational |
+| 6 | 84 | 1 | 84 | **K3** (double sextic, $d_2$ $A_1$ + $t_3$ $D_4$) |
+| 8 | 9 | 3 | 27 | **Horikawa** ($K^2 = 2$, $\chi = 4$, on the Noether line) |
+
+Total $= 111 = \chi(\mathcal{O}) - 1$ with $q = 0$ — the naive
+formula summed over all characters reproduces the independently
+pinned Noether value exactly, cross-confirming the formula and the
+negligibility en passant.
+
+**Consequences.** (i) The transcendental Hodge structure of $X$
+embeds into the sum of 84 K3 motives and 9 Horikawa motives — the
+Picard/Brauer/$L$-function program (W2→W3) can proceed piece by piece
+on classical, heavily-studied objects. (ii) Only **19 isomorphism
+types** govern everything: 16 $D_4$-orbits of K3 characters and 3
+orbits of Horikawa characters (omit center / corner / edge). (iii)
+Each K3 has the PROVEN Néron–Severi bound $\rho \ge 1 + d_2 + 4t_3 =
+16 + t_3$ (hyperplane + exceptional ADE lattice; $d_2 + 3t_3 = 15$),
+so its transcendental rank is $\le 6 - t_3$; the census of $t_3$ over
+the 84 is $t_3 = 0$: **2**, $t_3 = 1$: **20**, $t_3 = 2$: **46**,
+$t_3 = 3$: **16**. The two $t_3 = 0$ characters are the omit-a-full-
+diagonal configurations; the sixteen $t_3 = 3$ ones (transcendental
+rank $\le 3$) are the most rigid and the natural first targets for
+exact $\rho$ / CM-type determination (M13-A). The octic census:
+omit-center $(d_2, t_3) = (16, 4)$; omit-corner $(13,5)$; omit-edge
+$(10,6)$.
+
+*Next (M13-A):* exact Picard lattices of the 16 K3 orbit types
+(split-line classes + divisibility relations on top of the ADE
+bound), then Galois action and the transcendental $L$-pieces.
+
+## 11. What the verify script proves mechanically
 
 `verify/checks/a8_descent.py` (24 checks): the §2 structural facts
 (grid-line triples, pencil base points on $u{=}0/v{=}0$, both conic

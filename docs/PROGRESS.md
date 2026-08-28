@@ -81,20 +81,28 @@ The owner's geometric picture — the square as lattice points on spheres
    $r_3^*(3m^2) = 24\,h(-3m^2)$.
 
 2. **The three-sieve pair desert (each sieve PROVEN necessary; the
-   annihilation VERIFIED to $m \le 1200$).** Positivity, genus-character
+   annihilation VERIFIED to $m \le 10^4$).** Positivity, genus-character
    coherence (Theorem A9.3, via the gluing law A9.1: each line's Gauss
    class represents its entries' co-norms), and single-class
    representation kill **every** ordered congrua pair for **every**
-   center $m \le 1200$ — 1782 pairs: 1608/152/22, zero remain. The A3
-   desert, previously a search fact, now has named arithmetic causes.
+   center $m \le 10{,}000$ — 32,850 pairs at 1667 centers:
+   28,028/3,816/1,006, **zero golden centers**. The A3 desert,
+   previously a search fact, has named arithmetic causes, and the
+   additive desert itself now stands VERIFIED to $m \le 10^7$.
 
-3. **The anatomy (the deepest finding on this front).** Of the 57 line
-   kills behind the final sieve: 21 are *provably local* (certified
-   against an exhaustively validated representability criterion), and
-   **36 are provably beyond every congruence and character condition**
-   — they occur inside single genera, i.e. inside cosets of
-   $\mathrm{Cl}^2$ (Gauss's principal genus theorem is machine-verified
-   here). At $m = 725$ the desert exists *only* for this reason.
+3. **The anatomy and its mechanism (the deepest findings on this
+   front).** Of the 57 line kills behind the $m \le 1200$ core: 21
+   provably local, **36 provably beyond every congruence and character
+   condition** (inside cosets of $\mathrm{Cl}^2$; principal genus
+   theorem machine-verified). The M12-B probe (2026-08-28) determined
+   the mechanism of all 36: **six are quartic-character (Rédei/4-rank)
+   kills** — all at $m = 481/962$, every separator of order exactly 4
+   — and **thirty admit no character certificate at all** (Lemma A9.5:
+   4-rank 0 makes it impossible), being product-set geometry of prime
+   ideal classes; the ideal-product law is machine-verified EXACT on
+   every conductor-coprime kill value. The fourth sieve is
+   reciprocity's shadow where 4-rank bites and prime-class alignment
+   everywhere else.
 
 *The frontier on this front:* the law governing representing classes
 inside a genus — Gauss composition / spinor structure (the P8
@@ -121,7 +129,7 @@ suspected.
   Bombieri–Lang* — "at most finitely many squares". Finitely many is
   not zero.
 - **Range-verified is not proven-for-all-$m$**: the slice confinement,
-  the pair desert ($m \le 1200$), and the sieve anatomy are exact
+  the pair desert ($m \le 10^4$), and the sieve anatomy are exact
   within their stated ranges and conjectural beyond them; the spectral
   rigidity is through degree 8, trivial character plus full-character
   vanishing at degrees 5 and 6 (nontrivial characters at

@@ -325,6 +325,75 @@ backlog):** Duke (Invent. Math. 92, 1988),
 Aka–Einsiedler–Shapira, Venkov — see
 [papers/WANTED.md](../../papers/WANTED.md) P8.
 
+### The mechanism of the beyond-genus kills (fifth layer, M12-B) — and the desert to $10^4$
+
+*(2026-08-28, ROADMAP W4/W6 first actions; `compute/redei_probe.py`,
+`compute/desert_extension.py`; checks `a9.kill_mechanism`,
+`a9.desert_ext`.)*
+
+**The desert extends 8.3× with zero survivors (VERIFIED($10^4$)).**
+The three sieves annihilate **every** ordered congrua pair for every
+center $m \le 10{,}000$: 1667 centers, 32,850 ordered pairs —
+28,028 positivity + 3,816 coherence + **1,006 representation** kills,
+**no golden center** (frozen artifact `data_desert_10k.json`; sampled
+representation kills re-verified live on every suite run). The
+representation-kill corpus grew from 22 pairs to 1,006 — the anatomy
+sample for the fourth-sieve law is now fifty times larger.
+
+**Lemma A9.5 (inverse-closure; PROVEN).** *Representing sets are
+inverse-closed ($f$ and $\bar f$ represent the same integers), so a
+character constant on one takes value $\pm 1$ there. Hence:
+(i) odd-order characters never separate two representing sets;
+(ii) if the 2-Sylow subgroup of $\mathrm{Cl}$ is elementary abelian
+(4-rank 0), every character's $\pm1$-part is a genus character,
+and NO character of any order can separate representing sets inside
+a genus.* Character certificates for beyond-genus kills can exist
+only at discriminants with 4-rank $> 0$, and only through characters
+of even order $\ge 4$.
+
+**The verdicts (measured, pinned).** For all 36 GLOBAL kill-lines
+behind the $m \le 1200$ desert, on their admitting strata:
+
+- **6 kills are CHARACTER** — a quartic character (order exactly 4,
+  every separator, no order-8, none odd — Lemma A9.5 confirmed on
+  data) is constant on two of the three representing sets with
+  opposite values. All six live at $m = 481$ and its even double
+  $m = 962$ (lines 4, 6, 7; disc with $h = 144$, genus size 36,
+  4-rank $> 0$). **This is the Rédei/4-rank layer, real but
+  minority.**
+- **30 kills are ARC** — *no character of any order separates*
+  (at $m = 425, 725, 845, 850, 901, 925, 1025$; most of these discs
+  have odd genus size, i.e. 4-rank 0, where Lemma A9.5 makes
+  character certificates impossible outright — and at $m = 845$,
+  where 4-rank $> 0$ offers quartic characters, they still fail).
+  The kill is the **product-set geometry of prime ideal classes**:
+  typical shapes $|S| = [2, 2, 24]$ or $[300, 4, 2]$ with one empty
+  pairwise intersection — the kill reduces to explicit class
+  equations $[\mathfrak{p}_1$-word$] \ne [\mathfrak{p}_2$-word$]$
+  between tiny inverse-symmetric sets.
+- At $m = 725$ every kill is ARC: the sharpest instance is entirely
+  beyond reciprocity-by-characters.
+
+**The ideal-product law (PROVEN-CLASSICAL, machine-verified on kill
+data).** For values coprime to the conductor, the representing set is
+exactly $c_3^{v_3(w)} \cdot \prod_{p \text{ split}, p^e \| w}
+\{P_p^{k} : |k| \le e,\ k \equiv e \bmod 2\}$ — verified EXACT on
+**62 of 62** conductor-coprime kill values, zero mismatches (the
+remaining 46 values share primes with the conductor: the
+non-invertible-ideal regime, the model's next extension).
+
+**Verdict on H-Rédei (ROADMAP W4).** As a universal law: **refuted**
+— 30 of 36 kills cannot be certified by any character, and Lemma A9.5
+shows why (4-rank 0 makes it structurally impossible). As a layer:
+**confirmed exactly** — where 4-rank bites, the separators are
+precisely quartic. The refined working hypothesis (**H-align**): the
+fourth sieve is the statement that *the classes of the prime ideals
+dividing the coupled co-norms never align into the required product
+relations*; quartic characters are its abelianized shadow. The law
+now lives in the joint behavior of prime classes at algebraically
+coupled arguments — exactly Venkov/quaternionic territory (W9's
+probe is next), with the 1,006-pair corpus as its test bed.
+
 ## 4. What the verify script proves mechanically
 
 `verify/checks/a9_spheres.py`: the all-lines-on-one-sphere identity

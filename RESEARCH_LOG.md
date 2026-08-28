@@ -1415,3 +1415,62 @@ boulder is real, but the plan concentrates on the only three
 mechanisms matching the obstruction's proven profile — class-field
 reciprocity, cover descent with Brauer classes, and height descent —
 and every rung of the ladder is real mathematics on its own.
+
+## 2026-08-28 — Entry 35: the M12 night — the atlas, the mechanism, and the desert at 10^4
+
+Three roadmap milestones executed in one session, two of them landing
+decisive answers on the first run.
+
+**M12-A (W2) — the H^{2,0} character atlas (A8 §10, a8.h20_atlas).**
+The canonical bundle decomposes over the 256 characters by the
+abelian-cover formula h^{2,0}(chi_S) = C(|S|/2 - 1, 2), valid with NO
+corrections because every sub-arrangement point has multiplicity <= 3
+(A_1/D_4 only — machine-verified across all 256 sub-arrangements);
+the sum 84 + 27 = 111 = chi(O) - 1 reproduces Noether exactly. THE
+TRANSCENDENTAL MOTIVE OF X FRAGMENTS INTO 84 K3 PIECES AND 9 HORIKAWA
+PIECES (K^2 = 2, chi = 4, on the Noether line), in just 19 D4-orbit
+types. K3 census by triple points: t3 = 0/1/2/3 at 2/20/46/16
+characters, with the proven bound rho >= 16 + t3 (transcendental rank
+<= 6 - t3). W2's Picard/L-function program is now a finite list of
+classical objects; the sixteen t3 = 3 characters are the first
+targets for exact lattices (M13-A).
+
+**M12-B (W4) — the fourth-sieve mechanism (A9 §3 fifth layer,
+a9.kill_mechanism).** The probe answered A9-T1's precise question.
+Lemma A9.5 (PROVEN): representing sets are inverse-closed, so
+constant character values are +-1; odd-order characters never
+separate, and 4-rank 0 makes character certificates impossible
+outright. Verdicts on all 36 beyond-genus kills: 6 CHARACTER — all at
+m = 481 and its double 962, EVERY separator of order exactly 4 (the
+Redei/4-rank layer, no order 8, none odd) — and 30 ARC — no character
+of any order (all of m = 725; even at m = 845 where 4-rank > 0 offers
+quartic characters, they fail). The ideal-product law (S_w =
+c_3^{v_3} * prod {P_p^k}) verified EXACT on 62/62 conductor-coprime
+kill values, 0 mismatches; 46 conductor-entangled values are the
+model's next extension. VERDICT: H-Redei refuted as the universal
+law, confirmed exactly as the 4-rank layer; hypothesis refined to
+H-ALIGN — the fourth sieve is prime-class alignment at algebraically
+coupled arguments, quartic characters its abelianized shadow. The
+kills reduce to single class equations between tiny inverse-pairs
+(|S| patterns like [2,2,24] with one empty pairwise intersection) —
+Venkov/quaternionic territory, W9's probe now first in line.
+
+**M12-D (W6) — the desert extension (a9.desert_ext).** The pipeline
+scaled far past the plan: THE THREE-SIEVE PAIR DESERT IS TOTAL TO
+m <= 10,000 — 32,850 ordered pairs at 1,667 centers, killed
+28,028 (positivity) + 3,816 (coherence) + 1,006 (representation),
+ZERO GOLDEN CENTERS (frozen artifact data_desert_10k.json; sampled
+kills re-verified live each suite run). The representation-kill
+corpus grew 22 -> 1,006 — a fifty-fold anatomy sample for W4. The
+extension to 3x10^4 is running overnight (checkpointed). BONUS: the
+block-sieve rewrite made the A3 additive desert cheap — VERIFIED to
+m <= 10^7 (99,288,935 pairs, 3,116,858 centers, zero triples; 33x
+the old bound; a3.additive_ext pins the artifact and re-runs 10^6
+live each FULL pass).
+
+**Background jobs live at close of session:** desert extension to
+3x10^4; the m = 7 nontrivial-character survey (M12-F, 50 orbits,
+orbit-checkpointed, ~overnight-to-days, closes another A8.18 scope
+slot when done). Suite: 115 checks. Docs updated: A8 §10 (atlas), A9
+fifth layer (mechanism + desert), A3.3 (10^7), PROGRESS, README
+ledger (three new rows), ROADMAP milestone board.

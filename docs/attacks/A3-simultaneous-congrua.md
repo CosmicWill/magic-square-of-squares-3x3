@@ -64,15 +64,19 @@ have configuration meaning:
 | a triple $d_1, d_2, d_1{+}d_2$ | **7 square entries** (three full APs + center) |
 | a quadruple $u, v, u{+}v, u{-}v$ | 9 = MSS3 |
 
-**Theorem A3.3 (VERIFIED to $3\times10^5$; `a3.desert` re-runs a
-sub-bound each FULL pass, and `python3 -m compute.congrua_search 300000`
-reproduces the full statement in ~40 s).** For every $m \le 300{,}000$:
-no two elements of $D(m)$ have their sum in $D(m)$. In particular there
-is no additive triple — hence no "three-full-AP" 7-square magic square
-with center root $\le 3\times10^5$, and *a fortiori* no MSS3. This
-despite 69,398 values of $m \le 3\times10^5$ having $|D(m)| \ge 4$ (the
-counting constraint F2.7 satisfied in abundance; 20,806 already below
-$10^5$).
+**Theorem A3.3 (VERIFIED to $10^7$, 2026-08-28; previously
+$3\times10^5$).** For every $m \le 10^7$: no two elements of $D(m)$
+have their sum in $D(m)$ — zero additive triples across 99,288,935
+pairs at 3,116,858 centers with $|D(m)| \ge 2$. In particular there is
+no "three-full-AP" 7-square magic square with center root $\le 10^7$,
+and *a fortiori* no MSS3 of that shape. (The 33× extension is the
+block-sieve implementation `compute/additive_desert_ext.py`; frozen
+artifact `data_additive_desert.json`, pinned and partially re-run
+live by `a3.additive_ext`; the original `a3.desert` sub-bound rerun
+stands unchanged. Historical statement to $3\times10^5$:
+`compute.congrua_search 300000`, ~40 s.) This despite 69,398 values
+of $m \le 3\times10^5$ having $|D(m)| \ge 4$ (the counting constraint
+F2.7 satisfied in abundance; 20,806 already below $10^5$).
 
 For calibration: the unique known 7-square square AB1 is **not** of the
 three-AP type — it realizes a *pair* plus two half-APs
