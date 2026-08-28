@@ -296,3 +296,82 @@ def gram_pair_ok_strata(w1, w2, n):
                 return True
         d += 2
     return False
+
+
+# ------------------------------------------------------------ A9.9 syzygy
+
+def pair_witnesses(w1, w2, N):
+    """All (t, k) with t >= 0, k >= 0, w1 w2 - t^2 = N k^2 (k = 0
+    allowed only when w1 w2 is a perfect square)."""
+    out = []
+    P = w1 * w2
+    r = isqrt(P)
+    if r * r == P:
+        out.append((r, 0))
+    k = 1
+    while N * k * k <= P:
+        d = P - N * k * k
+        t = isqrt(d)
+        if t * t == d:
+            out.append((t, k))
+        k += 1
+    return out
+
+
+def syzygy_line_ok(tri, n):
+    """The full Diophantine line test: at some admissible stratum,
+    exist integers t12, t13, t23 (with signs) satisfying all three
+    pair equations AND the rank-2 syzygy
+    det3 = w1 w2 w3 + 2 t12 t13 t23 - w1 t23^2 - w2 t13^2 - w3 t12^2 = 0.
+    (Necessity: Theorem A9.9 — three vectors in a rank-2 lattice are
+    dependent.)"""
+    G = gcd(gcd(tri[0], tri[1]), tri[2])
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G % (g * g) == 0:
+            N = n // (g * g)
+            w1, w2, w3 = [t // (g * g) for t in tri]
+            W12 = pair_witnesses(w1, w2, N)
+            W13 = pair_witnesses(w1, w3, N)
+            W23 = pair_witnesses(w2, w3, N)
+            for t12, _ in W12:
+                for t13, _ in W13:
+                    for t23, _ in W23:
+                        base3 = (w1 * w2 * w3 - w1 * t23 * t23
+                                 - w2 * t13 * t13 - w3 * t12 * t12)
+                        # sign freedom: negating vectors flips two t's;
+                        # the product t12 t13 t23 changes sign freely
+                        if base3 == 2 * t12 * t13 * t23 or \
+                           base3 == -2 * t12 * t13 * t23:
+                            return True
+        d += 2
+    return False
+
+
+def syzygy_census():
+    """Does pairwise-Gram + syzygy explain ALL 57 kills (including
+    the pairwise exception at m=725 pair 2 line 5)?  And soundness:
+    every alive line must pass the syzygy test."""
+    viol = killed = explained = 0
+    for m, U, V in PASSERS_1200:
+        n = 3 * m * m
+        for i, tri in enumerate(pair_lines(2 * m * m, U, V)):
+            alive = line_alive(tri, n)
+            sy = syzygy_line_ok(tri, n)
+            if alive and not sy:
+                viol += 1
+                print(f"*** A9.9 SOUNDNESS VIOLATION m={m} line {i}")
+            if not alive:
+                killed += 1
+                if not sy:
+                    explained += 1
+                else:
+                    print(f"  beyond-syzygy kill: m={m} ({U},{V}) "
+                          f"line {i}")
+    print(f"soundness violations: {viol}; kills {killed}, "
+          f"syzygy-explained {explained}")

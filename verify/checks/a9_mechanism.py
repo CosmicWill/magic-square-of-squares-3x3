@@ -330,3 +330,42 @@ def _(ctx):
     ctx.note(f"A9.8 sandwich + A9.C3 losslessness on {pair_t} pairs; "
              f"free products all pass; ph(A+,A-) fails {aa_fail}/"
              f"{len(passers)}; A9.C2 holds {c2}/{withfail}")
+
+
+@check("a9.syzygy", DOC)
+def _(ctx):
+    """Theorem A9.9 + Conjecture A9.C4: the pairwise-Gram + syzygy
+    Diophantine system is sound (every alive line has a witness
+    system) and explains ALL 57 anatomy kills, including the single
+    pairwise-Gram survivor (m=725 pair 2 line 5, killed exactly by
+    the syzygy determinant)."""
+    from compute.gram_sieve import line_alive, syzygy_line_ok
+    from compute.sphere_composition import PASSERS_1200
+    from compute.sphere_gluing import pair_lines
+
+    n_p = ctx.bound(full=11, fast=2)
+    passers = PASSERS_1200 if n_p >= 11 else \
+        [p for p in PASSERS_1200 if p[0] == 725]
+    killed = explained = 0
+    for m, U, V in passers:
+        n = 3 * m * m
+        for i, tri in enumerate(pair_lines(2 * m * m, U, V)):
+            alive = line_alive(tri, n)
+            sy = syzygy_line_ok(tri, n)
+            require(not (alive and not sy), f"A9.9 violated m={m} l{i}")
+            if not alive:
+                killed += 1
+                explained += not sy
+    require(killed == explained, "beyond-syzygy kill found")
+    if n_p >= 11:
+        require(killed == 57, killed)
+        # the pairwise-Gram survivor is syzygy-killed:
+        from compute.gram_sieve import gram_line_ok
+        tri5 = pair_lines(2 * 725 * 725, 171600, 282576)[5]
+        n725 = 3 * 725 * 725
+        require(gram_line_ok(tri5, n725) and
+                not syzygy_line_ok(tri5, n725),
+                "the syzygy exception no longer behaves as pinned")
+    ctx.note(f"A9.9 sound; syzygy system explains {explained}/{killed} "
+             f"kills on {len(passers)} passers (full profile pins "
+             f"57/57 incl. the pairwise survivor)")

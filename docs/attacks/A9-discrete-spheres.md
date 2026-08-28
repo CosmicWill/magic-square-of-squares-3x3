@@ -561,6 +561,59 @@ transfer mechanism (why real-phantom failures drag phantom failures
 along) as the remaining proof gap, to be attacked through the
 $\mathbb{Z}[\zeta_{12}]$ factorization of the atlas.
 
+### The syzygy closes the system (A9.9) — the sieve becomes Diophantine
+
+*(2026-08-28, the transfer-lemma session; `compute/gram_sieve.py`
+(A9.9 layer), check `a9.syzygy`.)*
+
+**Theorem A9.9 (syzygy necessity; PROVEN).** If one class of
+determinant $N$ represents all three values $w_1, w_2, w_3$ of a
+line, then — since three vectors in a rank-2 lattice are linearly
+dependent — there exist integers $t_{12}, t_{13}, t_{23}$ (the
+pairwise inner products) satisfying the three pair equations
+$w_iw_j - t_{ij}^2 = N k_{ij}^2$ ($k_{ij} \ge 0$, $= 0$ only in the
+proportional case) **and the rank-2 syzygy**
+$$\det\begin{pmatrix} w_1 & t_{12} & t_{13}\\ t_{12} & w_2 & t_{23}\\
+t_{13} & t_{23} & w_3\end{pmatrix} = 0. \qquad \blacksquare$$
+
+**The census (measured, pinned): the system explains everything.**
+Over all 88 lines of the eleven passers: zero soundness violations
+(every representable line admits a syzygy-consistent witness system,
+as the theorem forces), and **all 57 kills — 57 of 57 — fail the
+system**, including the single pairwise-Gram survivor ($m = 725$,
+pair $(171600, 282576)$, line 5), which dies exactly at the syzygy
+determinant. Together with the pairwise losslessness (165 = 165):
+
+**Conjecture A9.C4 (the Diophantine sieve).** *A line is
+representable if and only if, at some admissible stratum, the
+elementary system — three pair equations plus the syzygy — has an
+integer solution.* Necessity is Theorem A9.9; sufficiency is the
+open half (given a rank-2 PSD Gram matrix with minor structure
+$Nk_{ij}^2$, one needs an even overlattice of determinant exactly
+$N$ containing the three vectors — an index-$k$ integrality
+condition). On all anatomy data the equivalence is exact. If A9.C4
+holds, **the entire representation sieve — hence the fourth sieve,
+hence the beyond-genus structure of the pair desert — is a statement
+in elementary Diophantine arithmetic**, with no class groups
+anywhere: the all-$m$ theorem hunt (W4) becomes a problem about
+integer points on explicit varieties.
+
+**Lemma A9.8.1 (the free identities; PROVEN).** The real lines' pair
+witnesses are the column law itself: for line 0,
+$(t, k) = (md_1, s_1)$ solves $n_2 u_+ - t^2 = 3m^2k^2$ *because*
+$d_1^2 + s_1^2 = 2m^2$, and $(s_1d_1, m)$ solves the $(u_+, u_-)$
+pair ($u_+u_- = (s_1d_1)^2 + 3m^4$); likewise for line 1. The free
+products pass by identity, not by accident.
+
+**Status of the transfer lemma / A9.C2** after this session: still
+open, verified 41/41 at the Gram layer, and now *relocated* — it is
+a statement about the elementary witness systems (the phantom
+systems carry the special value $n_2 = 2m^2$ whose witnesses are
+column-law-adjacent by A9.8.1), no longer about class groups. The
+strategic prize has grown en route: proving A9.C4's sufficiency
+half, or directly attacking the desert's Diophantine form, now
+dominates the original companion question.
+
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 
 *(2026-08-28; `compute/actuarial_model.py`; sample artifacts

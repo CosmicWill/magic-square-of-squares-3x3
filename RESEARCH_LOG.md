@@ -1685,3 +1685,42 @@ REMAINING GAP: the transfer lemma — why real-phantom failures drag
 phantom failures along — to be attacked through the zeta_12
 factorization of the atlas. Proving A9.C2 yields k_c >= 1 modulo
 the single pinned syzygy exception.
+
+## 2026-08-28 — Entry 41: the syzygy closes the system — the sieve becomes Diophantine
+
+The transfer-lemma session found the missing third layer and with it
+a candidate exact law for the whole representation sieve.
+
+THEOREM A9.9 (PROVEN, one line): three vectors in a rank-2 lattice
+are linearly dependent, so a line represented by one class admits
+integers t_ij satisfying the three pair equations
+w_i w_j - t_ij^2 = N k_ij^2 AND the vanishing 3x3 Gram determinant
+(the syzygy). LEMMA A9.8.1 (PROVEN): the real lines' witnesses are
+the column law itself — (t, k) = (m d_1, s_1) for (n2, u+), and
+(s_1 d_1, m) for (u+, u-): free products pass by identity.
+
+THE CENSUS (a9.syzygy): over all 88 lines of the eleven passers,
+ZERO soundness violations and ALL 57 KILLS — 57/57 — fail the
+pairwise+syzygy system; the single pairwise-Gram survivor (m = 725
+pair 2 line 5) dies exactly at the determinant. Combined with
+yesterday's losslessness (exact = Gram, 165/165 pairs):
+
+CONJECTURE A9.C4 (the Diophantine sieve): line representability ==
+integer solvability of {three pair equations + syzygy} at some
+stratum. Necessity is A9.9; sufficiency is an explicit overlattice
+integrality question (given the PSD rank-2 Gram with minors N k^2,
+find an even det-N overlattice containing the three vectors). On
+all anatomy data the equivalence is EXACT. If C4 holds, the fourth
+sieve — proven beyond all congruence and character conditions in
+M12-B — is nevertheless a statement in ELEMENTARY Diophantine
+arithmetic: the class group was the costume, not the actor. The
+all-m desert theorem hunt becomes a problem about integer points on
+explicit varieties, and the A9.C2 transfer question relocates to
+the witness-system level (still open, 41/41 at the Gram layer; the
+phantom systems carry n2 = 2m^2 whose witnesses are column-law-
+adjacent by A9.8.1 — the natural opening for the next session).
+
+Suite 121. The W4 ladder after one day: A9.6 (real lines never die)
+-> A9.7 (Gram necessity; coherence = its local shadow) -> A9.8
+(sandwich) + A9.8.1 (free identities) -> A9.9 (syzygy) + C3/C4
+(exactness, measured perfect). One conjecture from a law.
