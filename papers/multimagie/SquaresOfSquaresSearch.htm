@@ -1,0 +1,2483 @@
+<html>
+
+<head>
+<title>MULTIMAGIE.COM - 3x3 magic square of squares search</title>
+<meta name="generator" content="Namo WebEditor v5.0">
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<p><b><font size="5">Latest research on the &quot;3x3 magic square of squares&quot; 
+problem</font></b></p>
+<hr>
+<p>This page presents the most interesting&nbsp;studies on the <a href="Problems.htm#SquaresOfSquares">Open 
+problems 1 and 2</a> done after the publication of my&nbsp;article &quot;<a href="SquaresOfSquares.htm">Some 
+notes on the magic squares of squares problem</a>&quot; in 2005<i>. </i>The two&nbsp;corresponding prizes are 
+still to be won!</p>
+<ul>
+    <li>$100 prize offered by <b>Martin 
+    Gardner</b> since 1996, on problem 1</li>
+    <li><span style="background-color:aqua;">€1,000 prize + a bottle of champagne</span> 
+    since 2010 (was only&nbsp;€100 from&nbsp;2005 to 2009), on my&nbsp;&quot;easier&quot; sub-problem 2 = <a href="Enigmas.htm">enigma 
+    1</a></li>
+</ul>
+<p>If you want to study these two problems, I STRONGLY&nbsp;recommend that you first:</p>
+<ul>
+    <li>read the above <i>Mathematical Intelligencer</i> paper,</li>
+    <li>read these&nbsp;5 earlier references (<a href="SquaresOfSquares.htm#References">download 
+    the&nbsp;5&nbsp;PDF files from [8] to [12]</a>): [8]+[9] <b>Christian Boyer</b>, 
+    [10]+[11] <b>Andrew Bremner</b>, [12]&nbsp;<b>Duncan Buell</b></li>
+    <li>read also <a href="SquaresOfSquares.htm#References">[49]</a> <b>Landon 
+    Rabern</b>'s paper&nbsp;and below <a href="#2017">improvements</a> by <b>Lee 
+    Morgenstern</b> on 3x3 magic squares of squares properties</li>
+    <li><a href="SquaresOfSquares.htm#Lecture">see the PowerPoint presentation</a> 
+    summarizing the paper and the above references &lt; 2005</li>
+    <li>and, of course,&nbsp;read the latest results in this page! From Ajai 
+    Choudhry, Randall Rathbun, Jean-Claude Rosa, Lee Morgenstern, 
+    Lucien Pech, Landon Rabern, Frank Rubin, Lee Sallows, Ant King, Mike 
+    Winkler, Tim S. Roberts, Mark Underwood, Paul Zimmermann, 
+    Paul Pierrat, François Thiriet, Terry Moriarty, Eddie 
+    Gutierrez, Matt Parker with Brady Haran, Ben Asselstine, Christian Woll, Joseph Hurban, Adrian Suter, Benjamin Bartsch, 
+    Giancarlo Labruna,  Vlad Volosatov, Arkadiusz Wesolowski, Onno Cain, Sunil Kumar.</li>
+</ul>
+<p><a href="mailto:cboyer@club-internet.fr?subject=3x3 magic square of squares">Send 
+me your new results</a>, they will be added <a href="#dontreinvent">if interesting</a>.</p>
+<hr>
+<p><i>Received March 6, 2006<br></i><b>Ajai Choudhry</b>, India, constructed&nbsp;some 
+3x3 squares with 7 correct sums, their magic sums  not being a square. For example:</p>
+<ul>
+    <ul>
+        <table border="1" width="200">
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">7656²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">14543²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">16764²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">18127²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">14916²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">264²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">12804²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">10824²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">16433²</p>
+                </td>
+            </tr>
+        </table>
+    </ul>
+</ul>
+<p>Interesting, because most of the 3x3 squares with 7 correct&nbsp;sums  
+come from the <a href="Supplement.htm">Lucas family</a>, in which the&nbsp;magic 
+sum is&nbsp;a&nbsp;square. The first known example with a non-square magic sum 
+was constructed by <b>Michael Schweitzer</b> (Fig <i>MS4</i> of the M.I. article). 
+It would be very interesting to find&nbsp;a parametric solution with a non-square 
+magic sum, generating an infinite number of 3x3 squares. With such a new parametric 
+solution, it should be easy to check mathematically if this family can or cannot 
+produce a solution with 8 magic sums. The Lucas family is unfortunately 
+proved unable to produce 8 magic sums.</p>
+<hr>
+<p><i>Received October 10th, 2006<br></i>Message from <b>Randall Rathbun</b>, 
+USA, on the Open problem 2:</p>
+<ul>
+    <p>&quot;I wore out the meccah high speed calculation cluster at Harvard 
+    University trying, but no success. Spent weeks running the code, but nothing 
+    more turned up than the 1 example that Dr Andrew Bremner found.<br>Quite 
+    discouraging, actually&quot;</p>
+</ul>
+<p>Several years before this problem 2, Randall already worked&nbsp;on  Gardner's 
+challenge (=our open problem 1). It was&nbsp;in 1999, look at:</p>
+<ul>
+    <li><a href="http://mathforum.org/te/exchange/hosted/suzuki/Randall.html" target="_top">http://mathforum.org/te/exchange/hosted/suzuki/Randall.html</a></li>
+    <li><a href="http://mathforum.org/te/exchange/hosted/suzuki/Rand3x3.html" target="_top">http://mathforum.org/te/exchange/hosted/suzuki/Rand3x3.html</a></li>
+</ul>
+<hr>
+<p><i><a name="2006nov"></a>Received November 5th, 13th, 23rd, 2006<br></i><b>Jean-Claude Rosa</b>, 
+France, constructed this 3x3 semi-magic square (with 6 correct sums) using only 
+odd numbers. Interesting, because most of the 3x3 semi-magic squares use both odd 
+and even numbers. Strange: in this smallest possible example, all the  numbers 
+used are squares of primes.</p>
+<ul>
+    <ul>
+        <table border="1" width="137">
+            <tr>
+                <td width="39" bgcolor="yellow">
+                    <p align="center">11²</p>
+                </td>
+                <td width="39" bgcolor="yellow">
+                    <p align="center">23²</p>
+                </td>
+                <td width="37" bgcolor="yellow">
+                    <p align="center">71²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="39" bgcolor="yellow">
+                    <p align="center">43²</p>
+                </td>
+                <td width="39" bgcolor="yellow">
+                    <p align="center">59²</p>
+                </td>
+                <td width="37" bgcolor="yellow">
+                    <p align="center">19²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="39" bgcolor="yellow">
+                    <p align="center">61²</p>
+                </td>
+                <td width="39" bgcolor="yellow">
+                    <p align="center">41²</p>
+                </td>
+                <td width="37" bgcolor="yellow">
+                    <p align="center">17²</p>
+                </td>
+            </tr>
+        </table>
+    </ul>
+</ul>
+<p>Using these 3 primitive Pythagorean triangles having the same area:</p>
+<ul>
+    <li>1380² + 19019² = 19069²</li>
+    <li>3059² + 8580² = 9109²</li>
+    <li>4485² +&nbsp;5852² = 7373²</li>
+</ul>
+<p>he constructed this 3x3 square (with 7 correct sums) using only odd numbers. 
+6 of its 9 numbers are squares of primes.</p>
+<ul>
+    <ul>
+        <table border="1" width="200">
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">5521²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">10337²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">19069²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">20399²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">9109²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">1367²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">7373²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">17639²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">11639²</p>
+                </td>
+            </tr>
+        </table>
+    </ul>
+</ul>
+<p>And&nbsp;using other Pythagorean triangles having the same area, he produced 
+this other square (with 7 correct sums) using only odd numbers. The magic sum 
+is smaller than the previous square.</p>
+<ul>
+    <ul>
+        <table border="1" width="200">
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">14393²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">2171²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">13507²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">12181²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">10517²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">11633²</p>
+                </td>
+            </tr>
+            <tr>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">6227²</p>
+                </td>
+                <td width="60" bgcolor="yellow">
+                    <p align="center">16703²</p>
+                </td>
+                <td width="58" bgcolor="yellow">
+                    <p align="center">8749²</p>
+                </td>
+            </tr>
+        </table>
+    </ul>
+</ul>
+<hr>
+<p><i>Received November 30th, 2006<br></i>Theorem from <b>Lee Morgenstern</b>, 
+USA: &quot;In a 3x3 magic square of distinct squares, the smallest square cannot 
+be 1.&quot;</p>
+<ul>
+    <li><a href="Morgenstern01.htm">Read&nbsp;Morgenstern's proof</a></li>
+</ul>
+<hr>
+<p><i><a name="2006dec"></a>Received December 10th, 2006<br></i>Only&nbsp;some days after Lee Morgenstern, 
+<b>Jean-Claude Rosa</b> independently proved that a 3x3 magic square can't be 
+constructed&nbsp;using 1 and eight squares of odd numbers.</p>
+<ul>
+    <li><a href="../Rosa01.pdf">Download Rosa's proof</a> (PDF file, 15Kb,&nbsp;in 
+    French)</li>
+</ul>
+<hr>
+<p><i>Received December 19th, 2006<br></i>From <b>Lee Morgenstern</b>, USA, 
+far extending his previous proof excluding 1: &quot;<span style="background-color:aqua;">if 
+there is a 3x3 magic square of distinct squares, then        </span><i><span style="background-color:aqua;">all</span></i><span style="background-color:aqua;"> entries must 
+be above 10^14.</span>&quot;</p>
+<ul>
+    <li>Read&nbsp;the details of his study in his page <a href="http://home.earthlink.net/~morgenstern/magic/apstruc.htm" target="_top">http://home.earthlink.net/~morgenstern/magic/apstruc.htm</a><font size="2"> 
+    (dead link, but </FONT><a href="http://web.archive.org/web/20150511182628/http://home.earthlink.net/~morgenstern/magic/apstruc.htm" target="_top"><font size="2">page 
+    saved by the Wayback Machine</font></a><font size="2">)</FONT></li>
+    <li>Read also his other interesting studies on the 3x3 problem at <a href="http://home.earthlink.net/~morgenstern/magic/sq3.htm" target="_top">http://home.earthlink.net/~morgenstern/magic/sq3.htm</a><font size="2"> 
+    (dead link, but </FONT><a href="http://web.archive.org/web/20150515184214/http://home.earthlink.net/~morgenstern/magic/sq3.htm" target="_top"><font size="2">page 
+    saved by the Wayback Machine</font></a><font size="2">)</FONT></li>
+</ul>
+<hr>
+<p><i>Received December 23rd, 2006<br></i><b>Lucien Pech</b>, when he was a&nbsp;&quot;Mathématiques 
+Spéciales&quot; student, school year 2005-2006, chose the &quot;3x3&nbsp;magic square 
+of squares&quot; as the subject for his TIPE: Travaux d'Initiative Personnelle 
+Encadrés = supervised personal search. He searched for a magic hourglass; 
+such a solution would solve the Open problem 2, since it uses 7 squares. He 
+used  Duncan Buell's method (see reference [12],&nbsp;top of this page), 
+but&nbsp;didn't find any solution to this very difficult problem. His best result 
+is&nbsp;an excellent&nbsp;modulo 2^52 example, better than Duncan Buell's 
+modulo 2^46 example.</p>
+<p>Lucien Pech, now a student at the ENS Paris (Ecole Normale Supérieure, rue 
+d'Ulm), sent this revised version of his TIPE:</p>
+<ul>
+    <li><a href="../Pech.pdf">Download Pech's study</a> (PDF file, 156Kb, 
+    in French)</li>
+</ul>
+<hr>
+<p><i><a name="2007"></a>Received July 21st, 2007. Updated&nbsp;results received 
+October 18th, 2007.<br></i>After&nbsp;his 
+<a href="SquaresOfSquares.htm#[49]">paper published in&nbsp;2003 [49]</a> on 
+the magic squares of squares problem, <b>Landon Rabern</b>, USA, searched for 
+a 
+3x3 magic square having at least 7 squared integers.&nbsp;Using a similar method as 
+<a href="SquaresOfSquares.htm#[8]">my study of 2004 [8]</a>, he didn't find 
+any new example different from the <a href="Problems.htm#SquaresOfSquares">only 
+known example</a>.</p>
+<ul>
+    <li><a href="../RabernMagicSearch0710.pdf">Download&nbsp;Rabern's list 
+    of searched&nbsp;center cells</a> (PDF file, 50Kb)</li>
+</ul>
+<p>You can download and use his Windows application with any other range 
+of center cells,&nbsp;even though he doesn't provide any explanation on its use (unfortunately): 
+<A 
+href="http://landon314.brinkster.net/MagicSearcher.zip">http://landon314.brinkster.net/MagicSearcher.zip</A>. 
+This application needs the Microsoft .NET Framework. The code sources are provided.</p>
+<hr>
+<p><i><a name="2008"></a>Received April 8th and 12th, 2008.<br></i>From <b>Lee Morgenstern</b>, 
+USA, the&nbsp;complete formula for all 3x3 semi-magic squares of squares (better 
+than the <a href="Supplement.htm">Lucas formula</a> producing some, but not 
+all, 3x3 semi-magic squares of squares), and a&nbsp;list of 3x3 semi-magic squares 
+with 7 correct sums and using odd entries (including the two first smallest 
+squares given above by <b>J.-C. Rosa</b> in 2006):</p>
+<ul>
+    <li><a href="Morgenstern03.htm">See Morgenstern's formula</a></li>
+    <li><a href="Morgenstern04.htm">See Morgenstern's list</a></li>
+</ul>
+<hr>
+<p><i><a name="2009"></a>Received February 6th, 2009.<br></i>From <b>Lee Morgenstern</b>, 
+USA: &quot;We know that the magic sum of a 3x3 fully-magic square must be three 
+times the central entry. Are there any 3x3 semi-magic squares of squares with 
+a magic sum of three times any square? Looking over the published results, such 
+as with the Lucas formula, all the magic sums are squares.The new non-square 
+magic sums that you published on your previous update weren't three times a 
+square. I searched for 3x3 semi-magic squares of squares and found 20 of them with 
+a magic sum that is three times a square (searched up to a magic sum of 3 x 
+5000²). One of them, the smallest, had a magic sum which was three times one 
+of the actual entries. Since you can rearrange rows and columns to make another 
+semi-magic square, any of the entries can become the central one. So here is 
+my 3x3 semi-magic square of squares having a magic sum which is three times 
+the central entry (S = 3 x 1105²). <i>This is the only known solution</i>.&quot;</p>
+<ul>
+    <table border="1" width="155">
+        <tr>
+            <td width="45" bgcolor="yellow">
+                <p align="center">1751²</p>
+            </td>
+            <td width="45" bgcolor="yellow">
+                <p align="center">155²</p>
+            </td>
+            <td width="43" bgcolor="yellow">
+                <p align="center">757²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="45" bgcolor="yellow">
+                <p align="center">595²</p>
+            </td>
+            <td width="45" bgcolor="yellow">
+                <p align="center">1105²</p>
+            </td>
+            <td width="43" bgcolor="yellow">
+                <p align="center">1445²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="45" bgcolor="yellow">
+                <p align="center">493²</p>
+            </td>
+            <td width="45" bgcolor="yellow">
+                <p align="center">1555²</p>
+            </td>
+            <td width="43" bgcolor="yellow">
+                <p align="center">1001²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>For his&nbsp;other 19 solutions, the magic sum was three times a square different 
+from any of the entries. Their&nbsp;sums (&lt; 3 x 5000²) are 3 x 1225², 1275², 
+1533², 1955², 1989², 2125², 2265², 2335², 2345², 2675², 3395², 3485², 3515², 
+3575², 3655², 3765², 3885², 3995², 4193². Here is the example S = 3 x 1225²:</p>
+<ul>
+    <table border="1" width="155">
+        <tr>
+            <td width="45" bgcolor="yellow">
+                <p align="center">2105²</p>
+            </td>
+            <td width="45" bgcolor="yellow">
+                <p align="center">25²</p>
+            </td>
+            <td width="43" bgcolor="yellow">
+                <p align="center">265²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="45" bgcolor="yellow">
+                <p align="center">235²</p>
+            </td>
+            <td width="45" bgcolor="yellow">
+                <p align="center">1877²</p>
+            </td>
+            <td width="43" bgcolor="yellow">
+                <p align="center">961²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="45" bgcolor="yellow">
+                <p align="center">125²</p>
+            </td>
+            <td width="45" bgcolor="yellow">
+                <p align="center">989²</p>
+            </td>
+            <td width="43" bgcolor="yellow">
+                <p align="center">1873²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<hr>
+<p><i>Received from May 17th to July 27th, 2009.<br></i><b>Frank Rubin</b>&nbsp;(<a href="http://contestcen.com/" target="_top">http://contestcen.com/</a>) 
+worked 
+on&nbsp;3x3 semi-magic squares of squares having&nbsp;7 magic sums, only one 
+diagonal being not magic. With&nbsp;Sd1 = magic sum = sum of the magic diagonal, 
+and Sd2 = sum of the non-magic diagonal, Frank&nbsp;searched for squares&nbsp;having 
+the best possible ratio Sd1/Sd2 ~&nbsp;1.</p>
+<p>Using <b>Lee Morgenstern</b>'s method for finding 3x3 nearly-magic squares 
+of squares with  close  sums, here is one of the&nbsp;impressive 
+squares computed by <b>Frank Rubin</b>:</p>
+<ul>
+    <table border="1" width="614">
+        <tr>
+            <td width="200" bgcolor="yellow">
+                <p align="center"><font size="1">32004859810489663461722097429913882²</font></p>
+            </td>
+            <td width="196" bgcolor="yellow">
+                <p align="center"><font size="1">6566314229570234516482551556735538²</font></p>
+            </td>
+            <td width="196" bgcolor="yellow">
+                <p align="center"><font size="1">28680635830907835745130420028727601²</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="200" bgcolor="yellow">
+                <p align="center"><font size="1">20694684230850857980455894108812542²</font></p>
+            </td>
+            <td width="196" bgcolor="yellow">
+                <p align="center"><font size="1">25099843330956651396728662500908321²</font></p>
+            </td>
+            <td width="196" bgcolor="yellow">
+                <p align="center"><font size="1">28839804352015135412123656375760542²</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="200" bgcolor="yellow">
+                <p align="center"><font size="1">20914717277840113725279028899813359²</font></p>
+            </td>
+            <td width="196" bgcolor="yellow">
+                <p align="center"><font size="1">34883918758013437522259135104857422²</font></p>
+            </td>
+            <td width="196" bgcolor="yellow">
+                <p align="center"><font size="1">15352303377279966158185135232591402²</font></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>Sd1 = 1890006405715707401173356334328966702876471825085875343146504267674569<br>Sd2 = 1890006405715707267778636165444057741201927206436686602706450141117123</p>
+<p>Sd1/Sd2 = 1.0000000000000000705... Very close to 1... And Sd1/Sd2 = 1&nbsp;would 
+be a&nbsp;solution of this 3x3 magic square of squares problem!</p>
+<p> 
+<font size="2">Noticing that the magic sum is a square (S = Sd1 = 43474203911235768609981537098048163²), 
+I thought&nbsp;that Rubin's square was simply a member of the </FONT><a href="Supplement.htm"><font size="2">Lucas 
+family</font></a><font size="2">.<br><i>January 22nd 2010</i>, mentioning my 
+feeling&nbsp;to </FONT><B><FONT size="2">Randall Rathbun</FONT></B><font size="2">, 
+he confirmed, finding (p, q, r, s) = (51498645679307420, 68881590670955891, 
+80839778471595961, 171878882029570731).<br>It is  known that unfortunately this 
+family can't produce a 3x3 magic square of squares.</FONT></p>
+<hr>
+<p><i><a name="2010"></a>Received January 26th, 2010.<br></i>Here is  <b>Lee 
+Morgenstern</b>'s method, above used by <b>Frank Rubin</b> in May-July 2009 
+for 3x3 nearly-magic squares 
+of squares with  close  sums. This method uses Hillyer's formula of Pythagorean 
+Triangles having equal areas, and Newton's method of finding a root of a polynomial:</p>
+<ul>
+    <li><a href="Morgenstern06.htm">See Morgenstern's method</a></li>
+</ul>
+<hr>
+<p><i>Received March 2nd-3rd, 2010.<br></i><b>Randall Rathbun</b> made a serious attempt to solve the <a href="Enigmas.htm">enigma 
+#1</a>, searched for a 3x3 magic square having 7 squared entries, different from 
+the only known example. He&nbsp;created more than 116,000,000 magic squares 
+having&nbsp;6 squared entries, looking to see if their 7th, 8th or&nbsp;9th entries 
+was&nbsp;a squared integer. But alas, no new solution!</p>
+<hr><p><i>Received April 8th, 2010.<br></i>Interesting remark by <b>Lee Sallows</b> 
+on the enigma #1: it is possible to construct a 3x3 magic square having 7 squared 
+entries, if we allow... <i>allow</i> from S<i>allow</i>S ? ;-)... Gaussian 
+integers! Here is his nice example having a null magic sum, the two non-squared 
+entries being 6 and -6:</p>
+<ul>
+    <table border="1" width="422">
+        <tr>
+            <td width="54" bgcolor="yellow">
+                <p align="center">(1+2i)²</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">(-2+2i)²</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">(2+i)²</p>
+            </td>
+            <td width="54" rowspan="3">
+                <p align="center">=</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">-3+4i</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">-8i</p>
+            </td>
+            <td width="52" bgcolor="yellow">
+                <p align="center">3+4i</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="54" bgcolor="yellow">
+                <p align="center"><font color="red">6</font></p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">0²</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center"><font color="red">-6</font></p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">6</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">0</p>
+            </td>
+            <td width="52" bgcolor="yellow">
+                <p align="center">-6</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="54" bgcolor="yellow">
+                <p align="center">(-1+2i)²</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">(2+2i)²</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">(2-i)²</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">-3-4i</p>
+            </td>
+            <td width="54" bgcolor="yellow">
+                <p align="center">8i</p>
+            </td>
+            <td width="52" bgcolor="yellow">
+                <p align="center">3-4i</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>Can somebody  construct&nbsp;a 3x3 magic square having 8 or 9 distinct squared Gaussian 
+integers?</p>
+<hr>
+<p><i><a name="2010oct"></a>Received October 15th, 2010<br></i>Here is <b>Lee 
+Morgenstern</b>'s method for finding 3x3 magic squares with 7 distinct square entries. 
+This method would be (perhaps?) able to solve the <a href="Enigmas.htm">enigma 
+    1</a>.</p>
+<ul>
+    <li><a href="Morgenstern08.htm">See Morgenstern's method</a></li>
+</ul>
+<hr><p><i><a name="2011"></a>Received May 27th, 2011<br></i><b>Ant King</b> 
+(<a href="http://www.mathstutoring.co.uk" target="_top">www.mathstutoring.co.uk</a>) constructed 
+this nice parametric solution of 3x3 semi-magic squares of squares using a single 
+variable, and only one diagonal is not magic. Because its magic sum is a squared 
+integer [3(1+ 3k + 3k²)²]², this&nbsp;parametric solution unfortunately 
+can't produce magic squares of squares (needing&nbsp;a magic sum&nbsp;equaling three times 
+a squared integer, or more precisely three times its&nbsp;center).</p>
+<ul>
+    <table border="1" width="695">
+        <tr>
+            <td width="225" bgcolor="yellow">
+                <p align="center">(2 +14k + 37k<sup>2</sup> + 42k<sup>3</sup> 
+                +18k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td width="225" bgcolor="yellow">
+                <p align="center">(&minus;2 &minus;8k &minus; 7k<sup>2</sup> 
+                + 6k<sup>3</sup> + 9k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td width="223" bgcolor="yellow">
+                <p align="center">(1+10k + 29k<sup>2</sup> + 36k<sup>3</sup> 
+                +18k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="225" bgcolor="yellow">
+                <p align="center">(2 +12k + 29k<sup>2</sup> + 30k<sup>3</sup> 
+                + 9k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td width="225" bgcolor="yellow">
+                <p align="center">(1+ 6k +19k<sup>2</sup> + 30k<sup>3</sup> 
+                +18k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td width="223" bgcolor="yellow">
+                <p align="center">(2 +12k + 29k<sup>2</sup> + 36k<sup>3</sup> 
+                +18k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="225" bgcolor="yellow">
+                <p align="center">(&minus;1&minus; 2k + 7k<sup>2</sup> + 24k<sup>3</sup> 
+                +18k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td width="225" bgcolor="yellow">
+                <p align="center">(2 +16k + 43k<sup>2</sup> + 48k<sup>3</sup> 
+                +18k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td width="223" bgcolor="yellow">
+                <p align="center">(2 +10k +19k<sup>2</sup> +18k<sup>3</sup> 
+                + 9k<sup>4</sup>)<sup>2</sup></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<ul>
+    <li><a href="../King.pdf">See King's method</a> (PDF file) constructing&nbsp;parametric solutions</li>
+</ul>
+<hr><p><i>Received from November 15th&nbsp;2011 to January 27th&nbsp;2012<br></i><b>Lee 
+Morgenstern</b> sent various interesting remarks and results:</p>
+<ul>
+    <li><a href="Morgenstern11.htm">Magic Hourglass Anti-Closure</a></li>
+    <li><a href="Morgenstern12.htm">Magic 7-Square and 2-Negative</a></li>
+    <li><a href="Morgenstern13.htm">Semi-Magic Hourglass</a></li>
+    <li><a href="Morgenstern14.htm">Euler's Formulas for 3x3 Magic Squares of 
+    6 Squares</a></li>
+    <li><a href="Morgenstern15.htm">Magic Squares of Squares Modulo All</a></li>
+    <li><a href="Morgenstern16.htm">Magic Squares of Gaussian Integers</a></li>
+    <li><a href="Morgenstern17.htm">Magic Squares or Squares Modulo 2^N</a></li>
+</ul>
+<p>For example, in the last but one document, he extended the above remark of 
+Lee Sallows on Gaussian integers.<br>And in the last document, he constructed a magic square of squares 
+modulo 2^90, therefore better than previous magic hourglasses of squares by Duncan Buell 
+and Lucien Pech (respectivelly mod 2^46 and mod 2^52).</p>
+<hr><p><i><a name="2012"></a>Received March 2nd, 2012, updated May 6th, 2012, 
+updated again August 21st, 2012<br></i><b>Mike Winkler</b> 
+(<a href="http://www.mikewinkler.co.nf" target="_top">www.mikewinkler.co.nf</a>), 
+ 
+using Morgenstern's&nbsp;<a href="#2009">above remark of Feb. 2009</a>, searched 
+for 3x3 semi-magic squares having a magic sum which is three times 
+a square.</p>
+<p>His search with&nbsp;Delphi was done with&nbsp;magic sum &lt; 3 x 320000², 
+but in a  non-exhaustive way. He found 7 out of the 20 solutions previously found 
+by Morgenstern &lt; 3 x 5000², and also these new bigger solutions. Sums 
+= 3 x&nbsp;<span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+mso-fareast-font-family:"Times New Roman";color:black;mso-ansi-language:FR;
+mso-fareast-language:FR;mso-bidi-language:AR-SA'>6115²,
+7395²,
+
+8905²,
+
+9345²,
+
+9565²,
+
+9995², 10195², 12725²,
+
+</span>13175², 13765², <span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+mso-fareast-font-family:"Times New Roman";color:black;mso-ansi-language:FR;
+mso-fareast-language:FR;mso-bidi-language:AR-SA'>14825²,
+
+15225²,
+
+15525²,
+
+16185²,18085², 18115², </span>20085²,<span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+mso-fareast-font-family:"Times New Roman";color:black;mso-ansi-language:FR;
+mso-fareast-language:FR;mso-bidi-language:AR-SA'>
+
+22425²,
+
+</span>25075², <span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+mso-fareast-font-family:"Times New Roman";color:black;mso-ansi-language:FR;
+mso-fareast-language:FR;mso-bidi-language:AR-SA'>26571²,
+
+</span>28135², <span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+mso-fareast-font-family:"Times New Roman";color:black;mso-ansi-language:FR;
+mso-fareast-language:FR;mso-bidi-language:AR-SA'>32625²,
+
+37635²,
+
+</span>41905², <span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+mso-fareast-font-family:"Times New Roman";color:black;mso-ansi-language:FR;
+mso-fareast-language:FR;mso-bidi-language:AR-SA'>41925²</span>, 42415², 44353², 
+45025², 45435²,
+49045², 63495², 76075², 77435², 87135², 117725², 123335², 124845², 140675², 141865², 
+157675²,
+195925², 196775², 227035², 264265², 319685²<span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+mso-fareast-font-family:"Times New Roman";color:black;mso-ansi-language:FR;
+mso-fareast-language:FR;mso-bidi-language:AR-SA'>. But no new solution with sum three times the central entry.</span></p>
+<hr>
+<p><a name="2013"></a><i>Received January 21st, 2013<br></i><b>Lee Morgenstern</b> 
+reused his  <a href="#2008">method sent in&nbsp;April 2008</a> concerning the 
+list of 3x3 nearly-magic squares of squares having all odd entries and 7 correct 
+sums. This is equivalent to three 3-square arithmetic progressions having equal 
+step values. The idea was to look for instances that satisfy the requirements 
+of a 3x3 fully-magic square of squares. The 2008 results were based on two searches:</p>
+<ol type="1">
+    <li>All odd-entry APs, primitive and scaled, up to a step value of d = 1.4 
+    x 10^10.</li>
+    <li>All primitive APs up to d = 10^19.</li>
+</ol>
+<p>His new 2013 searches extended the above:</p>
+<ol type="1">
+    <li>up to d = 2.4 x 10^19.</li>
+    <li>up to d = 6.4 x 10^22.</li>
+</ol>
+<ul>
+    <li><a href="Morgenstern20.htm">See Morgenstern's search results</a></li>
+</ul>
+<hr>
+<p><i>Received July&nbsp;2nd and August 8th, 2013</i></p>
+<p><b>Tim S. Roberts</b>, Bundaberg, east coast of Australia, author of <a href="http://unsolvedproblems.org" target="_top">http://unsolvedproblems.org</a>, 
+reminds us that a 3x3 magic square of squares must have this parametric form of 
+any 3x3 magic square:</p>
+<ul>
+<table border="1" width="352">
+    <tr>
+        <td width="44" bgcolor="yellow">
+            <p align="center">a²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">b²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">c²</p>
+        </td>
+        <td width="44" rowspan="3">
+            <p align="center">=</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">x+y</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">x-y-z</p>
+        </td>
+        <td width="42" bgcolor="yellow">
+            <p align="center">x+z</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="44" bgcolor="yellow">
+            <p align="center">d²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">e²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">f²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">x-y+z</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">x</p>
+        </td>
+        <td width="42" bgcolor="yellow">
+            <p align="center">x+y-z</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="44" bgcolor="yellow">
+            <p align="center">g²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">h²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">i²</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">x-z</p>
+        </td>
+        <td width="44" bgcolor="yellow">
+            <p align="center">x+y+z</p>
+        </td>
+        <td width="42" bgcolor="yellow">
+            <p align="center">x-y</p>
+        </td>
+    </tr>
+</table>
+</ul>
+<p>As an example, we will look at the modulo 13. Any squared integer&nbsp;can 
+only have one of these 7&nbsp;&quot;authorized&quot; values, the quadratic residues mod 13: 0, 1, 
+3, 4, 9, 10, 12. If we check by program&nbsp;all the possible values 
+(x, y, z) mod 13, the nine cells (x+y), (x-y-z), ...(x-y) can 
+be nine squares (meaning that none of them is equal to another value than the 7 authorized 
+values) only when (x, y, z) = (x, y, 0) or (x, 0, z): we conclude that y or z must 
+be divisible by 13. Also equivalent is to say that y*z&nbsp;must be divisible by 
+13. Here are the final astonishing results&nbsp;that I have checked and slightly 
+extended (5 -&gt; 5^2, and 7 -&gt; 7^2):</p>
+<ul>
+    <li>y*z must be divisible by 2^6 * 3^2 * 5^2 * 7^2 * 11 * 13 * 19 * 31 = 59,430,571,200.</li>
+    <li>x*y*z must be divisible by 59,430,571,200 * 17 * 29 * 37 = 1,084,073,049,259,200.</li>
+</ul>
+<p>Yes, x*y*z must be divisible by every&nbsp;prime &lt; 40, with the sole exception 
+of 23.</p>
+<hr><p><i>Received from August 10th to September 3rd, 2013</i></p>
+<p><b>Tim S. Roberts</b>, again using&nbsp;the above parametric form of any 
+3x3 
+magic square, remarked that:</p>
+<ul>
+    <li>at least one element of (x, y, z, y+z, y-z) must be divisible by 2</li>
+    <li>at least one element of (x, y, z, y+z, y-z) must be divisible by 3</li>
+    <li>at least one element of (x, y, z, y+z, y-z) must be divisible by 4</li>
+    <li>and so on... at least one element must be divisible by&nbsp;2, 3, 4, 
+    5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 
+    26, 28, 29, 30, 31, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 46, 47, 
+    48, 51, 52, 53, 56, 57, 60, 61, 62, 66, 67, 68, 69,...</li>
+</ul>
+<p>Astonishing! An incredibly long list, where 25 is the  first&nbsp;integer 
+&gt; 1 not present. We can extend and finish his list, and&nbsp;say:</p>
+<ul>
+    <li>at least one element of (x, y, z, y+z, y-z)&nbsp;must be divisible by 
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 
+    22, 23, 24, 26, 28, 29, 30, 31, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 
+    44, 46, 47, 48, 51, 52, 53, 56, 57, 60, 61, 62, 66, 67, 68, 69, 72, 76, 
+    78, 84, 86, 88, 92, 93, 94, 102, 104, 114, 120, 124, 129, 132, 134, 136, 
+    138, 141, 152, 156, 168, 172, 184, 186, 188, 201, 204, 228, 248, 258, 264, 
+    268, 276, 282, 312, 344, 372, 376, 402, 408, 456, 516, 536, 552, 564, 744, 
+    804, 1032, 1128, 1608.</li>
+</ul>
+<p>This should be&nbsp;the full list, a total of 106 integers. All these integers 
+can be factorized with these primes only&nbsp;(or powers of them): 2 (4, 8, 
+16), 
+3 (9), 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 61, 67.<br>That 
+is to say, every prime &lt;&nbsp;70, with the sole exception of 59. We can also 
+say that:</p>
+<ul>
+    <li>x*y*z*(y+z)*(y-z) must be divisible by 2^4 * 3^2 * 5 * 7 * 11 * 13 * 
+    17 * 19 * 23 * 29 * 31 * 37 * 41 * 43 * 47 * 53 * 61 * 67 = 3196605376710617107476240.</li>
+</ul>
+<hr><p><i><a name="2014"></a>Received from December 18th 2013 to January 8th, 
+2014</i></p>
+<p><b>Mark Underwood</b>, Canada, sent to <b>Tim S. Roberts</b>&nbsp;an interesting 
+remark improving&nbsp;the above results:  y and z must both be divisible 
+by 24, then so too must be y+z and y-z. So the product of all four must be divisible 
+by 24^4, which is 2^12 * 3^4. And at least one of the items must be divisible 
+by 16, and at least one by 9. So that brings it up to 2^13 * 3^5.</p>
+<p>And if I add my previous remark of July-August 2013 that y*z must be divisible 
+by 5^2 * 7^2, then:</p>
+<ul>
+    <li>x*y*z*(y+z)*(y-z) must be divisible by 2^13 * 3^5 * 5^2 * 7^2 * 11 * 
+    13 * 17 * 19 * 23 * 29 * 31 * 37 * 41 * 43 * 47 * 53 * 61 * 67 = 1546645545467664981281303961600.<br>Divisible 
+    by an integer as big as&nbsp;~ 1.5 * 10^30...</li>
+</ul>
+<hr><p><i>Received February 7th and 22nd, 2014</i></p>
+<p><b>Lee Morgenstern</b> extended again his previous searches of <a href="#2013">January 
+2013</a> and <a href="#2008">April 2008</a>. No solution :</p>
+<ol type="1">
+    <li>up to d = 2.4 x 10^21.</li>
+    <li>up to d = 6.0 x 10^23, the primitive step values being&nbsp;4mn(m²-n²), 
+    with m,n coprime, one odd, one even, and n &lt; m &lt; 2^24.</li>
+</ol>
+<hr><p><i>Received June 30, 2014</i></p>
+<p><b>Lee Morgenstern</b> completed <a href="Morgenstern25.htm">three new searches 
+for a magic hourglass</a>, but found&nbsp;no solution.</p>
+<hr><p><i>Received September 16, 2014</i></p>
+<table cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <p><img src="../ScientificAmericanPuzzle.jpg" width="167" height="121" border="0"></p>
+        </td>
+        <td>
+            <ul>
+                <p>Not a search... but a call to search for a 3x3 magic square of 
+                squares in an article in <i>Scientific American</i>'s website. 
+                Thanks to <b>Ricki Rusting</b>, Managing Editor, for mentionning 
+                my name, linking to multimagie.com</p>
+                <p><a href="http://www.scientificamerican.com/article/can-you-solve-a-puzzle-unsolved-since-1996" target="_top">http://www.scientificamerican.com/article/can-you-solve-a-puzzle-unsolved-since-1996</a></p>
+            </ul>
+        </td>
+    </tr>
+</table>
+<hr><p><i><a name="2015"></a>Received from February 19 to March 13, 2015</i></p>
+<p><b>Paul Zimmermann</b>, researcher (INRIA, LORIA, <a href="http://www.loria.fr/~zimmerma/" target="_top">http://www.loria.fr/~zimmerma/</a>), 
+with two young students, <b>Paul Pierrat</b> and <b>François Thiriet</b>, proved 
+these&nbsp;modular properties: the magic sum of any primitive 3x3 magic square 
+of squares must be 3 mod 72, and the squared entries must be 1 mod 24. And extending 
+Buell's and Pech's previous searches, they found modulo 2^n solutions for 3x3 
+magic squares of 7 squares,&nbsp;up to modulo 2^59.</p>
+<p>Their paper is available at <a href="http://www.loria.fr/~zimmerma/papers/squares.pdf" target="_top">http://www.loria.fr/~zimmerma/papers/squares.pdf</a></p>
+<hr>
+<p><i>Received July 25, 2015</i></p>
+<p><b>Terry Moriarty</b>, Northern Ireland, found some&nbsp;properties of 
+3x3 magic squares of squares. For example, their magic sums are&nbsp;3 mod 72. Look at 
+<a href="http://magicsqr.byethost8.com/" target="_top">http://magicsqr.byethost8.com/</a></p>
+<hr>
+<p><i><a name="2016"></a>Received April 16, 2016</i></p>
+<p>Allowing imaginary numbers (see also <a href="#2010">above</a>), <b>Eddie 
+Gutierrez</b>, New Jersey, USA, found 3x3 magic squares having&nbsp;7 squared entries. 
+For example, 
+this square with magic sum = 15552:</p>
+<ul>
+    <table border="1" width="398">
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">113²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(121i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">132²</p>
+            </td>
+            <td width="50" rowspan="3">
+                <p align="center">=</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">12769</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-14641</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">17424</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">9839</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">72²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">23²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">9839</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">5184</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">529</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(84i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">25009</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(49i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-7056</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">25009</font></p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">-2401</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>Look at <a href="http://www.oddwheel.com/" target="_top">http://www.oddwheel.com/</a>, 
+with some other studies. The above magic square can be found from his table of contents 
+0B,  15th page (or directly <a href="http://www.oddwheel.com/Image_SquareA.html" target="_top">http://www.oddwheel.com/Image_SquareA.html</a>)</p>
+<hr>
+<p><i>Received April 18, 2016</i></p>
+<p>F U N !!! <b>Matt Parker</b>, an Australian living in UK, former maths teacher&nbsp;(<a href="https://en.wikipedia.org/wiki/Matt_Parker" target="_top">https://en.wikipedia.org/wiki/Matt_Parker</a> 
+and <a href="http://standupmaths.com/" target="_top">http://standupmaths.com/</a>), tried 
+to solve the enigma #1 (3x3 magic square of squares) at <a href="http://www.numberphile.com/" target="_top" title="Numberphile"><img src="../Numberphile.jpg" width="115" height="16" border="0"></a> 
+(<a href="https://www.youtube.com/user/numberphile" target="_top">YouTube 
+Numberphile</a> 
+videos by <b>Brady Haran</b>). In his video, 1:02-1:36, he&nbsp;also presented the solution of the enigma #4c 
+(7x7 magic square of cubes) found in 2015&nbsp;by Sébastien Miquel:</p>
+<ul>
+    <div align="left">
+        <li><font face="Arial" size="2"><a href="https://youtu.be/aOT_bG-vWyg" target="_top"><img src="../ParkerSquareNumberphile-.jpg" width="157" height="90" border="0"></a> 
+        </font><a href="https://youtu.be/aOT_bG-vWyg" target="_top">https://youtu.be/aOT_bG-vWyg</a>, 
+        The Parker Square, YouTube video of 5 minutes, with already 295,000 views (mid-February 2017)</li>
+        <li><font face="Arial" size="2"><a href="../ParkerSquare.jpg" target="_top"><img src="../ParkerSquare.jpg" width="151" height="87" border="0"></a><a href="../ParkerSquareTeeShirt.jpg" target="_top"><img src="../ParkerSquareTeeShirt.jpg" width="66" height="86" border="0"></a> 
+        </font><a href="http://theparkersquare.com" target="_top">http://theparkersquare.com</a> 
+        &nbsp;with a &quot;3x3 magic square of squares&quot; tee-shirt that 
+        you can buy! (<a href="https://teespring.com/parker-square-EU" target="_top">https://teespring.com/parker-square-EU</a>)</li>
+    </div>
+</ul>
+<p align="left">Invalid solution..., so no, I did not send any prize in euros 
+or any bottle of champagne to Matt! :-)</p>
+<hr>
+<p align="left"><i><a name="2017"></a>Received February 6 and March 1, 2017</i></p>
+<p align="left"><b>Ben Asselstine</b>, Canada, announced&nbsp;his &quot;set 
+of tools for finding and managing 3x3 magic squares of squares&quot; freely 
+available at <a href="http://fituvalu.nongnu.org/." target="_top">http://fituvalu.nongnu.org/</a><a href="http://fituvalu.nongnu.org/.">.</a> 
+This software uses libgmp (GNU Multiprecision Arithmetic Library) for computing 
+on large integers, and is designed to be easily parallelizable with GNU Parallel.</p>
+<p>He added this javascript program <a href="http://fituvalu.nongnu.org/checker.html" target="_top">http://fituvalu.nongnu.org/checker.html</a>: 
+&quot;It lets people check their 3x3 magic squares with 6 or more (?) perfect squares 
+against a list of 100,000 known squares.&quot;</p>
+<hr>
+<p><i>Received February 27, 2017</i></p>
+<p><b>Lee Morgenstern</b> sent  PDFs of two articles&nbsp;written a few years ago, updated 
+versions of&nbsp;the <a href="#2006dec">broken links of 2006</a> :</p>
+<ul>
+    <li>June 2007, <a href="../MorgensternMssSmallestEntry.pdf">Smallest Entry in a 3x3 Magic Square of Squares</a>, 
+    computer procedure that has proved that all 9 entries of a 3x3 magic square 
+    of distinct squares must be at least the squares of 8-digit numbers</li>
+    <li>July 2015, <a href="../MorgensternMssProperties.pdf">3x3 Magic Square 
+    of Squares Properties</a>, inspired by&nbsp;<a href="SquaresOfSquares.htm#[49]">Landon 
+    Rabern's paper published in&nbsp;2003 [49]</a>, proving again (but differently) 
+    Rabern's&nbsp;results and adding&nbsp;new proofs</li>
+</ul>
+<hr>
+<p><i>Received  March 10, 2017</i></p>
+<p><b>Lee Morgenstern</b> <a href="Morgenstern28.htm">produced this 3x3 square</a>, 
+using&nbsp;the new 6th triple of primitive Pythagorean triangles having equal areas&nbsp;found 
+by <b>Duncan Moore</b> a few days earlier:</p>
+<ul>
+    <table border="1" width="545">
+        <tr>
+            <td width="175" bgcolor="yellow">
+                <p align="center">19720769947309²</p>
+            </td>
+            <td width="175" bgcolor="yellow">
+                <p align="center">6757561171393²</p>
+            </td>
+            <td width="173" bgcolor="yellow">
+                <p align="center">11290071470263²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="175" bgcolor="yellow">
+                <p align="center">10987237357337²</p>
+            </td>
+            <td width="175" bgcolor="yellow">
+                <p align="center">9483582546853²</p>
+            </td>
+            <td width="173" bgcolor="yellow">
+                <p align="center">18745169816089²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="175" bgcolor="yellow">
+                <p align="center">7239541562993²</p>
+            </td>
+            <td width="175" bgcolor="yellow">
+                <p align="center">20650330341071²</p>
+            </td>
+            <td width="173" bgcolor="yellow">
+                <p align="center">9120965347253²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>S = 562039114103450691451191099 for rows, columns, and one diagonal. Unfortunately 
+the other&nbsp;diagonal has a different sum.</p>
+<hr>
+<p><i>Received from March 11 to&nbsp;13, 2017</i></p>
+<p><b>Randall Rathbun,</b>&nbsp;USA, found the&nbsp;elliptic curve of rank 4</p>
+<ul>
+    <li>y<sup>2</sup> = x<sup>3</sup> - x<sup>2</sup> + 7528505392x + 671534074163712</li>
+</ul>
+<p>giving the only  previously known example with 7 squared entries. An excellent 
+work, because it is very difficult to find this curve. But unfortunately, thousands 
+of points on this curve (producing numbers with thousands of digits!) did not produce 
+any other magic square with 7 squared entries...</p>
+<p>Details in the <a href="Rathbun.htm">emails sent by Randall to Andrew Bremner 
+and me</a>.</p>
+<hr>
+<p><i><a name="2017jun"></a>Received June 5, 2017</i></p>
+<p><b>Christian Woll</b>, California, USA, sent an interesting&nbsp;paper entitled 
+&quot;<a href="../Woll.pdf">The Magic Hourglass of Squares related to the Gaussian 
+Integers</a>&quot;</p>
+<hr>
+<p><i>Received September 22, 2017</i></p>
+<p><b>Joseph Hurban</b>, when he was student tutor at TCNJ (College of New Jersey, USA), sent this nice formula producing 3x3 
+magic squares of 5 squares:</p>
+<ul>
+    <table border="1">
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2">(10z² + 20z + 5)²</FONT></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2" color="red">b = 7²(2z² + 1)² 
+                - 4z(2z² + 101z + 1)</FONT></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2" color="red">c = (2z² + 1)² 
+                + 8z(26z² + 38z + 13)</FONT></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2">(2z² + 2z + 1)²</FONT></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2">(10z² + 10z + 5)²</FONT></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2">(14z² + 14z + 7)²</FONT></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2" color="red">g = 7²(2z² + 1)² 
+                + 8z(24z² - 13z + 12)</FONT></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2" color="red">h = (2z² + 1)² 
+                + 4z(102z² + 151z + 51)</FONT></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font size="2">(10z² - 5)²</FONT></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>Is it possible to obtain supplemental squared integers in cells&nbsp;b, c, 
+g, and h? With&nbsp;a MATLAB program, he tried&nbsp;to find solutions, and from 
+z = 0 to 1,000,000, found five solutions:</p>
+<ul>
+    <li>z&nbsp;= 0 : b, c, g, h&nbsp;are squared integers, but&nbsp;the solution 
+    does not use unique integers</li>
+    <li>z&nbsp;= 1 : b, c, g, h&nbsp;are squared integers, but&nbsp;the solution 
+    does not use unique integers</li>
+    <li>z&nbsp;= 3 : c&nbsp;=&nbsp;95², producing a 3x3 magic square of 6 squares</li>
+    <li>z&nbsp;= 10: c&nbsp;=&nbsp;529², producing a 3x3 magic square of 6 squares</li>
+    <li>z&nbsp;= 12 : h&nbsp;=&nbsp;937², producing a 3x3 magic square of 6 
+    squares</li>
+</ul>
+<p>Examples&nbsp;with z = 1, 2, 3:</p>
+<ul>
+    <table border="1">
+        <tr>
+            <td width="59" bgcolor="yellow">
+                <p align="center">35²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">5²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">25²</p>
+            </td>
+            <td width="59" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">85²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">2281</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">3169</font></p>
+            </td>
+            <td width="59" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">155²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">13825</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">95²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" bgcolor="yellow">
+                <p align="center">5²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">25²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">35²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">13²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">65²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">91²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">25²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">125²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">175²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" bgcolor="yellow">
+                <p align="center">25²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">35²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">5²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">5281</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">6169</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">35²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">22225</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">17425</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">85²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>I checked that there is no other solution with&nbsp;more than 5 squared integers 
+for any z &lt; 10^10.</p>
+<hr>
+<p><i>Received November 15, 2017</i></p>
+<p><b>Adrian Suter</b>, Switzerland, working on <a href="#2015">Moriarty's&nbsp;results</a>, 
+sent a <a href="../Suter.pdf">paper</a> unfortunately producing a 3x3 magic 
+square of non-distinct squares...</p>
+<hr>
+<p><i>Received November 28, 2017</i></p>
+<p><b>Benjamin Bartsch</b> sent this parametric solution, similar to <a href="#2011">King's 
+solutions</a>,&nbsp;producing 3x3 semi-magic squares:</p>
+<ul>
+    <table border="1">
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">(-2 - 6x - 7x<sup>2</sup> - 2x<sup>3</sup> 
+                - x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(-2&nbsp;+ 5x<sup>2</sup> + 4x<sup>3</sup> 
+                + 2x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(-1 - 6x - 5x<sup>2</sup> - 4x<sup>3</sup> 
+                - 2x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">(-2 - 4x - 5x<sup>2</sup>&nbsp;+ 2x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(-1 - 2x - 7x<sup>2</sup> - 6x<sup>3</sup> 
+                - 2x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(-2 - 4x - 5x<sup>2</sup> - 6x<sup>3</sup> 
+                - x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">(1 - 2x - 7x<sup>2</sup> - 8x<sup>3</sup> 
+                - 2x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(-2 - 8x - 7x<sup>2</sup> - 2x<sup>3</sup> 
+                + x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(2 + 2x + x<sup>2</sup> + 2x<sup>3</sup> + 
+                2x<sup>4</sup>)<sup>2</sup></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>Seven magic lines with S = 9 + 36x + 90x<sup>2</sup> + 144x<sup>3</sup> + 171x<sup>4</sup> 
++ 144x<sup>5</sup> + 90x<sup>6</sup> + 36x<sup>7</sup> + 9x<sup>8</sup>, one 
+diagonal being&nbsp;not magic with a different sum.</p>
+<p>I remarked&nbsp;that with x&nbsp;= -8.6131187, we&nbsp;have a fully magic 
+square with eight magic&nbsp;lines.... but of course using non-integers :-)</p>
+<hr>
+<p><i><a name="2018"></a>Received April&nbsp;25, 2018</i></p>
+<p>Two years after his <a href="#2016">magic squares of 7 squares allowing imaginary 
+numbers</a>, <b>Eddie Gutierrez</b> found a new&nbsp;3x3 magic square of 7 squares, 
+this time linked to Bremner's square (<a href="http://www.oddwheel.com/special%20squares.html" target="_top">www.oddwheel.com/special 
+squares.html</a>), 
+S = 780300:</p>
+<ul>
+    <table border="1" width="399">
+        <tr>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center"><font color="red">806425</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center">(697i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center">678²</p>
+            </td>
+            <td width="50" rowspan="3">
+                <p align="center">=</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center"><font color="red">806425</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-485809</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">459684</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center"><font color="red">-86641</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center">510²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center">779²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center"><font color="red">-86641</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">260100</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">606841</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center">246²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center">1003²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+  <p class=MsoNormal align="center">(535i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">60516</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">1006009</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">-286225</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<hr>
+<p><i>Thesis, May 2018</i></p>
+<p><b>Giancarlo Labruna</b>, Montclair State University (New Jersey, USA), submitted 
+a thesis entitled &quot;<a href="https://digitalcommons.montclair.edu/cgi/viewcontent.cgi?article=1137&context=etd" target="_top">Magic 
+Squares of Squares of Order Three over Finite Fields</a>&quot;. Giancarlo is 
+now lecturer, School of General Studies, Kean University (New Jersey).</p>
+<hr>
+<p><i>Published from September to November 2018</i></p>
+<p><b>Christian Woll</b>, after his above <a href="#2017jun">paper of June 2017</a>, 
+published two&nbsp;new papers on arXiv:</p>
+<ul>
+    <li>&quot;<a href="https://arxiv.org/abs/1809.03067" target="_top">A Partial Residue Categorization 
+    of the Magic Square of Squares</a>&quot;</li>
+    <li>&quot;<a href="https://arxiv.org/abs/1811.04923" target="_top">There is a 3×3 Magic 
+    Square of Squares on the Moon - A Lot of Them, Actually</a>&quot; ... what 
+    a mysterious title!!! :-)<br>Then in <i>The Mathematical Intelligencer</i> 
+    41, 73–76 (2019)</li>
+</ul>
+<p>Two&nbsp;examples of his Lunar magic squares of squares. On the left 
+in base 10, S = 24². On the right in base 2, S = 1011111.</p>
+<ul>
+    <table border="1" width="398">
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">22²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">0²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">14²</p>
+            </td>
+            <td width="50" rowspan="3" bgcolor="black">
+                <p align="center">&nbsp;<img src="../moon.JPG" align="texttop" width="99" height="90" border="0"></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">11²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">101²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">1001²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">1²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">24²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">2²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">110²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">1011²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">1²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">4²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">3²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">23²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">1010²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">0²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">111²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>On Lunar arithmetic, and primes on the Moon, <i>Numberphile</i> video featuring <b>Neil Sloane</b> 
+(OEIS):&nbsp;<a href="https://youtu.be/cZkGeR9CWbk" target="_top">https://youtu.be/cZkGeR9CWbk</a>, 
+Nov. 2018.</p>
+<p><a href="../LunarAddition.jpg"><img src="../LunarAddition-.jpg" width="236" height="132" border="0"></a> 
+<a href="../LunarMultiplication.jpg"><img src="../LunarMultiplication-.jpg" width="236" height="132" border="0"></a> 
+<a href="../LunarSloane.jpg"><img src="../LunarSloane-.jpg" width="236" height="132" border="0"></a><br><i><font size="2">Lunar 
+addition, Lunar multiplication, and Neil Sloane</font></i></p>
+<hr>
+<p><i>Received November 18, 2018</i></p>
+<p><b>Vlad Volosatov</b>, Russia, cleverly remarked that 3x3 magic squares of 
+squares are&nbsp;possible using&nbsp;quaternions (i² = j² = k² = ijk = -1). 
+For example, with S = -75 :</p>
+<ul>
+    <table border="1" width="398">
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(5i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(7k)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(j)²</p>
+            </td>
+            <td width="50" rowspan="3">
+                <p align="center">=</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-25</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-49</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">-1</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(k)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(5j)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(7i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-1</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-25</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">-49</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(7j)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(i)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">(5k)²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-49</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">-1</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">-25</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>I add a remark: there is already a link between quaternions and&nbsp;<a href="SquaresOfSquares4_7.htm#4x4">4x4 
+magic squares of squares</a>!</p>
+<hr>
+<p><i>Received December 30, 2018</i></p>
+<p><b>Arkadiusz Wesolowski</b>, Poland, found&nbsp;two parametric solutions 
+of 3x3 magic squares of 5 squared integers. With n &gt;= 1, let</p>
+<ul>
+    <li>x = -1 + [(sqrt(2)/2)*((3 + 2*sqrt(2))<sup>n</sup> - (3 - 2*sqrt(2))<sup>n</sup>) + (3 + 
+    2*sqrt(2))<sup>n</sup> + (3 - 2*sqrt(2))<sup>n</sup>)]/2</li>
+</ul>
+<p>Or equivalent, the value of x can also be obtained&nbsp;with this recurrence 
+formula:</p>
+<ul>
+    <li>x = a(n) = 6*a(n-1) - a(n-2) + 4, starting with a(0) = 0 and a(1) = 
+    4</li>
+</ul>
+<p>Then we obtain this magic square, the integers in black&nbsp;being squared 
+integers:</p>
+<ul>
+    <table border="1">
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">17x</font><sup><font color="red">4</font></sup><font color="red"> 
+                + 44x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 34x</font><sup><font color="red">2</font></sup><font color="red"> 
+                + 10x + 1</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">9x<sup>2</sup> + 6x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">10x</font><sup><font color="red">4</font></sup><font color="red"> 
+                + 28x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 23x</font><sup><font color="red">2</font></sup><font color="red"> 
+                + 8x + 1</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">2x<sup>4</sup> + 8x<sup>3</sup> + 11x<sup>2</sup> 
+                + 6x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">9x<sup>4</sup> + 24x<sup>3</sup> + 22x<sup>2</sup> 
+                + 8x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">16x<sup>4</sup> + 40x<sup>3</sup> + 33x<sup>2</sup> 
+                + 10x + 1</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">8x</font><sup><font color="red">4</font></sup><font color="red"> 
+                + 20x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 21x</font><sup><font color="red">2</font></sup><font color="red"> 
+                + 8x + 1</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">18x<sup>4</sup> + 48x<sup>3</sup> + 35x<sup>2</sup> 
+                + 10x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">x</font><sup><font color="red">4</font></sup><font color="red"> 
+                + 4x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 10x</font><sup><font color="red">2</font></sup><font color="red"> 
+                + 6x + 1</font></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>First examples with n = 1 (-&gt; x = 4) and n = 2 (-&gt; x&nbsp;= 28):</p>
+<ul>
+    <table border="1" width="398">
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">7753</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">13²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">4753</font></p>
+            </td>
+            <td width="50" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">11441977</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">85²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center"><font color="red">6779473</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">35²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">65²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">85²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">1189²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">2465²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">3277²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">3697</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">91²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">697</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">5372977</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">3485²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center"><font color="red">710473</font></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>The other parametric solution is a derivative of the first one above. Again 
+with n &gt;= 1:</p>
+<ul>
+    <li>x&nbsp;= 1 + [(sqrt(2)/2)*((3 + 2*sqrt(2))<sup>n</sup> - (3 - 2*sqrt(2))<sup>n</sup>) + 
+    (3 + 2*sqrt(2))<sup>n</sup> + (3 - 2*sqrt(2))<sup>n</sup>]/2</li>
+    <li>or x = a(n) = 6*a(n-1) - a(n-2) - 4, starting&nbsp;with a(0) = 2 and 
+    a(1) = 6<br>&nbsp;</li>
+    <table border="1">
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">17x</font><sup><font color="red">4</font></sup><font color="red"> 
+                -&nbsp;44x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 34x</font><sup><font color="red">2</font></sup><font color="red"> 
+                -&nbsp;10x + 1</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">9x<sup>2</sup> -&nbsp;6x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">10x</font><sup><font color="red">4</font></sup><font color="red"> 
+                -&nbsp;28x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 23x</font><sup><font color="red">2</font></sup><font color="red"> 
+                -&nbsp;8x + 1</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">2x<sup>4</sup> -&nbsp;8x<sup>3</sup> + 11x<sup>2</sup> 
+                -&nbsp;6x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">9x<sup>4</sup> -&nbsp;24x<sup>3</sup> + 22x<sup>2</sup> 
+                -&nbsp;8x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">16x<sup>4</sup> -&nbsp;40x<sup>3</sup> + 33x<sup>2</sup> 
+                -&nbsp;10x + 1</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">8x</font><sup><font color="red">4</font></sup><font color="red"> 
+                -&nbsp;20x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 21x</font><sup><font color="red">2</font></sup><font color="red"> 
+                -&nbsp;8x + 1</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">18x<sup>4</sup> -&nbsp;48x<sup>3</sup> + 35x<sup>2</sup> 
+                -&nbsp;10x + 1</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">x</font><sup><font color="red">4</font></sup><font color="red"> 
+                -&nbsp;4x</font><sup><font color="red">3</font></sup><font color="red"> 
+                + 10x</font><sup><font color="red">2</font></sup><font color="red"> 
+                -&nbsp;6x + 1</font></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>First examples with n = 1 (-&gt; x = 6) and n = 2 (-&gt; x&nbsp;= 30):</p>
+<ul>
+    <table border="1" width="398">
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">13693</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">17²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">7693</font></p>
+            </td>
+            <td width="50" rowspan="3">
+                <p align="center"></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">12612301</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">89²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center"><font color="red">7364461</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center">35²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">85²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">115²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">1189²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">2581²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center">3451²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">6757</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">119²</p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">757</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center"><font color="red">5958661</font></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p align="center">3649²</p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p align="center"><font color="red">710821</font></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>In the two parametric solutions, the numbers increase quickly: 
+i.e. with n = 100, the magic sums are as big as ~2.38*10^307... However&nbsp;maybe, 
+for some&nbsp;values of n, cells in red&nbsp;can become (huge) squared integers, 
+giving 3x3 magic squares with more than 5 squared integers?</p>
+<hr>
+<p><i><a name="2019"></a>Received May-June, 2019</i></p>
+<p><b>Onno M. Cain</b>, USA, worked on a paper, later published in August 2019 on arXiv, 
+entitled &quot;<a href="https://arxiv.org/abs/1908.03236" target="_top">Gaussian Integers, Rings, 
+Finite Fields, and the Magic Square of Squares</a>&quot;.</p>
+<p>And, after <a href="#2018">Woll's paper</a> on 3x3 magic squares of squares 
+on the Moon, Onno constructed this&nbsp;3x3 magic square of squared Lunar primes:</p>
+<ul>
+    <table border="1">
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">1001101²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">110101²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">1010011²</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">111001² </p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">1010111² </p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">1011001²</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">1001011² </p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">1011101² </p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">1001111²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>His&nbsp;papers (including this square) are available at <a href="https://sites.google.com/view/onnomc/papers" target="_top">https://sites.google.com/view/onnomc/papers</a>, 
+and his software for Lunar Arithmetic calculations in Python is also available 
+at&nbsp;<a href="https://github.com/onnomc/lunar-arithmetic-wrapper" target="_top">https://github.com/onnomc/lunar-arithmetic-wrapper</a> 
+and <a href="https://repl.it/@onnomc/LunarArithmeticPlayground" target="_top">https://repl.it/@onnomc/LunarArithmeticPlayground</a></p>
+<hr>
+<p><i>Received June 24, 2019</i></p>
+<p><b>Ben Asselstine</b> published a <a href="https://www.docdroid.net/l1zAqRl/primepair-pdf">PDF 
+of 41 pages</a>, looking as a PowerPoint file, on the 3x3 magic square of squares problem, including his analysis 
+on magic squares of 6 squares.</p>
+<hr>
+<p><i>Received September 16, 2019</i></p>
+<p><b>Sunil Kumar</b>, Tamil Nadu, India, 16 years old, found this near-miss of a 3x3 magic 
+square of 7 squares, S = 108329642031:</p>
+<ul>
+    <table border="1">
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">65118629677</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">49565²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">201877²</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">108377²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">190026² <font color="red">+ 1</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">245915²</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">177385²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">264127²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">7101131677</font></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<hr>
+<p><i><a name="2019dec"></a>Received December 20 and 22, 2019</i></p>
+<p>One year after his above parametric solutions 
+of 3x3 magic squares of 5 squared integers, one more squared integer!&nbsp;<b>Arkadiusz Wesolowski</b> found&nbsp;this marvelous 
+parametric solution 
+of 3x3 magic squares of 6 squared integers:</p>
+<ul>
+    <li>x  = [(3 + sqrt(3))*(2 + sqrt(3))<sup>n+1</sup> + (3 - sqrt(3))*(2 - sqrt(3))<sup>n+1</sup>]/6,</li>
+    <li>y = [(3 + sqrt(3))*(2 + sqrt(3))<sup>n</sup> + (3 - sqrt(3))*(2 - sqrt(3))<sup>n</sup>]/6,</li>
+    <li>z = 2<sup>n </sup>* [(1 + sqrt(3)/2)<sup>n+1</sup> - (1 - sqrt(3)/2)<sup>n+1</sup>]/sqrt(3).</li>
+</ul>
+<ul>
+    <table border="1" width="386">
+        <tr>
+            <td bgcolor="yellow" width="122">
+                <p align="center">(xy - z)²</p>
+            </td>
+            <td bgcolor="yellow" width="122">
+                <p align="center">(xz + y)²</p>
+            </td>
+            <td bgcolor="yellow" width="120">
+                <p align="center"><font color="red">x² + y²z²</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow" width="122">
+                <p align="center">(x + yz)²</p>
+            </td>
+            <td bgcolor="yellow" width="122">
+                <p align="center"><font color="red">(x² + y²)(z² + 1)/2</font></p>
+            </td>
+            <td bgcolor="yellow" width="120">
+                <p align="center">(xz - y)²</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow" width="122">
+                <p align="center"><font color="red">x²z² + y²</font></p>
+            </td>
+            <td bgcolor="yellow" width="122">
+                <p align="center">(yz - x)²</p>
+            </td>
+            <td bgcolor="yellow" width="120">
+                <p align="center">(xy + z)²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>The three first examples of 3x3 magic squares, constructed&nbsp;with n = 
+1 (-&gt; (x, y, z) = (11, 3, 4)), n = 2 (-&gt; 41, 11, 15), and n =&nbsp;3 (-&gt; 
+153, 41, 56):</p>
+<ul>
+    <table border="1">
+        <tr>
+            <td width="59" bgcolor="yellow">
+                <p align="center">29²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">47²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">265</font></p>
+            </td>
+            <td width="59" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">436²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">626²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">28906</font></p>
+            </td>
+            <td width="59" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">6217²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">8609²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">5295025</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" bgcolor="yellow">
+                <p align="center">23²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">1105</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">41²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">206²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">203626</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">604²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">2449²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">39353665</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">8527²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">1945</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">1²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">37²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">378346</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">124²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">466²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center"><font color="red">73412305</font></p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">2143²</p>
+            </td>
+            <td width="59" bgcolor="yellow">
+                <p align="center">6329²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>When n is an even positive number, we can prove that the cells in red can't 
+be squared integers. His&nbsp;quick search of odd n &lt;= 2*10^5 didn't produce 
+3x3 magic squares with seven, eight, or nine square numbers. But maybe a larger 
+odd n?</p>
+<p>This was not given by Arkadiusz, but x, y, z can be easily computed with these recurrence 
+formulas:</p>
+<ul>
+    <li>x(0) = 3</li>
+    <li>y(0) = 1</li>
+    <li>z(0) = 1</li>
+</ul>
+<ul>
+    <li>x(n) = 3*x(n-1) + 2*z(n-1)</li>
+    <li>y(n) = x(n-1)</li>
+    <li>z(n) = x(n-1) + z(n-1)</li>
+</ul>
+<hr>
+<p><i><a name="2020"></a>Received January&nbsp;18, 2020</i></p>
+<p>And less than one month later, <b>Arkadiusz Wesolowski</b> found&nbsp;another marvelous 
+parametric solution 
+of 3x3 magic squares of 6 squared integers. The following identity expresses 
+the product of two sums of two squares as a sum of two squares in three different 
+ways.</p>
+<ul>
+    <li>[(6n<sup>2</sup> + 6n + 2)<sup>2</sup> + (2n + 1)<sup>2</sup>] * [(3n<sup>2</sup> 
+    + 2n)<sup>2</sup> + (3n<sup>2</sup> + 4n + 1)<sup>2</sup>]<br>= (18n<sup>4</sup> 
+    + 48n<sup>3</sup> + 43n<sup>2</sup> + 16n + 2)<sup>2</sup> + (18n<sup>4</sup> 
+    + 24n<sup>3</sup> + 7n<sup>2</sup> - 2n - 1)<sup>2</sup><br>= (18n<sup>4</sup> 
+    + 42n<sup>3</sup> + 37n<sup>2</sup> + 14n + 2)<sup>2</sup> + (18n<sup>4</sup> 
+    + 30n<sup>3</sup> + 19n<sup>2</sup> + 6n + 1)<sup>2</sup><br>= (18n<sup>4</sup> 
+    + 36n<sup>3</sup> + 29n<sup>2</sup> + 10n + 1)<sup>2</sup> + (18n<sup>4</sup> 
+    + 36n<sup>3</sup> + 29n<sup>2</sup> + 12n + 2)<sup>2</sup></li>
+</ul>
+<p>And since</p>
+<ul>
+    <li>2 * (18n<sup>4</sup> + 42n<sup>3</sup> + 37n<sup>2</sup> + 14n + 2)<sup>2 
+    </sup>= (18n<sup>4</sup> + 48n<sup>3</sup> + 43n<sup>2</sup> + 16n + 2)<sup>2</sup> 
+    + (18n<sup>4</sup> + 36n<sup>3</sup> + 29n<sup>2</sup> + 12n + 2)<sup>2</sup></li>
+</ul>
+<p>we can form a magic square with:</p>
+<ul>
+    <li>w = 6n² + 6n + 2,</li>
+    <li>x = 2n + 1,</li>
+    <li>y = 3n² + 2n,</li>
+    <li>z = 3n² + 4n + 1.</li>
+</ul>
+<ul>
+    <table border="1">
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">(wz + xy)²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(wy - xz)²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">(2y² - z²)x² + (2z² - y²)w²</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">2(x²y² + w²z²) - (wy + xz)²</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">x²y² +&nbsp;w²z²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(wy + xz)²</p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">
+                <p align="center">x²z² + w²y²</p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center"><font color="red">2(x²y² + w²z²) - (wy - xz)²</font></p>
+            </td>
+            <td bgcolor="yellow">
+                <p align="center">(wz - xy)²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>The three first examples of 3x3 magic squares, constructed with n = 1, 2, 
+3:</p>
+<ul>
+    <table border="1" width="732">
+        <tr>
+            <td width="60" bgcolor="yellow">
+                <p align="center">127²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">46²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">20062</font></p>
+            </td>
+            <td width="60" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">878²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">503²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">905719</font></p>
+            </td>
+            <td width="60" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">3191²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">2162²</p>
+            </td>
+            <td width="58" bgcolor="yellow">
+                <p align="center"><font color="red">11588158</font></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">16702</font></p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">113²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">94²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">778039</font></p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">802²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">713²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">10220638</font></p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">2969²</p>
+            </td>
+            <td width="58" bgcolor="yellow">
+                <p align="center">2722²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="60" bgcolor="yellow">
+                <p align="center">74²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">23422</font></p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">97²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">617²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">1033399</font></p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">718²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">2458²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center"><font color="red">12955678</font></p>
+            </td>
+            <td width="58" bgcolor="yellow">
+                <p align="center">2729²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>I checked that the cells in red are not squared integers for any n &lt; 10^10, 
+meaning magic sum &lt; 9.72*10^82. 
+So difficult to obtain a 7th squared integer! But maybe possible for a larger 
+n ?</p>
+<hr>
+<p><i>Received May 18, 2020</i></p>
+<p>Three years after his <a href="#2017jun">first parametric solution</a>, <b>Joseph 
+Hurban</b> sent this nice parametric solution of 3x3 magic squares of 4 squared 
+integers:</p>
+<ul>
+    <table border="1" width="704">
+        <tr>
+            <td bgcolor="yellow" width="228">
+                <p align="center"><font size="2">(qr - ps)²</FONT></p>
+            </td>
+            <td bgcolor="yellow" width="228">
+                <p align="center"><font size="2" color="red">[(qr)² + (ps)² 
+                + (pr)² + (qs)²]/2 + 4pqrs</FONT></p>
+            </td>
+            <td bgcolor="yellow" width="226">
+                <p align="center"><font size="2">(pr - qs)²</FONT></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow" width="228">
+                <p align="center"><font size="2" color="red">[3(pr)² + 3(qs)² 
+                - (qr)² - (ps)²]/2</FONT></p>
+            </td>
+            <td bgcolor="yellow" width="228">
+                <p align="center"><font size="2" color="red">[(qr)² + (ps)² 
+                + (pr)² + (qs)²]/2</FONT></p>
+            </td>
+            <td bgcolor="yellow" width="226">
+                <p align="center"><font size="2" color="red">[3(qr)² + 3(ps)² 
+                - (pr)² - (qs)²]/2</FONT></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow" width="228">
+                <p align="center"><font size="2">(qr + ps)²</FONT></p>
+            </td>
+            <td bgcolor="yellow" width="228">
+                <p align="center"><font size="2" color="red">[(qr)² + (ps)² 
+                + (pr)² + (qs)²]/2 -&nbsp;4pqrs</FONT></p>
+            </td>
+            <td bgcolor="yellow" width="226">
+                <p align="center"><font size="2">(pr + qs)²</FONT></p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<p>We can obtain a lot of solutions with two more squared integers, but again it 
+is very 
+difficult to obtain a 7th... Here are two examples of solutions with 6 squared integers, 
+obtained with (p, q, r, s) = (1, 3, 2, 11) and (1, 9, 5, 8):</p>
+<ul>
+    <table border="1" width="478">
+        <tr>
+            <td width="62" bgcolor="yellow">
+                <p align="center">5²</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center"><font color="red">889</font></p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center">31²</p>
+            </td>
+            <td width="62" rowspan="3">
+                <p align="center">&nbsp;</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center">37²</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center"><font color="red">5089</font></p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">67²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="62" bgcolor="yellow">
+                <p align="center"><font color="red">1561</font></p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center">25²</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center"><font color="red">-311</font></p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center"><font color="red">6769</font></p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center"><font color="red">3649</font></p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">23²</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="62" bgcolor="yellow">
+                <p align="center">17²</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center">19²</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center">35²</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center">53²</p>
+            </td>
+            <td width="62" bgcolor="yellow">
+                <p align="center">47²</p>
+            </td>
+            <td width="60" bgcolor="yellow">
+                <p align="center">77²</p>
+            </td>
+        </tr>
+    </table>
+</ul>
+<hr>
+<p align="right"><a name="dontreinvent"></a><font size="2">Dear readers and searchers,</FONT></p>
+<p align="right"><font size="2">Before sending me your&nbsp;results, don't reinvent the wheel!<br>Read 
+the top of this page. For example, yes, the below results are well&nbsp;known 
+and proved, 
+do not send them again.</FONT></p>
+<p align="right"><font size="2">If a 3x3 magic square of 9 squared integers&nbsp;exist (primitive, 
+with cells relatively prime), then all cells are odd, and all cells are 3k+1<br>-&gt; 
+all cells are 6k+1.<br>And no cell  multiple 
+of 3, 11, 19, 43,... because already proved&nbsp;are:<br>1) the center cell 
+is a (squared) product&nbsp;of 4k+1 prime numbers = 5, 13, 17, 29, 37, 41,...<br>2) 
+the 4 cells&nbsp;middle-side are (squared) products&nbsp;of 8k+1 and/or 
+8k+7 prime numbers = 7, 17, 23, 31, 41, 47,...<br>3) the 4 corners are (squared) 
+products of 8k+1, +5, and/or +7 prime numbers = 5, 7, 13, 17, 23, 29, 
+31, 37, 41, 47,...</FONT></p>
+<p align="right"><font size="2">In a 3x3 magic square of 9 squared integers, if we accept that 
+some squared integers&nbsp;can be repeated, then any&nbsp;solution uses only 
+1 or&nbsp;3 
+squared integers.<br>No other way, impossible with 2, 4, 5, 6, 7, or 8 
+distinct squared integers. But unknown for 9, that's the problem...<br>On the 
+left, the only&nbsp;possible family of solutions with repeated squared integers.</FONT></p>
+<div align="right">
+    <table border="1" width="794">
+        <tr>
+            <td width="210" colspan="3">
+                <p align="center"><i><font size="1">3x3 magic square of squares, S = 3c²,<br>with&nbsp;a² 
+                + b² = 2c²</font></i></p>
+            </td>
+            <td width="66" rowspan="4">
+                <p align="center"><font size="2">&nbsp;</FONT></p>
+            </td>
+            <td width="210" colspan="3">
+                <p align="center"><i><font size="1">Obvious 3x3 magic square of squares, 
+                S 
+                = 3,<br>constructed with (a, b, c) = (1, 1, 1)</font></i></p>
+            </td>
+            <td width="66" rowspan="4">
+                <p align="center"><font size="2">&nbsp;</FONT></p>
+            </td>
+            <td width="208" colspan="3">
+                <p align="center"><i><font size="1">3x3 magic square of squares, S = 75,<br>constructed 
+                with (a, b, c) = (1, 7, 5)</font></i></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">a²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">b²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">c²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">7²</FONT></p>
+            </td>
+            <td width="64" bgcolor="yellow">
+                <p align="center"><font size="2">5²</FONT></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">b²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">c²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">a²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">7²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">5²</FONT></p>
+            </td>
+            <td width="64" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">c²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">a²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">b²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">5²</FONT></p>
+            </td>
+            <td width="66" bgcolor="yellow">
+                <p align="center"><font size="2">1²</FONT></p>
+            </td>
+            <td width="64" bgcolor="yellow">
+                <p align="center"><font size="2">7²</FONT></p>
+            </td>
+        </tr>
+    </table>
+</div>
+<hr>
+<p>Return to the home page  <a href="http://www.multimagie.com/indexengl.htm"
+target="_top">http://www.multimagie.com</a></p>
+</body>
+
+</html>

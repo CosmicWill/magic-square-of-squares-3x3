@@ -4,6 +4,19 @@ Compiled 2026-08-26 after the Front-1 state-of-the-field sweep (~35
 searches; see RESEARCH_LOG entry 8). Everything here is currently known
 to us only through search snippets, except where marked ACQUIRED.
 
+> **2026-08-28 — backlog cleared.** The full-access sweep (RESEARCH_LOG
+> entry 29) acquired every remaining item below: P2 ✅, P5 ✅, P7 ✅
+> (Hill at **v3**, Apr 2026; Rome–Yamagishi published, RNT 11:91),
+> P8 ✅ (Duke ×2, Aka–Einsiedler–Shapira, plus Ellenberg–Michel–Venkatesh
+> arXiv:1001.0897 as the modern Venkov exposition, the Schulze-Pillot
+> representation survey, and three spinor-genus papers). New 2026 finds
+> also archived: Bruin–Creutz arXiv:2601.16975 (explicit Brauer–Manin —
+> endgame template), arXiv:2605.04106, 2604.09328, 2604.05459. See the
+> table in [README.md](README.md). **Still wanted (only):**
+> arXiv:math/0509484 "Average representation numbers for spinor genera"
+> (old-style-ID fetch failed); BTVA published page-numbered version
+> (nice-to-have, unchanged).
+
 ## P1 — the load-bearing paper (and its code) — ✅ ACQUIRED 2026-08-26
 
 **Bruin, Thomas, Várilly-Alvarado — "Explicit computation of symmetric

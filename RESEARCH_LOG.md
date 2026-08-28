@@ -1154,3 +1154,80 @@ range-verified is not all-m; novelty modulo reachable literature;
 machine-verified, not peer-reviewed), and the three known-shaped
 paths to an actual resolution. README front matter links it. To be
 updated at milestones.
+
+## 2026-08-28 — Entry 29: the full-access literature sweep — backlog cleared, Hill v3 in hand, the frontier confirmed ours
+
+The program ran for the first time on the owner's local machine with
+unrestricted web access. One session cleared the entire WANTED backlog
+(P2, P5, P7, P8 — 25 PDFs + 4 archived web pages, all verified
+`%PDF`/HTML and logged in papers/README.md) and re-ran the
+state-of-the-field checks that the cloud environment could only do
+through search snippets. Everything below is dated 2026-08-28.
+
+**Field status — the frontier is still ours.** (i) Rome–Yamagishi is
+now formally published (Res. Number Theory 11:91, 2025): n×n magic
+squares of squares exist for all n ≥ 4; **n = 3 remains the only open
+order** — both the arXiv v2 and the published PDF are archived. (ii)
+Várilly-Alvarado's CV (August 2026, fetched directly) lists **no new
+work** on the magic-square surface — BTVA 2022 remains his latest word
+on it; his 2026 preprints are elsewhere (del Pezzo irrationality, K3
+Brauer moduli). (iii) Bruin's publication page likewise shows nothing
+new on cuboids or magic squares beyond Bruin–Ilten–Xu (EPIGA 2025,
+already ACQUIRED/READ). (iv) multimagie.com still lists the problem
+open, prizes unclaimed; the search/bounds pages (Morgenstern ≥ 10^14
+per entry, the 2008–2010 AP sweeps) are now archived in
+papers/multimagie/, turning those CITED bounds into READ-able
+artifacts. Conclusion: nobody has moved on either front since our
+last sweep; the A8/A9 structural results still have no competition in
+the literature.
+
+**Hill arXiv:2510.08286 — the text finally in hand, and the crux
+found (PRELIMINARY).** The claimed nonexistence proof is now at **v3**
+(2026-04-07; still math.GM, still zero endorsement/refutation/
+acceptance anywhere). Read in full (7 pages) against the A1 §5
+checklist: **no descent, minimality, or height argument exists in the
+paper** — checklist item 1 resolved negative, exactly as the audit
+predicted from the abstract. The endgame is its eq. (29): a single
+exact numerical relation among mutually dependent derived quantities,
+to which the paper applies **coefficient comparison in α_{1d} as if it
+were a polynomial identity in a free variable**, forcing β₁ = 1 and
+the degeneracy contradiction. That step is invalid on its face (the
+"coefficients" are functions of quantities algebraically dependent on
+α_{1d}; the β's are not even rational in the data). A1 §6 (new
+addendum) records the full analysis; formal verdict moved UNRESOLVED →
+PRELIMINARY-invalid; the re-audit (symbolic re-derivation of (29) +
+executable β₁ ≠ 1 counterexample via `a1.dictionary`, checklist items
+2–5) is the scheduled follow-up. The program is unaffected either way.
+
+**Acquisitions that sharpen the frontiers.** Front 1 endgame: found
+and archived Bruin–Creutz, "Explicit Brauer–Manin obstructions on
+plane quartics" (arXiv:2601.16975, 2026) — a worked modern template
+for exactly the Picard/Galois → Brauer–Manin arithmetic-endgame step
+the A7/A8 roadmap names, from one of the two BTVA-adjacent authors.
+Front 2 composition question ("the law governing representing classes
+inside a genus"): the P8 stack is now real — Ellenberg–Michel–
+Venkatesh arXiv:1001.0897 (the modern Venkov/class-group
+parametrization of S(n), the A9-T1 input), Duke 1988 + Duke's Linnik
+survey, Aka–Einsiedler–Shapira arXiv:1502.04209, the Schulze-Pillot
+representation survey, and three spinor-genus papers (arXiv:1711.05811,
+2203.02620, 2104.08798) that carry the precise machinery for the
+36 beyond-genus line kills. Context/adjacent 2026 papers archived:
+quantum-period magic-square systems (arXiv:2605.04106 — checked: does
+not touch n = 3 squares existence), Euler-brick elliptic obstructions
+(arXiv:2604.09328), Hilbert cubes of dimension 3 in the squares
+(arXiv:2604.05459). P5 context (Hirzebruch 1983 scan, Pokora,
+line-arrangement surfaces) also in.
+
+**Still wanted (only):** arXiv:math/0509484 (average representation
+numbers for spinor genera — old-style-ID fetch failed); BTVA published
+page numbers (nice-to-have). The PROGRESS memo's "citation databases
+unreachable" calibration is now historical; the next milestone update
+should soften it to "novelty verified against a 2026-08-28 full-access
+sweep".
+
+**Next steps queued by this entry:** (1) the A1 formal re-audit
+(counterexample + checklist 2–5); (2) digest Bremner I/II → A4
+cross-check; (3) digest Kominers → A3.K; (4) digest EMV + Schulze-
+Pillot → pose the A9-T1 composition question precisely; (5) read
+Bruin–Creutz alongside Stoll–Testa/Horie–Yamauchi as the endgame
+template pair.

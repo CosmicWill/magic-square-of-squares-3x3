@@ -1,0 +1,1125 @@
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>MULTIMAGIE.COM - Magic squares of squares</title>
+<meta name="generator" content="Namo WebEditor v5.0">
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<p><b><font size="5">Magic squares of squares<br></font></b><i>See also the 
+<a href="SquaresOfSquares4_7.htm">4x4 to 7x7 Magic squares of squares</a> page<br>See 
+also the <a href="SquaresOfSquaresSearch.htm">Latest research on the 3x3 Magic 
+squares of squares</a> page<br>See 
+also the <a href="SquaresOfCubes.htm">Magic squares of cubes</a> page</i></p>
+<hr>
+<ul>
+    <li><a href="#Introduction">Beginning</a> of the article <SPAN class=msoIns>“</SPAN>Some notes 
+    on the magic squares of squares problem<SPAN class=msoIns>”</SPAN> published in <img src="../MathIntelligencer.JPG" align="absbottom" width="146" height="32" border="0">, 
+    Springer, New-York<br><img src="../MI27-2cover.JPG" width="88" height="120" border="0"></li>
+    <li><a href="#Supplement">Supplement</a> to the article, and first 6x6 and 
+    7x7 magic squares of squares constructed after the article and after the 
+    supplement</li>
+    <li><a href="SquaresOfSquares.htm#OpenProblems">Open problems</a> from the article (your solutions 
+    or partial results 
+    are welcome,&nbsp;I offer a €100 prize + a bottle of champagne!)</li>
+    <li><a href="SquaresOfSquares.htm#Lecture">Lecture presenting the main points</a> of the article 
+    (<b>download it to see an easy-to-understand&nbsp;summary</b> of the article,&nbsp;its 
+    supplement, and its open problems)</li>
+    <li><a href="#Figures">List of figures</a> of&nbsp;the article and its 
+    supplement</li>
+    <li><a href="#References">References</a> from the article, available&nbsp;from 
+    this site or from the Internet</li>
+    <li>and <a href="#Thanks">Thanks</a> to...</li>
+</ul>
+<hr>
+<p><b><font size="5"><a name="Introduction"></a>Beginning of the article<br></font></b><SPAN class="msoIns"><font size="5"><b>“</b></font></SPAN><b><font size="5">Some 
+notes on the magic squares of squares problem</font></b><SPAN class="msoIns"><font size="5"><b>”</b></font></SPAN><b><font size="5"><br></font></b>by Christian 
+Boyer, and published in <i><a href="http://www.springeronline.com/sgw/cda/frontpage/0%2C11855%2C5-40012-70-1042774-0%2C00.html" target="_top">The 
+Mathematical Intelligencer</a> </i>(Vol 27, N 2, Spring 2005, pages 52-64)</p>
+<p align="right"><SPAN class=msoIns><font size="2"><img src="../Euler.JPG" width="138" height="160" border="0"><br>“</font></SPAN><font size="2">Permettez-moi, 
+Monsieur, que je vous parle encore d'un problème<br>qui me paraît fort curieux 
+et digne de toute attention</FONT><SPAN class=msoIns><font size="2">”</font></SPAN><font size="2"><br></FONT><b><font size="2"><i>Leonhard 
+Euler</i></font></b><font size="2"><i>, 1770, sending his 4</i></FONT><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><i>×4 magic square of squares to Joseph 
+Lagrange</i></font></span></p>
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style="background-color:aqua; mso-ansi-language:EN-GB">Can a 3x3 magic square be constructed with nine
+distinct square numbers?</span><span lang=EN-GB
+style="mso-ansi-language:EN-GB"> This short question asked by <b>Martin LaBar</b><sup>[38]</sup> in 1984
+became famous when <b>Martin Gardner</b> republished it in 1996<sup>[25] [26]</sup> and offered
+$100 to the first person to construct such a square. Two years later, Gardner wrote<sup>[28]</sup>:</span></p>
+
+<ul>
+    <p class="MsoNormal" style="text-align:justify;"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">So far no one has come forward with a </span><SPAN class=msoIns>“</SPAN><span lang=EN-GB
+style="mso-ansi-language:EN-GB">square of squares</span><SPAN class=msoIns>”</SPAN><span lang=EN-GB
+style="mso-ansi-language:EN-GB"> –&nbsp;but no one has proved its impossibility 
+    either. If it exists, its numbers would be huge, perhaps beyond the reach 
+    of today</span><SPAN class=msoIns>’</SPAN><span lang=EN-GB
+style="mso-ansi-language:EN-GB">s fastest computers.</span></p>
+</ul>
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style="mso-ansi-language:EN-GB">Today, this problem&nbsp;is not yet solved. Several other 
+ articles in various magazines&nbsp;have been published<sup><a href="#[10]">[10]</a>
+<a href="#[11]">[11]</a> <a href="#[12]">[12]</a> [27] [29] [30] <a href="#[49]">[49]</a> [51] <a href="#[52]">[52]</a></sup>. <b>John P. Robertson</b><sup>[51]</sup> showed that the
+problem is equivalent to other mathematical problems on arithmetic progressions,
+on Pythagorean right triangles, on congruent numbers and elliptic curves y<sup>2</sup> = x<sup>3</sup>
+– n<sup>2</sup>x. <a name="LS1"></a><b>Lee Sallows</b><sup><a href="#[52]">[52]</a></sup> discussed the subject in <i style='mso-bidi-font-style:
+normal'>The Mathematical Intelligencer</i> presenting the nice (<i
+style='mso-bidi-font-style:normal'>LS1</i>) square, a near-solution with
+only one bad  sum.</span></p>
+
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style="background-color:yellow; mso-ansi-language:
+EN-GB">LS1. Three rows, three columns and one diagonal have the same magic
+sum S2=21609.<br>But unfortunately the other diagonal has a different magic sum S2=38307:</span></i></li>
+    </div>
+</ul>
+<table align="center" border="1" width="149">
+    <tr>
+        <td width="43" bgcolor="yellow">
+            <p align="center">127²</p>
+        </td>
+        <td width="43" bgcolor="yellow">
+            <p align="center">46²</p>
+        </td>
+        <td width="41" bgcolor="yellow">
+            <p align="center">58²</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="43" bgcolor="yellow">
+            <p align="center">2²</p>
+        </td>
+        <td width="43" bgcolor="yellow">
+            <p align="center">113²</p>
+        </td>
+        <td width="41" bgcolor="yellow">
+            <p align="center">94²</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="43" bgcolor="yellow">
+            <p align="center">74²</p>
+        </td>
+        <td width="43" bgcolor="yellow">
+            <p align="center">82²</p>
+        </td>
+        <td width="41" bgcolor="yellow">
+            <p align="center">97²</p>
+        </td>
+    </tr>
+</table>
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style="mso-ansi-language:EN-GB">In the present article I add both old forgotten 
+European works of XVIIIth/XIXth centuries that I am proud to
+revive (and to numerically complete for the first time<sup><a href="#[9]">[9]</a></sup>) after  years of
+oblivion, and very recent developments of the very last months on the problem 
+-&nbsp;and more
+generally on multimagic squares, cubes and hypercubes. And I have highlighted 10 open subjects. An 
+open invitation to number-lovers!</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style="mso-ansi-language:EN-GB">The magic square of squares problem is an
+important part of unsolved problem D15 of  <b>Richard K. Guy</b>’s <i
+style='mso-bidi-font-style:normal'>Unsolved Problems in Number Theory</i> book<sup>[30]</sup>, 
+third edition, 2004, summarizing the main published
+articles on this subject since 1984. I have organized my exposition around nine 
+quotations from Guy</span><SPAN class=msoIns>’</SPAN><span lang=EN-GB
+style="mso-ansi-language:EN-GB">s text.</span></p>
+
+<p align="right"><SPAN class=msoIns>…For the continuation, read the complete 
+article in <i>The Mathematical Intelligencer</i></SPAN><br>or read its summary 
+in the presentation used for the <a href="#Lecture">lecture</a></p>
+<hr><p><font size="5"><b><a name="Supplement"></a>Supplement to the article</b></font></p>
+<p>A referenced<sup><a href="#[9]">[9]</a></sup> (but non-published) supplement to the M.I. article 
+is&nbsp;available from this site, including four new magic squares (<i>CB15</i>) 
+through (<i>CB18</i>), a numerical analysis of <b>Euler</b><SPAN class=msoIns>’</SPAN>s 
+4x4 and <b>Lucas</b><SPAN class=msoIns>’</SPAN>s 3x3 squares of squares, and some results on the magic squares of 
+<u>prime</u>&nbsp;squares problem. Two  formats are available:</p>
+<ul>
+    <li><a href="Supplement.htm">See the supplement</a> in HTML format</li>
+    <li><a href="../Supplement.pdf">Download the supplement</a> in PDF format (31Kb, 
+    4 pages)</li>
+</ul>
+<p>Several&nbsp;4x4 and 5x5 magic squares of squares are published in the M.I. article. The 
+first 6x6 and 7x7 magic squares of squares were constructed unfortunately later, after the 
+article and after the above supplement. They are available here:</p>
+<ul>
+    <li>See the first <a href="SquaresOfSquares4_7.htm#6x6">6x6 and 7x7 magic squares of squares</a></li>
+</ul>
+<hr><p class="MsoNormal" style="text-align:justify;" align="left"><b><font size="5"><a name="OpenProblems"></a>Open 
+problems of the article</font></b></p>
+<p>Each&nbsp;multimagic (bimagic, trimagic,<SPAN class=msoIns>…</SPAN>) square is a <SPAN class=msoIns>“</SPAN>magic square 
+of squares<SPAN class=msoIns>”</SPAN> when its numbers are squared. But a <SPAN class=msoIns>“</SPAN>magic square of squares<SPAN class=msoIns>”</SPAN> 
+is rarely a multimagic square because it is probably not magic&nbsp;when its numbers are not squared. This remark does&nbsp;not imply that magic 
+squares of squares problems are easier than multimagic problems<SPAN class=msoIns>…</SPAN></p>
+<table align="center" border="1" width="619">
+    <caption>
+    <p align="center"><i><b>First inventors</b> of magic squares of squares 
+    and bimagic squares,<br>and remaining <span style="background-color:rgb(255,255,102);">open 
+    problems</span></i></p>
+    </caption>
+    <tr>
+        <td width="53" bgcolor="aqua">
+            <p align="center">Order</p>
+        </td>
+        <td width="180" bgcolor="aqua">
+            <p align="center">Magic squares of squares</p>
+        </td>
+        <td width="180" bgcolor="aqua">
+            <p align="center">Bimagic squares<br>using distinct integers</p>
+        </td>
+        <td width="178" bgcolor="aqua">
+            <p align="center">Normal bimagic squares<br>(using consecutive integers)</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="53" bgcolor="aqua">
+            <p align="center">3x3</p>
+        </td>
+        <td width="180" bgcolor="#FFFF66">
+            <p align="center"><b>Who?</b> Or  proof of its impossibility?<br><a href="Problems.htm#SquaresOfSquares">Open problem 
+            1</a>, or <a href="Problems.htm#SquaresOfSquares">open sub-problem 2</a>.<br>See 
+            the current status of the research <a href="SquaresOfSquaresSearch.htm">here</a>.</p>
+        </td>
+        <td width="364" bgcolor="#FFCCFF" colspan="2">
+            <p align="center"><a href="Smallestbi.htm#Bima3&4">Impossible</a>. <b>E. Lucas</b> (1891)</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="53" bgcolor="aqua">
+            <p align="center">4x4</p>
+        </td>
+        <td width="180">
+            <p align="center"><b>L. Euler (</b>1770)<br>See <i><a href="SquaresOfSquares.htm#LE2">LE2</a> 
+            &nbsp;</i>in the <i>M.I.</i> article.</p>
+        </td>
+        <td width="180" bgcolor="#FFCCFF">
+            <p align="center"><a href="Smallestbi.htm#SemiBima4">Impossible</a>.<br><b>L. Pebody</b> (2004) / <b>J.-C. 
+            Rosa</b> (2004)</p>
+        </td>
+        <td width="178" bgcolor="#FFCCFF">
+            <p align="center"><a href="Smallestbi.htm#Bima3&4">Impossible</a>.<br><b>E. Lucas</b> (1891)</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="53" bgcolor="aqua">
+            <p align="center">5x5</p>
+        </td>
+        <td width="180">
+            <p align="center"><b>C. Boyer </b>(2004)<br>See <i><a href="SquaresOfSquares.htm#CB4">CB4</a> 
+            </i>in the <i>M.I.</i> article.</p>
+        </td>
+        <td width="180" bgcolor="#FFFF66">
+            <p align="center"><b>Who? </b>Or proof of its impossibility?<br><a href="Problems.htm#SquaresOfSquares">Open problem 3</a>.<br>See the current status of the research&nbsp;<a href="Smallestbi3_7.htm#Bima5">here</a>.</p>
+        </td>
+        <td width="178" rowspan="3" bgcolor="#FFCCFF">
+            <p align="center"><a href="Smallestbi.htm#Bima5">Impossible</a>.<br> <b>C. Boyer - W. Trump</b> (2002)</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="53" bgcolor="aqua">
+            <p align="center">6x6</p>
+        </td>
+        <td width="180">
+            <p align="center"><b>C. Boyer</b> (2005)<br> 
+            See <a href="SquaresOfSquares4_7.htm#6x6">here</a>,&nbsp;constructed 
+            after the article.</p>
+        </td>
+        <td width="180">
+            <p align="center"><b>J. Wroblewski  </b>(2006)<br> 
+            See <a href="Smallestbi3_7.htm#Bima6Wroblewski">here</a>,&nbsp;constructed 
+            after the article.</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="53" bgcolor="aqua">
+            <p align="center">7x7</p>
+        </td>
+        <td width="180">
+            <p align="center"><b>C. Boyer</b> (2005)<br> See <a href="SquaresOfSquares4_7.htm#7x7">here</a>, 
+            constructed after the 
+            article.</p>
+        </td>
+        <td width="180">
+            <p align="center"><b>L. Morgenstern  </b>(2006)<br> 
+            See <a href="Smallestbi3_7.htm#Bima7Morgenstern">here</a>,&nbsp;constructed 
+            after the article.</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="53" bgcolor="aqua">
+            <p align="center">8x8<br> and +</p>
+        </td>
+        <td width="550" colspan="3">
+            <p align="center"><b>G. Pfeffermann</b> 
+            (8x8 in 1890, 9x9 in 1891).<br>First <a href="Bimagic.htm">bimagic 
+            squares</a>, using&nbsp;consecutive integers.<br>Various other orders are known (10x10, 
+            11x11, 12x12, 13x13,...)</p>
+        </td>
+    </tr>
+</table>
+<p>In the article, 10&nbsp;open problems  wait your answers, including 
+my open problem 2: for its solution, I offer a €100 prize <b>+ a bottle of champagne</b>!!!</p>
+<ul>
+    <li>Read the 
+10&nbsp;problems on the <a href="Problems.htm#SquaresOfSquares">unresolved multimagic 
+problems</a> page.</li>
+</ul>
+<p>If you arrive at solutions or partial results to any of these&nbsp;problems, <a href="mailto:cboyer@club-internet.fr?subject=Magic squares of squares">send 
+me a message</a>. Your results&nbsp;will be added here.</p>
+<hr><p><b><font size="5"><a name="Lecture"></a>Lecture presenting the main points 
+of the article</font></b></p>
+<p>If you want to see a summary of the article, this part is for you!</p>
+<p>In a series organized by the <a href="http://www.u-picardie.fr/" target="_top">University 
+of Picardy</a>, the <a href="http://www.esiee-amiens.fr" target="_top">ESIEE 
+Amiens</a>, the <a href="http://www.cnisf.org/" target="_top">URISP-CNISF</a>, 
+and the <a href="http://www.ac-amiens.fr/pedagogie/associations/adcs/" target="_top">ADCS</a> 
+in&nbsp;March-April 2005, several scientific lectures were presented in Amiens 
+to mark the 100th anniversary of the death of Jules Verne.</p>
+<p><img src="../Verne.JPG" width="120" height="155" border="0"><img src="../Lucas.JPG" width="120" height="155" border="0"> 
+<b>Jules Verne</b> (Nantes 1828 - Amiens 1905),&nbsp;<b>Edouard Lucas</b> (Amiens 1842 - Paris 
+1891)</p>
+<p>During this event, I gave a lecture titled <SPAN class=msoIns>“</SPAN>Resort to computing on a problem 
+of Euler and of Lucas<SPAN class=msoIns>”:</SPAN></p>
+<ul>
+    <li>Slides 1-3: Jules Verne and Edouard Lucas were contemporaries, and 
+    both men lived for many years in&nbsp;Amiens</li>
+    <li>Slides 4-13: summary of  previously published articles on the 
+    <SPAN class=msoIns>“</SPAN>magic squares of squares<SPAN class=msoIns>”</SPAN> problem</li>
+    <li>Slides 14-27: summary of my own studies on the problem (<a href="SquaresOfSquares.htm#Introduction">M.I. article</a>,&nbsp;search<sup><a href="SquaresOfSquares.htm#[8]">[8]</a></sup>,&nbsp;supplement<sup><a href="SquaresOfSquares.htm#[9]">[9]</a></sup>,&nbsp;Euler<SPAN class=msoIns>’</SPAN>s 
+    and Lucas<SPAN class=msoIns>’</SPAN>s works, ...)</li>
+    <li>Slides 28-30: open problems and conclusion</li>
+</ul>
+<p><a name="Photo"></a><a href="../PhotoAmiens+.JPG"><img src="../PhotoAmiens.JPG" width="246" height="185" border="0"></a><i> 
+</i><b>C. Boyer</b>&nbsp;<i>during the lecture, slide 8.<br><font size="2">Photo by Marc Lecoester, 
+President of the URISP. Click on the image to enlarge it (JPG file, 1.2Mb).</font></i></p>
+<p>You can download the  presentation used for this lecture:</p>
+<ul>
+    <li><a href="../LectureAmiens.pps">Download the PowerPoint 2003 file</a> in English version (30 
+    slides, 2.3Mb)</li>
+    <li><a href="../ConferenceAmiens.pps">Download the PowerPoint 2003 file</a> in original French version (30 
+    slides, 2.3Mb) 
+    used during this lecture</li>
+</ul>
+<p>If you do not have the PowerPoint 2003 product, there is a free 
+viewer downloadable from the Microsoft site which will allow you to see the 
+presentation. Go to Google or Yahoo!, and type <SPAN class=msoIns>“</SPAN>PowerPoint Viewer 2003<SPAN class=msoIns>”</SPAN>: 
+you will immediately get the Microsoft link to download&nbsp;this tool. Do not use 
+PowerPoint Viewer 97, the sequences will be incorrectly displayed.</p>
+<p>Congratulations and thanks to <b>Yves Roussel</b> for  organizing the series 
+of&nbsp;lectures commemorating the 
+Jules Verne centenary.</p>
+<hr>
+<p align="left"><font size="5"><b><a name="Figures"></a>List of figures of&nbsp;the 
+article and its supplement</b></font></p>
+<p class="MsoNormal" style="text-align:center;" align="center"><font size="2"><b>Introduction</b></FONT></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><a href="#LS1"><font size="2">LS1</font></a><font size="2"> (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slides 6 and 21). Example of a 3×3 square with seven magic sums 
+        by Lee Sallows</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><font size="2"><b>Part 1</b></FONT></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a href="Supplement.htm#EL1">EL1</a> (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 20, and <a href="#Supplement">supplement</a>). Edouard Lucas’s 3×3 semi-magic squares of squares family</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:
+normal'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="EL2"></a></font></span><span lang=EN-GB style="background-color:yellow; mso-ansi-language:EN-GB"><font size="2">EL2 
+        (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 20). The example
+of a 3</font></span></i><i style='mso-bidi-font-style:normal'><span lang=EN-GB style="background-color:yellow; mso-ansi-language:
+EN-GB"><font size="2">×</font></span></i><i style='mso-bidi-font-style:
+normal'><span lang=EN-GB style="background-color:yellow; mso-ansi-language:EN-GB"><font size="2">3 semi-magic square of squares by Edouard 
+        Lucas in 1876</font></span></i></li>
+    </div>
+</ul>
+    <table class="MsoNormal" border="1" width="170" align="center">
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">1²</span></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">68²</span></p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">44²</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">76²</span></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">16²</span></p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">23²</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">28²</span></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">41²</span></p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">64²</span></p>
+            </td>
+        </tr>
+    </table>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span style='mso-ansi-language:EN-GB'><span lang=EN-GB><font size="2">LE1 
+        (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 25). The smallest
+3</font></span></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span><span style='mso-ansi-language:EN-GB'><span lang=EN-GB><font size="2">3 example published by Leonhard 
+        Euler in 1770</font></span></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">LE1cb (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 21). The smallest
+semi-magic square of squares from LE1</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><font size="2"><b>Part 2</b></FONT></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB
+style='background-color:yellow; mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA'><font size="2"><a name="AB1"></a></font><a href="Problems.htm#SquaresOfSquares"><font size="2">AB1</font></a><font size="2"> 
+        (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 7). 3</font></span><span lang=EN-GB style="background-color:yellow; mso-ansi-language:
+EN-GB"><font size="2">×</font></span><span lang=EN-GB
+style='background-color:yellow; mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA'><font size="2">3 magic square with seven square entries by Andrew Bremner</font></span></i></li>
+    </div>
+</ul>
+    <table class="MsoNormal" border="1" width="170" align="center">
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">373²</span></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">289²</span></p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">565²</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">360721</span></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">425²</span></p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">23²</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">205²</span></p>
+            </td>
+            <td width="50" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">527²</span></p>
+            </td>
+            <td width="48" bgcolor="yellow">
+                <p class="MsoNormal" align="center"><span lang=EN-GB
+style="mso-ansi-language:EN-GB">222121</span></p>
+            </td>
+        </tr>
+    </table>
+<p class="MsoNormal" style="text-align:center;" align="center"><span lang=EN-GB
+style='mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA'><font size="2"><b>Part 4</b></font></span></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB
+style='mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA'><font size="2">MS1, MS2, MS3. Examples of 3</font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span><span lang=EN-GB
+style='mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA'><font size="2">3 squares with seven magic sums by Michael Schweitzer</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">AB2. 3×3 semi-magic square of squares by Andrew Bremner</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">MS4. 3×3 example with a non-square magic sum</font></span><span lang=EN-GB
+style='mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA'><font size="2"> by Michael Schweitzer</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><span lang=EN-GB
+style='mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA'><font size="2"><b>Part 5</b></font></span></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">AB3 (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 12). 4×4 magic square of squares by Andrew Bremner</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB style="background-color:yellow; mso-ansi-language:
+EN-GB"><font size="2"><a name="LE2"></a>LE2 (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slides 22 and 23). The first known magic square of squares, sent in 1770 by
+L. Euler to J. Lagrange:</font></span></i></li>
+    </div>
+</ul>
+<table align="center" border="1" width="162">
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>68²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>29²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>41²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>37²</SPAN></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>17²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>31²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>79²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>32²</SPAN></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>59²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>28²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>23²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>61²</SPAN></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>11²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>77²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>8²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>49²</SPAN></p>
+        </td>
+    </tr>
+</table>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a href="Supplement.htm#LE3">LE3</a> (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slides 24 and 26, and <a href="#Supplement">supplement</a>). Euler’s 4×4 magic squares of squares family</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a name="CB1"></a></font></span><span lang=EN-GB style="background-color:yellow; mso-ansi-language:
+EN-GB"><font size="2">CB1 (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slides 16 and 27). The smallest magic square of squares of  Euler’s 4×4 family, 
+        </font></span><span lang=EN-GB style="font-family:'Times New Roman'; background-color:yellow; mso-fareast-font-family:" Times New Roman";
+mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:AR-SA"><font size="2">not
+found by Euler</font></span></i></li>
+    </div>
+</ul>
+<table align="center" border="1" width="162">
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>48²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>23²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>6²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>19²</SPAN></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>21²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>26²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>33²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>32²</SPAN></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>1²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>36²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>13²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>42²</SPAN></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>22²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>27²</SPAN></p>
+        </td>
+        <td width="34" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>44²</SPAN></p>
+        </td>
+        <td width="32" bgcolor="yellow">
+            <p align="center"><SPAN class=msoIns>9²</SPAN></p>
+        </td>
+    </tr>
+</table>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style="font-family:'Times New Roman'; mso-fareast-font-family:" Times New Roman";
+mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:AR-SA"><font size="2">&nbsp;<a name="CB2"></a></font></span><span lang=EN-GB style="background-color:yellow; mso-ansi-language:
+EN-GB"><font size="2">CB2 (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 16, and <a href="#Supplement">supplement</a>). Sub-family of 4×4 magic squares of squares. S2 = 85(k² + 
+        29):</font></span></i></li>
+    </div>
+</ul>
+<table align="center" border="1" width="382">
+    <tr>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(2k + 42)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(4k + 11)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(8k - 18)²</p>
+            </div>
+        </td>
+        <td width="87" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(k + 16)²</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(k - 24)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(8k + 2)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(4k + 21)²</p>
+            </div>
+        </td>
+        <td width="87" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(2k - 38)²</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(4k - 11)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(2k - 42)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(k - 16)²</p>
+            </div>
+        </td>
+        <td width="87" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(8k + 18)²</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(8k - 2)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(k + 24)²</p>
+            </div>
+        </td>
+        <td width="89" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(2k + 38)²</p>
+            </div>
+        </td>
+        <td width="87" bgcolor="yellow">
+            <div align="center">
+            <p align="center">(4k - 21)²</p>
+            </div>
+        </td>
+    </tr>
+</table>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><font size="2">CB3. A small game : will you quickly locate the error 
+        in this member of Euler's family?</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">LE3cb. Transition from Euler’s 4×4 to Lucas’s 3×3 magic square of
+squares</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB style="background-color:yellow; mso-ansi-language:
+EN-GB"><font size="2"><a name="CB4"></a>CB4 (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 17). The smallest 5×5 magic square of squares. S2 = 1375:</font></span></i></li>
+    </div>
+</ul>
+<table class="MsoNormal" style="text-align:center;" align="center" border="1" width="187">
+    <tr>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">1²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">2²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">31²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">3²</p>
+        </td>
+        <td width="29" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">20²</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">22²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">16²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">13²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">5²</p>
+        </td>
+        <td width="29" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">21²</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">11²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">23²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">10²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">24²</p>
+        </td>
+        <td width="29" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">7²</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">12²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">15²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">9²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">27²</p>
+        </td>
+        <td width="29" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">14²</p>
+        </td>
+    </tr>
+    <tr>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">25²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">19²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">8²</p>
+        </td>
+        <td width="31" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">6²</p>
+        </td>
+        <td width="29" bgcolor="yellow">
+            <p class="MsoNormal" style="text-align:center;" align="center">17²</p>
+        </td>
+    </tr>
+</table>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">CB5. The second smallest 5×5 magic square of squares</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><b>Bimagic squares</b></font></span></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">CB6. A putative 3×3 semi-bimagic square</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a href="Smallestbi.htm#SemiBima4">CB7</a>. The smallest 4×4 semi-bimagic square without magic diagonal</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a href="Smallestbi3_7.htm#Bima3&4">CB8</a>. The smallest 4×4 semi-bimagic square with one magic diagonal</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span style='mso-ansi-language:EN-GB'><span lang=EN-GB><font size="2"><a href="Smallestbi3_7.htm#Bima5">CB9</a>. The smallest 5</font></span></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span><span style='mso-ansi-language:EN-GB'><span lang=EN-GB><font size="2">5
+semi-bimagic square with two magic diagonals</font></span></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span style='mso-ansi-language:EN-GB'><span lang=EN-GB><a href="Smallestbi.htm#Bima6"><font size="2">GP1</font></a><font size="2">. A 6</font></span></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span><span style='mso-ansi-language:EN-GB'><span lang=EN-GB><font size="2">6 semi-bimagic square
+with two magic diagonals,</font></span></span><span lang=EN-GB style="font-family:'Times New Roman'; mso-fareast-font-family:" Times New Roman";
+mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:AR-SA"><font size="2">
+by G. Pfeffermann in 1894</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">RVI 1. A 6×6 semi-bimagic square family with two magic diagonals, </font></span><span lang=EN-GB style="font-family:'Times New Roman'; mso-fareast-font-family:" Times New Roman";
+mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:AR-SA"><font size="2">by R. Venkatachalam Iyer in 1961</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><span lang=EN-GB style="font-family:'Times New Roman'; mso-fareast-font-family:" Times New Roman";
+mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:AR-SA"><font size="2"><b><a href="SquaresOfCubes.htm">Part 
+6</a></b></font></span></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style="mso-ansi-language:
+EN-GB"><font size="2"><a href="SquaresOfCubes.htm#CB10">CB10</a> (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 19). A 4×4 magic square of cubes. S3 = 0</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a href="SquaresOfCubes.htm#CB11">CB11</a> (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 19). A 5×5 magic square of cubes. S3 = 0</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><font size="2"><a href="SquaresOfCubes.htm#CB12">CB12</a>. The smallest 5</font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><font size="2">5 semi-magic square of cubes using positive
+integers</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><font size="2"><b>Part 7</b></font></span></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><a href="Trimagic12.htm"><font size="2">WT1</font></a><font size="2">. The first 12×12 trimagic square,  by Walter Trump in 2002</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><b>Part 8</b></font></span></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><a href="Perfectcubes.htm#Fermat"><font size="2">PF1</font></a><font size="2">. The 4×4×4 nearly perfect 
+        magic cube, sent in 1640 by Pierre de Fermat to Mersenne</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><a href="Perfectcubes.htm#SmallestPerfect"><font size="2">WT2CB13</font></a><font size="2">. The first 5</font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><font size="2">5</font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><font size="2">5 perfect magic cube, by
+Walter Trump
+and Christian Boyer in 2003</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><a href="Cube.htm#PLS"><font size="2">CB14</font></a><font size="2">. The 8192</font></span></i><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span></i><i><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">8192</font></span></i><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">×</font></span></i><i><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">8192
+perfect tetramagic cube compared to the cathedral Notre-Dame de Paris</font></span></i></li>
+    </div>
+</ul>
+<p class="MsoNormal" style="text-align:center;" align="center"><a href="#Supplement"><font size="2"><b>Supplement</b></font></a></p>
+<ul>
+    <div align="center">
+        <li class="MsoNormal" style="text-align:center;"><i><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a href="Supplement.htm#CB15">CB15</a>. </font></span></i><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">Another sub-family of 4×4 magic squares of squares</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a href="Supplement.htm#C)">CB16</a>. The smallest 4×4 semi-bimagic square of <u>prime</u> numbers</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i
+style='mso-bidi-font-style:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a href="Supplement.htm#C)">CB17</a> (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 18). The smallest 4×4 magic square of squares of <u>prime</u> numbers</font></span></i></li>
+        <li class="MsoNormal" style="text-align:center;"><i style='mso-bidi-font-style:normal'><span lang=EN-GB
+style="font-family:'Times New Roman'; mso-fareast-font-family:
+" Times New Roman";mso-ansi-language:EN-GB;mso-fareast-language:FR;mso-bidi-language:
+AR-SA"><font size="2"><a href="Supplement.htm#CB18">CB18</a> (and </font><a href="#Lecture"><font size="2">lecture</font></a><font size="2"> 
+        slide 18). The smallest 5×5 magic square of squares of <u>prime</u> numbers</font></span></i></li>
+    </div>
+</ul>
+<hr><p><b><font size="5"><a name="References"></a>References from the article</font></b><br>available 
+from this site or from the Internet</p>
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[4]"></a>[4] Christian Boyer, Les premiers carrés tétra et
+pentamagiques, </font><i
+style='mso-bidi-font-style:normal'><font size="2">Pour La Science</font></i><font size="2"> (the
+French edition of </font><i
+style='mso-bidi-font-style:normal'><font size="2">Scientific American</font></i><font size="2">),
+N°286 August 2001, 98-102<br></font></span><a href="../PLS286_CarresTetraPenta.pdf"><font size="2">Download the PDF file</font></a><font size="2"> (168Kb)<br>(see also <a href="Tetra-penta.htm">www.multimagie.com/English/Tetra-penta.htm</a>)</FONT></p>
+
+
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span style='font-size:10.0pt'><a name="[5]"></a>[5] Christian Boyer, Les
+cubes magiques, <i style='mso-bidi-font-style:normal'>Pour La Science</i> (the
+French edition of <i style='mso-bidi-font-style:normal'>Scientific American</i>),
+N°311 September 2003, 90-95<br>(see also </span><font size="2"><a href="Cube.htm#PLS">www.multimagie.com/English/Cube.htm#PLS</a><a href="Cube.htm">)</a></font></p>
+
+<p class="MsoNormal" style="text-align:justify; text-indent:-27pt; margin-left:27pt;"><font size="2"><a name="[6]"></a>[6] Christian Boyer, Le plus
+petit cube magique parfait, </FONT><i style='mso-bidi-font-style:normal'><font size="2">La Recherche</font></i><font size="2">,
+N°373 March 2004, 48-50<br></FONT><a href="../LR373_CubesMagiques.pdf"><font size="2">Download 
+        the PDF file</font></a><font size="2"> (955Kb)<br>(see 
+also <a href="Perfectcubes.htm">www.multimagie.com/English/Perfectcubes.htm)</a></FONT></p>
+<p class=MsoNormal style='margin-left:27.0pt;text-indent:-27.0pt;tab-stops:
+54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a name="[7]"></a>[7] Christian
+ Boyer, Multimagic squares, cubes and hypercubes web site,<br></font></span><span
+style='font-size:10.0pt'><a href="http://www.multimagie.com/indexengl.htm" target="_top"><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">www.multimagie.com/indexengl.htm</font></span></a></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[8]"></a>[8] Christian Boyer, A search for 3x3 magic squares
+having more than six square integers among their nine distinct integers,
+preprint, September 2004<br></font></span><font size="2"><a href="../Search.pdf">Download 
+        the PDF file</a> (60Kb)<br></FONT><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"> (see also slide&nbsp;15 of the </font><a href="SquaresOfSquares.htm#Lecture"><font size="2">lecture</font></a><font size="2">)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[9]"></a>[9] Christian Boyer, </font><a href="SquaresOfSquares.htm#Supplement"><font size="2">Supplement</font></a><font size="2"> to the “Some notes on
+the magic squares of squares problem” article, 2005<br><a href="../Supplement.pdf">Download the PDF file</a> 
+(31Kb)<br>or <a href="Supplement.htm">www.multimagie.com/English/Supplement.htm</a><br> (see also slide 18 of the 
+</font><a href="SquaresOfSquares.htm#Lecture"><font size="2">lecture</font></a><font size="2">)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-indent:-27.0pt;tab-stops:
+54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a name="[10]"></a>[10] Andrew Bremner, On squares of squares, </font><i style='mso-bidi-font-style:
+normal'><font size="2">Acta Arithmetica</font></i><font size="2">, </font><b style='mso-bidi-font-weight:normal'><font size="2">88</font></b><font size="2">(1999)
+289-297<br><a href="../Bremner1.pdf">Download the PDF file</a> (99Kb)<br>(see also slide 7 </font></span><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">of the <a href="SquaresOfSquares.htm#Lecture">lecture</a></font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-indent:-27.0pt;tab-stops:
+54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a name="[11]"></a>[11] Andrew Bremner, On squares of squares II, </font><i style='mso-bidi-font-style:
+normal'><font size="2">Acta Arithmetica</font></i><font size="2">, </font><b style='mso-bidi-font-weight:normal'><font size="2">99</font></b><font size="2">(2001)
+289-308<br><a href="../Bremner2.pdf">Download the PDF file</a> (172Kb)<br>(see also slides 11-12 </font></span><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">of the <a href="SquaresOfSquares.htm#Lecture">lecture</a></font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-indent:-27.0pt;tab-stops:
+54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a name="[12]"></a>[12] Duncan A. Buell, A search for a magic hourglass, preprint, 1999<br><a href="../Buell.pdf">Download 
+the PDF file</a> (101Kb)<br>(see also slide 10 </font></span><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">of the <a href="SquaresOfSquares.htm#Lecture">lecture</a></font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><font size="2"><a name="[42]"></a>[42] Edouard
+Lucas, Sur le carré de 3 et sur les carrés à deux degrés, </FONT><i style='mso-bidi-font-style:
+normal'><font size="2">Les Tablettes du Chercheur</font></i><font size="2">, March 1st 1891, p.7 (reprint in [44]
+and in<br></FONT><a href="../Francais/Lucas.htm"><font size="2">www.multimagie.com/Francais/Lucas.htm</font></a><font size="2">)</FONT></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[49]"></a>[49] Landon W. Rabern, Properties of magic
+squares of squares, </font><i
+style='mso-bidi-font-style:normal'><font size="2">Rose-Hulman Institute
+of Technology Undergraduate Math Journal</font></i><font size="2">, </font><b style='mso-bidi-font-weight:
+normal'><font size="2">4</font></b><font size="2">(2003), N.1<br></font></span><font size="2"><strike>www.rose-hulman.edu/mathjournal/v4n1.php</strike> 
+(now <a href="https://scholar.rose-hulman.edu/rhumj/vol4/iss1/3/">https://scholar.rose-hulman.edu/rhumj/vol4/iss1/3/</a>)</FONT></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[50]"></a>[50] Carlos Rivera, </font><a
+href="http://www.primepuzzles.net/" target="_top"><font size="2">www.primepuzzles.net</font></a><font size="2"><br></font></span><a href="http://www.primepuzzles.net/puzzles/puzz_079.htm" target="_top"><font size="2">www.primepuzzles.net/puzzles/puzz_079.ht</font></a><font size="2"><a href="http://www.primepuzzles.net/puzzles/puzz_079.htm" target="_top">m</a> 
+(</FONT><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">Puzzle 79 «&nbsp;The
+Chebrakov’s Challenge&nbsp;»)<br></font></span><a href="http://www.primepuzzles.net/puzzles/puzz_287.htm" target="_top"><font size="2">www.primepuzzles.net/puzzles/puzz_287.ht</font></a><font size="2"><a href="http://www.primepuzzles.net/puzzles/puzz_287.htm" target="_top">m</a> 
+(</FONT><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">Puzzle 287 «&nbsp;Multimagic prime squares&nbsp;»)<br></font></span><a href="http://www.primepuzzles.net/puzzles/puzz_288.htm" target="_top"><font size="2">www.primepuzzles.net/puzzles/puzz_288.ht</font></a><font size="2"><a href="http://www.primepuzzles.net/puzzles/puzz_288.htm" target="_top">m</a>&nbsp;(</FONT><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">Puzzle 288 «&nbsp;Magic square of (prime) squares&nbsp;»)<br>(on 
+Puzzle 288, see also slide 17 of the <a href="SquaresOfSquares.htm#Lecture">lecture</a>, and part 
+3 of the <a href="SquaresOfSquares.htm#Supplement">supplement</a></font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[52]"></a>[52] Lee Sallows, The lost theorem, </font><i
+style='mso-bidi-font-style:normal'><font size="2">The Mathematical Intelligencer</font></i><font size="2">, </font><b
+style='mso-bidi-font-weight:normal'><font size="2">19</font></b><font size="2">(1997), n°4, 51-54<br><a href="../Sallows.pdf">Download 
+the PDF file</a> (76Kb)<br></font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">(see also slides 6-7 </font></span><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">of the <a href="SquaresOfSquares.htm#Lecture">lecture</a></font></span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2">)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-indent:-27.0pt;tab-stops:
+54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><font size="2"><a name="[54]"></a>[54] Richard Schroeppel, The center cell of a magic 5</font><sup><font size="2">3</font></sup><font size="2"> is 63,
+(1976),<br></font><a href="Schroeppel63.htm"><font size="2">www.multimagie.com/English/Schroeppel63.htm</font></a></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[57]"></a>[57] Neil Sloane, Multimagic sequences A052457,
+A052458, A090037, A090653, A092312, </font><i
+style='mso-bidi-font-style:normal'><font size="2">ATT Research’s
+Online Encyclopaedia of Integer Sequences</font></i><font size="2">,<br><strike>www.research.att.com/~njas/sequences/</strike> 
+(now&nbsp;<a href="http://oeis.org" target="_top">http://oeis.org</a>)<br>(see 
+also <a href="Series.htm">www.multimagie.com/English/Series.htm</a>)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><font size="2"><a name="[58]"></a>[58] Paul
+Tannery and Charles Henry, Lettre XXXVIIIb bis, Fermat à Mersenne, Toulouse, 1
+avril 1640, </FONT><i style='mso-bidi-font-style:normal'><font size="2">Œuvres de Fermat</font></i><font size="2">, Gauthier-Villars,
+Paris, </FONT><b
+style='mso-bidi-font-weight:normal'><font size="2">2</font></b><font size="2">(1894), 186-194<br></FONT><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2">(partial reprint of
+the letter at <a href="../Francais/Fermat.htm">www.multimagie.com/Francais/Fermat.htm</a>)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[60]"></a>[60] Walter Trump, Story of the smallest trimagic square,
+January 2003,<br></font><a
+href="Tri12Story.htm"><font size="2">www.multimagie.com/English/Tri12Story.htm<br></font></a><font size="2">(see 
+also <a href="Trimagic12.htm">www.multimagie.com/English/Trimagic12.htm</a><br>and 
+<a href="Smallesttri.htm">www.multimagie.com/English/Smallesttri.htm</a>)</font></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[62]"></a>[62] Eric Weisstein, Magic figures, </font><i
+style='mso-bidi-font-style:normal'><font size="2">MathWorld</font></i><font size="2">,<br></font><a
+href="http://mathworld.wolfram.com/topics/MagicFigures.html" target="_top"><font size="2">http://mathworld.wolfram.com/topics/MagicFigures.html</font></a></span></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;text-align:justify;text-indent:
+-27.0pt;tab-stops:54.0pt 144.0pt 225.0pt'><span lang=EN-GB style='mso-ansi-language:EN-GB'><font size="2"><a name="[63]"></a>[63] Eric Weisstein, Perfect magic cube, </font><i
+style='mso-bidi-font-style:normal'><font size="2">MathWorld</font></i><font size="2">,<br></font><a
+href="http://mathworld.wolfram.com/PerfectMagicCube.html" target="_top"><font size="2">http://mathworld.wolfram.com/PerfectMagicCube.html</font></a></span></p>
+
+<div align="left">
+<table border="1">
+    <tr>
+        <td bgcolor="#66FFFF">
+                <p><a name="Thanks"></a>Many thanks to :</p>
+                <ul>
+                    <li><b>Andrew Bremner</b>, Arizona State University, <b>Duncan Buell</b>, University of 
+South Carolina, and <b>Lee Sallows</b>, University of Nijmegen, 
+for their positive feedback and remarks based on their reading of early drafts of the article. 
+                    Their excellent previous papers on the subject are downloadable from multimagie.com: 
+                    [10], [11], [12], [52].</li>
+                    <li><b>Chandler Davis, </b>University of Toronto, and Editor-in-Chief 
+                    of <i>The Mathematical Intelligencer,</i> for his very attentive 
+                    reading and for his approval to publish the article in his magazine.</li>
+                    <li><b>Susan Hannan</b>, USA, for her kind and very efficient checking of my English!</li>
+                </ul>
+            <p align="right"><i>Christian Boyer.</i></p>
+        </td>
+    </tr>
+</table>
+</div>
+<hr>
+<p>Return to the home page  <a href="http://www.multimagie.com/indexengl.htm"
+target="_top">http://www.multimagie.com</a></p>
+</body>
+
+</html>

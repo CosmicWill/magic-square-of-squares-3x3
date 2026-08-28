@@ -1,0 +1,122 @@
+<html>
+
+<head>
+<title>MULTIMAGIE.COM - Magic Squares of Squares Modulo 2^N</title>
+<meta name="generator" content="Namo WebEditor v5.0">
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<p><font size="5"><b>Magic Squares of Squares Modulo 2^N<br></b><STRONG>by Lee Morgenstern, January 2012.</STRONG></FONT></p>
+<hr>
+
+<p><font size="2">I would like to make a contribution to the &quot;Buell/Pech 
+Magic Hourglass Modulo 2^N&quot; competition.</font></p>
+<p><font size="2">In 1998, Duncan Buell's search found a <a href="SquaresOfSquares.htm#References">magic 
+hourglass modulo 2^46</a> (see [12]). &nbsp;Then in 2006&nbsp;Lucien Pech's 
+search found a <a href="SquaresOfSquaresSearch.htm#2006dec">magic hourglass 
+modulo 2^52</a> (see Dec. 23, 2006).</font></p>
+<p><font size="2">I can construct not only a magic hourglass, but a full 3x3 
+magic square of squares modulo 2^N, for any N you want.</font></p>
+<p><font size="2">Pick any positive values for a,b,c.</font></p>
+<p><font size="2">Then arrange the following expressions into a magic square.</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;8(c+a)+1 &nbsp;8(c-a-b)+1 &nbsp;8(c+b)+1<br>8(c-a+b)+1 
+&nbsp;&nbsp;&nbsp;8c+1 &nbsp;&nbsp;&nbsp;8(c+a-b)+1<br>&nbsp;8(c-b)+1 &nbsp;8(c+a+b)+1 
+&nbsp;8(c-a)+1</font></p>
+<p><font size="2">Since a number congruent to 1 (mod 8) is a quadratic residue 
+modulo 2^N for any N, the above expressions form a magic square of squares modulo 
+2^N for any N. &nbsp;You just have to find the integer square roots.</font></p>
+<p><font size="2">For example, pick</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;a,b,c = 1,3,5</font><font size="2">.</font></p>
+<p><font size="2">Then</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;49 &nbsp;&nbsp;9 &nbsp;65<br>&nbsp;&nbsp;57 
+&nbsp;41 &nbsp;25<br>&nbsp;&nbsp;17 &nbsp;73 &nbsp;33</font></p>
+<p><font size="2">is a magic square of squares modulo 2^N for any N. Magic sum 
+= 123.</font></p>
+<p><font size="2">To find the square roots, solve the following six integer 
+equations. [The other three entries are already squares]. Integer solutions 
+are guaranteed to exist for any N.</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;A^2 = p(2^N) + 65<br>&nbsp;&nbsp;B^2 
+= q(2^N) + 57<br>&nbsp;&nbsp;C^2 = r(2^N) + 41<br>&nbsp;&nbsp;D^2 = s(2^N) + 
+17<br>&nbsp;&nbsp;E^2 = t(2^N) + 73<br>&nbsp;&nbsp;F^2 = u(2^N) + 33</font></p>
+<p><font size="2">Then use the square roots as follows.</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;&nbsp;7^2 &nbsp;3^2 &nbsp;A^2<br>&nbsp;&nbsp;&nbsp;B^2 
+&nbsp;C^2 &nbsp;5^2<br>&nbsp;&nbsp;&nbsp;D^2 &nbsp;E^2 &nbsp;F^2</font></p>
+<p><font size="2">For example, for N = 7, we get the following magic square 
+of squares modulo 2^7 = 128.</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;&nbsp;7^2 &nbsp;3^2 31^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;49 
+&nbsp;&nbsp;9 961 (mod 128) &nbsp;&nbsp;49 &nbsp;9 65<br>&nbsp;&nbsp;21^2 13^2 
+&nbsp;5^2 ---&gt; 441 169 &nbsp;25 ---------&gt; &nbsp;57 41 25<br>&nbsp;&nbsp;23^2 
+29^2 17^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;529 841 289 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17 
+73 33</font></p>
+<p><font size="2">Here are some more examples with higher values of N.</font></p>
+<p><font size="2">N = 8</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;&nbsp;7^2 &nbsp;&nbsp;3^2 &nbsp;33^2<br>&nbsp;&nbsp;43^2 
+&nbsp;51^2 &nbsp;&nbsp;5^2<br>&nbsp;&nbsp;23^2 &nbsp;29^2 &nbsp;17^2</font></p>
+<p><font size="2">N = 10</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;&nbsp;7^2 &nbsp;&nbsp;&nbsp;3^2 
+&nbsp;&nbsp;33^2<br>&nbsp;&nbsp;85^2 &nbsp;205^2 &nbsp;&nbsp;&nbsp;5^2<br>&nbsp;233^2 
+&nbsp;157^2 &nbsp;111^2</font></p>
+<p><font size="2">N = 20</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7^2 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3^2 &nbsp;115167^2<br>&nbsp;&nbsp;&nbsp;10837^2 
+&nbsp;235827^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5^2<br>&nbsp;&nbsp;206569^2 
+&nbsp;126819^2 &nbsp;170095^2</font></p>
+<p><font size="2">N = 30</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7^2 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3^2 &nbsp;230047265^2<br>&nbsp;&nbsp;176171605^2 
+&nbsp;&nbsp;13395661^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5^2<br>&nbsp;&nbsp;204265751^2 
+&nbsp;208539805^2 &nbsp;&nbsp;96298897^2</font></p>
+<hr>
+<p><font size="2">Here are my own entries to the Buell/Pech Magic Hourglass 
+modulo 2^N competition [with the addition that they are fully magic]</font></p>
+<p><font size="2">(mod 2^8)</font></p>
+<p><font size="2" face="Fixedsys">21^2 &nbsp;23^2 &nbsp;61^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;185 
+&nbsp;&nbsp;17 &nbsp;137<br>33^2 &nbsp;25^2 &nbsp;47^2 &nbsp;----&gt; &nbsp;&nbsp;65 
+&nbsp;113 &nbsp;161<br>37^2 &nbsp;55^2 &nbsp;51^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;89 
+&nbsp;209 &nbsp;&nbsp;41</font></p>
+<p><font size="2">(mod 2^10)</font></p>
+<p><font size="2" face="Fixedsys">107^2 &nbsp;233^2 &nbsp;195^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;185 
+&nbsp;&nbsp;17 &nbsp;137<br>&nbsp;33^2 &nbsp;231^2 &nbsp;&nbsp;47^2 &nbsp;----&gt; 
+&nbsp;&nbsp;65 &nbsp;113 &nbsp;161<br>&nbsp;91^2 &nbsp;&nbsp;73^2 &nbsp;205^2 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;89 &nbsp;209 &nbsp;&nbsp;41</font></p>
+<p><font size="2">(mod 2^20)</font></p>
+<p><font size="2" face="Fixedsys">246165^2 &nbsp;206569^2 &nbsp;&nbsp;&nbsp;4803^2 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;185 &nbsp;&nbsp;17 &nbsp;137<br>115167^2 
+&nbsp;&nbsp;43239^2 &nbsp;211921^2 &nbsp;----&gt; &nbsp;&nbsp;65 &nbsp;113 &nbsp;161<br>184411^2 
+&nbsp;149065^2 &nbsp;235827^2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;89 
+&nbsp;209 &nbsp;&nbsp;41</font></p>
+<p><font size="2">(mod 2^30)</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;97763733^2 &nbsp;204265751^2 &nbsp;242225859^2<br>230047265^2 
+&nbsp;&nbsp;75016423^2 &nbsp;&nbsp;&nbsp;9649105^2 &nbsp;----&gt; &nbsp;etc<br>126013531^2 
+&nbsp;&nbsp;74824119^2 &nbsp;&nbsp;13395661^2</font></p>
+<p><font size="2">(mod 2^40)</font></p>
+<p><font size="2" face="Fixedsys">157937811861^2 &nbsp;&nbsp;54965098775^2 &nbsp;32506899773^2<br>&nbsp;42182754783^2 
+&nbsp;&nbsp;47319656679^2 &nbsp;&nbsp;3748447279^2<br>128186134437^2 &nbsp;225560607159^2 
+&nbsp;&nbsp;8576538931^2</font></p>
+<p><font size="2">(mod 2^50)</font></p>
+<p><font size="2" face="Fixedsys">231289259834987^2 &nbsp;&nbsp;72512802334441^2 
+&nbsp;&nbsp;&nbsp;3880797596989^2<br>&nbsp;56582666075681^2 &nbsp;115496040573159^2 
+&nbsp;151728856185809^2<br>116969802223707^2 &nbsp;&nbsp;79390397807031^2 &nbsp;118738679260877^2</font></p>
+<p><font size="2">(mod 2^60)</font></p>
+<p><font size="2" face="Fixedsys">207959822072299115^2 &nbsp;170501323084323095^2 
+&nbsp;193658664774528317^2<br>123229457133191647^2 &nbsp;180259481135392999^2 
+&nbsp;&nbsp;98364512992543791^2<br>211223202335215707^2 &nbsp;223570521906067895^2 
+&nbsp;225861670001206989^2</font></p>
+<p><font size="2">(mod 2^90)</font></p>
+<p><font size="2" face="Fixedsys">&nbsp;75203459322122514551553643^2 &nbsp;&nbsp;89064358005087038671628009^2 
+&nbsp;212694822416174402902168259^2<br>219077054094880999472512545^2 &nbsp;196302760081661098748061927^2 
+&nbsp;212510725734995190269295569^2<br>157075660995567914487459749^2 &nbsp;&nbsp;32945794187736625642620489^2 
+&nbsp;243922835234547628854450483^2</font></p>
+<p><font size="2">I have discovered a truly marvelous (and quick) construction 
+method, but the width of this screen&nbsp;is too small to contain larger values 
+of N.</font></p>
+<p><font size="2">Starting with a solution modulo 2^N, I can recursively compute 
+a solution modulo 2^2(N-1).</font></p>
+<p><font size="2">So from a solution modulo 2^13, I compute a solution modulo 
+2^24 and then modulo 2^46 and then modulo 2^90.</font></p>
+<hr>
+<p>Return to the home page  <a href="http://www.multimagie.com/indexengl.htm"
+target="_top">http://www.multimagie.com</a></p>
+</body>
+
+</html>
