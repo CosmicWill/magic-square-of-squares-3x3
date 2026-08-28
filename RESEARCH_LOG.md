@@ -1290,3 +1290,36 @@ two same-congruum triples with the spacing relation — not search; the
 construction generalizes (any two triples T₁, T₂ of a common congruum
 D with q₂² + p₂² − q₁² > 0 give one) and could feed F6/A4 as a
 family of rank-style near-miss anchors if ever useful.
+
+## 2026-08-28 — Entry 31: the refutation, audited — adversarial controls on our own reading of Hill
+
+Prompted by the owner's (correct) insistence that refuting someone's
+paper demands maximal certainty, the A1 §7 refutation was itself put
+through an adversarial pass — could WE have misread the paper?
+
+**Controls run** (A1 §7.5; `compute/hill_literal_controls.py`, a second
+implementation built from the paper's literal definitions — raw
+offsets, his sum formula (2), his case-(c) Lemma-3.2 construction,
+(29)/(30) exactly as printed, with his (6),(7),(8),(11)–(14),(20),(21)
+asserted at every configuration, 60-digit precision):
+1. transcription of (29)/(30) re-verified against the page images, and
+   cross-confirmed by the identity closing and (30) reproducing RHS(29)
+   term-for-term (a mis-transcription could not do either);
+2. the witness re-verified literally: both sides of (29) equal to 55
+   decimal places; ΣpA = ΣpB = 1248 by his own case-(c) formulas; the
+   "odd part" his step declares must vanish evaluates to −152180.22;
+3. perturbation control: one grid value off by 1 ⟹ (29) FAILS — (29)
+   is exactly the spacing constraint, nothing more;
+4. 500 random real grids: (29) holds on every one, β₁ ∈ [1.0008,
+   3.998], never 1 — the ℝ-family point made empirical;
+5. representation control: α₃d = 1 in place of 5 changes nothing.
+
+**Steelman documented** (§7.5): the only two readings of his final
+step both fail — numeric (numbers have no coefficients; the odd part
+is −152180.22 at a configuration satisfying (29)) and polynomial
+(LHS − RHS is provably NOT the zero polynomial, so the identity
+premise is false); and the "pair 3 is irrational so the witness is
+outside his framework" objection is closed three ways, decisively by
+circularity: restricting the step to all-rational configurations makes
+its soundness equivalent to the theorem it is meant to prove. The
+refutation stands at the highest standard we can impose on it.

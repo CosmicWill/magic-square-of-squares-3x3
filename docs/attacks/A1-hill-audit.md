@@ -332,3 +332,69 @@ $\mathbb{F}_p$ boundary is the deepest diagnosis: the derivation never
 leaves the real-algebraic world (§7.2), and over $\mathbb{R}$ the
 system is solvable (F5.2) — the witness is precisely such a real
 solution pushed through his own formalism with maximal integrality.
+
+### 7.5 Steelman — every alternative reading, closed (adversarial controls)
+
+Because refuting someone's work demands more than one reading, the
+re-audit was itself audited: the critical pages (his (21)–(28), Lemma
+3.2, (29), (30), and the final paragraph) were re-read against the PDF
+page images, and every check above was re-run through a **second,
+independent implementation that follows the paper's definitions
+literally** — raw offsets, his AP-sum formula (2), his case-(c)
+$\Sigma p_A = \Sigma p_B$ construction, and (29)/(30) exactly as
+printed, with his cited input equations (6), (7), (8), (11)–(14),
+(20), (21) asserted numerically at every configuration
+([`compute/hill_literal_controls.py`](../../compute/hill_literal_controls.py),
+60-digit precision). Results: at the witness, LHS(29) = RHS(29) =
+$-298392.5892\ldots$ to 55 decimal places; $\Sigma p_A = \Sigma p_B
+= 1248$ via his own case-(c) formulas; **the "odd part" of (30) that
+his step declares must be zero evaluates to $-152180.22\ldots$**;
+perturbing one grid value by 1 makes (29) *fail* (so (29) is exactly
+the constraint, no more); (29) held on all 500 random real grids
+sampled, with $\beta_1$ ranging over $[1.0008, 3.998]$ and never 1;
+and the representation choice $\alpha_{3d} = 1$ instead of $5$ changes
+nothing. Against that background, the possible objections:
+
+- **"You mis-transcribed (29) or (30)."** Ruled out three ways: visual
+  re-read of the page images; the exact polynomial identity closing
+  (a mis-transcription would not reduce to cofactor × constraint); and
+  his printed (30) reproducing our RHS(29) term-for-term at the
+  witness.
+- **"His step is not coefficient comparison — you misread the
+  argument."** His words, in full: *"Clearly, this is a quadratic in
+  $\alpha_{1d}^2$ and, as such, the coefficients of odd powers of
+  $\alpha_{1d}$ are 0, which must also hold in the RHS. Obviously,
+  $N_1, N_2, N_3, \beta_{1n}, \beta_{1d}, \beta_{2n}, \beta_{2d} > 0$,
+  as per the definitions in equations (11), (21) and (22), so
+  $\beta_{1d}^2 - \beta_{1n}^2 = 0$."* There are exactly two readings.
+  *Numeric reading*: (29) is one equation between two numbers; numbers
+  do not have coefficients; the "odd part" is $-152180.22$ at the
+  witness. *Polynomial reading* (all quantities free variables): then
+  the premise is false — LHS $-$ RHS is **not** the zero polynomial
+  (Theorem A1.3: it is cofactor × constraint), so (29) is not a
+  polynomial identity and comparison is unavailable. Both readings
+  fail; there is no third: any hypothetical variation of
+  $\alpha_{1d}$ drags $N_1$ (present in his RHS coefficients, defined
+  from $\alpha_{1d}$ by his (11)–(12)) and the $\beta$'s along with
+  it, so "coefficients" are not even well-defined constants.
+- **"The witness is outside his framework: pair 3 has irrational
+  $\alpha_3$ / $\beta_2$, so (21)'s $\beta_2 \in \mathbb{Q}^+$ and
+  §2.3's perfect-square discriminant fail."** Three answers. (i) The
+  step under refutation justifies itself by *positivity alone* (quoted
+  above) — every positivity it invokes holds at the witness, and
+  $\alpha_{1d} = 6$, the variable he compares coefficients in, is a
+  genuine integer from a fully integral pair; rationality of pair 3
+  plays no role in the inference as written. (ii) He himself places
+  $\beta_{1n}, \beta_{1d}, \beta_{2n}, \beta_{2d} \in \mathbb{R}^+$
+  (p. 5), and they enter (29) only squared. (iii) Decisive: restricting
+  the step's validity to all-rational configurations cannot save it,
+  because by Theorem A1.2 the all-rational domain being empty *is* the
+  theorem being proved — a step that is sound only if the conclusion
+  is true is circular, not a proof. Any repair must supply a new
+  Diophantine argument the paper does not contain.
+- **"Perhaps (29) encodes more than the spacing constraint and the
+  witness misses a hypothesis."** Empirically closed: every equation
+  he cites as an input to (29) — (7), (8), (13)/(14), (21)–(28),
+  Lemma 3.2 — is asserted numerically at the witness by the literal
+  implementation, and the perturbation control shows (29) tracks the
+  spacing constraint exactly (fails the moment it is broken).
