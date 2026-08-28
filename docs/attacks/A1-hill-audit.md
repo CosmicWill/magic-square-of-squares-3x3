@@ -4,10 +4,15 @@
 `papers/2510.08286v3-hill.pdf`; the audit below through §5 predates the
 text and stands unchanged); machinery reconstruction **PROVEN** equivalent
 to the F2 layer; boundary meta-theorem A1.1 **PROVEN** with executable
-witnesses; verdict on the paper: **PRELIMINARY — invalid as written**, crux
-located at its eq. (29) coefficient-comparison step (§6); formal re-audit
-with executable counterexample pending.
-Verification: `python3 -m verify --only a1`.
+witnesses. **Formal re-audit complete (§7): the paper's proof is REFUTED**
+— its eq. (29) is PROVEN to be an identity-multiple of its own Lemma-3.2
+constraint (no Diophantine content), and the final inference
+"(29) ⟹ β₁ = 1" is PROVEN invalid by an explicit witness (a genuine magic
+square with six perfect-square entries) satisfying every hypothesis and
+positivity requirement of the step with β₁ = 6/5 and both sides of (29)
+nonzero. The open problem itself is untouched.
+Verification: `python3 -m verify --only a1` (5 checks; the re-audit adds
+`a1.eq29_identity`, `a1.eq29_witness`, `a1.hill_grid`).
 
 ## 1. The object under audit
 
@@ -190,20 +195,140 @@ polynomial-identity claim, not a congruence), so A1.1 is not itself the
 refutation; the refutation is the direct invalidity of the
 coefficient-comparison step.
 
-**What remains for the formal re-audit (scheduled):**
-1. re-derive its eq. (29) symbolically from the dictionary (its
-   (7)–(8), (13)–(14), (21)–(28) + Lemma 3.2) and confirm the derivation
-   is otherwise sound;
-2. produce an **executable counterexample**: a near-miss configuration
-   (e.g. a row-system of Euler's 4×4 via `a1.dictionary`, or an A1.1
-   pseudo-solution) satisfying every hypothesis actually used up to
-   eq. (29) with $\beta_1 \neq 1$ — exhibiting that (29) does not force
-   $\beta_{1d}^2 = \beta_{1n}^2$;
-3. checklist items 2–5 (sign cases in its (16) ordering trichotomy;
-   Lemma 3.2's case split; the 4×4-row test; the $\mathbb{F}_p$ test —
-   note the proof as written never uses positivity beyond ordering, so
-   F5.3 already implies *some* step must fail over $\mathbb{F}_p$).
+*(The re-audit items listed here in the preliminary pass are now
+executed — see §7, which confirms every prediction of this section and
+sharpens them to PROVEN statements.)*
 
-Until the re-audit lands, the formal repo verdict moves from UNRESOLVED
-to **PRELIMINARY: invalid as written (crux located)** — and the program
-continues unchanged.
+## 7. The formal re-audit (2026-08-28) — the proof is refuted
+
+All statements in this section are machine-verified by
+`a1.eq29_identity`, `a1.eq29_witness`, and `a1.hill_grid` (exact
+arithmetic throughout: integer multivariate polynomial expansion,
+$\mathbb{Q}$, and $\mathbb{Q}(\sqrt{105961})$). Variable dictionary:
+$n = \alpha_{1n}$, $d = \alpha_{1d}$, $N_2, N_3$ = Hill's per-pair $N$;
+$b_{1n} = \beta_{1n}^2 = \alpha_{2n}/\alpha_{1n}$,
+$b_{1d} = \beta_{1d}^2$, $b_{2n} = \beta_{2n}^2$,
+$b_{2d} = \beta_{2d}^2$ (every $\beta$ enters (29) squared).
+
+### 7.1 The encoding is the full problem (Theorem A1.2)
+
+**Theorem A1.2** (`a1.hill_grid`). Hill's constraint set — three AP
+pairs $\mathcal{P}_1, \mathcal{P}_2, \mathcal{P}_3$ with equal sums
+$D_1$ plus the Lemma-3.2 spacing constraint $\Sigma p_A = \Sigma p_B$ —
+is *equivalent* to: the nine values form a 3×3 additive grid
+$M + iD + jF$ $(i, j \in \{0,1,2\})$, which is exactly the Lucas magic
+structure (the grid arranges into a magic square via a pair of
+orthogonal Latin squares, every line summing to $3(M+D+F)$).
+
+*Consequences.* (i) The reduction in his §3 is faithful **and
+complete** — this upgrades §2's line-level dictionary to the full
+system. (ii) **No integer hypothesis-level counterexample to his
+Theorem 3.1 can exist**: nine distinct integer squares satisfying his
+constraint set would *be* a magic square of squares. The only possible
+flaw in the paper was therefore inferential — and §7.3 locates it.
+(iii) Over $\mathbb{R}$ his constraint set has solutions in abundance
+(any grid of nine distinct positive reals; cf. F5.2), so no chain of
+real-algebraic reasoning can conclude nonexistence. That is precisely
+the boundary his proof crashes into:
+
+### 7.2 Equation (29) is an identity in costume (Theorem A1.3)
+
+**Theorem A1.3** (`a1.eq29_identity`; exact polynomial identity in
+$\mathbb{Z}[n, d, N_2, N_3, b_{1n}, b_{1d}, b_{2n}, b_{2d}]$).
+$$\mathrm{LHS}(29) - \mathrm{RHS}(29) \;=\; 4\,N_2^2 N_3^2\, b_{1d}^2
+b_{2d}^2\, d^2 \;\cdot\; \frac{4E}{t^2},$$
+where $E := (p_2^2 - q_1^2) - (p_3^2 - q_2^2)$ is the Lemma-3.2
+spacing constraint (written via his own formulas (7)–(8), (11)–(14),
+(21)–(28), denominators cleared) and $t = \mathcal{P}_3^{n_2}$ the free
+scale. The cofactor is strictly positive on every configuration, so:
+
+**Corollary.** *Equation (29) is equivalent to the single constraint
+$E = 0$.* His entire §2–3 apparatus — the $\kappa, \alpha, N$
+reparametrization, the $\beta$-splits, Lemma 3.2 (whose case
+trichotomy is handled correctly, checklist items 2–3) — is a chain of
+real-algebraic identities that repackages one equation of the system as
+(29). **It contains no Diophantine content whatsoever**: nothing in the
+derivation distinguishes integer configurations from real ones. (The
+printed (30) is also verified correct — the RHS factors as
+$4N_2^2N_3^2\beta_{2n}^2\beta_{2d}^2(\beta_{1d}^2 - \beta_{1n}^2)
+(\beta_{1n}^2\alpha_{1n}^2 - \beta_{1d}^2\alpha_{1d}^2)$, and his
+bracket is the second factor expanded via (12). The error is *not* an
+algebra slip.)
+
+### 7.3 The witness: the final inference is a non-sequitur
+
+The proof's only remaining step is: *"(29) holds; the LHS contains only
+even powers of $\alpha_{1d}$; therefore the odd-power coefficients of
+the RHS vanish; since [positivity], $\beta_{1d}^2 - \beta_{1n}^2 = 0$"*
+— forcing $\beta_1 = 1$ and the degeneracy contradiction. The step
+treats a single numerical equation among mutually dependent quantities
+as a polynomial identity in a free variable $\alpha_{1d}$. It is
+refuted by an explicit witness (`a1.eq29_witness`):
+
+**The witness.** The 3×3 additive grid $(M, D, F) = (4, 3360, 2112)$ —
+a genuine magic square (magic constant 16428, center $5476 = 74^2$)
+whose nine entries contain **six** perfect squares:
+$$\begin{pmatrix} 94^2 & 2^2 & 7588 \\ 4228 & 74^2 & 82^2 \\
+58^2 & 10948 & 46^2 \end{pmatrix}$$
+Its three AP pairs are $\mathcal{P}_1 = (2, 58, 82)$ and
+$\mathcal{P}_2 = (46, 74, 94)$ — **fully integral Hill pairs** with
+common congruum $D_1 = 3360$, exact data $(\alpha_1, s_1, N_1) =
+(35/6,\, 1,\, 16)$ and $(\alpha_2, s_2, N_2) = (42/5,\, 23,\, 4)$,
+coprime representations, all of (11)–(14) satisfied in $\mathbb{Z}$ —
+and the third pair $(\sqrt{4228}, \sqrt{7588}, \sqrt{10948})$, *forced
+by the spacing constraint itself*, real (the three values are positive)
+and genuinely non-integral (none is a perfect square — as §7.1(ii)
+guarantees must happen for some pair). Its interleaving is Hill's own
+case (c).
+Exact facts (in $\mathbb{Q}(g)$, $g = \sqrt{105961}$, $t^2 = 18536 -
+56g$, $\alpha_3 = (2317+7g)/420$):
+
+- every quantity his step needs is defined and **positive** — including
+  $N_3 > 0$, $s_3^2 = 1057(331+g)/504 > 0$ — i.e. the step's entire
+  stated justification ("Obviously $N_1, N_2, N_3, \beta_{1n},
+  \beta_{1d}, \beta_{2n}, \beta_{2d} > 0$") is satisfied;
+- equation (29) **holds exactly** (Theorem A1.3 + $E = 0$, an integer
+  identity: $46^2 - 58^2 = 4228 - 74^2 = -1248$);
+- both sides of (29) equal $4N_2^2N_3^2\beta_{2n}^2\beta_{2d}^2 \cdot
+  (\beta_{1d}^2 - \beta_{1n}^2)(\beta_{1n}^2\alpha_{1n}^2 -
+  \beta_{1d}^2\alpha_{1d}^2)$ with every factor **nonzero**
+  ($\approx -298392.59$; his argument would force both sides to be 0);
+- and $\beta_1^2 = 36/25 \neq 1$, prefactor $\beta_{1d}^2 -
+  \beta_{1n}^2 = -11/30 \neq 0$.
+
+So a configuration satisfying **every hypothesis and every positivity
+condition the final step invokes** — with the first two pairs not
+merely real but integral — fails its conclusion. The inference is
+invalid, and with it the proof of his Theorem 3.1.
+
+### 7.4 Verdict and checklist resolution
+
+**The claimed proof in arXiv:2510.08286v3 is invalid (PROVEN).** The
+precise error: the passage from eq. (29) to "$\beta_{1d}^2 -
+\beta_{1n}^2 = 0$" applies polynomial coefficient comparison in
+$\alpha_{1d}$ to an equation that is not a polynomial identity — by
+Theorem A1.3 it is the Lemma-3.2 constraint itself, satisfied over
+$\mathbb{R}$ by the full 3-parameter grid family $(M, D, F)$ of
+Theorem A1.2, on which $\alpha_{1d}$ is not free and $\beta_1 \neq 1$
+generically. No repair short of a genuinely new
+Diophantine argument is possible: by §7.1(iii) the derivation is valid
+over $\mathbb{R}$, where his constraint set is abundantly solvable, so
+*any* completion of the proof must inject integrality somewhere — and
+the paper never does (its integrality conditions — coprime
+$\alpha_n/\alpha_d$, perfect-square discriminant — are never used by
+the derivation, as Theorem A1.3 shows). The open problem is untouched;
+the $100 prizes are safe.
+
+§5 checklist, resolved against the text: **(1)** no
+descent/minimality/height anywhere — confirmed; the endgame is not a
+congruence (so A1.1 is not itself the refutation) but its sibling
+fallacy, and the located error is exactly of the predicted character
+(§4.2: a structural conclusion drawn from relations that hold only as
+one exact instance). **(2–3)** the sign/case handling (his (16)
+trichotomy, Lemma 3.2 cases (a)/(b)/(c)) is *correct* — verified, the
+flaw is not there. **(4)** the 4×4 test does not bite: his (29) is
+genuinely 3×3-specific (Theorem A1.2). **(5)** the $\mathbb{R}$/
+$\mathbb{F}_p$ boundary is the deepest diagnosis: the derivation never
+leaves the real-algebraic world (§7.2), and over $\mathbb{R}$ the
+system is solvable (F5.2) — the witness is precisely such a real
+solution pushed through his own formalism with maximal integrality.

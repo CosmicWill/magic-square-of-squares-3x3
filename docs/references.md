@@ -111,7 +111,7 @@ honestly:
 | Ref | Provenance |
 |---|---|
 | J. C. Ferreira, arXiv:1506.06621 (2015, math.GM). Claimed nonexistence proof; not accepted. | EXISTENCE-VERIFIED |
-| O. Hill, arXiv:2510.08286 (math.GM; v1 Oct 2025, v2 Oct 2025, **v3 Apr 2026**), "On arithmetic progressions and a proof of the nonexistence of magic squares of squares." Claimed nonexistence proof; as of 2026-08-28 still math.GM, no refutation, no endorsement, no journal acceptance; problem status pages unchanged. **Audited in [attacks/A1-hill-audit.md](attacks/A1-hill-audit.md)** — v3 text now in hand; preliminary crux identified (invalid coefficient-comparison at its eq. (29), see A1 §6); formal re-audit pending. | **READ** (v3 PDF in papers/, read in full 2026-08-28) |
+| O. Hill, arXiv:2510.08286 (math.GM; v1 Oct 2025, v2 Oct 2025, **v3 Apr 2026**), "On arithmetic progressions and a proof of the nonexistence of magic squares of squares." Claimed nonexistence proof; as of 2026-08-28 still math.GM, no public refutation, no endorsement, no journal acceptance. **Formally refuted here, [A1 §7](attacks/A1-hill-audit.md)** (2026-08-28): its eq. (29) is an identity-multiple of its own Lemma-3.2 constraint; the final coefficient-comparison inference fails on an explicit six-square witness. First refutation we are aware of anywhere. | **READ** (v3 PDF in papers/, read in full; refutation machine-verified, `a1.eq29_*`) |
 
 ## Classical ingredients (reproved where used)
 

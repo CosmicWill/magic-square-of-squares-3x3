@@ -1231,3 +1231,62 @@ cross-check; (3) digest Kominers → A3.K; (4) digest EMV + Schulze-
 Pillot → pose the A9-T1 composition question precisely; (5) read
 Bruin–Creutz alongside Stoll–Testa/Horie–Yamauchi as the endgame
 template pair.
+
+## 2026-08-28 — Entry 30: the A1 formal re-audit — Hill's claimed proof is refuted
+
+With the v3 text in hand (entry 29), the §5 checklist and the §6
+preliminary diagnosis were pushed to a complete formal re-audit, and
+the outcome is stronger than the preliminary verdict: **the claimed
+proof of arXiv:2510.08286v3 is refuted**, with the entire analysis
+machine-verified (three new checks: `a1.eq29_identity`,
+`a1.eq29_witness`, `a1.hill_grid`; suite now 111 checks). A1 §7 is the
+write-up. The anatomy, in three verified layers:
+
+**1. The encoding is the full problem (Theorem A1.2).** Hill's
+constraint set — three equal-sum AP pairs plus his Lemma-3.2 spacing
+relation — is exactly equivalent to nine squares in a 3×3 additive
+grid M + iD + jF, i.e. to the Lucas structure. His reduction is
+faithful and complete; consequently no integer hypothesis-level
+counterexample can exist (it would BE a magic square of squares), and
+the audit had to be inferential.
+
+**2. His equation (29) is an identity in costume (Theorem A1.3).** As
+polynomials in his own eight variables, LHS(29) − RHS(29) =
+4N₂²N₃²β₁d⁴β₂d⁴α₁d² × (the Lemma-3.2 constraint, denominators
+cleared) — verified by exact integer polynomial expansion, pure
+stdlib. So (29) is *equivalent* to the constraint it was derived from:
+the whole §2–3 apparatus is real-algebraic repackaging with no
+Diophantine content (his integrality side conditions are never used).
+The printed (30) and its factorization
+(β₁d²−β₁n²)(β₁n²α₁n²−β₁d²α₁d²) are also verified correct — the error
+is not an algebra slip.
+
+**3. The final inference is a non-sequitur (the witness).** The step
+"(29) has only even powers of α₁d on the left, so the odd coefficients
+on the right vanish, so β₁ = 1" treats one numerical equation among
+dependent quantities as a polynomial identity in a free variable. The
+executable counterexample: the additive grid (M, D, F) = (4, 3360,
+2112) — a genuine magic square, constant 16428, center 74², with SIX
+perfect-square entries — whose first two AP pairs (2,58,82), (46,74,94)
+are fully integral Hill pairs (congruum 3360, data (35/6, 1, 16) and
+(42/5, 23, 4)) and whose third pair is forced real by the constraint
+itself. Every quantity his step invokes is defined and positive
+(verified exactly in ℚ(√105961)); (29) holds; both sides equal
+≈ −298392.59 ≠ 0 (his argument forces 0); β₁ = 6/5 ≠ 1. The step, and
+with it the proof, is invalid. Deepest diagnosis (checklist item 5):
+the derivation never leaves the real-algebraic world, and over ℝ the
+system is solvable (F5.2) — no such derivation can conclude.
+
+Ledger updated (UNRESOLVED → proof REFUTED, PROVEN); references.md
+row updated; to our knowledge this is the first refutation of the
+paper anywhere (none public as of 2026-08-28). The open problem is,
+as ever, untouched — and the A1.1 boundary theorem now has a worked
+companion example of the adjacent fallacy class (polynomial-identity
+misreading, sibling of the congruence endgame).
+
+Incidental yield: the witness grid (4, 3360, 2112) is a pleasant
+6-of-9-squares near-miss (magic sum 16428) found by pure structure —
+two same-congruum triples with the spacing relation — not search; the
+construction generalizes (any two triples T₁, T₂ of a common congruum
+D with q₂² + p₂² − q₁² > 0 give one) and could feed F6/A4 as a
+family of rank-style near-miss anchors if ever useful.

@@ -2,9 +2,10 @@
 
 *A standing honest assessment: what has genuinely been achieved, what it
 means, and what it does not mean. Updated at milestones (last:
-2026-08-28, after Theorem A8.18 and the A9-T1 fourth layer). Every claim
-below carries the repository's provenance tags and is enforced by the
-verification suite (`python3 -m verify`, currently 108 checks); the
+2026-08-28, after the full-access literature sweep and the A1 formal
+re-audit). Every claim below carries the repository's provenance tags
+and is enforced by the verification suite (`python3 -m verify`,
+currently 111 checks); the
 [README ledger](../README.md#claims-ledger) is the row-by-row
 record.*
 
@@ -124,10 +125,18 @@ suspected.
   within their stated ranges and conjectural beyond them; the spectral
   rigidity is through degree 8, trivial character (nontrivial
   characters at $m \in \{6,7,8\}$: partial, scope-noted).
-- **Novelty is claimed only relative to the literature we could
-  reach** (citation databases unreachable from this environment; the
-  searches are documented). Everything is machine-verified; nothing is
-  peer-reviewed.
+- **Novelty is claimed relative to a full-access literature sweep**
+  (2026-08-28, RESEARCH_LOG entry 29: the WANTED backlog is cleared,
+  and the field's own pages confirm nothing new on either surface since
+  BTVA 2022 / Bruin–Ilten–Xu 2025; the earlier caveat about unreachable
+  citation databases no longer applies). Everything is machine-verified;
+  nothing is peer-reviewed.
+- **The one claimed proof in the field is refuted, not the problem
+  solved**: the A1 re-audit (entry 30) proves the arXiv:2510.08286v3
+  argument invalid — its eq. (29) is an identity-multiple of its own
+  constraint, and its final inference fails on an explicit six-square
+  witness. That is a statement about a paper, not about the problem,
+  which remains open in both directions.
 - The multi-hour mod-$p$ computations are recorded artifacts with
   pinned system shapes; the suite re-verifies exactly what is cheap
   enough to re-verify (including the $\eta_\star^2$ certification,
