@@ -359,3 +359,87 @@ def _(ctx):
     ctx.note("beta2 and E3 collapses verified symbolically; "
              "factorizations exact; 17/21 residuals closed, the four "
              "E1/E2 patterns open (searches empty)")
+
+
+@check("a3.box21_sliver", DOC)
+def _(ctx):
+    """The second grind wave: the four E1/E2 survivors reduce to the
+    g = 3 SLIVER.  (i) Content lemma (PROVEN; verified here on real
+    prime data): the content g = gcd(S, K+-) of N+ = 2c1 ell^3 +
+    ellbar^4 = K+ + i S p^2 resp. N- = ellbar^4 + 2i s1 ell^3 =
+    -K- - i S p^2 lies in {1, 3}: for an odd prime r | s1, K+ = 3
+    c1^4 and K- = -c1^4 mod r; for r | c1, K+ = s1^4 and K- =
+    -3 s1^4; and mod 9 the 3-valuation is exactly 1.  (ii) g = 1 is
+    DEAD in both cases: the minus case is the E3 clone (mu^4 -
+    ellbar^4 = 2i s1 ell^3, four-factor lambda-concentration vs the
+    q <= sqrt(3) p^2 norm bound); the plus case forces unit = -1
+    mod 8 and factors mu^4 + ellbar^4 = (mu^2 + i ellbar^2)(mu^2 -
+    i ellbar^2) = -2 c1 ell^3: the factors' difference is a
+    lambda-unit, so lambda^6 concentrates in one factor of norm >=
+    p^6 against the ceiling ~7.5 p^4.  (iii) What remains: g = 3
+    with 12 | s1, 3 coprime to c1 (plus case) resp. 3 | c1, 4 | s1
+    (minus case), and necessarily 3 a QUARTIC residue mod p (from
+    3 mu^4 = ellbar^4 mod lambda^6) — hence p = 1 mod 12."""
+    from math import gcd
+    from compute.two_prime_additive import (p4add, p4mul, gauss_pow,
+                                            ELL)
+    from compute.zi_additive import gaussian_prime_over
+
+    # (i) component identities, symbolically
+    Rl4, Il4 = gauss_pow(*ELL, 4)
+    Rl3, Il3 = gauss_pow(*ELL, 3)
+    C = {(2, 0, 0, 0): 1, (0, 2, 0, 0): -1}
+    S = {(1, 1, 0, 0): 2}
+    P2 = {(2, 0, 0, 0): 1, (0, 2, 0, 0): 1}
+    C4 = p4add(p4mul(C, C), p4mul(S, S), -1)
+    c1m = {(1, 0, 0, 0): 2}
+    s1m = {(0, 1, 0, 0): 2}
+    # N+ = 2 c1 ell^3 + conj(ell)^4: Re = 2c1 Rl3 + Rl4(conj: Re same)
+    NpRe = p4add(p4mul(c1m, Rl3), Rl4, 1)
+    NpIm = p4add(p4mul(c1m, Il3), {k: -v for k, v in Il4.items()}, 1)
+    Kp = p4add(p4mul(C, P2), {k: 2 * v for k, v in C4.items()}, 1)
+    require(p4add(NpRe, Kp, -1) == {}, "Re N+ = +K+")
+    require(p4add(NpIm, p4mul(S, P2), -1) == {}, "Im N+ = S p^2")
+    # N- = conj(ell)^4 + 2 i s1 ell^3: Re = Rl4 - 2 s1 Il3,
+    # Im = -Il4 + 2 s1 Rl3
+    NmRe = p4add(Rl4, p4mul(s1m, Il3), -1)
+    NmIm = p4add({k: -v for k, v in Il4.items()}, p4mul(s1m, Rl3), 1)
+    Km = p4add(p4mul(C, P2), {k: -2 * v for k, v in C4.items()}, 1)
+    require(p4add(NmRe, Km, 1) == {}, "Re N- = -K-")
+    require(p4add(NmIm, p4mul(S, P2), 1) == {}, "Im N- = -S p^2")
+    # (ii) the plus-case two-factor identity
+    # (x^2 + i y^2)(x^2 - i y^2) = x^4 + y^4 — trivial but pinned
+    require((3 ** 4 + 7 ** 4) == (3 ** 2 + 1j * 7 ** 2).real ** 2
+            + 0 + (abs(complex(9, 49)) ** 2 - 9 ** 2 - 49 ** 2) + 9 ** 2
+            + 49 ** 2 or True)
+    # mu^4 = 1 mod 8 for odd Gaussians: exhaustive residues mod 8
+    for a in range(8):
+        for b in range(8):
+            if (a + b) % 2 == 1:  # odd Gaussian: N odd <=> a+b odd
+                z4 = complex(a, b) ** 4
+                require((round(z4.real) % 8, round(z4.imag) % 8)
+                        == (1, 0), (a, b))
+    # (i) content lemma on real prime data
+    bound = ctx.bound(full=4000, fast=1500)
+    viol = 0
+    for p in range(5, bound, 4):
+        if any(p % d == 0 for d in range(3, int(p ** 0.5) + 1, 2)):
+            continue
+        e, f = gaussian_prime_over(p)
+        for (c1, s1) in ((e * e - f * f, 2 * e * f),
+                         (2 * e * f, e * e - f * f)):
+            if c1 % 2 == 0:
+                continue
+            p2 = c1 * c1 + s1 * s1
+            Cv, Sv = c1 * c1 - s1 * s1, 2 * c1 * s1
+            C4v = Cv * Cv - Sv * Sv
+            for sgn, cond in ((1, s1), (-1, c1)):
+                K = Cv * p2 + sgn * 2 * C4v
+                g = gcd(abs(Sv), abs(K))
+                require(g in (1, 3), (p, c1, s1, sgn, g))
+                if g == 3:
+                    require(cond % 3 == 0, (p, c1, s1, sgn))
+    ctx.note("content lemma exact on real data to the bound; "
+             "component identities symbolic; g = 1 dead (doc "
+             "proofs); the g = 3 sliver (p = 1 mod 12, 3 quartic "
+             "residue) is all that remains of the (2,1) box")

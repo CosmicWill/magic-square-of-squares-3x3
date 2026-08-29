@@ -2210,3 +2210,22 @@ g*unit*mu^4 (g odd, 4 | s1) — the content g blocks the
 concentration argument; these are the last obstacle to a full
 Theorem A3.8. Searches empty; deeper search launched. Suite 142,
 all green.
+
+## 2026-08-29 — Entry 55 addendum: the second wave — g = 1 dead, only the g = 3 sliver remains
+
+The four E1/E2 survivors reduced further (a3.box21_sliver, all
+identities symbolic + content lemma verified on every split prime
+to the bound). CONTENT LEMMA: the content g = gcd(S, K+-) of
+N+- = K+- +- i S p^2 lies in {1, 3} (odd r | s1 gives K+ = 3c1^4,
+K- = -c1^4 mod r; r | c1 gives K+ = s1^4, K- = -3s1^4; mod 9 the
+3-valuation is exactly 1). G = 1 DEAD BOTH CASES: the minus case
+is the E3 clone (four-factor lambda-concentration); the plus case
+forces unit = -1 mod 8 and factors as (mu^2 + i ellbar^2)(mu^2 -
+i ellbar^2) = -2 c1 ell^3 — two factors differing by a
+lambda-unit, so lambda^6 concentrates in one factor of norm >=
+p^6 against the ~7.5 p^4 ceiling. WHAT REMAINS of the entire
+(2,1) box: the g = 3 sliver — 3*unit*mu^4 = 2c1 ell^3 + ellbar^4
+(12 | s1) or = ellbar^4 + 2i s1 ell^3 (3 | c1, 4 | s1), each
+forcing 3 to be a quartic residue mod p (so p = 1 mod 12).
+Deep searches empty to p, q <= 1500. One 3-flavored descent from
+Theorem A3.8. Suite 143, all green.
