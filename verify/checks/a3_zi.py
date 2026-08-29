@@ -109,3 +109,57 @@ def _(ctx):
              f"{bound}; {tot} relation instances nonzero (a <= 6, "
              f"{len(primes)} primes); {len(singles)} rich single-"
              "split centers directly triple-free — Theorem A3.6")
+
+
+@check("a3.omega2_ab1", DOC)
+def _(ctx):
+    """Theorem A3.7 (two split primes, first powers): for m = 2^s r
+    p q, D(m) admits no signed additive relation.  The machine
+    apparatus: all 36 canonical sign/exponent patterns classify as
+    20 VALUATION-dead (ultrametric at one of the four directions),
+    6 FACTORED (tan-half polynomial factors into candidate factors,
+    each forcing sigma^a tau^b = +-1 — impossible in the free
+    group), 3 CONGRUENCE-dead (no Pythagorean-compatible residues
+    mod 16), and 7 residual patterns closed by hand in the doc via
+    coprime-divisibility case trees ending in: q even / consecutive
+    squares / mod-3 descents / Fermat's x^4 - y^4 = square / the
+    non-congruence of 2 and 3 (self-contained descents).  Pinned:
+    the classification table, two factor certificates, the four
+    descent-equation searches (empty), and the real-data search on
+    every residual pattern (empty)."""
+    from compute.two_prime_additive import (classify_all_11,
+                                            search_real_data,
+                                            search_fermat_quartic,
+                                            search_2b2,
+                                            search_3w2_sandwich,
+                                            search_quartic_3T2)
+    from collections import Counter
+
+    rep = classify_all_11()
+    require(len(rep) == 36, len(rep))
+    cnt = Counter(v.split()[0] for _, _, v, _ in rep)
+    require(dict(cnt) == {"VALUATION": 20, "FACTORED": 6,
+                          "CONGRUENCE": 3, "OPEN": 7}, dict(cnt))
+    # two factor certificates pinned exactly
+    certs = {tuple(p): d for p, k, v, d in rep if v == "FACTORED"}
+    key1 = (((1, 0), 1), ((0, 1), 1), ((1, 1), -1))
+    require(sorted(certs[key1]) == ["t1", "t1+t2", "t2"], certs[key1])
+    key2 = (((1, 0), 1), ((0, 1), -1), ((1, -1), 1))
+    require(certs[key2] == ["t1-t2"], certs[key2])
+    # every congruence kill is mod 16
+    require(all(v == "CONGRUENCE mod 16" for _, _, v, _ in rep
+                if v.startswith("CONGRUENCE")))
+    # residual patterns: real-data search empty
+    bound = ctx.bound(full=500, fast=200)
+    for p, k, v, G in rep:
+        if v == "OPEN":
+            require(search_real_data(G, bound) == [], p)
+    # descent corroborations
+    b = ctx.bound(full=400, fast=150)
+    require(search_fermat_quartic(b) == [])
+    require(search_2b2(b) == [])
+    require(search_3w2_sandwich(5 * b) == [])
+    require(search_quartic_3T2(b) == [])
+    ctx.note("A3.7 apparatus: 36 patterns = 20 valuation + 6 "
+             "factored + 3 mod-16 + 7 hand-descended (doc); all "
+             "corroboration searches empty to the profile bounds")

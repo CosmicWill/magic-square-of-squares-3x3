@@ -197,6 +197,149 @@ multiplicatively independent — a genuine rank-2 unit equation) is
 the next target (A3-S2b); the desert data says its answer, too,
 should be "never".
 
+## 2.6 Theorem A3.7: the two-split-prime theorem ($a = b = 1$)
+
+*(2026-08-29; `compute/two_prime_additive.py`, check
+`a3.omega2_ab1`.)*
+
+**Theorem A3.7 (PROVEN).** Let $m = 2^s r\, p\, q$ with $r$ a product
+of primes $\equiv 3 \pmod 4$ and $p \ne q$ primes $\equiv 1 \pmod 4$.
+Then $D(m)$ admits **no** signed additive relation $\varepsilon_1 d_1
++ \varepsilon_2 d_2 + \varepsilon_3 d_3 = 0$ (repetitions allowed).
+Combined with Theorem A3.6: **the split part of any MSS3 center has
+at least three prime factors counted with multiplicity** (it is
+divisible by $p^2q$ or by $pqr'$ with $p, q, r'$ distinct split
+primes).
+
+*Setup.* Here $D(m) = \{ m^2 |\mathrm{Im}(\sigma^j\tau^k)| \}$ over
+$(j,k) \in \{(1,0), (0,1), (1,1), (1,-1)\}$, with $\sigma =
+\lambda^4/p^2$, $\tau = \mu^4/q^2$, and $v$-data
+$v_{\lambda,\bar\lambda,\mu,\bar\mu}(\sigma^j\tau^k) = (2j, -2j, 2k,
+-2k)$ — so $\langle\sigma,\tau\rangle$ is free of rank 2 and no
+monomial is $\pm 1$ except the identity. A relation is a vanishing
+sum of monomials $\sum c_i (w_i - w_i^{-1}) = 0$. The machine
+enumerates all sign/exponent patterns modulo symmetry: **36
+canonical patterns** (`classify_all_11`).
+
+**Lemma A3.7a (valuation prune).** At each of the four valuation
+directions the minimal valuation among the (merged) monomials must
+be attained by at least two distinct monomials — coefficients
+$\pm1, \pm2$ are units at $\lambda, \mu$. *Twenty* patterns die
+here; in particular every doubled pattern $2d_x = d_y$ except
+$\{x,y\} = \{\sigma\tau, \sigma\tau^{-1}\}$.
+
+**Lemma A3.7b (tan-half factorization).** Writing $\sigma =
+(1+it_1)/(1-it_1)$ with $t_1 = s_1/c_1 \in \mathbb{Q}$
+($\lambda^2 = c_1 + is_1$) and likewise $t_2 = s_2/c_2$, the
+relation times $(1+t_1^2)^J(1+t_2^2)^K$ is an integer polynomial
+$N(t_1, t_2)$. For *six* patterns $N$ factors completely (exact
+division, machine-certified) into the candidate factors $t_1$,
+$t_2$, $t_1 \pm t_2$, $1 \pm t_1t_2$, $1 + t_i^2$ — e.g.
+$\sin A + \sin B - \sin(A{+}B)$ gives $N = 2\,t_1t_2(t_1+t_2)$ —
+and each real zero of a candidate factor forces $\sigma^\alpha
+\tau^\beta = \pm 1$ with $(\alpha,\beta) \ne 0$: impossible in the
+free group. (These are precisely the *coherent* patterns, where one
+angle is a $\pm$-sum of the others: the classical sum-to-product
+identities.)
+
+**Machine congruences.** Three patterns have no solutions modulo 16
+under the Pythagorean side conditions ($c$ odd, $s$ even, $c^2+s^2
+\equiv P^2$, $P$ an odd unit) — `congruence_kill`.
+
+**The seven residual patterns** reduce, after clearing, to two
+equation families plus mirrors (all with $c_i$ odd, $s_i$ even,
+$c_i^2 + s_i^2 = p_i^2$, $\gcd(c_i, s_i) = 1$, so that
+$\gcd(c_is_i,\, c_i^2 - s_i^2) = 1$ and $p \nmid c_1s_1$):
+
+*Family I ($\tan A = \mp 2\tan B$, patterns $\{\sigma, \sigma\tau,
+\sigma\tau^{-1}\}$):* $c_1s_1(c_2^2 - s_2^2) = \mp 2\,c_2s_2(c_1^2 -
+s_1^2)$. Coprimality forces $c_2s_2 \mid c_1s_1 \mid 2c_2s_2$, so
+$c_1s_1 = \pm t\,c_2s_2$ with $t \in \{1, 2\}$.
+- $t = 1$: substituting gives $q^4 = 4[(c_1^2-s_1^2)^2 +
+  (c_1s_1)^2]$ — $q$ even, impossible.
+- $t = 2$: gives $c_2^2 - s_2^2 = \pm(c_1^2 - s_1^2)$, hence $p^4 -
+  q^4 = 12(c_2s_2)^2$. Writing $p^2+q^2 = 2u$, $p^2 - q^2 = 8v$
+  ($u$ odd, $\gcd(u,v)=1$): $uv = 3(\cdot)^2$; $u = 3a^2$ dies mod 3
+  ($u$ is a sum of two coprime squares), so $u = a^2$:
+  $((p{+}q)/2)^2 + ((p{-}q)/2)^2 = a^2$ with product $6b^2$: the
+  primitive parametrization gives pairwise-coprime $m, n, m{-}n,
+  m{+}n$ with $mn(m{-}n)(m{+}n) = 3b^2$ — one factor is $3\times$
+  square, three are squares. The four branches die by: $x^2+y^2 =
+  3d^2$ (mod 3); $x^4 - y^4 = 3T^2$ (**Lemma L5** below); the
+  sandwich $x^2 \pm 3w^2$ both squares (**Lemma L3**); and $a^2 +
+  b^2 = 6w^2$ (mod-3 descent, **L4**).
+
+*Family II ($\tan B = 2\sin A$, pattern $\{\tau, \sigma\tau,
+\sigma\tau^{-1}\}$):* $p^2 c_2s_2 = 2c_1s_1(c_2^2 - s_2^2)$, so
+$(c_2^2 - s_2^2) \mid p^2$:
+- $c_2^2 - s_2^2 = \pm 1$: $(c_2-s_2)(c_2+s_2) = \pm 1$ forces
+  $s_2 = 0$ — impossible.
+- $= \pm p$: then $p \mid c_1s_1$, impossible ($c_1^2 + s_1^2 =
+  p^2$ with $\gcd = 1$ allows no proper multiple).
+- $= \pm p^2$: then $c_2s_2 = \pm 2c_1s_1$ and $q^4 - p^4 =
+  16(c_1s_1)^2$, giving $uv = (\cdot)^2$, $u = a^2$, $v = b^2$, and
+  the primitive parametrization forces $m, n, m{-}n, m{+}n$ **all**
+  squares — i.e. $x^4 - y^4 = \square$: **Fermat (L1)**.
+
+*Family III (doubled: $2\sin(A{+}B) = \pm\sin(A{-}B)$, i.e. $\tan A
+= -3\tan B$ up to mirror):* $c_1s_1(c_2^2-s_2^2) = -3c_2s_2(c_1^2 -
+s_1^2)$, $t \in \{1, 3\}$.
+- $t = 1$: $q^4 - p^4 = 8C^2$ with $C = c_1^2 - s_1^2$ **odd** —
+  but $q^4 \equiv p^4 \equiv 1 \pmod{16}$ while $8C^2 \equiv 8$:
+  dead (this is the machine's mod-16 class, found by hand here).
+- $t = 3$: $p^4 - q^4 = 32(c_2s_2)^2$, leading to $uv = 2(\cdot)^2$
+  and $mn(m{-}n)(m{+}n) = 2b^2$: **Lemma L2** (the non-congruence
+  of 2).
+
+**Lemma L1 (Fermat).** $x^4 - y^4 = z^2$ has no solutions with
+$xyz \ne 0$. *(Classical descent; corroborated by exhaustive search
+in-suite.)*
+
+**Lemma L2 ($mn(m^2-n^2) = 2b^2$ is impossible** for coprime $m > n
+\ge 1$ of opposite parity, $b \ne 0$**).** The four factors are
+pairwise coprime and exactly one (the even one of $m, n$) carries
+the 2, as $2t^2$; the rest are squares. If $m = 2t^2$: $n = y^2$,
+$m \pm n = z^2, w^2$ with $z, w$ odd and $(z-w)(z+w) = 2y^2 \equiv
+2 \pmod 4$ while $z \pm w$ are both even — contradiction. If $n =
+2t^2$: $m = x^2$, $m \pm n = z^2, w^2$, so $z^2 + w^2 = 2x^2$,
+$z^2 - w^2 = 4t^2$; setting $A = (z{+}w)/2$, $B = (z{-}w)/2$:
+$A^2 + B^2 = x^2$, $AB = t^2$ with $AB$ even, and the primitive
+parametrization returns $m_2n_2(m_2^2 - n_2^2) = 2t_2^2$ at
+strictly smaller size — infinite descent. $\blacksquare$
+
+**Lemma L3 (the sandwich; "3 is not congruent").** $x^2 - 3w^2$ and
+$x^2 + 3w^2$ cannot both be nonzero squares. *Proof.* From $y^2 +
+z^2 = 2x^2$ and $z^2 - y^2 = 6w^2$: $A = (z{+}y)/2$, $B = (z{-}y)/2$
+give $A^2 + B^2 = x^2$, $AB = 3w'^2 \cdot 2$ with $w = 2w'$ forced
+mod 8; the primitive parametrization gives $mn(m{-}n)(m{+}n) =
+3w'^2$ with pairwise-coprime factors: the $3$ sits in one factor,
+the others are squares, and the four branches die by mod 3
+($x^2{+}y^2 = 3d^2$), by **L5**, by mod-3 descent (**L4**), or
+recurse into the same system at strictly smaller $x$ — a
+well-founded descent. $\blacksquare$
+
+**Lemma L4.** $a^2 + b^2 = 6w^2$ has no nonzero solutions: mod 3
+forces $3 \mid a, b$, then $3 \mid w$ — descent. $\blacksquare$
+
+**Lemma L5.** $x^4 - y^4 = 3T^2$ has no solutions with $xyT \ne 0$:
+$\gcd$-splitting gives $x^2 + y^2 = \square$ (dead mod 3 in the
+$3b^2$ branch) with $x^2 - y^2 = 3a^2$; the primitive
+parametrization of the triple turns $x^2 - y^2$ into $\pm(m^4 -
+6m^2n^2 + n^4) \equiv m^4 + n^4 \pmod 3$, forcing $3 \mid m, n$ —
+contradiction. $\blacksquare$
+
+**Reading.** The two-split-prime case needed genuinely more than
+$\omega = 1$: the free rank-2 group brings incoherent patterns that
+no factorization kills, and they land — remarkably — on the
+classical quartic descents of Fermat: $x^4 - y^4 = \square$, the
+non-congruence of 2 and 3. The additive layer at $\omega = 2$,
+$a = b = 1$ is thus governed by the oldest theorems in the subject.
+The next rungs: $a + b \ge 3$ (larger boxes: more incoherent
+patterns) and $\omega = 3$ (rank 3: valuation pruning weakens). The
+desert data says the answer will stay "never"; the machinery here —
+prune, factor, descend — is built to scale (`classify_all_11`
+generalizes to any box).
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

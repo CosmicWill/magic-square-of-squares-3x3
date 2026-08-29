@@ -2131,3 +2131,33 @@ campaign manifest is enumerated — 56 triple-point configurations
 = 23 Klein-orbits (data_cubic_campaign_manifest.json); the
 implicit eta*-restriction machinery is the next build (graph
 slices already closed by A8.19). Suite 139, all green.
+
+## 2026-08-29 — Entry 53: Theorem A3.7 — the two-split-prime theorem (a = b = 1)
+
+W10's second theorem, one day after the first. For m = 2^s r p q
+(two distinct split primes, first powers, any inert cofactor), D(m)
+admits NO signed additive relation — so, with A3.6: THE SPLIT PART
+OF ANY MSS3 CENTER HAS AT LEAST THREE PRIME FACTORS WITH
+MULTIPLICITY (p^2 q or p q r'). The proof machine
+(compute/two_prime_additive.py): the relation is a six-term
+vanishing sum of monomials in the free rank-2 group <sigma, tau>;
+all 36 canonical sign/exponent patterns classify as 20 VALUATION
+(ultrametric: min must be attained twice at each of the four
+directions), 6 FACTORED (the tan-half frame sigma = (1+it1)/(1-it1)
+with t1 = s1/c1 RATIONAL turns each coherent pattern into an
+integer polynomial that factors into candidates, each forcing
+sigma^a tau^b = +-1 — impossible; certificates machine-verified by
+exact division, e.g. sinA + sinB - sin(A+B) -> 2 t1 t2 (t1+t2)),
+3 CONGRUENCE mod 16 (Pythagorean-residue enumeration), and 7
+residual patterns closed by coprime-divisibility case trees that
+land on the CLASSICAL QUARTIC DESCENTS: q-even/consecutive-square
+immediacies, mod-3 descents, Fermat's x^4 - y^4 = square, and the
+non-congruence of 2 and 3 (Lemmas L1-L5, self-contained in the doc;
+the L2 and L3 descents written out in full). Corroboration searches
+all empty (patterns on real prime data to 500; the four descent
+equations to their bounds) — check a3.omega2_ab1. The striking
+find: at omega = 2 the additive layer is governed by the oldest
+theorems in the subject — Fermat's right-triangle theorem is
+load-bearing for magic squares of squares. Next rungs: higher boxes
+(a+b >= 3) and omega = 3 (rank 3), where valuation pruning weakens.
+Suite 140, all green.
