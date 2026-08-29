@@ -2251,3 +2251,26 @@ primes. Checks: a3.box21_complete (identities exact; descent facts
 verified over every split prime to 3000; the curve remark pinned).
 The additive ladder's third rung is fully climbed; every kill so
 far is arithmetic Fermat would recognize. Suite 144, all green.
+
+## 2026-08-29 — Entry 57: the (3,1)/(2,2) campaigns opened — censuses swept, the cyclotomic collapse lemma, 57 survivors pinned
+
+W10 rungs four and five opened in one evening (a3.box3122_campaign).
+Censuses: (3,1) box (split part p^3 q): 540 canonical patterns =
+429 valuation + 16 factored + 32 congruence + 63 residual; (2,2)
+box (p^2 q^2): 924 = 746 + 28 + 48 + 102 — the machine layers hold
+at ~88% kill rate as the boxes grow. Accounting of the 165
+residuals: 74 closed sub-box recurrences (A3.7/A3.8); 32 are
+k-replications of closed (2,1) patterns (machine-layer inheritance
+generic; the hand-tree level-shifts T | q^2 -> T | q^4 queued, not
+claimed); 2 closed by the q-unit and cyclotomic templates; 57
+SURVIVORS pinned with exact polynomials (33 + 24). NEW MASTER
+TOOL — the cyclotomic collapse lemma (PROVEN, symbolic to d = 6):
+p^{2d} +- ell^{2d} = ell^d (ellbar^d +- ell^d) = ell^d times
+2Re(ell^d) resp. -2i Im(ell^d): any same-k-sign pair of relation
+terms collapses to a single w-monomial with an INTEGER cofactor —
+instant q-valuation kills when the cofactor divides the pure part
+(demonstrated: q^2(3C^2 - S^2) = 2Re(ell^4 w^2), dead), reduced
+q^2 | 2Re/Im(ell^d) branches otherwise. The survivors are the
+beta2/E-analogues one level up; every tool they need exists and
+has closed 400+ patterns below them. Also: the m = 7 survey is in
+its final orbits (all nullity 0). Suite 145, all green.

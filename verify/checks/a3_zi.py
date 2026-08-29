@@ -519,3 +519,70 @@ def _(ctx):
              "real cases; identities exact; the exploration curve "
              "has rank >= 1 — the kill is leg-decomposition vs the "
              "q < p^2 window")
+
+
+@check("a3.box3122_campaign", DOC)
+def _(ctx):
+    """The (3,1) and (2,2) campaigns OPENED (split parts p^3 q and
+    p^2 q^2).  Censuses frozen: (3,1): 540 canonical patterns = 429
+    valuation + 16 factored + 32 congruence + 63 residual; (2,2):
+    924 = 746 + 28 + 48 + 102.  Residual accounting: 74 are closed
+    sub-box recurrences (A3.7/A3.8); 32 of the (2,2) residuals are
+    k-replications of (2,1) patterns (level-shifted tree
+    re-derivations QUEUED, not claimed); the q-unit and cyclotomic
+    templates closed 2 more; 57 survivors pinned in the artifacts.
+    THE CYCLOTOMIC COLLAPSE LEMMA (the master tool for same-sign
+    pairs, PROVEN): p^{2d} +- ell^{2d} = ell^d (ellbar^d +- ell^d),
+    i.e. the bracket collapses to 2 Re(ell^d) resp. -2i Im(ell^d)
+    times ell^d — verified symbolically for d <= 6 here.  The
+    demonstrated instant kill: for sin(A+B) - sin(3A-B)-type pairs
+    the relation becomes q^2 (3C^2 - S^2) = 2 Re(ell^4 w^2) after
+    dividing the common S — dead since the right side is a q-unit
+    times 2 (and Re = 0 is impossible by the lambda-valuation
+    mismatch)."""
+    import json as _json
+    from compute.two_prime_additive import gauss_pow, ELL
+
+    # censuses
+    for name, want in (("31", {"VALUATION": 429, "FACTORED": 16,
+                               "CONGRUENCE": 32, "OPEN": 63}),
+                       ("22", {"VALUATION": 746, "FACTORED": 28,
+                               "CONGRUENCE": 48, "OPEN": 102})):
+        with open(os.path.join(DATA, f"data_box{name}_census.json"),
+                  encoding="utf-8") as fh:
+            cen = _json.load(fh)
+        require(cen["counts"] == want, (name, cen["counts"]))
+    for name, nsurv in (("31", 33), ("22", 24)):
+        with open(os.path.join(DATA, f"data_box{name}_survivors.json"),
+                  encoding="utf-8") as fh:
+            sv = _json.load(fh)
+        require(len(sv) == nsurv, (name, len(sv)))
+
+    # the cyclotomic collapse lemma, symbolically for d <= 6:
+    # p^{2d} +- ell^{2d} == ell^d * (conj(ell)^d +- ell^d)
+    from compute.two_prime_additive import p4add, p4mul
+    P2 = {(2, 0, 0, 0): 1, (0, 2, 0, 0): 1}
+    for d in range(1, 7):
+        Rd, Id = gauss_pow(*ELL, d)
+        R2d, I2d = gauss_pow(*ELL, 2 * d)
+        # p^{2d} as poly
+        p2d = {(0, 0, 0, 0): 1}
+        for _ in range(d):
+            p2d = p4mul(p2d, P2)
+        for sgn in (1, -1):
+            # LHS: p^{2d} + sgn ell^{2d} (as Gaussian pair)
+            Lre = p4add(p2d, R2d, sgn)
+            Lim = {k: sgn * v for k, v in I2d.items()}
+            # RHS: ell^d * (conj^d + sgn ell^d):
+            # bracket = (Rd - i Id) + sgn (Rd + i Id)
+            if sgn == 1:
+                bre, bim = {k: 2 * v for k, v in Rd.items()}, {}
+            else:
+                bre, bim = {}, {k: -2 * v for k, v in Id.items()}
+            Rre = p4add(p4mul(Rd, bre), p4mul(Id, bim), -1)
+            Rim = p4add(p4mul(Rd, bim), p4mul(Id, bre), 1)
+            require(p4add(Lre, Rre, -1) == {} and
+                    p4add(Lim, Rim, -1) == {}, ("cyclotomic", d, sgn))
+    ctx.note("censuses + survivor artifacts pinned (540/924 patterns; "
+             "57 survivors); the cyclotomic collapse lemma exact for "
+             "d <= 6 — the master tool for the coming hand-trees")

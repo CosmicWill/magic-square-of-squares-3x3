@@ -750,3 +750,54 @@ def box21_kill_form(kind, sgn, c1, s1, c2, s2):
     if kind == "FF2":       # 2sin(2A+B) - sin(2A-B): 3 C4 v + S4 u
         return 3 * C4 * v + S4 * u
     raise ValueError(kind)
+
+
+# ---------------------------------------- the q-unit collapse template
+
+def trig_ell_w(kind, a, beta):
+    """Im or Re of ell^a w^{2 beta} as a Z[c1,s1,c2,s2] poly
+    (beta in {-2,-1,1,2}; w-power = 2|beta| with conjugation for
+    beta < 0)."""
+    Rl, Il = gauss_pow(*ELL, a)
+    Rw, Iw = gauss_pow(*W, 2 * abs(beta))
+    if beta < 0:
+        Iw = {k: -v for k, v in Iw.items()}
+    if kind == "Im":
+        return p4add(p4mul(Rl, Iw), p4mul(Il, Rw))
+    return p4add(p4mul(Rl, Rw), p4mul(Il, Iw), -1)
+
+
+def qunit_collapse(G, amax=8, consts=(1, -1, 2, -2, 3, -3, 4, -4, 6, -6)):
+    """Search for G = q^2 * H + c * Trig(ell^a w^{2 beta}) with a
+    CONSTANT c (no c1,s1-monomial).  Such a representation certifies
+    the pattern dead: on solutions the Trig term is a q-unit times c
+    (q coprime to c), while the rest carries q^2; and Trig = 0 is
+    impossible by the lambda-valuation mismatch (a >= 1).
+    Returns (kind, a, beta, c) or None."""
+    for kind in ("Im", "Re"):
+        for a in range(1, amax + 1):
+            for beta in (1, -1, 2, -2):
+                T = trig_ell_w(kind, a, beta)
+                if not T:
+                    continue
+                for c in consts:
+                    R = p4add(G, {k: c * v for k, v in T.items()}, -1)
+                    if _div_q2(R) is not None:
+                        return (kind, a, beta, c)
+    return None
+
+
+def kreplicate(pat):
+    """If all k-exponents are even, the halved pattern over
+    (sigma, tau^2); else None."""
+    if all(k % 2 == 0 for (j, k), c in pat):
+        return tuple(((j, k // 2), c) for (j, k), c in pat)
+    return None
+
+
+def jreplicate(pat):
+    """If all j-exponents are even, the halved pattern over
+    (sigma^2, tau); else None."""
+    if all(j % 2 == 0 for (j, k), c in pat):
+        return tuple(((j // 2, k), c) for (j, k), c in pat)
+    return None

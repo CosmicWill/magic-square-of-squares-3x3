@@ -501,6 +501,58 @@ $pq^2$), $D(m)$ admits no signed additive relation. **Corollary
 $p^2q^2$, or has at least three distinct split primes** — at least
 four split prime factors with multiplicity, or three distinct.
 
+## 2.8 The $(3,1)$ and $(2,2)$ campaigns: opened, machine-swept, survivor families pinned
+
+*(2026-08-29 late; check `a3.box3122_campaign`; artifacts
+`data_box31_census.json`, `data_box22_census.json`, and the two
+`_survivors` files.)*
+
+**Censuses.** Split part $p^3q$ (the $(3,1)$ box): **540** canonical
+patterns — 429 valuation-dead, 16 factored, 32 congruence-dead, 63
+residual. Split part $p^2q^2$ (the $(2,2)$ box): **924** patterns —
+746 / 28 / 48 / 102. The machine layers kill $\approx 88\%$ on
+their own, exactly as in the smaller boxes.
+
+**Residual accounting.** Of $63 + 102 = 165$: **74** involve only
+closed sub-boxes (Theorems A3.7/A3.8) — done. **32** of the
+$(2,2)$ residuals have all $k$-exponents even: they are
+$k$-replications of $(2,1)$ patterns over the level-2 pair
+$(u, v)$; their lower-box analogues are all closed, and the
+machine-layer kills (valuation/factored/congruence) transfer
+generically, but 32 of them replicate onto patterns that were
+closed by *hand trees* whose divisor enumerations lengthen under
+replication ($T \mid q^2$ becomes $T \mid q^4$) — the level-shifted
+re-derivations are **queued, not claimed**. The q-unit and
+cyclotomic templates closed 2 more. **57 survivors** (33 + 24)
+are pinned with their exact polynomials.
+
+**The cyclotomic collapse lemma (PROVEN; the master tool).** For
+every $d$:
+$$p^{2d} \pm \ell^{2d} = \ell^d\,(\bar\ell^d \pm \ell^d) =
+\ell^d \cdot \bigl(2\,\mathrm{Re}(\ell^d)\ \text{resp.}\
+-2i\,\mathrm{Im}(\ell^d)\bigr),$$
+so any two relation terms sharing the same $k$-sign collapse into
+a single $w$-monomial times an *integer* factor $2\mathrm{Re}
+(\ell^d)$ or $2\mathrm{Im}(\ell^d)$. Demonstrated instant kill
+($\sin(A{+}B)$ vs $\sin(3A)$, $\sin(3A{+}B)$ shapes): the relation
+reduces to $q^2(3C^2 - S^2) = 2\,\mathrm{Re}(\ell^4w^2)$ after
+dividing the common $S$ — dead, since the right side is twice a
+$q$-unit and $\mathrm{Re} = 0$ is impossible by the
+$\lambda$-valuation mismatch. When the extracted factor does not
+divide the pure part, the same collapse yields the reduced branch
+$q^2 \mid 2\mathrm{Re/Im}(\ell^d)$ with $|\cdot| \le 2p^d$ — the
+$\beta_2$-analogue trees one level up.
+
+**Survivor families.** $(3,1)$: shapes $\{(1{,}1), (3{,}\pm1)\}$-
+and $\{(2{,}1), (3{,}\pm1)\}$-mixtures, the doubled $(3,\pm1)$
+pairs, and $\{(j,0), (3,1), (3,-1)\}$ mixed-sign trios. $(2,2)$:
+$\{(1{,}2),(2{,}1),(2{,}2)\}$ (the large family, 18 patterns) and
+$\{(1{,}1),(2{,}2),(2{,}2)\}$. All are the $\beta_2$/E-analogues
+one level up; every tool they need — divisibility trees, the
+$q$-window, leg decomposition, the classical descents — now
+exists and has closed 400+ patterns below them. Mechanical, long,
+queued.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
