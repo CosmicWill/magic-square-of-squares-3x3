@@ -903,15 +903,23 @@ its seed's forced direction):
   tested modulus, coherent at every rung, locally soluble
   everywhere… and **flat at $\ge 5$ dead lines through two decades
   of disc growth**, while the broad seeds soften and pass them by.
-  Whatever holds these lines dead is scaling-invariant, beyond
-  every congruence and local test built here — the profile of a
-  spinor-genus-level (or coupled-system Brauer–Manin-like)
-  obstruction. **Naming it is the sharpest open target this
-  investigation produces:** a "rigidity invariant" would carve out
-  an infinite provably-sieve-dead family containing the anatomy
-  passers — the complementary half of the ladder picture, and a
-  potential mechanism for an eventual nonexistence argument to
-  survive scaling.
+  *Measured update (the P2 probe, `a9.rigidity_probe`, 144
+  line-rung autopsies):* the death is **pair-level** — B4's dead
+  lines have all three pair equations *empty of integer witnesses*
+  at almost every rung (70 of 72), a persistent global binary-form
+  class obstruction with no local explanation — and the rigidity is
+  a **rate, not an absolute lock**: exactly two rare conversions
+  exist in the window (line 3 at $q = 19$, line 6 at $q = 25$),
+  a $\sim\!10\times$ per-line suppression against the broad control
+  (2/72 vs 22/72 alive line-rungs). Golden needs six simultaneous
+  conversions, so the flat curve is the sixth power of a tiny rate.
+  The sharpened open target: **what arithmetic of the coupled
+  values sets the conversion rate** — the class-group positions of
+  their prime factors (M12-B's ideal-product frame) are the prime
+  suspect, and the syzygy-dead states observed on the control's
+  line 5 (pairs alive, coupling never closing) show the coupling
+  can also bind. A rate law here would quantify exactly how much
+  of the desert scaling can ever erode.
 
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 

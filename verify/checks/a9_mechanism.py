@@ -973,3 +973,53 @@ def _(ctx):
     ctx.note("m = 210125 = 205 * 1025: golden by prediction (the "
              "41-ladder), corners non-square; FULL re-runs the "
              "profile live")
+
+
+@check("a9.rigidity_probe", DOC)
+def _(ctx):
+    """P2 measurement (data_rigidity_probe.json, 144 line-rung
+    autopsies): the rigid seed's death is PAIR-LEVEL and its
+    rigidity is a RATE, not an absolute lock.  B4 (the 925 passer):
+    70 PAIR-DEAD / 2 ALIVE / 0 SYZYGY-DEAD — all three pair
+    equations empty at almost every rung (locally soluble
+    everywhere: a persistent global binary-form class obstruction),
+    with exactly two rare conversions (line 3 at q = 19, line 6 at
+    q = 25) — never enough lines at once.  F2 (broad control):
+    43 / 7 / 22 with frequent conversions, line 7 alive at every
+    rung, and line 5 exhibiting genuine SYZYGY-DEAD states (pairs
+    alive, coupling never closes).  Honest correction to A9.14's
+    'rigid class': the immunity is a ~10x per-line rate suppression
+    (2/72 vs 22/72 alive line-rungs), not an invariant lock.  One
+    autopsy re-run live."""
+    import json as _json
+    from collections import Counter
+
+    with open(os.path.join(DATA, "data_rigidity_probe.json"),
+              encoding="utf-8") as fh:
+        rows = _json.load(fh)
+    require(len(rows) == 144, len(rows))
+    for seed, want in (("B4-rigid", {"PAIR-DEAD": 70, "ALIVE": 2}),
+                       ("F2-broad", {"PAIR-DEAD": 43, "SYZYGY-DEAD": 7,
+                                     "ALIVE": 22})):
+        got = Counter(r["verdict"] for r in rows if r["seed"] == seed)
+        require(dict(got) == want, (seed, dict(got)))
+    alive_b4 = sorted((r["line"], r["q"]) for r in rows
+                      if r["seed"] == "B4-rigid"
+                      and r["verdict"] == "ALIVE")
+    require(alive_b4 == [(3, 19), (6, 25)], alive_b4)
+    require(all(r["verdict"] == "ALIVE" for r in rows
+                if r["seed"] == "F2-broad" and r["line"] == 7))
+    require(any(r["verdict"] == "SYZYGY-DEAD" for r in rows
+                if r["seed"] == "F2-broad" and r["line"] == 5))
+    # live re-autopsy: B4 line 4 at base is pair-dead with all three
+    # pair equations empty at the top stratum
+    from compute.rigidity_probe import line_autopsy
+    from compute.sphere_gluing import pair_lines
+    m, U, V = 925, 79464, 501600
+    tri = pair_lines(2 * m * m, U, V)[4]
+    verdict, recs = line_autopsy(tri, 3 * m * m)
+    require(verdict == "PAIR-DEAD" and recs[0]["pairs"] == [0, 0, 0],
+            (verdict, recs[:1]))
+    ctx.note("rigidity = pair-level rate suppression (2/72 vs 22/72 "
+             "conversions), not an absolute lock; blips pinned at "
+             "(line 3, q 19) and (line 6, q 25); autopsy re-run live")

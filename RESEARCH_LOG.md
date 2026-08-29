@@ -2109,3 +2109,25 @@ Also: the predicted golden at 210125 is now DUAL-PATH confirmed
 the realignment queue: A3-S2b (two split primes), P2 (rigidity
 invariant measurement), P3 (cubic campaign continuation). Suite
 138, all green.
+
+## 2026-08-28 — Entry 52 addendum: P2 measured (rigidity is a rate), P3 manifest ready
+
+P2 (the rigidity probe, 144 line-rung autopsies, artifact
+data_rigidity_probe.json, check a9.rigidity_probe): the rigid
+seed's death is PAIR-LEVEL — B4's dead lines have all three pair
+equations EMPTY of integer witnesses at 70 of 72 line-rungs (a
+persistent global binary-form class obstruction; locally soluble
+everywhere per A9.14's panel) — and the honest correction: rigidity
+is a RATE, not an absolute lock. Two rare conversions exist (line 3
+at q = 19, line 6 at q = 25): a ~10x per-line suppression against
+the broad control (2/72 vs 22/72), and golden needs six
+simultaneous conversions — the flat curve is the sixth power of a
+tiny rate. The doc's rigid-class paragraph corrected accordingly;
+the sharpened P2 target is the conversion-rate law in the
+ideal-product frame. Also observed: genuine SYZYGY-DEAD states on
+the control's line 5 (pairs alive, coupling never closes) — the
+coupling can bind independently. P3 (M12-C): the non-graph cubic
+campaign manifest is enumerated — 56 triple-point configurations
+= 23 Klein-orbits (data_cubic_campaign_manifest.json); the
+implicit eta*-restriction machinery is the next build (graph
+slices already closed by A8.19). Suite 139, all green.
