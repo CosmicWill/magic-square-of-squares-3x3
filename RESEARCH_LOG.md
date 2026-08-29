@@ -2161,3 +2161,29 @@ theorems in the subject — Fermat's right-triangle theorem is
 load-bearing for magic squares of squares. Next rungs: higher boxes
 (a+b >= 3) and omega = 3 (rank 3), where valuation pruning weakens.
 Suite 140, all green.
+
+## 2026-08-29 — Entry 54: the (2,1) box — eleven more families closed, ten explicit equations remain
+
+W10's third session attacked split part p^2 q. The general-box
+machinery (candidate factors Im/Re[(1+it1)^a (1+-it2)^b], general
+peel over Q, box enumeration) censused 189 canonical patterns: 136
+valuation, 13 factored, 12 congruence, 28 residual — 7 of which are
+(1,1)-recurrences closed by A3.7. ELEVEN of the remaining 21 closed
+today, all machine-verified against the census polynomials
+(a3.box21): the alpha and F-C pairs and F-D by divisibility trees
+ending in FERMAT AT LEVEL 2 (x^4 - y^4 = z^2 with x or y = p^2 —
+three distinct routes); the beta1 pair by the machine-found total
+collapse Im(ell^3 w^2) = 2 q^2 s1 C, dead instantly by q-adic
+valuation (the left side is a q-unit); and the four doubled F-F
+patterns by LEVEL-2 REPLICATION: their equations are exactly
+A3.7's Family III with (c1, s1) -> (C, S) = (c1^2 - s1^2, 2c1s1),
+and the III-proof (mod 16 + Lemma L2) transfers verbatim since it
+only used the coprime odd/even structure. TEN equations remain
+open (beta2 x4, F-E x6; data_box21_open.json): their trees are
+started (q^2 | c1(c1^2-3s1^2) forcing for beta2; the Gaussian-
+square endpoint t'^2[C^2 p^4 + S^2(4C-p^2)^2] = q^4 for F-E) and
+bottom out in elliptic-flavored conditions beyond today's
+elementary descents — the sharpest open Diophantine problems in
+W10. Real-data searches empty (p, q <= 500); the desert to 10^7
+covers all such m in range. Doc A3 §2.7; census frozen. Suite 141,
+all green.

@@ -443,3 +443,310 @@ def search_quartic_3T2(bound):
                     if rr > 0 and rr * rr == T2:
                         hits.append((x, y, rr))
     return hits
+
+
+# ------------------------------------------------ general-box machinery
+# (the (a, b) = (2, 1) rung and beyond)
+
+from fractions import Fraction
+
+
+def imre_poly(alpha, beta):
+    """(Im, Re) of (1 + i t1)^alpha (1 + i t2)^beta for beta of either
+    sign (negative beta uses (1 - i t2)); returns two Z[t1,t2] dicts."""
+    A = ppow(ONE_P_IT1, alpha)
+    B = ppow(ONE_P_IT2 if beta >= 0 else ONE_M_IT2, abs(beta))
+    P = pmul(A, B)
+    im = {k: v[1] for k, v in P.items() if v[1]}
+    re = {k: v[0] for k, v in P.items() if v[0]}
+    return im, re
+
+
+def _strip_content(P):
+    if not P:
+        return P
+    g = 0
+    for v in P.values():
+        g = gcd(g, abs(v))
+    if g > 1:
+        P = {k: v // g for k, v in P.items()}
+    # normalize sign by lex-max monomial
+    if P[max(P)] < 0:
+        P = {k: -v for k, v in P.items()}
+    return P
+
+
+def candidates_for_box(amax, bmax):
+    """All candidate factors for the [-amax, amax] x [-bmax, bmax]
+    box: Im/Re[(1+it1)^alpha (1+-it2)^|beta|] for 1-vector-sums of
+    box exponents, plus the no-real-zero quadratics."""
+    cands = []
+    seen = set()
+    for alpha in range(0, 2 * amax + 1):
+        for beta in range(-2 * bmax, 2 * bmax + 1):
+            if (alpha, beta) == (0, 0):
+                continue
+            if alpha == 0 and beta < 0:
+                continue
+            im, re = imre_poly(alpha, beta)
+            for tag, P in (("Im", im), ("Re", re)):
+                P = _strip_content(P)
+                if not P or set(P) == {(0, 0)}:
+                    continue
+                key = tuple(sorted(P.items()))
+                if key in seen:
+                    continue
+                seen.add(key)
+                cands.append((f"{tag}({alpha},{beta})", P))
+    cands.append(("1+t1^2", {(0, 0): 1, (2, 0): 1}))
+    cands.append(("1+t2^2", {(0, 0): 1, (0, 2): 1}))
+    return cands
+
+
+def qdivide(N, D):
+    """Exact division over Q (Fraction coefficients); N, D integer
+    dicts.  Returns integer-content-stripped quotient or None."""
+    if not N or not D:
+        return None
+    lead = max(D)
+    lc = Fraction(D[lead])
+    R = {k: Fraction(v) for k, v in N.items()}
+    Q = {}
+    guard = 0
+    while R:
+        guard += 1
+        if guard > 40000:
+            return None
+        rk = max(R)
+        e = (rk[0] - lead[0], rk[1] - lead[1])
+        if e[0] < 0 or e[1] < 0:
+            return None
+        qc = R[rk] / lc
+        Q[e] = Q.get(e, Fraction(0)) + qc
+        for dk, dv in D.items():
+            kk = (e[0] + dk[0], e[1] + dk[1])
+            nv = R.get(kk, Fraction(0)) - qc * dv
+            if nv == 0:
+                R.pop(kk, None)
+            else:
+                R[kk] = nv
+    # clear denominators, strip content
+    den = 1
+    for v in Q.values():
+        den = den * v.denominator // gcd(den, v.denominator)
+    out = {k: int(v * den) for k, v in Q.items() if v != 0}
+    return _strip_content(out)
+
+
+def peel_general(N, cands):
+    factors = []
+    cur = _strip_content(dict(N))
+    changed = True
+    while changed and cur and set(cur) != {(0, 0)}:
+        changed = False
+        for name, D in cands:
+            if len(D) > len(cur):
+                continue
+            q = qdivide(cur, D)
+            if q is not None:
+                factors.append(name)
+                cur = q
+                changed = True
+                break
+    return factors, cur
+
+
+def enumerate_patterns(classes):
+    pats = []
+    for trip in combinations(classes, 3):
+        for signs in product((1, -1), repeat=3):
+            if len(set(signs)) == 1:
+                continue
+            pats.append((tuple(zip(trip, signs)), "distinct"))
+    for x in classes:
+        for y in classes:
+            if x == y:
+                continue
+            for sy in (1, -1):
+                pats.append((((x, 2), (y, sy)), "doubled"))
+    return pats
+
+
+def classify_box(classes, amax, bmax,
+                 mods=(16, 32, 64, 9, 5, 7, 11, 13, 8, 3)):
+    cands = candidates_for_box(amax, bmax)
+    report = []
+    seen = set()
+    for pattern, kind in enumerate_patterns(classes):
+        def canon(p):
+            forms = []
+            for gs in (1, -1):
+                for cj in (1, -1):
+                    f = tuple(sorted(((cj * j, cj * k), gs * c)
+                                     for (j, k), c in p))
+                    forms.append(f)
+            return min(forms)
+        key = canon(pattern)
+        if key in seen:
+            continue
+        seen.add(key)
+        if valuation_pruned(pattern):
+            report.append((pattern, kind, "VALUATION", None))
+            continue
+        N = relation_poly(pattern)
+        if not N:
+            report.append((pattern, kind, "IDENTITY-ZERO", None))
+            continue
+        factors, residual = peel_general(N, cands)
+        if is_constant(residual):
+            report.append((pattern, kind, "FACTORED", factors))
+            continue
+        G = residual_cs_form(residual)
+        kill = None
+        for M in mods:
+            if congruence_kill(G, M):
+                kill = M
+                break
+        if kill:
+            report.append((pattern, kind, f"CONGRUENCE mod {kill}",
+                           (factors, G)))
+        else:
+            report.append((pattern, kind, "OPEN", (factors, residual)))
+    return report
+
+
+CLASSES_21 = [(1, 0), (2, 0), (0, 1), (1, 1), (1, -1), (2, 1), (2, -1)]
+
+
+# ------------------------------------- Gaussian-collapse representation
+# polys in Z[c1,s1,c2,s2]: dict {(a,b,c,d): int}
+
+def p4add(A, B, s=1):
+    out = dict(A)
+    for k, v in B.items():
+        nv = out.get(k, 0) + s * v
+        if nv:
+            out[k] = nv
+        else:
+            out.pop(k, None)
+    return out
+
+
+def p4mul(A, B):
+    out = {}
+    for ka, va in A.items():
+        for kb, vb in B.items():
+            k = tuple(x + y for x, y in zip(ka, kb))
+            nv = out.get(k, 0) + va * vb
+            if nv:
+                out[k] = nv
+            else:
+                out.pop(k, None)
+    return out
+
+
+def gauss_pow(re, im, n):
+    """(re, im) as poly dicts -> (re, im) of the n-th power."""
+    R, I = {(0, 0, 0, 0): 1}, {}
+    for _ in range(n):
+        R, I = (p4add(p4mul(R, re), p4mul(I, im), -1),
+                p4add(p4mul(R, im), p4mul(I, re)))
+    return R, I
+
+
+ELL = ({(1, 0, 0, 0): 1}, {(0, 1, 0, 0): 1})       # c1 + i s1
+W = ({(0, 0, 1, 0): 1}, {(0, 0, 0, 1): 1})         # c2 + i s2
+Q2 = {(0, 0, 2, 0): 1, (0, 0, 0, 2): 1}            # q^2
+
+
+def im_ell_w(a, weps):
+    """Im(ell^a w^2) for weps=+1, Im(ell^a wbar^2) for weps=-1."""
+    Rl, Il = gauss_pow(*ELL, a)
+    Rw, Iw = gauss_pow(*W, 2)
+    if weps < 0:
+        Iw = {k: -v for k, v in Iw.items()}
+    # Im(X Y) = ReX ImY + ImX ReY
+    return p4add(p4mul(Rl, Iw), p4mul(Il, Rw))
+
+
+def collapse_form(G, amax=6, mdeg=3):
+    """Try to write G = q^2 * P1 + sum over single term
+    Im(ell^a w^{+-2}) * monomial: exact integer linear algebra via
+    sampled evaluations, verified symbolically.  Returns
+    (a, weps, monomial, coeff, P1) for the SINGLE-Im representation
+    or None."""
+    from fractions import Fraction as Fr
+    d1 = max(k[0] + k[1] for k in G)
+    for a in range(1, amax + 1):
+        for weps in (1, -1):
+            IM = im_ell_w(a, weps)
+            for ma in range(0, mdeg + 1):
+                for mb in range(0, mdeg + 1 - ma):
+                    if a + ma + mb != d1:
+                        continue
+                    mono = {(ma, mb, 0, 0): 1}
+                    T = p4mul(IM, mono)
+                    for coeff_sign in (1, -1):
+                        # G - sign*T must be divisible by q^2 with
+                        # quotient in Z[c1,s1] x {const in c2,s2}?
+                        # general: G - sT = q^2 * P1, P1 poly.
+                        R = p4add(G, T, -coeff_sign)
+                        # divide by q^2 = c2^2 + s2^2: treat as poly
+                        # in c2 with coeffs in Z[c1,s1,s2]
+                        P1 = _div_q2(R)
+                        if P1 is not None:
+                            return (a, weps, (ma, mb), coeff_sign, P1)
+    return None
+
+
+def _div_q2(R):
+    """Exact division of R by (c2^2 + s2^2) in Z[c1,s1,c2,s2]."""
+    if not R:
+        return {}
+    cur = dict(R)
+    out = {}
+    guard = 0
+    while cur:
+        guard += 1
+        if guard > 10000:
+            return None
+        k = max(cur, key=lambda t: (t[2], t[3], t[0], t[1]))
+        a, b, c, d = k
+        v = cur[k]
+        if c >= 2:
+            e = (a, b, c - 2, d)
+        elif d >= 2:
+            e = (a, b, c, d - 2)
+        else:
+            return None
+        out[e] = out.get(e, 0) + v
+        cur = p4add(cur, p4mul({e: v}, Q2), -1)
+    return out
+
+
+# --------------------------- (2,1)-box hand-kill identity forms (A3.8)
+
+def box21_kill_form(kind, sgn, c1, s1, c2, s2):
+    """The verified integer forms of the closed (2,1)-box families.
+    Each returns an integer that vanishes iff the pattern's relation
+    holds (up to nonvanishing factors)."""
+    p2, q2 = c1 * c1 + s1 * s1, c2 * c2 + s2 * s2
+    C, S = c1 * c1 - s1 * s1, 2 * c1 * s1
+    u, v = c2 * c2 - s2 * s2, 2 * c2 * s2
+    C4, S4 = C * C - S * S, 2 * C * S
+    if kind == "alpha":     # sinA +- 2cos2A sinB
+        return S * p2 * q2 + sgn * 2 * v * C4
+    if kind == "FC":        # sin2A +- 2cos2A sinB
+        return C * S * q2 + sgn * C4 * v
+    if kind == "FD":        # sinB - 2sin2A cosB
+        return v * p2 * p2 - 4 * C * S * u
+    if kind == "beta1":     # Im(ell^3 w^{+-2}) = 2 q^2 s1 C
+        l3r = c1 * (c1 * c1 - 3 * s1 * s1)
+        l3i = s1 * (3 * c1 * c1 - s1 * s1)
+        vv = sgn * v
+        return (l3r * vv + l3i * u) - 2 * q2 * s1 * C
+    if kind == "FF1":       # 2sin(2A+B) + sin(2A-B): C4 v + 3 S4 u
+        return C4 * v + 3 * S4 * u
+    if kind == "FF2":       # 2sin(2A+B) - sin(2A-B): 3 C4 v + S4 u
+        return 3 * C4 * v + S4 * u
+    raise ValueError(kind)

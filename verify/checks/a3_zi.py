@@ -1,9 +1,13 @@
 """W10 / A3-S1: the Z[i] reformulation of the additive layer
 (docs/ROADMAP.md §W10; compute/zi_additive.py)."""
 
+import os
+
 from ..framework import check, require
 
 DOC = "docs/ROADMAP.md"
+
+DATA = os.path.join(os.path.dirname(__file__), "..", "..", "compute")
 
 
 @check("a3.zi_reformulation", DOC)
@@ -163,3 +167,90 @@ def _(ctx):
     ctx.note("A3.7 apparatus: 36 patterns = 20 valuation + 6 "
              "factored + 3 mod-16 + 7 hand-descended (doc); all "
              "corroboration searches empty to the profile bounds")
+
+
+@check("a3.box21", DOC)
+def _(ctx):
+    """Theorem A3.8 (partial; the (2,1) box = split part p^2 q):
+    189 canonical patterns: 136 valuation-dead, 13 factored, 12
+    congruence-dead, 28 residual.  Of the residuals: 7 are the
+    (1,1)-box recurrences closed by Theorem A3.7; ELEVEN more are
+    closed by the Gaussian-collapse trees (doc §2.7): the alpha and
+    F-C pairs and F-D via trees ending in Fermat's x^4 - y^4 = z^2
+    at level 2 (x = p^2 or y = p^2), the beta1 pair via the exact
+    collapse Im(ell^3 w^2) = 2 q^2 s1 C (q-adic valuation kill), and
+    the four doubled F-F patterns via level-2 replication of the
+    A3.7 Family-III trees (mod 16 and Lemma L2).  TEN equations
+    remain open (beta2 x4, F-E x6), pinned in
+    data_box21_open.json with empty real-data searches.  FAST
+    verifies the eleven kill identities against the machine
+    polynomials and the open equations' searches; FULL re-runs the
+    full census."""
+    import json as _json
+    import random
+    from compute.two_prime_additive import (box21_kill_form,
+                                            search_real_data)
+
+    with open(os.path.join(DATA, "data_box21_census.json"),
+              encoding="utf-8") as fh:
+        cen = _json.load(fh)
+    require(cen["counts"] == {"VALUATION": 136, "FACTORED": 13,
+                              "CONGRUENCE": 12, "OPEN": 28}
+            and cen["n"] == 189, cen)
+    with open(os.path.join(DATA, "data_box21_open.json"),
+              encoding="utf-8") as fh:
+        data = _json.load(fh)
+    require(len(data) == 21, len(data))
+
+    def parse(Gs):
+        return {tuple(map(int, k.strip("()").split(","))): v
+                for k, v in Gs.items()}
+
+    def geval(G, *x):
+        return sum(v * x[0] ** a * x[1] ** b * x[2] ** c * x[3] ** d
+                   for (a, b, c, d), v in G.items())
+
+    closed = {
+        (((1, 0), (2, 1), (2, -1)), (1, 1, -1)): ("alpha", 1, False),
+        (((1, 0), (2, 1), (2, -1)), (1, -1, 1)): ("alpha", -1, False),
+        (((2, 0), (2, 1), (2, -1)), (1, 1, -1)): ("FC", 1, False),
+        (((2, 0), (2, 1), (2, -1)), (1, -1, 1)): ("FC", -1, False),
+        (((0, 1), (2, 1), (2, -1)), (1, -1, -1)): ("FD", None, False),
+        (((2, 0), (1, 1), (2, 1)), (1, -1, -1)): ("beta1", 1, False),
+        (((2, 0), (1, -1), (2, -1)), (1, -1, -1)): ("beta1", -1, False),
+        (((2, 1), (2, -1)), (2, 1)): ("FF1", 1, False),
+        (((2, 1), (2, -1)), (2, -1)): ("FF2", 1, False),
+        (((2, -1), (2, 1)), (2, 1)): ("FF2", 1, True),
+        (((2, -1), (2, 1)), (2, -1)): ("FF1", 1, True),
+    }
+    rng = random.Random(23)
+    n_closed = n_open = 0
+    for classes, coeffs, Gs in data:
+        key = (tuple(tuple(jk) for jk in classes), tuple(coeffs))
+        G = parse(Gs)
+        if key in closed:
+            kind, sgn, flip = closed[key]
+            for _ in range(40):
+                x = [rng.randint(-9, 9) for _ in range(4)]
+                xs = list(x)
+                if flip:
+                    xs[3] = -xs[3]
+                h = box21_kill_form(kind, sgn, *xs)
+                require((geval(G, *x) == 0) == (h == 0),
+                        (key, kind, x))
+            n_closed += 1
+        else:
+            bound = ctx.bound(full=500, fast=150)
+            require(search_real_data(G, bound) == [], key)
+            n_open += 1
+    require(n_closed == 11 and n_open == 10, (n_closed, n_open))
+    if ctx.bound(full=1, fast=0):
+        from collections import Counter
+        from compute.two_prime_additive import classify_box, CLASSES_21
+        rep = classify_box(CLASSES_21, 2, 1)
+        cnt = Counter(v.split()[0] for _, _, v, _ in rep)
+        require(dict(cnt) == cen["counts"], dict(cnt))
+    ctx.note("(2,1) box: 189 patterns; 7 by A3.7 + 11 closed today "
+             "(Fermat at level 2, the Im(ell^3 w^2) collapse, F-F "
+             "replication); 10 explicit equations open, searches "
+             "empty")

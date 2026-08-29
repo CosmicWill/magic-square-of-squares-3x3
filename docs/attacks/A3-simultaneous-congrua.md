@@ -340,6 +340,73 @@ desert data says the answer will stay "never"; the machinery here —
 prune, factor, descend — is built to scale (`classify_all_11`
 generalizes to any box).
 
+## 2.7 The $(2,1)$ box (split part $p^2q$): Theorem A3.8, partial
+
+*(2026-08-29; general-box machinery in
+`compute/two_prime_additive.py`; census artifact
+`data_box21_census.json`, open equations `data_box21_open.json`;
+check `a3.box21`.)*
+
+**Status.** For $m = 2^s r\, p^2 q$ the machine census gives **189
+canonical patterns**: 136 valuation-dead, 13 factored (extended
+candidate list $\mathrm{Im/Re}[(1+it_1)^\alpha(1\pm it_2)^\beta]$),
+12 congruence-dead, 28 residual. Of the residuals, 7 involve only
+the $(1,1)$ sub-box and are closed by Theorem A3.7. **Eleven more
+are closed below. Ten remain open** — the box is closed except for
+ten explicit Diophantine equations (empty on all real prime data
+searched).
+
+**The level-2 frame.** Write $\ell = \lambda^2 = c_1 + is_1$, $w =
+\mu^2 = c_2 + is_2$, $C = c_1^2 - s_1^2$, $S = 2c_1s_1$ (so $\ell^2
+= C + iS$, $C^2 + S^2 = p^4$: the level-2 Pythagorean pair), $u =
+c_2^2 - s_2^2$, $v = 2c_2s_2$. Multiplying a relation by
+$p^4q^2$ gives an integer identity in $\mathrm{Im}(\ell^{2j}w^{\pm2})$-
+terms with explicit $p, q$-powers; the collapse identities $\ell^2
+\pm p^2 = 2c_1\ell$ resp. $2is_1\ell$ merge terms. All eleven kill
+identities are machine-verified against the census polynomials.
+
+**The eleven closures.**
+- *$\alpha$ pair* ($\sin A = \mp 2\cos 2A \sin B$): the identity
+  $Sp^2q^2 = \mp 2v(C^2 - S^2)$ with $\gcd(S, C^2 - S^2) = 1$ and
+  $p \nmid C^2 - S^2$ forces $(C^2-S^2) \mid q^2$; the cases give
+  $S = 0$ (dead), $q \mid 2v$ (dead), or $2C^2 = p^4 \pm q^2$,
+  $2S^2 = p^4 \mp q^2$, whence $(p^2)^4 - q^4 = (2CS)^2$ —
+  **Fermat (L1)**.
+- *F-C pair* ($\tan 2A = \mp 2\sin B$): $CSq^2 = \mp(C^2-S^2)v$
+  forces $(C^2 - S^2) \mid q^2$: $S = 0$ / $q \mid v$ /
+  $p^8 - q^4 = (2CS)^2$ — **Fermat** again.
+- *F-D* ($\tan B = 2\sin 2A$): $vp^4 = 4CSu$ forces $u \mid p^4$;
+  $u = \pm 1$ gives $s_2 = 0$; $u = \pm p^e$ ($1 \le e \le 3$)
+  forces $p \mid 4CS$, impossible; $u = \pm p^4$ gives $q^4 -
+  (p^2)^4 = (4CS)^2$ — **Fermat**.
+- *$\beta_1$ pair*: the total collapse
+  $\mathrm{Im}(\ell^3w^{\pm2}) = 2q^2s_1C$ (machine-found, exact).
+  The left side is a $q$-unit: $v_\mu(\ell^3w^2) = 2 \ne 0 =
+  v_\mu(\bar\ell^3\bar w^2)$, so $v_q(\mathrm{Im}) = 0$, while the
+  right side has $v_q \ge 2$ and $s_1C \ne 0$. **Dead by $q$-adic
+  valuation.**
+- *F-F quadruple* (doubled $2d_{(2,\pm1)} = d_{(2,\mp1)}$): the
+  equations are $(C^2{-}S^2)v = -3\cdot 2CSu$ and $3(C^2{-}S^2)v =
+  -2CSu$ — **exactly Theorem A3.7's Family III with $(c_1, s_1)
+  \mapsto (C, S)$** (the level-2 pair is coprime with $C$ odd, $S$
+  even, and the III-proof used nothing else): $t = 1$ dies mod 16
+  ($q^4 - p^8 \equiv 8$), $t = 3$ descends through $p^8 - q^4 =
+  32(\cdot)^2$ resp. $q^4 - p^8$-mirror to $mn(m^2-n^2) = 2b^2$ —
+  **Lemma L2**.
+
+**The ten open equations** ($\beta_2 \times 4$, F-E $\times 6$;
+pinned with their exact coefficient lists in
+`data_box21_open.json`). Their trees are started: $\beta_2$
+($CSq^2 = -R_3(c_1v - s_1u)$, $R_3 = c_1(c_1^2 - 3s_1^2)$) forces
+$q^2 \mid c_1$ or $q^2 \mid c_1^2 - 3s_1^2$; F-E-3 ($p^2(Cv + Su)
+= 4uCS$) forces $u = \pm p^2 C t'$, $v = \pm t'S(4C - p^2)$ with
+$t'^2[C^2p^4 + S^2(4C-p^2)^2] = q^4$ plus the condition that
+$u + iv$ be a **Gaussian square** — elliptic-flavored endpoints
+beyond today's elementary descents. No solutions on any real prime
+pair searched ($p, q \le 500$; the desert to $10^7$ covers all
+two-split-prime $m$ in range). **A full Theorem A3.8 needs these
+ten; they are the sharpest open Diophantine problems in W10.**
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
