@@ -95,6 +95,34 @@ state now separates into three regimes with *opposite* characters:
   *our necessary conditions*, and is reported as such; the suite
   keeps every claim pinned.
 
+### R.4 Status after the first two W10 theorems (2026-08-29)
+
+The realignment is validated: two days on the additive layer
+produced two unconditional theorems (A3.6, A3.7). The strategic
+facts they establish:
+
+1. **The summit statement is now explicit.** Conjecture A3.C ("no
+   additive triple in any D(m)") **implies the full nonexistence
+   theorem** — a quadruple contains a triple. Every rung of A3.C
+   climbed is a permanent slice of the open problem, and two rungs
+   are climbed: split part $p^a$ (all powers) and $pq$.
+2. **The proof mechanisms so far are prime-uniform.** Nothing in
+   A3.6/A3.7 depended on which primes $p, q$ occur — valuation
+   combinatorics and tan-half factorization depend only on the
+   exponent box, and the seven residual descents were uniform.
+   If this uniformity persists, A3.C decomposes into a box-indexed
+   family of finite pattern problems plus a master induction — a
+   conceivable full proof shape.
+3. **The honest risk is rank growth.** At $\omega = 3$ the group
+   has rank 3; valuation pruning weakens and residual patterns
+   multiply. If they stop landing on classical descents, the
+   frontier tools (effective S-units) prove finiteness, not
+   emptiness. The program's exposure is exactly there.
+
+Priority order stands: W10 (next rung: split part $p^2q$ — the
+$(a,b) = (2,1)$ box), then W8 (consolidate the S-unit framing and
+the sieve-program story for community scrutiny), W4/W6 in support.
+
 ## 0. Doctrine
 
 1. **Both directions are the goal.** A constructed square is a proof.
