@@ -694,3 +694,101 @@ def c2_census(sample_size=400, mmax=None, verbose=True):
                       f"{' ...' if len(v) > 6 else ''} "
                       f"({len(v)} total)")
     return laws, viol
+
+
+def pair_witnesses_fast(w1, w2, N):
+    """pair_witnesses with the congruence filters."""
+    out = []
+    P = w1 * w2
+    r = isqrt(P)
+    if r * r == P:
+        out.append((r, 0))
+    Pm = [P % M for M in _SQ_MODS]
+    Nm = [N % M for M in _SQ_MODS]
+    k = 1
+    while N * k * k <= P:
+        ok = True
+        for idx, M in enumerate(_SQ_MODS):
+            if (Pm[idx] - Nm[idx] * k * k) % M not in _SQ_SETS[idx]:
+                ok = False
+                break
+        if ok:
+            d = P - N * k * k
+            t = isqrt(d)
+            if t * t == d:
+                out.append((t, k))
+        k += 1
+    return out
+
+
+def syzygy_line_ok_fast(tri, n):
+    """A9.12's sieve, accelerated (filtered witness collection)."""
+    G = gcd(gcd(tri[0], tri[1]), tri[2])
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G % (g * g) == 0:
+            N = n // (g * g)
+            w = tuple(t // (g * g) for t in tri)
+            W12 = pair_witnesses_fast(w[0], w[1], N)
+            if W12:
+                W13 = pair_witnesses_fast(w[0], w[2], N)
+                if W13:
+                    W23 = pair_witnesses_fast(w[1], w[2], N)
+                    for t12, _ in W12:
+                        for t13, _ in W13:
+                            for t23, _ in W23:
+                                b3 = (w[0]*w[1]*w[2] - w[0]*t23*t23
+                                      - w[1]*t13*t13 - w[2]*t12*t12)
+                                if b3 in (2*t12*t13*t23,
+                                          -2*t12*t13*t23):
+                                    return True
+        d += 2
+    return False
+
+
+def square_family_census(kmax=250, verbose=True):
+    """The m = k^2 family through the three sieves, with A9.12's
+    Diophantine system as the representation sieve (class-group-free
+    — valid by Theorem A9.12).  Returns per-center verdicts."""
+    from compute.congrua_search import congrua_sets
+    from compute.sphere_gluing import coherent_pair, odd_primes
+    rows = []
+    Dmap = dict(congrua_sets(kmax * kmax))
+    for k in range(2, kmax + 1):
+        m = k * k
+        D = Dmap.get(m, set())
+        if len(D) < 2:
+            continue
+        n = 3 * m * m
+        ps = odd_primes(n)
+        stage3 = golden = killed = 0
+        for U in sorted(D):
+            for V in sorted(D):
+                if U == V:
+                    continue
+                if U + V > m * m or not coherent_pair(m, U, V, ps):
+                    continue
+                stage3 += 1
+                dead = False
+                for tri in pair_lines(2 * m * m, U, V):
+                    if not syzygy_line_ok_fast(tri, n):
+                        dead = True
+                        break
+                if dead:
+                    killed += 1
+                else:
+                    golden += 1
+                    if verbose:
+                        print(f"  *** GOLDEN (square family): m={m}="
+                              f"{k}^2 pair ({U},{V})", flush=True)
+        if stage3:
+            rows.append((k, m, len(D), stage3, killed, golden))
+            if verbose:
+                print(f"m={m}={k}^2: |D|={len(D)}, stage3={stage3}, "
+                      f"killed={killed}, GOLDEN={golden}", flush=True)
+    return rows

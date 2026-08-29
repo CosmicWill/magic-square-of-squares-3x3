@@ -520,3 +520,30 @@ def _(ctx):
     ctx.note("k_c = 0 kill pinned at m = 145^2: line 6 dies alone, "
              "phantoms alive at every layer — A9.C2 refuted; the cap "
              "(A9.6) and the law (A9.12) stand")
+
+
+@check("a9.square_family", DOC)
+def _(ctx):
+    """The square-center-root motif, pinned: the m = k^2 family census
+    via the PURE A9.12 Diophantine sieve (no class computations)
+    reproduces the desert pipeline's verdicts independently — 12
+    centers with stage-3 pairs for k <= 200, 156 stage-3, and the
+    golden pair exactly at m = 185^2 (both orders); in the full
+    verified range all golden pairs are square-family (2/192 vs
+    0/11816 nonsquare)."""
+    from compute.gram_sieve import square_family_census
+
+    kmax = ctx.bound(full=200, fast=150)
+    rows = square_family_census(kmax=kmax, verbose=False)
+    golden = [(k, m, g) for k, m, D, s3, kl, g in rows if g]
+    if kmax >= 200:
+        require(len(rows) == 12 and sum(r[3] for r in rows) == 156,
+                (len(rows), sum(r[3] for r in rows)))
+        require(golden == [(185, 34225, 2)], golden)
+    else:
+        require(golden == [], golden)
+        require((21025 in [r[1] for r in rows]), "145^2 missing")
+    ctx.note(f"A9.12-sieve census, k <= {kmax}: {len(rows)} centers, "
+             f"{sum(r[3] for r in rows)} stage-3; golden {golden} — "
+             f"the Diophantine law reproduces the desert pipeline "
+             f"independently")

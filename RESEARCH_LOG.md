@@ -1893,3 +1893,36 @@ census the m = k^2 family specifically.
 The companion thread closes honestly: conjectured from 160 samples,
 scaffolded into four theorems (A9.6-A9.12 survive and are the
 lasting yield), refuted at scale by its own machinery. Suite 126.
+
+## 2026-08-28 — Entry 47: the square-root-center motif — all golden pairs live in the m = k² family
+
+Following the motif flagged in entry 46 (the C2 counterexample at
+145², the golden center at 185²), the m = k² family was censused
+with the PURE A9.12 Diophantine sieve — no class-group computation
+anywhere, the theorem in production — and the results are stark:
+
+1. CROSS-VALIDATION: the Diophantine sieve independently reproduces
+   the desert pipeline's verdicts on the family, k <= 200 (12
+   centers, 156 stage-3 pairs, golden exactly the 185^2 pair in both
+   orders) — two entirely different code paths, same answers
+   (a9.square_family).
+2. THE MOTIF QUANTIFIED: over the full verified range m <= 53,400,
+   ALL golden pairs are square-family — 2 of 192 square-family
+   stage-3 pairs vs 0 of 11,816 nonsquare (under a uniform null,
+   both landing there by chance ~ 1.5e-4). Sieve transparency
+   concentrates, so far entirely, on the thin m = k^2 family
+   (density m^{-1/2}).
+3. IMPLICATIONS: (a) W6 targeting — the telescope should sweep the
+   square family FIRST (and can now do so beyond the desert range,
+   cheaply, via the A9.12 sieve; the k <= 316 extension is running);
+   (b) W4 — if golden centers concentrate on the thin family, the
+   generic (nonsquare) desert may yet be law-like: the right
+   refinement of the refuted all-m hypothesis is now "the sieves are
+   total off the square family", a sharper and still-live question;
+   (c) structure — at m = k^2 the sphere is S(3k^4): richer D(m),
+   deeper class tower; the mechanism deserves its own probe.
+
+Suite 127. Sessions state: desert leg paused (53,400; resume with
+python -m compute.desert_extension 100000 when the survey is done);
+m = 7 survey grinding (~2 days); square-family extension to k = 316
+running (light).
