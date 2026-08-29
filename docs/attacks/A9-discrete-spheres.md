@@ -727,6 +727,75 @@ root ($145^2$), as does the first golden center ($185^2$) — the
 $m = k^2$ family appears to be where sieve structure turns
 transparent first.
 
+### The scaling law (A9.13) — what makes 185 special: the golden pair is a resurrected base pair
+
+*(2026-08-28; check `a9.scaling_law`. Trigger: the extended family
+census (k \le 316) left $185^2$ unique even among squares, so we
+dissected the golden pair's arithmetic.)*
+
+**The anatomy.** Both golden offsets are deeply **imprimitive**: for
+$U = 108786216$, $(e,f) = 37\cdot(924, 43)$; for $V = 718725000$,
+$(e,f) = 925\cdot(35, 12)$. (The rival hypothesis — that the golden
+pair uses the *iterated Gaussian* representations available at
+$m = k^2$, i.e. $(e,f)$ from squared norm-$k^2$ Gaussians — is
+refuted: four such representations exist at $34225$ and the golden
+pair uses none of them.) Following the contents down gives exact
+identities:
+$$(34225,\, 108786216,\, 718725000) \;=\; 37\cdot(925,\; 79464,\; 525000),$$
+$$(21025,\, 144315600,\, 237646416) \;=\; 29\cdot(725,\; 171600,\; 282576),$$
+where the map is $(m,U,V) \mapsto (qm,\, q^2U,\, q^2V)$. The base of
+the C2-exception pair is **the $m = 725$ three-sieve passer itself**
+(one of the eleven anatomy pairs of `PASSERS_1200` — the syzygy
+star). The base of the golden pair sits at the other anatomy center
+$925$ and was **coherence-dead there, with all six killable lines
+syzygy-dead** ({2,…,7}).
+
+**Lemma A9.13 (scaling monotonicity; PROVEN).** For any $q \ge 2$
+the scaling map sends congrua pairs to congrua pairs (entries scale
+by $q^2$), preserves positivity, scales each of the eight co-norm
+triples by $q^2$ (they are linear in $(2m^2, U, V)$), and sends
+A9.12 witnesses to witnesses:
+$$w_iw_j - t^2 = Nk^2 \;\Longrightarrow\; (q^2w_i)(q^2w_j) - (q^2t)^2 = (q^2N)(qk)^2,$$
+with the syzygy $\det_3 = 0$ scaling by $q^6$ on both sides. Hence
+**alive lines stay alive under scaling; dead sets only shrink**. The
+converse fails — scaled systems admit non-scaled witnesses — which
+is exactly how resurrection happens. (Coherence is *not* claimed
+monotone; observed flips are incoherent $\to$ coherent, another
+softening.)
+
+**The two chains, measured.** The $725$ passer has dead lines
+$\{2,3,4,5,6\}$; its $29$-scaling at $145^2$ has dead set $\{6\}$ —
+the C2-exception's lone kill is *the last survivor of five*. The
+$925$ base has dead lines $\{2,\dots,7\}$ plus a coherence kill; its
+$37$-scaling at $185^2$ has dead set $\varnothing$ — the golden
+center is a **full resurrection**. Both chains are monotone, as the
+lemma demands.
+
+**The motif explained.** Scaling a center $m' = 5^2q$ by its own
+prime $q$ lands on $(5q)^2$: the square family is precisely the
+landing zone of *self-scalings* of the $5^2q$ anatomy-type centers
+($725 \to 145^2$, $925 \to 185^2$). The square-root-center motif is
+not a numerological accident — it is the shadow of the scaling
+partial order, along which the sieve can only soften. "What makes
+185 special" now has a structural answer: $185^2 = 37\cdot925$ is
+the first point in the verified universe where a base pair's entire
+obstruction set (one coherence kill plus six line kills) dissolved
+under scaling; $145^2 = 29\cdot725$ came within one line of the same
+event. The residual question — *why all six at $q = 37$ and only
+four of five at $q = 29$* — is the actuarial layer's territory
+(per-line resurrection odds grow with the class-room the scale
+adds), not a further hidden law of kill locations.
+
+**Consequences for the hunt (W6).** The telescope should sweep the
+**scaled-pair ladder**: images of small-center base pairs (not just
+the three-sieve passers — the golden ancestor was *coherence-dead*
+at 925) under $(m,U,V) \mapsto (qm, q^2U, q^2V)$, ordered by scaled
+center. This is a far thinner and better-motivated family than "all
+centers", and it is exactly where both special pairs of the fresh
+range live. For W4 the lesson is sharper still: any totality proof
+for the sieves must be **scaling-stable** — it must rule out
+resurrection along every chain, not merely kill primitive pairs.
+
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 
 *(2026-08-28; `compute/actuarial_model.py`; sample artifacts

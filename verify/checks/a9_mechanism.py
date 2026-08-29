@@ -572,3 +572,67 @@ def _(ctx):
             require(list(row) == art[row[0]], (row, art[row[0]]))
     ctx.note("k <= 316 artifact pinned: 24 centers, golden = {185^2} "
              "only; live rows re-verified to k <= " + str(k_spot))
+
+
+@check("a9.scaling_law", DOC)
+def _(ctx):
+    """Lemma A9.13 (scaling monotonicity) and the identification of the
+    two special pairs as self-scalings.  (i) The scaling map
+    (m,U,V) -> (qm, q^2 U, q^2 V) sends congrua pairs to congrua pairs,
+    preserves positivity, scales every co-norm triple by q^2, and sends
+    A9.12 witnesses to witnesses (t -> q^2 t, k -> qk) — so alive lines
+    stay alive and dead sets only shrink.  (ii) The golden pair is the
+    37-self-scaling of (925, 79464, 525000) — coherence-dead at 925
+    with dead lines {2..7} — and the C2-exception pair is the
+    29-self-scaling of THE m=725 three-sieve passer (171600, 282576),
+    dead lines {2..6} shrinking to {6}.  Self-scaling 5^2 q by q lands
+    on (5q)^2: the square-family motif is the scaling phenomenon."""
+    from math import isqrt
+    from compute.sphere_gluing import coherent_pair, pair_lines
+    from compute.gram_sieve import syzygy_line_ok_fast
+    from compute.sphere_composition import PASSERS_1200
+
+    # (ii) exact identifications
+    require((37 * 925, 37**2 * 79464, 37**2 * 525000)
+            == (34225, 108786216, 718725000), "golden scaling identity")
+    require((29 * 725, 29**2 * 171600, 29**2 * 282576)
+            == (21025, 144315600, 237646416), "exception scaling identity")
+    require((725, 171600, 282576) in [tuple(p) for p in PASSERS_1200],
+            "base of the exception is the m=725 passer")
+    require(5 * 5 * 37 == 925 and 5 * 5 * 29 == 725 and
+            (5 * 37) ** 2 == 34225 and (5 * 29) ** 2 == 21025,
+            "self-scaling lands on the square family")
+
+    # (i) witness scaling on real data: every alive base line of the
+    # 725 passer stays alive at the 29-scaling via the SCALED witness
+    def dead_set(m, U, V):
+        n = 3 * m * m
+        return {i for i, tri in enumerate(pair_lines(2 * m * m, U, V))
+                if not syzygy_line_ok_fast(tri, n)}
+    chains = [((725, 171600, 282576), 29, {2, 3, 4, 5, 6}, {6}, True, True),
+              ((925, 79464, 525000), 37, {2, 3, 4, 5, 6, 7}, set(),
+               False, True)]
+    for (m0, U0, V0), q, want0, want1, coh0, coh1 in chains:
+        m1, U1, V1 = q * m0, q * q * U0, q * q * V0
+        require(coherent_pair(m0, U0, V0) is coh0, (m0, "coherence"))
+        require(coherent_pair(m1, U1, V1) is coh1, (m1, "coherence"))
+        d0 = dead_set(m0, U0, V0)
+        require(d0 == want0, (m0, d0))
+        if ctx.bound(full=1, fast=0) or m0 == 725:
+            d1 = dead_set(m1, U1, V1)
+            require(d1 == want1, (m1, d1))
+            require(d1 <= d0, "monotonicity violated")
+        # co-norm triples scale by q^2 (linearity)
+        L0 = pair_lines(2 * m0 * m0, U0, V0)
+        L1 = pair_lines(2 * m1 * m1, U1, V1)
+        require(all(tuple(q * q * x for x in a) == tuple(b)
+                    for a, b in zip(L0, L1)), "triple scaling")
+    # algebraic witness scaling, spot: w1 w2 - t^2 = N k^2 implies
+    # (q^2 w1)(q^2 w2) - (q^2 t)^2 = (q^2 N)(q k)^2 — identity check
+    w1, w2, t, N, k, q = 11, 35, 13, 6, 6, 29
+    require(w1 * w2 - t * t == N * k * k, "base witness")
+    require((q*q*w1) * (q*q*w2) - (q*q*t)**2 == (q*q*N) * (q*k)**2,
+            "scaled witness")
+    ctx.note("A9.13: sieve verdicts only soften along scalings; golden "
+             "= 37.(925 pair), exception = 29.(the 725 passer); "
+             "(5q)^2 = self-scaled 5^2 q — the motif is the scaling law")

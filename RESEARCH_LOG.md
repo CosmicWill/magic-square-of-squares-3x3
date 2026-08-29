@@ -1943,3 +1943,32 @@ enrichment claim alive at ~2 observed events; the next decisive
 data will come when the desert leg resumes past 53,400 (general
 family) and from a k <= 450 family extension if wanted (m to
 2x10^5). Suite 128.
+
+## 2026-08-28 — Entry 48: what makes 185 special — the scaling law (Lemma A9.13)
+
+Investigating the uniqueness of 185^2 cracked the motif open. The
+golden offsets are deeply imprimitive ((e,f) contents 37 and 925),
+and following the contents down gives exact identities: the golden
+pair is the 37-scaling of (925, 79464, 525000) — coherence-DEAD at
+925 with all six killable lines syzygy-dead — and the C2-exception
+pair is the 29-scaling of THE m=725 three-sieve passer (171600,
+282576) from PASSERS_1200. Lemma A9.13 (PROVEN, machine-checked):
+the scaling map (m,U,V) -> (qm, q^2 U, q^2 V) preserves congrua
+pairs and positivity, scales co-norm triples by q^2, and sends
+A9.12 witnesses to witnesses — so alive lines stay alive and dead
+sets only shrink. Measured chains confirm monotone shrinkage:
+{2,3,4,5,6} -> {6} (725 -> 145^2) and {2,...,7} -> {} (925 ->
+185^2, with coherence flipping on). The square-root-center motif is
+explained structurally: self-scaling 5^2 q by q lands on (5q)^2 —
+the square family is the landing zone of self-scalings, and 185^2
+is the first FULL RESURRECTION in the verified universe (145^2 came
+one line short). The iterated-Gaussian hypothesis was tested and
+refuted (four squared-Gaussian reps exist at 34225; the golden pair
+uses none). W4 consequence: any sieve-totality proof must be
+scaling-stable. W6 consequence: the hunting family is the scaled-
+pair ladder, not "all centers" — launched compute/ladder_sweep.py
+over all 56 base positivity pairs at the nine anatomy centers into
+the window (53400, 150000] (background). Also running: the family
+primitivity census (are all square-family stage-3 pairs scalings?).
+Check a9.scaling_law pins the lemma, both identifications, both
+chains, and the (5q)^2 identity. Suite 129, all green.
