@@ -430,18 +430,44 @@ symbolically.)
   for $p \ge 2$. **Dead with no descent at all: pure valuation and
   size in $\mathbb{Z}[i]$.**
 
-**The four remaining equations** (E1/E2 and mirrors:
-$\sin(A{+}B) = \mp2\cos 2A\sin B$). Their tree ($p^2 \mid v$, then
-$Su = -v'(Cp^2 \pm 2C_4)$) bottoms in the normal form
-$$2c_1\ell^3 + \bar\ell^4 = g\cdot\mathrm{unit}\cdot\mu^4
-\quad\text{resp.}\quad \bar\ell^4 + 2is_1\ell^3 =
-g\cdot\mathrm{unit}\cdot\mu^4,$$
-with $g = \gcd(S, Cp^2 \pm 2C_4)$ **odd** and $4 \mid s_1$ — a
-*content-shifted* Gaussian fourth-power condition. Unlike E3, the
-content $g$ blocks the four-factor concentration argument. These
-four are the surviving open core of the $(2,1)$ box (searches
-empty; `data_box21_open.json`). **Theorem A3.8 is complete except
-for them.**
+**The four E1/E2 equations — second wave: reduced to the $g = 3$
+sliver** (`a3.box21_sliver`). Their tree ($p^2 \mid v$, then $Su =
+-v'(Cp^2 \pm 2C_4)$) bottoms in $N_\pm = g\cdot\mathrm{unit}\cdot
+\mu^4$, where $N_+ = 2c_1\ell^3 + \bar\ell^4 = K_+ + iSp^2$ and
+$N_- = \bar\ell^4 + 2is_1\ell^3 = -(K_- + iSp^2)$, with $K_\pm =
+Cp^2 \pm 2C_4$, $g = \gcd(S, K_\pm)$, and $4 \mid s_1$ forced
+mod 8.
+
+**Content lemma (PROVEN).** $g \in \{1, 3\}$: for an odd prime $r
+\mid s_1$: $K_+ \equiv 3c_1^4$, $K_- \equiv -c_1^4 \pmod r$; for
+$r \mid c_1$: $K_+ \equiv s_1^4$, $K_- \equiv -3s_1^4$; so $r \mid
+g$ forces $r = 3$, with $3 \mid s_1$ in the $+$ case and $3 \mid
+c_1$ in the $-$ case; and mod 9 the 3-valuation of $K_\pm$ is
+exactly 1. (Component identities symbolic; the lemma verified on
+every split prime to the profile bound.)
+
+**$g = 1$ is dead in both cases.** The $-$ case is the E3 clone:
+the unit is forced to 1 mod 8, giving $\mu^4 - \bar\ell^4 =
+2is_1\ell^3$, and the four factors $\prod_k(\mu - i^k\bar\ell)$
+have unit-times-$\bar\ell$ differences, so $\lambda^6$ concentrates
+in one factor of norm $\ge p^6$ — against the $q \le \sqrt3\,p^2$
+norm ceiling. The $+$ case forces unit $= -1$ mod 8, i.e. $\mu^4 +
+\bar\ell^4 = -2c_1\ell^3$, which **factors over $\mathbb{Z}[i]$**:
+$(\mu^2 + i\bar\ell^2)(\mu^2 - i\bar\ell^2) = -2c_1\ell^3$. The two
+factors differ by the $\lambda$-unit $2i\bar\ell^2$, so $\lambda^6$
+concentrates in one factor of norm $\ge p^6$, against the ceiling
+$(\sqrt q + p^2)^2 \le 7.5\,p^4$ — dead for every $p$.
+
+**What survives — the $g = 3$ sliver, the last obstacle of the
+entire $(2,1)$ box:**
+$$3\,\mathrm{unit}\cdot\mu^4 = 2c_1\ell^3 + \bar\ell^4 \quad (12
+\mid s_1,\ 3 \nmid c_1), \qquad 3\,\mathrm{unit}\cdot\mu^4 =
+\bar\ell^4 + 2is_1\ell^3 \quad (3 \mid c_1,\ 4 \mid s_1),$$
+each forcing, mod $\lambda^6$, **3 to be a quartic residue mod
+$p$** — hence $p \equiv 1 \pmod{12}$. Searches empty to $p, q \le
+1500$; the desert covers all such $m$ to $10^7$. A 3-flavored
+descent on these two equations would complete Theorem A3.8
+outright.
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
