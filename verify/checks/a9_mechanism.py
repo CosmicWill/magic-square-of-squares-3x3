@@ -754,3 +754,188 @@ def _(ctx):
              "minimal new golden centers 96425/105125/126875/147175 all "
              "nonsquare; 925/1025 fertility = self-prime directions; "
              "96425 re-verified live (dual-path on FULL)")
+
+
+@check("a9.local_locks", DOC)
+def _(ctx):
+    """Lemma A9.14 (localization) and the fertile-seed classification.
+    (a) Scaled coherence == base coherence away from q (symbols
+    invariant for p not dividing q, vacuous for p | q) — verified on a
+    deterministic (seed, q) grid.  (b) Line locks: a line all of whose
+    strata have a p-locally insoluble pair equation stays dead unless
+    p | q.  Panel table pinned: the narrow seeds' outer lines are
+    locked exactly at the self-prime (925 at 37, 1025 at 41, matching
+    their chi-certificates), the 425 seeds are locked at 17 resp. 5,
+    the broad-fertile and coherent-barren seeds have NO locks anywhere
+    (their kills are class-type) — so fertility = eligibility
+    direction (proven) x per-rung class luck (measured).  Soundness:
+    alive lines are never locked; locks vacate on-direction in all
+    three tested cases."""
+    from compute.local_locks import (chi_certificates, line_locked_at,
+                                     local_lock_table)
+    from compute.resurrection_curves import SEEDS
+    from compute.sphere_gluing import coherent_pair, pair_lines
+    from compute.gram_sieve import syzygy_line_ok_fast
+
+    want_certs = {
+        "F1-broad": set(), "F2-broad": set(),
+        "N1-37": {(37, 4), (37, 5), (37, 6), (37, 7)},
+        "N2-41": {(41, 4), (41, 5), (41, 6), (41, 7)},
+        "B1-425": {(17, 4), (17, 5)},
+        "B2-425": set(),
+        "B3-425": {(5, 4), (5, 5)},
+        "B4-passer925": set(), "B5-1025": set(), "B6-845": set()}
+    want_locks = {
+        "F1-broad": {}, "F2-broad": {},
+        "N1-37": {4: [37], 5: [37], 6: [37], 7: [37]},
+        "N2-41": {4: [41], 5: [41], 6: [41], 7: [41]},
+        "B1-425": {4: [17], 5: [17]},
+        "B2-425": {},
+        "B3-425": {4: [5], 5: [5], 6: [5], 7: [5]},
+        "B4-passer925": {}, "B5-1025": {}, "B6-845": {}}
+    panel = SEEDS if ctx.bound(full=1, fast=0) else \
+        [s for s in SEEDS if s[0] in ("F2-broad", "N1-37", "B3-425")]
+    for tag, m0, U0, V0 in panel:
+        certs = set(chi_certificates(m0, U0, V0))
+        require(certs == want_certs[tag], (tag, certs))
+        locks = local_lock_table(m0, U0, V0)
+        require(locks == want_locks[tag], (tag, locks))
+        # soundness: alive lines never locked (implied by table match,
+        # asserted directly for the killable lines)
+        n = 3 * m0 * m0
+        for i, tri in enumerate(pair_lines(2 * m0 * m0, U0, V0)):
+            if syzygy_line_ok_fast(tri, n):
+                require(i not in locks, (tag, i, "alive but locked"))
+        # (a) coherence localization on a deterministic q-grid
+        cert_ps = {p for p, _ in certs}
+        for q in (2, 3, 5, 7, 17, 29, 37, 41, 10, 21):
+            pred = all(q % p == 0 for p in cert_ps)
+            got = coherent_pair(q * m0, q * q * U0, q * q * V0)
+            require(pred == got, (tag, q, pred, got))
+    # (b) locks vacate on-direction (the three tested unlock cases)
+    for m0, U0, V0, p, q in ((425, 72384, 97104, 5, 5),
+                             (425, 54600, 72384, 17, 17),
+                             (925, 79464, 525000, 37, 37)):
+        m, U, V = q * m0, q * q * U0, q * q * V0
+        n = 3 * m * m
+        require(all(not line_locked_at(t, n, p)
+                    for t in pair_lines(2 * m * m, U, V)),
+                (m0, p, "lock failed to vacate on-direction"))
+    ctx.note("A9.14 verified: certificates and locks pinned for the "
+             "panel; coherence localization exact on the q-grid; "
+             "locks persist off-direction and vacate on-direction")
+
+
+@check("a9.joint_locks", DOC)
+def _(ctx):
+    """The joint-system congruence layer and the rigid class.  The
+    change of variables t -> q^2 t, k -> qk makes the scaled joint
+    system mod M equivalent to the base system whenever gcd(q,M) = 1,
+    so joint locks at ANY modulus are scaling-invariant off their own
+    direction.  Pinned: B3's outer lines carry joint locks (4,5 at
+    mod 5; 6,7 only at mod 25 — invisible to the pair-level test),
+    vacating on its 5-rungs; B4 (the m = 925 passer) has NO joint
+    lock at any modulus in {3,5,7,8,9,11,13,16,24,25,48,49} (FULL
+    extends to 121/125/169) despite a flat ~6-dead resurrection curve
+    to m ~ 10^5 — the RIGID class is beyond every congruence and
+    local test built here (conjecturally spinor-level; named target).
+    Soundness: alive lines never joint-locked."""
+    from compute.local_locks import line_joint_lock
+    from compute.sphere_gluing import pair_lines
+    from compute.gram_sieve import syzygy_line_ok_fast
+
+    # B3: locks and their exact depths
+    m0, U0, V0 = 425, 72384, 97104
+    n = 3 * m0 * m0
+    tris = pair_lines(2 * m0 * m0, U0, V0)
+    for i, want5, want25 in ((4, True, True), (5, True, True),
+                             (6, False, True), (7, False, True)):
+        require(line_joint_lock(tris[i], n, 5) is want5, (i, 5))
+        require(line_joint_lock(tris[i], n, 25) is want25, (i, 25))
+    # locks vacate on the 5-direction
+    q = 5
+    m, U, V = q * m0, q * q * U0, q * q * V0
+    nq = 3 * m * m
+    require(all(not line_joint_lock(t, nq, 25)
+                for t in pair_lines(2 * m * m, U, V)), "vacate at q=5")
+    # B4: no locks anywhere on the panel
+    m0, U0, V0 = 925, 79464, 501600
+    n = 3 * m0 * m0
+    mods = (3, 5, 7, 8, 9, 11, 13, 16, 24, 25, 48, 49)
+    if ctx.bound(full=1, fast=0):
+        mods = mods + (121, 125, 169)
+    for i, tri in enumerate(pair_lines(2 * m0 * m0, U0, V0)):
+        alive = syzygy_line_ok_fast(tri, n)
+        locks = [M for M in mods if line_joint_lock(tri, n, M)]
+        if alive:
+            require(locks == [], (i, "alive but joint-locked"))
+        else:
+            require(locks == [], (i, "unexpected B4 lock", locks))
+    ctx.note("joint locks pinned: B3 outer locks at 5/25 vacate "
+             "on-direction; B4 (the passer) lock-free everywhere "
+             "tested — the rigid class is beyond congruence locks")
+
+
+@check("a9.resurrection_curves", DOC)
+def _(ctx):
+    """The resurrection-curve panel (data_resurrection_curves.json,
+    768 full profiles, 10 seeds, m <= 120000): the three measured
+    fertility classes.  BROAD (F1/F2): coherent at every rung, kills
+    class-type, mean dead count falls with size and both reach golden
+    in-grid (F1 at q = 145, matching the ladder sweep).  NARROW
+    (N1/N2): eligible only on their self-prime direction; N1 golden
+    at every 37-rung, N2 at exactly dead {2} on every 41-rung (a
+    golden is predicted higher up its ladder).  RIGID (B3/B4): flat
+    at ~6 dead through two decades — B4 with no lock at any tested
+    place or modulus: the named open obstruction.  One rung
+    re-verified live."""
+    import json as _json
+    from compute.sphere_gluing import coherent_pair, pair_lines
+    from compute.gram_sieve import syzygy_line_ok_fast
+
+    with open(os.path.join(DATA, "data_resurrection_curves.json"),
+              encoding="utf-8") as fh:
+        d = _json.load(fh)
+    rows = d["rows"]
+    require(len(rows) == 768 and d["m_cap"] == 120000, len(rows))
+    by = {}
+    for tag, m0, U0, V0, q, m, coh, dead in rows:
+        by.setdefault(tag, []).append((q, m, coh, dead))
+    # N1: every coherent rung is a 37-multiple and golden
+    n1 = [(q, coh, dead) for q, m, coh, dead in by["N1-37"]]
+    require(all(q % 37 == 0 for q, coh, _ in n1 if coh))
+    require(all(dead == [] for q, coh, dead in n1 if coh))
+    require(sum(1 for _, coh, _ in n1 if coh) == 3)
+    # N2: every coherent rung is a 41-multiple with dead exactly [2]
+    n2 = [(q, coh, dead) for q, m, coh, dead in by["N2-41"]]
+    require(all(q % 41 == 0 for q, coh, _ in n2 if coh))
+    require(all(dead == [2] for q, coh, dead in n2 if coh))
+    # F1 reaches golden at q = 145; F2 at q = 133
+    require([dead for q, m, coh, dead in by["F1-broad"]
+             if q == 145] == [[]])
+    require([dead for q, m, coh, dead in by["F2-broad"]
+             if q == 133] == [[]])
+    # rigid: B3/B4 never drop below 5 dead on any rung
+    for tag in ("B3-425", "B4-passer925"):
+        require(min(len(dead) for _, _, _, dead in by[tag]) >= 5, tag)
+    # broad softening: F2 mean dead falls from the small-q band to the
+    # large-q band by at least 1
+    def band_mean(tag, lo, hi):
+        ds = [len(dead) for q, m, coh, dead in by[tag]
+              if coh and lo <= q <= hi]
+        return sum(ds) / len(ds)
+    require(band_mean("F2-broad", 2, 15)
+            - band_mean("F2-broad", 91, 150) > 1.0, "no softening?")
+    # live spot: one recorded rung recomputed in full
+    q, m, coh, dead = [r[4:] for r in rows if r[0] == "N2-41"
+                       and r[4] == 82][0]
+    require(coh is True and dead == [2])
+    require(coherent_pair(m, 82 * 82 * 130944, 82 * 82 * 450000))
+    n = 3 * m * m
+    live = [i for i, t in enumerate(pair_lines(
+        2 * m * m, 82 * 82 * 130944, 82 * 82 * 450000))
+        if not syzygy_line_ok_fast(t, n)]
+    require(live == [2], live)
+    ctx.note("curves pinned: broad softens to golden, narrow rungs "
+             "exact, rigid flat >= 5 dead; N2's 41-rung re-verified "
+             "live (dead exactly {2})")

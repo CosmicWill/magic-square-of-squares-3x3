@@ -2015,3 +2015,37 @@ at q = 29/116): no forced kill-location deep in the ladder.
 PROGRAM PIVOT recorded in PROGRESS/ROADMAP (M12-P): the frontier is
 now (a) fertile-seed arithmetic and (b) the representable-vs-
 attained gap. Suite 131, all green.
+
+## 2026-08-28 — Entry 50: the fertile-seed arithmetic — Lemma A9.14 and the rigid class
+
+The fertility question is answered in three layers, two proven and
+one measured. Lemma A9.14 (PROVEN, a9.local_locks + a9.joint_locks):
+(a) scaled coherence = base coherence away from q (chi-symbols
+invariant for p coprime to q, vacuous on p | q); (b) Z_p pair-
+equation locks persist off-direction; (c) the change of variables
+t -> q^2 t, k -> qk makes the scaled JOINT system mod M equivalent
+to the base system whenever gcd(q, M) = 1 — congruence locks at ANY
+modulus force their prime into q. Certificates/locks computed for
+the ten-seed panel with clean soundness (alive lines never locked;
+every ladder-sweep hit divisible by its seed's forced direction —
+48-sample and grid verifications). The classification: BROAD seeds
+(the two 725 pairs) have no locks anywhere — eligible at every
+rung, kills pure class-type, and the 768-profile resurrection-curve
+panel (data_resurrection_curves.json, a9.resurrection_curves) shows
+them softening with size to golden in-grid. NARROW seeds (925 at
+37, 1025 at 41, and the 425 seeds at 17/5) are locked on their
+outer lines at exactly the self-prime — provably eligible only on
+q = 0 mod p; on-direction the locks vacate (verified) and N1 is
+golden at every 37-rung while N2 sits at dead {2} on every 41-rung
+— PREDICTION: a golden center up the 41-ladder (first candidates
+q = 164, 205). THE RIGID CLASS is the discovery: B4 = the m = 925
+three-sieve passer itself has no certificate, no pair lock at any
+place, no joint lock at any modulus tested (3..169), is coherent
+and locally soluble everywhere — and stays FLAT at >= 5 dead lines
+through two decades of disc growth while broad seeds soften past
+it. A scaling-invariant global obstruction beyond every local and
+congruence test built today: conjecturally spinor-level. Naming
+this rigidity invariant is now W4's sharpest target — it would
+carve out an infinite provably-sieve-dead family containing the
+anatomy passers, the complementary half of the ladder picture.
+Suite 134, all green (locks, curves, joint layer pinned).

@@ -848,6 +848,71 @@ findings, in order of violence:
    outer 6 ($q = 29, 116$) — no forced kill-location deep in the
    ladder either, consistent with the C2 refutation.
 
+### The fertile-seed arithmetic (A9.14): eligibility directions, and the rigid class
+
+*(2026-08-28; `compute/local_locks.py`,
+`compute/resurrection_curves.py` (artifact
+`data_resurrection_curves.json`, 768 full profiles); checks
+`a9.local_locks`, `a9.joint_locks`, `a9.resurrection_curves`.
+Question: why are the fertile seeds exactly the ones they are?)*
+
+**Lemma A9.14 (localization; PROVEN).** Three scaling-invariance
+statements with one common mechanism:
+(a) *Coherence.* $\chi_p(q^2t) = \chi_p(t)$ for $p \nmid q$, and all
+symbols vanish for $p \mid q$; hence the scaled pair is coherent iff
+the base pair passes every $\chi_p$ line test at the primes
+$p \mid 3m^2$, $p \nmid q$. An incoherent seed's certificate primes
+divide $q$ on every resurrecting rung.
+(b) *Pair locks.* For odd $p \nmid q$, the $\mathbb{Z}_p$-solvability
+data of every stratum's pair equations is unchanged by scaling: a
+line whose every stratum is $p$-locally insoluble stays dead unless
+$p \mid q$.
+(c) *Joint locks.* The change of variables $t \mapsto q^2t$,
+$k \mapsto qk$ is a bijection mod $M$ whenever $\gcd(q, M) = 1$ and
+scales the three pair equations by $q^4$ and both sides of the
+syzygy by $q^6$ — so the scaled joint system mod $M$ is
+**equivalent** to the base system mod $M$. A joint congruence lock
+at any modulus forces $\gcd(q, M) > 1$ on any resurrecting rung.
+
+**The measured classification** (the ten-seed panel: certificates,
+$\mathbb{Z}_p$ locks at all $p \mid 6m^2$, joint locks mod
+$\{3,\dots,169\}$, resurrection curves to $m \le 120000$; soundness:
+no alive line is ever locked, and every ladder-sweep hit respects
+its seed's forced direction):
+
+- **Broad seeds** ($725$: $(171600,282576)$, $(122400,282576)$) — no
+  certificate, no lock anywhere: eligible at every rung; their kills
+  are pure class-type and the curves show them **softening with
+  size** (mean dead $4.1 \to 2.8$ resp. $5.4 \to 3.9$ across the
+  $q$-bands), reaching golden in-grid ($q = 133$, $145$). Fertility
+  = eligibility everywhere $\times$ class luck that improves with
+  the disc.
+- **Narrow seeds** ($925$: $(79464,525000)$ at $37$; $1025$:
+  $(130944,450000)$ at $41$) — coherence certificates *and*
+  $\mathbb{Z}_p$ pair locks on all four outer lines at exactly the
+  self-prime: provably eligible only on $q \equiv 0$ (mod $p$).
+  On-direction the locks vacate (verified), and the curves are
+  exact: N1 golden at *every* 37-rung ($37, 74, 111$), N2 at dead
+  $= \{2\}$ on every 41-rung — **a golden center is predicted up
+  the 41-ladder.** The $425$ seeds are narrow too ($17$ resp. $5$ —
+  the mod-25 joint locks on lines 6, 7 are invisible at pair level)
+  but carry heavier residual class load.
+- **The rigid class** (B4 $= (79464, 501600)$ at $925$ — *the
+  three-sieve passer itself* — and B3 after its unlocks) — no
+  certificate, no pair lock at any place, no joint lock at any
+  tested modulus, coherent at every rung, locally soluble
+  everywhere… and **flat at $\ge 5$ dead lines through two decades
+  of disc growth**, while the broad seeds soften and pass them by.
+  Whatever holds these lines dead is scaling-invariant, beyond
+  every congruence and local test built here — the profile of a
+  spinor-genus-level (or coupled-system Brauer–Manin-like)
+  obstruction. **Naming it is the sharpest open target this
+  investigation produces:** a "rigidity invariant" would carve out
+  an infinite provably-sieve-dead family containing the anatomy
+  passers — the complementary half of the ladder picture, and a
+  potential mechanism for an eventual nonexistence argument to
+  survive scaling.
+
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 
 *(2026-08-28; `compute/actuarial_model.py`; sample artifacts
