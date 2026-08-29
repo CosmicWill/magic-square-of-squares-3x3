@@ -1926,3 +1926,20 @@ Suite 127. Sessions state: desert leg paused (53,400; resume with
 python -m compute.desert_extension 100000 when the survey is done);
 m = 7 survey grinding (~2 days); square-family extension to k = 316
 running (light).
+
+## 2026-08-28 — Entry 47 addendum: the family census reaches m ~ 10^5 — 185² stays unique
+
+The k <= 316 extension (m to 99,856 — nearly double the desert's
+verified range, run entirely on the A9.12 Diophantine sieve)
+completed: 24 square-family centers with stage-3 pairs, 296 stage-3
+pairs total, and the golden set is STILL exactly the 185^2 pair
+(artifact data_square_family_316.json, pinned with live spot
+re-verification by a9.square_family_ext). Refined reading: the
+motif stands (all known golden pairs are square-family), but 185^2
+is special even among squares — 1 golden center in 24 family
+centers to 10^5. The family golden rate (2/296 ordered pairs) vs
+the general rate (0/11,816 nonsquare in the desert range) keeps the
+enrichment claim alive at ~2 observed events; the next decisive
+data will come when the desert leg resumes past 53,400 (general
+family) and from a k <= 450 family extension if wanted (m to
+2x10^5). Suite 128.

@@ -547,3 +547,28 @@ def _(ctx):
              f"{sum(r[3] for r in rows)} stage-3; golden {golden} — "
              f"the Diophantine law reproduces the desert pipeline "
              f"independently")
+
+
+@check("a9.square_family_ext", DOC)
+def _(ctx):
+    """The extended square-family artifact (k <= 316, m ~ 10^5, via
+    the A9.12 sieve): 24 centers with stage-3 pairs, golden still
+    exactly the 185^2 pair — no new golden centers to nearly twice
+    the desert's verified range, even inside the enriched family."""
+    with open(os.path.join(DATA, "data_square_family_316.json"),
+              encoding="utf-8") as fh:
+        rows = json.load(fh)
+    require(len(rows) == 24, len(rows))
+    golden = [(r[0], r[5]) for r in rows if r[5]]
+    require(golden == [[185, 2]] or golden == [(185, 2)], golden)
+    require(all(r[4] + r[5] == r[3] for r in rows), "row consistency")
+    # live spot re-verification of one late-range killed row
+    from compute.gram_sieve import square_family_census
+    k_spot = ctx.bound(full=257, fast=113)
+    spot = square_family_census(kmax=k_spot, verbose=False)
+    art = {r[0]: r for r in rows}
+    for row in spot:
+        if row[0] in art:
+            require(list(row) == art[row[0]], (row, art[row[0]]))
+    ctx.note("k <= 316 artifact pinned: 24 centers, golden = {185^2} "
+             "only; live rows re-verified to k <= " + str(k_spot))
