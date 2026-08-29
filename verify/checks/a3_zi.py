@@ -443,3 +443,79 @@ def _(ctx):
              "component identities symbolic; g = 1 dead (doc "
              "proofs); the g = 3 sliver (p = 1 mod 12, 3 quartic "
              "residue) is all that remains of the (2,1) box")
+
+
+@check("a3.box21_complete", DOC)
+def _(ctx):
+    """THEOREM A3.8 COMPLETE: the g = 3 sliver is empty, closing the
+    (2,1) box entirely.  The final descent: the symmetric form
+    N+- = ell^4 +- p^2 ell^2 + ellbar^4 gives |N+-|^2 = K+-^2 +
+    S^2 p^4; the sliver equation 3 unit mu^4 = N+- yields q^4 =
+    K1^2 + S1^2 p^4 (content 3 divided out); factoring and
+    coprime-splitting forces q^2 = U^2 + p^4 V^2 with U, V >= 1,
+    so q^2 > p^4 — against the triangle-inequality window 3q^2 =
+    |N+-| <= 3p^4 (strict for nondegenerate pairs).  Machine: the
+    symmetric-form and norm identities (exact), K odd + content
+    parity + STRICT size over every split prime to the bound, and
+    the remark data: the exploration curve y^2 = x^3 - 2214x +
+    40041 has the non-torsion point (24, 27) with 2P = (33, 54) —
+    rank >= 1, so no rank-0 shortcut ever existed.  With A3.6/A3.7:
+    the split part of any MSS3 center is p^3 q, p^2 q^2, or has
+    >= 3 distinct split primes."""
+    from fractions import Fraction as Fr
+    from compute.zi_additive import gaussian_prime_over
+
+    # symmetric form + norm identity, exact on a deterministic grid
+    for c1 in range(-12, 13):
+        for s1 in range(-12, 13):
+            l = complex(c1, s1)
+            D = c1 * c1 + s1 * s1
+            C, S = c1 * c1 - s1 * s1, 2 * c1 * s1
+            C4 = C * C - S * S
+            Np = 2 * c1 * l ** 3 + l.conjugate() ** 4
+            Nm = l.conjugate() ** 4 + 2j * s1 * l ** 3
+            require(abs(Np - (l ** 4 + D * l ** 2 + l.conjugate() ** 4))
+                    < 1e-6 * max(1, abs(Np)))
+            require(abs(Nm - (l ** 4 - D * l ** 2 + l.conjugate() ** 4))
+                    < 1e-6 * max(1, abs(Nm)))
+            for sgn, N in ((1, Np), (-1, Nm)):
+                K = C * D + sgn * 2 * C4
+                require(abs(abs(N) ** 2 - (K * K + S * S * D * D))
+                        < 1e-3 * max(1, K * K))
+
+    # descent facts over real split primes: K odd, content parity,
+    # STRICT size |N|^2 < 9 p^8 for nondegenerate pairs
+    bound = ctx.bound(full=3000, fast=1200)
+    n = 0
+    for p in range(5, bound, 4):
+        if any(p % d == 0 for d in range(3, int(p ** 0.5) + 1, 2)):
+            continue
+        e, f = gaussian_prime_over(p)
+        for (c1, s1) in ((e * e - f * f, 2 * e * f),
+                         (2 * e * f, e * e - f * f)):
+            if c1 % 2 == 0:
+                continue
+            D = c1 * c1 + s1 * s1
+            C, S = c1 * c1 - s1 * s1, 2 * c1 * s1
+            C4 = C * C - S * S
+            for sgn in (1, -1):
+                K = C * D + sgn * 2 * C4
+                require(K % 2 == 1, (p, sgn, "K parity"))
+                cond = s1 if sgn == 1 else c1
+                require((K % 3 == 0) == (cond % 3 == 0), (p, sgn))
+                require(K * K + S * S * D * D < 9 * D ** 4,
+                        (p, sgn, "size"))
+                n += 1
+    # the remark: (24, 27) is non-torsion with 2P = (33, 54)
+    A, B = -2214, 40041
+    require(24 ** 3 + A * 24 + B == 27 * 27)
+    require(33 ** 3 + A * 33 + B == 54 * 54)
+    s = Fr(3 * 24 * 24 + A, 2 * 27)
+    x2 = s * s - 48
+    require((x2, s * (24 - x2) - 27) == (33, 54), "2P")
+    s2 = Fr(3 * 33 * 33 + A, 2 * 54)
+    require((s2 * s2 - 66).denominator > 1, "4P non-integral (rank>=1)")
+    ctx.note(f"THEOREM A3.8 COMPLETE: descent facts verified on {n} "
+             "real cases; identities exact; the exploration curve "
+             "has rank >= 1 — the kill is leg-decomposition vs the "
+             "q < p^2 window")

@@ -458,16 +458,48 @@ factors differ by the $\lambda$-unit $2i\bar\ell^2$, so $\lambda^6$
 concentrates in one factor of norm $\ge p^6$, against the ceiling
 $(\sqrt q + p^2)^2 \le 7.5\,p^4$ — dead for every $p$.
 
-**What survives — the $g = 3$ sliver, the last obstacle of the
-entire $(2,1)$ box:**
-$$3\,\mathrm{unit}\cdot\mu^4 = 2c_1\ell^3 + \bar\ell^4 \quad (12
-\mid s_1,\ 3 \nmid c_1), \qquad 3\,\mathrm{unit}\cdot\mu^4 =
-\bar\ell^4 + 2is_1\ell^3 \quad (3 \mid c_1,\ 4 \mid s_1),$$
-each forcing, mod $\lambda^6$, **3 to be a quartic residue mod
-$p$** — hence $p \equiv 1 \pmod{12}$. Searches empty to $p, q \le
-1500$; the desert covers all such $m$ to $10^7$. A 3-flavored
-descent on these two equations would complete Theorem A3.8
-outright.
+**The sliver falls — Theorem A3.8 is COMPLETE** (`a3.box21_complete`;
+third wave, same day). First, the symmetric form: with $2c_1 =
+\ell + \bar\ell$ and $2is_1 = \ell - \bar\ell$,
+$$N_\pm \;=\; \ell^4 \pm p^2\ell^2 + \bar\ell^4,$$
+whence the norm identity $|N_\pm|^2 = K_\pm^2 + S^2p^4$ (machine-
+verified; equivalently $F(x) = (4x^2+x-2)^2 + (1-x^2)$ at $x =
+\pm C/p^2$). The sliver equation $3\,\mathrm{unit}\cdot\mu^4 =
+N_\pm$ gives $|N_\pm| = 3q^2$ and, after dividing the content
+($K_1 = K_\pm/3$, $S_1 = S/3$, both integral in the sliver, $K_1$
+odd):
+$$q^4 = K_1^2 + S_1^2 p^4 .$$
+**The final descent.** Factor: $(q^2 - K_1)(q^2 + K_1) = S_1^2p^4$.
+Both factors are positive (their product is positive since $S_1
+\ne 0$, their sum is $2q^2$), both even, and their halves are
+coprime: a common divisor would divide $q^2$ and $K_1$, but $q
+\nmid K_1$ — otherwise $q$ divides both factors, so $q \mid S_1$,
+making $q \mid N_\pm/3 = K_1 + iS_1p^2$, impossible since
+$v_{\bar\mu}(\mu^4) = 0$. The prime $p$ cannot divide both halves
+($p \ne q$), so the coprime split forces
+$$\Bigl\{\tfrac{q^2-K_1}{2}, \tfrac{q^2+K_1}{2}\Bigr\} = \{U^2,\
+p^4V^2\}, \qquad UV = S_1/2 \ne 0,$$
+and adding: $q^2 = U^2 + p^4V^2$ with $U, V \ge 1$, hence $q^2 >
+p^4$. But the triangle inequality gives $3q^2 = |N_\pm| \le
+|\ell^4| + |p^2\ell^2| + |\bar\ell^4| = 3p^4$, with equality only
+when $\ell^2$ is real ($s_1 = 0$ or $c_1 = 0$, degenerate) — so
+$q^2 < p^4$ strictly. **Contradiction: the sliver is empty, in
+both cases, for every unit.** $\blacksquare$
+
+*Remark (why no shortcut existed).* The norm identity puts the
+sliver on the elliptic curve $y^2 = 16x^4+8x^3-16x^2-4x+5$
+(Jacobian $y^2 = x^3 - 2214x + 40041$, discriminant $2^4 3^{12}
+229$), which has **rank $\ge 1$**: $(24, 27)$ is a non-torsion
+point with $2\cdot(24,27) = (33,54)$. A rank-0 argument was never
+available; the kill is the classical leg decomposition $q^2 = U^2
++ (p^2V)^2$ against the size window $q < p^2$ — the curve's
+rational points all live outside the physical region.
+
+**Theorem A3.8 (COMPLETE).** For $m = 2^s r\, p^2 q$ (equivalently
+$pq^2$), $D(m)$ admits no signed additive relation. **Corollary
+(with A3.6, A3.7): the split part of any MSS3 center is $p^3q$,
+$p^2q^2$, or has at least three distinct split primes** — at least
+four split prime factors with multiplicity, or three distinct.
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 

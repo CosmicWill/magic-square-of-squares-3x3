@@ -2229,3 +2229,25 @@ p^6 against the ~7.5 p^4 ceiling. WHAT REMAINS of the entire
 forcing 3 to be a quartic residue mod p (so p = 1 mod 12).
 Deep searches empty to p, q <= 1500. One 3-flavored descent from
 Theorem A3.8. Suite 143, all green.
+
+## 2026-08-29 — Entry 56: THEOREM A3.8 COMPLETE — the sliver falls to a classical descent
+
+The 3-isogeny reconnaissance turned into the kill itself. The
+symmetric form N+- = ell^4 +- p^2 ell^2 + ellbar^4 (machine-exact)
+puts the sliver on one elliptic curve — and exploring it found
+integral points (24,27), (28,1), (33,54) with 2*(24,27) = (33,54)
+NON-TORSION: rank >= 1, so the hoped-for rank-0 closure never
+existed. But the physical structure kills without the curve: from
+3 unit mu^4 = N+-, norms give q^4 = K1^2 + S1^2 p^4 (content 3
+out); factoring (q^2-K1)(q^2+K1) = S1^2 p^4 with coprime halves
+(q never divides K1, by primitivity of mu^4) forces the leg
+decomposition q^2 = U^2 + p^4 V^2 with U, V >= 1 — so q^2 > p^4 —
+while the triangle inequality pins 3q^2 = |N+-| <= 3p^4, strict
+for nondegenerate pairs: CONTRADICTION, both cases, every unit.
+THEOREM A3.8: for m = 2^s r p^2 q, D(m) admits no signed additive
+relation. COROLLARY (with A3.6/A3.7): the split part of any MSS3
+center is p^3 q, p^2 q^2, or has at least three distinct split
+primes. Checks: a3.box21_complete (identities exact; descent facts
+verified over every split prime to 3000; the curve remark pinned).
+The additive ladder's third rung is fully climbed; every kill so
+far is arithmetic Fermat would recognize. Suite 144, all green.
