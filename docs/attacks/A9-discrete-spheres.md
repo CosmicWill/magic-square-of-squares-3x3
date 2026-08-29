@@ -706,14 +706,26 @@ $d_1^2 + s_1^2 = 2m^2$, and $(s_1d_1, m)$ solves the $(u_+, u_-)$
 pair ($u_+u_- = (s_1d_1)^2 + 3m^4$); likewise for line 1. The free
 products pass by identity, not by accident.
 
-**Status of the transfer lemma / A9.C2** after this session: still
-open, verified 41/41 at the Gram layer, and now *relocated* — it is
-a statement about the elementary witness systems (the phantom
-systems carry the special value $n_2 = 2m^2$ whose witnesses are
-column-law-adjacent by A9.8.1), no longer about class groups. The
-strategic prize has grown en route: proving A9.C4's sufficiency
-half, or directly attacking the desert's Diophantine form, now
-dominates the original companion question.
+**A9.C2: REFUTED (2026-08-28, the corpus-scale census).** With
+A9.12 making product-level tests class-group-free, the census
+extended from 41 to 350 corpus pairs — and found the
+counterexample: at $m = 21{,}025 = 145^2$, pair
+$(144315600, 237646416)$, the kill pattern is **line 6 alone** (the
+single failing product $\pi(v_-, B_-)$), with *both phantom lines
+alive at every layer* — pairwise, syzygy, and class (`a9.c2_refuted`
+pins it). Hence: $k_c = 0$ kills exist; the sampled companion
+$k_c \ge 1$ was a strong regularity ($349/350 \approx 99.7\%$), not
+a law; the per-family transfers ($rpA \Rightarrow phA$) fail more
+often still (11–14 violations per 350, rescued cross-family); and
+no transfer lemma of the conjectured shape exists. What survives as
+theorem is exactly what was proven: the center cap ($k_c \le 2$,
+A9.6 — killed center lines are always among the phantoms) and the
+law itself (A9.12). The fourth sieve has no forced kill-location
+beyond the cap: its action is genuinely distributed. *Observed
+motif for follow-up:* the exception sits at a perfect-square center
+root ($145^2$), as does the first golden center ($185^2$) — the
+$m = k^2$ family appears to be where sieve structure turns
+transparent first.
 
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 

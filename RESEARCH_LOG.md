@@ -1859,3 +1859,37 @@ body: per-configuration <= 6-parameter eliminations over the 56
 triple-point triples (cut by D4 symmetry and A8.16's pattern
 constraint), with the validated restriction_system machinery as the
 engine. Suite 125.
+
+## 2026-08-28 — Entry 46: A9.C2 refuted — the companion was a regularity, not a law (and the desert leg paused)
+
+Housekeeping first: the desert leg is PAUSED at done_upto = 53,400
+(checkpoint consistent, 2 golden; resume later with
+python -m compute.desert_extension 100000) so the m = 7 survey
+(13/50 orbits, mean 82 min/orbit, ~2 days remaining) gets the
+machine; per the owner's instruction the survey finishes first.
+
+THE SCIENCE. With Theorem A9.12 making product-level tests
+class-group-free, the C2 census scaled from 41 to 350 corpus pairs
+(fast filtered Gram test added, ~10x). Verdicts: free products fail
+never (350/350, as the theorems force); "any failure => some phantom
+failure" holds 349/350 — and the single violation is the
+COUNTEREXAMPLE THAT REFUTES A9.C2: at m = 21,025 = 145^2, pair
+(144315600, 237646416), the kill pattern is line 6 ALONE (single
+failing product pi(v-, B-)), with both phantom lines alive at every
+layer — pairwise, syzygy, and class (pinned, a9.c2_refuted). So
+k_c = 0 kills exist; the sampled k_c >= 1 companion was a 99.7%
+regularity, not a law; the per-family transfers rpA => phA fail
+more often (11-14/350, rescued cross-family); no transfer lemma of
+the conjectured shape exists. What stands is exactly what was
+proven: the center cap (A9.6) and the law itself (A9.12) — the
+fourth sieve has no forced kill-location beyond the cap.
+
+MOTIF FLAGGED: the C2 exception sits at a perfect-square center
+root (145^2) and so does the first golden center (185^2) — the
+m = k^2 family (rich D(m), special class structure) appears to be
+where sieve structure turns transparent first. Queued for W4/W6:
+census the m = k^2 family specifically.
+
+The companion thread closes honestly: conjectured from 160 samples,
+scaffolded into four theorems (A9.6-A9.12 survive and are the
+lasting yield), refuted at scale by its own machinery. Suite 126.

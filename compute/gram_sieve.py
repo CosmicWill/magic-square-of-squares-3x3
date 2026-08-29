@@ -553,3 +553,144 @@ def certification_census(sample_corpus=25):
             elif cert is not None:
                 cbad += 1
     print(f"corpus-sample alive lines: {cstats}  (violations: {cbad})")
+
+
+# --------------------------------------------------- C2 census machinery
+
+_SQ_MODS = (64, 63, 65, 11)
+_SQ_SETS = tuple(frozenset((i * i) % M for i in range(M))
+                 for M in _SQ_MODS)
+
+
+def gram_pair_ok_fast(w1, w2, N):
+    """Filtered version of gram_pair_ok (same verdict, ~10x faster):
+    congruence filters mod 64/63/65/11 before each isqrt."""
+    P = w1 * w2
+    r = isqrt(P)
+    if r * r == P:
+        return True
+    Pm = [P % M for M in _SQ_MODS]
+    Nm = [N % M for M in _SQ_MODS]
+    k = 1
+    while N * k * k <= P:
+        ok = True
+        for idx, M in enumerate(_SQ_MODS):
+            if (Pm[idx] - Nm[idx] * k * k) % M not in _SQ_SETS[idx]:
+                ok = False
+                break
+        if ok:
+            d = P - N * k * k
+            t = isqrt(d)
+            if t * t == d:
+                return True
+        k += 1
+    return False
+
+
+def gram_pair_ok_strata_fast(w1, w2, n):
+    G = gcd(w1, w2)
+    base, nn = 1, n
+    while nn % 4 == 0:
+        nn //= 4
+        base *= 2
+    d = 1
+    while (base * d) ** 2 <= n:
+        g = base * d
+        if n % (g * g) == 0 and G % (g * g) == 0:
+            if gram_pair_ok_fast(w1 // (g * g), w2 // (g * g),
+                                 n // (g * g)):
+                return True
+        d += 2
+    return False
+
+
+PRODUCT_NAMES = None
+
+
+def named_products(m, U, V):
+    """The 24 named pairwise products of the pair's ten co-norm
+    values, keyed by role."""
+    n2 = 2 * m * m
+    up, um, vp, vm = n2 + U, n2 - U, n2 + V, n2 - V
+    Ap, Am = n2 + U + V, n2 - U - V
+    Bp, Bm = n2 + U - V, n2 - U + V
+    return {
+        "free:n2,u+": (n2, up), "free:n2,u-": (n2, um),
+        "free:u+,u-": (up, um), "free:n2,v+": (n2, vp),
+        "free:n2,v-": (n2, vm), "free:v+,v-": (vp, vm),
+        "phA:n2,A+": (n2, Ap), "phA:n2,A-": (n2, Am),
+        "phA:A+,A-": (Ap, Am), "phB:n2,B+": (n2, Bp),
+        "phB:n2,B-": (n2, Bm), "phB:B+,B-": (Bp, Bm),
+        "xr:u+,v+": (up, vp), "xr:u-,v-": (um, vm),
+        "xr:u+,v-": (up, vm), "xr:u-,v+": (um, vp),
+        "rpA:u+,A-": (up, Am), "rpA:v+,A-": (vp, Am),
+        "rpA:u-,A+": (um, Ap), "rpA:v-,A+": (vm, Ap),
+        "rpB:u+,B-": (up, Bm), "rpB:v-,B-": (vm, Bm),
+        "rpB:v+,B+": (vp, Bp), "rpB:u-,B+": (um, Bp)}
+
+
+def c2_census(sample_size=400, mmax=None, verbose=True):
+    """Corpus-scale product-failure census: per pair the 24-product
+    verdict vector; tests of candidate transfer laws.  Uses the
+    fast Gram test (A9.C3-lossless empirically; the law A9.12 makes
+    the pair layer the object of study)."""
+    import json as _json
+    with open(STATE, encoding="utf-8") as fh:
+        corpus = _json.load(fh)["rep_killed_pairs"]
+    if mmax:
+        corpus = [r for r in corpus if r[0] <= mmax]
+    stride = max(1, len(corpus) // sample_size)
+    sample = corpus[::stride][:sample_size]
+    laws = {
+        "free-never-fails": 0,
+        "anyfail=>phantom": 0,       # some ph* product fails
+        "rpA=>phA": 0,               # rpA failure => some phA failure
+        "rpB=>phB": 0,
+        "xr=>ph": 0,
+        "anyfail": 0,
+    }
+    viol = {k: [] for k in laws}
+    for m, U, V in sample:
+        n = 3 * m * m
+        f = {name: not gram_pair_ok_strata_fast(w1, w2, n)
+             for name, (w1, w2) in named_products(m, U, V).items()}
+        freefail = any(v for k, v in f.items() if k.startswith("free"))
+        if freefail:
+            viol["free-never-fails"].append((m, U, V))
+        else:
+            laws["free-never-fails"] += 1
+        anyf = any(f.values())
+        phA = any(v for k, v in f.items() if k.startswith("phA"))
+        phB = any(v for k, v in f.items() if k.startswith("phB"))
+        rpA = any(v for k, v in f.items() if k.startswith("rpA"))
+        rpB = any(v for k, v in f.items() if k.startswith("rpB"))
+        xr = any(v for k, v in f.items() if k.startswith("xr"))
+        if anyf:
+            laws["anyfail"] += 1
+            if phA or phB:
+                laws["anyfail=>phantom"] += 1
+            else:
+                viol["anyfail=>phantom"].append((m, U, V))
+        if rpA:
+            if phA:
+                laws["rpA=>phA"] += 1
+            else:
+                viol["rpA=>phA"].append((m, U, V))
+        if rpB:
+            if phB:
+                laws["rpB=>phB"] += 1
+            else:
+                viol["rpB=>phB"].append((m, U, V))
+        if xr:
+            if phA or phB:
+                laws["xr=>ph"] += 1
+            else:
+                viol["xr=>ph"].append((m, U, V))
+    if verbose:
+        print(f"sample {len(sample)} pairs: {laws}")
+        for k, v in viol.items():
+            if v:
+                print(f"  VIOLATIONS {k}: {v[:6]}"
+                      f"{' ...' if len(v) > 6 else ''} "
+                      f"({len(v)} total)")
+    return laws, viol

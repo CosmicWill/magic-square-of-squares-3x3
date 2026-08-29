@@ -485,3 +485,38 @@ def _(ctx):
     ctx.note(f"golden center m = 185^2 verified on {k}/8 lines "
              f"(sieve == A9.12 law); no additive quadruple — "
              f"sieve-transparent, not a square candidate")
+
+
+@check("a9.c2_refuted", DOC)
+def _(ctx):
+    """The A9.C2 counterexample, pinned: at m = 21025 = 145^2, pair
+    (144315600, 237646416), line 6 is killed (product pi(v-, B-)
+    Gram-fails) while BOTH phantom lines are alive at every layer —
+    a k_c = 0 kill; the companion k_c >= 1 was a regularity, not a
+    law.  The center cap (A9.6) and the law (A9.12) hold here as
+    everywhere."""
+    from compute.gram_sieve import (gram_pair_ok_strata_fast,
+                                    line_alive, named_products,
+                                    syzygy_line_ok)
+    from compute.sphere_gluing import pair_lines
+
+    m, U, V = 21025, 144315600, 237646416
+    require(m == 145 ** 2)
+    n = 3 * m * m
+    fails = [name for name, (w1, w2) in named_products(m, U, V).items()
+             if not gram_pair_ok_strata_fast(w1, w2, n)]
+    require(fails == ["rpB:v-,B-"], fails)
+    lines = list(pair_lines(2 * m * m, U, V))
+    deep = ctx.bound(full=1, fast=0)
+    # phantoms alive (syzygy layer is cheap); line 6 dead
+    require(syzygy_line_ok(lines[2], n) and syzygy_line_ok(lines[3], n),
+            "phantom line not syzygy-alive")
+    require(not syzygy_line_ok(lines[6], n), "line 6 not syzygy-dead")
+    if deep:
+        require(line_alive(lines[2], n) and line_alive(lines[3], n))
+        require(not line_alive(lines[6], n))
+        for i in (0, 1, 4, 5, 7):
+            require(syzygy_line_ok(lines[i], n), f"line {i} dead?!")
+    ctx.note("k_c = 0 kill pinned at m = 145^2: line 6 dies alone, "
+             "phantoms alive at every layer — A9.C2 refuted; the cap "
+             "(A9.6) and the law (A9.12) stand")
