@@ -9,6 +9,92 @@ and every ambition is labeled as such. Companion documents:
 [PROGRESS.md](PROGRESS.md) (what is true now),
 [RESEARCH_LOG.md](../RESEARCH_LOG.md) (how we got here).*
 
+## R. The 2026-08-28 realignment (post-ladder)
+
+*Written the day the scaling law, the ladder sweep, and the
+fertile-seed arithmetic landed (A9.13–A9.14, entries 48–50). This
+section is the standing analysis of what those findings mean for the
+plan; the workstreams below are reprioritized accordingly.*
+
+### R.1 The three-regime picture (what the findings actually say)
+
+Any magic square of squares is a Lucas grid: center $m^2$, offsets
+$U, V$ with $U, V \in D(m)$ (rows and columns are 3-APs of squares),
+and the four corners square **iff additionally $U{+}V, U{-}V \in
+D(m)$** — the additive quadruple. The program's empirical and proven
+state now separates into three regimes with *opposite* characters:
+
+1. **The pair-sieve regime LEAKS.** The three/four sieves
+   (positivity, coherence, representation = the A9.12 Diophantine
+   law) are necessary conditions for corner-squareness. The desert
+   verified them lethal to $53400$ — but Lemma A9.13 (verdicts only
+   soften along $(m,U,V) \to (qm, q^2U, q^2V)$) plus the ladder
+   sweep proved transparency is *abundant at scale*: 20 golden pairs
+   in one window, upward-closed forever, and A9.14's eligibility
+   directions even let us **predict** a golden center in advance
+   (m = 210125, the 41-ladder — confirmed). Survivor counts grow
+   with $m$. **Conclusion: no refinement of this sieve family can
+   prove nonexistence. The sieves are scaffolding, not the wall.**
+2. **The additive regime is bone-dry.** Not one additive *triple*
+   ($d_1 + d_2 = d_3$ in any $D(m)$) exists to $m \le 10^7$ — let
+   alone the quadruple a square needs. The heuristic count is
+   *convergent* ($\sum_m |D(m)|^3/m^2 < \infty$-type), unlike the
+   divergent pair-sieve expectation. **The entire difficulty of the
+   open problem is concentrated here — and this layer is the exact
+   condition, not another necessary-condition sieve, so theory here
+   is terminal: there is no deeper regress.**
+3. **The rigid class is the sieve regime's one deep mystery.** Some
+   seeds (including the $m = 925$ three-sieve passer) are dead in a
+   scaling-invariant way beyond every local, character, and
+   congruence test we built (A9.14 panel) — flat resurrection curves
+   through two decades. A named "rigidity invariant" would prove
+   infinite ladder families sieve-dead — the only known mechanism by
+   which sieve-side arguments could survive scaling at all.
+
+### R.2 The reprioritized program
+
+- **P1 (new center of gravity) — the additive layer, W10.**
+  $D(m) = \{\,|\mathrm{Im}(z^2)| : z \in \mathbb{Z}[i],\ |z|^2 = m^2\}$,
+  so an additive triple is a **six-term vanishing sum on the
+  norm-$m^4$ torus**: $w_1 + w_2 - w_3 = \overline{w_1 + w_2 - w_3}$
+  with $w_j = z_j^2$, $\bar w_j = m^4/w_j$ — an S-unit-equation
+  structure over $\mathbb{Q}(i)$, the machinery (Evertse–
+  Schlickewei–Schmidt, Baker for few terms) that actually finishes
+  such problems. Targets: **A3-S1** formalize + machine-verify the
+  reformulation; **A3-S2** unconditional no-triple theorems for
+  small $\omega(m)$ (all $m$ with $\le 2$ distinct split primes
+  first) — real nonexistence slices; **A3-S3** the convergent-sum
+  heuristic made rigorous as far as honest tools allow.
+- **P2 — the rigidity invariant (W4's sharp target).** Compute the
+  composition-layer obstruction element for the rigid seeds' lines
+  along rungs; find what is invariant; prove it. Payoff: infinite
+  provably-sieve-dead families containing the anatomy passers.
+- **P3 — geometry demoted to structural support (W1/W2).** The
+  η⋆-web eliminations are the curve-enumeration half of any future
+  Bombieri–Lang-conditional statement ("sporadic points only"); they
+  proceed as background theorems (A8.19 momentum), not as the main
+  thrust.
+- **P4 — the hunt as calibration + insurance (W6).** Ladder hunting
+  is now cheap and *targeted* (eligibility directions known). Roles:
+  falsification insurance (if a square exists, ladder + additive
+  telescopes find it first), A9.14 validation, actuarial data. The
+  desert resumes after the $m = 7$ survey (standing instruction).
+- **P5 — consolidation (W8).** The A9.12–A9.14 chain + ladder
+  discovery + honest refutations is a coherent, publishable story;
+  drafting it enforces rigor and invites the community in.
+
+### R.3 Risk register (honest)
+
+- The S-unit front may stall beyond small $\omega$ (subspace-theorem
+  territory is non-effective); mitigation: small-$\omega$ theorems
+  stand alone, rigidity covers sieve-side families, heuristics stay
+  calibrated and labeled.
+- The rigid class may be spinor-genus-deep; even so, *measuring* the
+  invariant on data (P2 step 1) is decisive either way.
+- Discipline: golden ≠ magic — every transparency result is about
+  *our necessary conditions*, and is reported as such; the suite
+  keeps every claim pinned.
+
 ## 0. Doctrine
 
 1. **Both directions are the goal.** A constructed square is a proof.
@@ -300,13 +386,34 @@ past a week without a survival signal:
   field governs all $m$ in a residue family, W4 gets its uniformity
   for free.
 
+### W10 — The additive layer: the S-unit front (opened by the realignment, P1)
+
+The terminal layer (§R.1): a magic square *is* an additive quadruple
+in $D(m)$, and $D(m) = \{|\mathrm{Im}(z^2)| : z \in \mathbb{Z}[i],\
+|z|^2 = m^2\}$ turns an additive triple into a six-term vanishing
+sum $w_1 + w_2 - w_3 - m^4/w_1 - m^4/w_2 + m^4/w_3 = 0$ with
+$w_j = z_j^2$ on the norm-$m^4$ torus — S-unit-equation habitat
+(check `a3.zi_reformulation`). Program: **A3-S1** the reformulation,
+formalized and pinned (done with this entry); **A3-S2** unconditional
+no-triple theorems for small $\omega(m)$ — each is a genuine
+nonexistence slice of the open problem; **A3-S3** rigorous upper
+bounds toward the convergent heuristic; the abc bridge (W5) plugs in
+here as the same equation's radical analysis.
+
+**First action.** Classify the degenerate subsums of the six-term
+relation (they must correspond exactly to $U = \pm V$ and
+sign-trivialities — provable), then attack $\omega(m) = 1$ (single
+split prime: $D(m)$ is an explicit geometric progression of
+congrua) and $\omega(m) = 2$ by 3-term unit-equation methods.
+
 ## 3. Sequencing and dependencies
 
 ```
-W1 (k[t] theorem)  ──────────────► paper #1, calling card ─┐
+W10 (additive/S-unit) ─────────── the terminal layer ──────┐
+W1 (k[t] theorem)  ──────────────► paper #1, calling card ─┤
 W2 (motive atlas) ──► W3 (descent endgame)                 ├─► W8 (community) ─► full-proof push
-W4 (Rédei laws)  ◄──┬─► W6 (telescope + model)             │
-W5 (abc bridge)     └── decides W4-vs-W6 emphasis ─────────┘
+W4 (rigidity invariant) ◄─┬─► W6 (ladder telescope)        │
+W5 (abc bridge → W10)     └── calibration loop ────────────┘
 W7, W9: timeboxed probes feeding W4/W2
 ```
 

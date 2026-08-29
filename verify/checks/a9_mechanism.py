@@ -939,3 +939,37 @@ def _(ctx):
     ctx.note("curves pinned: broad softens to golden, narrow rungs "
              "exact, rigid flat >= 5 dead; N2's 41-rung re-verified "
              "live (dead exactly {2})")
+
+
+@check("a9.predicted_golden", DOC)
+def _(ctx):
+    """The first theory-predicted golden center: A9.14's narrow-seed
+    classification (N2 = (130944, 450000) at 1025, eligible only on
+    41-rungs, dead exactly {2} at q = 41, 82, 123, 164) predicted a
+    golden up the 41-ladder; q = 205 (m = 210125 = 5^3 41^2) is
+    GOLDEN — coherent, all eight lines representable (found by
+    prediction, not sweep; beyond the sweep window).  FAST pins the
+    arithmetic identities and chain minimality context; FULL
+    re-verifies the full profile live."""
+    from math import isqrt
+    q, m0, U0, V0 = 205, 1025, 130944, 450000
+    m, U, V = q * m0, q * q * U0, q * q * V0
+    require(m == 210125 and m == 5 ** 3 * 41 ** 2)
+    require(q % 41 == 0 and q == 5 * 41, "the 41-direction")
+    require(isqrt(m) ** 2 != m, "nonsquare center")
+    # corners are honestly non-square (golden != magic)
+    for e1 in (1, -1):
+        for e2 in (1, -1):
+            E = m * m + e1 * U + e2 * V
+            require(isqrt(E) ** 2 != E, "corner square?!")
+    if ctx.bound(full=1, fast=0):
+        from compute.sphere_gluing import coherent_pair, pair_lines
+        from compute.gram_sieve import syzygy_line_ok_fast
+        require(coherent_pair(m, U, V), "coherence")
+        n = 3 * m * m
+        dead = [i for i, t in enumerate(pair_lines(2 * m * m, U, V))
+                if not syzygy_line_ok_fast(t, n)]
+        require(dead == [], dead)
+    ctx.note("m = 210125 = 205 * 1025: golden by prediction (the "
+             "41-ladder), corners non-square; FULL re-runs the "
+             "profile live")

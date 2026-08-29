@@ -2049,3 +2049,32 @@ this rigidity invariant is now W4's sharpest target — it would
 carve out an infinite provably-sieve-dead family containing the
 anatomy passers, the complementary half of the ladder picture.
 Suite 134, all green (locks, curves, joint layer pinned).
+
+## 2026-08-28 — Entry 51: the realignment — findings analysis, the S-unit front opens, and a predicted golden
+
+Two events close the day. FIRST, the A9.14 classification made its
+first PREDICTION and it landed: the narrow seed at 1025 (eligible
+only on 41-rungs, dead exactly {2} at q = 41, 82, 123, 164) was
+predicted to go golden higher up its ladder; q = 205 gives m =
+210,125 = 5^3 41^2 — GOLDEN (coherent, all 8 lines representable;
+beyond the sweep window; corners honestly non-square; check
+a9.predicted_golden, FULL re-runs the profile; independent class-
+path verification running). Found by theory, not sweep. SECOND, the
+strategic realignment (ROADMAP §R, written at the user's direction):
+the three-regime analysis — (1) the pair-sieve regime LEAKS (ladder
+abundance + upward closure + successful prediction: no refinement
+of the sieve family can prove nonexistence; survivor expectation
+grows with m); (2) the ADDITIVE regime is the wall (zero triples to
+10^7; convergent heuristic; and it is the exact condition — no
+deeper regress exists); (3) the rigid class is the sieve regime's
+one deep unknown. Priorities reset: P1 = W10, the additive layer as
+S-unit theory — A3-S1 DONE with this entry: D(m) = {|Im(z^2)| :
+|z|^2 = m^2} exactly, and an additive triple == the six-term
+vanishing sum sum eps_j (w_j - m^4/w_j) = 0 on the norm-m^4 torus
+(compute/zi_additive.py, check a3.zi_reformulation: parametrization
+pinned to 600/1500, criterion sound on exact controls, desert-
+consistent); next: degenerate-subsum classification, then
+unconditional no-triple theorems for small omega(m). P2 = the
+rigidity invariant. P3 = geometry demoted to structural support.
+P4 = the hunt as calibration/insurance (desert resumes post-survey).
+P5 = consolidation paper. Suite 136, all green.

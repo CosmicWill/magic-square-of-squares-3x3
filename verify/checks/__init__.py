@@ -25,6 +25,7 @@ MODULES = [
     "a9_spheres",
     "a9_mechanism",
     "a6_bounds",
+    "a3_zi",
 ]
 
 
