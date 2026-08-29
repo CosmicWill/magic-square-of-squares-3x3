@@ -2274,3 +2274,27 @@ q^2 | 2Re/Im(ell^d) branches otherwise. The survivors are the
 beta2/E-analogues one level up; every tool they need exists and
 has closed 400+ patterns below them. Also: the m = 7 survey is in
 its final orbits (all nullity 0). Suite 145, all green.
+
+## 2026-08-29 — Entry 58: THE ALL-PLUS CORRECTION — an enumeration gap found and pinned; A3.8 retracted to complete-except-two
+
+Honest science entry. While mapping the (2,2) k-replications, three
+unmapped parents exposed a GAP: the pattern enumeration excluded
+all-equal coefficient signs as "positivity-trivial" — wrong, since
+the census coefficient is (relation sign) x (orientation) and
+orientations are solution-determined. Corrected all-plus sweeps
+run for all four boxes (artifacts data_box*_allplus_open.json;
+a3.allplus_audit pins counts 1/6/15/34). VERDICTS: (1,1): the one
+all-plus open (tanB = -2sinA) is covered by A3.7's Family-II tree
+— sign-agnostic divisor cases — THEOREM A3.7 STANDS. (2,1): four
+of six covered by existing sign-agnostic trees (beta1 collapse x2,
+F-D variant, sub-box); the ALL-PLUS E3-MINUS PAIR (sin(A+B) =
+-2 sin2A cosB) is genuinely new and OPEN: tree started (t' = +-1,
+mu^4 = +-(p^2 C - i S(4C+p^2)), q in [p^2/2, 2.24 p^2], p^2 |
+odd-leg(q^4)) but not closed tonight. THEOREM A3.8 RETRACTED to:
+complete except the all-plus E3-minus pair (2 patterns). The
+corollary weakens until it falls. (3,1)/(2,2): +15/+34 all-plus
+opens added to the campaign queues; the replication accounting
+(21 k-side + 9 j-side onto closed parents, 3 onto all-plus
+parents) recorded in data_box22_replication.json. The lesson is
+logged for the master induction: enumeration completeness is a
+theorem obligation, not a convention. Suite 146, all green.

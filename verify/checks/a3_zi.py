@@ -586,3 +586,51 @@ def _(ctx):
     ctx.note("censuses + survivor artifacts pinned (540/924 patterns; "
              "57 survivors); the cyclotomic collapse lemma exact for "
              "d <= 6 — the master tool for the coming hand-trees")
+
+
+@check("a3.allplus_audit", DOC)
+def _(ctx):
+    """THE ALL-PLUS CORRECTION (2026-08-29 late).  The pattern
+    enumeration excluded all-equal coefficient signs as 'positivity-
+    trivial' — WRONG: the census coefficient is (relation sign) x
+    (orientation), and orientations are solution-determined, so
+    all-plus sine patterns are legitimate.  Corrected censuses (this
+    check pins them): (1,1): 4 all-plus patterns, 1 machine-open —
+    COVERED by A3.7 Family II (the tree is sign-agnostic: the
+    divisor cases (c2^2-s2^2) | p^2 never used the sign), so
+    THEOREM A3.7 STANDS.  (2,1): 35 patterns, 6 machine-open: four
+    are covered by existing sign-agnostic trees (the beta1 pair by
+    the same collapse + q-valuation; the F-D variant tanB = -2sin2A
+    by the same u | p^4 tree; the sub-box II-variant), but the
+    E3-MINUS PAIR ({(1,+-1),(2,1),(2,-1)} all-plus: sin(A+B) =
+    -2 sin2A cosB) is NEW AND OPEN: its tree forces u = p^2 C t',
+    v = -t' S(4C + p^2), t' = +-1, so mu^4 = +-(p^2 C - iS(4C+p^2))
+    with q in [p^2/2, 2.24 p^2] and p^2 dividing the odd leg of
+    q^4 — not closed tonight.  THEOREM A3.8 IS RETRACTED TO:
+    complete except the all-plus E3-minus pair (2 patterns,
+    searches empty).  (3,1)/(2,2): 15 resp. 34 all-plus opens added
+    to the campaign queues."""
+    import json as _json
+    from compute.two_prime_additive import search_real_data
+
+    want = {"11": 1, "21": 6, "31": 15, "22": 34}
+    for name, n in want.items():
+        with open(os.path.join(DATA,
+                               f"data_box{name}_allplus_open.json"),
+                  encoding="utf-8") as fh:
+            opens = _json.load(fh)
+        require(len(opens) == n, (name, len(opens)))
+        if name == "21":
+            keys = {tuple(map(tuple, cl)) for cl, co, G in opens}
+            require(((1, 1), (2, 1), (2, -1)) in keys and
+                    ((1, -1), (2, 1), (2, -1)) in keys, keys)
+            bound = ctx.bound(full=500, fast=150)
+            for cl, co, Gs in opens:
+                if tuple(map(tuple, cl)) in {((1, 1), (2, 1), (2, -1)),
+                                             ((1, -1), (2, 1), (2, -1))}:
+                    G = {tuple(map(int, k.strip("()").split(","))): v
+                         for k, v in Gs.items()}
+                    require(search_real_data(G, bound) == [], cl)
+    ctx.note("all-plus censuses pinned; A3.7 stands (sign-agnostic "
+             "trees); A3.8 retracted to complete-except-E3-minus "
+             "(2 patterns, searches empty); campaign queues updated")

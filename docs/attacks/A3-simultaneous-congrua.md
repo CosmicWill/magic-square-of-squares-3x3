@@ -495,11 +495,31 @@ available; the kill is the classical leg decomposition $q^2 = U^2
 + (p^2V)^2$ against the size window $q < p^2$ — the curve's
 rational points all live outside the physical region.
 
-**Theorem A3.8 (COMPLETE).** For $m = 2^s r\, p^2 q$ (equivalently
-$pq^2$), $D(m)$ admits no signed additive relation. **Corollary
-(with A3.6, A3.7): the split part of any MSS3 center is $p^3q$,
-$p^2q^2$, or has at least three distinct split primes** — at least
-four split prime factors with multiplicity, or three distinct.
+**Theorem A3.8 — CORRECTED STATUS (same day, the all-plus audit;
+`a3.allplus_audit`).** The pattern enumeration behind the censuses
+excluded all-equal coefficient signs as "positivity-trivial." That
+was WRONG: the census coefficient is (relation sign) $	imes$
+(orientation), and orientations are solution-determined, so
+all-plus sine patterns are legitimate. The corrected sweep:
+**A3.7 stands** (its one all-plus machine-open, $	an B =
+-2\sin A$, is covered by the Family-II tree, which never used the
+sign in its divisor cases). Of the six $(2,1)$ all-plus opens,
+four are covered by the existing sign-agnostic trees ($eta_1$
+collapse, F-D, sub-box), but the **all-plus E3$^-$ pair**
+($\sin(A{+}B) = -2\sin 2A\cos B$, classes $\{(1,\pm1), (2,1),
+(2,-1)\}$) is genuinely new: its tree gives $u = p^2Ct'$, $v =
+-t'S(4C{+}p^2)$, $t' = \pm1$, so $\mu^4 = \pm(p^2C -
+iS(4C{+}p^2))$ with $q \in [p^2/2,\ 2.24\,p^2]$ and $p^2$
+dividing the odd leg of $q^4$ — overdetermined but NOT closed
+tonight.
+
+**Theorem A3.8 therefore reads: for $m = 2^s r p^2 q$, $D(m)$
+admits no signed additive relation, except possibly relations
+realizing the all-plus E3$^-$ pair** (two patterns, searches
+empty; the desert covers all such $m$ to $10^7$). The corollary
+weakens accordingly until E3$^-$ falls: unconditionally, the split
+part of any MSS3 center is $p^2q$ (E3$^-$ configuration only),
+$p^3q$, $p^2q^2$, or has $\ge 3$ distinct split primes.
 
 ## 2.8 The $(3,1)$ and $(2,2)$ campaigns: opened, machine-swept, survivor families pinned
 
