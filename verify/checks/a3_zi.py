@@ -254,3 +254,108 @@ def _(ctx):
              "(Fermat at level 2, the Im(ell^3 w^2) collapse, F-F "
              "replication); 10 explicit equations open, searches "
              "empty")
+
+
+@check("a3.box21_grind", DOC)
+def _(ctx):
+    """The grind of the (2,1)-box residual equations: beta2 (x4) and
+    E3 (x2) closed — 17 of 21 residuals now down, four E1/E2
+    patterns remain.  beta2: the exact collapse relation =
+    2(CS q^2 + R3 (c1 v - s1 u)) (verified symbolically) forces
+    T3 = c1^2 - 3 s1^2 to divide q^2; T3 = +-1 dies on consecutive
+    squares/Pell parity, T3 = +-q dies mod q (c1 v = s1 u with
+    u^2 = -v^2 mod q forces q | p^2), T3 = -q^2 dies mod 16, and
+    T3 = +q^2 factors 16a^4 + 40a^2b^2 + 9b^4 = p^2 (and the
+    144/40/1 mirror) into COPRIME factors (4a^2+9b^2)(4a^2+b^2),
+    forcing a factor = 1 — dead.  E3: the tree forces u = p^2 C t',
+    v = t' S(4C - p^2), the collapse u + iv = t'(ell^4 + 2i s1
+    ellbar^3) (verified symbolically), t' = +-1 by mu-bar valuation,
+    sign/unit fixed mod 8 (s1 = 2 mod 4 dies), and then mu^4 -
+    ell^4 = 2i s1 ellbar^3: lambda-bar concentrates in ONE of the
+    four factors (mu - i^k ell), giving norm >= p^6, while the norm
+    identity q^4 = p^8 + 4s1^2 p^6 + 4 s1 Im(ell^7) bounds every
+    factor by ~5.4 p^2 — dead for all p.  Searches corroborate."""
+    from compute.two_prime_additive import (p4add, p4mul, gauss_pow,
+                                            ELL, W, Q2,
+                                            search_real_data)
+    import json as _json
+
+    P2 = {(2, 0, 0, 0): 1, (0, 2, 0, 0): 1}
+
+    def im_pow(a, weps, wpow=2):
+        Rl, Il = gauss_pow(*ELL, a)
+        Rw, Iw = gauss_pow(*W, wpow)
+        if weps < 0:
+            Iw = {k: -v for k, v in Iw.items()}
+        return p4add(p4mul(Rl, Iw), p4mul(Il, Rw))
+
+    def im_ell(a):
+        return gauss_pow(*ELL, a)[1]
+
+    # beta2 collapse: q^2 Im ell^4 + p^2 Im(ell^2 w^2) - Im(ell^4 wbar^2)
+    #   == 2 [ CS q^2 + R3 (c1 v - s1 u) ]
+    rel = p4add(p4add(p4mul(Q2, im_ell(4)), p4mul(P2, im_pow(2, 1)), 1),
+                im_pow(4, -1), -1)
+    C = {(2, 0, 0, 0): 1, (0, 2, 0, 0): -1}
+    S = {(1, 1, 0, 0): 2}
+    R3 = p4mul({(1, 0, 0, 0): 1},
+               p4add({(2, 0, 0, 0): 1}, {(0, 2, 0, 0): 3}, -1))
+    u = {(0, 0, 2, 0): 1, (0, 0, 0, 2): -1}
+    v = {(0, 0, 1, 1): 2}
+    Y = p4add(p4mul({(1, 0, 0, 0): 1}, v),
+              p4mul({(0, 1, 0, 0): 1}, u), -1)
+    claim = p4add(p4mul(p4mul(C, S), Q2), p4mul(R3, Y), 1)
+    claim = {k: 2 * vv for k, vv in claim.items()}
+    require(p4add(rel, claim, -1) == {}, "beta2 collapse identity")
+
+    # E3 relation: p^2 Im(ell^2 w^2) - Im(ell^4 w^2) - Im(ell^4 wbar^2)
+    #   == p^2(Cv + Su) - 4u * CS   (Im ell^4 = 2CS)
+    rel3 = p4add(p4add(p4mul(P2, im_pow(2, 1)), im_pow(4, 1), -1),
+                 im_pow(4, -1), -1)
+    CvSu = p4add(p4mul(C, v), p4mul(S, u), 1)
+    claim3 = p4add(p4mul(P2, CvSu),
+                   {k: 4 * vv for k, vv in p4mul(u, p4mul(C, S)).items()},
+                   -1)
+    require(p4add(rel3, claim3, -1) == {}, "E3 reduction identity")
+
+    # E3 collapse: p^2 C + i S(4C-p^2) == ell^4 + 2i s1 ellbar^3
+    # (real and imaginary parts as 2-var polys in (c1, s1))
+    Rl4, Il4 = gauss_pow(*ELL, 4)
+    Rl3, Il3 = gauss_pow(*ELL, 3)
+    # conj(ell)^3: (Rl3, -Il3); times 2i s1: re = 2 s1 Il3, im = 2 s1 Rl3
+    s1m = {(0, 1, 0, 0): 2}
+    Zre = p4add(Rl4, p4mul(s1m, Il3), 1)
+    Zim = p4add(Il4, p4mul(s1m, Rl3), 1)
+    p2C = p4mul(P2, C)
+    S4Cp2 = p4mul(S, p4add({k: 4 * vv for k, vv in C.items()}, P2, -1))
+    require(p4add(Zre, p2C, -1) == {} and p4add(Zim, S4Cp2, -1) == {},
+            "E3 Gaussian collapse identity")
+
+    # beta2 T3 = +q^2 factorizations and terminal searches
+    for a in range(1, 30):
+        for b in range(1, 30):
+            require(16 * a ** 4 + 40 * a * a * b * b + 9 * b ** 4
+                    == (4 * a * a + 9 * b * b) * (4 * a * a + b * b))
+            require(144 * a ** 4 + 40 * a * a * b * b + b ** 4
+                    == (36 * a * a + b * b) * (4 * a * a + b * b))
+    # searches: the four still-open E1/E2 patterns stay empty
+    with open(os.path.join(DATA, "data_box21_open.json"),
+              encoding="utf-8") as fh:
+        data = _json.load(fh)
+    still_open = {(((1, 1), (2, 1), (2, -1)), (1, 1, -1)),
+                  (((1, 1), (2, 1), (2, -1)), (1, -1, 1)),
+                  (((1, -1), (2, 1), (2, -1)), (1, 1, -1)),
+                  (((1, -1), (2, 1), (2, -1)), (1, -1, 1))}
+    bound = ctx.bound(full=500, fast=150)
+    n_open = 0
+    for classes, coeffs, Gs in data:
+        key = (tuple(tuple(jk) for jk in classes), tuple(coeffs))
+        if key in still_open:
+            G = {tuple(map(int, k.strip("()").split(","))): vv
+                 for k, vv in Gs.items()}
+            require(search_real_data(G, bound) == [], key)
+            n_open += 1
+    require(n_open == 4, n_open)
+    ctx.note("beta2 and E3 collapses verified symbolically; "
+             "factorizations exact; 17/21 residuals closed, the four "
+             "E1/E2 patterns open (searches empty)")

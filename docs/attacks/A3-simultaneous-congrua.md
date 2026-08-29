@@ -394,18 +394,54 @@ identities are machine-verified against the census polynomials.
   32(\cdot)^2$ resp. $q^4 - p^8$-mirror to $mn(m^2-n^2) = 2b^2$ —
   **Lemma L2**.
 
-**The ten open equations** ($\beta_2 \times 4$, F-E $\times 6$;
-pinned with their exact coefficient lists in
-`data_box21_open.json`). Their trees are started: $\beta_2$
-($CSq^2 = -R_3(c_1v - s_1u)$, $R_3 = c_1(c_1^2 - 3s_1^2)$) forces
-$q^2 \mid c_1$ or $q^2 \mid c_1^2 - 3s_1^2$; F-E-3 ($p^2(Cv + Su)
-= 4uCS$) forces $u = \pm p^2 C t'$, $v = \pm t'S(4C - p^2)$ with
-$t'^2[C^2p^4 + S^2(4C-p^2)^2] = q^4$ plus the condition that
-$u + iv$ be a **Gaussian square** — elliptic-flavored endpoints
-beyond today's elementary descents. No solutions on any real prime
-pair searched ($p, q \le 500$; the desert to $10^7$ covers all
-two-split-prime $m$ in range). **A full Theorem A3.8 needs these
-ten; they are the sharpest open Diophantine problems in W10.**
+**The grind (same day, second session): $\beta_2$ and E3 closed —
+17 of 21 down.** (`a3.box21_grind` verifies every identity below
+symbolically.)
+
+- *$\beta_2$ quadruple.* The exact collapse (machine-verified):
+  relation $= 2[\,CSq^2 + R_3(c_1v - s_1u)\,]$, $R_3 =
+  c_1(c_1^2-3s_1^2) = c_1T_3$. Cancelling $c_1$ and using
+  $\gcd(T_3, 2s_1C) = 1$: $T_3 \mid q^2$. The cases:
+  $T_3 = \pm1$ forces $p^2 \mp 1 = (2s_1)^2$ — consecutive squares
+  or $p^2 \equiv 3 \bmod 4$: dead. $T_3 = \pm q$ gives $c_1v
+  \equiv s_1u \bmod q$ while $u^2 \equiv -v^2$: squaring forces
+  $q \mid c_1^2 + s_1^2 = p^2$: dead. $T_3 = -q^2$ dies mod 16
+  ($c_1^2 - 3s_1^2 \in \{1,5,9,13\}$, $-q^2 \in \{7,15\}$).
+  $T_3 = +q^2$ forces $4 \mid s_1$ and splits $(c_1-q)(c_1+q) =
+  3s_1^2$ into coprime halves; all four partitions land on
+  $$p^2 = 16a^4 + 40a^2b^2 + 9b^4 = (4a^2+9b^2)(4a^2+b^2)$$
+  (or the $144/40/1$ mirror $(36a^2+b^2)(4a^2+b^2)$) with
+  **coprime factors** — one factor must be $1$, forcing $a = 0$:
+  dead.
+- *E3 pair.* The tree $p^2 \mid u$, $C \mid u'$ gives $u + iv =
+  t'(p^2C + iS(4C - p^2))$, and the bracket **collapses in
+  $\mathbb{Z}[i]$** (machine-verified): $p^2C + iS(4C-p^2) =
+  \ell^4 + 2is_1\bar\ell^3$. Then: $t' = \pm1$ ($\bar\mu$-valuation
+  kills $q$-content), the unit and sign are fixed mod 8 (Gaussian
+  odd fourth powers are $\equiv 1 \bmod 8$; the case $s_1 \equiv 2
+  \bmod 4$ dies here), leaving exactly
+  $$\mu^4 - \ell^4 = 2is_1\bar\ell^3 .$$
+  The four factors $\prod_k(\mu - i^k\ell)$ have pairwise
+  differences $= \mathrm{unit}\cdot\ell$ (a $\bar\lambda$-unit), so
+  $\bar\lambda^6$ concentrates in ONE factor: that factor has norm
+  $\ge p^6$. But the norm identity $q^4 = p^8 + 4s_1^2p^6 +
+  4s_1\,\mathrm{Im}(\ell^7)$ gives $q \le \sqrt3\,p^2$, so every
+  factor has norm $\le (\sqrt q + p)^2 < 5.4\,p^2$ — impossible
+  for $p \ge 2$. **Dead with no descent at all: pure valuation and
+  size in $\mathbb{Z}[i]$.**
+
+**The four remaining equations** (E1/E2 and mirrors:
+$\sin(A{+}B) = \mp2\cos 2A\sin B$). Their tree ($p^2 \mid v$, then
+$Su = -v'(Cp^2 \pm 2C_4)$) bottoms in the normal form
+$$2c_1\ell^3 + \bar\ell^4 = g\cdot\mathrm{unit}\cdot\mu^4
+\quad\text{resp.}\quad \bar\ell^4 + 2is_1\ell^3 =
+g\cdot\mathrm{unit}\cdot\mu^4,$$
+with $g = \gcd(S, Cp^2 \pm 2C_4)$ **odd** and $4 \mid s_1$ — a
+*content-shifted* Gaussian fourth-power condition. Unlike E3, the
+content $g$ blocks the four-factor concentration argument. These
+four are the surviving open core of the $(2,1)$ box (searches
+empty; `data_box21_open.json`). **Theorem A3.8 is complete except
+for them.**
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 

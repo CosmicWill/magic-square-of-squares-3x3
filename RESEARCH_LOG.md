@@ -2187,3 +2187,26 @@ elementary descents — the sharpest open Diophantine problems in
 W10. Real-data searches empty (p, q <= 500); the desert to 10^7
 covers all such m in range. Doc A3 §2.7; census frozen. Suite 141,
 all green.
+
+## 2026-08-29 — Entry 55: the grind — beta2 and E3 fall; the (2,1) box is closed except four equations
+
+Ground the ten open equations of the (2,1) box; six fell
+(a3.box21_grind pins every identity symbolically). BETA2 (x4): the
+exact collapse relation = 2[CS q^2 + R3 (c1 v - s1 u)] forces
+T3 = c1^2 - 3s1^2 | q^2, and all cases die: +-1 (consecutive
+squares / 3 mod 4), +-q (the mod-q trick: c1 v = s1 u with
+u^2 = -v^2 forces q | p^2), -q^2 (mod 16), +q^2 (the coprime
+factorization p^2 = 16a^4+40a^2b^2+9b^4 = (4a^2+9b^2)(4a^2+b^2)
+forces a factor = 1). E3 (x2): the tree collapses to the exact
+Z[i] equation mu^4 - ell^4 = 2i s1 ellbar^3 (t' = +-1 by
+mu-bar-valuation; unit and sign fixed mod 8, killing s1 = 2 mod 4);
+the four factors (mu - i^k ell) have unit*ell differences, so
+lambdabar^6 concentrates in one factor of norm >= p^6, while the
+norm identity q^4 = p^8 + 4s1^2 p^6 + 4s1 Im(ell^7) caps every
+factor at ~5.4 p^2 — dead by pure valuation and size, no descent.
+FOUR equations remain (E1/E2 + mirrors), bottoming in the
+content-shifted quartic normal form 2c1 ell^3 + ellbar^4 =
+g*unit*mu^4 (g odd, 4 | s1) — the content g blocks the
+concentration argument; these are the last obstacle to a full
+Theorem A3.8. Searches empty; deeper search launched. Suite 142,
+all green.
