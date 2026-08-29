@@ -776,7 +776,14 @@ prime $q$ lands on $(5q)^2$: the square family is precisely the
 landing zone of *self-scalings* of the $5^2q$ anatomy-type centers
 ($725 \to 145^2$, $925 \to 185^2$). The square-root-center motif is
 not a numerological accident — it is the shadow of the scaling
-partial order, along which the sieve can only soften. "What makes
+partial order, along which the sieve can only soften. The
+primitivity census quantifies the enrichment (`a9.family_primitivity`
+pins bounded runs): of the 296 family stage-3 pairs to $k \le 316$,
+**210 ($\approx 71\%$) are proper scalings and 86 are primitive** —
+the family is heavily scaling-enriched, though not purely scalings;
+what *is* pure is that both special pairs are scalings. Ladders also
+**converge**: $65^2 = 4225 = 13\cdot325 = 5\cdot845$ receives
+scalings from two distinct anatomy bases. "What makes
 185 special" now has a structural answer: $185^2 = 37\cdot925$ is
 the first point in the verified universe where a base pair's entire
 obstruction set (one coherence kill plus six line kills) dissolved

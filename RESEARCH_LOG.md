@@ -1972,3 +1972,15 @@ the window (53400, 150000] (background). Also running: the family
 primitivity census (are all square-family stage-3 pairs scalings?).
 Check a9.scaling_law pins the lemma, both identifications, both
 chains, and the (5q)^2 identity. Suite 129, all green.
+
+## 2026-08-28 — Entry 48 addendum: the primitivity census
+
+The family census completed: of the 296 square-family stage-3 pairs
+(k <= 316), 210 (~71%) are proper scalings and 86 are primitive —
+the square family is heavily scaling-enriched but not purely a
+scaling phenomenon; what IS pure is that both special pairs (golden,
+C2-exception) are scalings. Ladder convergence observed: 4225 =
+13*325 = 5*845 receives scalings from two distinct anatomy bases.
+Check a9.family_primitivity pins bounded recomputations (k <= 65
+FAST: 12+8; k <= 100 FULL: 24+14) plus the two-ancestor structure
+at 65^2. Suite 130. Ladder sweep still running.

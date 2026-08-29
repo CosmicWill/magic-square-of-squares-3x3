@@ -636,3 +636,48 @@ def _(ctx):
     ctx.note("A9.13: sieve verdicts only soften along scalings; golden "
              "= 37.(925 pair), exception = 29.(the 725 passer); "
              "(5q)^2 = self-scaled 5^2 q — the motif is the scaling law")
+
+
+@check("a9.family_primitivity", DOC)
+def _(ctx):
+    """The primitivity census of the square family: stage-3 pairs at
+    m = k^2 split into proper scalings (q | m, q^2 | U, q^2 | V for
+    some q > 1) and primitive pairs.  Pinned counts: k <= 65 gives
+    12 scaled + 8 primitive (FAST); k <= 100 gives 24 + 14 (FULL);
+    the full k <= 316 run measured 210 + 86 (~71% scaled — logged,
+    too slow to re-run here).  The family is heavily scaling-enriched
+    but not purely scalings; both SPECIAL pairs (golden, C2-exception)
+    are scalings.  Convergence: 65^2 = 4225 = 13*325 = 5*845 receives
+    scalings from two distinct anatomy bases."""
+    from compute.congrua_search import congrua_sets
+    from compute.sphere_gluing import coherent_pair
+
+    def max_scaling(m, U, V):
+        best = 1
+        for q in range(2, m + 1):
+            if m % q == 0 and U % (q*q) == 0 and V % (q*q) == 0:
+                best = q
+        return best
+
+    kmax = ctx.bound(full=100, fast=65)
+    sc = pr = 0
+    anc65 = set()
+    for k in range(3, kmax + 1):
+        m = k * k
+        D = sorted(dict(congrua_sets(m)).get(m, set()))
+        for U in D:
+            for V in D:
+                if U == V or U + V > m*m or not coherent_pair(m, U, V):
+                    continue
+                q = max_scaling(m, U, V)
+                if q > 1:
+                    sc += 1
+                    if k == 65:
+                        anc65.add(m // q)
+                else:
+                    pr += 1
+    want = {65: (12, 8), 100: (24, 14)}[kmax]
+    require((sc, pr) == want, (sc, pr))
+    require({325, 845} <= anc65, anc65)
+    ctx.note(f"k <= {kmax}: {sc} scaled + {pr} primitive stage-3 pairs; "
+             "65^2 has ancestors at both 325 and 845 (ladder convergence)")
