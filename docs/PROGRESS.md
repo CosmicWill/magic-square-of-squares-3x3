@@ -109,7 +109,23 @@ into an elementary law:
    transparent; it is *not* a square candidate ($U \pm V \notin D(m)$;
    the additive desert covers it). The desert's depth is
    additive-structural, not sieve-eternal — measured, predicted, and
-   now observed.
+   now observed. **And the golden regime has a law — the scaling
+   law (Lemma A9.13, PROVEN):** sieve verdicts only soften along
+   $(m,U,V) \to (qm, q^2U, q^2V)$; the golden pair is the
+   37-scaling of a coherence-dead 925 base, the C2-exception is the
+   29-scaling of *the* 725 passer, and the square-root-center motif
+   is just the self-scaling slice ($q\cdot 5^2q = (5q)^2$). The
+   ladder sweep of the window $(53400, 150000]$ found **20 golden +
+   68 near-golden pairs from four fertile seeds** — minimal new
+   golden centers $96425, 105125, 126875, 147175$, all *nonsquare*
+   (so "sieves total off the square family" is refuted too).
+   Transparency is the ladder's asymptotic behavior: **the sieves
+   provably cannot carry nonexistence alone.** The frontier moves to
+   (a) the fertile-seed arithmetic (why $5^2\cdot\{29,37,41\}$ and
+   not $5^2\cdot17$; why the 925/1025 seeds resurrect only along
+   their own prime) and (b) the representable-vs-attained gap —
+   golden corners are still never actual squares
+   (`a9.scaling_law`, `a9.ladder_sweep`, `a9.family_primitivity`).
 
 3. **The fourth-sieve ladder (A9.6–A9.12) — the front's deepest
    result, all PROVEN.** The kills that lie provably beyond every

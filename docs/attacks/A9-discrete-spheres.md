@@ -803,6 +803,51 @@ range live. For W4 the lesson is sharper still: any totality proof
 for the sieves must be **scaling-stable** — it must rule out
 resurrection along every chain, not merely kill primitive pairs.
 
+**The ladder sweep (executed same day; `compute/ladder_sweep.py`,
+artifact `data_ladder_sweep.json`, check `a9.ladder_sweep`).** All
+56 base positivity pairs at the nine anatomy centers, scaled into
+the unverified window $(53400, 150000]$: 7182 scaled pairs, 3314
+coherent, **88 hits = 20 golden + 68 near** (one dead line). The
+findings, in order of violence:
+
+1. **Golden pairs are abundant on the ladder.** Seven golden
+   centers in one window, against two pair-orders in the entire
+   desert to $53400$. The sieves provably cannot carry a
+   nonexistence proof by themselves: transparency is not a freak
+   event, it is the ladder's asymptotic behavior. (Honesty: golden
+   $\ne$ magic — e.g. the $96425$ golden's four corners are all
+   non-squares, re-verified in-suite. The sieves are necessary
+   conditions; the gap between *representable* and *attained by an
+   actual square* is where the problem now lives.)
+2. **Upward closure, observed.** $68450, 102675, 136900$ are the
+   $2,3,4$-multiples of $34225$ carrying the doubled/tripled/
+   quadrupled golden pair — A9.13's corollary in data ($136900 =
+   (2\cdot185)^2$ is square only for that trivial reason). The
+   **minimal** new golden centers are $96425 = 133\cdot725$,
+   $105125 = 145\cdot725$ (the C2-exception's chain completing its
+   resurrection one rung up: $5\cdot21025$), $126875 = 175\cdot725$,
+   $147175 = 203\cdot725$ — **all nonsquare**, so the refined W4
+   hypothesis "the sieves are total off the square family" is
+   REFUTED. The square-root-center motif was the self-scaling slice
+   of the true law, visible first because the desert's window was
+   short.
+3. **Fertility is seed-intrinsic and bimodal.** Every hit comes
+   from four unordered seeds: $(171600, 282576)$ and
+   $(122400, 282576)$ at $725$ (broad-spectrum: near-golden at
+   essentially every $q \ge 77$, first goldens at $q = 133, 145,
+   175, 203$), $(79464, 525000)$ at $925$ and $(130944, 450000)$ at
+   $1025$ (narrow: hits **only** at $q \equiv 0$ mod their own
+   prime, $37$ resp. $41$ — and the $925$ seed is then immediately
+   golden). The other 20 seeds — including a coherent 4-dead seed
+   at $845$ that a naive "fewest obstructions" model would favor —
+   produced nothing. Base dead-count does *not* predict fertility;
+   the fertile centers are exactly $5^2\cdot\{29, 37, 41\}$ while
+   $5^2\cdot17 = 425$ stays barren (recorded as fact, not yet law).
+4. **The residual kill hops.** On near-golden rungs the lone dead
+   line is sometimes phantom 2 ($q = 77, 84, 95, 190$), sometimes
+   outer 6 ($q = 29, 116$) — no forced kill-location deep in the
+   ladder either, consistent with the C2 refutation.
+
 ### The actuarial model, v1 (ROADMAP W6) — is the desert's record surprising?
 
 *(2026-08-28; `compute/actuarial_model.py`; sample artifacts

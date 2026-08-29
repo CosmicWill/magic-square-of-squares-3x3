@@ -1984,3 +1984,34 @@ C2-exception) are scalings. Ladder convergence observed: 4225 =
 Check a9.family_primitivity pins bounded recomputations (k <= 65
 FAST: 12+8; k <= 100 FULL: 24+14) plus the two-ancestor structure
 at 65^2. Suite 130. Ladder sweep still running.
+
+## 2026-08-28 — Entry 49: the ladder sweep — golden centers are abundant, and the program pivots
+
+The A9.13 hunting engine swept all 56 base positivity pairs at the
+nine anatomy centers into the unverified window (53400, 150000]:
+7182 scaled pairs, 3314 coherent, 88 hits = 20 GOLDEN + 68 NEAR
+(artifact data_ladder_sweep.json; check a9.ladder_sweep pins totals,
+centers, seeds, and re-verifies the 96425 golden live — dual-path
+class-group confirmation on FULL, corners honestly non-square).
+Findings: (1) golden pairs are ABUNDANT on the ladder — seven golden
+centers in one window vs two pair-orders in the whole desert; the
+sieves provably cannot carry a nonexistence proof alone. (2) Upward
+closure observed exactly as A9.13 predicts: 68450/102675/136900 are
+the 2,3,4-multiples of 34225 carrying the scaled golden pair. The
+MINIMAL new golden centers 96425 = 133*725, 105125 = 145*725 (the
+C2-exception chain completing: 5*21025), 126875 = 175*725, 147175 =
+203*725 are ALL NONSQUARE — the refined W4 hypothesis "sieves total
+off the square family" is REFUTED; the square-root motif was the
+self-scaling slice of the ladder law, nothing more. (3) Fertility is
+seed-intrinsic and bimodal: all hits come from four unordered seeds
+— the two 725 seeds are broad-spectrum (near at essentially every
+q >= 77), the 925 and 1025 seeds resurrect ONLY along multiples of
+their own prime (37, 41) and the 925 seed is then immediately
+golden. Base dead-count does NOT predict fertility (a coherent
+4-dead seed at 845 produced nothing); fertile centers are exactly
+5^2*{29,37,41} while 5^2*17 = 425 is barren — recorded as fact.
+(4) The residual kill hops (phantom 2 at q = 77/84/95/190, outer 6
+at q = 29/116): no forced kill-location deep in the ladder.
+PROGRAM PIVOT recorded in PROGRESS/ROADMAP (M12-P): the frontier is
+now (a) fertile-seed arithmetic and (b) the representable-vs-
+attained gap. Suite 131, all green.

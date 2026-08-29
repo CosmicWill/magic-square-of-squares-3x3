@@ -681,3 +681,76 @@ def _(ctx):
     require({325, 845} <= anc65, anc65)
     ctx.note(f"k <= {kmax}: {sc} scaled + {pr} primitive stage-3 pairs; "
              "65^2 has ancestors at both 325 and 845 (ladder convergence)")
+
+
+@check("a9.ladder_sweep", DOC)
+def _(ctx):
+    """The scaled-pair ladder sweep (A9.13 hunting, window
+    (53400, 150000]): 7182 scaled pairs from the 56 base positivity
+    pairs at the nine anatomy centers; 3314 coherent; 88 hits =
+    20 golden + 68 near (1 dead).  Facts pinned from the artifact:
+    (i) golden pairs are ABUNDANT on the ladder — seven golden
+    centers in the window vs two pair-orders in the whole desert to
+    53400; (ii) the golden centers 68450/102675/136900 are the
+    2,3,4-multiples of 34225 = upward closure (A9.13 corollary in
+    data); the minimal new golden centers are 96425, 105125, 126875,
+    147175 — all nonsquare (136900 = (2*185)^2 is square only as an
+    upward image), refuting the refined W4 hypothesis
+    'sieves total off the square family'; (iii) fertility is
+    seed-intrinsic: every hit comes from four unordered seeds, and
+    the 925/1025 seeds resurrect ONLY along multiples of their own
+    prime (37/41), while the 725 seeds are broad-spectrum; (iv) live
+    re-verification: the 96425 golden passes all 8 lines by the
+    A9.12 sieve (FAST) and the independent class-group path (FULL),
+    and its corners are honestly non-square (golden != magic)."""
+    import json as _json
+    from math import isqrt
+    from compute.sphere_gluing import coherent_pair, pair_lines
+    from compute.gram_sieve import syzygy_line_ok_fast
+
+    with open(os.path.join(DATA, "data_ladder_sweep.json"),
+              encoding="utf-8") as fh:
+        d = _json.load(fh)
+    require((d["tested"], d["coherent"], len(d["hits"]))
+            == (7182, 3314, 88), "sweep totals")
+    hits = d["hits"]
+    require(sum(1 for h in hits if h[7] == 0) == 20 and
+            sum(1 for h in hits if h[7] == 1) == 68, "golden/near split")
+    golden_centers = sorted({h[0] for h in hits if h[7] == 0})
+    require(golden_centers == [68450, 96425, 102675, 105125,
+                               126875, 136900, 147175], golden_centers)
+    # 68450/102675/136900 are the 2,3,4-multiples of 34225 (upward
+    # images; 136900 = (2*185)^2 is square for that trivial reason);
+    # the four MINIMAL new golden centers are all nonsquare
+    minimal = [96425, 105125, 126875, 147175]
+    require([c for c in minimal if isqrt(c) ** 2 == c] == [],
+            "minimal centers all nonsquare")
+    require({(h[4], min(h[5], h[6]), max(h[5], h[6])) for h in hits} ==
+            {(725, 122400, 282576), (725, 171600, 282576),
+             (925, 79464, 525000), (1025, 130944, 450000)},
+            "four unordered fertile seeds")
+    require(all(h[3] % 37 == 0 for h in hits if h[4] == 925) and
+            all(h[3] % 41 == 0 for h in hits if h[4] == 1025),
+            "self-prime directions")
+    # upward closure: 68450 = 2 * 34225 with the doubled golden pair
+    require([68450, 2 * 2 * 108786216, 2 * 2 * 718725000] in
+            [h[:3] for h in hits], "2-image of the 34225 golden")
+    # (iv) live: the 96425 golden, both orders in artifact; re-sieve
+    m, U, V = 96425, 133 * 133 * 171600, 133 * 133 * 282576
+    require([m, U, V, 133, 725, 171600, 282576, 0] in hits)
+    require(coherent_pair(m, U, V), "96425 coherent")
+    n = 3 * m * m
+    require(all(syzygy_line_ok_fast(t, n)
+                for t in pair_lines(2 * m * m, U, V)), "96425 all alive")
+    for e1 in (1, -1):
+        for e2 in (1, -1):
+            E = m * m + e1 * U + e2 * V
+            require(isqrt(E) ** 2 != E, "a corner is square?!")
+    if ctx.bound(full=1, fast=0):
+        from compute.desert_extension import pair_killed_by_representation
+        require(pair_killed_by_representation(m, U, V) is False,
+                "class-group path disagrees at 96425")
+    ctx.note("ladder sweep pinned: 20 golden + 68 near from 4 seeds; "
+             "minimal new golden centers 96425/105125/126875/147175 all "
+             "nonsquare; 925/1025 fertility = self-prime directions; "
+             "96425 re-verified live (dual-path on FULL)")
