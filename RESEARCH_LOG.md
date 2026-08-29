@@ -2078,3 +2078,34 @@ unconditional no-triple theorems for small omega(m). P2 = the
 rigidity invariant. P3 = geometry demoted to structural support.
 P4 = the hunt as calibration/insurance (desert resumes post-survey).
 P5 = consolidation paper. Suite 136, all green.
+
+## 2026-08-28 — Entry 52: Theorem A3.6 — the omega = 1 theorem (W10's first blood) + A3.5
+
+W10's first working session delivered the program's first
+unconditional additive-layer theorem. Proposition A3.5 (degenerate
+subsums): every vanishing proper subsum of the six-term sum has
+size 2 or 4 with paired equal congrua — sizes 1/3/5 impossible
+(size 3 via Lemma A3.4: three equal-modulus elements of Q(i) never
+satisfy +-a +-b +-c = 0, because alpha + beta = 1 on the unit
+circle forces zeta_6, which is not in Q(i)); so genuine additive
+triples give NONDEGENERATE vanishing sums (a3.degenerate_subsums:
+exhaustive exact scans, 924 vanishing subsums per sample center all
+classified). THEOREM A3.6 (omega = 1): for every m = 2^s r p^a with
+a single split prime p (any power, any inert cofactor), D(m)
+admits NO signed relation e1 d1 + e2 d2 + e3 d3 = 0 at all — proof
+via D(m) = { m^2 |Im sigma^k| } (sigma = lambda^4/p^2, pinned
+against congrua_sets on all 1487 single-split m <= 3000) plus the
+Gauss-content contradiction: the relation would force the primitive
+R(x) = p^2 x^2 - 2Cx + p^2 to divide a {0,+-1,+-2,+-3}-coefficient
+polynomial with nonzero lc — impossible for p >= 5. COROLLARY: the
+center of any MSS3 is divisible by at least two distinct primes
+= 1 mod 4. This is Conjecture A3.C proven on an infinite natural
+family — the first honest nonexistence slice of the open problem
+from the additive layer. Machine: a3.omega1_theorem (structure
+lemma exact on the range; 1568 relation instances nonzero across 7
+primes to a = 6; rich single-split centers directly triple-free).
+Also: the predicted golden at 210125 is now DUAL-PATH confirmed
+(class-group leg agrees; corners honestly non-square). Next per
+the realignment queue: A3-S2b (two split primes), P2 (rigidity
+invariant measurement), P3 (cubic campaign continuation). Suite
+138, all green.

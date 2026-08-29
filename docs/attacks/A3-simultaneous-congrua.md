@@ -92,6 +92,111 @@ than the full problem, hence a realistic intermediate target. (It does
 not follow from Bremner's published classification as summarized to us;
 provenance caveats apply.)
 
+## 2.5 The $\mathbb{Z}[i]$ / S-unit front (W10): the six-term equation, degenerate subsums, and the $\omega = 1$ theorem
+
+*(2026-08-28, the realignment's P1. Machine:
+`compute/zi_additive.py`; checks `a3.zi_reformulation`,
+`a3.degenerate_subsums`, `a3.omega1_theorem`.)*
+
+**The reformulation (A3-S1, pinned).** $D(m) = \{\,|\mathrm{Im}(z^2)|
+: z \in \mathbb{Z}[i],\ |z|^2 = m^2\,\}$, and with $w_j = z_j^2$
+(so $|w_j| = m^2$ and $\bar w_j = m^4/w_j$), a signed additive
+relation $\varepsilon_1 d_1 + \varepsilon_2 d_2 + \varepsilon_3 d_3
+= 0$ is exactly the **six-term vanishing sum**
+$$\textstyle\sum_j \varepsilon_j\bigl(w_j - m^4/w_j\bigr) = 0$$
+on the norm-$m^4$ torus — S-unit-equation habitat.
+
+**Lemma A3.4 (equal-modulus three-term rigidity in $\mathbb{Q}(i)$;
+PROVEN).** No three nonzero elements of $\mathbb{Q}(i)$ of equal
+absolute value satisfy $\pm a \pm b \pm c = 0$. *Proof.* Absorbing
+signs, $a + b = c$; dividing by $c$: $\alpha + \beta = 1$ with
+$|\alpha| = |\beta| = 1$, $\alpha, \beta \in \mathbb{Q}(i)$. Then
+$1 = (1-\alpha)(1-\bar\alpha) = 2 - (\alpha + \bar\alpha)$, so
+$\mathrm{Re}\,\alpha = \tfrac12$ and $\alpha = \tfrac12 \pm
+\tfrac{\sqrt{-3}}{2} = \zeta_6^{\pm 1}$ — but $\zeta_6 \notin
+\mathbb{Q}(i)$ (it generates $\mathbb{Q}(\sqrt{-3})$, and
+$\mathbb{Q}(i) \cap \mathbb{Q}(\sqrt{-3}) = \mathbb{Q}$).
+$\blacksquare$
+
+**Proposition A3.5 (degenerate subsums; PROVEN).** Every vanishing
+*proper* subsum of the six-term sum has size 2 or 4, and a size-2
+vanishing forces its two terms to carry **equal congrua** ($d_i =
+d_j$, the terms being $\pm w$ against $\mp w'$ with $w' \in \{w,
+\bar w, -w, -\bar w\}$); size-4 vanishings are complements of
+size-2. In particular a genuine additive triple of distinct
+positive congrua yields a **nondegenerate** vanishing sum — the
+right-shaped input for S-unit machinery. *Proof.* All six terms
+have modulus $m^2 \ne 0$ (sizes 1, 5 impossible); size 3 is
+impossible by Lemma A3.4; a size-2 relation between two terms of
+equal modulus forces the stated proportionality, and each of the
+four cases gives $|\mathrm{Im}\,w| = |\mathrm{Im}\,w'|$.
+$\blacksquare$ (Exhaustive exact scan: 1372 sign/point
+configurations per sample center, all 924 vanishing subsums per
+center classified — `a3.degenerate_subsums`.)
+
+**Theorem A3.6 (the $\omega = 1$ theorem — the first unconditional
+slice of Conjecture A3.C; PROVEN).** Let $m = 2^s r p^a$ where $r$
+is a product of primes $\equiv 3 \pmod 4$ and $p \equiv 1 \pmod 4$
+is the only split prime dividing $m$. Then **no** signed relation
+$\varepsilon_1 d_1 + \varepsilon_2 d_2 + \varepsilon_3 d_3 = 0$
+holds with $d_i \in D(m)$ (repetitions allowed). In particular
+$D(m)$ contains no additive triple; no 3×3 magic square with seven
+square entries in the three-full-AP configuration has such a center
+root; and *a fortiori* no MSS3 does. **Corollary: the center of any
+MSS3 is divisible by at least two distinct primes $\equiv 1 \bmod
+4$.**
+
+*Proof.* (i) *Structure.* By unique factorization in
+$\mathbb{Z}[i]$, every $z$ with $|z|^2 = m^2$ is $z = 2^s r\, u\,
+\lambda^j \bar\lambda^{2a-j}$ with $u$ a unit and $\lambda$ a
+Gaussian prime over $p$ (inert primes and $1+i$ contribute
+scalars). Hence $z^2 = m^2 u^2 \sigma^{k}$ with $\sigma :=
+(\lambda/\bar\lambda)^2 = \lambda^4/p^2$, $k = j - a \in [-a, a]$,
+$u^2 = \pm 1$, and
+$$D(m) = \{\, m^2\,|\mathrm{Im}\,\sigma^k| \;:\; 1 \le k \le a \,\}$$
+(pinned exactly against `congrua_sets` on every single-split
+$m \le 3000$).
+(ii) *Reduction.* A signed relation becomes, after absorbing the
+signs of $\mathrm{Im}\,\sigma^{k_i}$ into $\varepsilon_i' = \pm1$,
+$$\textstyle\sum_i \varepsilon_i'\,(\sigma^{k_i} - \sigma^{-k_i}) = 0 .$$
+If all three $k_i$ are equal this reads $(\varepsilon_1' +
+\varepsilon_2' + \varepsilon_3')(\sigma^K - \sigma^{-K}) = 0$: the
+first factor is an odd integer, the second is $2i\,\mathrm{Im}\,
+\sigma^K \ne 0$ (note $\mathrm{Im}\,\lambda^4 = 2cs \ne 0$ since
+$c = e^2 - f^2 \ne 0$ for odd $p$ and $s = 2ef \ne 0$) —
+impossible. Otherwise multiply by $x^{K}$ at $x = \sigma$, $K =
+\max k_i$: $\sigma$ is a root of the integer polynomial
+$$Q(x) = \textstyle\sum_i \varepsilon_i'\,\bigl(x^{K + k_i} - x^{K - k_i}\bigr),$$
+whose coefficients lie in $\{0, \pm1, \pm2, \pm3\}$ with
+$\mathrm{lc}(Q) = \sum_{k_i = K}\varepsilon_i' \ne 0$ and $Q(0) =
+-\mathrm{lc}(Q) \ne 0$.
+(iii) *The contradiction.* $\sigma = \lambda^4/p^2$ is nonreal with
+$\sigma\bar\sigma = 1$ and $\sigma + \bar\sigma = 2C/p^2$, $C =
+\mathrm{Re}\,\lambda^4$; $\gcd(C, p) = 1$ (if $\lambda \mid 2C =
+\lambda^4 + \bar\lambda^4$ then $\lambda \mid \bar\lambda^4$,
+contradicting coprimality of $\lambda, \bar\lambda$). So the
+minimal polynomial of $\sigma$ over $\mathbb{Q}$ is $x^2 -
+(2C/p^2)x + 1$, with primitive integer form $R(x) = p^2x^2 - 2Cx +
+p^2$. From $Q(\sigma) = 0$: $R \mid p^N Q$ in $\mathbb{Z}[x]$, and
+by Gauss's lemma (contents: $R$ primitive, $\mathrm{cont}(Q) =:
+\gamma \le 3$) this forces $Q = \gamma\, R\, T$ with $T \in
+\mathbb{Z}[x]$. Comparing leading coefficients: $|\mathrm{lc}(Q)|
+\le 3 < p^2 \le |\gamma\, p^2\, \mathrm{lc}(T)|$ — impossible for
+$p \ge 5$. $\blacksquare$ (Machine: 224 exact sign/exponent
+instances per prime, seven primes, all nonzero to $a = 6$;
+`a3.omega1_theorem`.)
+
+**Reading.** This is the additive desert's first *theorem*: an
+infinite, natural family of center roots is now unconditionally
+closed — the entire single-split-prime family, all powers, all
+inert cofactors. The obstruction is exactly S-unit-shaped: the
+relation would force the degree-2 non-integral unit $\sigma$ to
+satisfy a bounded-coefficient polynomial identity, and contents
+forbid it. The two-split-prime case ($\sigma_1, \sigma_2$
+multiplicatively independent — a genuine rank-2 unit equation) is
+the next target (A3-S2b); the desert data says its answer, too,
+should be "never".
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
