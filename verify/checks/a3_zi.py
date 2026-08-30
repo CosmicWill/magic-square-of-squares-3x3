@@ -904,3 +904,100 @@ def _(ctx):
     ctx.note("G2 + mixed-same-j block: 12 closed (Fermat, parity, "
              "Pell-size, leg-window endpoints), queue at 60; all "
              "collapse identities symbolic")
+
+
+@check("a3.m1_g3_wave", DOC)
+def _(ctx):
+    """N2 third wave — M1, M2, and the G3 double-pincer: 28 more
+    closed, queue 60 -> 32.  M1 ({(1,+-1),(3,0),(3,-+1)}, 4
+    patterns): both collapse groupings (identities symbolic below)
+    force q^2 | C resp. q^2 | C4 via the q-unit argument; cofactor
+    coprimality collapses the quotient to +-1, and both endpoints
+    are FERMAT: C = +-q^2 gives S^2 = p^4 - q^4, C4 = +-q^2 gives
+    (2CS)^2 = p^8 - q^4 (searches empty).  M2 ({(2,+-1),(3,0),
+    (3,-+1)}): the equal-sign variants force P5 = 5c1^4 - 10c1^2
+    s1^2 + s1^4 = +-q^2, dead mod 16 (P5 in {5,13}, +-q^2 in
+    {1,7,9,15}) — those variants were already machine-dead; the
+    four opposite-sign queue entries REDUCE to P5' = c1^4 - 10c1^2
+    s1^2 + 5s1^4 = +-q^2 plus a Pythagorean discriminant condition
+    (real-data search empty), and stay pinned open.  G3 (the
+    double-pincer, ALL 24 patterns of {(1,2),(2,1),(2,2)}): both
+    groupings are rewrites of one relation — A: q^2 Im(l^4 w^2) =
+    -+2c1 Im(l^3 w^4) / +-2s1 Re(l^3 w^4) forces q^2 | 2c1 or 2s1,
+    so q^2 < 2p; B: p^2 Im(l^2 w^4) = -+2c2 Im(l^4 w^3) / +-2s2
+    Re(l^4 w^3) forces p^2 | c2 or s2, so p^2 < q; together p^4 <
+    q^2 < 2p — impossible for every p.  Identities exact here."""
+    from math import isqrt
+    from compute.two_prime_additive import (p4add, p4mul, gauss_pow,
+                                            ELL, W)
+    import json as _json
+
+    P2 = {(2, 0, 0, 0): 1, (0, 2, 0, 0): 1}
+    Q2 = {(0, 0, 2, 0): 1, (0, 0, 0, 2): 1}
+
+    def imlw(a, wp):
+        Rl, Il = gauss_pow(*ELL, a)
+        Rw, Iw = gauss_pow(*W, wp)
+        return p4add(p4mul(Rl, Iw), p4mul(Il, Rw), 1)
+
+    def relw(a, wp):
+        Rl, Il = gauss_pow(*ELL, a)
+        Rw, Iw = gauss_pow(*W, wp)
+        return p4add(p4mul(Rl, Rw), p4mul(Il, Iw), -1)
+
+    # G3 pincer identities
+    T1 = p4mul(P2, imlw(2, 4))
+    T2 = p4mul(Q2, imlw(4, 2))
+    T3 = imlw(4, 4)
+    require(p4add(p4add(T1, T3, 1),
+                  p4mul({(1, 0, 0, 0): 2}, imlw(3, 4)), -1) == {})
+    require(p4add(p4add(T1, T3, -1),
+                  p4mul({(0, 1, 0, 0): -2}, relw(3, 4)), -1) == {})
+    require(p4add(p4add(T2, T3, 1),
+                  p4mul({(0, 0, 1, 0): 2}, imlw(4, 3)), -1) == {})
+    require(p4add(p4add(T2, T3, -1),
+                  p4mul({(0, 0, 0, 1): -2}, relw(4, 3)), -1) == {})
+    # M1 collapse identities (J = 3 box, pure (3,0))
+    Rl4, Il4 = gauss_pow(*ELL, 4)
+    u = {(0, 0, 2, 0): 1, (0, 0, 0, 2): -1}
+    v = {(0, 0, 1, 1): 2}
+    C = {(2, 0, 0, 0): 1, (0, 2, 0, 0): -1}
+    S = {(1, 1, 0, 0): 2}
+    YR = p4add(p4mul(C, u), p4mul(S, v), 1)
+    YI = p4add(p4mul(C, v), p4mul(S, u), -1)
+    Rw, Iw = gauss_pow(*W, 2)
+    Iwm = {k: -x for k, x in Iw.items()}
+    Rl2, Il2 = gauss_pow(*ELL, 2)
+    Rl6, Il6 = gauss_pow(*ELL, 6)
+    im_l2w2 = p4add(p4mul(Rl2, Iw), p4mul(Il2, Rw), 1)
+    im_l6wb = p4add(p4mul(Rl6, Iwm), p4mul(Il6, Rw), 1)
+    P4 = p4mul(P2, P2)
+    require(p4add(p4add(p4mul(P4, im_l2w2), im_l6wb, 1),
+                  p4mul({k: 2 * x for k, x in Il4.items()}, YR),
+                  -1) == {}, "M1 equal")
+    require(p4add(p4add(p4mul(P4, im_l2w2), im_l6wb, -1),
+                  p4mul({k: 2 * x for k, x in Rl4.items()}, YI),
+                  -1) == {}, "M1 opp")
+    # M1 Fermat endpoints + M2 mod-16 fact
+    b = ctx.bound(full=120, fast=60)
+    for p_ in range(2, b):
+        p8 = p_ ** 8
+        for q_ in range(2, p_ * p_):
+            d = p8 - q_ ** 4
+            if d <= 0:
+                break
+            r = isqrt(d)
+            require(r * r != d, (p_, q_))
+    vals = {(5 * c1 ** 4 - 10 * c1 * c1 * s1 * s1 + s1 ** 4) % 16
+            for c1 in range(1, 40, 2) for s1 in range(2, 40, 2)}
+    require(vals <= {5, 13}, vals)
+    require(not (vals & {(e * q * q) % 16 for q in range(1, 16, 2)
+                         for e in (1, -1)}))
+    # queue state
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    require(len(rem) == 32, len(rem))
+    ctx.note("M1 (double Fermat) x4 + G3 double-pincer x24 closed; "
+             "M2-opp x4 reduced-open (P5' = +-q^2, search empty); "
+             "queue at 32")

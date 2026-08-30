@@ -2403,3 +2403,26 @@ window for the (0,1) family (q >= p^6/sqrt2 vs q^4 <= 37 p^12:
 p <= 1). Queue: 72 -> 60; what remains is dominated by the
 no-pure-term families ({(1,2),(2,1),(2,2)} x24) and the mixed-k
 E-analogues. Suite 150, all green.
+
+## 2026-08-30 — Entry 63: M1, M2, and the G3 double-pincer — 28 closed in one wave, queue 60 -> 32
+
+The E-analogue and x24 session (a3.m1_g3_wave, identities all
+symbolic). M1 ({(1,+-1),(3,0),(3,-+1)} x4): both groupings force
+q^2 | C resp. C4 (q-unit argument), cofactor coprimality gives
+quotient +-1, and BOTH endpoints are Fermat (S^2 = p^4 - q^4 and
+(2CS)^2 = p^8 - q^4 — appearances six and seven of x^4 - y^4 =
+z^2). M2 ({(2,+-1),(3,0),(3,-+1)}): equal-sign variants die at
+P5 = +-q^2 mod 16 (P5 in {5,13} vs {1,7,9,15}) — already
+machine-dead; the four opposite-sign entries reduce to P5' =
++-q^2 plus a Pythagorean discriminant condition, pinned open with
+empty searches. THE HEADLINE — G3, the double-pincer: the entire
+x24 family {(1,2),(2,1),(2,2)} dies in two lines: grouping A
+(the two k=2 terms) forces q^2 | 2c1-or-2s1 so q^2 < 2p; grouping
+B (the two j=2 terms) forces p^2 | c2-or-s2 so p^2 < q; both
+groupings are rewrites of the SAME relation, so p^4 < q^2 < 2p —
+impossible for every p, all 24 sign variants at once. Queue: 60 ->
+32 ({(1,1),(3,1),(3,1)} x8, {(2,1),(3,1),(3,1)} x8, {(1,1),(2,2),
+(2,2)} x8, M2-opp x4, doubled-(3,1) x4). The pincer is the
+strongest uniform weapon yet: it applies whenever both index
+groupings carry explicit prime powers — a key piece for the
+uniform omega <= 2 theorem. Suite 151, all green.
