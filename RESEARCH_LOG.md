@@ -2359,3 +2359,27 @@ abstract, introduction with the three theorems and the corollary,
 the method architecture, the Z[i] section with A3.4/A3.5 proofs,
 and the complete omega = 1 proof; sections 4-6 are scaffolded with
 import plans from the repo docs). Suite 148, all green.
+
+## 2026-08-30 — Entry 61: Lemma G1 and the certified sweep — 74 -> 72, and the anatomy is exact
+
+N2's first working session. LEMMA G1 (same-k collapse kill): for
+patterns with two same-signed-k classes and a pure term, the
+cyclotomic collapse extracts 2Re/Im(ell^d); when it divides the
+pure part (multiple-angle: S | Im ell^{2j}, pinned symbolically),
+the relation reduces to q^{2|k|} A = ({2,3}-unit) x (q-unit Trig)
+— dead. The certifier is now robust: strip (c1,s1)-only factors
+exactly, then PROJECTIVE branch comparison at (c2,s2) = (1,i)
+(the constant may be a rational like -1/2 — the integrality test
+that hid the kills is fixed; certificates require {2,3}-unit
+numerators so q >= 5 never divides them). Sweep result: the two
+eligible queue patterns closed ({(2,1),(3,0),(3,1)} same-k,
+certificates Im(a=5,b=+-1)); the other same-k instants were
+already machine-dead in the census — the queue holds EXACTLY the
+G1-immune variants. 72 remain (a3.g1_lemma pins the count) with
+exact anatomy: (i) same-k pairs with the C-collapse (cofactor
+2Re(ell^d) not dividing the pure part -> reduced branches
+q^{2|k|} | 2Re(ell^d), size q^{2|k|} <= 2p^d); (ii) mixed-k
+E-analogues; (iii) no-pure-term families ({(1,2),(2,1),(2,2)} x24
+the largest). These are the genuine trees for the next sessions —
+each family one level up from a closed A3.8 counterpart. Suite
+149, all green.

@@ -879,3 +879,165 @@ def brute_canonical_set(amax, bmax):
                     else:
                         raise AssertionError(coeffs)
     return distinct, doubled, impossible
+
+
+# ---------------------------------------- N2: the G1 same-k collapse kill
+
+def p4div_by_cs(P, D):
+    """Exact division of a 4-var poly P by a (c1,s1)-only poly D
+    (dict over 2-exponent keys).  Returns quotient or None."""
+    if not P:
+        return {}
+    lead2 = max(D)
+    lc = D[lead2]
+    R = dict(P)
+    Q = {}
+    guard = 0
+    while R:
+        guard += 1
+        if guard > 60000:
+            return None
+        rk = max(R, key=lambda t: (t[0], t[1], t[2], t[3]))
+        rc = R[rk]
+        e = (rk[0] - lead2[0], rk[1] - lead2[1], rk[2], rk[3])
+        if e[0] < 0 or e[1] < 0 or rc % lc:
+            return None
+        Q[e] = Q.get(e, 0) + rc // lc
+        for dk, dv in D.items():
+            kk = (e[0] + dk[0], e[1] + dk[1], e[2], e[3])
+            nv = R.get(kk, 0) - (rc // lc) * dv
+            if nv:
+                R[kk] = nv
+            else:
+                R.pop(kk, None)
+    return Q
+
+
+CS_FACTORS = [
+    ("c1", {(1, 0): 1}),
+    ("s1", {(0, 1): 1}),
+    ("C", {(2, 0): 1, (0, 2): -1}),
+    ("3C2-S2", None),  # filled below
+]
+
+
+def _mk_3c2s2():
+    C = {(2, 0): 1, (0, 2): -1}
+    S = {(1, 1): 2}
+    def mul2(A, B):
+        out = {}
+        for ka, va in A.items():
+            for kb, vb in B.items():
+                k = (ka[0] + kb[0], ka[1] + kb[1])
+                out[k] = out.get(k, 0) + va * vb
+        return {k: v for k, v in out.items() if v}
+    C2 = mul2(C, C)
+    S2 = mul2(S, S)
+    out = {k: 3 * v for k, v in C2.items()}
+    for k, v in S2.items():
+        out[k] = out.get(k, 0) - v
+    return {k: v for k, v in out.items() if v}
+
+
+CS_FACTORS[3] = ("3C2-S2", _mk_3c2s2())
+
+
+def strip_cs_factors(P):
+    """Divide out (c1,s1)-only factors greedily; return
+    (stripped poly, factor names)."""
+    cur = dict(P)
+    names = []
+    changed = True
+    while changed and cur:
+        changed = False
+        # monomial factors first
+        if all(k[0] >= 1 for k in cur):
+            cur = {(a - 1, b, c, d): v for (a, b, c, d), v in cur.items()}
+            names.append("c1")
+            changed = True
+            continue
+        if all(k[1] >= 1 for k in cur):
+            cur = {(a, b - 1, c, d): v for (a, b, c, d), v in cur.items()}
+            names.append("s1")
+            changed = True
+            continue
+        for nm, D in CS_FACTORS[2:]:
+            q = p4div_by_cs(cur, D)
+            if q is not None:
+                cur = q
+                names.append(nm)
+                changed = True
+                break
+    # integer content
+    g = 0
+    for v in cur.values():
+        g = gcd(g, abs(v))
+    if g > 1:
+        cur = {k: v // g for k, v in cur.items()}
+    return cur, names
+
+
+def g1_branch_kill(pat):
+    """The G1 certifier: raw relation -> strip (c1,s1)-only common
+    factors (never zero on nondegenerate data) -> test whether the
+    residue has the form q^2 * A + const * Trig(ell^a w^{2beta})
+    via the (c2,s2) = (1,i) branch: if the branch equals a constant
+    times a single Trig branch, the relation forces q^2 | const *
+    (q-unit): INSTANT DEAD.  Returns certificate or None."""
+    N = relation_poly(pat)
+    G = residual_cs_form(N)
+    G, names = strip_cs_factors(G)
+
+    def branch(P):
+        out = {}
+        I = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        for (a, b, x, y), v in P.items():
+            re, im = I[y % 4]
+            k = (a, b)
+            r0, i0 = out.get(k, (0, 0))
+            nv = (r0 + v * re, i0 + v * im)
+            if nv == (0, 0):
+                out.pop(k, None)
+            else:
+                out[k] = nv
+        return out
+
+    gb = branch(G)
+    if not gb:
+        return None
+
+    def gmul(x, y):
+        return (x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0])
+
+    for kind in ("Im", "Re"):
+        for a in range(1, 13):
+            for beta in (1, -1, 2, -2):
+                T = trig_ell_w(kind, a, beta)
+                tb = branch(T)
+                if not tb or set(tb) != set(gb):
+                    continue
+                k0 = max(tb)
+                # projective equality: gb[k] * tb[k0] == gb[k0] * tb[k]
+                if not all(gmul(gb[k], tb[k0]) == gmul(gb[k0], tb[k])
+                           for k in tb):
+                    continue
+                # the constant gb[k0]/tb[k0] as a reduced Gaussian
+                # rational: numerator must be a {2,3}-unit times a
+                # Gaussian unit so that q (a prime = 1 mod 4, >= 5)
+                # can never divide it
+                num, den = gb[k0], tb[k0]
+                d2 = den[0] * den[0] + den[1] * den[1]
+                ure = num[0] * den[0] + num[1] * den[1]
+                uim = num[1] * den[0] - num[0] * den[1]
+                from math import gcd as _g
+                g = _g(_g(abs(ure), abs(uim)), d2)
+                ure, uim, d2 = ure // g, uim // g, d2 // g
+                unorm = ure * ure + uim * uim
+                t = unorm
+                for pr in (2, 3):
+                    while t % pr == 0:
+                        t //= pr
+                if t != 1 or unorm == 0:
+                    continue
+                return (kind, a, beta, (ure, uim, d2), tuple(names))
+    return None

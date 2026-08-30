@@ -779,3 +779,54 @@ def _(ctx):
     ctx.note(f"enumeration proven complete (brute = enum, both "
              f"boxes); closure ledgers: (1,1) {ledger['11']} | "
              f"(2,1) {ledger['21']} — zero unclassified")
+
+
+@check("a3.g1_lemma", DOC)
+def _(ctx):
+    """N2 opening — Lemma G1 (the same-k collapse kill) and the
+    certified sweep.  For a pattern with two same-signed-k classes
+    and a pure term, the cyclotomic collapse extracts an integer
+    cofactor 2Re(ell^d) or 2Im(ell^d); when the cofactor (together
+    with monomials) divides the pure part, the relation reduces to
+    q^{2|k|} A = (rational {2,3}-unit constant) x Trig(ell^a
+    w^{2beta}) with the Trig a q-unit — dead, since q >= 5 never
+    divides a {2,3}-unit.  The certifier (strip (c1,s1)-factors,
+    then projective branch comparison at (c2,s2) = (1,i)) closed
+    the two eligible queue patterns ({(2,1),(3,0),(3,1)} same-k
+    variants, certificates Im(a=5, b=+-1), constant 2i); the
+    earlier same-k instants were already machine-dead in the
+    census.  Underpinning: multiple-angle divisibility S | Im
+    ell^{2j} (symbolic, j <= 6).  72 patterns remain, pinned."""
+    import json as _json
+    from compute.two_prime_additive import (g1_branch_kill, gauss_pow,
+                                            ELL, p4div_by_cs)
+
+    # multiple-angle divisibility: S = 2 c1 s1 divides Im(ell^{2j})
+    S2 = {(1, 1): 2}
+    for j in range(1, 7):
+        Il = gauss_pow(*ELL, 2 * j)[1]
+        require(p4div_by_cs(Il, S2) is not None, ("S | Im l^2j", j))
+    # the two certified kills
+    for signs, want in (((1, 1, -1), ("Im", 5)),
+                        ((1, -1, -1), ("Im", 5))):
+        pat = (((2, 1), signs[0]), ((3, 0), signs[1]),
+               ((3, 1), signs[2]))
+        res = g1_branch_kill(pat)
+        require(res is not None and (res[0], res[1]) == want,
+                (signs, res))
+        # the constant is a {2,3}-unit
+        ure, uim, den = res[3]
+        n = ure * ure + uim * uim
+        for pr in (2, 3):
+            while n % pr == 0:
+                n //= pr
+        require(n == 1, res[3])
+    # the remaining queue pinned
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    require(len(rem) == 72, len(rem))
+    ctx.note("G1 lemma certified (2 queue kills, {2,3}-unit "
+             "constants, S-divisibility symbolic); 72 patterns "
+             "remain: C-collapse branches, mixed-k E-analogues, "
+             "and no-pure-term families")
