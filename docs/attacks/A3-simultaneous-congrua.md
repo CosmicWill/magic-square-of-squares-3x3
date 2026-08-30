@@ -515,11 +515,27 @@ tonight.
 
 **Theorem A3.8 therefore reads: for $m = 2^s r p^2 q$, $D(m)$
 admits no signed additive relation, except possibly relations
-realizing the all-plus E3$^-$ pair** (two patterns, searches
-empty; the desert covers all such $m$ to $10^7$). The corollary
-weakens accordingly until E3$^-$ falls: unconditionally, the split
-part of any MSS3 center is $p^2q$ (E3$^-$ configuration only),
-$p^3q$, $p^2q^2$, or has $\ge 3$ distinct split primes.
+realizing the all-plus E3$^-$ pair** — *and that pair is now
+closed* (`a3.e3minus_closed`, same night):
+
+**The E3$^-$ descent.** The relation reduces to $p^2(Cv + Su) =
+-4uCS$ (symbolic), the tree forces $\pm\mu^4 = p^2C - iS(4C+p^2)$
+with the norm identity $q^4 = p^8 + 8CS^2(p^2 + 2C)$, so $q \le
+\sqrt5\,p^2$. The odd leg of $\mu^4$ is $x^2 - y^2$ with $(x,y)$
+the unique legs of $q^2$: $p^2 \mid (x-y)(x+y)$ with coprime odd
+factors, and $x + y \le \sqrt2\,q < 3.17\,p^2$ forces $x + y =
+ep^2$, $e \in \{1, 3\}$. **$e = 1$: $x - y = C$ and parity force
+$x = c_1^2$, $y = s_1^2$, so $q^2 = c_1^4 + s_1^4$ — Fermat's
+$x^4 + y^4 = z^2$, impossible.** $e = 3$: $9p^4 + C_1^2 = 2q^2$
+dies mod 3. The branch $x - y = ep^2$ dies by size. $lacksquare$
+
+**THEOREM A3.8 (RESTORED, COMPLETE — all-plus patterns included).**
+For $m = 2^s r\,p^2q$, $D(m)$ admits no signed additive relation.
+**Corollary (A3.6 + A3.7 + A3.8): the split part of any MSS3 center
+is $p^3q$, $p^2q^2$, or has at least three distinct split primes.**
+Fittingly, the last pattern standing fell to the *other* classical
+Fermat quartic: the ladder has now used both $x^4 - y^4 = z^2$ and
+$x^4 + y^4 = z^2$.
 
 ## 2.8 The $(3,1)$ and $(2,2)$ campaigns: opened, machine-swept, survivor families pinned
 

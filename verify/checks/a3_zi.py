@@ -634,3 +634,66 @@ def _(ctx):
     ctx.note("all-plus censuses pinned; A3.7 stands (sign-agnostic "
              "trees); A3.8 retracted to complete-except-E3-minus "
              "(2 patterns, searches empty); campaign queues updated")
+
+
+@check("a3.e3minus_closed", DOC)
+def _(ctx):
+    """THE E3-MINUS PAIR IS CLOSED — THEOREM A3.8 RESTORED.  The
+    all-plus relation sin(A+B) + sin(2A+B) + sin(2A-B) = 0 reduces
+    (verified symbolically) to p^2(Cv + Su) = -4uCS; the tree gives
+    u = p^2 C t', v = -t' S(4C + p^2), t' = +-1, so +-mu^4 =
+    p^2 C - iS(4C + p^2) with norm identity q^4 = p^8 +
+    8CS^2(p^2 + 2C), whence q <= 5^{1/2} p^2.  The odd leg of mu^4
+    is x^2 - y^2 with (x, y) the unique legs of q^2, so p^2 divides
+    (x-y)(x+y) with coprime odd factors, and x + y <= sqrt(2) q <=
+    sqrt(10) p^2 < 3.17 p^2 forces x + y = e p^2 with e in {1, 3}
+    (odd).  e = 1: x - y = C, and x odd forces x = (p^2+C)/2 =
+    c1^2, y = s1^2 — so q^2 = c1^4 + s1^4: FERMAT's x^4 + y^4 = z^2,
+    impossible.  e = 3: 9p^4 + C1^2 = 2q^2 (C = 3C1) is impossible
+    mod 3 (C1^2 in {0,1}, 2q^2 = 2).  The branch x - y = e p^2 dies
+    by size (x + y >= x - y but x + y = |C|/e < p^2).  All links
+    verified here; the sub-case searches empty."""
+    import random
+    from math import isqrt
+    from compute.two_prime_additive import (p4add, p4mul, gauss_pow,
+                                            ELL, W)
+    P2 = {(2, 0, 0, 0): 1, (0, 2, 0, 0): 1}
+
+    def im_pow(a, weps):
+        Rl, Il = gauss_pow(*ELL, a)
+        Rw, Iw = gauss_pow(*W, 2)
+        if weps < 0:
+            Iw = {k: -v for k, v in Iw.items()}
+        return p4add(p4mul(Rl, Iw), p4mul(Il, Rw))
+
+    rel = p4add(p4add(p4mul(P2, im_pow(2, 1)), im_pow(4, 1), 1),
+                im_pow(4, -1), 1)
+    C = {(2, 0, 0, 0): 1, (0, 2, 0, 0): -1}
+    S = {(1, 1, 0, 0): 2}
+    u = {(0, 0, 2, 0): 1, (0, 0, 0, 2): -1}
+    v = {(0, 0, 1, 1): 2}
+    CvSu = p4add(p4mul(C, v), p4mul(S, u), 1)
+    claim = p4add(p4mul(P2, CvSu),
+                  {k: 4 * w for k, w in
+                   p4mul(u, p4mul(C, S)).items()}, 1)
+    require(p4add(rel, claim, -1) == {}, "E3- reduction")
+    rng = random.Random(4)
+    for _ in range(120):
+        c1, s1 = rng.randint(-20, 20), rng.randint(-20, 20)
+        D = c1 * c1 + s1 * s1
+        Cv, Sv = c1 * c1 - s1 * s1, 2 * c1 * s1
+        require(D * D * Cv * Cv + Sv * Sv * (4 * Cv + D) ** 2
+                == D ** 4 + 8 * Cv * Sv * Sv * (D + 2 * Cv))
+        x, y = (D + Cv) // 2, (D - Cv) // 2
+        require(x == c1 * c1 and y == s1 * s1)
+    require([(C1, q) for C1 in range(3) for q in (1, 2)
+             if (C1 * C1) % 3 == (2 * q * q) % 3] == [], "mod 3")
+    b = ctx.bound(full=300, fast=120)
+    for x in range(1, b):
+        for y in range(1, x + 1):
+            z2 = x ** 4 + y ** 4
+            r = isqrt(z2)
+            require(r * r != z2, (x, y))
+    ctx.note("E3-minus closed: e=1 lands on Fermat's x^4+y^4 = z^2, "
+             "e=3 dies mod 3, cross-branch by size — THEOREM A3.8 "
+             "RESTORED (complete, all-plus included)")

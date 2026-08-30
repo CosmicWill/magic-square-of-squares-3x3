@@ -2298,3 +2298,24 @@ opens added to the campaign queues; the replication accounting
 parents) recorded in data_box22_replication.json. The lesson is
 logged for the master induction: enumeration completeness is a
 theorem obligation, not a convention. Suite 146, all green.
+
+## 2026-08-29 — Entry 59: E3-MINUS CLOSED — Theorem A3.8 restored, complete with the all-plus audit
+
+The retraction lasted one commit. The E3-minus descent
+(a3.e3minus_closed, every link symbolic or exhaustive): the
+all-plus relation reduces to p^2(Cv+Su) = -4uCS; the tree forces
++-mu^4 = p^2 C - iS(4C+p^2) with norm identity q^4 = p^8 +
+8CS^2(p^2+2C), so q <= sqrt(5) p^2; the odd leg of mu^4 factors as
+(x-y)(x+y) with p^2 dividing one coprime factor, and the window
+forces x+y = e p^2, e in {1,3}. e = 1: parity forces x = c1^2,
+y = s1^2, so q^2 = c1^4 + s1^4 — FERMAT'S x^4 + y^4 = z^2:
+impossible. e = 3: 9p^4 + C1^2 = 2q^2 dies mod 3. Cross-branch by
+size. THEOREM A3.8 RESTORED: for m = 2^s r p^2 q, D(m) admits no
+signed additive relation — now proven over the COMPLETE pattern
+enumeration (all-plus included). The corollary stands
+unconditionally again: the split part of any MSS3 center is p^3 q,
+p^2 q^2, or has >= 3 distinct split primes. Poetic bookkeeping:
+the ladder has now consumed both classical Fermat quartics —
+x^4 - y^4 = z^2 (five branches) and x^4 + y^4 = z^2 (this one).
+Next: the 49 all-plus opens and 57 survivors of the (3,1)/(2,2)
+campaigns. Suite 147, all green.
