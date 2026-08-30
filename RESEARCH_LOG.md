@@ -2467,3 +2467,23 @@ today). Queue: 28 -> 24 — exactly the three x8 half-pincer
 families ({(1,1),(3,1),(3,1)}, {(2,1),(3,1),(3,1)},
 {(1,1),(2,2),(2,2)}) between here and Theorems A3.9/A3.10.
 Suite 153, all green.
+
+## 2026-08-30 — Entry 66: H1 and H2 closed — 16 patterns, queue 24 -> 8
+
+The two (3,1)-box x8 families fell in one session
+(a3.h1h2_closed). Both expand in (u, v) against the collapsed
+same-k pair, and the bracket identities force (u, v) into rigid
+p-side forms. H1: two combos put p^4 with S (odd split of
+(q^2 -+ Sp^4) into two SQUARES, legs alpha beta = c1 s1 p^4, and
+p^4-in-a-leg forces q^2 >= p^8 against q^4 <= 50 p^12 — dead for
+every p); the other two put p^4 with C (odd x odd = even^2:
+parity). H2: the collapse identities C6 - 2c1 R5 = -p^2 C4 and
+C6 + 2s1^2 P5 = p^2 C4 (exact) give two parity kills via
+(4SQ+-)^2; the two X6-routes land on q^4 = X^2 + (2SCp^2)^2 whose
+halves-split puts p^4 in a leg of q^2, forcing p <= 16 — the
+residues p in {5, 13} checked exactly (no prime fourth powers; a
+misidentified bracket at (3,2) — the sextic c^6 - 25c^4s^2 +
+35c^2s^4 - 3s^6 masquerading as -3(c^2+5s^2)^2 — was caught by
+the symbolic fit and corrected). Queue: 24 -> 8: ONLY the
+(2,2)-box family {(1,1),(2,2),(2,-2)} stands between here and
+Theorems A3.9 + A3.10. Suite 154, all green.

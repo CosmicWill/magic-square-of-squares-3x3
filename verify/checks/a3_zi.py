@@ -1118,3 +1118,97 @@ def _(ctx):
     ctx.note("M2-opp dead: -q^2 mod 8, +q^2 via double coprime "
              "split onto (2m)^2 = P5/P5'(a,b), disjoint mod 16; "
              "queue at 24 (three x8 families)")
+
+
+@check("a3.h1h2_closed", DOC)
+def _(ctx):
+    """H1 and H2 CLOSED (16 patterns) — queue 24 -> 8.  Both
+    families expand in (u, v) with the collapsed same-k pair, and
+    the bracket identities (exact here) force (u, v) up to sign to
+    one of eight rigid p-side forms.  H1 {(1,+-1),(3,1),(3,-1)}:
+    two combos give (u,v) = +-(C X, S p^4) with X in {5S^2-3C^2,
+    C^2-7S^2}: the coprime odd split of (q^2-Sp^4)(q^2+Sp^4) = (CX)^2
+    forces both factors square, hence legs (alpha, beta) of q with
+    alpha beta = c1 s1 p^4 — and p^4 in a leg gives q^2 >= p^8
+    against the window q^4 <= 50 p^12 (dead for all p >= 3); the
+    other two combos give (u,v) = +-(C p^4, S Y) with Y in
+    {7C^2-S^2, 3S^2-5C^2}: then (q^2 - Cp^4)(q^2 + Cp^4) = (SY)^2
+    is odd x odd = nonzero even square — parity.  H2 {(2,+-1),
+    (3,1),(3,-1)}: the identities C6 - 2c1 R5 = -p^2 C4 and C6 +
+    2s1^2 P5 = p^2 C4 give two parity kills via (4SQ+-)^2; the
+    other two combos land on q^4 = X^2 + (2SCp^2)^2 with X in
+    {C6 + 2c1 R5-mirror, C6 - 2s1^2 P5 = c^6 - 25c^4 s^2 + 35c^2
+    s^4 - 3s^6}: the halves-split puts p^4 in a leg of q^2, and
+    p^2 | (g -+ h) or p^2 | gh forces p <= 16 — the residues
+    p in {5, 13} are checked exactly (no prime fourth powers)."""
+    import random
+    from math import gcd
+    from compute.zi_additive import gaussian_prime_over
+    import json as _json
+
+    rng = random.Random(14)
+    for _ in range(200):
+        c = rng.randint(-20, 20)
+        s = rng.randint(-20, 20)
+        C, S = c * c - s * s, 2 * c * s
+        p2 = c * c + s * s
+        require(S * (3 * C * C - S * S) - 2 * S * (C * C - S * S)
+                == S * (C * C + S * S))
+        require(C * (C * C - 3 * S * S) - 2 * C * (C * C - S * S)
+                == -C * (C * C + S * S))
+        require(C * (C * C - 3 * S * S) + 4 * C * S * S
+                == C * (C * C + S * S))
+        require(S * (3 * C * C - S * S) - 4 * C * C * S
+                == S * (-C * C - S * S))
+        C6 = C * (C * C - 3 * S * S)
+        R5 = c * (c ** 4 - 10 * c * c * s * s + 5 * s ** 4)
+        P5 = 5 * c ** 4 - 10 * c * c * s * s + s ** 4
+        C4 = C * C - S * S
+        require(C6 - 2 * c * R5 == -p2 * C4)
+        require(C6 + 2 * s * s * P5 == p2 * C4)
+        require(C6 - 2 * s * s * P5
+                == c ** 6 - 25 * c ** 4 * s * s
+                + 35 * c * c * s ** 4 - 3 * s ** 6)
+    for c in range(1, 40, 2):
+        for s in range(2, 40, 2):
+            if gcd(c, s) > 1:
+                continue
+            C, S = c * c - s * s, 2 * c * s
+            require(S != 0 and 7 * C * C != S * S
+                    and 3 * S * S != 5 * C * C
+                    and 5 * S * S != 3 * C * C and C * C != 7 * S * S)
+    require(all(50 * p ** 12 < p ** 16 for p in (3, 5, 13)))
+
+    def isprime(n):
+        if n < 2:
+            return False
+        d = 2
+        while d * d <= n:
+            if n % d == 0:
+                return False
+            d += 1
+        return True
+    for p_ in (5, 13):
+        e, f = gaussian_prime_over(p_)
+        c1, s1 = e * e - f * f, 2 * e * f
+        if c1 % 2 == 0:
+            c1, s1 = s1, c1
+        for sgn in (1, -1):
+            c, s = c1, sgn * s1
+            C, S = c * c - s * s, 2 * c * s
+            C6 = C * (C * C - 3 * S * S)
+            R5 = c * (c ** 4 - 10 * c * c * s * s + 5 * s ** 4)
+            P5 = 5 * c ** 4 - 10 * c * c * s * s + s ** 4
+            for X in (C6 + 2 * c * R5, C6 - 2 * s * s * P5):
+                q4 = X * X + 4 * S * S * C * C * p_ ** 4
+                r = round(q4 ** 0.25)
+                require(not any((r + d) > 0 and (r + d) ** 4 == q4
+                                and isprime(r + d)
+                                for d in (-2, -1, 0, 1, 2)), (p_, X))
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    require(len(rem) == 8, len(rem))
+    ctx.note("H1 + H2 closed (parity, leg-overflow, leg-window + "
+             "finite residues); queue at 8 — only the (2,2)-box "
+             "family {(1,1),(2,2),(2,-2)} remains")
