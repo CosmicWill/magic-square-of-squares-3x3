@@ -882,8 +882,8 @@ def _(ctx):
     bb = ctx.bound(full=60, fast=30)
     for p_ in range(3, bb, 2):
         p2 = p_ * p_
-        for C in range(-p2 + 1, p2, 2):
-            if C == 0:
+        for C in range(-p2 + 1, p2):
+            if C == 0 or C % 2 == 0:
                 continue
             for pm in (1, -1):
                 q2 = 4 * C * C - pm * p2 * p2
