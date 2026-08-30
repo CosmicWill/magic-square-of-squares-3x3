@@ -2426,3 +2426,24 @@ impossible for every p, all 24 sign variants at once. Queue: 60 ->
 strongest uniform weapon yet: it applies whenever both index
 groupings carry explicit prime powers — a key piece for the
 uniform omega <= 2 theorem. Suite 151, all green.
+
+## 2026-08-30 — Entry 64: Lemma G4 — the uniform doubled kill; the level-1/2/3 chain proven in one stroke
+
+The doubled-(3,1) quadruple closed exactly as forecast — and the
+proof came out UNIFORM IN J (a3.g4_doubled): the doubled mixed
+pattern 2 d_{(J,1)} = +- d_{(J,-1)} expands to (2-eps) C_{2J} v +
+(2+eps) S_{2J} u = 0 with the level-J pair (C_{2J}, S_{2J}) =
+(Re, Im)(ell^{2J}) coprime (v_lambda(C_{2J}) = 0); the F-III
+cross-divisibility gives t in {+-1, +-3}, and both endpoints
+replicate at every level: t = +-1 forces 8(odd)^2 = +-(p^{4J} -
+q^4), dead mod 16; t = +-3 forces p^{4J} - q^4 = 32 T^2, whose
+(p^{2J} +- q)/2 split lands on mn(m^2-n^2) = 2b^2 — Lemma L2 —
+using only oddness and coprimality. ONE LEMMA now carries
+A3.7-Family-III (J = 1), A3.8's F-F (J = 2), and today's
+quadruple (J = 3), and closes the shape in EVERY future box: the
+first fully box-uniform family lemma of the N3 program, exactly
+the master-induction brick R.5 called for. (A float-precision
+artifact in the first gcd sweep was caught and redone in exact
+integers — zero failures.) Queue: 32 -> 28 ({(1,1),(3,1),(3,1)}
+x8, {(2,1),(3,1),(3,1)} x8, {(1,1),(2,2),(2,2)} x8, M2-opp x4).
+Suite 152, all green.

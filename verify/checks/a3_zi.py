@@ -1001,3 +1001,76 @@ def _(ctx):
     ctx.note("M1 (double Fermat) x4 + G3 double-pincer x24 closed; "
              "M2-opp x4 reduced-open (P5' = +-q^2, search empty); "
              "queue at 32")
+
+
+@check("a3.g4_doubled", DOC)
+def _(ctx):
+    """Lemma G4 (UNIFORM in J): the doubled mixed pattern
+    2 d_{(J,1)} = +- d_{(J,-1)} is impossible in every box.  The
+    expansion (exact, J <= 4 here) is (2-eps) C_{2J} v + (2+eps)
+    S_{2J} u = 0 with (C_{2J}, S_{2J}) = (Re, Im)(ell^{2J}) coprime
+    (a common prime divides p, but v_lambda(C_{2J}) = 0), so the
+    F-III cross-divisibility gives t in {+-1, +-3} and the two
+    endpoints replicate F-F at every level: t = +-1 forces
+    8 (odd)^2 = +-(p^{4J} - q^4), dead mod 16 (both sides' fourth
+    powers are 1); t = +-3 forces p^{4J} - q^4 = 32 T^2 (or the
+    mirror), whose split (p^{2J} +- q halves) lands on
+    mn(m^2 - n^2) = 2b^2 — Lemma L2, the non-congruence of 2 —
+    uniformly since only oddness and coprimality of p^{2J}, q are
+    used.  This closes the doubled-(3,1) quadruple (level 3) and
+    re-proves F-F (level 2) and A3.7-III (level 1) in one stroke.
+    Machine: identities symbolic; exact coprimality on real data;
+    endpoint searches empty; queue 32 -> 28."""
+    import json as _json
+    from math import gcd, isqrt
+    from compute.two_prime_additive import (p4add, p4mul, gauss_pow,
+                                            ELL, W)
+    from compute.zi_additive import gaussian_prime_over, _gpow
+
+    u = {(0, 0, 2, 0): 1, (0, 0, 0, 2): -1}
+    v = {(0, 0, 1, 1): 2}
+    Rw, Iw = gauss_pow(*W, 2)
+    Iwm = {k: -x for k, x in Iw.items()}
+    for J in (1, 2, 3, 4):
+        RlJ, IlJ = gauss_pow(*ELL, 2 * J)
+        imw = p4add(p4mul(RlJ, Iw), p4mul(IlJ, Rw), 1)
+        imwb = p4add(p4mul(RlJ, Iwm), p4mul(IlJ, Rw), 1)
+        for eps in (1, -1):
+            lhs = p4add({k: 2 * x for k, x in imw.items()}, imwb, eps)
+            rhs = p4add(
+                p4mul({k: (2 - eps) * x for k, x in RlJ.items()}, v),
+                p4mul({k: (2 + eps) * x for k, x in IlJ.items()}, u),
+                1)
+            require(p4add(lhs, rhs, -1) == {}, (J, eps))
+    bound = ctx.bound(full=800, fast=300)
+    for p_ in range(5, bound, 4):
+        if any(p_ % d == 0 for d in range(3, int(p_ ** 0.5) + 1, 2)):
+            continue
+        e, f = gaussian_prime_over(p_)
+        c1, s1 = e * e - f * f, 2 * e * f
+        if c1 % 2 == 0:
+            c1, s1 = s1, c1
+        for J in (1, 2, 3, 4):
+            C2J, S2J = _gpow((c1, s1), 2 * J)
+            require(gcd(abs(C2J), abs(S2J)) == 1, (p_, J))
+            require(C2J % 2 == 1 and S2J % 2 == 0, (p_, J))
+    # endpoint searches (level 3): p^12 - q^4 = 32 T^2 and mirror
+    bb = ctx.bound(full=40, fast=20)
+    for p_ in range(2, bb):
+        p12 = p_ ** 12
+        for q_ in range(2, p_ ** 3):
+            d = p12 - q_ ** 4
+            if d <= 0:
+                break
+            if d % 32 == 0:
+                T2 = d // 32
+                r = isqrt(T2)
+                require(r * r != T2, (p_, q_))
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    require(len(rem) == 28, len(rem))
+    ctx.note("G4 uniform doubled kill: expansion identities exact "
+             "(J <= 4), coprimality exact on real data, endpoints "
+             "mod-16/L2; the doubled-(3,1) quadruple closed — "
+             "queue at 28")
