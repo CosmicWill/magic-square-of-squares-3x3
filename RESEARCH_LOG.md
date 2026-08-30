@@ -2383,3 +2383,23 @@ E-analogues; (iii) no-pure-term families ({(1,2),(2,1),(2,2)} x24
 the largest). These are the genuine trees for the next sessions —
 each family one level up from a closed A3.8 counterpart. Suite
 149, all green.
+
+## 2026-08-30 — Entry 62: the C-collapse session — Lemma G2 and the mixed-same-j block, 72 -> 60
+
+Twelve more patterns closed (a3.g2_mixed_block). LEMMA G2 (the
+C-collapse tree): for {(1,+-1),(3,0),(3,+-1)} same-k with
+coefficient product +1, the collapse yields 2C Im(ell^4 w^2) =
+-2 q^2 c1 s1 (3C^2 - S^2) with C coprime to the cofactor, forcing
+C | q^2: C = +-1 dies on consecutive squares, +-q by q-valuation,
+and +-q^2 forces S^2 = p^4 - q^4 — FERMAT (the fifth appearance of
+x^4 - y^4 = z^2 in the ladder). THE MIXED-SAME-J BLOCK
+{(j0,0),(J,1),(J,-1)}: the k-pair collapses to 2u Im ell^{2J}
+(equal signs) or 2v Re ell^{2J} (opposite signs) — identities
+pinned symbolically — and the families die by parity (j0 = 1;
+j0 = 3 u-form: u = -+q^2/2 non-integral), the T | q^2 trees with
+size finishers (j0 = 2: the split branches exhaustively empty),
+Fermat endpoints, 9 | q^2 for the 3 | C subcases, and the leg
+window for the (0,1) family (q >= p^6/sqrt2 vs q^4 <= 37 p^12:
+p <= 1). Queue: 72 -> 60; what remains is dominated by the
+no-pure-term families ({(1,2),(2,1),(2,2)} x24) and the mixed-k
+E-analogues. Suite 150, all green.

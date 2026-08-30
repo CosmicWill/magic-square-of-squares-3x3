@@ -830,3 +830,77 @@ def _(ctx):
              "constants, S-divisibility symbolic); 72 patterns "
              "remain: C-collapse branches, mixed-k E-analogues, "
              "and no-pure-term families")
+
+
+@check("a3.g2_mixed_block", DOC)
+def _(ctx):
+    """N2 second wave — Lemma G2 (the C-collapse tree) and the
+    mixed-same-j block: 12 more patterns closed, queue 72 -> 60.
+    G2: for {(1,+-1),(3,0),(3,+-1)} same-k with coefficient product
+    +1, the cyclotomic collapse gives relation = 2C Im(ell^4 w^2) +
+    2 q^2 c1 s1 (3C^2 - S^2) with gcd(C, c1 s1 (3C^2-S^2)) = 1, so
+    C | q^2: C = +-1 dies on consecutive squares, C = +-q by
+    q-valuation (q never divides c1, s1, S, or 3C^2-S^2), and
+    C = +-q^2 forces S^2 = p^4 - q^4 — FERMAT.  The mixed-same-j
+    block {(j0,0), (J,1), (J,-1)}: the pair collapses to 2u Im
+    ell^{2J} (equal signs) or 2v Re ell^{2J} (opposite), and the
+    families die by: parity (j0 = 1: odd = even; j0 = 3 u-form:
+    u = -+ q^2/2), the T | q^2 trees with size finishers (j0 = 2:
+    exhaustively empty), Fermat (C = +-q^2 endpoints), mod 3 and
+    9 | q^2 (3 | C subcases), and the leg window (the (0,1)
+    family: q >= p^6/sqrt2 against q^4 <= 37 p^12).  All identities
+    symbolic; kill facts exhaustive to bounds; the closed list and
+    queue pinned."""
+    import json as _json
+    from math import isqrt
+    from compute.two_prime_additive import (p4add, p4mul, gauss_pow,
+                                            ELL, W)
+
+    # collapse identities
+    u = {(0, 0, 2, 0): 1, (0, 0, 0, 2): -1}
+    v = {(0, 0, 1, 1): 2}
+    for J in (1, 2, 3):
+        Rl, Il = gauss_pow(*ELL, 2 * J)
+        Rw, Iw = gauss_pow(*W, 2)
+        Iwm = {k: -x for k, x in Iw.items()}
+        imp = p4add(p4mul(Rl, Iw), p4mul(Il, Rw), 1)
+        imm = p4add(p4mul(Rl, Iwm), p4mul(Il, Rw), 1)
+        require(p4add(p4add(imp, imm, 1),
+                      p4mul(u, {k: 2 * x for k, x in Il.items()}),
+                      -1) == {}, ("u-collapse", J))
+        require(p4add(p4add(imp, imm, -1),
+                      p4mul(v, {k: 2 * x for k, x in Rl.items()}),
+                      -1) == {}, ("v-collapse", J))
+    # Fermat endpoint corroboration
+    b = ctx.bound(full=200, fast=100)
+    for p_ in range(2, b):
+        for q_ in range(1, p_):
+            d4 = p_ ** 4 - q_ ** 4
+            r = isqrt(d4)
+            require(r == 0 or r * r != d4, (p_, q_))
+    # j0 = 2 case-c: exhaustive emptiness of the split branches
+    bb = ctx.bound(full=60, fast=30)
+    for p_ in range(3, bb, 2):
+        p2 = p_ * p_
+        for C in range(-p2 + 1, p2, 2):
+            if C == 0:
+                continue
+            for pm in (1, -1):
+                q2 = 4 * C * C - pm * p2 * p2
+                if q2 <= 0:
+                    continue
+                r = isqrt(q2)
+                if r * r == q2 and p2 * abs(C) < q2:
+                    require(False, (p_, C, pm))
+    # the closed list and the queue
+    with open(os.path.join(DATA, "data_g2block_closed.json"),
+              encoding="utf-8") as fh:
+        closed = _json.load(fh)
+    require(len(closed) == 12, len(closed))
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    require(len(rem) == 60, len(rem))
+    ctx.note("G2 + mixed-same-j block: 12 closed (Fermat, parity, "
+             "Pell-size, leg-window endpoints), queue at 60; all "
+             "collapse identities symbolic")
