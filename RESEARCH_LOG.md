@@ -2319,3 +2319,21 @@ the ladder has now consumed both classical Fermat quartics —
 x^4 - y^4 = z^2 (five branches) and x^4 + y^4 = z^2 (this one).
 Next: the 49 all-plus opens and 57 survivors of the (3,1)/(2,2)
 campaigns. Suite 147, all green.
+
+## 2026-08-29 — Entry 59 addendum: the consolidated grind queue — 106 -> 74
+
+Post-restoration screening of all four queues (49 all-plus + 57
+survivors) through the updated pipeline: 20 closed as sub-box
+recurrences under the RESTORED A3.8 (the (2,1) all-plus opens are
+now theorems); 12 (2,2)-all-plus patterns replicate onto closed
+(2,1) parents (level-shift re-derivations queued with the earlier
+30); 74 REMAIN in 11 shape-families (artifacts
+data_queue_*.json): the big one is {(1,2),(2,1),(2,2)} x24, then
+{(1,1),(3,0),(3,1)} x8, {(1,1),(3,1),(3,1)} x8, {(2,1),(3,1),
+(3,1)} x8, {(1,1),(2,2),(2,2)} x8, {(2,1),(3,0),(3,1)} x6,
+doubled-(3,1) x4, and four x2 families. Hand probe of
+{(1,1),(3,0),(3,1)}: the difference-sign variants die INSTANTLY
+by cyclotomic collapse (q^2(3C^2-S^2) = 2Re(ell^4 w^2): q^2 | 2);
+the same-sign variants reduce to q^2 | 2C branches — the
+beta2-analogue trees one level up, exactly as forecast. The grind
+is mechanical; the weapons all exist. Suite 147, all green.
