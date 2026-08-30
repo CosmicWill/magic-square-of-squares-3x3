@@ -2447,3 +2447,23 @@ artifact in the first gcd sweep was caught and redone in exact
 integers — zero failures.) Queue: 32 -> 28 ({(1,1),(3,1),(3,1)}
 x8, {(2,1),(3,1),(3,1)} x8, {(1,1),(2,2),(2,2)} x8, M2-opp x4).
 Suite 152, all green.
+
+## 2026-08-30 — Entry 65: M2-opp closed — the double coprime split; queue 28 -> 24
+
+The last piece of the {(2,+-1),(3,0),(3,-+1)} family fell
+(a3.m2opp_closed). The reduced condition P5' = +-q^2 dies
+completely: with W = c1^2 - 5s1^2, P5' = W^2 - 20 s1^4 (exact);
+the -q^2 case is dead mod 8 (odd^2 + odd^2 = 2 vs 20 s1^4 = 0);
+the +q^2 case splits (W-q)(W+q) = 20 s1^4 with halves coprime
+(their gcd divides gcd(W, q) = 1 — no 5-subcase exists), the
+negative-W orientation dies mod 4 (c1^2 = 3), and the positive
+orientation c1^2 = m^4 + 5m^2n^2 + 5n^4 admits a SECOND coprime
+split landing on (2m)^2 = P5(a,b) or P5'(a,b) — and both quartic
+forms are in {1,5,9,12,13} mod 16 while even squares are in
+{0,4}: dead in every parity class, no descent needed. The
+{(2,1),(3,0),(3,1)} shape is now completely closed across all
+sign variants (G1 instants + machine + M2-equal mod 16 + M2-opp
+today). Queue: 28 -> 24 — exactly the three x8 half-pincer
+families ({(1,1),(3,1),(3,1)}, {(2,1),(3,1),(3,1)},
+{(1,1),(2,2),(2,2)}) between here and Theorems A3.9/A3.10.
+Suite 153, all green.

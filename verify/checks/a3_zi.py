@@ -1074,3 +1074,47 @@ def _(ctx):
              "(J <= 4), coprimality exact on real data, endpoints "
              "mod-16/L2; the doubled-(3,1) quadruple closed — "
              "queue at 28")
+
+
+@check("a3.m2opp_closed", DOC)
+def _(ctx):
+    """M2-OPP IS CLOSED — the {(2,+-1),(3,0),(3,-+1)} family is
+    done, queue 28 -> 24.  The reduced condition was P5' = c1^4 -
+    10c1^2s1^2 + 5s1^4 = +-q^2.  With W = c1^2 - 5s1^2: P5' = W^2 -
+    20s1^4 (exact).  The -q^2 case dies mod 8 (q^2 + W^2 = 2, 20s1^4
+    = 0).  The +q^2 case: (W-q)(W+q) = 20 s1^4 with
+    gcd((W-q)/2,(W+q)/2) | gcd(W, q) = 1, so the halves split as
+    {5m^4, n^4} / {m^4, 5n^4} with s1 = mn; the negative-W
+    orientation gives c1^2 = 3 mod 4 (dead); the positive gives
+    c1^2 = m^4 + 5m^2n^2 + 5n^4 (or mirror), whose second split
+    (2m^2+5n^2 -+ 2c1) — again coprime, since a common divisor
+    would force 5 | gcd(c1, s1) — yields 4m^2 = P5(a, b) or
+    P5'(a, b) with n = ab: and BOTH forms are in {1,5,9,12,13} mod
+    16 while (2m)^2 is in {0,4}: dead in every parity class.  All
+    identities and residue tables verified here."""
+    import json as _json
+    require(all((c ** 4 - 10 * c * c * s * s + 5 * s ** 4)
+                == (c * c - 5 * s * s) ** 2 - 20 * s ** 4
+                for c in range(-15, 16) for s in range(-15, 16)))
+    require(all((q * q + w * w) % 8 == 2
+                for q in range(1, 16, 2) for w in range(1, 16, 2)))
+    require(all((5 * m * m * n * n - 5 * m ** 4 - n ** 4) % 4 == 3
+                and (5 * m * m * n * n - m ** 4 - 5 * n ** 4) % 4 == 3
+                for m in range(20) for n in range(20)
+                if (m + n) % 2 == 1))
+    P5p, P5 = set(), set()
+    for m in range(16):
+        for n in range(16):
+            if m % 2 == 0 and n % 2 == 0:
+                continue
+            P5p.add((m ** 4 - 10 * m * m * n * n + 5 * n ** 4) % 16)
+            P5.add((5 * m ** 4 - 10 * m * m * n * n + n ** 4) % 16)
+    sq = {(2 * x) ** 2 % 16 for x in range(8)}
+    require(not (P5p & sq) and not (P5 & sq), (P5p, P5, sq))
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    require(len(rem) == 24, len(rem))
+    ctx.note("M2-opp dead: -q^2 mod 8, +q^2 via double coprime "
+             "split onto (2m)^2 = P5/P5'(a,b), disjoint mod 16; "
+             "queue at 24 (three x8 families)")
