@@ -123,6 +123,54 @@ Priority order stands: W10 (next rung: split part $p^2q$ — the
 $(a,b) = (2,1)$ box), then W8 (consolidate the S-unit framing and
 the sieve-program story for community scrutiny), W4/W6 in support.
 
+### R.5 Phase two of W10 (planned 2026-08-29, after A3.6-A3.8)
+
+Three days on the additive layer produced three unconditional
+theorems, one honest retraction-and-restoration, and a clear view
+of the terrain. The findings that set the next phase:
+
+1. **The ladder repeats itself.** Every box so far is closed by the
+   same five weapons (valuation prune, tan-half factorization,
+   congruences, cyclotomic collapse, divisibility trees ending in
+   the leg-window or a classical Fermat descent), and the residual
+   families are visibly parametric in the box size. Box-by-box
+   grinding cannot finish an infinite ladder — but a UNIFORM
+   omega <= 2 theorem plausibly can, and the evidence for it is now
+   structural, not hopeful.
+2. **Enumeration completeness is a theorem obligation.** The
+   all-plus gap survived three "complete" theorems and was caught
+   by an unrelated consistency check. The pipeline itself must be
+   proven complete before more boxes are claimed.
+3. **The open problem now lives at omega >= 3.** The corollary
+   pushes any MSS3 center's split part to p^3 q / p^2 q^2 /
+   >= 3 distinct split primes — so the rank-3 frontier is where
+   the problem's remaining mass sits.
+
+**The plan, in order:**
+- **N1 — the completeness meta-audit** (integrity gate before any
+  further box claims): prove and pin that the canonical pattern
+  enumeration is exhaustive (brute-force cross-check on small
+  boxes), and add end-to-end pipeline controls on synthetic
+  relation instances.
+- **N2 — finish (3,1) and (2,2) as lemma-building**: close the 74
+  remaining patterns and 42 level-shift re-derivations with lemmas
+  stated for general (a, b) wherever proofs allow; output Theorems
+  A3.9 (p^3 q) and A3.10 (p^2 q^2) plus the uniform toolkit.
+- **N3 — the uniform omega <= 2 theorem** (declared summit of this
+  phase): classify the residual families parametrically and prove
+  the family lemmas once — subsuming the infinite (a, b) ladder.
+- **N4 — omega = 3 reconnaissance** (cheap, parallel): extend the
+  machinery to rank 3 and census the (1,1,1) box; measure whether
+  the weapons still bite where the problem now lives.
+- **N5 — the consolidation paper (W8), started now**: the Z[i]
+  reformulation, A3.4-A3.8 with full proofs, the verification
+  methodology including the gap-and-repair episode, and the MSS3
+  corollary. External scrutiny is part of the integrity plan.
+- **N6 — the targeted omega >= 3 desert** (compute, after the m = 7
+  survey and desert resume): re-filter the additive desert to the
+  only centers the theorems do not cover and push the verified
+  bound well past 10^7 on that thin set.
+
 ## 0. Doctrine
 
 1. **Both directions are the goal.** A constructed square is a proof.
