@@ -589,6 +589,37 @@ $q$-window, leg decomposition, the classical descents — now
 exists and has closed 400+ patterns below them. Mechanical, long,
 queued.
 
+## 2.9 Theorem A3.9: the $(3,1)$ box is closed (split part $p^3q$)
+
+*(2026-08-30; the grind of entries 61--66; theorem ledger
+`a3.p3q_theorem`.)*
+
+**Theorem A3.9 (PROVEN).** For $m = 2^s r\, p^3 q$, $D(m)$ admits
+no signed additive relation. **The corollary sharpens: the split
+part of any MSS3 center is $p^2q^2$, $p^4q$-or-higher, or has at
+least three distinct split primes.**
+
+*Proof architecture.* The complete canonical pattern space (both
+sign classes, by the completeness audit) is closed by: the machine
+layers ($pprox 88\%$); sub-box recurrences (A3.7/A3.8); and the
+named trees: the G1/G2 cyclotomic collapses ($q$-unit and
+$C \mid q^2$-Fermat kills), the mixed-same-$j$ block (parity,
+$T \mid q^2$ trees, leg window), M1 (both branches Fermat), M2
+(mod 16; the $P_5' = \pm q^2$ double coprime split onto
+$(2m)^2 = P_5/P_5'(a,b)$, disjoint mod 16), the G3 double pincer,
+Lemma G4 (the uniform doubled kill), and H1/H2 (bracket identities
+forcing rigid $(u,v)$-forms; parity odd $=$ even$^2$; the
+leg-overflow $lphaeta = c_1s_1p^4 \Rightarrow q^2 \ge p^8$
+against $q^4 \le 50p^{12}$; the leg-window with residues
+$p \in \{5, 13\}$ checked exactly). Every step is machine-pinned
+in the suite (checks `a3.g1_lemma` through `a3.h1h2_closed`).
+$lacksquare$
+
+The $(2,2)$ box stands at one remaining family
+($\{(1,1),(2,2),(2,-2)\}$, 8 patterns) plus the 44 level-shifted
+replication re-derivations — Theorem A3.10 ($p^2q^2$) is one
+session away.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

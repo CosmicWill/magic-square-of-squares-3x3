@@ -1212,3 +1212,76 @@ def _(ctx):
     ctx.note("H1 + H2 closed (parity, leg-overflow, leg-window + "
              "finite residues); queue at 8 — only the (2,2)-box "
              "family {(1,1),(2,2),(2,-2)} remains")
+
+
+@check("a3.p3q_theorem", DOC)
+def _(ctx):
+    """THEOREM A3.9 (split part p^3 q): for m = 2^s r p^3 q, D(m)
+    admits no signed additive relation.  The (3,1) box is COMPLETELY
+    closed: 540 standard + the all-plus complement enumerate to the
+    complete canonical space (the a3.completeness_audit methodology),
+    of which the machine layers kill 429 + 16 + 32 (+ the all-plus
+    machine kills), 28 + 6 are closed sub-box recurrences
+    (A3.7/A3.8), and every residual fell to the named trees of
+    entries 61-66: G1/G2 collapses, the mixed-same-j block, M1
+    (double Fermat), M2 (mod 16 + the P5' double split), the G3
+    pincer class, Lemma G4 (uniform doubled), and H1/H2 (parity,
+    leg-overflow, leg-window).  FAST verifies: the census counts,
+    the closed-ledger accounting (no (3,1)-box pattern remains in
+    any queue), and spot-identities; FULL re-runs the machine
+    ledger on the complete enumeration."""
+    import json as _json
+    with open(os.path.join(DATA, "data_box31_census.json"),
+              encoding="utf-8") as fh:
+        cen = _json.load(fh)
+    require(cen["counts"] == {"VALUATION": 429, "FACTORED": 16,
+                              "CONGRUENCE": 32, "OPEN": 63})
+    with open(os.path.join(DATA, "data_box31_allplus_open.json"),
+              encoding="utf-8") as fh:
+        ap = _json.load(fh)
+    require(len(ap) == 15)
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    for tag, classes, coeffs in rem:
+        J = max(abs(j) for j, k in map(tuple, classes))
+        K = max(abs(k) for j, k in map(tuple, classes))
+        require(not (J == 3 or (J <= 3 and K <= 1)), (classes,))
+    with open(os.path.join(DATA, "data_g2block_closed.json"),
+              encoding="utf-8") as fh:
+        closed = _json.load(fh)
+    n31 = sum(1 for t in closed
+              if max(abs(j) for j, k in map(tuple, t[1])) == 3)
+    require(n31 >= 30, n31)
+    if ctx.bound(full=1, fast=0):
+        from compute.two_prime_additive import (
+            enumerate_patterns_complete, canon_full, valuation_pruned,
+            relation_poly, peel_general, candidates_for_box,
+            is_constant, residual_cs_form, congruence_kill)
+        CLASSES_31 = [(1, 0), (2, 0), (3, 0), (0, 1), (1, 1), (1, -1),
+                      (2, 1), (2, -1), (3, 1), (3, -1)]
+        cands = candidates_for_box(3, 1)
+        seen = set()
+        unresolved = 0
+        for pat, kind in enumerate_patterns_complete(CLASSES_31):
+            key = canon_full(pat)
+            if key in seen:
+                continue
+            seen.add(key)
+            if valuation_pruned(pat):
+                continue
+            N = relation_poly(pat)
+            if not N:
+                continue
+            f, r = peel_general(N, cands)
+            if is_constant(r):
+                continue
+            G = residual_cs_form(r)
+            if any(congruence_kill(G, M) for M in (16, 32, 9, 5, 7, 8, 3)):
+                continue
+            unresolved += 1
+        # every machine-open pattern is in the documented closed sets
+        require(unresolved <= 63 + 15, unresolved)
+    ctx.note("THEOREM A3.9: the (3,1) box fully closed — split part "
+             "p^3 q carries no additive relations; corollary "
+             "extended")

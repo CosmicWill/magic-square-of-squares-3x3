@@ -2487,3 +2487,21 @@ misidentified bracket at (3,2) — the sextic c^6 - 25c^4s^2 +
 the symbolic fit and corrected). Queue: 24 -> 8: ONLY the
 (2,2)-box family {(1,1),(2,2),(2,-2)} stands between here and
 Theorems A3.9 + A3.10. Suite 154, all green.
+
+## 2026-08-30 — Entry 67: THEOREM A3.9 — the (3,1) box is closed; split part p^3 q carries no additive relations
+
+Rung four of the additive ladder is a theorem (a3.p3q_theorem).
+With H1/H2 closed, every canonical pattern of the (3,1) box —
+standard and all-plus — is dead: machine layers, sub-box
+recurrences, and the eight named tree-families of entries 61-66
+(G1/G2 collapses, the mixed-same-j block, M1's double Fermat,
+M2's mod-16 and double-split, the G3 pincer, uniform G4, and the
+H1/H2 parity + leg-overflow/window trees). COROLLARY SHARPENED:
+the split part of any MSS3 center is p^2 q^2, p^4 q or higher, or
+has at least three distinct split primes. The p^2 q^2 gate
+(Theorem A3.10) needs exactly: the H3 family
+({(1,1),(2,2),(2,-2)}, 8 patterns) and the 44 level-shifted
+replication re-derivations — one session of work. The ladder
+count: four rungs proven in five days, all elementary, all
+machine-pinned; Fermat's two quartics now carry eight distinct
+branches. Suite 155, all green.
