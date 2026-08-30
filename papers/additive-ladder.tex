@@ -1,0 +1,249 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+
+\title{The additive ladder: congrua sets, Gaussian integers,
+and partial impossibility theorems for $3\times3$ magic squares of squares}
+\author{CosmicWill}
+\date{Draft of August 30, 2026 --- comments welcome}
+
+\begin{document}
+
+\begin{abstract}
+Whether a $3\times3$ magic square with nine distinct square entries
+exists is a well-known open problem. Any such square has center
+$m^2$ and row/column offsets lying in the \emph{congrua set}
+$D(m) = \{2ef : e^2+f^2=m^2\}$, and its corners are square if and
+only if $D(m)$ contains an additive quadruple $U, V, U{+}V, U{-}V$.
+We prove that $D(m)$ admits \emph{no additive relation whatsoever}
+--- no solution of $\varepsilon_1 d_1 + \varepsilon_2 d_2 +
+\varepsilon_3 d_3 = 0$ --- whenever the split part of $m$ (its
+largest divisor supported on primes $\equiv 1 \bmod 4$) is $p^a$,
+$pq$, or $p^2q$. Consequently \emph{the center of any $3\times3$
+magic square of squares is divisible by three distinct primes
+$\equiv 1 \bmod 4$, or its split part is of the form $p^3q$ or
+$p^2q^2$.} The proofs pass through a reformulation of additive
+relations as six-term vanishing sums on a norm torus in $\Z[i]$,
+and are ultimately carried by elementary machinery: valuations in
+free multiplicative groups, an exact tangent-half-angle
+factorization calculus, divisibility trees, and the classical
+quartic descents of Fermat --- both $x^4-y^4=z^2$ and $x^4+y^4=z^2$
+occur as terminal cases, alongside the non-congruence of $2$ and
+$3$. Every enumeration, identity, and case in the proof is
+machine-verified; the verification suite and all artifacts are
+public.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+A \emph{magic square of squares} (MSS3) is a $3\times3$ magic
+square whose nine entries are distinct perfect squares. Whether one
+exists is open. Classical analysis reduces the problem to
+arithmetic of \emph{congrua}: the entries are
+$m^2 \pm U$, $m^2 \pm V$, $m^2 \pm U \pm V$ and $m^2$, and the
+row/column conditions force $U, V \in D(m)$ where
+\[
+D(m) \;=\; \{\, 2ef \;:\; e^2 + f^2 = m^2,\ e, f > 0 \,\}.
+\]
+The corner entries are squares if and only if additionally
+$U + V \in D(m)$ and $U - V \in D(m)$: an \emph{additive
+quadruple} inside a single congrua set. In particular an MSS3
+yields an \emph{additive triple} $d_1 + d_2 = d_3$ in $D(m)$, so
+the following conjecture implies that no MSS3 exists.
+
+\begin{center}
+\emph{Conjecture (A3.C). No congrua set $D(m)$ contains an
+additive triple.}
+\end{center}
+
+Exhaustive computation verifies A3.C for all $m \le 10^7$. This
+paper proves it unconditionally on three infinite families,
+organized by the \emph{split part} of $m$: writing
+$m = 2^s r \prod p_i^{a_i}$ with $r$ supported on primes
+$\equiv 3 \bmod 4$ and $p_i \equiv 1 \bmod 4$ distinct, the split
+part is $\prod p_i^{a_i}$. Only the split part matters: $D(m)$ is
+a scalar multiple of the congrua set of the split part.
+
+\begin{theorem}[$\omega = 1$]\label{thm:omega1}
+If the split part of $m$ is a prime power $p^a$, then no relation
+$\varepsilon_1 d_1 + \varepsilon_2 d_2 + \varepsilon_3 d_3 = 0$
+holds with $d_i \in D(m)$, $\varepsilon_i \in \{\pm1\}$
+(repetitions allowed).
+\end{theorem}
+
+\begin{theorem}[$pq$]\label{thm:pq}
+The same holds if the split part is $pq$ with $p \ne q$.
+\end{theorem}
+
+\begin{theorem}[$p^2q$]\label{thm:p2q}
+The same holds if the split part is $p^2 q$.
+\end{theorem}
+
+\begin{corollary}\label{cor:mss3}
+The center of any $3\times3$ magic square of squares is divisible
+by three distinct primes $\equiv 1 \bmod 4$, or has split part of
+the form $p^3q$ or $p^2q^2$ with $p, q \equiv 1 \bmod 4$.
+\end{corollary}
+
+The proofs share a five-layer architecture which appears to close
+every exponent box $(a,b)$ it has been applied to, with residual
+case families visibly parametric in $(a,b)$; this suggests a
+uniform theorem for all $m$ with at most two distinct split primes
+(\S\ref{sec:outlook}).
+
+\subsection*{Method} Additive relations in $D(m)$ are exactly
+six-term vanishing sums
+$\sum_j \varepsilon_j (w_j - m^4/w_j) = 0$
+with $w_j = z_j^2$ on the norm-$m^4$ torus of $\Z[i]$
+(\S\ref{sec:setup}). For split part $p^aq^b$ the $w_j$ are
+monomials $\sigma^j\tau^k$ in a free rank-two subgroup of
+$\Q(i)^\times$, and a relation is a vanishing sum of at most six
+monomials. The layers:
+(1) \emph{valuation pruning} in the free group kills most sign
+patterns outright;
+(2) an exact \emph{tangent-half-angle calculus} --- $\sigma =
+(1+it_1)/(1-it_1)$ with $t_1$ \emph{rational} --- converts each
+surviving pattern into an integer polynomial identity which, for
+coherent patterns, factors completely into terms that would
+force $\sigma^\alpha\tau^\beta = \pm1$, impossible in a free
+group;
+(3) finite \emph{congruence sieves} under Pythagorean side
+conditions;
+(4) \emph{Gaussian collapse}: identities such as
+$p^{2d} \pm \ell^{2d} = \ell^d(\bar\ell^d \pm \ell^d)$
+($\ell = \lambda^2$, $\lambda$ the Gaussian prime over $p$)
+compress the remaining relations to statements a $q$-adic
+valuation kills;
+(5) \emph{divisibility trees} whose terminal cases are classical:
+the two Fermat quartic theorems, the non-congruence of $2$ and
+$3$, and short explicit descents.
+
+\subsection*{Verification} Every enumeration and every identity in
+this paper is machine-verified in an open suite (148 checks at the
+time of writing); \S\ref{sec:methodology} describes the
+methodology, including an enumeration-completeness audit performed
+after a gap --- omission of the all-equal sign class --- was caught
+by the suite's own consistency checks and repaired. We regard
+enumeration completeness as a theorem obligation, and prove it by
+comparison against an enumeration-independent brute construction.
+
+\section{Setup and the $\Z[i]$ reformulation}\label{sec:setup}
+
+With $z = e + if$, $\im(z^2) = 2ef$, so
+$D(m) = \{\,|\im(z^2)| : z \in \Z[i],\ |z|^2 = m^2\,\}$.
+Writing $w_j = z_j^2$, so that $|w_j| = m^2$ and $\bar w_j =
+m^4/w_j$, a signed additive relation is exactly the six-term
+vanishing sum $\sum_j \varepsilon_j (w_j - m^4/w_j) = 0$.
+For split part $p^aq^b$, unique factorization in $\Z[i]$ gives
+\[
+D(m) = \bigl\{\, m^2\,\bigl|\im(\sigma^j\tau^k)\bigr| \;:\;
+(j,k) \in [-a,a]\times[-b,b] \setminus \{0\} \,\bigr\},
+\qquad
+\sigma = \frac{\lambda^4}{p^2},\quad \tau = \frac{\mu^4}{q^2},
+\]
+where $\lambda, \mu$ are Gaussian primes over $p, q$. The
+valuations $v_{\lambda,\bar\lambda,\mu,\bar\mu}(\sigma^j\tau^k) =
+(2j, -2j, 2k, -2k)$ show $\langle\sigma,\tau\rangle$ is free of
+rank two and no monomial is $\pm1$.
+
+\begin{lemma}[equal-modulus rigidity]\label{lem:rigidity}
+No three nonzero elements of $\Q(i)$ of equal absolute value
+satisfy $\pm a \pm b \pm c = 0$.
+\end{lemma}
+\begin{proof}
+Absorbing signs, $a+b=c$; dividing by $c$ gives $\alpha + \beta =
+1$ with $|\alpha| = |\beta| = 1$ in $\Q(i)$, whence
+$\re\,\alpha = \tfrac12$ and $\alpha = \zeta_6^{\pm1} \notin
+\Q(i)$.
+\end{proof}
+
+\begin{proposition}[degenerate subsums]\label{prop:degenerate}
+Every vanishing proper subsum of the six-term sum has size $2$ or
+$4$, and a size-$2$ vanishing forces equal congrua. Hence genuine
+additive triples of distinct congrua give nondegenerate vanishing
+sums.
+\end{proposition}
+\begin{proof}
+Sizes $1, 5$ are impossible (all terms have modulus $m^2$), size
+$3$ by Lemma~\ref{lem:rigidity}; a size-$2$ relation forces $w'
+\in \{\pm w, \pm\bar w\}$, giving $|\im w'| = |\im w|$.
+\end{proof}
+
+\section{One split prime: proof of Theorem \ref{thm:omega1}}
+
+With a single split prime, $D(m) = \{\, m^2 |\im \sigma^k| : 1 \le
+k \le a \,\}$, where $\sigma = \lambda^4/p^2$ satisfies the
+primitive integer polynomial $R(x) = p^2x^2 - 2Cx + p^2$ with
+$C = \re \lambda^4$ and $\gcd(C, p) = 1$ (if $\lambda \mid 2C =
+\lambda^4 + \bar\lambda^4$ then $\lambda \mid \bar\lambda^4$,
+contradicting coprimality). A signed relation becomes, after
+absorbing orientations,
+$\sum_i \varepsilon_i'(\sigma^{k_i} - \sigma^{-k_i}) = 0$.
+If all $k_i$ are equal this reads (odd integer) $\cdot\,
+2i\im\sigma^K = 0$ with $\im \sigma^K \neq 0$: impossible.
+Otherwise multiplying by $\sigma^{K}$, $K = \max k_i$, exhibits
+$\sigma$ as a root of
+\[
+Q(x) = \sum_i \varepsilon_i'\bigl(x^{K+k_i} - x^{K-k_i}\bigr),
+\]
+an integer polynomial with coefficients in $\{0,\pm1,\pm2,\pm3\}$
+and $\mathrm{lc}(Q) = -Q(0) \ne 0$. Since $\sigma$ is nonreal, its
+minimal polynomial over $\Q$ is $x^2 - (2C/p^2)x + 1$, with
+primitive integer form $R$. By Gauss's lemma $Q = \gamma R T$ with
+$T \in \Z[x]$ and $\gamma = \operatorname{cont}(Q) \le 3$;
+comparing leading coefficients,
+$|\mathrm{lc}(Q)| \le 3 < p^2 \le |\gamma\, p^2\, \mathrm{lc}(T)|$
+--- impossible for $p \ge 5$. \qed
+
+\section{Two split primes I: the framework and the $(1,1)$ box}
+\label{sec:pq}
+
+% TODO(next session): full text of the valuation prune lemma, the
+% tan-half factorization lemma with the zero dictionary, the
+% complete Family I/II/III trees, and Lemmas L1--L5 with the
+% self-contained descents (import from the repository document
+% docs/attacks/A3-simultaneous-congrua.md, section 2.6).
+
+\section{Two split primes II: the $(2,1)$ box}\label{sec:p2q}
+
+% TODO(next session): census methodology; the Gaussian collapse
+% lemma; the beta-family trees; the sliver descent (leg
+% decomposition against the q < p^2 window); the E3-minus descent
+% ending in Fermat's x^4 + y^4 = z^2; the closure ledger.
+
+\section{Machine verification and the completeness audit}
+\label{sec:methodology}
+
+% TODO(next session): suite description; the enumeration
+% completeness theorem (brute construction equals corrected
+% enumeration, both boxes, exact set equality: 16 + 24 and
+% 140 + 84 canonical patterns); the gap-and-repair episode as a
+% case study; artifact inventory and reproduction instructions.
+
+\section{Outlook}\label{sec:outlook}
+
+The residual case families of every box analyzed so far are
+parametric in the exponent box, and the five-layer machinery is
+uniform; we conjecture and are pursuing a single theorem for all
+$m$ with at most two distinct split primes. The known-$m$ frontier
+of the MSS3 problem itself now lies at three or more distinct
+split primes, where the monomial group has rank three; whether the
+present methods extend is the natural next question.
+% TODO: the convergent-sum heuristic; the omega >= 3 census.
+
+\end{document}

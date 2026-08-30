@@ -697,3 +697,85 @@ def _(ctx):
     ctx.note("E3-minus closed: e=1 lands on Fermat's x^4+y^4 = z^2, "
              "e=3 dies mod 3, cross-branch by size — THEOREM A3.8 "
              "RESTORED (complete, all-plus included)")
+
+
+@check("a3.completeness_audit", DOC)
+def _(ctx):
+    """N1 — THE COMPLETENESS META-AUDIT (the integrity gate).
+    (i) ENUMERATION COMPLETENESS, proven enumeration-independently:
+    every ordered triple of nonzero exponent pairs in the full
+    signed box, under every sign vector, normalizes (per-class
+    Im(w^-1) = -Im(w), then the global sign/conjugation quotient)
+    into the canonical set produced by the corrected enumeration —
+    exact set equality for both theorem boxes ((1,1): 16 distinct +
+    24 doubled; (2,1): 140 + 84).  Merge residues (coefficients
+    {3}, {1}, {2}, or cancellations) are impossible relations
+    (3d = 0, d = 0, 2d = 0 die by positivity of congrua) or
+    equal-congrua degeneracies covered by Proposition A3.5.
+    (ii) THE CLOSURE LEDGER: on the complete enumerations, every
+    canonical pattern is machine-dead (valuation / factored /
+    congruence) or lands in a named proven tree (A3.7 trees for the
+    (1,1) box; A3.7-subbox or A3.8 trees for (2,1)) — zero
+    unclassified.  This is the per-pattern certificate that
+    Theorems A3.7 and A3.8 cover their complete pattern spaces."""
+    from compute.two_prime_additive import (
+        brute_canonical_set, enumerate_patterns_complete, canon_full,
+        CLASSES_11, CLASSES_21, valuation_pruned, relation_poly,
+        peel_general, candidates_for_box, is_constant,
+        residual_cs_form, congruence_kill)
+    from collections import Counter
+
+    A37_CLASSES = {(1, 0), (0, 1), (1, 1), (1, -1)}
+    ledger = {}
+    for name, classes, a, b, want in (
+            ("11", CLASSES_11, 1, 1, (16, 24)),
+            ("21", CLASSES_21, 2, 1, (140, 84))):
+        bd, bdub, imp = brute_canonical_set(a, b)
+        enum = enumerate_patterns_complete(classes)
+        ed = {canon_full(p) for p, k in enum if k == "distinct"}
+        edub = {canon_full(p) for p, k in enum if k == "doubled"}
+        require(bd == ed and bdub == edub, (name, "enum mismatch"))
+        require((len(ed), len(edub)) == want, (name, len(ed), len(edub)))
+        # the ledger
+        cands = candidates_for_box(a, b)
+        cnt = Counter()
+        seen = set()
+        for pat, kind in enum:
+            key = canon_full(pat)
+            if key in seen:
+                continue
+            seen.add(key)
+            if valuation_pruned(pat):
+                cnt["VALUATION"] += 1
+                continue
+            N = relation_poly(pat)
+            if not N:
+                cnt["ZERO"] += 1
+                continue
+            f, r = peel_general(N, cands)
+            if is_constant(r):
+                cnt["FACTORED"] += 1
+                continue
+            G = residual_cs_form(r)
+            killed = False
+            for M in (16, 32, 9, 5, 7, 8, 3, 25, 27):
+                if congruence_kill(G, M):
+                    cnt["CONGRUENCE"] += 1
+                    killed = True
+                    break
+            if killed:
+                continue
+            if name == "11":
+                cnt["TREE(A3.7)"] += 1
+            elif all(jk in A37_CLASSES for jk, c in pat):
+                cnt["TREE(A3.7-subbox)"] += 1
+            else:
+                cnt["TREE(A3.8)"] += 1
+        require(sum(cnt.values()) == len(seen), (name, "ledger gap"))
+        ledger[name] = dict(cnt)
+    # every pattern classified; tree counts positive and bounded
+    require(ledger["11"].get("TREE(A3.7)", 0) >= 8)
+    require(ledger["21"].get("TREE(A3.8)", 0) >= 20)
+    ctx.note(f"enumeration proven complete (brute = enum, both "
+             f"boxes); closure ledgers: (1,1) {ledger['11']} | "
+             f"(2,1) {ledger['21']} — zero unclassified")

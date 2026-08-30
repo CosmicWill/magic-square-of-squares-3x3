@@ -801,3 +801,81 @@ def jreplicate(pat):
     if all(j % 2 == 0 for (j, k), c in pat):
         return tuple(((j // 2, k), c) for (j, k), c in pat)
     return None
+
+
+# ------------------------------------------------- N1: completeness audit
+
+def normclass_signed(jk, c):
+    """Per-class normalization to the representative set (j > 0, or
+    j = 0 and k > 0), flipping the coefficient: Im(w^{-1}) = -Im(w)."""
+    j, k = jk
+    if j < 0 or (j == 0 and k < 0):
+        return ((-j, -k), -c)
+    return ((j, k), c)
+
+
+def canon_full(p):
+    """Canonical form modulo global sign, global conjugation, and
+    per-class normalization."""
+    p = tuple(normclass_signed(jk, c) for jk, c in p)
+    forms = []
+    for gs in (1, -1):
+        for cj in (1, -1):
+            f = tuple(sorted(normclass_signed((cj * j, cj * k), gs * c)
+                             for (j, k), c in p))
+            forms.append(f)
+    return min(forms)
+
+
+def enumerate_patterns_complete(classes):
+    """The CORRECTED enumeration: distinct triples with all four
+    sign classes modulo global negation (including all-plus), plus
+    doubled patterns 2 d_x = +- d_y."""
+    pats = []
+    for trip in combinations(classes, 3):
+        for signs in product((1, -1), repeat=3):
+            pats.append((tuple(zip(trip, signs)), "distinct"))
+    for x in classes:
+        for y in classes:
+            if x == y:
+                continue
+            for sy in (1, -1):
+                pats.append((((x, 2), (y, sy)), "doubled"))
+    return pats
+
+
+def brute_canonical_set(amax, bmax):
+    """Enumeration-INDEPENDENT construction of the full canonical
+    pattern space: every ordered triple of nonzero exponent pairs in
+    the full signed box (repeats allowed), every sign vector; merge
+    equal monomial classes; classify into distinct / doubled /
+    degenerate; return the canonical sets."""
+    full = [(j, k) for j in range(-amax, amax + 1)
+            for k in range(-bmax, bmax + 1) if (j, k) != (0, 0)]
+    distinct, doubled = set(), set()
+    impossible = 0
+    for v1 in full:
+        for v2 in full:
+            for v3 in full:
+                for cs in product((1, -1), repeat=3):
+                    # merge by VALUE-class: normalize each term, then
+                    # combine coefficients of equal classes
+                    merged = {}
+                    for v, c in zip((v1, v2, v3), cs):
+                        (vv, cc) = normclass_signed(v, c)
+                        merged[vv] = merged.get(vv, 0) + cc
+                    merged = {v: c for v, c in merged.items() if c}
+                    coeffs = sorted(abs(c) for c in merged.values())
+                    if coeffs == [1, 1, 1]:
+                        distinct.add(canon_full(tuple(merged.items())))
+                    elif coeffs == [1, 2]:
+                        doubled.add(canon_full(tuple(merged.items())))
+                    elif coeffs == [3] or coeffs == [1] or coeffs == [2]:
+                        impossible += 1  # 3d=0 / d=0 / 2d=0: dead by
+                        # positivity of the congrua
+                    elif coeffs in ([1, 1], [2, 2], []):
+                        impossible += 1  # cancellations: degenerate
+                        # (equal-congrua) cases, covered by A3.5
+                    else:
+                        raise AssertionError(coeffs)
+    return distinct, doubled, impossible

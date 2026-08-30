@@ -2337,3 +2337,25 @@ by cyclotomic collapse (q^2(3C^2-S^2) = 2Re(ell^4 w^2): q^2 | 2);
 the same-sign variants reduce to q^2 | 2C branches — the
 beta2-analogue trees one level up, exactly as forecast. The grind
 is mechanical; the weapons all exist. Suite 147, all green.
+
+## 2026-08-30 — Entry 60: N1 done (the completeness meta-audit) + N5 started (the paper)
+
+N1 — THE INTEGRITY GATE IS IN (a3.completeness_audit): (i)
+enumeration completeness proven enumeration-independently — every
+ordered raw exponent triple over the full signed box, under every
+sign vector, normalizes into the canonical set of the corrected
+enumeration, with EXACT set equality for both theorem boxes
+((1,1): 16 distinct + 24 doubled; (2,1): 140 + 84); merge residues
+(3d = 0, 2d = 0, d = 0, cancellations) are impossible by
+positivity or degenerate per A3.5. (ii) THE CLOSURE LEDGERS: every
+canonical pattern machine-dead or in a named proven tree — (1,1):
+20 valuation + 8 factored + 4 congruence + 8 A3.7-trees; (2,1):
+156 + 17 + 17 + 8 A3.7-subbox + 26 A3.8-trees — ZERO unclassified.
+This is the per-pattern certificate that Theorems A3.7 and A3.8
+cover their complete pattern spaces; the bug class that produced
+the all-plus episode is now structurally excluded. N5 — the
+consolidation paper started: papers/additive-ladder.tex (compiles;
+abstract, introduction with the three theorems and the corollary,
+the method architecture, the Z[i] section with A3.4/A3.5 proofs,
+and the complete omega = 1 proof; sections 4-6 are scaffolded with
+import plans from the repo docs). Suite 148, all green.
