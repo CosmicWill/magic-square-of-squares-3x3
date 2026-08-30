@@ -615,10 +615,77 @@ $p \in \{5, 13\}$ checked exactly). Every step is machine-pinned
 in the suite (checks `a3.g1_lemma` through `a3.h1h2_closed`).
 $lacksquare$
 
-The $(2,2)$ box stands at one remaining family
+The $(2,2)$ box stood at one remaining family
 ($\{(1,1),(2,2),(2,-2)\}$, 8 patterns) plus the 44 level-shifted
-replication re-derivations — Theorem A3.10 ($p^2q^2$) is one
-session away.
+replication re-derivations; the family fell next (§2.10).
+
+## 2.10 H3 and the double lever: the $(2,2)$ box has no open native pattern
+
+*(2026-08-30; check `a3.h3_closed`.)*
+
+The last family standing in either campaign box was
+$\{(1,\epsilon),(2,2),(2,-2)\}$ ($\epsilon = \pm1$; all sign
+vectors, $\epsilon_0$ normalized: 8 patterns). Clearing $p^4q^4$
+and pairing the two level-2 terms by conjugation (identities exact
+in the suite):
+
+$$\epsilon_0\, p^2q^2\,\operatorname{Im}(\ell^2 w^{2\epsilon})
+  \;=\; -2\epsilon_1 \cdot \begin{cases}
+    U \cdot 2CS & (\epsilon_2 = \epsilon_1)\\[2pt]
+    V \cdot C_4 & (\epsilon_2 = -\epsilon_1)
+  \end{cases}$$
+
+with $C + iS = \ell^2$, $C_4 + i\,2CS = \ell^4$, $u + iv = w^2$,
+$U + iV = w^4$. This is the first family where **both primes hold a
+lever on one equation** — a $q^2$-divisibility on the $p$-frame and
+a $p^2$-divisibility on the $q$-frame bite simultaneously, and each
+lever's window makes the other's conclusion *exact*.
+
+**Same-sign case** ($\epsilon_2 = \epsilon_1$). $q \nmid 4U$ (since
+$U \equiv -2v^2 \bmod q$ and $q \nmid v$), so $q^2 \mid CS$, and
+$\gcd(C,S) = 1$ forces $q^2 \mid C$ xor $q^2 \mid S$. On the other
+side $p \nmid 4CS$, so $p^2 \mid U = (u-v)(u+v)$ — coprime, odd,
+nonzero factors — whence $p^4 \le (u \mp v)^2 < 2q^4$. The window
+pins exactly: $0 < |C|, S < p^2 < \sqrt2\,q^2$ gives $C = \pm q^2$
+or $S = q^2$, i.e.
+$$p^4 - q^4 = S^2 \ \text{ or } \ C^2,$$
+a nontrivial solution of Fermat's $x^4 - y^4 = z^2$ ($C$ odd,
+$S \ge 2$). Dead.
+
+**Opposite-sign case** ($\epsilon_2 = -\epsilon_1$). $q \nmid 4uv$,
+so $q^2 \mid C_4 = (C-S)(C+S)$ — coprime, odd, nonzero — whence
+$q^4 \le (C \mp S)^2 < 2p^4$. And $p \nmid C_4$ (it is $-2S^2$ mod
+$p$), so $p^2 \mid uv$ with $\gcd(u,v) = 1$:
+
+* $p^2 \mid v$: $v$ even and $p^2$ odd force $v \ge 2p^2$, so
+  $q^2 > v \ge 2p^2$ — contradicting $q^4 < 2p^4$. Dead.
+* $p^2 \mid u$: $|u| < q^2 < \sqrt2\,p^2$ pins $u = \pm p^2$, so
+  $$v^2 = q^4 - p^4, \qquad v = 2c_2s_2 \ge 4,$$
+  Fermat's quartic again, instantly. Dead.
+
+*(Remark — the kill is overdetermined: the $q$-lever alone gives
+$(C \mp S)^2 = q^4$, i.e. $2CS = \pm(q^4 - p^4) = \mp v^2$, so
+$v^2 = 2|C|S = 4\,|C|\,c_1 s_1$ with $|C|, c_1, s_1$ pairwise
+coprime — three coprime positive factors of a square, forcing
+$c_1 = \gamma^2$, $s_1 = \delta^2$, $|\gamma^4 - \delta^4| =
+\alpha^2$: the same Fermat endpoint reached through the $p$-frame
+instead of the $q$-frame.)*
+
+All 8 die sign-uniformly — the sign vector enters only through
+squares. Machine pinning (`a3.h3_closed`): the pair-collapse and
+per-pattern collapse identities exact in $\mathbb{Z}[c_1,s_1,c_2,s_2]$;
+a cross-engine pin (the tan-half `relation_poly` homogenizes to the
+Gaussian `cleared_relation`, all 8); every frame fact of the proof
+(parity, coprimality, $p$-/$q$-indivisibility, size windows) on all
+split primes in range; real-data emptiness of all 8 cleared
+relations; the Fermat search corroboration.
+
+**Status: the additive queue is EMPTY.** Every native canonical
+pattern of the $(1,1)$, $(2,1)$, $(3,1)$, $(2,2)$ boxes is closed.
+Theorem A3.10 ($p^2q^2$) now gates on exactly one item: the 44
+level-shifted replications of closed $(2,1)$ parents
+(`data_box22_replication.json`) — the $\tau \to \tau^2$ transfer
+re-derivations.
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 

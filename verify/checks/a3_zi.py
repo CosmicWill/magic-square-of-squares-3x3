@@ -10,6 +10,31 @@ DOC = "docs/ROADMAP.md"
 DATA = os.path.join(os.path.dirname(__file__), "..", "..", "compute")
 
 
+def _ledger_and_queue():
+    """The durable wave invariant: load the closed-pattern ledger and
+    the live queue, and return (ledger, queue, closed keys, queue
+    keys).  A wave check must assert that its own kills are IN the
+    ledger (by mechanism tag) and that no closed pattern ever
+    reappears in the queue — never a count of the live queue, which
+    later waves shrink."""
+    import json as _json
+    with open(os.path.join(DATA, "data_g2block_closed.json"),
+              encoding="utf-8") as fh:
+        led = _json.load(fh)
+    with open(os.path.join(DATA, "data_queue_remaining.json"),
+              encoding="utf-8") as fh:
+        rem = _json.load(fh)
+    lkeys = {_json.dumps(t[:3]) for t in led}
+    qkeys = {_json.dumps(t[:3]) for t in rem}
+    require(len(lkeys) == len(led), "duplicate ledger rows")
+    require(not (lkeys & qkeys), sorted(lkeys & qkeys)[:2])
+    return led, rem, lkeys, qkeys
+
+
+def _ledger_tag_count(led, tags):
+    return sum(1 for t in led if t[3] in tags)
+
+
 @check("a3.zi_reformulation", DOC)
 def _(ctx):
     """A3-S1: D(m) = {|Im(z^2)| : z in Z[i], |z|^2 = m^2} exactly
@@ -821,15 +846,14 @@ def _(ctx):
             while n % pr == 0:
                 n //= pr
         require(n == 1, res[3])
-    # the remaining queue pinned
-    with open(os.path.join(DATA, "data_queue_remaining.json"),
-              encoding="utf-8") as fh:
-        rem = _json.load(fh)
-    require(len(rem) == 72, len(rem))
+    # durable: both kills sit in the closed ledger; closed patterns
+    # never reappear in the live queue (the wave left 72 open)
+    led, _, _, _ = _ledger_and_queue()
+    require(_ledger_tag_count(led, {"G1 same-k collapse"}) == 2)
     ctx.note("G1 lemma certified (2 queue kills, {2,3}-unit "
-             "constants, S-divisibility symbolic); 72 patterns "
-             "remain: C-collapse branches, mixed-k E-analogues, "
-             "and no-pure-term families")
+             "constants, S-divisibility symbolic); the wave left "
+             "72: C-collapse branches, mixed-k E-analogues, "
+             "no-pure-term families")
 
 
 @check("a3.g2_mixed_block", DOC)
@@ -892,17 +916,12 @@ def _(ctx):
                 r = isqrt(q2)
                 if r * r == q2 and p2 * abs(C) < q2:
                     require(False, (p_, C, pm))
-    # the closed list and the queue
-    with open(os.path.join(DATA, "data_g2block_closed.json"),
-              encoding="utf-8") as fh:
-        closed = _json.load(fh)
-    require(len(closed) == 12, len(closed))
-    with open(os.path.join(DATA, "data_queue_remaining.json"),
-              encoding="utf-8") as fh:
-        rem = _json.load(fh)
-    require(len(rem) == 60, len(rem))
+    # the closed list and the queue (durable form only)
+    led, _, _, _ = _ledger_and_queue()
+    require(_ledger_tag_count(led, {"G2 C-collapse",
+                                    "mixed-same-j block"}) == 12)
     ctx.note("G2 + mixed-same-j block: 12 closed (Fermat, parity, "
-             "Pell-size, leg-window endpoints), queue at 60; all "
+             "Pell-size, leg-window endpoints), wave left 60; all "
              "collapse identities symbolic")
 
 
@@ -994,13 +1013,12 @@ def _(ctx):
     require(not (vals & {(e * q * q) % 16 for q in range(1, 16, 2)
                          for e in (1, -1)}))
     # queue state
-    with open(os.path.join(DATA, "data_queue_remaining.json"),
-              encoding="utf-8") as fh:
-        rem = _json.load(fh)
-    require(len(rem) == 32, len(rem))
+    led, _, _, _ = _ledger_and_queue()
+    require(_ledger_tag_count(led, {"M1 (Fermat both branches)",
+                                    "G3 double-pincer"}) == 28)
     ctx.note("M1 (double Fermat) x4 + G3 double-pincer x24 closed; "
              "M2-opp x4 reduced-open (P5' = +-q^2, search empty); "
-             "queue at 32")
+             "wave left 32")
 
 
 @check("a3.g4_doubled", DOC)
@@ -1066,14 +1084,12 @@ def _(ctx):
                 T2 = d // 32
                 r = isqrt(T2)
                 require(r * r != T2, (p_, q_))
-    with open(os.path.join(DATA, "data_queue_remaining.json"),
-              encoding="utf-8") as fh:
-        rem = _json.load(fh)
-    require(len(rem) == 28, len(rem))
+    led, _, _, _ = _ledger_and_queue()
+    require(_ledger_tag_count(led, {"G4 doubled level-3"}) == 4)
     ctx.note("G4 uniform doubled kill: expansion identities exact "
              "(J <= 4), coprimality exact on real data, endpoints "
              "mod-16/L2; the doubled-(3,1) quadruple closed — "
-             "queue at 28")
+             "wave left 28")
 
 
 @check("a3.m2opp_closed", DOC)
@@ -1111,13 +1127,11 @@ def _(ctx):
             P5.add((5 * m ** 4 - 10 * m * m * n * n + n ** 4) % 16)
     sq = {(2 * x) ** 2 % 16 for x in range(8)}
     require(not (P5p & sq) and not (P5 & sq), (P5p, P5, sq))
-    with open(os.path.join(DATA, "data_queue_remaining.json"),
-              encoding="utf-8") as fh:
-        rem = _json.load(fh)
-    require(len(rem) == 24, len(rem))
+    led, _, _, _ = _ledger_and_queue()
+    require(_ledger_tag_count(led, {"M2-opp (P5' descent)"}) == 4)
     ctx.note("M2-opp dead: -q^2 mod 8, +q^2 via double coprime "
              "split onto (2m)^2 = P5/P5'(a,b), disjoint mod 16; "
-             "queue at 24 (three x8 families)")
+             "wave left 24 (three x8 families)")
 
 
 @check("a3.h1h2_closed", DOC)
@@ -1205,13 +1219,12 @@ def _(ctx):
                 require(not any((r + d) > 0 and (r + d) ** 4 == q4
                                 and isprime(r + d)
                                 for d in (-2, -1, 0, 1, 2)), (p_, X))
-    with open(os.path.join(DATA, "data_queue_remaining.json"),
-              encoding="utf-8") as fh:
-        rem = _json.load(fh)
-    require(len(rem) == 8, len(rem))
+    led, _, _, _ = _ledger_and_queue()
+    require(_ledger_tag_count(led, {"H1 (parity / leg-overflow)",
+                                    "H2 (parity / leg-window)"}) == 16)
     ctx.note("H1 + H2 closed (parity, leg-overflow, leg-window + "
-             "finite residues); queue at 8 — only the (2,2)-box "
-             "family {(1,1),(2,2),(2,-2)} remains")
+             "finite residues); the wave left only the (2,2)-box "
+             "family {(1,1),(2,2),(2,-2)} x8")
 
 
 @check("a3.p3q_theorem", DOC)
@@ -1285,3 +1298,105 @@ def _(ctx):
     ctx.note("THEOREM A3.9: the (3,1) box fully closed — split part "
              "p^3 q carries no additive relations; corollary "
              "extended")
+
+
+@check("a3.h3_closed", DOC)
+def _(ctx):
+    """H3 CLOSED — the last native family of the (2,2) box:
+    {(1,eps),(2,2),(2,-2)}, all 8 sign vectors, by the DOUBLE LEVER.
+    Clearing p^4 q^4 and pairing the level-2 terms by conjugation
+    (identities exact below):
+
+      p^2 q^2 Im(l^2 w^{2eps}) = -2 e1 * U * 2CS    (e2 = e1)
+      p^2 q^2 Im(l^2 w^{2eps}) = -2 e1 * V * C4     (e2 = -e1)
+
+    where C + iS = l^2, C4 + i(2CS) = l^4, u + iv = w^2, U + iV =
+    w^4.  Same-sign case: q never divides 4U (U = -2v^2 mod q), so
+    q^2 | CS, and gcd(C,S) = 1 forces q^2 | C xor q^2 | S; p never
+    divides 4CS, so p^2 | (u-v)(u+v) — coprime, odd, nonzero — so
+    p^4 <= (u-+v)^2 < 2q^4.  Then 0 < |C|, S < p^2 < sqrt2 q^2
+    pins C = +-q^2 or S = q^2, i.e. p^4 - q^4 = S^2 or C^2:
+    Fermat's x^4 - y^4 = z^2, nontrivial (C odd, S >= 2).  DEAD.
+    Opposite-sign case: q^2 | (C-S)(C+S) — coprime, odd, nonzero —
+    so q^4 < 2p^4; p^2 | uv splits: p^2 | v forces v >= 2p^2 (v
+    even, p^2 odd), so q^2 > v >= 2p^2, contradicting q^4 < 2p^4;
+    p^2 | u with |u| < q^2 < sqrt2 p^2 pins u = +-p^2, so v^2 =
+    q^4 - p^4 with v = 2 c2 s2 >= 4: Fermat again.  DEAD.  All 8
+    die sign-uniformly; with them the (2,2) box holds no open
+    native pattern (the 44 replications carry A3.8 trees)."""
+    import json as _json
+    from math import gcd
+    from compute.two_prime_additive import (
+        cleared_relation, tspace_to_cs, relation_poly, im_monomial,
+        gauss_pow, p4add, p4mul, ELL, W, P2, Q2, search_real_data,
+        search_fermat_quartic)
+    from compute.zi_additive import gaussian_prime_over
+
+    pats = [(((1, eps), 1), ((2, 2), e1), ((2, -2), e2))
+            for eps in (1, -1) for e1 in (1, -1) for e2 in (1, -1)]
+    require(len(pats) == 8)
+    # exact pair-collapse identities
+    Rl4, Il4 = gauss_pow(*ELL, 4)
+    Rw4, Iw4 = gauss_pow(*W, 4)
+    Ipp, Ipm = im_monomial(2, 2), im_monomial(2, -2)
+    require(p4add(Ipp, Ipm) == {k: 2 * v for k, v in
+                                p4mul(Rw4, Il4).items()})
+    require(p4add(Ipp, Ipm, -1) == {k: 2 * v for k, v in
+                                    p4mul(Rl4, Iw4).items()})
+    for pat in pats:
+        ((jk0, e0), (_, e1), (_, e2)) = pat
+        R = cleared_relation(pat)
+        # cross-engine pin: t-space relation_poly homogenizes to R
+        require(R == tspace_to_cs(relation_poly(list(pat)), 2, 2), pat)
+        base = p4mul(p4mul(P2, Q2), im_monomial(*jk0))
+        core = p4mul(Rw4, Il4) if e1 == e2 else p4mul(Rl4, Iw4)
+        want = p4add({k: e0 * v for k, v in base.items()},
+                     {k: 2 * e1 * v for k, v in core.items()})
+        require(R == want, pat)
+    # frame facts the proof stands on, over real split primes
+    fb = ctx.bound(full=400, fast=200)
+    frames = []
+    for P in range(5, fb, 4):
+        d = 2
+        while d * d <= P and P % d:
+            d += 1
+        if d * d <= P:
+            continue
+        e, f = gaussian_prime_over(P)
+        c, s = abs(e * e - f * f), abs(2 * e * f)
+        frames.append((P, c, s))
+    require(len(frames) >= 10)
+    for P, c, s in frames:
+        C, S = c * c - s * s, 2 * c * s
+        require(c % 2 == 1 and s % 2 == 0 and c * c + s * s == P * P)
+        require(gcd(c, s) == 1 and gcd(C, S) == 1)
+        require(C % 2 == 1 and S % 2 == 0 and S > 0)
+        require(abs(C) < P * P and S < P * P)
+        require(C * C + S * S == P ** 4)
+        require(C % P and S % P and (C * C - S * S) % P)
+        require(gcd(C - S, C + S) == 1 and (C - S) * (C + S) != 0)
+        require((C - S) ** 2 < 2 * P ** 4 and (C + S) ** 2 < 2 * P ** 4)
+        u, v = C, S                      # the same frame in the q role
+        require((u * u - v * v) % P)     # q never divides U
+        require(gcd(u - v, u + v) == 1 and (u - v) * (u + v) != 0)
+        require((u - v) ** 2 < 2 * P ** 4 and (u + v) ** 2 < 2 * P ** 4)
+    # real-data emptiness of all 8 cleared relations
+    sb = ctx.bound(full=500, fast=200)
+    for pat in pats:
+        require(search_real_data(cleared_relation(pat), sb) == [], pat)
+    # Fermat endpoint corroboration
+    require(search_fermat_quartic(ctx.bound(full=300, fast=120)) == [])
+    # closure bookkeeping: 8 in the ledger, none anywhere in a queue,
+    # and the closed boxes stay closed (no queue entry inside
+    # (J,K) <= (3,1) or (2,2))
+    led, rem, _, _ = _ledger_and_queue()
+    require(_ledger_tag_count(led, {"H3 double-lever (Fermat)"}) == 8)
+    for _, classes, _ in rem:
+        J = max(abs(j) for j, k in map(tuple, classes))
+        K = max(abs(k) for j, k in map(tuple, classes))
+        require(not (J <= 2 and K <= 2), classes)
+        require(not (J <= 3 and K <= 1), classes)
+    ctx.note("H3 dead x8 (double lever: Fermat x^4-y^4=z^2 twice + "
+             "parity/size); the additive queue is EMPTY — every "
+             "native pattern of the (1,1), (2,1), (3,1), (2,2) "
+             "boxes is closed; A3.10 gate: the 44 replications")

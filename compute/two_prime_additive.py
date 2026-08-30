@@ -669,6 +669,51 @@ def im_ell_w(a, weps):
     return p4add(p4mul(Rl, Iw), p4mul(Il, Rw))
 
 
+P2 = {(2, 0, 0, 0): 1, (0, 2, 0, 0): 1}             # p^2
+
+
+def im_monomial(j, k):
+    """Im(ell^{2j} w^{2k}) in Z[c1,s1,c2,s2]; negative exponents by
+    conjugation (Im(zbar) = -Im(z))."""
+    Rl, Il = gauss_pow(*ELL, 2 * abs(j))
+    if j < 0:
+        Il = {kk: -v for kk, v in Il.items()}
+    Rw, Iw = gauss_pow(*W, 2 * abs(k))
+    if k < 0:
+        Iw = {kk: -v for kk, v in Iw.items()}
+    return p4add(p4mul(Rl, Iw), p4mul(Il, Rw))
+
+
+def cleared_relation(pattern):
+    """The signed relation sum c Im(sigma^j tau^k), cleared by
+    p^{2J} q^{2K} (J = max|j|, K = max|k|), as an exact polynomial in
+    Z[c1,s1,c2,s2]:  sum c p^{2(J-|j|)} q^{2(K-|k|)} Im(l^{2j} w^{2k})."""
+    J = max(abs(j) for (j, k), c in pattern)
+    K = max(abs(k) for (j, k), c in pattern)
+    tot = {}
+    for (j, k), c in pattern:
+        T = im_monomial(j, k)
+        for _ in range(J - abs(j)):
+            T = p4mul(T, P2)
+        for _ in range(K - abs(k)):
+            T = p4mul(T, Q2)
+        tot = p4add(tot, T, c)
+    return tot
+
+
+def tspace_to_cs(N, J, K):
+    """Homogenize the tan-half polynomial N(t1, t2) (from
+    relation_poly, cleared by (1+t1^2)^J (1+t2^2)^K) into
+    Z[c1,s1,c2,s2] via t = s/c:  t1^a t2^b -> c1^{2J-a} s1^a
+    c2^{2K-b} s2^b.  Under c^2 + s^2 = p^2 (resp. q^2) this equals
+    cleared_relation exactly."""
+    out = {}
+    for (a, b), v in N.items():
+        assert a <= 2 * J and b <= 2 * K
+        out[(2 * J - a, a, 2 * K - b, b)] = v
+    return out
+
+
 def collapse_form(G, amax=6, mdeg=3):
     """Try to write G = q^2 * P1 + sum over single term
     Im(ell^a w^{+-2}) * monomial: exact integer linear algebra via

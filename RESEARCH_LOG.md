@@ -2505,3 +2505,79 @@ replication re-derivations — one session of work. The ladder
 count: four rungs proven in five days, all elementary, all
 machine-pinned; Fermat's two quartics now carry eight distinct
 branches. Suite 155, all green.
+
+## 2026-08-30 — Entry 68: verify-integrity incident — five wave checks were failing silently; the waypoint design was wrong
+
+What happened. The wave checks of entries 61–65 each ended by
+pinning the LIVE queue file to its length at the time of that wave
+(`require(len(rem) == 72 / 60 / 32 / 28 / 24)`). The queue is
+mutable by design — every subsequent wave shrinks it — so each
+wave's commit broke its predecessor's pin. By f59c2e9 (entry 67)
+five checks were failing: a3.g1_lemma, a3.g2_mixed_block,
+a3.m1_g3_wave, a3.g4_doubled, a3.m2opp_closed — verified
+empirically today in a detached worktree at f59c2e9 (FAIL ×5; g1
+found 8 where it pinned 72; a3.h1h2_closed passed only because 8
+was coincidentally the current length). The "all green" claims in
+entries 62–67 were therefore FALSE from entry 62 onward: the fast
+gate was either not run in full or its FAIL lines not read before
+those commits. (The runner DOES exit nonzero on failure and prints
+a `fail=` count — the earlier session note that it "exits 0 even
+with failures" was itself wrong.)
+
+Root cause, two layers. (1) DESIGN: a check must assert durable
+invariants, never the count of a live file that later work is
+supposed to change. (2) PROCESS: committing without reading the
+suite summary line.
+
+The fix. All six waypoint stanzas now assert the durable pair: the
+wave's own kills sit in the closed ledger by mechanism tag with
+exact counts (G1 ×2 — backfilled today, it predated the ledger —
+G2+mixed ×12, M1+G3 ×28, G4 ×4, M2-opp ×4, H1+H2 ×16), and
+ledger ∩ queue = ∅ — a closed pattern can never reappear open.
+Historical queue lengths moved into check NOTES as narrative. The
+math bodies of all five checks were untouched (the rot was
+confined to the pins) and re-verify green. Standing process rule:
+`python -m verify --fast` before every commit, and READ the
+`fail=` line of the summary.
+
+Validation, same session: the FIRST full gate run after the
+redesign caught a SECOND rotting pin — a3.g2_mixed_block also
+pinned the ledger LENGTH (`len == 12` vs the ledger's grown 74),
+masked until now because its queue pin always failed first.
+Excised the same way. The gate works when you read it.
+
+## 2026-08-30 — Entry 69: H3 closed by the double lever — the additive queue is EMPTY
+
+The last native family of either campaign box —
+{(1,eps),(2,2),(2,-2)}, all 8 sign vectors — fell to the first
+genuinely two-sided argument of the program (a3.h3_closed).
+Pairing the level-2 terms by conjugation collapses the relation to
+p^2 q^2 Im(l^2 w^{2eps}) = -2 e1 (U * 2CS) [same-sign] or
+-2 e1 (V * C4) [opposite-sign] — and BOTH primes hold a lever on
+one equation, each lever's window making the other's conclusion
+exact. Same-sign: q^2 | CS (gcd 1: q^2 | C xor S) while
+p^2 | (u-v)(u+v) gives p^2 < sqrt2 q^2, pinning C = +-q^2 or
+S = q^2 — so p^4 - q^4 = C^2 or S^2: Fermat's x^4 - y^4 = z^2.
+Opposite-sign: q^2 | (C-S)(C+S) gives q^2 < sqrt2 p^2; then
+p^2 | v dies on parity-size (v even, p^2 odd forces v >= 2p^2,
+above the window) and p^2 | u pins u = +-p^2 — v^2 = q^4 - p^4:
+Fermat, instantly. Sign-uniform (signs enter only through
+squares); overdetermined (the q-lever alone forces v^2 = 2|C|S,
+three coprime factors of a square, so c1 = gamma^2, s1 = delta^2,
+|gamma^4 - delta^4| = alpha^2 — the same endpoint through the
+p-frame). Machine: exact pair-collapse and per-pattern collapse
+identities; a cross-engine pin (tan-half relation_poly homogenizes
+onto the new Gaussian primitives im_monomial / cleared_relation /
+tspace_to_cs — two independent constructions, equal dicts); every
+frame fact of the proof on all split primes <= 400; real-data
+emptiness of all 8 cleared relations (all orientations); the
+Fermat search. Ledger 64 -> 74; data_queue_remaining.json = [] —
+EMPTY for the first time since the campaign opened. Every native
+canonical pattern of the (1,1), (2,1), (3,1), (2,2) boxes is
+closed. Theorem A3.10 (p^2 q^2) now gates on exactly one item: the
+tau -> tau^2 replication transfers onto closed (2,1) parents (the
+remembered "44" is stale bookkeeping — the survivor files are
+pre-campaign snapshots; the count will be rebuilt from the census
+in the theorem-level completeness audit, (3,1)-style). Suite: 156
+registered, fast gate ran=156 pass=154 fail=0 skip=2 (the two
+PARI environment checks) — the fail= line read and confirmed.
