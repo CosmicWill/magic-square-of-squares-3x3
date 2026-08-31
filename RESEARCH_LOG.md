@@ -2581,3 +2581,46 @@ pre-campaign snapshots; the count will be rebuilt from the census
 in the theorem-level completeness audit, (3,1)-style). Suite: 156
 registered, fast gate ran=156 pass=154 fail=0 skip=2 (the two
 PARI environment checks) — the fail= line read and confirmed.
+
+## 2026-08-30 — Entry 70: the m=7 survey race — a stale instance could delete completed orbits
+
+Second integrity incident of the day, this one in the compute
+layer. Pausing the m=7 survey at the user's request revealed that
+the ORIGINAL survey process from a previous session (pid 21828,
+started 8/28) had never died — and that I had started a SECOND
+instance beside it earlier in this session without checking. Both
+wrote compute/data_survey_m7.json.
+
+The bug: survey_m7 loaded its state once at startup and rewrote
+the whole in-memory view on every save, so the last writer's view
+won. A stale instance finishing an orbit would silently DELETE
+every orbit the other had recorded since it started. Nothing was
+lost this time — the surviving save happened to be a superset, pure
+luck — but ~3.5 h of compute was duplicated: both instances
+computed the same two orbits, and the logs show it plainly (5654s
+vs 5573s, 7120s vs 6976s for the identical orbit pair).
+
+Fixed: record() re-reads, merges one orbit, writes atomically, so a
+save can only ADD, and candidates are derived from nullity at
+record time (a nonzero result cannot fall out of the follow-up
+queue); a pid lock refuses a concurrent start loudly rather than
+duplicating hours (auto-clears a dead owner, --force overrides a
+live one, and release never steals a foreign lock); the todo list
+is re-checked against the file before each orbit; the closing line
+distinguishes PARTIAL from COMPLETE.
+
+Check a8.m7_survey_integrity guards it — and, applying the entry-68
+lesson in the same breath, asserts only DURABLE invariants (orbit
+keys genuine and correctly sized, no duplicates, characters <= 255,
+candidates EXACTLY the nonzero entries, no stale .lock/.tmp), all
+of which hold at 48/50 and 50/50 alike; the progress count lives in
+the note, not an assertion. The two guards are exercised on a copy,
+never the live checkpoint.
+
+Survey state at the pause: 48/50 orbits, 250/255 characters, every
+one nullity 0, no candidates. Committed at 0513189 so the ~70 h of
+compute is durable. A8.18's m=7 scope note stays open for the last
+two orbits. Lesson recorded: before resuming any long job, check
+whether an earlier session's instance is still alive — a prior
+session's background task outlives that session and cannot be
+stopped through the new one's task system.

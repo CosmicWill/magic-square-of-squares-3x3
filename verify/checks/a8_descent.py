@@ -716,3 +716,96 @@ def _(ctx):
     ctx.note("15 integral lines exactly: 9 entry + u=0 + v=0 + four "
              "sqrt3-lines (genus >= 2 upstairs); web degree-1 level "
              "closed")
+
+
+@check("a8.m7_survey_integrity", DOC)
+def _(ctx):
+    """The m = 7 nontrivial-character survey (A8.18 scope closure) is
+    a multi-day checkpointed job; this check guards the CHECKPOINT
+    and the job's crash/concurrency safety, NOT a progress count —
+    the assertions below hold at every stage of the run, complete or
+    partial (the RESEARCH_LOG entry-68 lesson: never pin a live
+    file's length).  Invariants: every recorded key is a genuine
+    nontrivial D4-orbit of the character group; orbit sizes match the
+    group action; no key is recorded twice; recorded characters never
+    exceed the 255 nontrivial total; the candidate set is EXACTLY the
+    nonzero-nullity entries (so a nonzero result can never be
+    silently dropped from follow-up); and no stale lock is left
+    behind on the live state.  Concurrency guards (tested on a COPY,
+    the live checkpoint is never written): record() re-reads and
+    merges, so a stale writer can only ADD orbits — the old
+    load-once/save-whole-view code could delete another instance's
+    results — and the pid lock refuses to start beside a live owner,
+    which is what silently duplicated ~2 h/orbit of compute on
+    2026-08-30."""
+    import contextlib
+    import io
+    import json
+    import os
+    import shutil
+    import tempfile
+    import compute.survey_m7 as S
+
+    live = os.path.join(os.path.dirname(__file__), "..", "..",
+                        "compute", "data_survey_m7.json")
+    if not os.path.exists(live):
+        raise Skip("m = 7 survey checkpoint not present")
+    st = json.load(open(live, encoding="utf-8"))
+    orbits = character_orbits((2, 4, 6, 8))
+    sizes = {repr(sorted(k)): o for k, o in orbits}
+    require(len(orbits) == 50 and sum(sizes.values()) == 255,
+            (len(orbits), sum(sizes.values())))
+    done = st["done"]
+    for name, rec in done.items():
+        require(name in sizes, f"unknown orbit key {name}")
+        require(rec["orbit"] == sizes[name],
+                (name, rec["orbit"], sizes[name]))
+        require(isinstance(rec["nullity"], int) and rec["nullity"] >= 0,
+                (name, rec["nullity"]))
+    require(len(done) <= len(orbits), len(done))
+    covered = sum(r["orbit"] for r in done.values())
+    require(covered <= 255, covered)
+    nonzero = {n for n, r in done.items() if r["nullity"]}
+    require(set(st.get("candidates", {})) == nonzero,
+            (sorted(st.get("candidates", {})), sorted(nonzero)))
+    require(not os.path.exists(live + ".lock"),
+            "stale lock on the live checkpoint")
+    require(not os.path.exists(live + ".tmp"),
+            "stale .tmp — an interrupted write")
+    # concurrency guards, on a copy
+    tmpd = tempfile.mkdtemp()
+    old_state, old_lock = S.STATE, S.LOCK
+    try:
+        S.STATE = os.path.join(tmpd, "state.json")
+        S.LOCK = S.STATE + ".lock"
+        shutil.copy(live, S.STATE)
+        n0 = len(json.load(open(S.STATE))["done"])
+        S.record("'GUARD_A'", {"orbit": 4, "nullity": 0, "seconds": 1})
+        stale = json.load(open(S.STATE))     # a second writer's view
+        S.record("'GUARD_B'", {"orbit": 2, "nullity": 5, "seconds": 1})
+        now = json.load(open(S.STATE))
+        require(len(now["done"]) == n0 + 2, len(now["done"]))
+        require(len(stale["done"]) == n0 + 1)   # what save() would lose
+        require(now["candidates"]["'GUARD_B'"]["nullity"] == 5)
+        with contextlib.redirect_stdout(io.StringIO()) as noise:
+            require(S.acquire_lock() is True)
+            with open(S.LOCK, "w") as fh:
+                json.dump({"pid": os.getppid(), "started": "x"}, fh)
+            require(S.acquire_lock() is False, "ran beside a live owner")
+            require(S.acquire_lock(force=True) is True, "--force failed")
+            with open(S.LOCK, "w") as fh:
+                json.dump({"pid": 999999, "started": "x"}, fh)
+            require(S.acquire_lock() is True, "stale lock not cleared")
+            S.release_lock()
+        require(not os.path.exists(S.LOCK))
+        require("REFUSING TO START" in noise.getvalue(),
+                "the live-owner refusal was silent")
+    finally:
+        S.STATE, S.LOCK = old_state, old_lock
+        shutil.rmtree(tmpd, ignore_errors=True)
+    zero = all(r["nullity"] == 0 for r in done.values())
+    ctx.note(f"m = 7 survey checkpoint sound: {len(done)}/"
+             f"{len(orbits)} orbits, {covered}/255 characters, "
+             f"all-zero-so-far={zero}, candidates={len(nonzero)}"
+             f"{' — COMPLETE' if len(done) == len(orbits) else ''}; "
+             f"merge + lock guards hold")
