@@ -732,17 +732,35 @@ analogously via a $q^4$ lever.
 **This endpoint is the core lemma of the uniform program (P1).**  It
 is the level-2 instance of a rigidity phenomenon that recurs in every
 higher box, so proving it is worth more than the single theorem.
-What is established (machine-pinned): it has **no coprime-integer
-solution at all** — not merely no prime-frame solution, and
-independent of parity — to $\lvert c\rvert,\lvert s\rvert<400$ (and
-no prime-frame solution to $p,q<2000$); and **no congruence
-obstructs it** (mod $16,32,3,5,7,9,25,11,13,17,27$).  So it is a
-clean Diophantine statement requiring a genuine **$2$-descent**, not
-a congruence sieve or a one-line Fermat reduction.  Writing
-$A=c_2^2-s_2^2$, $B=2c_2s_2$ (so $A^2+B^2=q^4$, $\gcd(A,B)=1$), the
-equation is $A^2-B^2=c_1^4-s_1^4$, i.e. the coprime-odd product
-$(A-B)(A+B)=(c_1^2-s_1^2)(c_1^2+s_1^2)$ — the natural starting point
-for the four-part factor descent.
+
+**CORRECTION (same day, entry 72): the "pure" quartic is FALSE.**  An
+earlier draft of this section, on the strength of a height-400
+search, called the equation a clean Diophantine statement with no
+coprime solution at all.  A height-4000 search found
+$$(c_2,s_2,c_1,s_1)=(1369,\,3320,\,1017,\,320),\qquad
+c_2^4-6c_2^2s_2^2+s_2^4 = c_1^4-s_1^4 = 1059267975521,$$
+with the right parities and coprimality — a genuine point on the
+quartic surface (a K3, which had simply hidden its points above
+height 1500, exactly the failure mode a quartic surface invites).
+It is **not** a frame solution: $c_1^2+s_1^2 = 137\cdot 8297$ and
+$c_2^2+s_2^2 = 29\cdot 401\cdot 1109$ are not squares.  So the
+Pythagorean/primality hypotheses are **load-bearing**, and a descent
+on the bare surface would have been an attempt to prove a false
+theorem.  The correct target is the **prime-frame version**: no
+solution with $c_1+is_1=\pi^2$, $c_2+is_2=\rho^2$ for Gaussian
+primes $\pi,\rho$ — machine-checked empty to $p,q<2000$, and no
+congruence in the frame variables obstructs it.  In that form the
+equation reads
+$$\mathrm{Re}(\rho^8) \;=\; N(\pi)^2\,\mathrm{Re}(\pi^4),$$
+a relation between the *arguments* of two Gaussian primes, and the
+primality supplies a lever the surface lacks: $p^2\mid\mathrm{Re}(\rho^8)$
+forces $(\rho/\bar\rho)^8\equiv-1 \pmod{\pi^2}$, an element of order
+$16$ in the cyclic group $(\mathbb{Z}[i]/\pi^2)^\times$ of order
+$p(p-1)$, hence **$p\equiv 1 \pmod{16}$** — a constraint on the prime
+itself, invisible to any frame-level sieve, and confirmed on data
+(below $3000$ the only prime ever admitting $p^2\mid\mathrm{Re}(\rho^8)$
+is $17$).  The attack is therefore Gaussian-prime arithmetic, not K3
+geometry.
 
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3

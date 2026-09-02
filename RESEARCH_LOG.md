@@ -2664,3 +2664,62 @@ caught), the LEDGER=32 "discrepancy" (not an error -- G3 is (2,2)).
 FULL-profile suite ran end to end for the first time in a while:
 155 pass / 0 fail / 2 skip. Suite now 159 checks. NOT CLAIMING
 A3.10; the reduction is pinned honestly, the theorem is not.
+
+## 2026-08-30 — Entry 72: reconnaissance before descent — the bare rigidity quartic is FALSE, omega=3 does not reduce for free
+
+Two cheap experiments, run before investing in the descent, and
+both changed the plan. This is the step-back paying for itself.
+
+STEP 2 (rigidity lemma). A height-4000 search of the bare quartic
+surface  c2^4 - 6 c2^2 s2^2 + s2^4 = c1^4 - s1^4  found the coprime,
+correctly-paritied point (c2,s2,c1,s1) = (1369, 3320, 1017, 320),
+value 1059267975521 = 7*17*41*137*191*8297. Entry 71 and doc 2.11
+had called this equation "a clean Diophantine statement with no
+coprime solution" on the strength of a height-400 search. THAT WAS
+WRONG: the surface is a K3 and simply hid its points above height
+1500 -- exactly the failure mode flagged in the step-back. A descent
+on the bare surface would have been an attempt to prove a false
+theorem. The point is NOT a frame point (137*8297 and 29*401*1109
+are not squares), so the Pythagorean/primality hypotheses are
+load-bearing. The correct lemma is the FRAME version (both c^2+s^2
+perfect squares): empty on prime frames to p,q < 2000 and on all
+32,335 primitive Pythagorean frames with generators < 400 -- the
+square conditions alone appear to kill it. In Gaussian-prime form
+the equation is Re(rho^8) = N(pi)^2 Re(pi^4), and primality gives a
+lever the surface lacks: p^2 | Re(rho^8) forces (rho/rhobar)^8 = -1
+mod pi^2, an element of order 16 in the cyclic (Z[i]/pi^2)^* of
+order p(p-1), hence p = 1 mod 16 -- a constraint on the PRIME,
+invisible to every frame-level sieve, confirmed on data (below 3000
+the only prime ever admitting p^2 | Re(rho^8) is 17). The attack is
+Gaussian-prime arithmetic, not K3 geometry. Rank tooling (PARI/gp,
+cypari2, sage) is unavailable in this environment and winget has no
+PARI; it now looks less central anyway. Corrected in doc 2.11,
+ROADMAP M13-J, memory, and a3.p2q2_reduction, which now PINS the
+counterexample so the false statement cannot be re-asserted, and
+sweeps the frame version instead.
+
+STEP 1 (N4, omega=3 box (1,1,1)). 13 classes, 286 distinct-class
+triples. Valuation pruning kills only 136 (48%, vs ~80% at (2,2)):
+150 survive, 138 of them genuinely using all three primes, and in
+EVERY one each prime appears in >= 2 classes -- no spectator-prime
+structure to project onto omega=2. The tan-half factorization (3
+variables, sympy) and a 3-frame congruence sweep then kill 64 + 24
+of the 552 signed genuine patterns, leaving 464 OPEN (84%). Under
+the prime-permutation x conjugation x global-sign symmetry those
+collapse to 27 orbit-families (13 of size 24, 12 of size 12, 2 of
+size 4), only 6 of which contain a single-prime class (the
+lever-friendly kind); 21 are the hard all-primes-doubly-used type.
+VERDICT: omega >= 3 does NOT reduce to omega <= 2 for free; the
+machine's workhorse (valuation) loses most of its power once every
+exponent is +-1, and a uniform omega >= 3 argument needs a new idea,
+not more of the current toolkit. It is 27 families, not 464 proofs
+-- comparable in count to the (2,2) box -- but mostly of the hard
+type.
+
+STRATEGIC CONSEQUENCE: (U1) the uniform omega <= 2 theorem remains
+the right target and its core lemma is now correctly stated (frame
+version, Gaussian-prime attack); (U2) omega >= 3 is its own problem.
+Neither is close. The golden centers all sit in omega = 2 boxes
+((2,1),(2,2),(3,2),(4,1)) -- the heuristic hot spots are exactly
+where U1 lands. NOT CLAIMING A3.10. Suite 159; gate at commit read
+from the fail= line.

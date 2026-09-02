@@ -1527,14 +1527,24 @@ def _(ctx):
     mod 8; the plus sign is the rigidity quartic
       c2^4 - 6 c2^2 s2^2 + s2^4  =  c1^4 - s1^4
     (equivalently Re(w^4) = c1^4 - s1^4).  Block B (6) reduces
-    analogously with a q^4 lever.  These endpoints have NO solution
-    on real prime frames to p,q < 2000, the pure quartic (dropping
-    primality) has NONE to 600, and NO congruence (mod 16/32/3/5/7/
-    9/25/11/13/17/27) obstructs them — so they require a genuine
-    2-descent.  This is the core lemma of the uniform program (P1):
-    the same rigidity endpoint recurs in every higher box.  THIS
-    CHECK PINS THE REDUCTION AND THE ENDPOINT EMPTINESS; it does not
-    assert the theorem."""
+    analogously with a q^4 lever.
+      CORRECTION (entry 72): the BARE quartic surface is NOT
+    solution-free — a height-4000 search found the coprime,
+    correctly-paritied point (c2,s2,c1,s1) = (1369,3320,1017,320)
+    (a K3 hiding its points above height 1500).  It is NOT a frame
+    point: c1^2+s1^2 = 137*8297 and c2^2+s2^2 = 29*401*1109 are not
+    squares.  So the Pythagorean/primality hypotheses are
+    load-bearing, and the correct lemma is the FRAME version: no
+    solution with c^2+s^2 a perfect square on both sides — empty on
+    prime frames to p,q < 2000 and on ALL primitive Pythagorean
+    frames with generators < 300, no frame-level congruence
+    obstructing it.  In Gaussian-prime form it is
+    Re(rho^8) = N(pi)^2 Re(pi^4), and primality supplies a lever the
+    surface lacks: p^2 | Re(rho^8) forces (rho/rhobar)^8 = -1 mod
+    pi^2, an order-16 element of the cyclic (Z[i]/pi^2)^*, hence
+    p = 1 mod 16.  THIS CHECK PINS THE REDUCTION, THE COUNTEREXAMPLE
+    TO THE BARE STATEMENT, AND THE FRAME-VERSION EMPTINESS; it does
+    not assert the theorem."""
     from math import gcd
     from compute.two_prime_additive import (
         cleared_relation, im_monomial, gauss_pow, p4add, p4mul,
@@ -1583,21 +1593,28 @@ def _(ctx):
             d += 1
         return n >= 2
 
-    # pure quartic emptiness (no primality): the clean target.
-    # Genuine frames have s even and >= 2 (s = 2ef, e > f >= 1); the
-    # s = 0 degenerate is a rational prime, not a split frame.
-    bq = ctx.bound(full=600, fast=200)
-    pv = set()
-    for c1 in range(1, bq, 2):
-        for s1 in range(2, bq, 2):
-            if gcd(c1, s1) == 1:
-                pv.add(c1 ** 4 - s1 ** 4)
-    for c2 in range(1, bq, 2):
-        for s2 in range(2, bq, 2):
-            if gcd(c2, s2) != 1:
-                continue
-            val = c2 ** 4 - 6 * c2 * c2 * s2 * s2 + s2 ** 4
-            require(val not in pv, ("rigidity quartic solution", c2, s2))
+    # the bare surface HAS a point -- pin the counterexample so the
+    # false "clean statement" can never be re-asserted
+    x, y, u, v = 1369, 3320, 1017, 320
+    require(x ** 4 - 6 * x * x * y * y + y ** 4 == u ** 4 - v ** 4)
+    require(x % 2 == 1 and u % 2 == 1 and y % 2 == 0 and v % 2 == 0)
+    require(gcd(x, y) == 1 and gcd(u, v) == 1)
+    from math import isqrt
+    for n in (x * x + y * y, u * u + v * v):
+        require(isqrt(n) ** 2 != n, "counterexample is a frame?!")
+    # the FRAME version (both c^2+s^2 perfect squares, primality not
+    # required) is the correct target: empty on all primitive
+    # Pythagorean frames c = a^2-b^2, s = 2ab with generators < bq
+    bq = ctx.bound(full=300, fast=120)
+    frames = []
+    for a in range(1, bq):
+        for b in range(1, a):
+            if gcd(a, b) == 1 and (a - b) % 2 == 1:
+                frames.append((a * a - b * b, 2 * a * b))
+    pv = {c ** 4 - s ** 4 for c, s in frames}
+    for c, s in frames:
+        require(c ** 4 - 6 * c * c * s * s + s ** 4 not in pv,
+                ("frame-version solution", c, s))
     # real-frame emptiness of Block A (the reduced patterns)
     br = ctx.bound(full=500, fast=200)
     for classes, coeffs in BLOCK_A:
@@ -1613,9 +1630,9 @@ def _(ctx):
         c2, s2 = c1, s1
         U8.add((c2 ** 4 - 6 * c2 * c2 * s2 * s2 + s2 ** 4) % 8)
     require(U8 == {1} and 7 in pC8, (U8, pC8))
-    ctx.note("A3.10 REDUCED, NOT CLOSED: 12/26 k-children closed "
-             "(collapsed-valuation, x^4+y^4=2z^2, squeeze/pinch); "
-             "14 reduced to the rigidity quartic Re(w^4)=c1^4-s1^4 "
-             "(minus sign mod-8-dead) — empty on frames to 2000, no "
-             "congruence obstruction; needs a 2-descent (P1 core "
-             "lemma)")
+    ctx.note("A3.10 REDUCED, NOT CLOSED: 12/26 k-children closed; 14 "
+             "reduced to Re(w^4)=c1^4-s1^4. The BARE quartic has the "
+             "point (1369,3320,1017,320) (not a frame) -- the FRAME "
+             "version (c^2+s^2 squares) is the real lemma: empty on "
+             "prime frames to 2000 and Pythagorean frames to gen<300; "
+             "primality lever p=1 mod 16 (P1 core lemma)")
