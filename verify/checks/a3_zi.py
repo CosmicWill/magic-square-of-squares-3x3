@@ -2083,3 +2083,69 @@ def _(ctx):
              f"with 2-Selmer rank 1: {proven}; core verified in E~(F_p) "
              f"(0 violations, T1 in 2E~ each time); remaining transparent "
              f"primes (Selmer bound >= 2, rank undetermined): {len(higher)}")
+
+
+@check("a3.rigidity_rank_certificates", DOC)
+def _(ctx):
+    """Certifying the ranks behind the Rank-1 Theorem (entry 78).
+    PARITY SPLIT: the root number of E_n: y^2 = x^3 - n^2 x is +1 for
+    n = 1,2,3 mod 8 and -1 for n = 5,6,7 mod 8; every transparent A4
+    has all its primes = +-1 mod 16, so |n| = 1 or 7 mod 8.  Pinned:
+    the 2-Selmer bound has the root-number parity on EVERY transparent
+    prime (Dokchitser-Dokchitser parity, an independent validation of
+    the descent); |n| = 1 mod 8 primes have EVEN rank >= 2 (the
+    Rank-1 Theorem can never apply; they need a rank-2 argument);
+    |n| = 7 mod 8 primes with Selmer bound 3 have rank 1 or 3.
+    L-VALUE CERTIFICATE: E_n is the twist by n of the CM curve
+    y^2 = x^3 - x (a_p = 2 Re of the primary Gaussian prime), conductor
+    32 n^2; L'(E,1) = 2 sum a_m/m E1(2 pi m / sqrt N) with an explicit
+    tail bound.  L'(E,1) != 0 gives rank exactly 1 unconditionally
+    (Gross-Zagier-Kolyvagin), and the Rank-1 Theorem then proves the
+    rigidity lemma for that prime.  Controls: a_p against point counts,
+    L'(37a,1) = 0.30599977383405, Tunnell's finite formula on rank-0
+    twists, L(E_1,1) = 0.6555143885.  Certified: p = 337 (n = 52319,
+    L' = 2.1047928093 +- 5e-8); FULL also p = 1201 (L' = 0.4961895104),
+    6353 (1.5904808187) and 15073 (0.2776859806), tails <= 1e-5."""
+    from compute.selmer_descent import selmer_rank_bound, sqfree
+    from compute.zi_additive import gaussian_prime_over
+    from compute.quartic_sieve import is_transparent, sieve_primes
+    from compute.lseries_cm import self_test, l_value, root_number
+
+    require(self_test())
+    N = ctx.bound(full=30000, fast=12000)
+    S = sieve_primes(N)
+    odd3, even, n_of = [], [], {}
+    for p in range(17, N, 16):
+        if not S[p]:
+            continue
+        a, b = gaussian_prime_over(p)
+        c1, s1 = abs(a*a - b*b), abs(2*a*b)
+        A4 = c1*c1 - s1*s1
+        if not is_transparent(A4):
+            continue
+        n = abs(sqfree(A4))
+        require(n % 8 in (1, 7), (p, n))
+        rb = selmer_rank_bound(n)
+        w = root_number(n)
+        require((rb % 2 == 1) == (w == -1), (p, n, rb, w))
+        n_of[p] = n
+        if w == 1:
+            even.append(p)
+        elif rb == 3:
+            odd3.append(p)
+    require(337 in odd3 and n_of[337] == 52319)
+    w, val, tail, M = l_value(52319, terms_factor=4.0)
+    require(w == -1 and tail < 1e-6 and abs(val - 2.1047928093) < 1e-7, (val, tail))
+    certified = [337]
+    if ctx.profile == "FULL":
+        for p, n, known, tb in ((1201, 1437599, 0.4961895104, 2e-6),
+                                (6353, 3294559, 1.5904808187, 4e-6),
+                                (15073, 8162879, 0.2776859806, 1e-5)):
+            w, val, tail, M = l_value(n, terms_factor=4.0)
+            require(w == -1 and tail < tb and abs(val - known) < 1e-7, (p, val, tail))
+            certified.append(p)
+    ctx.note(f"transparent p < {N}: Selmer parity == root-number parity on "
+             f"all; even-rank (need rank-2 argument): {len(even)}; odd-rank "
+             f"Selmer-3 (certifiable by L'): {len(odd3)}; L'(E,1) != 0 "
+             f"CERTIFIED rank 1 -> rigidity lemma PROVEN for p in {certified} "
+             f"(p=337: L' = {2.1047928093})")

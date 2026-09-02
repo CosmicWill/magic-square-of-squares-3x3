@@ -2970,3 +2970,57 @@ is the unknown: if it is in fact 1 (nontrivial Sha[2]) the same
 argument applies but a 2-descent cannot certify it; if it is >= 2
 the reduction of the free part need not be cyclic. Not claiming the
 lemma in full, or A3.10. Suite 164.
+
+## 2026-09-02 — Entry 78: certifying the ranks — parity is free, L'(E,1) certifies four more primes, and the rest is PARI territory
+
+Goal: certify the ranks behind the Rank-1 Theorem for the 46
+transparent primes below 30000 with 2-Selmer bound >= 2.
+
+PARITY IS FREE. The root number of E_n: y^2 = x^3 - n^2 x is +1 for
+n = 1,2,3 mod 8 and -1 for n = 5,6,7 mod 8. Every transparent A4 has
+all its primes = +-1 mod 16, so |n| = 1 or 7 mod 8, and the 2-Selmer
+bound has the root-number parity on EVERY transparent prime
+(Dokchitser-Dokchitser parity -- an independent validation of the
+descent code). So the 46 split:
+  * 27 with |n| = 1 mod 8 (Selmer bounds 2 and 4): rank EVEN and >= 1,
+    hence >= 2. The Rank-1 Theorem can never apply; with bound 2 the
+    rank is exactly 2 (unless Sha[2^inf] is infinite, when it is 1 and
+    the theorem applies after all). They need a RANK-2 ARGUMENT, not a
+    certificate: find 2-saturated generators G1, G2 (index odd is
+    harmless), reduce mod p, and check that no element of <G1~, G2~>
+    is a half of T1~ -- a computable per-prime condition.
+  * 19 with |n| = 7 mod 8 and Selmer bound 3: rank 1 or 3, and
+    L'(E,1) != 0 certifies rank exactly 1 UNCONDITIONALLY
+    (Gross-Zagier-Kolyvagin), after which the Rank-1 Theorem finishes.
+
+THE L-VALUE CERTIFICATE (compute/lseries_cm.py). E_n is the quadratic
+twist by n of the CM curve y^2 = x^3 - x: a_p = 2 Re(pi) for the
+PRIMARY Gaussian prime pi over p = 1 mod 4 (a odd, b even,
+a + b = 1 mod 4), a_p = 0 for p = 3 mod 4, twisted by (n/p), 0 at
+p | 2n; conductor 32 n^2; L'(E,1) = 2 sum a_m/m E1(2 pi m / sqrt N)
+with an explicit tail bound (|a_m| <= d(m) sqrt m <= m). numpy int32
+multiplicative sieve + scipy E1, ~4 sqrt N = 23 n terms. Controls:
+a_p against point counts to 400; L'(37a,1) = 0.30599977383405 (12
+digits); Tunnell's finite formula L(E_n,1) = beta (A_n - 2B_n)^2 /
+(16 sqrt n) on n = 1, 3, 11, 17, 19, 43 to ten digits; L(E_1,1) =
+0.6555143885; L' != 0 on the rank-1 twists 5, 7, 13, 15, 21, 23.
+
+CERTIFIED (rank 1 -> rigidity lemma PROVEN):
+  p =   337  n =   52319  L'(E,1) = 2.1047928093  tail <= 4.6e-8  ( 0.7 s)
+  p =  1201  n = 1437599  L'(E,1) = 0.4961895104  tail <= 1.3e-6  (17 s)
+  p =  6353  n = 3294559  L'(E,1) = 1.5904808187  tail <= 2.9e-6  (38 s)
+  p = 15073  n = 8162879  L'(E,1) = 0.2776859806  tail <= 7.1e-6  (93 s, 185M terms)
+Each value is nonzero by >= 4 orders of magnitude over its rigorous
+tail; the half-length runs agree to 1e-7. Check
+a3.rigidity_rank_certificates (parity split + Selmer/root-number
+consistency + the 337 certificate live; FULL recomputes all four).
+
+STATUS. Below 30000 the rigidity lemma is a theorem for 25 of the 67
+transparent primes (21 by Selmer bound 1, 4 by certificate); 42
+remain: 27 of even rank (rank-2 argument needed) and 15 of odd rank
+with n >= 1.5e7 (>= 3e8 series terms, beyond this machine's memory).
+Those 15, and the scalable algebraic route (Cassels-Tate pairing on
+Sel^2, PARI's ellrank), need PARI: no Windows wheels exist for cypari2
+or passagemath-pari, conda-forge's index is unreachable from the
+sandbox, and the official installer is a download the user must
+approve. Not claiming the lemma in full, or A3.10. Suite 165.

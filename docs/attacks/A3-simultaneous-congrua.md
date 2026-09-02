@@ -980,6 +980,52 @@ $Ш[2]$) the same argument applies but cannot be certified by a
 2-descent, and if it is $\ge2$ the reduction of the free part need
 not be cyclic.
 
+**Certifying the ranks (entry 78; check `a3.rigidity_rank_certificates`).**
+*Parity is free.*  The root number of $E_n:\ y^2=x^3-n^2x$ is $+1$ for
+$n\equiv1,2,3\pmod8$ and $-1$ for $n\equiv5,6,7\pmod8$; every
+transparent $A_4$ has all its primes $\equiv\pm1\pmod{16}$, so
+$|n|\equiv1$ or $7\pmod8$.  The 2-Selmer bound has the root-number
+parity on **every** transparent prime (Dokchitser–Dokchitser parity;
+an independent validation of the descent).  Hence the $46$ split:
+
+* **$|n|\equiv1\pmod8$ ($27$ primes; Selmer bounds $2$ and $4$):** the
+  rank is *even* and $\ge1$, so $\ge2$ — the Rank-1 Theorem can never
+  apply.  With Selmer bound $2$ the rank is exactly $2$ (unless
+  $Ш[2^\infty]$ is infinite, in which case the rank is $1$ and the
+  theorem applies after all).  These need a **rank-2 argument**, not a
+  certificate.
+* **$|n|\equiv7\pmod8$ with Selmer bound $3$ ($19$ primes):** rank
+  $1$ or $3$.  **$L'(E,1)\neq0$ certifies rank exactly $1$
+  unconditionally** (Gross–Zagier–Kolyvagin), and the Rank-1 Theorem
+  finishes the prime.
+
+*The $L$-value certificate* (`compute/lseries_cm.py`).  $E_n$ is the
+quadratic twist by $n$ of the CM curve $y^2=x^3-x$, so
+$a_p=2\operatorname{Re}\pi$ for the primary Gaussian prime $\pi$ over
+$p\equiv1\pmod4$, $a_p=0$ for $p\equiv3\pmod4$, twisted by $(n/p)$;
+conductor $32n^2$; and for root number $-1$
+$$L'(E,1)=2\sum_{m\ge1}\frac{a_m}{m}E_1\!\Big(\frac{2\pi m}{\sqrt N}\Big),$$
+with an explicit tail bound from $|a_m|\le d(m)\sqrt m$.  Controls:
+$a_p$ against point counts; $L'(37a,1)=0.30599977383405$; Tunnell's
+finite formula $L(E_n,1)=\beta(A_n-2B_n)^2/(16\sqrt n)$ on rank-0
+twists to ten digits; $L(E_1,1)=0.6555143885$.  **Certified — rank
+$1$, rigidity lemma proven:**
+
+| $p$ | $n$ | $L'(E,1)$ | tail $\le$ |
+|---|---|---|---|
+| 337 | 52319 | 2.1047928093 | $4.6\cdot10^{-8}$ |
+| 1201 | 1437599 | 0.4961895104 | $1.3\cdot10^{-6}$ |
+| 6353 | 3294559 | 1.5904808187 | $2.9\cdot10^{-6}$ |
+| 15073 | 8162879 | 0.2776859806 | $7.1\cdot10^{-6}$ |
+
+So below $30000$ the rigidity lemma is now a theorem for **$25$ of the
+$67$ transparent primes** ($21$ by Selmer bound $1$, $4$ by
+$L'$-certificate); $42$ remain: $27$ of even rank (rank-2 argument
+needed) and $15$ of odd rank whose conductors ($n\ge1.5\cdot10^7$, so
+$\ge3\cdot10^8$ series terms) exceed this machine.  Those, and the
+scalable algebraic route (a Cassels–Tate pairing on $\mathrm{Sel}^2$),
+are PARI territory (`ellrank`), which this machine does not have.
+
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct
