@@ -1636,3 +1636,122 @@ def _(ctx):
              "version (c^2+s^2 squares) is the real lemma: empty on "
              "prime frames to 2000 and Pythagorean frames to gen<300; "
              "primality lever p=1 mod 16 (P1 core lemma)")
+
+
+@check("a3.rigidity_frame_lemma", DOC)
+def _(ctx):
+    """THE FRAME-VERSION RIGIDITY LEMMA (P1's core), descent status.
+    Prime frames pi = a+bi over p, rho = e+fi over q; endpoint
+    Re(rho^8) = p^2 A4 with A4 = Re(pi^4) = c1^2 - s1^2.  Writing
+    R4 + i I4 = rho^4:  (R4-I4)(R4+I4) = p^2 A4 with coprime odd
+    factors and p !| A4, so p^2 lands in one factor: WLOG
+    R4 + I4 = p^2 D, R4 - I4 = A4/D for a divisor D of A4, whence
+        2 q^4 = p^4 D^2 + (A4/D)^2.                            (*)
+    PROVEN cases:  D = +-1  =>  2q^4 = (c1^2+s1^2)^2 + (c1^2-s1^2)^2
+      = 2(c1^4 + s1^4), i.e. q^4 = c1^4 + s1^4: FERMAT x^4+y^4=z^4.
+      D = +-A4 (R4 - I4 = +-1)  =>  (p^2 A4)^2 + 1 = 2 q^4: the
+      LJUNGGREN equation x^2 + 1 = 2y^4, only y in {1, 13}; at q = 13,
+      p^2 | 239 (prime) is impossible.
+    Natural split D = c1 +- s1 (Case N) is EQUIVALENT to
+      rho^4 = pi^2 + K(1+i),  K = (p^2-1)(c1+s1)/2,
+    i.e. R4 - c1 = I4 - s1 = K, whence 2q^4 = 2p^2 + (p^4-1)(c1+s1)^2
+    -- pinned exact; it forces c1 = 1 mod 8, s1 = 0 mod 8, q = 1 mod 8
+    on top of p = 1 mod 16.  General intermediate D: OPEN (research).
+    VERIFIED: (*) is a finite check per prime p over the divisors of
+    A4, for ALL q at once; it has NO solution for every prime
+    p = 1 mod 4 up to the bound (FULL 10^5; a 10^6 run is recorded in
+    entry 73).  So the lemma holds for all p below the bound and every
+    q.  NOT a proof for all p."""
+    from math import gcd, isqrt
+    from compute.zi_additive import gaussian_prime_over
+
+    # D = +-1: the Fermat identity, exact
+    for c1 in range(1, 40, 2):
+        for s1 in range(2, 40, 2):
+            require((c1*c1 + s1*s1)**2 + (c1*c1 - s1*s1)**2
+                    == 2*(c1**4 + s1**4))
+    # D = +-A4: Ljunggren corroboration and the 239 kill
+    sols = [y for y in range(1, 3000)
+            if isqrt(2*y**4 - 1)**2 == 2*y**4 - 1]
+    require(sols == [1, 13], sols)
+    require(all(239 % d for d in range(2, 16)))
+    # Case N identity, exact on frames
+    for c1 in range(1, 40, 2):
+        for s1 in range(2, 40, 2):
+            if gcd(c1, s1) != 1:
+                continue
+            p2 = c1*c1 + s1*s1
+            K = (p2 - 1)*(c1 + s1) // 2
+            R4, I4 = c1 + K, s1 + K
+            require(R4 + I4 == p2*(c1 + s1) and R4 - I4 == c1 - s1)
+            require(2*(R4*R4 + I4*I4) == 2*p2 + (p2*p2 - 1)*(c1+s1)**2)
+
+    def isprime(n):
+        if n < 2:
+            return False
+        if n % 2 == 0:
+            return n == 2
+        d = 3
+        while d*d <= n:
+            if n % d == 0:
+                return False
+            d += 2
+        return True
+
+    def divisors(n):
+        n = abs(n)
+        out, d = [], 1
+        while d*d <= n:
+            if n % d == 0:
+                out.append(d)
+                if d*d != n:
+                    out.append(n // d)
+            d += 1
+        return out
+
+    def iroot4(n):
+        r = round(n ** 0.25)
+        for c in (r - 1, r, r + 1):
+            if c >= 0 and c**4 == n:
+                return c
+        return None
+
+    # the per-prime finite check (*), all q at once
+    N = ctx.bound(full=100000, fast=15000)
+    n_p = 0
+    for p in range(5, N, 4):
+        if not isprime(p):
+            continue
+        n_p += 1
+        a, b = gaussian_prime_over(p)
+        c1, s1 = abs(a*a - b*b), abs(2*a*b)
+        A4 = c1*c1 - s1*s1
+        require(A4 % p)
+        p4 = p**4
+        for D in divisors(A4):
+            for sD in (D, -D):
+                beta = A4 // sD
+                T2 = p4*sD*sD + beta*beta
+                if T2 % 2 == 0:
+                    require(iroot4(T2 // 2) is None, ("frame lemma", p, sD))
+    # the p = 1 mod 16 lever on real Gaussian primes
+    prs = [n for n in range(5, ctx.bound(full=1500, fast=600), 4)
+           if isprime(n)]
+    def re8(e, f):
+        re, im = 1, 0
+        for _ in range(8):
+            re, im = re*e - im*f, re*f + im*e
+        return re
+    seen = set()
+    for q in prs:
+        e, f = gaussian_prime_over(q)
+        R = re8(e, f)
+        for p in prs:
+            if p != q and R % (p*p) == 0:
+                seen.add(p)
+    require(all(p % 16 == 1 for p in seen), sorted(seen))
+    ctx.note(f"frame rigidity lemma: D=+-1 Fermat, D=+-A4 Ljunggren "
+             f"(proven); Case N == rho^4 = pi^2 + K(1+i) (exact); "
+             f"finite check (*) empty for all {n_p} primes p < {N} "
+             f"and EVERY q; p^2|Re(rho^8) => p=1 mod 16 on data "
+             f"(witnessed p: {sorted(seen)}); general D OPEN")

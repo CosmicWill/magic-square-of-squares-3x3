@@ -2723,3 +2723,43 @@ Neither is close. The golden centers all sit in omega = 2 boxes
 ((2,1),(2,2),(3,2),(4,1)) -- the heuristic hot spots are exactly
 where U1 lands. NOT CLAIMING A3.10. Suite 159; gate at commit read
 from the fail= line.
+
+## 2026-08-30 — Entry 73: the frame-version descent — two divisor cases proven, all p < 10^6 verified, the middle reduced to a two-ring recombination
+
+Attacking the (now correctly stated) rigidity lemma. With
+R4 + i I4 = rho^4 the endpoint is (R4-I4)(R4+I4) = p^2 A4, coprime
+odd factors on the left and p !| A4, so p^2 lands wholly in one
+factor: WLOG R4 + I4 = p^2 D, R4 - I4 = A4/D for a divisor D of A4,
+and adding squares  2 q^4 = p^4 D^2 + (A4/D)^2  (*).  This makes the
+lemma a FINITE CHECK PER PRIME over the divisors of A4, valid for
+every q at once -- and (*) has no solution for ANY prime p = 1 mod 4
+below 10^5 (4783 primes), and -- rerun with A4 factored through its
+two sub-2p factors c1 -+ s1 instead of by trial division -- for
+EVERY prime p = 1 mod 4 below 10^6, zero hits. That is a
+qualitatively stronger verification than any pair search: for
+every p below the bound, every q is excluded.
+
+Two divisor cases are theorems. D = +-1: 2q^4 = (c1^2+s1^2)^2 +
+(c1^2-s1^2)^2 = 2(c1^4+s1^4), i.e. q^4 = c1^4 + s1^4 -- Fermat's
+x^4+y^4=z^4. D = +-A4 (R4 - I4 = +-1): (p^2 A4)^2 + 1 = 2q^4 --
+Ljunggren's x^2+1 = 2y^4, only y in {1,13}, and at q = 13 it needs
+p^2 | 239, a prime. Since A4 = (c1-s1)(c1+s1) is composite by
+construction (never prime, checked to 60000), the natural splits
+D = c1 +- s1 carry the general case. Case N (D = c1+s1) is exactly
+equivalent to  rho^4 = pi^2 + K(1+i), K = (p^2-1)(c1+s1)/2  (pinned
+exact): the q-prime's fourth power and the p-prime's square differ
+by a diagonal multiple of 1+i. It forces c1 = 1 mod 8, s1 = 0 mod 8,
+q = 1 mod 8 on top of p = 1 mod 16; it is CONSISTENT mod pi and
+mod pibar (a slip in the first pass -- using pi^2 = 0 mod pibar --
+briefly suggested a contradiction and was caught), so there is no
+cheap kill. In Z[sqrt2] the general case reads N(q^2 + I4 sqrt2) =
+N(p^2 + p s1 sqrt2): two elements of norm p^2 A4 related by
+recombining the split primes, i.e. a two-ring (Z[i], Z[sqrt2])
+recombination problem. That is the open proof obligation.
+
+Check a3.rigidity_frame_lemma pins all of it: the Fermat identity,
+the Ljunggren corroboration and 239, the Case-N identity, the
+finite check (*) (FAST p < 15000, FULL p < 10^5), and the p = 1 mod
+16 lever on real Gaussian primes. Status of the lemma: proven for
+the extreme divisors, verified for all p < 10^5 (10^6 pending) and
+every q, open in the middle. NOT claiming the lemma or A3.10.

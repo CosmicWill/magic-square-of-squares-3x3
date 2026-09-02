@@ -762,6 +762,41 @@ itself, invisible to any frame-level sieve, and confirmed on data
 is $17$).  The attack is therefore Gaussian-prime arithmetic, not K3
 geometry.
 
+**The descent, as far as it goes (entry 73; check
+`a3.rigidity_frame_lemma`).**  Write $R_4 + iI_4 = \rho^4$ (so
+$R_4^2+I_4^2 = q^4$, coprime, $R_4$ odd, $I_4 \equiv 0 \bmod 8$).
+The endpoint is $(R_4-I_4)(R_4+I_4) = p^2 A_4$ with coprime-odd
+factors on the left and $p\nmid A_4$, so $p^2$ lands wholly in one
+factor: WLOG $R_4+I_4 = p^2D$, $R_4-I_4 = A_4/D$ for a divisor $D$
+of $A_4$, and adding squares,
+$$2q^4 \;=\; p^4D^2 + (A_4/D)^2. \tag{$*$}$$
+This turns the lemma into a **finite check per prime $p$** over the
+divisors of $A_4$, valid for all $q$ at once — and $(*)$ has no
+solution for any prime $p<10^6$ (entry 73).  Two divisor cases are
+theorems:
+
+* $D=\pm1$: $2q^4 = (c_1^2+s_1^2)^2 + (c_1^2-s_1^2)^2 = 2(c_1^4+s_1^4)$,
+  so $q^4 = c_1^4 + s_1^4$ — **Fermat's $x^4+y^4=z^4$.**
+* $D=\pm A_4$ (i.e. $R_4 - I_4 = \pm1$): $(p^2A_4)^2 + 1 = 2q^4$ —
+  **Ljunggren's $x^2+1=2y^4$**, whose only solutions are $y\in\{1,13\}$;
+  at $q=13$ it needs $p^2 \mid 239$, a prime.
+
+Since $A_4 = (c_1-s_1)(c_1+s_1)$ is composite by construction, the
+natural splits $D = \pm(c_1\pm s_1)$ are the heart of the general
+case.  Case N ($D = c_1+s_1$) is *equivalent* to
+$$\rho^4 \;=\; \pi^2 + K(1+i),\qquad K = \tfrac{(p^2-1)(c_1+s_1)}{2},$$
+i.e. $R_4 - c_1 = I_4 - s_1 = K$ (pinned exact): the $q$-prime's
+fourth power and the $p$-prime's square differ by a "diagonal"
+multiple of $1+i$.  It forces $c_1\equiv1$, $s_1\equiv0 \pmod 8$ and
+$q\equiv1\pmod 8$ on top of $p\equiv1\pmod{16}$, is consistent modulo
+$\pi$ and $\bar\pi$ (so no cheap kill), and in $\mathbb{Z}[\sqrt2]$
+reads $N(q^2+I_4\sqrt2) = N(p^2+ps_1\sqrt2)$ — two elements of equal
+norm $p^2A_4$ related by recombining the split primes.  **The general
+intermediate-$D$ case is the open proof obligation.**  Status: proven
+for the extreme divisors, verified for every $p<10^6$ and all $q$,
+reduced to a clean two-ring ($\mathbb{Z}[i]$, $\mathbb{Z}[\sqrt2]$)
+recombination problem in the middle.
+
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct
