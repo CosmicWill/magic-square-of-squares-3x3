@@ -3447,3 +3447,67 @@ windows (|C|, S < p^2 < sqrt2 q^2) pinning C = +-q^2 or u = +-p^2
 exactly onto Fermat's x^4 - y^4 = z^2. The window argument is the one
 finisher the machine still lacks (next build). The ladder is being
 re-measured with the complete stack.
+
+## 2026-09-02 — Entry 86: the window finisher — the (2,2) box closed end to end by machine; a ledger gap found and closed
+
+compute/window_kill.py mechanizes the H3 double lever and the G3
+double pincer: levers (the surplus prime power of the third term lands
+on the pure factor of a pair collapse; levers may sit on different
+collapses), coprime-factor TARGETS with size and parity (even index:
+(C_h -+ S_h) <= sqrt2 P^h odd, legs < P^h; index 3: X1 (4X1^2 - aP^2),
+gcd | 3, cofactor odd inside (-aP^2, (4-a)P^2)), then per target tuple:
+the pincer (p^al <= ka q^be, q^ga <= kb p^de => p^{al ga - be de} <=
+const, false at p >= 5), the window (B/R^e <= 2 => X = +-R^e exactly;
+even X => parity kill; B/R^e <= 1 => empty), the Fermat pin (even
+frame index, even lever exponent only; odd-index pins are NOT Fermat:
+25^2 + 312^2 = 313^2), and the index-3 cofactor pair (4U1^2 = aq^2 +
+tp^2, 4C1^2 = a'p^2 + t'q^2, t,t' odd, |tt'| < 9, mod 8, leg windows
+=> empty interval for r = p^2/q^2). Wired into kill_pattern as the
+last stage (verdict DEAD-window).
+
+RESULT: all 32 survivors of entry 85 die: H3 x8 (pin C2 = +-q^2 then
+Fermat; the S2 branch is a parity kill) and G3 x24 (20 pincers). THE
+LAST FOUR EXPOSED A GAP IN THE HAND LEDGER: entry 63's "all 24 sign
+variants" of {(1,2),(2,1),(2,2)} used the identities of the (2,2)
+sign class (q^2 | 2c1 or 2s1, p^2 | c2 or s2); for the class
+{(1,2),(2,1),(2,-2)} (2 patterns up to w-conjugation, 4 ledger
+entries) BOTH groupings land on index-3 values and the stated pincer
+does not apply. They die by the index-3 cofactor lemma (three tuples
+by pincers, the cofactor-cofactor tuple by the empty-interval solver
+-- checked by hand for both pairings (a,a') = (3,1), (1,3)). Theorem
+A3.10 now rests entirely on machine certificates: 120/120 distinct
+OPEN patterns of the (2,2) box die in the complete machine (24
+residual, 16 valuation, 16 unit collapse, 32 concentration, 32
+window; the 16 doubled are Lemma G4's; 469 s). Lesson: a
+ledger tag is a claim, not a proof; identities must be re-derived
+per sign class -- the machine does, the hand did not.
+
+Bugs caught on the way: the first cofactor solver had the two levers'
+roles swapped (the p-lever bounds r = p^2/q^2 ABOVE, the q-lever
+BELOW) and reported spurious feasible (t,t'); the unit-collapse
+variant search (entry 85) accepted only positively-signed
+difference-of-squares forms -- T = +-c'P^e has a free sign, so -T
+must be tried too (a Block-B sign variant failed the theorem check
+until fixed).
+
+The ladder under the complete stack (distinct OPEN patterns dead /
+total; the doubled patterns are Lemma G4's and count as dead): (2,1)
+26/26; (2,2) 120/120; (3,2) 278/322 (44 open; the window finisher
+took 108 of the 152 earlier survivors); (4,1) 110/140 (30 open);
+(5,1) 160/220 (60 open); (4,2) and (3,3) still running. Census of the
+134 survivors by lever shape: 72 single p-levers on index-2 w-values
+(p^2, p^4, p^6 | Re/Im(w^2)) and 8 on index 4 -- no second lever, so
+nothing to pincer; 54 double levers whose l-value has index 5-10 (20
+with indices [1,5], 8 [3,5], 8 [4,6], 8 [1,7], 4 [2,8], 4 [1,9], 2
+[2,10]) -- the machine has no targets above index 4 yet. NEXT BUILDS:
+(A) general-index targets: odd n via the Chebyshev cofactor
+Re(X^n) = X1 * P_n(X1^2, P^2) with an exact sup bound on (0,1),
+gcd(leg, cofactor) | n (so the split case when the lever prime
+divides n), even n recursively through the half-index legs; this is
+uniform in n and should take the 54. (B) the residual-system finisher
+for single-lever patterns: substitute U_2 = p^{2e} t into the
+third-term relation, which is LINEAR in the w-legs (U_1, V_1) -- the
+H1/H2 bracket identities of the (3,1) campaign (rigid (u,v)-forms,
+parity odd = even^2, the leg-overflow window) made mechanical; this
+is the majority shape (80) and the real frontier of the uniform
+omega <= 2 program.

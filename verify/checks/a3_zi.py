@@ -1017,11 +1017,16 @@ def _(ctx):
                          for e in (1, -1)}))
     # queue state
     led, _, _, _ = _ledger_and_queue()
+    # entry 86: four G3 rows (the {(1,2),(2,1),(2,-2)} class) were retagged --
+    # the pincer identities above are those of the (2,2) sign class and never
+    # applied to them; they are closed by the index-3 cofactor lemma
+    # (a3.window_finisher).  The identities verified above stand for the 20.
     require(_ledger_tag_count(led, {"M1 (Fermat both branches)",
-                                    "G3 double-pincer"}) == 28)
-    ctx.note("M1 (double Fermat) x4 + G3 double-pincer x24 closed; "
-             "M2-opp x4 reduced-open (P5' = +-q^2, search empty); "
-             "wave left 32")
+                                    "G3 double-pincer"}) == 24)
+    require(_ledger_tag_count(led, {"G3 index-3 window (entry 86)"}) == 4)
+    ctx.note("M1 (double Fermat) x4 + G3 double-pincer x20 closed here; the 4 "
+             "{(1,2),(2,1),(2,-2)} rows are closed by a3.window_finisher (entry 86); "
+             "M2-opp x4 reduced-open (P5' = +-q^2, search empty); wave left 32")
 
 
 @check("a3.g4_doubled", DOC)
@@ -2512,10 +2517,26 @@ def _(ctx):
         require("kill+" in cert and "kill-" in cert, cert)
         tally26["DEAD-blockB"] += 1
     require(sum(tally26.values()) == 26, dict(tally26))
+    # entry 86: the 32 ledger patterns (H3 x8, G3 x24) die INSIDE kill_pattern too --
+    # the theorem no longer rests on the hand ledger (whose G3 tag was wrong for the
+    # {(1,2),(2,1),(2,-2)} class: both levers on index-3 values, closed by the
+    # index-3 cofactor lemma of the window finisher)
+    led, _, _, _ = _ledger_and_queue()
+    ledger32 = [(box, cls, coef, tag) for box, cls, coef, tag in led
+                if tag in ("H3 double-lever (Fermat)", "G3 double-pincer", "G3 index-3 window (entry 86)")]
+    require(len(ledger32) == 32, len(ledger32))
+    tally32 = Counter()
+    for box, cls, coef, tag in ledger32:
+        pat = tuple((tuple(jk), c) for jk, c in zip(cls, coef))
+        v, certs = kill_pattern(pat)
+        require(v == "DEAD-window", (pat, v))
+        tally32[tag] += 1
+    require(tally32["G3 index-3 window (entry 86)"] == 4 and tally32["H3 double-lever (Fermat)"] == 8, dict(tally32))
     ctx.note(f"the 14 rigidity children: {dict(tally)}; all 26 distinct k-children by "
-             f"machine: {dict(tally26)} -- with a3.p2q2_accounting (zero-gap partition), "
-             f"a3.h3_closed + the G3 ledger, Theorem A3.8 for the sub-boxes and the "
-             f"j-children as transposes, THEOREM A3.10 (split part p^2 q^2) holds")
+             f"machine: {dict(tally26)}; the 32 ledger patterns by the window finisher "
+             f"{dict(tally32)} -- with a3.p2q2_accounting (zero-gap partition), Theorem A3.8 "
+             f"for the sub-boxes and the j-children as transposes, THEOREM A3.10 (split part "
+             f"p^2 q^2) holds on machine certificates alone")
 
 
 @check("a3.box21_machine", DOC)
@@ -2610,3 +2631,108 @@ def _(ctx):
              f"{crit_no}; rank undetermined {len(und)}; 2-descent blind at p "
              f"(2 quartic residue, trivial localization) on all; TOTAL PROVEN "
              f"{len(proven)}/67 transparent p < 30000")
+
+
+@check("a3.window_finisher", DOC)
+def _(ctx):
+    """THE WINDOW FINISHER (entry 86; compute/window_kill.py): levers on any
+    pair collapse, coprime-factor targets with size and parity, the pincer,
+    the window (exact pin / parity kill / empty), the Fermat pin (even
+    frame index and even lever exponent only), and the index-3 cofactor
+    pair.  (i) Frame facts on real split primes: C1 odd, S1 even; the
+    index-3 factorizations Re(X^3) = X1(4X1^2 - 3P^2), Im(X^3) = Y1(4X1^2
+    - P^2) with gcd | 3 and the cofactor strictly inside (-aP^2, (4-a)P^2);
+    C_{2h} = (C_h - S_h)(C_h + S_h) with odd coprime factors <= sqrt2 P^h.
+    (ii) The 32 ledger patterns (H3 x8, G3 x24) die in window_kill: H3
+    through a Fermat pin with the S2 branch a parity kill, 20 G3 by pincers,
+    and the 4 {(1,2),(2,1),(2,-2)} rows -- whose recorded pincer never
+    applied (both levers on index-3 values) -- by the index-3 cofactor
+    lemma.  (iii) The cofactor-pair solver is re-derived here by an
+    independent enumeration (Fraction arithmetic) for both pairings, with a
+    control: dropping the mod-8 filter leaves feasible (t, t'), so the kill
+    is not vacuous.  (iv) The Fermat recognizer refuses odd index: the pin
+    c = q^2 is realizable (25^2 + 312^2 = 313^2).  FULL: every one of the
+    120 distinct OPEN patterns of the (2,2) box dies in kill_pattern."""
+    from fractions import Fraction
+    from math import gcd, isqrt
+    from compute.window_kill import window_kill, _fermat, _cof_pair
+    from compute.lucas_endpoints import kill_pattern
+    from compute.two_prime_additive import gauss_pow
+    # (i) frame facts on real data
+    b = ctx.bound(full=400, fast=120)
+    n_checked = 0
+    for p in range(5, b, 4):
+        if any(p % d == 0 for d in range(2, isqrt(p) + 1)):
+            continue
+        a = next(a for a in range(1, isqrt(p) + 1) if isqrt(p - a * a) ** 2 == p - a * a)
+        bb = isqrt(p - a * a)
+        c1, s1 = a * a - bb * bb, 2 * a * bb            # l = pi^2
+        require(c1 % 2 == 1 and s1 % 2 == 0 and c1 * c1 + s1 * s1 == p * p)
+        (R3, I3) = gauss_pow(c1, s1, 3) if False else (c1 ** 3 - 3 * c1 * s1 * s1, 3 * c1 * c1 * s1 - s1 ** 3)
+        require(R3 == c1 * (4 * c1 * c1 - 3 * p * p) and I3 == s1 * (4 * c1 * c1 - p * p))
+        require(gcd(abs(c1), abs(4 * c1 * c1 - 3 * p * p)) in (1, 3) and gcd(abs(s1), abs(4 * c1 * c1 - p * p)) in (1, 3))
+        require(-3 * p * p < 4 * c1 * c1 - 3 * p * p < p * p and -p * p < 4 * c1 * c1 - p * p < 3 * p * p)
+        require((4 * c1 * c1 - 3 * p * p) % 2 == 1 and (4 * c1 * c1 - p * p) % 2 == 1)
+        C2, S2 = c1 * c1 - s1 * s1, 2 * c1 * s1
+        require(C2 % 2 == 1 and S2 % 2 == 0 and gcd(abs(C2 - S2), abs(C2 + S2)) == 1)
+        require((C2 - S2) ** 2 <= 2 * p ** 4 and (C2 + S2) ** 2 <= 2 * p ** 4 and (C2 * C2 - S2 * S2) == (C2 - S2) * (C2 + S2))
+        n_checked += 1
+    require(n_checked >= 10)
+    # (ii) the 32 ledger patterns
+    led, _, _, _ = _ledger_and_queue()
+    rows = [(cls, coef, tag) for box, cls, coef, tag in led
+            if tag in ("H3 double-lever (Fermat)", "G3 double-pincer", "G3 index-3 window (entry 86)")]
+    require(len(rows) == 32, len(rows))
+    from collections import Counter
+    how = Counter()
+    for cls, coef, tag in rows:
+        pat = tuple((tuple(jk), c) for jk, c in zip(cls, coef))
+        cert = window_kill(pat)
+        require(cert and cert.get("kills"), (pat, cert))
+        whys = " | ".join(c.get("why", "") for c in cert["cases"])
+        if tag.startswith("H3"):
+            require("Fermat" in whys and "target is even" in whys, (pat, whys))
+        elif tag == "G3 double-pincer":
+            require(all("pincer" in c.get("why", "") for c in cert["cases"]), (pat, whys))
+        else:
+            require("index-3 cofactor pair" in whys and sum("pincer" in c.get("why", "") for c in cert["cases"]) == 3, (pat, whys))
+        how[tag] += 1
+    require(dict(how) == {"H3 double-lever (Fermat)": 8, "G3 double-pincer": 20, "G3 index-3 window (entry 86)": 4}, dict(how))
+    # (iii) the cofactor-pair solver re-derived independently, with a control
+    def enumerate_pairs(a, ap, mod8):
+        feas = []
+        for t in range(-8, 9):
+            for t2 in range(-8, 9):
+                if t % 2 == 0 or t2 % 2 == 0 or abs(t * t2) >= 9:
+                    continue
+                if mod8 and ((a + t) % 8 not in (0, 4) or (ap + t2) % 8 not in (0, 4)):
+                    continue
+                # r = p^2/q^2:  -a < t r < 4-a  (upper bounds);  -a' < t'/r < 4-a'  (lower bounds)
+                hi = [Fraction(4 - a, t)] if t > 0 else [Fraction(a, -t)]
+                lo = [Fraction(t2, 4 - ap)] if t2 > 0 else [Fraction(-t2, ap)]
+                if max(lo) < min(hi):
+                    feas.append((t, t2))
+        return feas
+    for a, ap in ((3, 1), (1, 3)):
+        require(enumerate_pairs(a, ap, True) == [], (a, ap, enumerate_pairs(a, ap, True)))
+        require(len(enumerate_pairs(a, ap, False)) > 0, "control: the mod-8 filter is doing work")
+        res = _cof_pair({"e": 2}, {"cof": a}, {"e": 2}, {"cof": ap})
+        require(res[0] is not None, (a, ap, res))
+    # (iv) odd-index pins are not Fermat endpoints
+    require(_fermat({"e": 2, "prime": "q"}, {"leg": True, "index": 1}) is None)
+    require(_fermat({"e": 2, "prime": "q"}, {"leg": True, "index": 2}) is not None)
+    require(25 ** 2 + 312 ** 2 == 313 ** 2 and 25 == 5 ** 2)
+    # FULL: the whole (2,2) box through kill_pattern
+    if ctx.profile == "FULL":
+        from compute.lucas_endpoints import survey_box
+        verdict, opens = survey_box(2, 2)
+        distinct = [tuple(pattern) for pattern, kind in opens if kind == "distinct"]
+        require(len(distinct) == 120, len(distinct))
+        tally = Counter()
+        for pat in distinct:
+            v, _c = kill_pattern(pat)
+            require(v.startswith("DEAD"), (pat, v))
+            tally[v] += 1
+        ctx.note(f"(2,2) box, 120/120 distinct OPEN patterns dead: {dict(tally)}")
+    ctx.note(f"32 ledger patterns by the window finisher: {dict(how)}; frame facts on {n_checked} primes; "
+             f"cofactor-pair solver re-derived for (a,a') = (3,1), (1,3) with control")

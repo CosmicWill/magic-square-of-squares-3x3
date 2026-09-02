@@ -1219,6 +1219,9 @@ def kill_pattern(pattern, jmax=6, amax=12):
             uc = None
         if uc and "kills" in uc:
             return "DEAD-unit-collapse", uc
+        wk = _window_stage(pattern)
+        if wk:
+            return "DEAD-window", wk
         return status, None
     # group the pinned branches by the equality they come from: a pattern
     # is dead as soon as ONE equality has every (sign, content) branch dead
@@ -1254,7 +1257,24 @@ def kill_pattern(pattern, jmax=6, amax=12):
                 break
         if all_dead:
             return "DEAD-concentration", certs
+    # a pinned coincidence system is not a kill by itself: the window finisher
+    # may still close the pattern (H3's opposite-sign children do die here)
+    wk = _window_stage(pattern)
+    if wk:
+        return "DEAD-window", wk
     return "COINCIDENCE-open", certs
+
+
+def _window_stage(pattern):
+    """The WINDOW finisher (entry 86): levers on any collapse, pincers, size
+    windows, Fermat pins, index-3 cofactor pairs -- compute/window_kill.py.
+    Returns the certificate when it kills, else None."""
+    try:
+        from compute.window_kill import window_kill
+        wk = window_kill(pattern)
+    except Exception:
+        return None
+    return wk if (wk and wk.get("kills")) else None
 
 
 # ------------------------------------------- Block B: the unit collapse

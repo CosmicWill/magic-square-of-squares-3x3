@@ -1471,7 +1471,86 @@ shape $\{1,2,2\}$ on both primes), which the hand campaign closed by
 the double lever and the double pincer: two levers on one equation and
 the **size windows** ($|C|,S<p^2<\sqrt2\,q^2$) pinning $C=\pm q^2$ or
 $u=\pm p^2$ exactly, landing on Fermat's $x^4-y^4=z^2$.  That window
-argument is the one finisher the machine still lacks.
+argument was the one finisher the machine still lacked; §2.17 builds it.
+
+## 2.17 The window finisher: the $(2,2)$ box closed end to end by machine — and a ledger gap found and closed
+
+*(2026-09-02; entry 86; `compute/window_kill.py`; checks
+`a3.window_finisher`, `a3.p2q2_theorem` (strengthened).)*
+
+**The module.**  For every pair collapse $2s\,p^{2a}q^{2b}\,T_1(D)T_2(M)
+= -c\,p^{2w_p}q^{2w_q}\,\mathrm{Trig}(\text{third})$ the surplus
+$p^{2e_p}$, $q^{2e_q}$ of the third term must be absorbed by the pure
+factor of the right side (mixed factors are units at both primes;
+$\ell$-values are $p$-units, $w$-values $q$-units) — a **lever** with
+an explicit prime power on an explicit Lucas value; a negative surplus
+is absorbed by the third term's own value, which must then be pure.  A
+pattern's levers may sit on different collapses (G3 has one on each of
+two groupings).  Each lever's value is split into **coprime-factor
+targets** — a disjunction — with a size bound and a parity:
+even index $2h$: $C_{2h}=(C_h-S_h)(C_h+S_h)$, coprime odd factors
+$\le\sqrt2P^h$; $S_{2h}=2C_hS_h$, the coprime legs $<P^h$ ($C_h$ odd,
+$S_h$ even); index $3$: $\mathrm{Re}(X^3)=X_1(4X_1^2-3P^2)$,
+$\mathrm{Im}(X^3)=Y_1(4X_1^2-P^2)$, $\gcd\mid3$, the cofactor odd and
+strictly inside $(-aP^2,(4-a)P^2)$.  Levers are conjunctive, targets
+disjunctive: the pattern dies iff every tuple of targets dies by
+
+* a **pincer** — $p^{\alpha}\le\kappa q^{\beta}$ and $q^{\gamma}\le
+  \kappa'p^{\delta}$ give $p^{\alpha\gamma-\beta\delta}\le\kappa^\gamma
+  \kappa'^\beta$, false at $p\ge5$;
+* a **window** — $R^e\mid X$, $|X|<B$ and the other lever's inequality
+  bound $B/R^e\le2$, so $X=\pm R^e$ exactly (parity kill when $X$ is
+  even), or $B/R^e\le1$ (no $X$ at all);
+* a **Fermat pin** — a leg of a frame of *even* index $h$ pinned to
+  $\pm R^{e}$ with $e$ even gives $(\text{other leg})^2=(P^{h/2})^4-
+  (R^{e/2})^4$, Fermat's quartic; odd $h$ or odd $e$ is refused
+  ($25^2+312^2=313^2$ has $c=q^2$);
+* the **index-3 cofactor pair** — both levers on cofactors,
+  $4U_1^2=aq^2+tp^2$ and $4C_1^2=a'p^2+t'q^2$ with $t,t'$ odd,
+  $|tt'|<9$, $a+t,\ a'+t'\in\{0,4\}\bmod8$, and the leg windows
+  $0<U_1^2<q^2$, $0<C_1^2<p^2$ making each pair $(t,t')$ an empty
+  interval for $r=p^2/q^2$ (the $p$-lever bounds $r$ above, the
+  $q$-lever below).
+
+**Result.**  All $32$ survivors of §2.16 die: H3's $8$ exactly as in
+§2.10 (the $q^2$-window pins $C_2=\pm q^2$, Fermat; the $S_2$ branch is
+a parity kill), $20$ of G3's $24$ by pincers.  **The last $4$ exposed a
+gap in the hand ledger.**  Entry 63 closed "all 24 sign variants" of
+$\{(1,2),(2,1),(2,2)\}$ by the pincer $q^2\mid2c_1$ or $2s_1$, $p^2\mid
+c_2$ or $s_2$ — but its identities are those of the sign class with
+$(2,2)$; for the class $\{(1,2),(2,1),(2,-2)\}$ (two patterns up to
+$w$-conjugation, four ledger entries) *both* groupings collapse onto
+index-$3$ values, $q^2\mid\mathrm{Im}/\mathrm{Re}(\ell^3)$ and $p^2\mid
+\mathrm{Re}/\mathrm{Im}(w^3)$, and the stated pincer does not apply.
+(For $16$ of the other $20$ one grouping is index $3$ too, but the
+weaker bound $q^2<p^3$ or $p^2<q^3$ still pincers.)  Those four die
+by the index-3 cofactor lemma above: three target tuples by pincers,
+the cofactor–cofactor tuple by the empty-interval solver — a real
+proof where the ledger had a wrong citation.  So **Theorem A3.10 now
+rests entirely on machine certificates**: sub-boxes (A3.8 by machine),
+$44$ replications (§2.15), and all $32$ ledger patterns through
+`kill_pattern`'s window stage; $120/120$ distinct OPEN patterns of the
+$(2,2)$ box die in the complete machine — $24$ residual parity, $16$
+valuation, $16$ unit collapse, $32$ concentration, $32$ window (the
+$16$ doubled patterns are Lemma G4's).
+
+*Lesson recorded.*  A ledger tag is a claim, not a proof; the
+identities of a hand lemma must be re-derived per sign class, which is
+exactly what the machine does and the hand did not.
+
+**The ladder under the complete stack** (distinct OPEN patterns dead /
+total, doubled patterns counted dead by Lemma G4): $(2,1)$ $26/26$;
+$(2,2)$ $120/120$; $(3,2)$ $278/322$; $(4,1)$ $110/140$; $(5,1)$
+$160/220$.  The $134$ survivors have two shapes only: **80 single
+$p$-levers** on index-$2$ (or $4$) $w$-values, $p^{2e}\mid
+\mathrm{Re}/\mathrm{Im}(w^2)$ with nothing to pincer against — the
+H1/H2 "bracket identity" territory of the $(3,1)$ campaign (the third
+term's relation is linear in the $w$-legs once $U_2=p^{2e}t$ is
+substituted); and **54 double levers whose $\ell$-value has index
+$5$–$10$**, above the module's current targets — the Chebyshev
+cofactor $\mathrm{Re}(X^n)=X_1P_n(X_1^2,P^2)$ with its exact sup bound
+and $\gcd\mid n$ is the uniform extension.  Those are the next two
+builds.
 
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
