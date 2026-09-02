@@ -1212,6 +1212,13 @@ def kill_pattern(pattern, jmax=6, amax=12):
         return r["status"], None
     status, systems = pinned_systems(pattern)
     if status != "COINCIDENCE":
+        # last resort before giving up: the general unit collapse on a lever
+        try:
+            uc = unit_collapse_kill(pattern)
+        except Exception:
+            uc = None
+        if uc and "kills" in uc:
+            return "DEAD-unit-collapse", uc
         return status, None
     # group the pinned branches by the equality they come from: a pattern
     # is dead as soon as ONE equality has every (sign, content) branch dead
@@ -1343,6 +1350,294 @@ def block_b_lemma(pattern):
             assert 7 not in {x * x % 8 for x in range(8)}
             cert["kill-"] = "q^4-3 = 2v^2 => v^2 = 7 mod 8 impossible"
     return cert
+
+
+# ------------------------------------------- the general unit collapse
+#
+# Generalizes block_b_lemma.  A lever equation with prime P (q for an
+# l-side collapse) factors as  const * (one-sided atoms) * T * M
+#   = const' * (one-sided atoms) * P^{2e},
+# with M a P-unit (mixed) and T the one one-sided polynomial atom that
+# is NOT a structural P-unit.  If every other atom is coprime to T (the
+# content bounds are 1) and T is odd, then T | c P^{2e} and P^{2e} | T,
+# so T = +-c' P^{2e} with c' | c.  Writing T as a quadratic form in
+# (C_x, S_x) with p^{2x} = C_x^2 + S_x^2, a difference of squares
+# a^2 p^{2x} - b^2 S_x^2 (or with C_x) splits into coprime factors, each
+# +- a divisor of c' P^{2e}; the finitely many cases give
+# C_x^2 (or S_x^2) = R(P) with R a polynomial in P^{2e}, and R is killed
+# by exact modular square tests or by the small-difference size kill.
+
+def _never_square_mod(R, var, moduli=(16, 32, 9, 5, 7, 11, 13, 64, 27, 25)):
+    """True if R(var) is never a square modulo some m for var coprime to m
+    (var ranges over units mod m, since var is a prime >= 5 here)."""
+    from math import gcd
+    for m in moduli:
+        sq = {(x * x) % m for x in range(m)}
+        ok = True
+        for t in range(m):
+            if gcd(t, m) != 1:
+                continue
+            val = int(R.subs(var, t)) % m
+            if val in sq:
+                ok = False
+                break
+        if ok:
+            return m
+    return None
+
+
+def _small_square_difference_kill(Ra, Rb, var):
+    """Kill of  A^2 = Ra(var), B^2 = Rb(var)  when Ra - Rb (or a fixed
+    linear combination) is a small constant: two squares of moduli
+    > sqrt(const) cannot differ by it.  Returns True if certified."""
+    diff = _sp.expand(Ra - Rb)
+    if diff.is_number and diff != 0:
+        # A^2 - B^2 = diff  =>  (A - B)(A + B) = diff, so A + B <= |diff|,
+        # impossible once Ra(var) > diff^2 for the smallest admissible var
+        c = abs(int(diff))
+        for v0 in (5, 7, 11, 13):
+            if Ra.subs(var, v0) > c * c:
+                return True
+    return False
+
+
+def content_bound_poly(T, G, side="l"):
+    """gcd(T, G) bound for two polynomials of the SAME side: a prime r
+    dividing both makes u = l/lbar a common root of their angle
+    polynomials mod r, so r | Res_u(B_T, B_G); returns the odd part of the
+    Gaussian norm of the resultant (None if the resultant vanishes)."""
+    mT, BT = _angle_poly(T, side)
+    mG, BG = _angle_poly(G, side)
+    if BT.is_zero or BG.is_zero:
+        return None
+    res = _sp.expand(_sp.resultant(BT.as_expr(), BG.as_expr(), _U))
+    if res == 0:
+        return None
+    if res.is_integer:
+        N = int(abs(res))
+    else:
+        n_ = _sp.expand(res * _sp.conjugate(res))
+        if not n_.is_integer or n_ == 0:
+            return None
+        N = int(abs(n_))
+    while N % 2 == 0:
+        N //= 2
+    return N
+
+
+def _twopow_square_kill(f, var, kmax=8, moduli=(8, 16, 32, 64, 3, 5, 7, 9, 11, 13)):
+    """Certify that f(var) = 2^k v^2 is impossible for every k <= kmax
+    (var a prime >= 5): for each k, an exact modular test (f(t) is never
+    2^k times a square mod m over units t), or the size kill when f is
+    X^2 + c with X a monomial in var and c a small constant.  Returns the
+    list of per-k certificates, or None if some k survives."""
+    from math import gcd
+    certs = []
+    fp = _sp.Poly(f, var)
+    # X^2 + c shape?
+    monoms = fp.monoms()
+    shape = None
+    if len(monoms) == 2 and monoms[-1] == (0,) and monoms[0][0] % 2 == 0 and fp.LC() == 1:
+        c0 = int(fp.coeff_monomial(1))
+        shape = (monoms[0][0] // 2, c0)
+    for k in range(0, kmax + 1):
+        done = None
+        for m in moduli:
+            sq2 = {(2**k * x * x) % m for x in range(m)}
+            if all(int(f.subs(var, t)) % m not in sq2 for t in range(m) if gcd(t, m) == 1):
+                done = f"mod {m}"
+                break
+        if done is None and shape is not None and k % 2 == 0:
+            # (2^{k/2} v)^2 - X^2 = c: two squares differing by |c| need 2^{k/2} v + X <= |c|,
+            # impossible since X = var^{shape} >= 5^{shape} > |c|
+            half, c0 = shape
+            if 5**half > abs(c0) and c0 != 0:
+                done = f"size: (2^{k//2}v - var^{half})(2^{k//2}v + var^{half}) = {c0}"
+        if done is None:
+            return None
+        certs.append((k, done))
+    return certs
+
+
+def _square_residual_kill(R, var):
+    """R(var) (rational coefficients) must be a perfect square (times den^{-1}):
+    with den * R = Rint, Rint must be den * square.  Factor Rint over Z; if the
+    factors are pairwise coprime up to 2-powers (resultants are powers of 2)
+    then each odd-multiplicity factor is 2^k * square; kill each such factor
+    for every k.  Returns a certificate dict or None."""
+    den = 1
+    for c in _sp.Poly(R, var).all_coeffs():
+        den = _sp.ilcm(den, _sp.Rational(c).q)
+    Rint = _sp.expand(R * den)
+    fac = _sp.factor_list(Rint)
+    factors = [(f, m) for f, m in fac[1] if _sp.Poly(f, var).degree() > 0]
+    # pairwise resultants must be powers of 2 (then odd parts are pairwise coprime)
+    for i in range(len(factors)):
+        for j in range(i + 1, len(factors)):
+            r = _sp.resultant(factors[i][0], factors[j][0], var)
+            r = abs(int(r))
+            while r % 2 == 0 and r:
+                r //= 2
+            if r != 1:
+                return None
+    # the constant content's odd part must also be a square times ... (ignore: it only
+    # adds a fixed odd square factor requirement; we only need ONE factor to die)
+    for f, m in factors:
+        if m % 2 == 1:
+            certs = _twopow_square_kill(f, var)
+            if certs is not None:
+                return {"den": int(den), "factor": str(f), "certs": certs}
+    return None
+
+
+def unit_collapse_kill(pattern):
+    """General unit collapse + coprime split + finishers.  Returns a
+    certificate dict or None (with 'why' when the shape does not fit)."""
+    qq = _sp.Symbol("q", positive=True)
+    pp = _sp.Symbol("p", positive=True)
+    cert = {"pattern": pattern}
+    for d in all_collapses(pattern):
+        e, y0, x0, ep, eq, ok = endpoint_identity(pattern, d)
+        if not ok:
+            continue
+        for P_ in (_Q, _P):
+            if P_ not in e.free_symbols:
+                continue
+            expr = _sp.expand(e)
+            ppart = sum(t for t in _sp.Add.make_args(expr) if P_ in t.free_symbols)
+            rest = _sp.expand(expr - ppart)
+            if rest == 0:
+                continue
+            FL, FR = _sp.factor(rest), _sp.factor(-ppart)
+            atomsL = {a: m for a, m in _atoms(_sp.Mul.make_args(FL)).items() if a != "const"}
+            atomsR = {a: m for a, m in _atoms(_sp.Mul.make_args(FR)).items() if a != "const"}
+            cL = _atoms(_sp.Mul.make_args(FL)).get("const", 1)
+            cR = _atoms(_sp.Mul.make_args(FR)).get("const", 1)
+            side_letters = "CS" if P_ == _Q else "UV"      # the lever prime's OTHER side
+            other_letters = "UV" if P_ == _Q else "CS"
+            # cancel common atoms
+            for a in list(atomsL):
+                if a in atomsR:
+                    m = min(atomsL[a], atomsR[a])
+                    atomsL[a] -= m
+                    atomsR[a] -= m
+            atomsL = {a: m for a, m in atomsL.items() if m}
+            atomsR = {a: m for a, m in atomsR.items() if m}
+            e2 = atomsR.pop(P_, 0)
+            if e2 == 0 or P_ in atomsL:
+                continue
+            # classify the left atoms
+            def side_of(a):
+                letters = {str(s)[0] for s in a.free_symbols if s not in (_P, _Q)}
+                if letters <= set(side_letters):
+                    return "same"
+                if letters <= set(other_letters):
+                    return "other"
+                return "mixed"
+            T_cands, units_ok = [], True
+            for a, m in atomsL.items():
+                if a.is_Symbol:
+                    if str(a)[0] in side_letters:
+                        T_cands.append((a, m))     # a bare symbol could carry P too
+                    continue
+                s = side_of(a)
+                if s == "same":
+                    if is_unit_at(a, P_):
+                        continue
+                    T_cands.append((a, m))
+                elif not is_unit_at(a, P_):
+                    units_ok = False
+            if not units_ok:
+                continue
+            # right side atoms must all be P-units or bare same-side symbols coprime to T
+            if len(T_cands) != 1 or T_cands[0][1] != 1:
+                continue
+            T = T_cands[0][0]
+            if T.is_Symbol:
+                continue
+            bad = False
+            sidename = "l" if side_letters == "CS" else "w"
+            for a in atomsR:
+                if a.is_Symbol:
+                    if str(a)[0] in side_letters and content_bound(T, a) != 1:
+                        bad = True
+                    elif str(a)[0] in other_letters:
+                        pass                        # other-side symbol: a P-unit structurally
+                elif side_of(a) == "same":
+                    if content_bound_poly(T, a, sidename) != 1:
+                        bad = True
+                elif not is_unit_at(a, P_):
+                    bad = True
+            if bad or _parity_poly(T) != "odd":
+                continue
+            # hence T | cR * P^{2e} (T coprime to everything else, odd) and P^{2e} | T:
+            # T = +-c' P^{2e}, c' | cR (and c' odd)
+            cR_odd = abs(int(cR))
+            while cR_odd % 2 == 0:
+                cR_odd //= 2
+            divisors = [c for c in range(1, cR_odd + 1) if cR_odd % c == 0]
+            # T as a form in (C_x, S_x): find x
+            syms = [s for s in T.free_symbols if s not in (_P, _Q)]
+            xs = {int(str(s)[1:]) for s in syms}
+            if len(xs) != 1:
+                continue
+            x = xs.pop()
+            Cx, Sx = _sp.Symbol(side_letters[0] + str(x)), _sp.Symbol(side_letters[1] + str(x))
+            Pown = pp if P_ == _Q else qq                 # the prime of T's own side
+            cert.update({"prime": str(P_), "e": e2, "T": str(T), "x": x, "cR": int(cR)})
+            # quadratic form alpha C^2 + beta S^2 (+ gamma p^{2x} allowed via symbols p, q)
+            Tp = _sp.Poly(T, Cx, Sx)
+            if Tp.total_degree() != 2 or any(sum(mon) not in (0, 2) for mon in Tp.monoms()):
+                continue
+            alpha = Tp.coeff_monomial(Cx**2)
+            beta = Tp.coeff_monomial(Sx**2)
+            gamma = _sp.expand(T - alpha * Cx**2 - beta * Sx**2)     # multiple of P_own^{2x}
+            # substitute C^2 = P_own^{2x} - S^2:  T = (alpha + gamma/P^{2x}) P^{2x} + (beta - alpha) S^2
+            g = _sp.expand(gamma / Pown**(2 * x)) if gamma != 0 else 0
+            A = _sp.nsimplify(alpha + g)
+            B = _sp.nsimplify(beta - alpha)
+            # difference of squares needs A = a^2 > 0 and -B = b^2 > 0  (T = a^2 P^{2x} - b^2 S^2),
+            # or the mirror with C: T = (beta + g) P^{2x} + (alpha - beta) C^2
+            variants = []
+            # T = +-c' P^e, so the overall sign of T is free: try T and -T
+            for sT in (1, -1):
+                As, Bs = sT * A, sT * B
+                if As.is_integer and As > 0 and (-Bs).is_integer and -Bs > 0 and _sp.sqrt(As).is_integer and _sp.sqrt(-Bs).is_integer:
+                    variants.append(("S", int(_sp.sqrt(As)), int(_sp.sqrt(-Bs))))
+                A2, B2 = sT * _sp.nsimplify(beta + g), sT * _sp.nsimplify(alpha - beta)
+                if A2.is_integer and A2 > 0 and (-B2).is_integer and -B2 > 0 and _sp.sqrt(A2).is_integer and _sp.sqrt(-B2).is_integer:
+                    variants.append(("C", int(_sp.sqrt(A2)), int(_sp.sqrt(-B2))))
+            if not variants:
+                cert["why"] = "T not a difference of squares"
+                continue
+            for which, a, b in variants:
+                # (a P^x - b Y)(a P^x + b Y) = +-c' P_^{2e},  Y = S_x or C_x; coprime up to gcd | 2ab
+                kills = {}
+                for cprime in divisors:
+                    for eps in (1, -1):
+                        # small factor = +-t1, large = t2 P_^{2e} with t1 t2 = c', or both split
+                        # enumerate all factor pairs (u, v) with u v = eps c' P_^{2e}, u = small:
+                        for t1 in [t for t in range(1, cprime + 1) if cprime % t == 0]:
+                            t2 = cprime // t1
+                            for s1 in (1, -1):
+                                # a P^x - b Y = s1 t1,  a P^x + b Y = eps s1 t2 P_^{2e}
+                                Px = (s1 * t1 + eps * s1 * t2 * P_**e2) / (2 * a)
+                                Y = (eps * s1 * t2 * P_**e2 - s1 * t1) / (2 * b)
+                                # the other coordinate squared: P^{2x} - Y^2 (as a polynomial in P_)
+                                R = _sp.expand(Px**2 - Y**2)
+                                key = (which, cprime, eps, t1, s1)
+                                if R.is_number:
+                                    kills[key] = "constant" if R < 0 or not _sp.sqrt(R).is_integer else None
+                                    continue
+                                c_ = _square_residual_kill(R, P_)
+                                kills[key] = (f"factor {c_['factor']} of {c_['den']}*R is never 2^k*square: "
+                                              f"{c_['certs']}") if c_ else None
+                if all(v is not None for v in kills.values()) and kills:
+                    cert.update({"variant": which, "a": a, "b": b, "kills": kills})
+                    return cert
+                cert["partial"] = {k: v for k, v in kills.items()}
+    cert.setdefault("why", "no unit-collapse lever or unfinished cases")
+    return None if "kills" not in cert else cert
 
 
 def box_classes(a, b):

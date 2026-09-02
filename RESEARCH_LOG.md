@@ -3405,3 +3405,45 @@ oracle regressions were caught by the rigidity pin along the way.
 
 The one-equation rigidity lemma of entries 72-79 is now moot for
 A3.10. Suite 170. Not claiming anything beyond A3.10.
+
+## 2026-09-02 — Entry 85: the general unit collapse; Theorem A3.8 by machine
+
+Block B's kill generalized (compute/lucas_endpoints.py
+unit_collapse_kill, wired into kill_pattern as the last stage). A
+lever equation with prime P factors, after cancelling common atoms,
+as const * (one-sided atoms) * T * M = const' * (one-sided atoms) *
+P^e, with M a P-unit (structural test) and T the single one-sided
+non-unit polynomial atom. Coprimality of same-side cofactors to T by
+the ANGLE-POLYNOMIAL RESULTANT: gcd(T, G) | Res_u(B_T, B_G) (for
+G = C1 +- S1 this is 2: those primes force u = -+i). With every
+cofactor coprime and T odd, T = +-c' P^e. Then T, a quadratic form in
+(C_x, S_x) with p^{2x} = C_x^2 + S_x^2, must be a difference of
+squares a^2 p^{2x} - b^2 S_x^2 (or with C_x); the coprime split gives
+finitely many linear cases, each leaving C_x^2 = R(P); a residual
+dies when, after factoring den*R into factors pairwise coprime up to
+2-powers, some factor f is certified never 2^k * square for every k:
+exact modular tests over units mod m, or for f = X^2 + c the size
+kill (2^{k/2} v - X)(2^{k/2} v + X) = c.
+
+It re-derives Block B exactly (T = +-q^4, factors q^4 +- 3; an
+exponent slip P^{2e} for P^e in the first version was caught by
+comparing with block_b_lemma) and kills the four (2,1) patterns the
+machine had left (T = +-q^2, factors q^2 +- 3; k even by size, k odd
+mod 8). HENCE ALL 26 DISTINCT OPEN PATTERNS OF THE (2,1) BOX DIE IN
+THE COMPLETE MACHINE: 10 residual parity, 4 valuation, 8
+concentration, 4 unit collapse -- no hand tree (a3.box21_machine;
+the 8 doubled patterns are Lemma G4's). Theorem A3.8, the
+multi-session grind of beta1/beta2/E3/sliver trees, is now a machine
+theorem. Layer order: valuation -> chase -> residual parity ->
+concentration/sliver -> unit collapse. The (2,2) box and the ladder
+are being measured with the same stack. Suite 171.
+The (2,2) box under the complete machine: 88 of 120 distinct OPEN
+patterns die (24 residual parity, 16 valuation, 32 concentration, 16
+unit collapse) -- every sub-box pattern and all 44 replications; the
+32 survivors are exactly the 32 ledger patterns (H3's 8, G3's 24;
+exponent shape {1,2,2} on both primes), closed by hand through the
+double lever / double pincer: two levers on one equation and the size
+windows (|C|, S < p^2 < sqrt2 q^2) pinning C = +-q^2 or u = +-p^2
+exactly onto Fermat's x^4 - y^4 = z^2. The window argument is the one
+finisher the machine still lacks (next build). The ladder is being
+re-measured with the complete stack.

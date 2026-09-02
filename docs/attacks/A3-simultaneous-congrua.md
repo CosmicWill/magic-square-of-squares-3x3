@@ -1428,6 +1428,51 @@ symbols is a $p$-unit iff a single monomial survives $\ell\to0$) and
 the cross-exponent Lucas rules ($C_{2^tn}$ coprime to $C_n,S_n$) were
 what the oracle had lacked.
 
+### 2.16 The general unit collapse; Theorem A3.8 by machine (entry 85)
+
+Block B's kill generalizes to a module (`unit_collapse_kill`).  A lever
+equation with prime $P$ factors, after cancelling common atoms, as
+$\mathrm{const}\cdot(\text{one-sided atoms})\cdot T\cdot M=\mathrm{const}'\cdot(\text{one-sided atoms})\cdot P^{e}$,
+with $M$ a $P$-unit (the structural test) and $T$ the single one-sided
+polynomial atom that is not.  The cofactors' coprimality to $T$ is
+decided by the **angle-polynomial resultant**: two same-side polynomials
+$T=\bar\ell^mB_T(u)$, $G=\bar\ell^{m'}B_G(u)$ share a prime $r$ only if
+$u\equiv\ell/\bar\ell$ is a common root mod $r$, so $\gcd(T,G)\mid\operatorname{Res}_u(B_T,B_G)$
+(for $G=C_1\pm S_1$ this is $2$: those primes force $u\equiv\mp i$).
+With every cofactor coprime and $T$ odd, $T=\pm c'P^{e}$.  Then $T$,
+a quadratic form in $(C_x,S_x)$ with $p^{2x}=C_x^2+S_x^2$, must be a
+difference of squares $a^2p^{2x}-b^2S_x^2$ (or with $C_x$); the coprime
+split gives finitely many linear cases $ap^x\mp bS_x\in\{\pm t_1,\pm t_2P^e\}$,
+each leaving $C_x^2=R(P)$ with $R$ a polynomial in $P^{e}$; and a
+residual dies when, after factoring $\mathrm{den}\cdot R$ into factors
+pairwise coprime up to powers of $2$, some factor $f$ is certified never
+$2^k\cdot\square$ for every $k$ — by an exact modular test (units mod
+$m$) or, when $f=X^2+c$, by the size argument $(2^{k/2}v-X)(2^{k/2}v+X)=c$.
+
+It re-derives Block B exactly ($T=\pm q^4$, factors $q^4\pm3$), and it
+kills the four patterns of the $(2,1)$ box that the machine had left —
+the same shape with $T=\pm q^2$ and factors $q^2\pm3$ ($k$ even: size;
+$k$ odd: mod $8$).  **Hence every one of the 26 distinct OPEN patterns
+of the $(2,1)$ box dies in the complete machine** — 10 by residual
+parity, 4 by valuation, 8 by concentration, 4 by unit collapse — with
+no hand tree at all (`a3.box21_machine`; the 8 doubled patterns are
+Lemma G4's).  Theorem A3.8, which took a multi-session grind of named
+trees ($\beta_1$, $\beta_2$, E3, the sliver…), is now a machine
+theorem.  The machine's layers, in order: valuation (rank of
+apparition + LTE) → chase (collapse, closure, content) → residual parity
+→ concentration / sliver → unit collapse.
+
+*The $(2,2)$ box under the complete machine.*  Of its 120 distinct OPEN
+patterns, **88 die**: 24 residual parity, 16 valuation, 32
+concentration, 16 unit collapse — every sub-box pattern and every one
+of the 44 replications ($k$- and $j$-children alike).  The 32 survivors
+are *exactly the 32 ledger patterns* (H3's 8 and G3's 24; exponent
+shape $\{1,2,2\}$ on both primes), which the hand campaign closed by
+the double lever and the double pincer: two levers on one equation and
+the **size windows** ($|C|,S<p^2<\sqrt2\,q^2$) pinning $C=\pm q^2$ or
+$u=\pm p^2$ exactly, landing on Fermat's $x^4-y^4=z^2$.  That window
+argument is the one finisher the machine still lacks.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

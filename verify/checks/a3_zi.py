@@ -2484,14 +2484,15 @@ def _(ctx):
     for classes, coeffs in REMAINING:
         pat = tuple((tuple(jk), c) for jk, c in zip(classes, coeffs))
         verdict, certs = kill_pattern(pat)
-        if verdict in ("DEAD-valuation", "DEAD-concentration", "DEAD-residual", "DEAD-parity"):
-            tally[verdict] += 1
-            continue
-        require(pat in BLOCK_B, (pat, verdict))
-        cert = block_b_lemma(pat)
-        require(cert["form"] in ("p2-4s1^2", "4c1^2-p2") and "kill+" in cert and "kill-" in cert, cert)
-        tally["DEAD-blockB"] += 1
-    require(sum(tally.values()) == 14 and tally["DEAD-blockB"] == 4, dict(tally))
+        require(verdict.startswith("DEAD"), (pat, verdict))
+        tally[verdict] += 1
+        if pat in BLOCK_B:
+            # the general unit collapse must have done it, and the targeted
+            # lemma agrees
+            require(verdict == "DEAD-unit-collapse", (pat, verdict))
+            cert = block_b_lemma(pat)
+            require(cert["form"] in ("p2-4s1^2", "4c1^2-p2") and "kill+" in cert and "kill-" in cert, cert)
+    require(sum(tally.values()) == 14 and tally["DEAD-unit-collapse"] == 4, dict(tally))
     require(tally["DEAD-valuation"] == 2 and tally["DEAD-concentration"] == 8, dict(tally))
     # the machine's own enumeration: ALL 26 distinct k-children of the (2,2)
     # box (OPEN patterns with every k-exponent even) die -- no reliance on
@@ -2515,6 +2516,41 @@ def _(ctx):
              f"machine: {dict(tally26)} -- with a3.p2q2_accounting (zero-gap partition), "
              f"a3.h3_closed + the G3 ledger, Theorem A3.8 for the sub-boxes and the "
              f"j-children as transposes, THEOREM A3.10 (split part p^2 q^2) holds")
+
+
+@check("a3.box21_machine", DOC)
+def _(ctx):
+    """THEOREM A3.8 BY MACHINE (entry 85): every distinct OPEN pattern of
+    the (2,1) box dies in the complete machine -- valuation layer, chase,
+    residual parity, concentration/sliver, and the general unit collapse
+    (content lemma on same-side cofactors via the angle-polynomial
+    resultant; T = +-q^{e} forced; the difference-of-squares split with
+    coprime factors; each residual factor certified never 2^k * square by
+    exact modular tests or the two-squares size kill) -- with no hand
+    tree.  The 8 doubled patterns are Lemma G4's (pinned separately).
+    FAST runs the four unit-collapse patterns; FULL the whole box."""
+    from compute.lucas_endpoints import survey_box, kill_pattern, unit_collapse_kill
+    from collections import Counter
+    UC = [(((1, -1), 1), ((2, 0), 1), ((2, 1), -1)), (((1, -1), 1), ((2, 0), -1), ((2, 1), -1)),
+          (((1, 1), 1), ((2, -1), -1), ((2, 0), 1)), (((1, 1), 1), ((2, -1), -1), ((2, 0), -1))]
+    for pat in UC:
+        c = unit_collapse_kill(pat)
+        require(c is not None and "kills" in c and c["e"] == 2 and (c["a"], c["b"]) == (1, 2), (pat, c))
+        require(len(c["kills"]) == 4 and all(v for v in c["kills"].values()), c["kills"])
+    if ctx.profile == "FULL":
+        verdict, opens = survey_box(2, 1)
+        tally = Counter()
+        for pattern, kind in opens:
+            if kind != "distinct":
+                continue
+            v, certs = kill_pattern(tuple(pattern))
+            require(v.startswith("DEAD"), (pattern, v))
+            tally[v] += 1
+        require(sum(tally.values()) == 26 and tally["DEAD-unit-collapse"] == 4, dict(tally))
+        ctx.note(f"(2,1) box: all 26 distinct OPEN patterns dead by machine: {dict(tally)}")
+    else:
+        ctx.note("the four (2,1) unit-collapse patterns certified (T = +-q^2, factors "
+                 "q^2 +- 3 killed for every 2^k); FULL runs the whole box")
 
 
 @check("a3.rigidity_pari_certificates", DOC)
