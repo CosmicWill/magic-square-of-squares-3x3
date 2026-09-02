@@ -333,6 +333,21 @@ def _coprime(A, B, facts):
         return True
     if a[0] in "CS" and b[0] in "CS" and a[1:] == b[1:] and a[0] != b[0]:
         return True
+    # cross-exponent Lucas rules on one side: with n | m and m/n = 2^t
+    # (t >= 1), C_m = C_n^2 - S_n^2 (doubling) is coprime to both C_n
+    # and S_n (C_m = -S_n^2 mod C_n, = C_n^2 mod S_n, legs coprime);
+    # and U/V likewise.  (S_m is NOT coprime to S_n: S_n | S_m.)
+    def _is_lucas(sym, s):
+        return getattr(sym, "is_Symbol", False) and len(s) >= 2 and s[0] in "UVCS" and s[1:].isdigit()
+    if _is_lucas(A, a) and _is_lucas(B, b):
+        for re_, im_ in (("C", "S"), ("U", "V")):
+            if a[0] in (re_, im_) and b[0] in (re_, im_):
+                na, nb = int(a[1:]), int(b[1:])
+                if na != nb:
+                    lo, hi = (na, nb) if na < nb else (nb, na)
+                    big = a if na > nb else b
+                    if hi % lo == 0 and (hi // lo) & (hi // lo - 1) == 0 and big[0] == re_:
+                        return True                # C_{2^t n} coprime to C_n and S_n
     # unit-ness (STRUCTURAL): l-side values C_x, S_x are p-units (pi divides
     # one conjugate power, never both); w-side values U_y, V_y are q-units.
     # A p-power dividing a w-side value is CONTENT (a lever), never assumed.
@@ -831,6 +846,175 @@ def valuation_layer(pattern, max_r=None, specific=(5, 7, 11, 13, 17, 19, 23)):
                                       ok_sol.get(v0q) if rq is not None else None,
                                       ok_sol.get(v0p) if rp is not None else None))
     return {"status": "SURVIVES" if survivors else "DEAD-valuation", "survivors": survivors}
+
+
+# ------------------------------------------- the concentration kill
+#
+# A pinned system  w^k = P(l, lbar)  (P a Z[i]-polynomial in l = pi^2 and
+# its conjugate, e.g. Z+ = l^4 + l^3 lbar - lbar^4) dies by CONCENTRATION
+# whenever P - T = cof * lambda^{2a} for a target T = +-lbar^{2j} (then
+# lambda = pi) or T = +-l^{2j} (lambda = pibar), a >= 2, with cof small:
+#   rho^{2k} - T = (rho^k - tau)(rho^k + tau),  tau^2 = T,  tau a power of
+#   the OTHER conjugate;  gcd(A, B) | 2 tau and | 2 rho^k, so gcd | 2;
+#   lambda^{2a} lies wholly in one factor, the other divides cof, so its
+#   modulus is at most |cof|_max;  A = B +- 2 tau is 0 mod lambda^{2a}, so
+#   either B = -+ 2 tau (impossible if 2|tau| > |cof|_max) or
+#   |B +- 2 tau| >= p^a, impossible if |cof|_max + 2 p^j < p^a.
+# Both size conditions are polynomial inequalities in p = |l| checked for
+# all p >= 5 (leading terms) -- so the kill is uniform in k, p, q.
+
+_L, _LB = _sp.symbols("L LB")            # l and lbar as independent variables
+
+
+def to_l_lbar(expr_c1_s1):
+    """Rewrite a polynomial in c1, s1 (and p^2) as a polynomial in L = l,
+    LB = lbar via c1 = (L+LB)/2, s1 = (L-LB)/(2i), p^2 = L LB."""
+    c1, s1 = _c1, _s1
+    e = expr_c1_s1.subs({_P**2: _L * _LB}).subs({c1: (_L + _LB) / 2, s1: (_L - _LB) / (2 * _sp.I)})
+    return _sp.expand(e)
+
+
+def _abs_coeff_bound(poly_in_L_LB):
+    """|poly| <= sum |coeff| p^{deg} termwise (|L| = |LB| = p): returns the
+    sympy expression in p bounding |poly|."""
+    P = _sp.Poly(poly_in_L_LB, _L, _LB)
+    tot = 0
+    for (dL, dLB), coeff in P.terms():
+        tot += _sp.Abs(coeff) * _P**(dL + dLB)
+    return _sp.expand(tot)
+
+
+def concentration_kill(P_l_lbar, jmax=4, amax=6, p_min=5):
+    """Search targets T = +-L^{2j}, +-LB^{2j}; if P - T = cof * L^{a} (then
+    lambda = pi, needs T a LB-power) or cof * LB^{a} (lambda = pibar, needs
+    T an L-power) with a >= 2 and the two size conditions holding for all
+    p >= p_min, return the certificate dict; else None."""
+    P_ = _sp.expand(P_l_lbar)
+    if not P_.is_polynomial(_L, _LB):
+        return None
+    for j in range(1, jmax + 1):
+        for sgn in (1, -1):
+            for which, base, other in (("LB", _LB, _L), ("L", _L, _LB)):
+                T = sgn * base**(2 * j)
+                R = _sp.expand(P_ - T)
+                if R == 0:
+                    continue
+                # divisibility by other^a: the polynomial must have min degree a in `other`
+                Rp = _sp.Poly(R, other)
+                a = min(m[0] for m in Rp.monoms())
+                if a < 2 or a > amax:
+                    continue
+                cof = _sp.expand(R / other**a)
+                bound = _abs_coeff_bound(cof)
+                # (i) 2 p^j > |cof|_max   and   (ii) |cof|_max + 2 p^j < p^a, for all p >= p_min
+                cond1 = _sp.expand(2 * _P**j - bound)
+                cond2 = _sp.expand(_P**a - bound - 2 * _P**j)
+                ok = True
+                for cnd in (cond1, cond2):
+                    poly = _sp.Poly(cnd, _P)
+                    # positive for all p >= p_min: positive leading coefficient,
+                    # positive at p_min, and NO real root in [p_min, oo)
+                    # (exact Sturm count -- no numerics)
+                    if poly.LC() <= 0 or cnd.subs(_P, p_min) <= 0:
+                        ok = False
+                        break
+                    if poly.count_roots(inf=p_min) != 0:
+                        ok = False
+                        break
+                if ok:
+                    return {"target": f"{'+' if sgn > 0 else '-'}{which}^{2*j}", "lambda": "pi" if other == _L else "pibar",
+                            "a": a, "cof": cof, "cof_bound": bound, "tau_abs": f"p^{j}"}
+    return None
+
+
+def pinned_systems(pattern, max_terms=6):
+    """For each open coincidence branch X = sgn*val of the pattern, solve
+    the residual for the partner symbol and return the pinned pair
+    (Re, Im) of w^k (or of l^k for the mirror types) as expressions in
+    the Lucas symbols, together with the side ('w' or 'l') and k."""
+    out = []
+    r = run_chase(pattern, max_terms=max_terms)
+    if r["status"] != "COINCIDENCE":
+        return r["status"], out
+    eqs = []
+    for d in all_collapses(pattern):
+        red, y0, x0, ep, eq, ok = endpoint_identity(pattern, d)
+        if ok:
+            eqs.append(red)
+    for (X, val), b in r["branches"].items():
+        nm = str(X)
+        if nm[0] not in "UC":
+            continue
+        partner = _sp.Symbol(("V" if nm[0] == "U" else "S") + nm[1:])
+        side, k = ("w", int(nm[1:])) if nm[0] == "U" else ("l", int(nm[1:]))
+        for sgn in (1, -1):
+            if b[sgn] != "open":
+                continue
+            for e in eqs:
+                if X not in e.free_symbols:
+                    continue
+                res = _sp.factor(_sp.expand(e.subs(X, sgn * val)))
+                for f in _sp.Mul.make_args(res):
+                    f = f.base if f.is_Pow else f
+                    if partner in f.free_symbols and _sp.degree(f, partner) == 1:
+                        sol = _sp.solve(f, partner)
+                        if sol:
+                            out.append((side, k, sgn * val, sol[0]))
+    return "COINCIDENCE", out
+
+
+def lucas_to_L(expr, side):
+    """Lucas symbols of one side -> polynomial in L, LB (l, lbar for the
+    l-side; for the w-side the same letters stand for w, wbar and the
+    prime power symbol q^2 = L LB)."""
+    subs = {}
+    for s in expr.free_symbols:
+        nm = str(s)
+        if nm[0] in "UVCS":
+            n = int(nm[1:])
+            if nm[0] in "UC":
+                subs[s] = (_L**n + _LB**n) / 2
+            else:
+                subs[s] = (_L**n - _LB**n) / (2 * _sp.I)
+    e = expr.subs(subs)
+    e = e.subs({_P**2: _L * _LB, _Q**2: _L * _LB})
+    return _sp.expand(e)
+
+
+def kill_pattern(pattern, jmax=6, amax=12):
+    """End-to-end: valuation layer, chase + residual parity, then the
+    concentration kill on every pinned system (all sign/conjugate
+    variants).  Returns (verdict, details)."""
+    v = valuation_layer(pattern)
+    if v["status"] == "DEAD-valuation":
+        return "DEAD-valuation", None
+    status, systems = pinned_systems(pattern)
+    if status != "COINCIDENCE":
+        return status, None
+    if not systems:
+        return "COINCIDENCE-unpinned", None
+    certs = []
+    for side, k, U, V in systems:
+        # the pinned Gaussian integer must be a 2k-th power of the OTHER prime's
+        # Gaussian prime: w^k = rho^{2k} = P(l, lbar)  (or l^k = pi^{2k} = P(w, wbar))
+        P_ = _sp.cancel(lucas_to_L(U + _sp.I * V, "l" if side == "w" else "w"))
+        if not P_.is_polynomial(_L, _LB):
+            certs.append((side, k, 0, False, None))
+            return "COINCIDENCE-open", certs        # pinned only up to a rational cofactor
+        P_ = _sp.expand(P_)
+        okall = True
+        for sg in (1, -1):
+            for cj in (False, True):
+                PP = sg * P_
+                if cj:
+                    PP = PP.subs({_L: _LB, _LB: _L}, simultaneous=True)
+                c = concentration_kill(_sp.expand(PP), jmax=jmax, amax=amax)
+                if c is None:
+                    okall = False
+                certs.append((side, k, sg, cj, c))
+        if not okall:
+            return "COINCIDENCE-open", certs
+    return "DEAD-concentration", certs
 
 
 def box_classes(a, b):

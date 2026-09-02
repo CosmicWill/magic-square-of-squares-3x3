@@ -3306,3 +3306,61 @@ effective closure of the fixed curve is a genuine genus-2 Chabauty /
 Mordell-Weil-sieve problem over Q(i), not a torsion enumeration.
 Unit-circle points s = alpha/alphabar: none for any primitive alpha
 with N(alpha) <= 1.96e6 (623,895 tested) except alpha = 1.
+THE LADDER CENSUS (same day; valuation layer, then chase + residual,
+distinct OPEN patterns):
+  box   dead-val dead-res coincidence rearr-only no-equality
+  (2,1)     4       10        4          2          6
+  (2,2)    16       24       16          4         60
+  (3,2)    28       38       24         28        180
+  (4,1)    16       24       10         18         56
+  (3,3)    48       60       36         78        474
+  (4,2)    48       56       36         36        368
+  (5,1)    20       30       12         22        116
+Surviving coincidence systems are of FOUR weighted shapes only,
+Trig(w^k) = +-p^{2e} Trig(l^{2j}) (and mirrors with p, q swapped):
+  (2j,2e) = (2,2): U_k = +-p^2 C2, k = 2,4,6; mirror C_k = +-q^2 U2,
+                   k = 2,4,6,8  -- the family of the fixed curve;
+  (4,4):           U_k = +-p^4 C4, k = 2,4  (boxes (4,1), (4,2));
+  (2,4):           V_k = +-p^4 S2, k = 2,4,6 (mirror S_k = +-q^4 V2);
+  (2,8):           V2 = +-p^8 S2 (box (5,1)).
+The no-equality fraction grows with the box (68% at (3,3)): the
+Gaussian-prime concentration layer is the machine's main missing
+piece. Residuals of the new shapes: being extracted.
+
+## 2026-09-02 — Entry 83: THE CONCENTRATION THEOREM — every weighted coincidence family of the ladder is empty, uniformly in k, p, q
+
+The E3 argument of A3.8, applied to the pinned Gaussian integer of
+the rigidity SYSTEM. rho^{2k} = Z+ = l^4 + l^3 lbar - lbar^4 gives
+rho^{2k} + lbar^4 = 2 c1 pi^6 = (rho^k + i lbar^2)(rho^k - i lbar^2);
+the factors differ by 2i pibar^4, so gcd | 2; pi^6 sits wholly in
+one factor and the other, B, divides 2c1 (|B| < 2p); but B +- 2i
+pibar^4 = 0 mod pi^6, so B = -+2i pibar^4 (modulus 2p^2 > 2p) or
+|B +- 2i pibar^4| >= p^3 while < 2p + 2p^2 < p^3 (p >= 3).
+Contradiction for every k >= 1 and all p != q; q never enters. Same
+for Z- = l^4 + 2i s1 lbar^3 (E3's identity), for the Block-A
+opposite-sign W = -(l^4 + l lbar^3 + lbar^4), and mechanically for
+every weighted family the census found.
+
+MECHANICAL THEOREM (compute/lucas_endpoints.py concentration_kill,
+kill_pattern): pinned w^k = P(l, lbar); if P - T = cof * lambda^{2a}
+for T = +-lbar^{2j} (lambda = pi) or +-l^{2j} (lambda = pibar),
+a >= 2, with 2p^j > |cof|_max and |cof|_max + 2p^j < p^a for all
+p >= 5 (exact real-root count), the system is empty. Certificates,
+24 in all (every sign/conjugate variant): (2,2) Z+ (target -lbar^4,
+pi^6, cof l + lbar), Z- (+l^4, pibar^6, l - lbar), W (-l^4, pibar^6),
+(4,4) = Z+(l^2) (-lbar^8, pi^12, l^2 + lbar^2), (2,4) (-+lbar^6,
+pi^8, +-(l^2 - lbar^2)), (2,8) (-+lbar^10, pi^12, +-(l^4 - lbar^4)).
+EVERY weighted coincidence system the ladder has produced is empty,
+uniformly in k, p, q -- the rigidity family of A3.10 in both sign
+variants included. The one-equation rigidity lemma of entries 72-79
+was never the right statement; the system is.
+
+A3.10, HONESTLY. Of the fourteen rigidity children the machine
+closes six end to end (2 valuation, 4 concentration with
+certificates); the other eight (Block A opposite-sign, Block B) are
+not pinned by the chase yet -- a first hand pinning of the
+opposite-sign case used gcd(S2, 2C4 +- p^2 C2) = gcd(S2, 2C4), which
+is false (mod S2 the binomial is C2(2C2 +- p^2)), and was withdrawn.
+They wait for the tree layer. A3.10 NOT claimed. Pinned:
+a3.concentration_theorem (24 certificates, the identities, the
+14-children tally). Suite 169.

@@ -2376,6 +2376,84 @@ def _(ctx):
              f"Q(i)-points of ONE curve (Faltings: finitely many solutions)")
 
 
+@check("a3.concentration_theorem", DOC)
+def _(ctx):
+    """THE CONCENTRATION THEOREM (entry 83).  A pinned system
+    w^k = P(l, lbar) dies when P - T = cof * lambda^{2a} for a target
+    T = +-lbar^{2j} (lambda = pi) or +-l^{2j} (lambda = pibar), a >= 2,
+    with cof small:  rho^{2k} - T = (rho^k - tau)(rho^k + tau), tau^2 = T
+    a power of the other conjugate; the two factors differ by 2 tau so
+    their gcd divides 2; lambda^{2a} lies wholly in one factor and the
+    other divides cof; that factor B satisfies B +- 2 tau = 0 mod
+    lambda^{2a}, impossible when 2|tau| > |cof|_max (so B != -+2 tau) and
+    |cof|_max + 2 p^j < p^a.  Both are polynomial inequalities in p,
+    certified for all p >= 5 by an exact real-root count.
+    Pinned: certificates for the FOUR weighted coincidence families of
+    the ladder in every sign/conjugate variant -- (2,2): Z+ = l^4 + l^3
+    lbar - lbar^4 and Z- = l^4 + 2 i s1 lbar^3 (the rigidity family, all
+    k), the Block-A opposite-sign W = -(l^4 + l lbar^3 + lbar^4), (4,4):
+    U_k = +-p^4 C4, (2,4): V_k = +-p^4 S2, (2,8): V2 = +-p^8 S2 -- and
+    the end-to-end verdicts on the 14 rigidity children of A3.10: at
+    least 6 dead (2 valuation, 4 concentration with certificates); the
+    other 8 (Block A opposite-sign, Block B) are NOT closed by the
+    machine yet.  A3.10 is therefore still not claimed."""
+    import sympy as sp
+    from compute.lucas_endpoints import concentration_kill, kill_pattern, _L, _LB
+    L, LB, I = _L, _LB, sp.I
+
+    def C(n):
+        return (L**n + LB**n) / 2
+
+    def S(n):
+        return (L**n - LB**n) / (2 * I)
+
+    P2 = L * LB
+    systems = {
+        "Z+": (P2 * C(2), S(2) * (4 * C(2) + P2)),
+        "Z-": (P2 * C(2), S(2) * (4 * C(2) - P2)),
+        "W": (-(2 * C(4) + P2 * C(2)), P2 * S(2)),
+        "(4,4)": (P2**2 * C(4), S(4) * (4 * C(4) + P2**2)),
+        "(2,4)": (-(C(2)**3 - 7 * C(2) * S(2)**2), P2**2 * S(2)),
+        "(2,8)": (-(C(2)**5 - 22 * C(2)**3 * S(2)**2 + 9 * C(2) * S(2)**4), P2**4 * S(2)),
+    }
+    # identities behind the argument
+    c1, s1 = sp.symbols("c1 s1", real=True)
+    l, lb = c1 + I * s1, c1 - I * s1
+    require(sp.expand(l**4 + l**3 * lb - lb**4 - (P2 * C(2) + I * S(2) * (4 * C(2) + P2)).subs({L: l, LB: lb})) == 0)
+    require(sp.expand(l**4 + 2 * I * s1 * lb**3 - (P2 * C(2) + I * S(2) * (4 * C(2) - P2)).subs({L: l, LB: lb})) == 0)
+    require(sp.expand((l**4 + l**3 * lb - lb**4) + lb**4 - 2 * c1 * l**3) == 0)
+    n_cert = 0
+    for name, (U, V) in systems.items():
+        Pl = sp.expand(U + I * V)
+        for sg in (1, -1):
+            for cj in (False, True):
+                PP = sg * Pl
+                if cj:
+                    PP = PP.subs({L: LB, LB: L}, simultaneous=True)
+                cert = concentration_kill(sp.expand(PP), jmax=6, amax=12)
+                require(cert is not None and cert["a"] >= 3, (name, sg, cj))
+                n_cert += 1
+    require(n_cert == 24)
+    # the 14 rigidity children end-to-end
+    REMAINING = [([(1, -2), (2, -2), (2, 0)], [1, -1, -1]), ([(1, -2), (2, -2), (2, 2)], [1, 1, 1]),
+                 ([(1, -2), (2, -2), (2, 2)], [1, 1, -1]), ([(1, -2), (2, -2), (2, 2)], [1, -1, 1]),
+                 ([(1, -2), (2, -2), (2, 2)], [1, -1, -1]), ([(1, -2), (2, 0), (2, 2)], [1, 1, -1]),
+                 ([(1, -2), (2, 0), (2, 2)], [1, -1, 1]), ([(1, 2), (2, -2), (2, 0)], [1, 1, -1]),
+                 ([(1, 2), (2, -2), (2, 0)], [1, -1, 1]), ([(1, 2), (2, -2), (2, 2)], [1, 1, 1]),
+                 ([(1, 2), (2, -2), (2, 2)], [1, 1, -1]), ([(1, 2), (2, -2), (2, 2)], [1, -1, 1]),
+                 ([(1, 2), (2, -2), (2, 2)], [1, -1, -1]), ([(1, 2), (2, 0), (2, 2)], [1, -1, -1])]
+    from collections import Counter
+    tally = Counter()
+    for classes, coeffs in REMAINING:
+        pat = tuple((tuple(jk), c) for jk, c in zip(classes, coeffs))
+        verdict, certs = kill_pattern(pat)
+        tally[verdict] += 1
+    require(tally["DEAD-valuation"] >= 2 and tally["DEAD-concentration"] >= 4, dict(tally))
+    ctx.note(f"24 concentration certificates (Z+, Z-, W, (4,4), (2,4), (2,8) x signs x "
+             f"conjugates), identities exact; the 14 rigidity children: {dict(tally)} -- "
+             f"A3.10 NOT yet claimed (8 children pending the tree layer)")
+
+
 @check("a3.rigidity_pari_certificates", DOC)
 def _(ctx):
     """PARI/GP rank certificates and the Rank-r criterion (entry 79).

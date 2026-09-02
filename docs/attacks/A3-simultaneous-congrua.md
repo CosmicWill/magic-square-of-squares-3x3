@@ -1291,6 +1291,85 @@ absent for every primitive $\alpha$ with $N(\alpha)\le1.96\cdot10^6$
 (623,895 of them; only $\alpha=1$).  What was a rank problem per
 prime is now one curve.
 
+*The ladder census (same entry).*  Valuation layer first, then chase +
+residual, on the distinct OPEN patterns:
+
+| box | dead (valuation) | dead (residual) | coincidence systems | rearrangement only | no equality |
+|---|---|---|---|---|---|
+| (2,1) | 4 | 10 | 4 | 2 | 6 |
+| (2,2) | 16 | 24 | 16 | 4 | 60 |
+| (3,2) | 28 | 38 | 24 | 28 | 180 |
+| (4,1) | 16 | 24 | 10 | 18 | 56 |
+| (3,3) | 48 | 60 | 36 | 78 | 474 |
+| (4,2) | 48 | 56 | 36 | 36 | 368 |
+| (5,1) | 20 | 30 | 12 | 22 | 116 |
+
+The surviving coincidence systems are of **four weighted shapes
+only**, $\operatorname{Trig}(w^k)=\pm p^{2e}\operatorname{Trig}(\ell^{2j})$
+and their mirrors: $(2j,2e)=(2,2)$ — $U_k=\pm p^2C_2$ for $k=2,4,6$
+and $C_k=\pm q^2U_2$ for $k\le8$, the fixed-curve family above;
+$(4,4)$ — $U_k=\pm p^4C_4$; $(2,4)$ — $V_k=\pm p^4S_2$; $(2,8)$ —
+$V_2=\pm p^8S_2$.  The no-equality fraction grows with the box (68%
+at (3,3)): the Gaussian-prime concentration layer of the hand-proofs
+is the machine's main missing piece.
+
+### 2.14 The concentration theorem: every weighted coincidence family of the ladder is empty (entry 83)
+
+The finiteness of §2.13 becomes *emptiness*, by the argument A3.8
+used for E3, applied to the pinned Gaussian integer.  Take the
+rigidity system: $\rho^{2k}=Z_+=\ell^4+\ell^3\bar\ell-\bar\ell^4$
+(the other sign/conjugate cases are mirrors).  Then
+$$\rho^{2k}+\bar\ell^4=\ell^3(\ell+\bar\ell)=2c_1\pi^6,\qquad
+\rho^{2k}+\bar\ell^4=(\rho^k+i\bar\ell^2)(\rho^k-i\bar\ell^2).$$
+The two factors differ by $2i\bar\ell^2=2i\bar\pi^4$, so their gcd
+divides $2$; hence $\pi^6$ lies wholly in one factor, and the other,
+$B$, divides $2c_1$: $|B|\le2|c_1|<2p$.  But $B\pm2i\bar\pi^4\equiv0
+\pmod{\pi^6}$, so either $B=\mp2i\bar\pi^4$ (modulus $2p^2>2p$) or
+$|B\pm2i\bar\pi^4|\ge p^3$ — while $|B\pm2i\bar\pi^4|<2p+2p^2<p^3$
+for $p\ge3$.  **Contradiction, for every $k\ge1$ and all $p\ne q$**;
+$q$ never enters.  The same three lines dispose of
+$Z_-=\ell^4+2is_1\bar\ell^3$ (E3's identity: $\rho^{2k}-\ell^4=2is_1\bar\pi^6$),
+of the Block-A opposite-sign integer $W=-(\ell^4+\ell\bar\ell^3+\bar\ell^4)$
+($W+\ell^4=-2c_1\bar\pi^6$), and — mechanically — of every weighted
+family the census found.
+
+**Theorem (concentration kill, mechanical).**  Let $w^k=P(\ell,\bar\ell)$
+be pinned.  If $P-T=\mathrm{cof}\cdot\lambda^{2a}$ for a target
+$T=\pm\bar\ell^{2j}$ ($\lambda=\pi$) or $\pm\ell^{2j}$ ($\lambda=\bar\pi$),
+$a\ge2$, with $2p^j>|\mathrm{cof}|_{\max}$ and
+$|\mathrm{cof}|_{\max}+2p^j<p^a$ for all $p\ge5$ (polynomial
+inequalities in $p$, certified by an exact real-root count), then the
+system has no solution.  Certificates (`a3.concentration_theorem`,
+24 in all — every sign and conjugate variant):
+
+| family | pinned $P$ | target | $\lambda^{2a}$ | cofactor |
+|---|---|---|---|---|
+| (2,2) $Z_+$ | $\ell^4+\ell^3\bar\ell-\bar\ell^4$ | $-\bar\ell^4$ | $\pi^6$ | $\ell+\bar\ell$ |
+| (2,2) $Z_-$ | $\ell^4+2is_1\bar\ell^3$ | $+\ell^4$ | $\bar\pi^6$ | $\ell-\bar\ell$ |
+| Block A opp. $W$ | $-(\ell^4+\ell\bar\ell^3+\bar\ell^4)$ | $-\ell^4$ | $\bar\pi^6$ | $-(\ell+\bar\ell)$ |
+| (4,4) | $Z_+(\ell^2)$ | $-\bar\ell^8$ | $\pi^{12}$ | $\ell^2+\bar\ell^2$ |
+| (2,4) | $V_2=\pm p^4S_2$, $U_2=\mp(C_2^3-7C_2S_2^2)$ | $\mp\bar\ell^6$ | $\pi^8$ | $\pm(\ell^2-\bar\ell^2)$ |
+| (2,8) | $V_2=\pm p^8S_2$, $U_2=\mp(C_2^5-22C_2^3S_2^2+9C_2S_2^4)$ | $\mp\bar\ell^{10}$ | $\pi^{12}$ | $\pm(\ell^4-\bar\ell^4)$ |
+
+The higher-$k$ members found in the $(3,3)$ box carry the *same*
+residual shapes — $U_6=\pm p^2C_2$ with $V_6=\pm S_2(4C_2+p^2)$ is
+$Z_\pm$ at $k=6$; $V_4,V_6=\pm p^4S_2$ with $U_k=\mp(C_2^3-7C_2S_2^2)$
+is the $(2,4)$ family; and the mirrors $C_6=\pm q^2U_2$ with
+$S_6=\pm V_2(4U_2+q^2)$, $S_6=\pm q^4V_2$ with $C_6=\mp(U_2^3-7U_2V_2^2)$
+are the same families with $p\leftrightarrow q$ — so the certificates
+above cover them (the theorem is uniform in $k$).  So **every weighted
+coincidence system the ladder has produced is empty, uniformly in
+$k$, $p$, $q$** — including the rigidity family of A3.10 in both its
+sign variants.  The one-equation "rigidity
+lemma" of entries 72–79 was never the right statement; the system is.
+
+**A3.10, honestly.**  Of its fourteen rigidity children the machine
+now closes six end to end (two by valuation, four by concentration
+with certificates); the remaining eight — Block A's opposite-sign
+variants and Block B — are not pinned by the chase yet (a first hand
+pinning of the opposite-sign case rested on a false gcd step and was
+withdrawn), so they wait for the tree layer.  **A3.10 is not claimed.**
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was
