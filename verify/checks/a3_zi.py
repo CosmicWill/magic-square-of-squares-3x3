@@ -2160,6 +2160,85 @@ def _(ctx):
              f"(p=337: L' = {2.1047928093})")
 
 
+@check("a3.lucas_extractor", DOC)
+def _(ctx):
+    """Front A step 2 (ROADMAP R.6-A, entry 81): the mechanical endpoint
+    extractor for the (a,b) ladder.  For every OPEN distinct pattern
+    (after the engine's valuation / tan-half / congruence layers, complete
+    enumeration, canon_full dedup) the pair of minimal weight at a lever
+    prime collapses by an EXACT polynomial identity into
+    +-2 p^{2a} q^{2b} Trig1(D) Trig2(M), and the third term's surplus
+    prime power must land on a factor pure in the other prime (mixed
+    trig-monomials are units).  Pinned: on the fully hand-closed boxes
+    (2,1) and (2,2) every distinct OPEN pattern is an ENDPOINT (26/26,
+    120/120; 17 and 72 exponent-families) and no pattern is
+    NO-COLLAPSE; the shape-type census (which of D, M, C is pure-w,
+    pure-l or mixed, and where the levers land) is a small finite set
+    while the families grow with the box -- the uniformity structure a
+    type-by-type theorem needs.  FULL adds (3,2) and (4,1)."""
+    from compute.lucas_endpoints import survey_box, type_census
+    expect = {(2, 1): (34, 26, 17), (2, 2): (136, 120, 72)}
+    if ctx.profile == "FULL":
+        expect.update({(3, 2): (322, 298, 177), (4, 1): (140, 124, 86)})
+    alltypes = set()
+    for (a, b), (n_open, n_dist, n_fam) in expect.items():
+        verdict, opens = survey_box(a, b)
+        require(verdict["OPEN"] == n_open, (a, b, dict(verdict)))
+        st, fams, types = type_census(opens)
+        require(st == {"ENDPOINT": n_dist}, (a, b, dict(st)))
+        require(len(fams) == n_fam, (a, b, len(fams)))
+        alltypes |= set(types)
+    require(8 <= len(alltypes) <= 24, len(alltypes))
+    # THE CHASE re-derives the rigidity lemma: for the two Block-A patterns
+    # the Lucas-symbol equation verifies against the cleared relation and
+    # the divisibility chase yields U4 = +-p^2 C2 (Re(w^4) = +-p^2 Re(l^2)).
+    from compute.lucas_endpoints import extract, endpoint_identity, chase
+    import sympy as sp
+    U4, C2, p = sp.Symbol("U4"), sp.Symbol("C2"), sp.Symbol("p", positive=True)
+    hits = 0
+    for pat in ((((1, -2), 1), ((2, -2), 1), ((2, 2), 1)),
+                (((1, 2), 1), ((2, -2), 1), ((2, 2), 1))):
+        d = extract(pat)["detail"][0]
+        red, y0, x0, ep, eq, ok = endpoint_identity(pat, d)
+        require(ok and (y0, x0, ep, eq) == (4, 2, 1, 0), (pat, y0, x0, ep, eq))
+        r = chase(red)
+        eqs = {e for res in r["results"] for e in res["equalities"]}
+        require((U4, C2 * p**2) in eqs, (pat, eqs))
+        hits += 1
+    require(hits == 2)
+    # the full chase (all three collapses, Pythagorean rewrites, depth-1
+    # substitution, trivial equalities dropped) on the (2,1) box: the
+    # status histogram and the coincidence TYPES are durable
+    from compute.lucas_endpoints import run_chase
+    from collections import Counter
+    verdict, opens = survey_box(2, 1)
+    st, types = Counter(), set()
+    for pattern, kind in opens:
+        if kind != "distinct":
+            continue
+        r = run_chase(tuple(pattern))
+        st[r["status"]] += 1
+        for (X, val), cls in r["equalities"].items():
+            if cls.startswith("coincidence"):
+                types.add((str(X), str(val)))
+    # durable: 14 of the 26 endpoints reach a coincidence, none is
+    # parity-dead or a unit collapse, and the coincidence TYPES are exactly
+    # six (the split of the other 12 between rearrangement-only and
+    # no-equality is tool state and is not pinned)
+    require(sum(st.values()) == 26 and st["COINCIDENCE"] == 14, dict(st))
+    require(not (set(st) - {"COINCIDENCE", "NO-EQUALITY", "REARRANGEMENT-ONLY"}), dict(st))
+    require(types == {("S2", "V2"), ("S4", "V2"), ("V2", "S2"), ("V2", "S4"),
+                      ("U2", "C2*p**2"), ("V2", "S2*p**2")}, types)
+    ctx.note(f"boxes {sorted(expect)}: every distinct OPEN pattern collapses "
+             f"to a lever ENDPOINT by exact identity; families "
+             f"{[v[2] for v in expect.values()]}; shape types {len(alltypes)} "
+             f"(finite while families grow); the chase re-derives the "
+             f"rigidity lemma U4 = +-p^2 C2 from both Block-A patterns; on "
+             f"(2,1) the chase gives {dict(st)} with coincidence types "
+             f"{sorted(types)} -- the uniform theorem is a finite list of "
+             f"type-lemmas (coincidence + residual)")
+
+
 @check("a3.rigidity_pari_certificates", DOC)
 def _(ctx):
     """PARI/GP rank certificates and the Rank-r criterion (entry 79).

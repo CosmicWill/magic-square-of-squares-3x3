@@ -1083,6 +1083,120 @@ Rank $1$, proven — and since the Cassels pairing saw nothing on these
 curves, $Ш\supseteq(\mathbb{Z}/4)^2$ there: the case a 2-descent can
 never settle.
 
+### 2.12 Front A: the endpoint extractor and the type census (entry 81)
+
+*The first step of the adopted plan (ROADMAP §R.6-A): make the hand-trees
+of A3.8–A3.10 mechanical, so the whole $(a,b)$ ladder can be seen at
+once.*  Module `compute/lucas_endpoints.py`, check `a3.lucas_extractor`.
+
+**The three facts that make it mechanical.**  In the cleared relation
+$\sum_i c_i\,p^{2(J-|j_i|)}q^{2(K-|k_i|)}\operatorname{Im}(\ell^{2j_i}w^{2k_i})=0$:
+
+1. *Collapse.*  The cleared weights are exactly the relative weights in
+   the sum-to-product identity, so any two terms collapse to
+   $\pm2p^{2a}q^{2b}\operatorname{Trig}_1(D)\operatorname{Trig}_2(M)$ with
+   $D,M$ the half-difference and half-sum monomials.  No sign
+   convention is trusted: each collapse is found as an exact
+   polynomial identity in $\mathbb{Z}[c_1,s_1,c_2,s_2]$.
+2. *Units.*  A trig-monomial involving $\ell$ is a $p$-unit and one
+   involving $w$ a $q$-unit ($\pi$ divides one of the two conjugate
+   products, never both).  Only a **pure**-$w$ monomial can absorb a
+   power of $p$; only a pure-$\ell$ one a power of $q$.
+3. *Lever.*  Collapse the pair of minimal weight at a lever prime; the
+   third term's surplus $P^e$ must divide the product, hence land on a
+   pure factor of the other prime — or the pattern is dead.  What
+   remains is the **endpoint**: $P^e\mid\operatorname{Trig}(\text{pure})$
+   plus the residual product equation.
+
+**The census.**  Surveying boxes with the engine's general layers
+(complete enumeration, `canon_full` dedup):
+
+| box | canonical patterns | OPEN | distinct OPEN | endpoint families | new families |
+|---|---|---|---|---|---|
+| (2,1) | 224 | 34 | 26 | 17 | 17 |
+| (2,2) | 1144 | 136 | 120 | 72 | 55 |
+| (3,2) | 3264 | 322 | 298 | 177 | 105 |
+| (4,1) | 1456 | 140 | 124 | 86 | 41 |
+| (3,3) | 9200 | 732 | 696 | 396 | 219 |
+| (4,2) | 7084 | 576 | 544 | 328 | 110 |
+| (5,1) | 2720 | 220 | 200 | 140 | 54 |
+
+Every one of the $2008$ distinct OPEN patterns is an ENDPOINT (no
+failed collapse, none dead by the pure-factor rule); every OPEN
+distinct pattern carries a lever (the only unit-balanced residuals are
+the two-term doubled patterns).  The families are exponent-parametrized
+and **grow with the box**, as an infinite ladder must — but they fall
+into **about eighteen shape types** (which of $D,M,C$ is pure-$w$,
+pure-$\ell$ or mixed, and where the levers land).  The dominant types
+carry a mixed factor and a mixed third term; the fully separated types
+(pure × pure against a pure third term) are exactly the
+Lucas-coincidence equations, the rigidity lemma among them.
+
+**Consequence.**  A uniform $\omega\le2$ theorem is a *finite* list of
+type-lemmas, each to be proved for all exponents; the hand-closed boxes
+already contain proofs of many instances, to be generalized.
+
+**The chase (same entry).**  The endpoint is rewritten in *Lucas
+values* $U_y=\operatorname{Re}w^y,\ V_y=\operatorname{Im}w^y,\ C_x=\operatorname{Re}\ell^x,\ S_x=\operatorname{Im}\ell^x$
+(a mixed third term expands by $\operatorname{Im}(\ell^xw^y)=S_xU_y+C_xV_y$,
+doubled exponents reduce by the double-angle formulas), and every such
+equation is verified to reproduce the cleared relation exactly — 146
+of 146 on the closed boxes, in three to seven symbols.  The chase then
+does what the hand-proofs did: split the equation into a product form
+$\prod A_i=\pm\prod B_j$, derive per-atom divisibilities from the
+structural coprimality facts ($\gcd(U_y,V_y)=\gcd(C_x,S_x)=1$; $U,C$
+odd, $V,S$ even; $\ell$-side values are $p$-units, $w$-side values
+$q$-units — a $p$-power dividing a $w$-side value is *content*, the
+lever, never structure; a polynomial factor is coprime to its own
+symbol when its other term is), and close them by the lemma
+$X\mid P^eY,\ Y\mid X,\ P^e\mid X,\ \gcd(P,Y)=1\Rightarrow X=\pm P^eY$.
+**It re-derives the rigidity lemma**: from both Block-A patterns it
+returns $U_4=\pm p^2C_2$ with residual $S_2(4C_2+p^2)\mp V_4=0$ —
+the hand derivation, sign cases included (pinned in
+`a3.lucas_extractor`).  On the closed boxes the coincidences it finds
+are of a handful of types only:
+$S_x=\pm V_y$, $U_y=\pm p^2C_x$, $V_y=\pm p^2S_x$, $C_x=\pm q^2U_y$,
+$S_x=\pm q^2V_y$ and mirrors — **the Lucas-coincidence family, now
+produced by machine.**  The full chase uses all three pair-collapses of a pattern (all three
+identities hold), the Pythagorean rewrites $U_y^2\to q^{2y}-V_y^2$
+etc. before splitting, every split of up to six terms, a depth-1
+substitution of each derived equality into the other collapse
+equations, and drops tautologies; each equality is classified as
+*parity-dead* (odd = even), *unit collapse* ($X=\pm P^e$), weighted or
+unweighted *coincidence* ($X=\pm P^eY$, $X=\pm Y$) or *rearrangement*.
+
+*Coverage and the coincidence types.*  Box (2,1): 14 of the 26
+endpoints reach a coincidence and 12 do not (rearrangements only, or
+no equality — their equations mix exponents such as 1, 3, 4 on one
+side, and after the general multiple-angle reduction to the gcd
+exponent they need the Gaussian-prime valuation arguments of the
+hand-proofs, the next layer) — and the coincidences are of exactly
+six types: $S_2=\pm V_2$, $S_4=\pm V_2$,
+$V_2=\pm S_2$, $V_2=\pm S_4$, $U_2=\pm p^2C_2$, $V_2=\pm p^2S_2$
+(pinned).  The weighted ones are the $(k,j)$-family of the rigidity
+lemma ($U_4=\pm p^2C_2$ is $(4,2)$; $U_2=\pm p^2C_2$ is $(2,2)$).
+Box (2,2): 40 of the 120 endpoints reach a coincidence, of exactly
+sixteen types — the eight unweighted $S_x=\pm V_y$, $V_y=\pm S_x$
+with $x,y\in\{2,4\}$, and the eight weighted $U_y=\pm p^2C_2$,
+$V_y=\pm p^2S_2$, $C_x=\pm q^2U_2$, $S_x=\pm q^2V_2$ for
+$x,y\in\{2,4\}$ — i.e. the weighted family is
+$\operatorname{Trig}(w^y)=\pm p^2\operatorname{Trig}(\ell^2)$ and its
+mirror, the Lucas-coincidence family with the prime-square weight
+fixed by the box.
+
+*A coincidence alone never kills.*  $S_2=\pm V_2$ says two primitive
+frames with prime hypotenuses have equal leg products $c_1s_1=c_2s_2$,
+i.e. equal congrua — and that happens: $(a,b)=(5,2)$ and $(6,1)$ both
+give the congruum $840$ with hypotenuses $29$ and $37$; six such pairs
+below generator $60$ ($(109,197)$, $(193,401)$, …).  So every
+type-lemma is a statement about the **system** coincidence + residual
+(for the rigidity family: $U_4=\pm p^2C_2$ *and*
+$S_2(4C_2+p^2)\mp V_4=0$), and the chase reports both.  Next: the
+remaining no-equality endpoints (deeper substitution, size bounds,
+mod-8), then the type-lemmas — unit collapses via primitive divisors,
+coincidence systems via reduction rigidity with explicit exceptional
+sets.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

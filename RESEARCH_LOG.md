@@ -3130,3 +3130,98 @@ the model. D -- the A2.L descent revisited in the additive language
 (one session). E -- the paper. F -- insurance only. Explicitly closed
 roads: box-by-box grinding without a uniform lemma, descent-only
 local criteria at p, (D,E)-level reciprocity, sieve refinements.
+
+## 2026-09-02 — Entry 81: Front A step 2 — the endpoint extractor, and the type census of the (a,b) ladder
+
+The first deliverable of the adopted plan (R.6-A): the hand-trees of
+A3.8/A3.9/A3.10 made mechanical.
+
+THREE FACTS (compute/lucas_endpoints.py). In the cleared relation
+sum c_i p^{2(J-|j_i|)} q^{2(K-|k_i|)} Im(l^{2j_i} w^{2k_i}) = 0:
+ (1) COLLAPSE: the cleared weights are exactly the relative weights of
+     the sum-to-product identity, so any pair collapses to
+     +-2 p^{2a} q^{2b} Trig1(D) Trig2(M) with D, M the half-difference and
+     half-sum monomials; found as an EXACT polynomial identity over
+     Z[c1,s1,c2,s2], no sign convention trusted.
+ (2) UNITS: a trig-monomial involving l is a p-unit, one involving w a
+     q-unit (pi divides one conjugate product, never both); only a
+     PURE-w monomial can absorb a p-power, only a pure-l one a q-power.
+ (3) LEVER: collapse the minimal-weight pair at a lever prime; the third
+     term's surplus P^e must land on a pure factor of the other prime,
+     else the pattern is dead. What remains is the ENDPOINT.
+
+SURVEY (engine layers, complete enumeration, canon_full dedup):
+  box   patterns  OPEN  distinct  families  new
+  (2,1)    224      34     26        17      17
+  (2,2)   1144     136    120        72      55
+  (3,2)   3264     322    298       177     105
+  (4,1)   1456     140    124        86      41
+  (3,3)   9200     732    696       396     219
+  (4,2)   7084     576    544       328     110
+  (5,1)   2720     220    200       140      54
+All 2008 distinct OPEN patterns are ENDPOINTs (no failed collapse,
+none dead by the pure-factor rule). Every OPEN distinct pattern
+carries a lever (the only unit-balanced residuals are the two-term
+doubled patterns). The exponent-families GROW with the box, as an
+infinite ladder must -- but they fall into ~18 SHAPE TYPES (which of
+D, M, C is pure-w, pure-l or mixed; where the levers land). The
+dominant types carry a mixed factor and a mixed third term; the fully
+separated types are the Lucas-coincidence equations (the rigidity
+lemma among them).
+
+CONSEQUENCE. The uniform omega <= 2 theorem is a FINITE list of
+type-lemmas, each for all exponents; the hand-closed boxes contain
+proofs of many instances to be generalized. Next: the second collapse
+for mixed types (two product forms of one relation) and the separated
+type-lemmas first. Check a3.lucas_extractor (pins (2,1)/(2,2) exactly;
+FULL adds (3,2)/(4,1)). Suite 167.
+
+THE CHASE (same day). Endpoints rewritten in Lucas values U_y, V_y,
+C_x, S_x (mixed third terms expand by Im(l^x w^y) = S_x U_y + C_x V_y;
+doubled exponents reduce by double angle); each equation verified to
+reproduce the cleared relation exactly (146/146 on the closed boxes,
+3-7 symbols). The chase splits into a product form, derives
+divisibilities from the structural coprimality facts (Pythagorean legs
+coprime; U, C odd, V, S even; l-side values are p-units and w-side
+values q-units -- a p-power in a w-side value is CONTENT, the lever;
+polynomial factors coprime to their own symbol when the other term
+is) and closes them by X | P^e Y, Y | X, P^e | X, gcd(P,Y) = 1 ==>
+X = +-P^e Y. IT RE-DERIVES THE RIGIDITY LEMMA: both Block-A patterns
+give U4 = +-p^2 C2 with residual S2(4C2 + p^2) -+ V4 = 0 -- the hand
+derivation, sign cases included (pinned). The coincidences found on
+the closed boxes are of a handful of types (S_x = +-V_y, U_y =
++-p^2 C_x, V_y = +-p^2 S_x, C_x = +-q^2 U_y, S_x = +-q^2 V_y, mirrors):
+the Lucas-coincidence family, by machine. Coverage: 2/3-term
+equations (56/120 in (2,2)); 4-6-term equations need the multi-term
+factoring split (next). A first version of the oracle had the unit
+facts reversed and emitted C2 = p^2 U4; caught by the rigidity test.
+
+CHASE v2 + CLASSIFICATION (same day). All three pair-collapses of a
+pattern, Pythagorean rewrites before splitting, all splits up to six
+terms, depth-1 substitution of derived equalities into the other
+collapse equations, tautologies dropped; equalities classified as
+parity-dead / unit-collapse / coincidence (weighted, unweighted) /
+rearrangement. Box (2,1): COINCIDENCE 14, REARRANGEMENT-ONLY 4,
+NO-EQUALITY 8; exactly six coincidence types: S2 = +-V2, S4 = +-V2,
+V2 = +-S2, V2 = +-S4, U2 = +-p^2 C2, V2 = +-p^2 S2 (pinned in
+a3.lucas_extractor). A COINCIDENCE ALONE NEVER KILLS: S2 = +-V2 means
+equal congrua with prime hypotenuses, and (5,2), (6,1) both give 840
+with hypotenuses 29 and 37 -- six such pairs below generator 60. So
+each type-lemma is about the SYSTEM coincidence + residual (rigidity:
+U4 = +-p^2 C2 AND S2(4C2 + p^2) -+ V4 = 0); the chase reports both.
+The earlier single-collapse reading of a "C = +-V2" parity kill was a
+polynomial atom printed with a leading C -- no such kill exists yet.
+With the general multiple-angle reduction to the gcd exponent (every
+equation in 3-4 Lucas symbols, all 78 collapse equations of (2,1)
+verified exactly): (2,1) gives COINCIDENCE 14 of 26, the same six
+types; the other 12 are the endpoints mixing exponents 1, 3, 4 on one
+side -- they need the Gaussian-prime valuation layer (the hand-proofs'
+lambda-concentration arguments), not more rational coprimality. The
+check pins the 14, the six types and the rigidity re-derivation; the
+split of the other 12 is tool state.
+Box (2,2) on the final code: COINCIDENCE 40 of 120; sixteen types --
+the eight unweighted S_x = +-V_y, V_y = +-S_x (x, y in {2,4}) and the
+eight weighted U_y = +-p^2 C2, V_y = +-p^2 S2, C_x = +-q^2 U2,
+S_x = +-q^2 V2 (x, y in {2,4}): the weighted family is
+Trig(w^y) = +-p^2 Trig(l^2) and its mirror, the Lucas-coincidence
+family with the prime-square weight fixed by the box.
