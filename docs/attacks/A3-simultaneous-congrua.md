@@ -682,10 +682,73 @@ relations; the Fermat search corroboration.
 
 **Status: the additive queue is EMPTY.** Every native canonical
 pattern of the $(1,1)$, $(2,1)$, $(3,1)$, $(2,2)$ boxes is closed.
-Theorem A3.10 ($p^2q^2$) now gates on exactly one item: the 44
-level-shifted replications of closed $(2,1)$ parents
-(`data_box22_replication.json`) — the $\tau \to \tau^2$ transfer
-re-derivations.
+Theorem A3.10 ($p^2q^2$) now gates on the 44 level-shifted
+replications of closed $(2,1)$ parents — analysed next.
+
+## 2.11 The $p^2q^2$ replications and the rigidity lemma (P1's core)
+
+*(2026-08-30; checks `a3.p2q2_accounting`, `a3.p2q2_reduction`.
+**A3.10 is REDUCED, not proven** — stated honestly.)*
+
+The $(2,2)$ box enumerates to $1144$ canonical patterns which
+partition, with **zero gaps** (machine-audited), as: $1008$ machine
+kills ($912$ valuation, $36$ factored, $60$ congruence); $34$ in the
+$(2,1)$ sub-box and $26$ in the $(1,2)$ sub-box (both closed by
+Theorem A3.8, the second via the $p\leftrightarrow q$ symmetry of
+the additive-relation condition); $32$ already in the closed ledger
+(the $24$ $G3$ double-pincer patterns closed during the $(3,1)$
+campaign — they are $(2,2)$-box patterns — plus the $8$ $H3$); and
+$44$ **replications** ($26$ with all $k$ even, $18$ with all $j$
+even).  The replications are the whole of what remains, and the $18$
+$j$-children are the $p\leftrightarrow q$ transposes of $18$ of the
+$26$ $k$-children (identity pinned), so **the task is exactly the
+$26$ $k$-children.**
+
+A $k$-child is a halving: its cleared relation equals its
+$(2,1)$-parent's under the **$q$-level shift**
+$(c_2,s_2)\mapsto(c_2^2{-}s_2^2,\,2c_2s_2)$ (pinned exact for all
+$26$).  The transfer is *not* automatic, because the parent theorem
+A3.8 covers the second prime being a genuine prime $q'$, whereas the
+child needs the second slot to be $q^2$ with the level-2 frame
+structure.  Twelve children survive this for free — the
+**collapsed-valuation kill** (the odd term carries $q^4$ while the
+collapsed $(2,\pm2)$ pair is a $q$-unit, so the cleared relation
+cannot vanish), the $F1$ family landing on $x^4+y^4=2z^2$ (hence
+Fermat $x^4-y^4=z^2$), and the $F9$ squeeze / $F10$ pinch.
+
+The other **fourteen reduce to a single rigidity endpoint.**  Block A
+$\{(1,\pm2),(2,2),(2,-2)\}$ (8 patterns) collapses to one $p$-lever
+$p^2\mid U$ (resp. $V$) forcing, after the coprime-factor descent,
+$\mathrm{Re}(w^4)=\pm p^2C$; the minus sign dies mod $8$
+($\mathrm{Re}(w^4)\equiv1$, $-p^2C\equiv3,7$), and the plus sign is
+
+$$\boxed{\;c_2^4 - 6c_2^2s_2^2 + s_2^4 \;=\; c_1^4 - s_1^4\;}
+\qquad(\mathrm{Re}(w^4)=c_1^4-s_1^4),$$
+
+with $c_1^4-s_1^4 = (c_1^2{-}s_1^2)(c_1^2{+}s_1^2) = p^2C$.  Block B
+(6 patterns, the fusion families with a pure $(2,0)$ term) reduces
+analogously via a $q^4$ lever.
+
+**This endpoint is the core lemma of the uniform program (P1).**  It
+is the level-2 instance of a rigidity phenomenon that recurs in every
+higher box, so proving it is worth more than the single theorem.
+What is established (machine-pinned): it has **no coprime-integer
+solution at all** — not merely no prime-frame solution, and
+independent of parity — to $\lvert c\rvert,\lvert s\rvert<400$ (and
+no prime-frame solution to $p,q<2000$); and **no congruence
+obstructs it** (mod $16,32,3,5,7,9,25,11,13,17,27$).  So it is a
+clean Diophantine statement requiring a genuine **$2$-descent**, not
+a congruence sieve or a one-line Fermat reduction.  Writing
+$A=c_2^2-s_2^2$, $B=2c_2s_2$ (so $A^2+B^2=q^4$, $\gcd(A,B)=1$), the
+equation is $A^2-B^2=c_1^4-s_1^4$, i.e. the coprime-odd product
+$(A-B)(A+B)=(c_1^2-s_1^2)(c_1^2+s_1^2)$ — the natural starting point
+for the four-part factor descent.
+
+Once this lemma falls, A3.10 closes (Block A directly; Block B by its
+analogue) and the corollary sharpens to: *the split part of any MSS3
+center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct
+split primes* — leaving $\omega=2$ with only the $a,b\ge2$,
+$\max(a,b)\ge3$ boxes, which the uniform lemma is built to sweep.
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 

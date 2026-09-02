@@ -714,6 +714,41 @@ def tspace_to_cs(N, J, K):
     return out
 
 
+def qlevel_shift(P):
+    """The q-side level shift: substitute (c2, s2) -> (u, v) =
+    (c2^2 - s2^2, 2 c2 s2).  For a k-replicated pattern (all k even)
+    the cleared relation equals the halved parent's cleared relation
+    under this substitution (the parent's frame slot now carries the
+    legs of q^4, hypotenuse q^2)."""
+    U = {(0, 0, 2, 0): 1, (0, 0, 0, 2): -1}
+    V = {(0, 0, 1, 1): 2}
+    out = {}
+    for (a, b, c, d), coef in P.items():
+        term = {(a, b, 0, 0): coef}
+        for _ in range(c):
+            term = p4mul(term, U)
+        for _ in range(d):
+            term = p4mul(term, V)
+        out = p4add(out, term)
+    return out
+
+
+def plevel_shift(P):
+    """The p-side level shift: substitute (c1, s1) -> (C, S) =
+    (c1^2 - s1^2, 2 c1 s1); the j-replication analogue."""
+    C = {(2, 0, 0, 0): 1, (0, 2, 0, 0): -1}
+    S = {(1, 1, 0, 0): 2}
+    out = {}
+    for (a, b, c, d), coef in P.items():
+        term = {(0, 0, c, d): coef}
+        for _ in range(a):
+            term = p4mul(term, C)
+        for _ in range(b):
+            term = p4mul(term, S)
+        out = p4add(out, term)
+    return out
+
+
 def collapse_form(G, amax=6, mdeg=3):
     """Try to write G = q^2 * P1 + sum over single term
     Im(ell^a w^{+-2}) * monomial: exact integer linear algebra via

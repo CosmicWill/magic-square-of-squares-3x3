@@ -2624,3 +2624,43 @@ two orbits. Lesson recorded: before resuming any long job, check
 whether an earlier session's instance is still alive — a prior
 session's background task outlives that session and cannot be
 stopped through the new one's task system.
+
+## 2026-08-30 — Entry 71: A3.10 is REDUCED not proven; the rigidity quartic is the uniform program's core lemma
+
+Attacking A3.10 (p^2 q^2) exposed that the "44 replications, one
+session" estimate was wrong, and the step-back audit is the reason
+we caught it cleanly rather than shipping a false theorem. Status,
+all machine-pinned (a3.p2q2_accounting, a3.p2q2_reduction):
+
+The (2,2) box (1144 canonical patterns) partitions with ZERO gaps:
+1008 machine + 34 (2,1)-subbox + 26 (1,2)-subbox [A3.8 and its
+p<->q swap] + 32 ledger [24 G3 double-pincer, which are (2,2)
+patterns closed back in entry 63, + 8 H3] + 44 replications. The 18
+j-children are p<->q transposes of k-children (identity pinned), so
+only the 26 k-children remain. Twelve close rigorously: the
+collapsed-valuation kill (odd term carries q^4, collapsed (2,+-2)
+pair is a q-unit -> cleared relation can't vanish), F1 -> x^4+y^4=
+2z^2 -> Fermat, F9 squeeze, F10 pinch.
+
+The other FOURTEEN reduce to ONE rigid endpoint:
+  c2^4 - 6 c2^2 s2^2 + s2^4 = c1^4 - s1^4   (Re(w^4) = c1^4 - s1^4).
+Block A {(1,+-2),(2,2),(2,-2)} has a single p-lever forcing
+Re(w^4) = +-p^2 C; the minus sign dies mod 8; the plus sign is the
+quartic above. Block B reduces analogously via a q^4 lever.
+Findings on the endpoint: NO coprime solution to 400 regardless of
+parity (not just no prime-frame solution to 2000), and NO
+congruence obstruction (mod 16/32/3/5/7/9/25/11/13/17/27). So it is
+a CLEAN Diophantine statement needing a genuine 2-descent -- and it
+is the LEVEL-2 instance of a rigidity phenomenon that recurs in
+every higher box.
+
+Decision (user): PIVOT to P1, the uniform omega<=2 theorem, and
+treat these 14 as its first test cases -- the descent is needed
+anyway, and a bespoke box-(2,2) descent would be thrown away. A3.10
+becomes the base case, closing as a corollary once the rigidity
+lemma falls. Errors caught & fixed this session: the invariant
+helper's tag-keying hole (ca4cd70), the F1b fusion sign (machine
+caught), the LEDGER=32 "discrepancy" (not an error -- G3 is (2,2)).
+FULL-profile suite ran end to end for the first time in a while:
+155 pass / 0 fail / 2 skip. Suite now 159 checks. NOT CLAIMING
+A3.10; the reduction is pinned honestly, the theorem is not.

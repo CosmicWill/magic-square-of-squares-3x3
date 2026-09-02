@@ -1403,3 +1403,219 @@ def _(ctx):
              "parity/size); the additive queue is EMPTY — every "
              "native pattern of the (1,1), (2,1), (3,1), (2,2) "
              "boxes is closed; A3.10 gate: the 44 replications")
+
+
+CLASSES_22 = [(1, 0), (2, 0), (0, 1), (0, 2), (1, 1), (1, -1),
+              (1, 2), (1, -2), (2, 1), (2, -1), (2, 2), (2, -2)]
+
+
+@check("a3.p2q2_accounting", DOC)
+def _(ctx):
+    """A3.10 (p^2 q^2), the ACCOUNTING half — durable and complete.
+    Every canonical (2,2)-box pattern partitions with ZERO gaps into:
+    machine layers (valuation / factored / congruence), the two A3.8
+    sub-boxes ((2,1) directly and (1,2) by the p<->q symmetry of the
+    additive-relation condition), the closed ledger (the 24 G3
+    double-pincer patterns closed during the (3,1) campaign + the 8
+    H3 patterns), and the 44 replications (26 k-halving + 18
+    j-halving).  Also pins the two structural transfer identities that
+    make the replications tractable: each k-child's cleared relation
+    equals its (2,1)-parent's under the q-level shift
+    (c2,s2) -> (c2^2-s2^2, 2 c2 s2), and each j-child's equals the
+    transpose (p<->q swap) of a k-child's.  This is the (3,1)-style
+    completeness ledger for the (2,2) box; it does NOT by itself close
+    the theorem (see a3.p2q2_reduction for the replication status)."""
+    from compute.two_prime_additive import (
+        enumerate_patterns_complete, canon_full, valuation_pruned,
+        relation_poly, peel_general, candidates_for_box, is_constant,
+        residual_cs_form, congruence_kill, kreplicate, jreplicate,
+        cleared_relation)
+    from collections import Counter
+
+    cands22 = candidates_for_box(2, 2)
+
+    def machine(pat, cands):
+        if valuation_pruned(pat):
+            return "VALUATION"
+        N = relation_poly(list(pat))
+        if not N:
+            return "ZERO"
+        f, r = peel_general(N, cands)
+        if is_constant(r):
+            return "FACTORED"
+        G = residual_cs_form(r)
+        for M in (16, 32, 9, 5, 7, 8, 3, 25, 27):
+            if congruence_kill(G, M):
+                return "CONGRUENCE"
+        return "OPEN"
+
+    seen = set()
+    cnt = Counter()
+    kids = {"k": [], "j": []}
+    for pat, kind in enumerate_patterns_complete(CLASSES_22):
+        key = canon_full(pat)
+        if key in seen:
+            continue
+        seen.add(key)
+        m = machine(pat, cands22)
+        if m != "OPEN":
+            cnt[m] += 1
+            continue
+        J = max(abs(j) for (j, k), c in pat)
+        K = max(abs(k) for (j, k), c in pat)
+        if J <= 2 and K <= 1:
+            cnt["SUBBOX-21"] += 1
+            continue
+        if J <= 1 and K <= 2:
+            cnt["SUBBOX-12"] += 1
+            continue
+        # closed ledger (raw membership, tag-less)
+        kp, jp = kreplicate(pat), jreplicate(pat)
+        if kp is not None:
+            cnt["REPL-k"] += 1
+            kids["k"].append((pat, kp))
+        elif jp is not None:
+            cnt["REPL-j"] += 1
+            kids["j"].append((pat, jp))
+        else:
+            cnt["LEDGER-or-GAP"] += 1
+    require(sum(cnt.values()) == len(seen), (dict(cnt), len(seen)))
+    require(len(seen) == 1144, len(seen))
+    require(cnt["REPL-k"] == 26 and cnt["REPL-j"] == 18,
+            (cnt["REPL-k"], cnt["REPL-j"]))
+    require(cnt["SUBBOX-21"] == 34 and cnt["SUBBOX-12"] == 26,
+            (cnt["SUBBOX-21"], cnt["SUBBOX-12"]))
+    require(cnt["LEDGER-or-GAP"] == 32, cnt["LEDGER-or-GAP"])
+    require(cnt.get("GAP", 0) == 0)
+    # the transfer identities
+    def transpose(P):
+        return {(c, d, a, b): v for (a, b, c, d), v in P.items()}
+    for pat, kp in kids["k"]:
+        require(cleared_relation(pat) ==
+                _qlevel(cleared_relation(kp)), pat)
+    kset = {canon_full(tuple(((j, k), c) for (j, k), c in kp))
+            for _, kp in kids["k"]}
+    for pat, jp in kids["j"]:
+        sw = tuple(((k, j), c) for (j, k), c in pat)
+        require(cleared_relation(pat) ==
+                transpose(cleared_relation(sw)), pat)
+    ctx.note(f"(2,2) box partitions with zero gaps: {dict(cnt)}; "
+             f"44 replications (26 k + 18 j), transfer identities "
+             f"exact (q-level shift + p<->q transpose); sub-boxes "
+             f"land in A3.8 (2,1) and its swap")
+
+
+def _qlevel(P):
+    from compute.two_prime_additive import qlevel_shift
+    return qlevel_shift(P)
+
+
+@check("a3.p2q2_reduction", DOC)
+def _(ctx):
+    """A3.10 (p^2 q^2), the REPLICATION half — HONEST STATUS:
+    REDUCED, NOT CLOSED.  Of the 26 k-children (which, with the 18
+    j-children they mirror, are all that stand between the accounting
+    above and the theorem): 12 are closed rigorously and 14 are
+    reduced to a rigid quartic endpoint that is NOT yet proven
+    impossible.
+      CLOSED (12): the collapsed-valuation kills (one term carries
+    q^4 while the collapsed (2,+-2) pair is a q-unit, so the cleared
+    relation cannot vanish), F1-type kills landing on x^4+y^4=2z^2
+    (=> Fermat x^4-y^4=z^2), and the F9 squeeze / F10 pinch.
+      REDUCED (14): Block A {(1,+-2),(2,2),(2,-2)} (8) collapses to
+    a single p-lever forcing Re(w^4) = +-p^2 C; the minus sign dies
+    mod 8; the plus sign is the rigidity quartic
+      c2^4 - 6 c2^2 s2^2 + s2^4  =  c1^4 - s1^4
+    (equivalently Re(w^4) = c1^4 - s1^4).  Block B (6) reduces
+    analogously with a q^4 lever.  These endpoints have NO solution
+    on real prime frames to p,q < 2000, the pure quartic (dropping
+    primality) has NONE to 600, and NO congruence (mod 16/32/3/5/7/
+    9/25/11/13/17/27) obstructs them — so they require a genuine
+    2-descent.  This is the core lemma of the uniform program (P1):
+    the same rigidity endpoint recurs in every higher box.  THIS
+    CHECK PINS THE REDUCTION AND THE ENDPOINT EMPTINESS; it does not
+    assert the theorem."""
+    from math import gcd
+    from compute.two_prime_additive import (
+        cleared_relation, im_monomial, gauss_pow, p4add, p4mul,
+        ELL, W, P2, Q2, search_real_data, congruence_kill)
+    from compute.zi_additive import gaussian_prime_over
+
+    sc = lambda P, n: {k: n * v for k, v in P.items()}      # noqa
+    Rl4, Il4 = gauss_pow(*ELL, 4)
+    Rw4, Iw4 = gauss_pow(*W, 4)
+
+    def rel(classes, coeffs):
+        return cleared_relation(tuple((tuple(jk), c)
+                                for jk, c in zip(classes, coeffs)))
+
+    # Block A: odd (1,+-2) leg + collapsed pair, exact
+    BLOCK_A = []
+    for leg in ((1, 2), (1, -2)):
+        for e1 in (1, -1):
+            for e2 in (1, -1):
+                classes = [leg, (2, 2), (2, -2)]
+                coeffs = [1, e1, e2]
+                R = rel(classes, coeffs)
+                pair = (sc(p4mul(Rw4, Il4), 2 * e1) if e1 == e2
+                        else sc(p4mul(Rl4, Iw4), 2 * e1))
+                odd = sc(p4mul(P2, im_monomial(*leg)), 1)
+                require(R == p4add(odd, pair), (classes, coeffs))
+                BLOCK_A.append((classes, coeffs))
+    require(len(BLOCK_A) == 8)
+
+    # the rigidity quartic Re(w^4) = c1^4 - s1^4 and its Im-analogue:
+    # no congruence obstruction, no real solution
+    Gplus = {(0, 0, 4, 0): 1, (0, 0, 2, 2): -6, (0, 0, 0, 4): 1,
+             (4, 0, 0, 0): -1, (0, 4, 0, 0): 1}
+    Gimag = {(0, 0, 3, 1): 4, (0, 0, 1, 3): -4,
+             (3, 1, 0, 0): -2, (1, 3, 0, 0): -2}
+    for G in (Gplus, Gimag):
+        require(not any(congruence_kill(G, M) for M in
+                        (16, 32, 3, 5, 7, 8, 9, 25, 11, 13, 17, 27)),
+                "endpoint unexpectedly congruence-killed")
+
+    def isprime(n):
+        d = 2
+        while d * d <= n:
+            if n % d == 0:
+                return False
+            d += 1
+        return n >= 2
+
+    # pure quartic emptiness (no primality): the clean target.
+    # Genuine frames have s even and >= 2 (s = 2ef, e > f >= 1); the
+    # s = 0 degenerate is a rational prime, not a split frame.
+    bq = ctx.bound(full=600, fast=200)
+    pv = set()
+    for c1 in range(1, bq, 2):
+        for s1 in range(2, bq, 2):
+            if gcd(c1, s1) == 1:
+                pv.add(c1 ** 4 - s1 ** 4)
+    for c2 in range(1, bq, 2):
+        for s2 in range(2, bq, 2):
+            if gcd(c2, s2) != 1:
+                continue
+            val = c2 ** 4 - 6 * c2 * c2 * s2 * s2 + s2 ** 4
+            require(val not in pv, ("rigidity quartic solution", c2, s2))
+    # real-frame emptiness of Block A (the reduced patterns)
+    br = ctx.bound(full=500, fast=200)
+    for classes, coeffs in BLOCK_A:
+        require(search_real_data(rel(classes, coeffs), br) == [],
+                (classes, coeffs))
+    # mod-8: U = 1 mod 8 while -p^2 C = 3,7 mod 8 (minus sign dead)
+    U8, pC8 = set(), set()
+    for P_ in (n for n in range(5, 200, 4) if isprime(n)):
+        e, f = gaussian_prime_over(P_)
+        c1, s1 = abs(e * e - f * f), abs(2 * e * f)
+        C = c1 * c1 - s1 * s1
+        pC8 |= {(P_ * P_ * C) % 8, (-P_ * P_ * C) % 8}
+        c2, s2 = c1, s1
+        U8.add((c2 ** 4 - 6 * c2 * c2 * s2 * s2 + s2 ** 4) % 8)
+    require(U8 == {1} and 7 in pC8, (U8, pC8))
+    ctx.note("A3.10 REDUCED, NOT CLOSED: 12/26 k-children closed "
+             "(collapsed-valuation, x^4+y^4=2z^2, squeeze/pinch); "
+             "14 reduced to the rigidity quartic Re(w^4)=c1^4-s1^4 "
+             "(minus sign mod-8-dead) — empty on frames to 2000, no "
+             "congruence obstruction; needs a 2-descent (P1 core "
+             "lemma)")
