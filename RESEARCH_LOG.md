@@ -2763,3 +2763,70 @@ finite check (*) (FAST p < 15000, FULL p < 10^5), and the p = 1 mod
 16 lever on real Gaussian primes. Status of the lemma: proven for
 the extreme divisors, verified for all p < 10^5 (10^6 pending) and
 every q, open in the middle. NOT claiming the lemma or A3.10.
+
+## 2026-09-02 — Entry 74: the intermediate divisor case — a quartic-residue sieve with a one-prime residual
+
+Attacking the open middle of the frame rigidity lemma. Four things
+established, in order, each redirecting the next.
+
+(1) The obstruction is QUADRATIC. T = (p^4 D^2 + E^2)/2 is never even
+a perfect SQUARE for intermediate D (57,392 cases, 2,229 primes
+p = 1 mod 16 below 2e5): the equation fails already at
+(p^2 D)^2 + E^2 = 2X^2, before any fourth-power condition. (2) But
+it is NOT local: no modulus has T's residues missing the squares,
+every Jacobi symbol the equation forces to +1 is +1, and the primes
+witnessing non-squareness are random large primes unrelated to p's
+data (p=17, D=23: T = 13 * 1699333). So no sieve on T can prove it.
+(3) It is a CONGRUENT-NUMBER question: "T square" <=> (X^2 +- A)/2
+both squares, A = c1^4 - s1^4 <=> Pythagorean (I,R,X) with
+R^2 - I^2 = A <=> m^4 - 6m^2n^2 + n^4 = A <=> a point on
+y^2 = A(x^4 - 6x^2 + 1), whose Jacobian is Y^2 = X(X+4)(X+8) ~
+y^2 = x^3 - x (isogeny confirmed by point counts at 16 primes;
+correspondence validated on 7, 41, 119, 161, 527), so the twisted
+curve is the congruent-number curve y^2 = x^3 - A4^2 x, n = A4 =
+c1^2 - s1^2. And A4 = Re(pi^4) = a^4 - 6a^2b^2 + b^4 is itself a
+value of the quartic form, so the frame point x = a/b is a
+non-torsion rational point: RANK >= 1 FOR EVERY p (Tunnell agrees on
+all 26 primes tested). Hence no rank-0 / Selmer argument exists; the
+lemma is an integral-point statement on a positive-rank curve.
+(4) The lever is the FOURTH POWER. (1+i) rho^4 = E + i p^2 D reduced
+mod the Gaussian primes of D, E, R4 = (p^2D+E)/2, I4 = (p^2D-E)/2
+(and of K in the natural split) gives quartic-residue conditions
+with one shared unit; no admissible unit => provably dead. Closed
+forms: an inert prime l = 7 mod 16 dividing A4 kills every D
+(chi_l(1+i) = -1 there, trivial on rationals); in the natural split
+3 | K always, forcing p = 1 mod 3 -- which kills the first survivor
+of the plain [D][E] sieve (p = 113 = 2 mod 3). The sieve is SOUND:
+synthetic true solutions pass every condition with eps = 1
+(154/154). On data it is nearly complete: p < 15000, 3128
+intermediate coprime cases, 2918 die at primes of R4, 193 at I4, 15
+at [D][E], and TWO survive -- both at p = 5569, A4 = -31*239*2671
+with every prime = 15 mod 16, the transparent class where quartic
+characters carry no information, and the self-conditions pass by
+chance. No new survivor between 6000 and 15000. Every residual is
+dead by the finite check.
+
+STATUS: the intermediate case is a quartic-residue sieve with a
+sparse, precisely characterized residual (density ~1e-3, empty to
+1e6) -- NOT a proof. Closing it needs a reciprocity argument that
+the conditions are globally inconsistent (the Fermat/Euler route),
+or a new idea for the transparent class. compute/quartic_sieve.py +
+check a3.rigidity_quartic_sieve (self-test, the l = 7 mod 16 and
+Case-N facts, the sieve on real data with residuals verified
+finite-check-dead). NOT claiming the lemma or A3.10. Suite 161.
+
+Addendum (same day): two corrections that made the sieve complete on
+data. First, with SIGNED (D, E) the equation (1+i) rho^4 = E + i p^2 D
+is EXACT -- R4 = Re(rho^4), I4 = Im(rho^4) are defined from the
+actual rho and the four-part split fixes the signs -- so there is
+no unknown unit at all; the earlier version allowed one and was
+sound but weaker. Second, two further natural condition families:
+[2] rho^4 mod 32 and mod 64 lies in a fixed set (the p = 5569,
+D = 31 residual fails it), and [C] combination primes
+lam | u R4 + v I4 with rho^4 = I4 (u i - v)/u (kills the other
+residual at lam over 7, k = 3). Upgraded sieve, p < 15000: 3128
+cases, 2416 die 2-adically, 477 at [D], 183 at [E], 44 at [R], 7 at
+[I], 1 at [C] -- NO residual. The full sieve is self-tested end to
+end on synthetic solutions (kill_reason returns None on every one).
+Still not a proof: any finite list of local conditions leaves a
+residual class in principle.

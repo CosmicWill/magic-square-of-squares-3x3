@@ -1755,3 +1755,83 @@ def _(ctx):
              f"finite check (*) empty for all {n_p} primes p < {N} "
              f"and EVERY q; p^2|Re(rho^8) => p=1 mod 16 on data "
              f"(witnessed p: {sorted(seen)}); general D OPEN")
+
+
+@check("a3.rigidity_quartic_sieve", DOC)
+def _(ctx):
+    """THE QUARTIC-RESIDUE SIEVE on the intermediate divisor case
+    (entry 74; compute/quartic_sieve.py).  Three facts established
+    first: the obstruction is QUADRATIC (T = (p^4 D^2 + E^2)/2 is never
+    even a perfect square for intermediate D, 57k cases to p < 2e5) but
+    NOT local (no congruence or Jacobi obstruction), and "T square" is
+    an integral point on the congruent-number curve y^2 = x^3 - A4^2 x,
+    which always has rank >= 1 (A4 = Re(pi^4) is itself a value of the
+    quartic form, so the frame point x = a/b is non-torsion) -- so no
+    rank-0/Selmer argument exists.  The lever is the FOURTH POWER:
+    (1+i) rho^4 = E + i p^2 D reduced mod the Gaussian primes of D, E,
+    R4, I4 (and of K in the natural split) gives quartic-residue
+    conditions; with signed (D,E) the equation is EXACT (no unit), so
+    every condition is a fixed equality, and two more natural families
+    apply: [2] rho^4 mod 32/64 lies in a fixed set, [C] combination
+    primes lam | uR4 + vI4.  A case failing any condition is provably
+    dead.  Closed-form consequences: any inert l = 7 mod 16 dividing A4
+    kills every D (chi_l(1+i) = -1), and 3 | K forces p = 1 mod 3 in
+    the natural split.  On data: the [D][E][R][I][K] sieve alone left
+    2 survivors below 15000 (both p = 5569, every prime of A4 = 15 mod
+    16 -- the 'transparent' class); [2] and [C] kill those too, and the
+    upgraded sieve has NO residual below 15000 (the note reports the
+    live count).  Any residual is verified finite-check-dead here.
+    STATUS: a quartic-residue sieve, complete on data, NOT a proof --
+    any finite list of local conditions leaves a residual class in
+    principle; closing it needs a reciprocity argument that the
+    conditions are globally inconsistent."""
+    from compute.quartic_sieve import (
+        self_test, kill_reason, intermediate_splits, chi_inert,
+        gaussian_primes_over)
+    from math import gcd
+
+    # the sieve is sound: synthetic true solutions pass with eps = 1
+    n_ok, n_run = self_test(trials=ctx.bound(full=400, fast=150))
+    require(n_run >= 40 and n_ok == n_run, (n_ok, n_run))
+    # chi_l(1+i) at inert primes: -1 for l = 7 mod 16, +1 for 15 mod 16
+    for l in (7, 23, 71, 103, 151, 167, 199, 263):
+        require(l % 16 == 7 and chi_inert(1, 1, l) == 2, l)
+    for l in (31, 47, 79, 127, 191, 223, 239, 271):
+        require(l % 16 == 15 and chi_inert(1, 1, l) == 0, l)
+    # chi at inert primes is trivial on rational integers
+    for l in (7, 23, 31, 47):
+        for n in (2, 3, 5, 11, 13):
+            if n % l:
+                require(chi_inert(n, 0, l) == 0, (l, n))
+    # the sieve on real data: every intermediate case is killed or is
+    # a recorded residual; residuals are dead by the finite check (*)
+    N = ctx.bound(full=6000, fast=1600)
+    killed = residual = 0
+    tags = {}
+    for p in range(17, N, 16):
+        d = 2
+        while d * d <= p and p % d:
+            d += 1
+        if d * d <= p:
+            continue
+        c1, s1, A4, splits = intermediate_splits(p)
+        p4 = p ** 4
+        for D, E in splits:
+            r = kill_reason(p, D, E, c1, s1)
+            if r is None:
+                residual += 1
+                T2 = p4 * D * D + E * E
+                # residual must still fail the finite check
+                T = T2 // 2
+                q = round(T ** 0.25)
+                require(all(c ** 4 != T for c in (q - 1, q, q + 1)),
+                        ("residual is a solution?!", p, D))
+            else:
+                killed += 1
+                tags[r] = tags.get(r, 0) + 1
+    require(killed > 0)
+    require(residual <= max(2, killed // 200), (killed, residual))
+    ctx.note(f"quartic sieve p < {N}: {killed} intermediate cases killed "
+             f"{tags}, {residual} residual (finite-check-dead); "
+             f"self-test {n_ok}/{n_run}; l=7 mod 16 kills, Case-N p=1 "
+             f"mod 3 -- NOT a proof, residual is the open obligation")

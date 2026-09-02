@@ -797,6 +797,66 @@ for the extreme divisors, verified for every $p<10^6$ and all $q$,
 reduced to a clean two-ring ($\mathbb{Z}[i]$, $\mathbb{Z}[\sqrt2]$)
 recombination problem in the middle.
 
+**The intermediate case: what it is, and the quartic sieve (entry 74;
+`compute/quartic_sieve.py`, check `a3.rigidity_quartic_sieve`).**
+Three structural facts first.  *(i) The obstruction is quadratic:*
+$T=(p^4D^2+E^2)/2$ is never even a perfect *square* for intermediate
+$D$ (57,392 cases, $p<2\cdot10^5$), so the equation already fails at
+$(p^2D)^2+E^2=2X^2$ before any fourth-power condition.  *(ii) But it
+is not local:* no modulus has $T$'s residues missing the squares, every
+Jacobi symbol the equation forces to $+1$ is $+1$, and the primes
+witnessing non-squareness are random large primes.  *(iii) It is a
+congruent-number question:* "$T$ square" means $(X^2\pm A)/2$ are both
+squares with $A=c_1^4-s_1^4$, i.e. a Pythagorean $(I,R,X)$ with
+$R^2-I^2=A$, i.e. $m^4-6m^2n^2+n^4=A$ — a point on
+$y^2=A(x^4-6x^2+1)$, whose Jacobian is $Y^2=X(X{+}4)(X{+}8)\cong
+y^2=x^3-x$ (isogeny confirmed by point counts), so the twisted curve is
+**the congruent-number curve $y^2=x^3-A_4^2x$ for $n=A_4=c_1^2-s_1^2$.**
+And $A_4=\mathrm{Re}(\pi^4)=a^4-6a^2b^2+b^4$ is itself a value of the
+quartic form, so the frame point $x=a/b$ is a non-torsion rational
+point: **rank $\ge1$ for every $p$** (Tunnell agrees on all 26 primes
+tested).  Hence no rank-0/Selmer argument exists; the lemma is an
+*integral-point* statement on a positive-rank curve — which is why
+no sieve on $T$ can see it.
+
+The lever is the **fourth power**.  $(1+i)\rho^4=E+ip^2D$ with
+$\rho^4=R_4+iI_4$, $R_4=(p^2D+E)/2$, $I_4=(p^2D-E)/2$; reducing
+modulo every Gaussian prime $\lambda$ of $D$, $E$, $R_4$, $I_4$ (and
+of $K$ in the natural split, where $\rho^4=\pi^2+K(1+i)$) turns the
+equation into quartic-residue conditions on data computable from
+$(p,D)$ alone, with one shared unknown unit $\varepsilon=i^j$:
+$[D]$ $\chi_\lambda(E)+\chi_\lambda(1{+}i)=\chi_\lambda(2)+j\chi_\lambda(i)$;
+$[E]$ $\chi_\lambda(p^2D)=j\chi_\lambda(i)+\chi_\lambda(1{+}i)$;
+$[R]$ $\chi_\lambda(i)+\chi_\lambda(I_4)=0$; $[I]$ $\chi_\lambda(R_4)=0$;
+$[K]$ $2\chi_\lambda(\pi)=0$.  A case with no admissible $j$ is
+provably dead.  Two closed-form consequences: **an inert prime
+$\ell\equiv7\pmod{16}$ dividing $A_4$ kills every $D$** (there
+$\chi_\ell(1{+}i)=-1$ while $\chi_\ell$ is trivial on rational
+integers), and in the natural split **$3\mid K$ always, forcing $p$ to
+be a quadratic residue mod 3, i.e. $p\equiv1\pmod3$** (this is what
+kills the first survivor of the plain $[D][E]$ sieve, $p=113$).  The
+With *signed* $(D,E)$ the equation is exact — there is no unit at all
+($\varepsilon=1$), so every condition is a fixed equality — and two
+further natural families apply: $[2]$ $\rho^4 \bmod 32$ and $\bmod 64$
+lies in a fixed small set; $[C]$ combination primes
+$\lambda\mid uR_4+vI_4$ give $\rho^4\equiv I_4(ui-v)/u$.  The sieve is
+sound — synthetic true solutions $(1+i)\rho^4$ pass the *full* sieve
+end to end — and on data it is complete: the $[D][E][R][I][K]$ system
+alone left exactly two survivors below $15000$, both at $p=5569$ where
+$A_4=-31\cdot239\cdot2671$ has every prime $\equiv15\pmod{16}$ (the
+*transparent* class in which the quartic characters carry no
+information); $[2]$ kills one and $[C]$ the other, and **the upgraded
+sieve has no residual at all for $p<15000$** ($3128$ cases: $2416$
+die $2$-adically, $477$ at $[D]$, $183$ at $[E]$, $44$ at $[R]$, $7$
+at $[I]$, $1$ at $[C]$).  **Status of the intermediate case: a
+quartic-residue sieve, complete on data, verified empty to $10^6$ by
+the finite check — not a proof.**  Any finite list of local conditions
+leaves a residual class in principle; a proof needs a reciprocity
+argument that the conditions are globally inconsistent — the
+classical Fermat/Euler route — and the sieve's kill statistics say
+exactly which conditions carry the weight: the $2$-adic one first,
+then the characters at the primes of $A_4$ itself.
+
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct
