@@ -563,6 +563,68 @@ def classify_equality(X, val):
     return "rearrangement"
 
 
+def _parity_poly(expr):
+    """Parity of a polynomial in Lucas symbols and p, q: 'odd' (hence
+    nonzero), 'even', or None (undetermined).  U, C, p, q are odd; V, S
+    are even; a monomial is odd iff its coefficient is odd and it has no
+    V/S factor."""
+    expr = _sp.expand(expr)
+    odd_count = 0
+    for term in _sp.Add.make_args(expr):
+        coeff, rest = term.as_coeff_Mul()
+        if not coeff.is_integer:
+            return None
+        if int(coeff) % 2 == 0:
+            continue
+        has_even = any(str(s)[0] in "VS" for s in rest.free_symbols)
+        if not has_even:
+            odd_count += 1
+    return "odd" if odd_count % 2 == 1 else "even"
+
+
+def factor_nonzero(f):
+    """True if the factor f is provably nonzero: a Lucas symbol (values of
+    primitive Gaussian powers never vanish), p, q, a nonzero constant,
+    or a polynomial that is odd (hence not 0)."""
+    if f.is_number:
+        return f != 0
+    if f.is_Symbol:
+        return True
+    return _parity_poly(f) == "odd"
+
+
+def residual_branches(pattern, coincidences, equations, max_terms=6):
+    """For each coincidence X = +-val and each sign, substitute into every
+    collapse equation and factor: the branch is DEAD if some equation's
+    residual has all factors provably nonzero.  Returns
+    {(X, val): {+1: 'dead'|'open', -1: ...}} and the open residuals."""
+    out, open_res = {}, {}
+    for (X, val) in coincidences:
+        if not X.is_Symbol:
+            continue
+        out[(X, val)] = {}
+        for sgn in (1, -1):
+            dead = False
+            res_list = []
+            for e in equations:
+                if X not in e.free_symbols:
+                    continue
+                r = _sp.expand(e.subs(X, sgn * val))
+                if r == 0:
+                    continue
+                fac = _sp.factor(r)
+                factors = [f for f in _sp.Mul.make_args(fac)]
+                bases = [(f.base if f.is_Pow else f) for f in factors]
+                if all(factor_nonzero(b) for b in bases):
+                    dead = True
+                    break
+                res_list.append(fac)
+            out[(X, val)][sgn] = "dead" if dead else "open"
+            if not dead:
+                open_res[(X, val, sgn)] = res_list
+    return out, open_res
+
+
 def run_chase(pattern, max_terms=6):
     """Extract every collapse of the pattern, build each Lucas equation
     (verified against the cleared relation), chase each, and union the
@@ -603,17 +665,172 @@ def run_chase(pattern, max_terms=6):
                             eqs[(X2, val2)] = classify_equality(X2, val2)
     eqs = {k: v for k, v in eqs.items() if v != "trivial"}
     classes = Counter(eqs.values())
+    coincidences = [k for k, v in eqs.items() if v.startswith("coincidence")]
+    branches, open_res = residual_branches(pattern, coincidences, equations, max_terms) if coincidences else ({}, {})
+    residual_dead = any(all(b[s] == "dead" for s in (1, -1)) for b in branches.values())
     if "parity-dead" in classes:
         status = "DEAD-parity"
+    elif residual_dead:
+        status = "DEAD-residual"
     elif "unit-collapse" in classes:
         status = "UNIT-COLLAPSE"
-    elif "coincidence-weighted" in classes or "coincidence" in classes:
+    elif coincidences:
         status = "COINCIDENCE"
     elif eqs:
         status = "REARRANGEMENT-ONLY"
     else:
         status = "NO-EQUALITY"
-    return {"status": status, "verified": nver, "equalities": eqs, "classes": classes}
+    return {"status": status, "verified": nver, "equalities": eqs, "classes": classes,
+            "branches": branches, "open_residuals": open_res}
+
+
+# ------------------------------------------------- the valuation layer
+#
+# Every collapse identity is an equality of PRODUCTS,
+#     2 p^{2ap} q^{2bq} Trig1(D) Trig2(M) = -c p^{2wpc} q^{2wqc} Im(C),
+# so the p-adic and q-adic valuations balance term by term.  Mixed
+# monomials are units at both primes; a pure-l monomial is a p-unit and
+# a pure-w one a q-unit; and the q-adic valuations of ALL the l-side
+# Lucas values are governed by one unknown, the rank of apparition
+# r = ord(l/lbar mod rho) (a divisor of q-1), through the lifting-the-
+# exponent lemma:
+#     v_q(S_n) = v0 + v_q(n/r)      if r | n,  else 0,
+#     v_q(C_n) = v0 + v_q(2n/r)     if r | 2n and r !| n,  else 0,
+# with v0 = v_q(S_r) >= 1 (S_n = Im l^n, C_n = Re l^n); likewise the
+# w-side at p with (r', v0').  The finitely many (r, r') cases give
+# linear systems in (v0, v0'); no solution = DEAD by valuation.
+
+def _vsmall(k, P):
+    """v_P(k) for a small positive integer k and a specific prime P, or 0
+    for a 'generic' prime (P larger than every exponent in play)."""
+    if P is None or k <= 0:
+        return 0
+    v = 0
+    while k % P == 0:
+        k //= P
+        v += 1
+    return v
+
+
+def _lucas_val(kind, n, r, v0, P):
+    """Valuation at the OTHER prime of Trig(l^n) with rank of apparition
+    r (None = no divisibility at all), base valuation v0 (a symbol or
+    int), and specific prime P (None = generic)."""
+    if r is None:
+        return 0
+    n = abs(n)
+    if kind == "Im":
+        return v0 + _vsmall(n // r, P) if n % r == 0 else 0
+    # Re: divisible iff r | 2n and r !| n
+    if (2 * n) % r == 0 and n % r != 0:
+        return v0 + _vsmall(2 * n // r, P)
+    return 0
+
+
+def collapse_products(pattern):
+    """For each pair: (D, k1, M, k2, C, ap, bq, wpc, wqc) -- the product
+    identity  +-2 p^{2ap} q^{2bq} T1(D) T2(M) = -c p^{2wpc} q^{2wqc} Im(C)."""
+    terms = cleared_terms(pattern)
+    out = []
+    if len(terms) == 2:
+        # doubled pattern: c_a p^.. q^.. Im(A) + c_b p^.. q^.. Im(B) = 0 is a
+        # product equality already
+        (ca, wpa, wqa, ea, _), (cb, wpb, wqb, eb, _) = terms
+        out.append(("doubled", ea, "Im", None, None, eb, wpa, wqa, wpb, wqb))
+        return out
+    for a, b in ((0, 1), (0, 2), (1, 2)):
+        c = ({0, 1, 2} - {a, b}).pop()
+        col = find_collapse(terms[a], terms[b])
+        if col is None:
+            continue
+        s, ap, bq, k1, D, k2, M = col
+        cc, wpc, wqc, ec, _ = terms[c]
+        out.append(("triple", D, k1, M, k2, ec, ap, bq, wpc, wqc))
+    return out
+
+
+def valuation_layer(pattern, max_r=None, specific=(5, 7, 11, 13, 17, 19, 23)):
+    """The valuation balance over all (rank, prime-case) configurations.
+    Returns {'status': 'DEAD-valuation' | 'SURVIVES', 'survivors': [...]}
+    where each survivor is (r_q, q_case, r_p, p_case, v0q, v0p)."""
+    prods = collapse_products(pattern)
+    if not prods:
+        return {"status": "NO-COLLAPSE", "survivors": []}
+    exps_l = {abs(m[0]) for pr in prods for m in (pr[1], pr[3], pr[5]) if m is not None and m[0]}
+    exps_w = {abs(m[1]) for pr in prods for m in (pr[1], pr[3], pr[5]) if m is not None and m[1]}
+    NL = 2 * max(exps_l) if exps_l else 1
+    NW = 2 * max(exps_w) if exps_w else 1
+    if max_r:
+        NL, NW = min(NL, max_r), min(NW, max_r)
+    v0q, v0p = _sp.symbols("v0q v0p")
+
+    def val(m, kind, side, r, v0, P):
+        """valuation of Trig(monomial m) at prime 'side' ('p' or 'q')."""
+        x, y = m
+        if side == "p":
+            if x != 0:
+                return 0                       # involves l: p-unit
+            return _lucas_val(kind, y, r, v0, P)
+        if y != 0:
+            return 0                           # involves w: q-unit
+        return _lucas_val(kind, x, r, v0, P)
+
+    survivors = []
+    r_cases_l = [None] + list(range(1, NL + 1))
+    r_cases_w = [None] + list(range(1, NW + 1))
+    q_cases = [None] + [P for P in specific if P <= NL]
+    p_cases = [None] + [P for P in specific if P <= NW]
+    for rq in r_cases_l:
+        for qc in q_cases:
+            if rq is not None and qc is not None and (qc - 1) % rq:
+                continue                       # r | q - 1
+            for rp in r_cases_w:
+                for pc in p_cases:
+                    if rp is not None and pc is not None and (pc - 1) % rp:
+                        continue
+                    if qc is not None and pc is not None and qc == pc:
+                        continue
+                    eqs = []
+                    for pr in prods:
+                        kind_, D, k1, M, k2, C, ap, bq, wpc, wqc = pr
+                        for side, r, v0, P, wl, wr in (("p", rp, v0p, pc, ap, wpc),
+                                                       ("q", rq, v0q, qc, bq, wqc)):
+                            if kind_ == "doubled":
+                                lhs = 2 * wl + val(D, "Im", side, r, v0, P)
+                                rhs = 2 * wr + val(C, "Im", side, r, v0, P)
+                            else:
+                                lhs = 2 * wl + val(D, k1, side, r, v0, P) + val(M, k2, side, r, v0, P)
+                                rhs = 2 * wr + val(C, "Im", side, r, v0, P)
+                            eqs.append(_sp.expand(lhs - rhs))
+                    unknowns = [u for u, r in ((v0q, rq), (v0p, rp)) if r is not None]
+                    consts = [e for e in eqs if not e.free_symbols]
+                    if any(c != 0 for c in consts):
+                        continue
+                    lin = [e for e in eqs if e.free_symbols]
+                    if not lin:
+                        survivors.append((rq, qc, rp, pc, None, None))
+                        continue
+                    sol = _sp.linsolve(lin, unknowns) if unknowns else None
+                    if sol is None or sol == _sp.S.EmptySet:
+                        continue
+                    ok_sol = None
+                    for s in sol:
+                        vals = dict(zip(unknowns, s))
+                        good = True
+                        for u in unknowns:
+                            v = vals[u]
+                            if v.free_symbols:
+                                continue               # free: unconstrained (>= 1 possible)
+                            if not (v.is_integer and v >= 1):
+                                good = False
+                        if good:
+                            ok_sol = vals
+                    if ok_sol is None:
+                        continue
+                    survivors.append((rq, qc, rp, pc,
+                                      ok_sol.get(v0q) if rq is not None else None,
+                                      ok_sol.get(v0p) if rp is not None else None))
+    return {"status": "SURVIVES" if survivors else "DEAD-valuation", "survivors": survivors}
 
 
 def box_classes(a, b):

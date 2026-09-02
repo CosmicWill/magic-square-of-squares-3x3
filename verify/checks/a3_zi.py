@@ -2221,22 +2221,159 @@ def _(ctx):
         for (X, val), cls in r["equalities"].items():
             if cls.startswith("coincidence"):
                 types.add((str(X), str(val)))
-    # durable: 14 of the 26 endpoints reach a coincidence, none is
-    # parity-dead or a unit collapse, and the coincidence TYPES are exactly
-    # six (the split of the other 12 between rearrangement-only and
-    # no-equality is tool state and is not pinned)
-    require(sum(st.values()) == 26 and st["COINCIDENCE"] == 14, dict(st))
-    require(not (set(st) - {"COINCIDENCE", "NO-EQUALITY", "REARRANGEMENT-ONLY"}), dict(st))
+    # durable: of the 26 endpoints, at least 10 die by RESIDUAL PARITY
+    # (their coincidence's residual carries an odd factor 2U +- p^k in
+    # both sign branches), exactly 4 survive as coincidence systems -- all
+    # of the single type U2 = +-p^2 C2 with residual V2 = +-S2(4C2 + p^2),
+    # the (2,2)-member of the rigidity family -- and the coincidence TYPES
+    # over all equalities are exactly six (the split of the rest between
+    # rearrangement-only and no-equality is tool state, not pinned)
+    require(sum(st.values()) == 26, dict(st))
+    require(st["DEAD-residual"] >= 10 and st["COINCIDENCE"] == 4, dict(st))
+    require(not (set(st) - {"COINCIDENCE", "NO-EQUALITY", "REARRANGEMENT-ONLY", "DEAD-residual"}), dict(st))
     require(types == {("S2", "V2"), ("S4", "V2"), ("V2", "S2"), ("V2", "S4"),
                       ("U2", "C2*p**2"), ("V2", "S2*p**2")}, types)
+    # THE VALUATION LAYER: every collapse is an equality of products, so
+    # p- and q-adic valuations balance; the l-side Lucas values' q-adic
+    # valuations are governed by the rank of apparition r and LTE.  Pinned:
+    # the hand-verified pattern dies; the rigidity family survives ONLY
+    # with r_p = 8 and v_p(Re w^4) = 2 -- the order-16 lemma, by machine;
+    # at least 4 of 26 (2,1) and 16 of 120 (2,2) distinct OPEN patterns die.
+    from compute.lucas_endpoints import valuation_layer
+    require(valuation_layer((((1, -1), 1), ((2, -1), 1), ((2, 0), 1)))["status"] == "DEAD-valuation")
+    for pat in ((((1, -2), 1), ((2, -2), 1), ((2, 2), 1)),
+                (((1, 2), 1), ((2, -2), 1), ((2, 2), 1))):
+        r = valuation_layer(pat)
+        require(r["status"] == "SURVIVES" and r["survivors"], pat)
+        require(all(s[2] == 8 and s[5] == 2 for s in r["survivors"]), r["survivors"][:4])
+    dead = Counter()
+    for (a, b) in ((2, 1), (2, 2)):
+        verdict, opens = survey_box(a, b)
+        for pattern, kind in opens:
+            if kind == "distinct" and valuation_layer(tuple(pattern))["status"] == "DEAD-valuation":
+                dead[(a, b)] += 1
+    require(dead[(2, 1)] >= 4 and dead[(2, 2)] >= 16, dict(dead))
     ctx.note(f"boxes {sorted(expect)}: every distinct OPEN pattern collapses "
              f"to a lever ENDPOINT by exact identity; families "
              f"{[v[2] for v in expect.values()]}; shape types {len(alltypes)} "
              f"(finite while families grow); the chase re-derives the "
              f"rigidity lemma U4 = +-p^2 C2 from both Block-A patterns; on "
              f"(2,1) the chase gives {dict(st)} with coincidence types "
-             f"{sorted(types)} -- the uniform theorem is a finite list of "
-             f"type-lemmas (coincidence + residual)")
+             f"{sorted(types)}; the valuation layer kills {dict(dead)} and "
+             f"pins the rigidity family to r_p = 8, v_p(Re w^4) = 2 (the "
+             f"order-16 lemma by machine) -- the uniform theorem is a finite "
+             f"list of type-lemmas (valuation configuration + coincidence + "
+             f"residual)")
+
+
+@check("a3.rigidity_fixed_curve", DOC)
+def _(ctx):
+    """THE RIGIDITY SYSTEM IS A FIXED CURVE (entry 82).  The chase's
+    residual makes the rigidity endpoint a SYSTEM U4 = +-p^2 C2,
+    V4 = +-S2(4C2 + p^2), which determines w^4 = +-Z or +-Zbar with
+    Z = p^2 C2 + i S2(4C2 + p^2) = l^4 + l^3 lbar - lbar^4
+      = pibar^8 (s^8 + s^6 - 1),  s = pi/pibar,  l = pi^2.
+    So every (k,2)-system is a Q(i)-point of the fixed curve
+    y^2 = eps (s^8 + s^6 - 1) (genus 3; y^4 = ... for even k), and by
+    Faltings the family has finitely many solutions altogether.
+    Pinned: the identity in exact Gaussian arithmetic on every prime
+    frame below 3000; N(Z) = F = p^4 C2^2 + S2^2 (4C2 + p^2)^2; the
+    system reproduces the cleared relation identically (system <=>
+    relation); and F is never a perfect power of exponent >= 4 on any
+    prime frame below FAST 20000 / FULL 200000 -- the whole (k,2)-family
+    for every k >= 2 and every q.  PARI data (recorded): the
+    Q-ranks of y^2 = d(x^4 + x^3 - 1) are 2, 1, 1, 1 for d = 1, -1, 2, -2."""
+    from compute.zi_additive import gaussian_prime_over
+    from compute.quartic_sieve import sieve_primes
+    import sympy as sp
+
+    def gmul(a, b):
+        return (a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0])
+
+    def gpow(a, n):
+        r = (1, 0)
+        for _ in range(n):
+            r = gmul(r, a)
+        return r
+
+    def iroot(n, k):
+        lo, hi = 1, 1 << ((n.bit_length() + k - 1) // k + 1)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if mid**k < n:
+                lo = mid + 1
+            else:
+                hi = mid
+        return lo
+
+    N = ctx.bound(full=200000, fast=20000)
+    S = sieve_primes(N)
+    frames = 0
+    for p in range(5, N, 4):
+        if not S[p]:
+            continue
+        a, b = gaussian_prime_over(p)
+        l = (a * a - b * b, 2 * a * b)                 # l = pi^2 = c1 + i s1
+        lb = (l[0], -l[1])
+        c1, s1 = l
+        C2, S2, P2 = c1 * c1 - s1 * s1, 2 * c1 * s1, c1 * c1 + s1 * s1
+        Z = (P2 * C2, S2 * (4 * C2 + P2))
+        F = Z[0] * Z[0] + Z[1] * Z[1]
+        require(F == P2 * P2 * C2 * C2 + S2 * S2 * (4 * C2 + P2) ** 2, p)
+        if p < 3000:
+            l4, l3, lb4 = gpow(l, 4), gpow(l, 3), gpow(lb, 4)
+            Z2 = tuple(x + y - z for x, y, z in zip(l4, gmul(l3, lb), lb4))
+            require(Z == Z2, (p, Z, Z2))                 # Z = l^4 + l^3 lbar - lbar^4
+            pb8 = gpow((a, -b), 8)                       # Z = pibar^8 (t^4 + t^3 - 1), t = (pi/pibar)^2
+            t_num, t_den = gpow((a, b), 2), gpow((a, -b), 2)   # t = pi^2/pibar^2
+            # pibar^8 (t^4 + t^3 - 1) = pibar^8 t^4 + pibar^8 t^3 - pibar^8 = pi^8 + pi^6 pibar^2 - pibar^8
+            Z3 = tuple(x + y - z for x, y, z in zip(gpow((a, b), 8), gmul(gpow((a, b), 6), gpow((a, -b), 2)), pb8))
+            require(Z == Z3, (p, Z, Z3))
+        for e in range(4, F.bit_length() + 1):
+            r = iroot(F, e)
+            require(r ** e != F, (p, e, r))            # never a perfect power >= 4
+        frames += 1
+    # the genus-2 quotient H': Y^2 = x(x^4 + x^3 - 1) has Q(i)-points with
+    # x in {0, +-1, +-i, +-2i} and no others of height <= 24 (exact Gaussian
+    # square test) -- six rational points against a torsion bound of 2, so
+    # rank Jac(H')(Q) >= 1: no torsion shortcut, the closure is Chabauty
+    from math import gcd as _gcd, isqrt as _isqrt
+
+    def gsqrt_exists(z):
+        n = z[0] * z[0] + z[1] * z[1]
+        r = _isqrt(n)
+        if r * r != n or (r + z[0]) % 2:
+            return False
+        u2, v2 = (r + z[0]) // 2, (r - z[0]) // 2
+        if u2 < 0 or v2 < 0:
+            return False
+        u, v = _isqrt(u2), _isqrt(v2)
+        return u * u == u2 and v * v == v2 and 2 * u * v in (z[1], -z[1])
+
+    found = set()
+    B = 24
+    for w in range(1, B + 1):
+        for u in range(-B, B + 1):
+            for v in range(-B, B + 1):
+                if _gcd(_gcd(abs(u), abs(v)), w) != 1:
+                    continue
+                a4, a3 = gpow((u, v), 4), gpow((u, v), 3)
+                inner = (a4[0] + w * a3[0] - w**4, a4[1] + w * a3[1])
+                num = gmul((u, v), inner)
+                if gsqrt_exists((w * num[0], w * num[1])):
+                    found.add((u, v, w))
+    require(found == {(0, 0, 1), (1, 0, 1), (-1, 0, 1), (0, 1, 1), (0, -1, 1),
+                      (0, 2, 1), (0, -2, 1)}, found)
+    # system <=> relation, symbolically: the Block-A relation in Lucas
+    # symbols vanishes identically under U4 = p^2 C2, V4 = S2 (4 C2 + p^2)
+    U4, V4, C2s, S2s, ps = sp.symbols("U4 V4 C2 S2 p")
+    rel = 4 * C2s * S2s * U4 - C2s * V4 * ps**2 + S2s * U4 * ps**2
+    require(sp.expand(rel.subs({U4: ps**2 * C2s, V4: S2s * (4 * C2s + ps**2)})) == 0)
+    ctx.note(f"Z = l^4 + l^3 lbar - lbar^4 = pibar^8 (s^8 + s^6 - 1) exact on prime "
+             f"frames < 3000; N(Z) = F on {frames} frames p < {N}; system <=> "
+             f"relation; F never a perfect power (exponent >= 4) -- the whole "
+             f"(k,2)-family verified to {N} for every k, q; the family is the "
+             f"Q(i)-points of ONE curve (Faltings: finitely many solutions)")
 
 
 @check("a3.rigidity_pari_certificates", DOC)

@@ -3225,3 +3225,84 @@ eight weighted U_y = +-p^2 C2, V_y = +-p^2 S2, C_x = +-q^2 U2,
 S_x = +-q^2 V2 (x, y in {2,4}): the weighted family is
 Trig(w^y) = +-p^2 Trig(l^2) and its mirror, the Lucas-coincidence
 family with the prime-square weight fixed by the box.
+
+THE VALUATION LAYER (same day). Every collapse identity is an equality
+of products, so p- and q-adic valuations balance term by term, and
+the q-adic valuations of all l-side Lucas values are governed by the
+rank of apparition r = ord(l/lbar mod rho) through LTE: v_q(S_n) =
+v0 + v_q(n/r) if r | n else 0; v_q(C_n) = v0 + v_q(2n/r) if r | 2n,
+r !| n, else 0; likewise the w-side at p. Six linear balance
+equations in (v0, v0') over the finitely many (r, r') and small-prime
+cases; no solution = rigorous kill; survivors = exact divisibility
+configurations. Kills the no-equality endpoint (1,-1),(2,-1),(2,0)
+at once (Im l^4 = 4 C1 S1 C2 carries C1, the q^2 cannot balance); 4
+of 26 in (2,1), 16 of 120 in (2,2). ON THE RIGIDITY FAMILY IT RETURNS
+r_p = 8 AND v_p(Re w^4) = 2 IN EVERY CONFIGURATION -- the order-16
+lemma, by machine. An endpoint is now a SYSTEM: valuation
+configuration + coincidence + residual, each part mechanical
+(compute/lucas_endpoints.py valuation_layer; pinned).
+
+RESIDUAL ANALYSIS (same day). Lucas values never vanish; U, C, p, q
+odd, V, S even; a residual factor that is odd as a polynomial cannot
+be zero; a coincidence whose residual carries such a factor in both
+sign branches kills the pattern. Box (2,1): 10 of the 14 coincidence
+endpoints die this way (residuals 2U2 +- p^2, 2U2 +- p^4, 2C2 +- q^2,
+exactly the hand-proofs' parity kills); the surviving four are ONE
+system, U2 = +-p^2 C2 and V2 = +-S2(4C2 + p^2), the (2,2)-member of
+the rigidity family (the lemma itself is (4,2)). Pinned. With the
+valuation layer the machine closes 14 of 26 (2,1) endpoints, isolates
+4 as one coincidence system, and leaves 8 for the Gaussian-prime
+concentration arguments.
+
+## 2026-09-02 — Entry 82: THE RIGIDITY SYSTEM IS A FIXED CURVE — the (k,2)-family has finitely many solutions altogether (Faltings)
+
+What the machine's residual changes. Entries 73-79 attacked the
+rigidity lemma as the single equation Re rho^8 = p^2 Re pi^4, i.e.
+U4 = +-p^2 C2, with p a PARAMETER -- a congruent-number curve per
+prime, a rank question per prime. The chase attaches the residual
+V4 = +-S2(4C2 + p^2), and the two together determine w^4:
+    w^4 in {+-Z, +-Zbar},  Z := p^2 C2 + i S2(4C2 + p^2)
+                              = l^4 + l^3 lbar - lbar^4
+                              = pibar^8 (s^8 + s^6 - 1),  s := pi/pibar
+(l = pi^2; verified exactly on every prime frame below 3000). The
+(2,1)-box survivor is the same system with (U2, V2); the (k,2)-family
+U_k = +-p^2 C2, V_k = +-S2(4C2 + p^2) says rho^{2k} = eps Z, i.e.
+    s^8 + s^6 - 1 = eps rho^{2k} pibar^{-8} in eps (Q(i)^*)^{gcd(2k,8)}.
+
+THEOREM. A solution of any (k,2)-system is a Q(i)-point (s, y) with
+s = pi/pibar on the FIXED curve H_eps: y^2 = eps (s^8 + s^6 - 1)
+(genus 3), and for even k on C_eps: y^4 = eps (s^8 + s^6 - 1)
+(genus 9); s determines p and y determines rho. By Faltings the
+(k,2)-family -- the rigidity lemma included -- has only FINITELY MANY
+solutions (p, q, k) altogether, unconditionally (ineffectively): the
+lemma can fail for at most finitely many primes p. Sweep: N(Z) =
+F(c1,s1) = p^4 C2^2 + S2^2 (4C2 + p^2)^2 is never a perfect power of
+exponent >= 4 on any of the 1125 prime frames below 20000 -- the
+whole family, every k >= 2 and every q, in one line.
+
+THE EFFECTIVE QUESTION. Elliptic quotient x = s^2, E_eps: Y^2 =
+eps (x^4 + x^3 - 1); over Q(i) two twist classes (eps = 1, 2);
+PARI ellrank on y^2 = d(x^4 + x^3 - 1): ranks 2, 1, 1, 1 for
+d = 1, -1, 2, -2 (conductors 4528, 1132, 18112, 18112), so rank
+E_1(Q(i)) = 3, E_2(Q(i)) = 2 -- the elliptic quotient alone does not
+finish (elliptic Chabauty needs rank < 2). Route: Jac(H) ~ E x
+Jac(H'), H': Y^2 = x(x^4 + x^3 - 1) of genus 2, and H(Q(i)) lifts
+from H'(Q(i)) -- a genus-2 Chabauty problem over Q(i) (2-descent on
+a genus-2 Jacobian and its -1-twist: Magma territory). What was a
+rank problem per prime is now one curve. Check
+a3.rigidity_fixed_curve (identity, N(Z) = F, system <=> relation,
+perfect-power sweep FAST 20000 / FULL 200000). The 39/67 ledger and
+the Rank-1 Theorem stand as effective results; this is the uniform
+frame they live in. Not claiming the lemma proven.
+CORRECTION (same day). PARI's lfungenus2 reported analytic rank 0
+for H' and its twist, but it warned that the conductor's 2-part is
+unknown (odd part 283), so that output is worthless. Rigorous facts:
+torsion of Jac(H') divides 2 over Q and 4 over Q(i) (reductions at
+all good primes below 200); H'(Q) contains infinity, (0,0),
+(+-1, +-1) -- six points against torsion <= 2, so rank Jac(H')(Q) >= 1;
+an exact search to height 60 finds the Q(i)-points with x in
+{0, +-1, +-i, +-2i} (fourteen with infinity) and no others. So the
+effective closure of the fixed curve is a genuine genus-2 Chabauty /
+Mordell-Weil-sieve problem over Q(i), not a torsion enumeration.
+Unit-circle points s = alpha/alphabar: none for any primitive alpha
+with N(alpha) <= 1.96e6 (623,895 tested) except alpha = 1.

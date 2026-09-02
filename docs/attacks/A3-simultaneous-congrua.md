@@ -1191,11 +1191,105 @@ give the congruum $840$ with hypotenuses $29$ and $37$; six such pairs
 below generator $60$ ($(109,197)$, $(193,401)$, …).  So every
 type-lemma is a statement about the **system** coincidence + residual
 (for the rigidity family: $U_4=\pm p^2C_2$ *and*
-$S_2(4C_2+p^2)\mp V_4=0$), and the chase reports both.  Next: the
-remaining no-equality endpoints (deeper substitution, size bounds,
-mod-8), then the type-lemmas — unit collapses via primitive divisors,
-coincidence systems via reduction rigidity with explicit exceptional
-sets.
+$S_2(4C_2+p^2)\mp V_4=0$), and the chase reports both.  **The valuation layer (same entry).**  Every collapse identity is an
+equality of *products*, $\pm2p^{2a}q^{2b}\operatorname{Trig}_1(D)\operatorname{Trig}_2(M)=-c\,p^{2a'}q^{2b'}\operatorname{Im}(C)$,
+so the $p$- and $q$-adic valuations balance term by term — and the
+$q$-adic valuations of *all* the $\ell$-side Lucas values are governed
+by one unknown, the rank of apparition $r=\operatorname{ord}(\ell/\bar\ell \bmod \rho)$,
+through the lifting-the-exponent lemma:
+$v_q(S_n)=v_0+v_q(n/r)$ if $r\mid n$ (else $0$),
+$v_q(C_n)=v_0+v_q(2n/r)$ if $r\mid 2n,\ r\nmid n$ (else $0$), with
+$v_0=v_q(S_r)\ge1$; likewise the $w$-side at $p$.  Three collapses ×
+two primes give six linear balance equations in $(v_0,v_0')$ over the
+finitely many $(r,r')$ cases (and the finitely many small primes that
+could divide an exponent ratio): no solution is a rigorous kill; the
+survivors are exact divisibility configurations.  It kills the
+endpoint above at once ($\operatorname{Im}\ell^4=4C_1S_1C_2$ carries
+$C_1$, so the $q^2$ cannot balance), kills 4 of 26 in (2,1) and 16 of
+120 in (2,2), and **on the rigidity family it returns
+$r'=8$, $v_p(\operatorname{Re}w^4)=2$ in every configuration — the
+order-16 lemma, by machine.**  So an endpoint is now a *system*:
+valuation configuration + coincidence + residual, each part
+mechanical.
+
+**Residual analysis (same entry).**  Lucas values of primitive
+Gaussian powers never vanish, $U,C,p,q$ are odd and $V,S$ even, so a
+residual factor that is odd as a polynomial cannot be zero; a
+coincidence whose residual carries such a factor in *both* sign
+branches kills the pattern.  On the (2,1) box this is exactly what
+the hand-proofs did: ten of the fourteen coincidence endpoints have
+residuals $2U_2\pm p^2$, $2U_2\pm p^4$ or $2C_2\pm q^2$ — odd — and
+die; the surviving four are one system,
+$$U_2=\pm p^2C_2,\qquad V_2=\pm S_2(4C_2+p^2),$$
+the $(2,2)$-member of the rigidity family (the rigidity lemma is
+$(4,2)$: $U_4=\pm p^2C_2$, $V_4=\pm S_2(4C_2+p^2)$).  Combined with
+the valuation layer, the machine closes $14$ of the $26$ (2,1)
+endpoints outright, isolates $4$ as one coincidence system, and
+leaves $8$ for the Gaussian-prime concentration arguments of A3.8.
+Next: the type-lemmas — the $(k,2)$ family $U_k=\pm p^2C_2$,
+$V_k=\pm S_2(4C_2+p^2)$ first (reduction rigidity with explicit
+exceptional sets, as for $k=4$), unit collapses via primitive
+divisors, and the concentration layer for the rest.
+
+### 2.13 The rigidity system is a fixed curve (entry 82)
+
+*What the machine's residual changes.*  The entry 73–79 campaign
+attacked the rigidity lemma as the single equation
+$\operatorname{Re}\rho^8=p^2\operatorname{Re}\pi^4$, i.e. $U_4=\pm p^2C_2$,
+with the prime $p$ as a parameter — hence a congruent-number curve
+*per prime* and a rank question per prime.  The chase attaches to that
+coincidence a **second equation**, the residual
+$V_4=\pm S_2(4C_2+p^2)$, and the two together determine $w^4$
+completely:
+$$w^4\in\{\pm Z,\ \pm\bar Z\},\qquad Z:=p^2C_2+i\,S_2(4C_2+p^2).$$
+Writing $\ell=\pi^2$ and using $p^2=\ell\bar\ell$, $C_2=\operatorname{Re}\ell^2$,
+$S_2=\operatorname{Im}\ell^2$:
+$$Z=\ell^4+\ell^3\bar\ell-\bar\ell^4=\bar\pi^{8}\,(s^8+s^6-1),\qquad s:=\pi/\bar\pi$$
+(verified exactly on every prime frame; check `a3.rigidity_fixed_curve`).
+The same system with $U_2,V_2$ is the $(2,1)$-box survivor, and in
+general the **$(k,2)$-family** $U_k=\pm p^2C_2$, $V_k=\pm S_2(4C_2+p^2)$
+says $\rho^{2k}=\varepsilon Z$ (or its conjugate), i.e.
+$$s^8+s^6-1=\varepsilon\,\rho^{2k}\bar\pi^{-8}\in\varepsilon\,(\mathbb{Q}(i)^*)^{\gcd(2k,8)}.$$
+
+**Theorem.**  A solution of any $(k,2)$-system is a $\mathbb{Q}(i)$-point
+$(s,y)$ with $s=\pi/\bar\pi$ on the **fixed** curve
+$H_\varepsilon:\ y^2=\varepsilon(s^8+s^6-1)$ (genus 3), and for even
+$k$ on $C_\varepsilon:\ y^4=\varepsilon(s^8+s^6-1)$ (genus 9), $\varepsilon$
+a unit; $s$ determines $p$ (it has denominator $p$) and $y$ determines
+$\rho$.  Hence, by Faltings, **the $(k,2)$-family — the rigidity lemma
+included — has only finitely many solutions $(p,q,k)$ altogether**,
+unconditionally though ineffectively: the lemma can fail for at most
+finitely many primes $p$.  Machine sweep: $N(Z)=F(c_1,s_1)=p^4C_2^2+S_2^2(4C_2+p^2)^2$
+is never a perfect power of exponent $\ge4$ on any prime frame below
+$20000$ — the whole family, every $k\ge2$ and every $q$, in one line.
+
+*The effective question.*  The elliptic quotient $x=s^2$,
+$E_\varepsilon:\ Y^2=\varepsilon(x^4+x^3-1)$, has over $\mathbb{Q}(i)$
+two twist classes ($\varepsilon\equiv1,2$), and PARI gives the
+$\mathbb{Q}$-ranks of $y^2=d(x^4+x^3-1)$ as $2,1,1,1$ for
+$d=1,-1,2,-2$ (conductors $4528,1132,18112,18112$), so
+$\operatorname{rank}E_1(\mathbb{Q}(i))=3$, $\operatorname{rank}E_2(\mathbb{Q}(i))=2$:
+the elliptic quotient alone does not finish, and elliptic Chabauty
+needs rank $<[K:\mathbb{Q}]=2$.  The route is the other quotient of
+$H$: since $s^8+s^6-1=G(s^2)$, $\operatorname{Jac}(H)\sim E\times\operatorname{Jac}(H')$
+with $H':\ Y^2=x(x^4+x^3-1)$ of genus 2, and $H(\mathbb{Q}(i))$ lifts
+from $H'(\mathbb{Q}(i))$ two-to-one via $(s,y)\mapsto(s^2,sy)$.  Facts
+about $H'$ (odd part of the conductor $283$; PARI cannot settle the
+2-part, so its analytic-rank output is *not* to be trusted): torsion
+of $\operatorname{Jac}(H')$ divides $2$ over $\mathbb{Q}$ and $4$ over
+$\mathbb{Q}(i)$ (reductions at all good primes below $200$); $H'(\mathbb{Q})$
+contains $\infty,(0,0),(\pm1,\pm1)$ — six points against torsion $\le2$,
+so $\operatorname{rank}\operatorname{Jac}(H')(\mathbb{Q})\ge1$
+rigorously; an exact search to height $60$ finds the $\mathbb{Q}(i)$-points
+with $x\in\{0,\pm1,\pm i,\pm2i\}$ (fourteen points with $\infty$) and
+no others.  So $H'(\mathbb{Q}(i))$ is finite (Faltings) but not
+torsion-enumerable: its determination is a genus-2 Chabauty /
+Mordell–Weil-sieve problem over $\mathbb{Q}(i)$ (2-descent on the
+Jacobian and its $-1$-twist, Coleman integration: Magma territory).
+The unit-circle points that matter — $s=\alpha/\bar\alpha$ — are
+absent for every primitive $\alpha$ with $N(\alpha)\le1.96\cdot10^6$
+(623,895 of them; only $\alpha=1$).  What was a rank problem per
+prime is now one curve.
 
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
