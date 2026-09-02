@@ -910,6 +910,38 @@ finite check.  A proof of the transparent class needs a new idea — a
 height or integral-point argument on the congruent-number curve of
 $A_4$, not local residuosity.
 
+**The height argument (entry 76; `compute/selmer_descent.py`, check
+`a3.rigidity_height`).**  *Theorem (proven).*  A solution of the
+endpoint gives $(I,R,X)$ Pythagorean with $R^2-I^2=A=p^2A_4$, hence
+the **integral** point $P_{\mathrm{sol}}=(X^2,\,2IRX)$ on
+$E:\ y^2=x^3-A^2x$ (indeed $x-A=2I^2$, $x+A=2R^2$), whose 2-descent
+image is $(X^2,2I^2,2R^2)\equiv(1,2,2)$.  The frame point
+$P_0=(p^2,\,2c_1s_1p)$ has image $(p^2,2s_1^2,2c_1^2)\equiv(1,2,2)$
+as well, and $\ker\delta=2E(\mathbb{Q})$, so
+$$P_{\mathrm{sol}}\in P_0+2E(\mathbb{Q}).$$
+Everything therefore turns on the rank of $E_{A_4}$.  A complete
+2-descent (local images at the odd primes of $A_4$, at $2$ — including
+points of negative 2-adic valuation, which supply the class $(1,5,5)$
+— and at $\infty$; exact on rank-0 and rank-1 controls) gives the
+2-Selmer rank bound, and on the transparent primes below $6000$ it is
+**1 for four of them and 2 or 3 for ten.**  Where it is $1$ the rank is
+exactly $1$ ($P_0$ has infinite order), $E(\mathbb{Q})=\langle G\rangle\oplus E[2]$,
+$P_{\mathrm{sol}}=kG+T_0$ with $k$ odd, $\pm P_0$ are excluded by
+$w=1\ne p$, and every odd multiple of $P_0$ up to $k=11$ is
+non-integral ($p\mid\mathrm{denom}\,x(2P_0)$; the denominators of
+$3P_0$ already run to 30–57 digits) — so for those primes the quadratic
+lemma reduces to an effective integrality statement for odd multiples
+of an integral point, standard (elliptic divisibility sequences /
+Baker) but not carried out here.  Where the Selmer bound is $2$ or $3$
+the rank itself is undetermined without a 4-descent or $L$-values.
+One heuristic corrected along the way: $P_{\mathrm{sol}}$'s height is
+*not* pinned near $2\hat h(P_0)$, because $Q(m,n)=p^2A_4$ is a Thue
+equation whose solutions can be large; the rigorous version is
+Siegel/Baker on the cyclic subgroup, not a height comparison.
+**Status: the height argument is rigorous in structure, splits the
+transparent class into a rank-1 part (provable in principle) and a
+higher-Selmer part (rank unknown), and is a proof for no prime yet.**
+
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct

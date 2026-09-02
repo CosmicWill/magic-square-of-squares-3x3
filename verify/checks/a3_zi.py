@@ -1917,3 +1917,98 @@ def _(ctx):
              f"LAW sum=0 on all {n_law} ({n_trans} transparent p < {N}) "
              f"-- a consistency, not an obstruction: the classical "
              f"route is closed")
+
+
+@check("a3.rigidity_height", DOC)
+def _(ctx):
+    """THE HEIGHT ARGUMENT for the transparent class (entry 76;
+    compute/selmer_descent.py).  PROVEN: a solution of the rigidity
+    endpoint gives (I,R,X) Pythagorean with R^2 - I^2 = A = p^2 A4,
+    hence the INTEGRAL point P_sol = (X^2, 2IRX) on the
+    congruent-number curve y^2 = x^3 - A^2 x with 2-descent image
+    (X^2, 2I^2, 2R^2) = (1,2,2); the frame point P0 = (p^2, 2c1s1p)
+    has image (p^2, 2s1^2, 2c1^2) = (1,2,2) too, so P_sol lies in
+    P0 + 2E(Q).  A complete 2-descent (local images at odd l | n, at
+    2 including negative-valuation points, and at infinity; controls
+    exact on rank-0 and rank-1 congruent numbers) bounds the rank.
+    On the transparent primes the 2-Selmer rank bound is 1 for some
+    (rank exactly 1, since P0 has infinite order) and 2 or 3 for
+    most.  Rank 1: P_sol = kG + T0 with k odd; +-P0 have w = 1 != p;
+    every odd multiple of P0 up to k = 11 is non-integral (the
+    elliptic divisibility sequence: p | denom(2P0)); a proof needs an
+    effective integrality bound (EDS primitive divisors / Baker) --
+    standard, not done here.  Higher Selmer rank: the rank itself is
+    undetermined without 4-descent or L-values.  STATUS: the
+    transparent class splits again; the height argument is rigorous
+    in structure, complete for no prime yet, and NOT a proof."""
+    from math import gcd
+    from compute.selmer_descent import (
+        selmer, selmer_rank_bound, descent_image, sqfree, frame_point,
+        add_points)
+    from compute.zi_additive import gaussian_prime_over
+    from compute.quartic_sieve import is_transparent
+
+    # descent controls
+    for n in (1, 3, 11, 19, 43):
+        require(len(selmer(n)) == 4, n)
+    for n in (5, 7, 13, 15, 21, 23):
+        require(len(selmer(n)) == 8, n)
+    # the descent-image theorem on synthetic (m,n): (1,2,2) always
+    import random
+    rng = random.Random(5)
+    cnt = 0
+    for _ in range(ctx.bound(full=300, fast=100)):
+        m, n = rng.randint(1, 200), rng.randint(1, 200)
+        if gcd(m, n) != 1 or (m - n) % 2 == 0:
+            continue
+        R, I, X = m*m - n*n, 2*m*n, m*m + n*n
+        A = R*R - I*I
+        if A == 0:
+            continue
+        x = X * X
+        require((x - A, x + A) == (2*I*I, 2*R*R))
+        d = descent_image(x, A)
+        require(d == (1, 2, 2), (m, n, d))
+        cnt += 1
+    require(cnt >= 30)
+    # real transparent primes: P0 on the curve, image (1,2,2) in S,
+    # Selmer bound in {1,2,3}; rank-1 cases: odd multiples non-integral
+    N = ctx.bound(full=6000, fast=2000)
+    seen = {}
+    for p in range(17, N, 16):
+        d = 2
+        while d * d <= p and p % d:
+            d += 1
+        if d * d <= p:
+            continue
+        a, b = gaussian_prime_over(p)
+        c1, s1 = abs(a*a - b*b), abs(2*a*b)
+        A4 = c1*c1 - s1*s1
+        if not is_transparent(A4):
+            continue
+        x0, y0 = frame_point(p, c1, s1)
+        require(y0*y0 == x0**3 - A4*A4*x0)
+        require(descent_image(x0, A4) == (1, 2, 2))
+        n = abs(sqfree(A4))
+        S = selmer(n)
+        require((1, 2, 2) in S, p)
+        rb = selmer_rank_bound(n)
+        require(rb in (1, 2, 3), (p, rb))
+        seen[p] = rb
+        if rb == 1:
+            A = -A4*A4
+            P0 = (x0, y0)
+            Pk = P0
+            for k in range(2, 8):
+                Pk = add_points(Pk, P0, A)
+                if k == 2:
+                    require(Pk[0].denominator % p == 0, "p | denom(2P0)")
+                if k % 2:
+                    require(Pk[0].denominator != 1, (p, k))
+    require(seen)
+    from collections import Counter
+    ctx.note(f"descent controls exact; P_sol in P0 + 2E(Q) (image (1,2,2), "
+             f"synthetic x{cnt}); transparent p < {N}: Selmer rank bounds "
+             f"{dict(Counter(seen.values()))}; rank-1 primes: odd multiples "
+             f"non-integral to k=7 -- NOT a proof (needs effective EDS "
+             f"bound; higher ranks undetermined)")

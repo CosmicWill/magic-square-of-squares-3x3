@@ -2885,3 +2885,49 @@ points on the congruent-number curve of A4), not local residuosity.
 compute/quartic_sieve.py (two_adic_lemma_violations,
 reciprocity_sum, is_transparent); check a3.rigidity_reciprocity.
 NOT claiming the lemma or A3.10. Suite 162.
+
+## 2026-09-02 — Entry 76: the height argument — P_sol in P0 + 2E(Q) (proven), a validated 2-descent, and the transparent class splits again
+
+Attacking the transparent class with heights. One clean theorem,
+one validated tool, and an honest split.
+
+THEOREM (proven). A solution of the rigidity endpoint gives (I,R,X)
+Pythagorean with R^2 - I^2 = A = p^2 A4, hence the INTEGRAL point
+P_sol = (X^2, 2 I R X) on the congruent-number curve
+y^2 = x^3 - A^2 x (x - A = 2I^2, x + A = 2R^2), whose 2-descent
+image (x, x-A, x+A) is (X^2, 2I^2, 2R^2) = (1,2,2). The frame point
+P0 = (p^2, 2 c1 s1 p) has image (p^2, 2 s1^2, 2 c1^2) = (1,2,2)
+too. Since ker(delta) = 2E(Q): P_sol in P0 + 2E(Q). Pinned on
+synthetic (m,n) (every coprime pair gives (1,2,2)) and on every
+transparent p.
+
+THE TOOL. A complete 2-descent for y^2 = x(x-n)(x+n), n odd
+squarefree: local images at odd l | n (the torsion images, order
+4), at 2 (order 8 -- the first version missed the points of
+negative 2-adic valuation, x = u/4 with u = 1 mod 8 giving the
+class (1,5,5), and returned |S| = 7 on n = 5; fixed), and at
+infinity. Controls exact: n = 1,3,11,19,43 -> |S| = 4 (rank 0);
+n = 5,7,13,15,21,23 -> |S| = 8 (rank 1). compute/selmer_descent.py.
+
+THE SPLIT. On the 14 transparent primes below 6000 the 2-Selmer
+rank bound is 1 for four (113, 3761, 4993, 5569) and 2 or 3 for
+ten. Where it is 1 the rank is exactly 1 (P0 has infinite order),
+E(Q) = <G> + E[2], P_sol = kG + T0 with k odd, +-P0 are excluded by
+w = 1 != p, and every odd multiple of P0 to k = 11 is non-integral
+(p | denom x(2P0); 3P0's denominators run to 30-57 digits; no
+rational point beyond torsion and P0 at small height) -- so for
+those primes the quadratic lemma reduces to an effective
+integrality statement for odd multiples of an integral point
+(elliptic divisibility sequences / Baker): standard, not carried
+out. Where the Selmer bound is 2 or 3 the rank is undetermined
+without a 4-descent or L-values (PARI territory). A heuristic
+corrected on the way: P_sol's height is NOT pinned near 2 h(P0),
+because Q(m,n) = p^2 A4 is a Thue equation with possibly large
+solutions; the rigorous version is Siegel/Baker on the cyclic
+subgroup, not a height comparison.
+
+STATUS: the height argument is rigorous in structure and a proof
+for no prime yet. The transparent class now reads: rank-1 part
+(provable in principle by standard effective machinery) + higher-
+Selmer part (rank unknown). Check a3.rigidity_height. NOT claiming
+the lemma or A3.10. Suite 163.
