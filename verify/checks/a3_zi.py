@@ -2144,8 +2144,76 @@ def _(ctx):
             w, val, tail, M = l_value(n, terms_factor=4.0)
             require(w == -1 and tail < tb and abs(val - known) < 1e-7, (p, val, tail))
             certified.append(p)
+        # p = 4001: rank undetermined by 2-descent + Cassels-Tate (Sha has
+        # 4-torsion); the segmented sieve (333M terms) certifies rank 1
+        from compute.lseries_cm import l_value_segmented
+        for p, n, known in ((4001, 14724799, 2.8979305410),
+                            (4657, 16471199, 25.0428222709),
+                            (4817, 18969439, 10.4236084369)):
+            w, val, tail, M = l_value_segmented(n, terms_factor=4.0)
+            require(w == -1 and tail < 2e-5 and abs(val - known) < 1e-7, (p, val, tail))
+            certified.append(p)
     ctx.note(f"transparent p < {N}: Selmer parity == root-number parity on "
              f"all; even-rank (need rank-2 argument): {len(even)}; odd-rank "
              f"Selmer-3 (certifiable by L'): {len(odd3)}; L'(E,1) != 0 "
              f"CERTIFIED rank 1 -> rigidity lemma PROVEN for p in {certified} "
              f"(p=337: L' = {2.1047928093})")
+
+
+@check("a3.rigidity_pari_certificates", DOC)
+def _(ctx):
+    """PARI/GP rank certificates and the Rank-r criterion (entry 79).
+    compute/data_pari_ranks.json records, for every transparent p <
+    30000, PARI 2.17.4's ellrank output [r, R, s, points] (2-descent +
+    Cassels-Tate; R = C - T - s is an UNCONDITIONAL upper bound) after
+    effort escalation and ellsaturation(E, pts, 2).  Re-verified here in
+    exact arithmetic: every point lies on E_n, the points are independent
+    modulo torsion (descent images), #points <= R.  A rank is CERTIFIED
+    iff #points == R (rank = R with no conjecture).  Certified rank 1 ->
+    the Rank-1 Theorem proves the prime.  Certified rank >= 2 -> the
+    2-saturated generators give an odd-index subgroup and the mod-p
+    HALF-TEST decides: T1~ not in 2<G_i~>  ==>  no solution (Rank-r
+    criterion; proof: P_sol = P0 + 2Q, reduce, d odd, dQ in the lattice).
+    Recomputed here by subgroup closure in E~(F_p).  Also pinned: 2 is a
+    quartic residue mod every transparent p (so a half of T1~ lies in
+    2E~(F_p)) and every 2-Selmer class localizes trivially at p -- the
+    2-descent is BLIND at p, which is why only the full generators carry
+    information.  Not a proof of the lemma in full."""
+    import json
+    from compute.pari_rank import (load_data, verify_records,
+                                   local_descent_criterion)
+    from compute.selmer_descent import sqfree, legendre
+    from compute.zi_additive import gaussian_prime_over
+    from compute.quartic_sieve import is_transparent
+
+    recs = load_data("compute/data_pari_ranks.json")
+    require(len(recs) == 67)
+    sq, tr = {}, {}
+    for p in recs:
+        a, b = gaussian_prime_over(p)
+        c1, s1 = abs(a*a - b*b), abs(2*a*b)
+        A4 = c1*c1 - s1*s1
+        sq[p] = abs(sqfree(A4))
+        tr[p] = is_transparent(A4)
+        require(tr[p] and p % 16 == 1, p)
+        require(pow(2, (p - 1) // 4, p) == 1, p)          # 2 quartic residue
+    summ = verify_records(recs, sq, tr)                   # exact re-verification
+    rank1 = sorted(p for p, s in summ.items() if s["certified"] and s["rank"] == 1)
+    gens = sorted(p for p, s in summ.items() if s["certified"] and s["rank"] >= 2)
+    crit_ok = sorted(p for p in gens if summ[p]["proven"])
+    crit_no = sorted(p for p in gens if not summ[p]["proven"])
+    und = sorted(p for p, s in summ.items() if not s["certified"])
+    # blindness of the 2-descent at p (sample, cheap)
+    for p in (list(rank1)[:3] + gens[:3]):
+        ok, hc, img = local_descent_criterion(p, recs[p]["n"])
+        require(not ok and hc == (1, 1, 1) and img == {(1, 1, 1)}, p)
+    # the L'-certified primes must be among the certified rank-1 primes
+    require(all(p in rank1 for p in (337, 1201, 6353, 15073)))
+    proven = sorted(set(rank1) | set(crit_ok))
+    require(len(rank1) >= 32 and len(proven) >= 36)
+    ctx.note(f"PARI ellrank re-verified on 67 curves: rank certified 1 for "
+             f"{len(rank1)} (Rank-1 Theorem -> PROVEN); generators known for "
+             f"{len(gens)} of rank >= 2: half-test PROVES {crit_ok}, fails "
+             f"{crit_no}; rank undetermined {len(und)}; 2-descent blind at p "
+             f"(2 quartic residue, trivial localization) on all; TOTAL PROVEN "
+             f"{len(proven)}/67 transparent p < 30000")

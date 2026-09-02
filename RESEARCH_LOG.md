@@ -3024,3 +3024,81 @@ Sel^2, PARI's ellrank), need PARI: no Windows wheels exist for cypari2
 or passagemath-pari, conda-forge's index is unreachable from the
 sandbox, and the official installer is a download the user must
 approve. Not claiming the lemma in full, or A3.10. Suite 165.
+
+## 2026-09-02 — Entry 79: PARI certificates, the Rank-r criterion, and the blindness of the 2-descent at p — 39 of 67 transparent primes proven
+
+PARI/GP 2.17.4 (user-authorized). The official installer (SHA256
+verified) demands UAC elevation, which an unattended launch cannot
+answer; an NSIS installer is an archive, so it was extracted with
+7-Zip to C:\Users\Will\pari-2.17.4 (no elevation, no registry). Smoke
+test: ellrank on E_5 = [1,1,0,[[-4,6]]], E_17 = [0,0,2,[]] (rank 0
+certified through Sha[2] of dimension 2 -- the Cassels-Tate step),
+E_41 = [2,2,0,...].
+
+WHAT ellrank CERTIFIES. [r1, r2, s, L] with r2 = C - T - s computed
+UNCONDITIONALLY (2-Selmer rank minus torsion minus the part of Sha[2]
+detected by the Cassels pairing); r1 may use parity (the docs' own
+example returns rank 1 with no point found). So a rank is CERTIFIED
+here only when the number of independent points found -- independence
+re-verified through descent images in exact arithmetic -- equals r2.
+Sweep over the 67 transparent curves, effort escalated to 8 (20 for
+two), points 2-saturated by ellsaturation (compute/pari_rank.py,
+compute/data_pari_ranks.json):
+  r2=1, 1 point: 32  -> Rank-1 Theorem -> PROVEN (includes the four
+                       L'-certified primes: independent confirmation)
+  r2=2, 2 points: 5   (rank 2 certified, generators known)
+  r2=2, 1 point : 22  (only P0 found; second generator beyond effort 20)
+  r2=3, 3 points: 2   (rank 3 certified, generators known)
+  r2=3, 1 point : 6   (rank 1 or 3; s = 0: rank 3 or Sha with 4-torsion)
+
+THE RANK-r CRITERION (proven). Let L = <G_1..G_r> + E[2] have ODD
+index d in E(Q) (2-saturation). A solution gives P_sol = P0 + 2Q;
+reducing mod p, 2Q~ = T1~; and dQ = sum a_i G_i + T gives
+T1~ = d T1~ = 2d Q~ = 2 sum a_i G_i~ in 2H, H = <G_i~>. So
+T1~ NOT in 2H ==> no solution. A finite computation in E~(F_p) once
+generators are known (r = 1: automatic, the Rank-1 Theorem). On the
+seven complete generator sets: PROVES p = 3137, 8369, 9473, 13633
+(rank 2 -- the first rank-2 primes closed); FAILS for 2657 (rank 2),
+9137, 29201 (rank 3): there H contains a half of T1~, a rational
+point in the right coset reduces to O, and the mod-p method cannot
+work for those primes at all -- they need the integrality/height side.
+Consistency: whenever the generator criterion fails, the descent-local
+one below fails too (checked; no exceptions).
+
+THE 2-DESCENT IS BLIND AT p. A descent-only criterion ([Q0~] not in
+the localization of Sel^2 at p, where Q0~ is a half of T1~) is valid
+in every rank but VACUOUS on the whole transparent class: 2 is a
+quartic residue mod every transparent p < 30000 (equivalently 1+i is
+a square mod p), so the halves (+-in, .) of T1~ have trivial descent
+class -- T1~ in 4E~(F_p) -- and every 2-Selmer class localizes
+trivially at p. Only full generators carry information. Pinned.
+
+L' FOR THE UNDETERMINED. PARI's lfun overflows a 4 GB stack at
+conductor 7e15; a segmented coefficient sieve (memory O(block),
+compute/lseries_cm.py l_value_segmented, validated to 1e-9 against the
+direct version) reaches n ~ 2e7:
+  p = 4001  n = 14724799  L'(E,1) = 2.8979305410   tail <= 1.3e-5  (3.3e8 terms, 340 s)
+  p = 4657  n = 16471199  L'(E,1) = 25.0428222709  tail <= 1.4e-5  (3.7e8 terms, 383 s)
+  p = 4817  n = 18969439  L'(E,1) = 10.4236084369  tail <= 1.7e-5  (4.3e8 terms, 446 s)
+Rank 1 (Gross-Zagier-Kolyvagin), proven; and since the Cassels pairing
+saw nothing on these curves, Sha contains (Z/4)^2 there -- the case a
+2-descent can never settle.
+
+GENERATOR SEARCH. ellrank effort 20 (5 min) still finds only P0 on
+the 3313 and 3361 curves; the three 2-isogenous curves give nothing
+new; ell2cover exposes the two hard quartics of the 3313 curve, and
+hyperellratpoints finds no point to 10^6 (10^7-10^8 running at the
+time of writing). BSD-style estimates put the missing generators at
+canonical height ~ 50-80 (x-coordinates of 40-70 digits), i.e. quartic
+points of height ~ e^12 - e^20: a 4-descent problem (Magma) or a long
+sieve.
+
+LEDGER. The rigidity lemma is a THEOREM for 39 of the 67 transparent
+primes below 30000: 32 of certified rank 1, 4 rank-2 primes by the
+criterion, 3 by L' where the 2-descent was blind. Remaining 28: 22
+rank-2 curves missing their second generator, 3 where the criterion
+provably fails (2657, 9137, 29201), 3 of undetermined rank with
+n >= 1.3e8 (conductor >= 5e17; hours of sieve each). Not claiming the
+lemma in full, or A3.10. Checks a3.rigidity_pari_certificates (data
+re-verified exactly; FULL recomputes the three large L' values) and
+a3.rigidity_rank_certificates. Suite 166.

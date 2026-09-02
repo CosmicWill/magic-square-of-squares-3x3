@@ -1026,6 +1026,72 @@ $\ge3\cdot10^8$ series terms) exceed this machine.  Those, and the
 scalable algebraic route (a Cassels–Tate pairing on $\mathrm{Sel}^2$),
 are PARI territory (`ellrank`), which this machine does not have.
 
+**PARI certificates and the Rank-$r$ criterion (entry 79; check
+`a3.rigidity_pari_certificates`, data `compute/data_pari_ranks.json`).**
+PARI/GP 2.17.4 was obtained as a portable extraction of the official
+installer (verified SHA256; the installer itself demands UAC).  Its
+`ellrank` performs the 2-descent and the 2-part of the Cassels pairing
+and returns $[r_1,r_2,s,L]$ with $r_2=C-T-s$ an **unconditional** upper
+bound ($C$ = 2-Selmer rank, $T=2$, $s$ = rank of $Ш[2]/2Ш[4]$ detected
+by the pairing); $r_1$ may use parity, so we call a rank *certified*
+only when the number of independent points found (independence
+re-verified through descent images) equals $r_2$.  Sweep over all $67$
+transparent curves, effort escalated to $8$ (to $20$ for two) and the
+points 2-saturated by `ellsaturation`:
+
+| $r_2$ | points found | curves | status |
+|---|---|---|---|
+| 1 | 1 | 32 | rank 1 certified → **Rank-1 Theorem, proven** (includes the 4 $L'$ primes — an independent confirmation) |
+| 2 | 2 | 5 | rank 2 certified, generators known → criterion below |
+| 2 | 1 (only $P_0$) | 22 | rank 2 (upper bound unconditional; lower bound by parity), second generator beyond effort-20 search |
+| 3 | 3 | 2 | rank 3 certified, generators known → criterion below |
+| 3 | 1 | 6 | rank 1 or 3; $s=0$ means either rank 3 or $Ш$ with 4-torsion |
+
+*The Rank-$r$ criterion (proven).*  Let $\Lambda=\langle G_1,\dots,G_r\rangle+E[2]$
+have **odd** index $d$ in $E(\mathbb{Q})$ (2-saturation).  A solution
+gives $P_{\mathrm{sol}}=P_0+2Q$; reducing, $2\tilde Q=\tilde T_1$; and
+$dQ=\sum a_iG_i+T$ gives
+$\tilde T_1=d\tilde T_1=2d\tilde Q=2\sum a_i\tilde G_i\in 2H$, $H=\langle\tilde G_1,\dots,\tilde G_r\rangle$.
+So **$\tilde T_1\notin 2H$ implies no solution** — a finite computation
+in $\tilde E(\mathbb{F}_p)$ once generators are known (for $r=1$ it is
+automatic: the Rank-1 Theorem).  On the seven complete generator sets it
+**proves $p=3137,\,8369,\,9473,\,13633$** (rank 2) and fails for
+$2657$ (rank 2), $9137,\,29201$ (rank 3): there $H$ genuinely contains
+a half of $\tilde T_1$, i.e. a rational point in the right coset
+reduces to $O$, and the mod-$p$ method cannot work for those primes at
+all — they need the integrality/height side.
+
+*The 2-descent is blind at $p$.*  $2$ is a quartic residue modulo
+every transparent $p<30000$ (equivalently $1+i$ is a square mod $p$), so
+the halves $(\pm in,\cdot)$ of $\tilde T_1$ have trivial descent class —
+$\tilde T_1\in4\tilde E(\mathbb{F}_p)$ — and every 2-Selmer class
+localizes trivially at $p$.  Hence no criterion using only Selmer
+classes can ever apply in the transparent class; only full generators
+carry information.
+
+*$L'$ for the undetermined.*  A segmented coefficient sieve (memory
+$O(\text{block})$) reaches $n\sim2\cdot10^7$ and certifies rank $1$ for
+three of the six:
+
+| $p$ | $n$ | $L'(E,1)$ | tail $\le$ | terms |
+|---|---|---|---|---|
+| 4001 | 14724799 | 2.8979305410 | $1.3\cdot10^{-5}$ | $3.3\cdot10^8$ |
+| 4657 | 16471199 | 25.0428222709 | $1.4\cdot10^{-5}$ | $3.7\cdot10^8$ |
+| 4817 | 18969439 | 10.4236084369 | $1.7\cdot10^{-5}$ | $4.3\cdot10^8$ |
+
+Rank $1$, proven — and since the Cassels pairing saw nothing on these
+curves, $Ш\supseteq(\mathbb{Z}/4)^2$ there: the case a 2-descent can
+never settle.
+
+**Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
+$67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
+rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was
+blind).  Remaining $28$: $22$ rank-2 curves whose second generator lies
+beyond effort-20 search (the targeted `ell2cover` + `hyperellratpoints`
+route, or a 4-descent, is the way in); $3$ where the criterion provably
+fails ($2657,9137,29201$); $3$ of undetermined rank with
+$n\ge1.3\cdot10^8$ (conductor $\ge5\cdot10^{17}$).
+
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct

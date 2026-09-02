@@ -187,6 +187,119 @@ def l_value(n, terms_factor=4.0, M=None, verbose=False):
     return w, val, tail, M
 
 
+# ------------------------------------------- segmented version (memory O(block))
+
+def ap1_at_primes(M, is_prime=None):
+    """(primes <= M as int64 array, a_p(E_1) at each as int32)."""
+    if is_prime is None:
+        is_prime = prime_sieve(M)
+    primes = np.flatnonzero(is_prime).astype(np.int64)
+    ap = np.zeros(len(primes), dtype=np.int32)
+    r = int(M**0.5) + 1
+    a_vals = np.arange(1, r + 1, 2, dtype=np.int64)
+    b_vals = np.arange(0, r + 1, 2, dtype=np.int64)
+    step = 512
+    for a0 in range(0, len(a_vals), step):
+        A = a_vals[a0:a0 + step][:, None]
+        B = b_vals[None, :]
+        S = A * A + B * B
+        inb = S <= M
+        Sc = np.where(inb, S, 2)
+        mask = inb & is_prime[Sc]
+        As = np.broadcast_to(A, S.shape)[mask]
+        Bs = np.broadcast_to(B, S.shape)[mask]
+        Ss = S[mask]
+        sign = np.where((As + Bs) % 4 == 1, 1, -1)
+        idx = np.searchsorted(primes, Ss)
+        ap[idx] = (2 * As * sign).astype(np.int32)
+    return primes, ap
+
+
+def twist_at_primes(n, primes, ap1):
+    """a_p(E_n) at the given primes: (n/p) a_p(E_1), 0 at p | 2n."""
+    n = abs(n)
+    apn = np.zeros(len(primes), dtype=np.int32)
+    pl = primes.tolist()
+    al = ap1.tolist()
+    for i, (p, v) in enumerate(zip(pl, al)):
+        if v == 0 or p == 2 or n % p == 0:
+            continue
+        apn[i] = v if pow(n % p, (p - 1) // 2, p) == 1 else -v
+    return apn
+
+
+def coefficients_block(n, L, B, small_primes, primes, apn):
+    """a_m(E_n) for m in [L, L+B) as int32, using a_p at all primes."""
+    n = abs(n)
+    a = np.ones(B, dtype=np.int32)
+    rem = np.arange(L, L + B, dtype=np.int64)
+    top = L + B - 1
+    pos = {}
+    for p in small_primes:
+        p = int(p)
+        i = np.searchsorted(primes, p)
+        app = int(apn[i])
+        bad = (p == 2 or n % p == 0)
+        pk_vals = []
+        prev2, prev1 = 1, app
+        pk = p
+        while pk <= top:
+            pk_vals.append(prev1)
+            pk *= p
+            prev2, prev1 = prev1, (0 if bad else app * prev1 - p * prev2)
+        first = ((L + p - 1) // p) * p
+        if first > top:
+            continue
+        idx = np.arange(first - L, B, p, dtype=np.int64)
+        v = np.ones(len(idx), dtype=np.int64)
+        q = p * p
+        k = 2
+        while q <= top:
+            v[((idx + L) % q) == 0] = k
+            q *= p
+            k += 1
+        a[idx] *= np.asarray(pk_vals, dtype=np.int32)[v - 1]
+        rem[idx] //= np.power(p, v)
+    mask = rem > 1
+    q = rem[mask]
+    j = np.searchsorted(primes, q)
+    assert np.all(primes[j] == q)
+    a[mask] *= apn[j]
+    return a
+
+
+def l_value_segmented(n, terms_factor=4.0, block=1 << 24, verbose=False):
+    """(w, value, tail_bound, M) for E_n with memory O(block + pi(M))."""
+    n = abs(n)
+    N = 32 * n * n
+    M = int(terms_factor * math.sqrt(N)) + 10
+    is_prime = prime_sieve(M)
+    primes, ap1 = ap1_at_primes(M, is_prime)
+    del is_prime
+    apn = twist_at_primes(n, primes, ap1)
+    del ap1
+    sq = int(M**0.5) + 1
+    small = primes[primes <= sq]
+    w = root_number(n)
+    c = 2 * math.pi / math.sqrt(N)
+    total = 0.0
+    for L in range(1, M + 1, block):
+        B = min(block, M + 1 - L)
+        a = coefficients_block(n, L, B, small, primes, apn)
+        m = np.arange(L, L + B, dtype=np.float64)
+        x = c * m
+        weight = np.exp(-x) if w == 1 else exp1(x)
+        total += float(np.sum(a.astype(np.float64) / m * weight))
+        if verbose:
+            print(f"  block {L}..{L+B-1}: partial = {2*total:.12g}", flush=True)
+    val = 2.0 * total
+    if w == 1:
+        tail = 2.0 * math.exp(-c * (M + 1)) / (1 - math.exp(-c))
+    else:
+        tail = 2.0 * math.exp(-c * (M + 1)) / ((1 - math.exp(-c)) * c * (M + 1))
+    return w, val, tail, M
+
+
 # ----------------------------------------------------------------- Tunnell
 
 def tunnell_counts(n):
