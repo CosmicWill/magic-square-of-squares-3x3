@@ -3511,3 +3511,19 @@ H1/H2 bracket identities of the (3,1) campaign (rigid (u,v)-forms,
 parity odd = even^2, the leg-overflow window) made mechanical; this
 is the majority shape (80) and the real frontier of the uniform
 omega <= 2 program.
+
+Ladder complete (same day, later): (4,2) 478/576 dead (98 open; the
+window finisher took 210), (3,3) 560/732 dead (172 open; window 284).
+The seven boxes under the complete stack: (2,1) 26/26, (2,2) 120/120,
+(3,2) 278/322, (4,1) 110/140, (5,1) 160/220, (4,2) 478/576, (3,3)
+560/732 -- 1732 of 2136 distinct OPEN patterns dead (81%), 404 open.
+Census of the 404: 168 SINGLE levers (p^{2e} | Re/Im(w^2), w^4, w^6,
+and by symmetry q-levers on l^2, l^4, l^6 in (3,3)) and 236 DOUBLE
+levers in which at least one value has index >= 5 (indices [1,5] x72,
+[3,5] x40, [4,6] x32, [6,6] x24, [1,7] x20, [4,5] x16, [3,7] x8, [4,8]
+x8, [2,8] x6, [1,9] x4, [5,5] x4, [2,10] x2). No double-lever pattern
+with both indices <= 4 survives anywhere. So build (A), general-index
+targets (odd n: Chebyshev cofactor with exact sup bound, gcd | n; even
+n: recursion through the half-index legs), is now the larger win (236)
+and build (B), the residual-system finisher for single levers, the
+deeper one (168).

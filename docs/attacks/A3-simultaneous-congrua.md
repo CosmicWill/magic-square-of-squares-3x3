@@ -1539,18 +1539,26 @@ identities of a hand lemma must be re-derived per sign class, which is
 exactly what the machine does and the hand did not.
 
 **The ladder under the complete stack** (distinct OPEN patterns dead /
-total, doubled patterns counted dead by Lemma G4): $(2,1)$ $26/26$;
-$(2,2)$ $120/120$; $(3,2)$ $278/322$; $(4,1)$ $110/140$; $(5,1)$
-$160/220$.  The $134$ survivors have two shapes only: **80 single
-$p$-levers** on index-$2$ (or $4$) $w$-values, $p^{2e}\mid
-\mathrm{Re}/\mathrm{Im}(w^2)$ with nothing to pincer against — the
-H1/H2 "bracket identity" territory of the $(3,1)$ campaign (the third
+total, doubled patterns counted dead by Lemma G4):
+
+| box | (2,1) | (2,2) | (3,2) | (4,1) | (5,1) | (4,2) | (3,3) |
+|---|---|---|---|---|---|---|---|
+| dead / total | 26/26 | 120/120 | 278/322 | 110/140 | 160/220 | 478/576 | 560/732 |
+
+$1732$ of $2136$ ($81\%$); $404$ open, of exactly two shapes.  **168
+single levers**, $p^{2e}\mid\mathrm{Re}/\mathrm{Im}(w^2)$, $w^4$, $w^6$
+(and the $q$-mirrors in $(3,3)$), with nothing to pincer against — the
+H1/H2 "bracket identity" territory of the $(3,1)$ campaign: the third
 term's relation is linear in the $w$-legs once $U_2=p^{2e}t$ is
-substituted); and **54 double levers whose $\ell$-value has index
-$5$–$10$**, above the module's current targets — the Chebyshev
-cofactor $\mathrm{Re}(X^n)=X_1P_n(X_1^2,P^2)$ with its exact sup bound
-and $\gcd\mid n$ is the uniform extension.  Those are the next two
-builds.
+substituted.  **236 double levers in which a value has index $\ge5$**
+(indices $[1,5]\times72$, $[3,5]\times40$, $[4,6]\times32$,
+$[6,6]\times24$, $[1,7]\times20$, $[4,5]\times16$, …), above the
+module's current targets; no double-lever pattern with both indices
+$\le4$ survives anywhere.  The Chebyshev cofactor
+$\mathrm{Re}(X^n)=X_1P_n(X_1^2,P^2)$ with its exact sup bound and
+$\gcd\mid n$ (even $n$ by recursion through the half-index legs) is the
+uniform extension and the larger next win; the residual-system
+finisher for single levers is the deeper one.
 
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
