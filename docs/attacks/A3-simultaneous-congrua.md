@@ -1370,6 +1370,64 @@ variants and Block B — are not pinned by the chase yet (a first hand
 pinning of the opposite-sign case rested on a false gcd step and was
 withdrawn), so they wait for the tree layer.  **A3.10 is not claimed.**
 
+### 2.15 Theorem A3.10: the $(2,2)$ box is closed — split part $p^2q^2$ (entry 84)
+
+**Theorem A3.10 (PROVEN).**  For $m=2^sr\,p^2q^2$ ($p\ne q$ split
+primes, $r$ inert), $D(m)$ admits no signed additive relation.
+**Corollary: the split part of any MSS3 center is $p^4q$ or higher, or
+has at least three distinct split primes.**
+
+*Proof architecture* (every step machine-pinned).  The $1144$ canonical
+patterns of the box partition with zero gaps (`a3.p2q2_accounting`)
+into $1008$ machine kills, $34+26$ patterns of the $(2,1)$ and $(1,2)$
+sub-boxes (Theorem A3.8 and its $p\leftrightarrow q$ transpose — the
+cleared relation depends only on the two frames, not on the exponent
+of $q$ in $m$), $32$ ledger patterns ($24$ G3 double-pincers,
+$8$ H3; `a3.h3_closed`), and $44$ replications: $18$ $j$-children that
+are transposes of $k$-children, and $26$ distinct $k$-children.  **The
+26 $k$-children are killed by the machine, end to end**
+(`a3.p2q2_theorem`, every certificate recomputed on each run):
+
+| layer | children | mechanism |
+|---|---|---|
+| valuation | 4 | rank-of-apparition balance |
+| residual parity | 10 | odd residual factors $2U_2\pm p^k$ |
+| concentration | 8 | $Z_\pm$ pinned systems, and the content lemma ($d\mid3$) with the sliver certificate |
+| unit collapse | 4 | Block B: $T=\pm q^4$, coprime split, 2-adic kill |
+
+**The tree layer (same entry).**  Three pieces mechanize what the
+hand-trees did:
+*(i) The content lemma.*  A prime $r\mid S_x=\operatorname{Im}\ell^x$
+makes $u=\ell/\bar\ell$ a root of unity of order $d\mid x$ modulo $r$,
+so a polynomial factor $G=\bar\ell^mB(u)$ is divisible by $r$ only if
+$r\mid B(\zeta_d)$: $\gcd(S_x,G)\mid\prod_{d\mid x}|\operatorname{Res}_u(B,\Phi_d)|$
+(for $C_x$: orders $2d$, $x/d$ odd).  It returns $3$ for $2C_2-p^2$
+against $S_2$ — the hand "content lemma $g\in\{1,3\}$" — and $1$, $3$,
+$15$ for the other factors in play.  The closure then concludes
+$X=\pm P^eY/d$ with $d\mid N$.
+*(ii) The sliver certificate.*  For $d>1$: $w^k=P/d$ with
+$U$ odd, $V$ even and $p^{2e}\mid V$, $\gcd(U,V)=1$, so
+$(q^k-U)(q^k+U)=V^2$ splits into coprime halves $\{a^2,p^{4e}b^2\}$
+and $q^k\ge p^{4e}+1$, while $dq^k=|P|\le|P|_{\max}$ — a contradiction
+whenever $d(p^{4e}+1)>|P|_{\max}$ for all $p\ge5$.  (The hand proof of
+the A3.8 sliver, now a certificate.)
+*(iii) Block B — the unit collapse* (`block_b_lemma`).  The $q^4$-lever
+equation factors as $2X\,T\,M=\mp4C_1S_1q^4(C_1-S_1)(C_1+S_1)$ with
+$X\in\{C_1,S_1\}$ cancelling, $M=\operatorname{Im}(\ell w^4)$-type a
+$q$-unit (the structural test: send $w\to0$), and $T\in\{C_1^2-3S_1^2,
+3C_1^2-S_1^2\}$ odd and coprime to the cofactors (content $1$); hence
+$T=\pm q^4$.  But $T=p^2-4s_1^2$ or $4c_1^2-p^2$, so $(p\mp2s_1)$ or
+$(2c_1\mp p)$ are coprime factors of $\pm q^4$, forcing
+$\{1,q^4\}$ and $16c_1^2$ (or $16s_1^2$) $=(3q^4\pm1)(q^4\pm3)$; the
+coprime odd parts are squares, and $q^4+3=4v^2$ gives
+$(2v-q^2)(2v+q^2)=3$ while $q^4-3=2v^2$ needs $v^2\equiv7\pmod8$.
+Dead in every sign.
+
+The general structural unit test (a polynomial in both frames' Lucas
+symbols is a $p$-unit iff a single monomial survives $\ell\to0$) and
+the cross-exponent Lucas rules ($C_{2^tn}$ coprime to $C_n,S_n$) were
+what the oracle had lacked.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

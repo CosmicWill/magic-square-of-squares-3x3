@@ -3364,3 +3364,44 @@ is false (mod S2 the binomial is C2(2C2 +- p^2)), and was withdrawn.
 They wait for the tree layer. A3.10 NOT claimed. Pinned:
 a3.concentration_theorem (24 certificates, the identities, the
 14-children tally). Suite 169.
+
+## 2026-09-02 — Entry 84: THEOREM A3.10 — the (2,2) box is closed (split part p^2 q^2); the tree layer
+
+THEOREM A3.10 (PROVEN). For m = 2^s r p^2 q^2, D(m) admits no signed
+additive relation. Corollary: the split part of any MSS3 center is
+p^4 q or higher, or has at least three distinct split primes.
+
+The chain (every step pinned): a3.p2q2_accounting partitions the
+1144 canonical patterns with zero gaps into 1008 machine kills, 34+26
+sub-box patterns (Theorem A3.8 and its transpose; the cleared
+relation depends only on the two frames), 32 ledger patterns (G3,
+H3), and 44 replications (18 j-children = transposes of k-children,
+26 distinct k-children). The 26 k-children are killed by the machine
+end to end (a3.p2q2_theorem, certificates recomputed each run):
+4 by valuation, 10 by residual parity, 8 by concentration (the Z+/Z-
+pinned systems, and the content lemma d | 3 with the sliver
+certificate), 4 Block-B children by the unit collapse T = +-q^4 with
+the coprime split and the 2-adic kill (block_b_lemma).
+
+THE TREE LAYER. (i) Content lemma: r | S_x makes u = l/lbar a root of
+unity of order d | x mod r, so gcd(S_x, G) | prod_{d|x}
+|Res_u(B, Phi_d)| for G = lbar^m B(u) (for C_x: orders 2d, x/d odd);
+gives 3 for 2C2 - p^2 vs S2 (the hand "g in {1,3}"), 1/3/15 for the
+other factors; the closure concludes X = +-P^e Y/d, d | N. (ii) The
+sliver certificate for d > 1: (q^k - U)(q^k + U) = V^2 with coprime
+halves {a^2, p^{4e} b^2} gives q^k >= p^{4e} + 1 against d q^k =
+|P| <= |P|_max. (iii) Block B: the q^4-lever equation factors as
+2 X T M = -+4 C1 S1 q^4 (C1 - S1)(C1 + S1), M = Im(l w^4)-type a
+q-unit (structural test: send w -> 0), T in {C1^2 - 3S1^2,
+3C1^2 - S1^2} odd, coprime to the cofactors (content 1), so
+T = +-q^4; T = p^2 - 4 s1^2 or 4 c1^2 - p^2 splits into coprime
+factors {1, q^4}, leaving 16 c1^2 (or 16 s1^2) = (3q^4 +- 1)(q^4 +- 3)
+with coprime odd parts squares: q^4 + 3 = 4v^2 gives (2v - q^2)(2v +
+q^2) = 3, q^4 - 3 = 2v^2 needs v^2 = 7 mod 8. Dead in every sign.
+Also added: the general structural unit test (a mixed polynomial is
+a p-unit iff a single monomial survives l -> 0), cross-exponent Lucas
+gcd rules, Im-equality pinning, "one equality suffices" logic. Two
+oracle regressions were caught by the rigidity pin along the way.
+
+The one-equation rigidity lemma of entries 72-79 is now moot for
+A3.10. Suite 170. Not claiming anything beyond A3.10.

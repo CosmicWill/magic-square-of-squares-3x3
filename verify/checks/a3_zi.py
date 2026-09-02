@@ -2454,6 +2454,69 @@ def _(ctx):
              f"A3.10 NOT yet claimed (8 children pending the tree layer)")
 
 
+@check("a3.p2q2_theorem", DOC)
+def _(ctx):
+    """THEOREM A3.10 (entry 84): no signed additive relation in D(m) for
+    split part p^2 q^2 -- the (2,2) box is closed.
+    Chain: a3.p2q2_accounting partitions the 1144 canonical patterns with
+    zero gaps into machine kills, the (2,1)/(1,2) sub-boxes (Theorem A3.8
+    and its transpose), the 32 ledger patterns (G3, H3), and the 44
+    replications; the 18 j-children are transposes of k-children; of the
+    26 k-children 12 are closed rigorously (a3.p2q2_reduction) and the
+    14 rigidity children are closed HERE, end to end by machine:
+      2 by the valuation layer, 4 by the concentration kill (Z+/Z-), 4 by
+      the content lemma (d | 3) with the sliver certificate, and the 4
+      Block-B children by the unit collapse T = +-q^4 with the coprime
+      split and the 2-adic kill (block_b_lemma, every step verified).
+    Every certificate is recomputed on each run."""
+    from compute.lucas_endpoints import kill_pattern, block_b_lemma
+    from collections import Counter
+    REMAINING = [([(1, -2), (2, -2), (2, 0)], [1, -1, -1]), ([(1, -2), (2, -2), (2, 2)], [1, 1, 1]),
+                 ([(1, -2), (2, -2), (2, 2)], [1, 1, -1]), ([(1, -2), (2, -2), (2, 2)], [1, -1, 1]),
+                 ([(1, -2), (2, -2), (2, 2)], [1, -1, -1]), ([(1, -2), (2, 0), (2, 2)], [1, 1, -1]),
+                 ([(1, -2), (2, 0), (2, 2)], [1, -1, 1]), ([(1, 2), (2, -2), (2, 0)], [1, 1, -1]),
+                 ([(1, 2), (2, -2), (2, 0)], [1, -1, 1]), ([(1, 2), (2, -2), (2, 2)], [1, 1, 1]),
+                 ([(1, 2), (2, -2), (2, 2)], [1, 1, -1]), ([(1, 2), (2, -2), (2, 2)], [1, -1, 1]),
+                 ([(1, 2), (2, -2), (2, 2)], [1, -1, -1]), ([(1, 2), (2, 0), (2, 2)], [1, -1, -1])]
+    BLOCK_B = {(((1, -2), 1), ((2, 0), 1), ((2, 2), -1)), (((1, -2), 1), ((2, 0), -1), ((2, 2), 1)),
+               (((1, 2), 1), ((2, -2), 1), ((2, 0), -1)), (((1, 2), 1), ((2, -2), -1), ((2, 0), 1))}
+    tally = Counter()
+    for classes, coeffs in REMAINING:
+        pat = tuple((tuple(jk), c) for jk, c in zip(classes, coeffs))
+        verdict, certs = kill_pattern(pat)
+        if verdict in ("DEAD-valuation", "DEAD-concentration", "DEAD-residual", "DEAD-parity"):
+            tally[verdict] += 1
+            continue
+        require(pat in BLOCK_B, (pat, verdict))
+        cert = block_b_lemma(pat)
+        require(cert["form"] in ("p2-4s1^2", "4c1^2-p2") and "kill+" in cert and "kill-" in cert, cert)
+        tally["DEAD-blockB"] += 1
+    require(sum(tally.values()) == 14 and tally["DEAD-blockB"] == 4, dict(tally))
+    require(tally["DEAD-valuation"] == 2 and tally["DEAD-concentration"] == 8, dict(tally))
+    # the machine's own enumeration: ALL 26 distinct k-children of the (2,2)
+    # box (OPEN patterns with every k-exponent even) die -- no reliance on
+    # the hand closures of the 12 "free" children either
+    from compute.lucas_endpoints import survey_box
+    from compute.two_prime_additive import kreplicate
+    verdict, opens = survey_box(2, 2)
+    kids = [tuple(pattern) for pattern, kind in opens if kind == "distinct" and kreplicate(tuple(pattern)) is not None]
+    require(len(kids) == 26, len(kids))
+    tally26 = Counter()
+    for pat in kids:
+        v, certs = kill_pattern(pat)
+        if v.startswith("DEAD"):
+            tally26[v] += 1
+            continue
+        cert = block_b_lemma(pat)
+        require("kill+" in cert and "kill-" in cert, cert)
+        tally26["DEAD-blockB"] += 1
+    require(sum(tally26.values()) == 26, dict(tally26))
+    ctx.note(f"the 14 rigidity children: {dict(tally)}; all 26 distinct k-children by "
+             f"machine: {dict(tally26)} -- with a3.p2q2_accounting (zero-gap partition), "
+             f"a3.h3_closed + the G3 ledger, Theorem A3.8 for the sub-boxes and the "
+             f"j-children as transposes, THEOREM A3.10 (split part p^2 q^2) holds")
+
+
 @check("a3.rigidity_pari_certificates", DOC)
 def _(ctx):
     """PARI/GP rank certificates and the Rank-r criterion (entry 79).

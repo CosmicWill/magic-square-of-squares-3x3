@@ -390,15 +390,49 @@ def _binomial_facts(binom, facts):
                 ok = False
         if ok:
             facts.add((binom, s))
-    parts = _sp.Add.make_args(binom)
-    if len(parts) == 2:
-        for P_ in (_P, _Q):
-            has = [P_ in t.free_symbols for t in parts]
-            if has.count(True) == 1:
-                other = parts[has.index(False)]
-                oat = _atoms(_sp.Mul.make_args(_sp.factor(other)))
-                if all(_coprime(a, P_, facts) for a in oat if a != "const"):
-                    facts.add((binom, P_))
+    for P_ in (_P, _Q):
+        if is_unit_at(binom, P_):
+            facts.add((binom, P_))
+
+
+_W, _WB = _sp.symbols("W WB")            # w and wbar as independent variables
+
+
+def to_gaussian(expr):
+    """Lucas symbols of BOTH sides -> polynomial in L, LB (l, lbar) and
+    W, WB (w, wbar), with p^2 = L LB and q^2 = W WB."""
+    subs = {}
+    for s in expr.free_symbols:
+        nm = str(s)
+        if nm[0] in "UVCS" and nm[1:].isdigit():
+            n = int(nm[1:])
+            A, B = (_L, _LB) if nm[0] in "CS" else (_W, _WB)
+            subs[s] = (A**n + B**n) / 2 if nm[0] in "CU" else (A**n - B**n) / (2 * _sp.I)
+    e = expr.subs(subs)
+    e = e.subs({_P**2: _L * _LB, _Q**2: _W * _WB})
+    return _sp.expand(e)
+
+
+def is_unit_at(G, P_):
+    """STRUCTURAL unit test: G (Lucas symbols, p, q) is a P-unit when its
+    reduction modulo the Gaussian prime over P -- l -> 0 for p (pi | l,
+    pi never divides lbar, w, wbar), w -> 0 for q -- is a single monomial
+    c * lbar^a w^b wbar^c ... with c a nonzero rational whose numerator is
+    prime to P (constants in play are tiny; P >= 5)."""
+    g = to_gaussian(G)
+    g0 = _sp.expand(g.subs(_L if P_ == _P else _W, 0))
+    if g0 == 0:
+        return False
+    terms = _sp.Add.make_args(g0)
+    if len(terms) != 1:
+        return False
+    coeff, _ = terms[0].as_coeff_Mul()
+    coeff = _sp.nsimplify(coeff)
+    n_ = _sp.expand(coeff * _sp.conjugate(coeff))          # Gaussian norm, rational
+    if not n_.is_rational or n_ == 0:
+        return False
+    num = abs(_sp.Rational(n_).p)
+    return all(num % pr for pr in (5, 7, 11, 13, 17, 19, 23))
 
 
 def _closure(Lat, Rat, facts):
@@ -927,40 +961,225 @@ def concentration_kill(P_l_lbar, jmax=4, amax=6, p_min=5):
     return None
 
 
-def pinned_systems(pattern, max_terms=6):
-    """For each open coincidence branch X = sgn*val of the pattern, solve
-    the residual for the partner symbol and return the pinned pair
-    (Re, Im) of w^k (or of l^k for the mirror types) as expressions in
-    the Lucas symbols, together with the side ('w' or 'l') and k."""
-    out = []
-    r = run_chase(pattern, max_terms=max_terms)
-    if r["status"] != "COINCIDENCE":
-        return r["status"], out
+# ------------------------------------------- the content lemma (tree layer)
+#
+# A prime r dividing S_x = Im(l^x) satisfies (l/lbar)^x = 1 mod r: the
+# "angle" u = l/lbar is a root of unity of order d | x modulo r.  A
+# binomial G in the Lucas symbols, written as lbar^m B(u), is then
+# divisible by r only if r | B(zeta_d), so gcd(S_x, G) divides
+# prod_{d | x} |Res_u(B, Phi_d)|.  For C_x = Re(l^x): u^x = -1, so u has
+# order 2d with d | x and x/d odd.  The w-side is the same with w/wbar.
+
+_U = _sp.Symbol("u")
+
+
+def _angle_poly(G_expr_lucas, side):
+    """G (Lucas symbols of one side, p^2 or q^2) -> (m, B(u)) with
+    G = LB^m B(u), u = L/LB, B integral (denominators 2^k cleared)."""
+    g = lucas_to_L(G_expr_lucas, side)
+    g = _sp.expand(g.subs(_L, _U * _LB))
+    P = _sp.Poly(g, _LB)
+    if P.is_zero:
+        return 0, _sp.Integer(0)
+    m = min(mon[0] for mon in P.monoms())
+    B = _sp.expand(g / _LB**m)
+    B = _sp.Poly(B, _U)
+    den = 1
+    for c in B.all_coeffs():
+        c = _sp.nsimplify(c)
+        for part in (_sp.re(c), _sp.im(c)):
+            part = _sp.Rational(part)
+            den = _sp.ilcm(den, part.q)
+    return m, _sp.Poly(_sp.expand(B.as_expr() * den), _U)
+
+
+def content_bound(G_expr_lucas, sym):
+    """Bound N on gcd(G, sym) over odd primes r != p, q, from the
+    cyclotomic resultants; None if some resultant vanishes (G shares a
+    cyclotomic factor with sym: content unbounded)."""
+    nm = str(sym)
+    x = int(nm[1:])
+    side = "l" if nm[0] in "CS" else "w"
+    m, B = _angle_poly(G_expr_lucas, side)
+    if B.is_zero:
+        return None
+    N = 1
+    if nm[0] in "SV":
+        orders = [d for d in range(1, x + 1) if x % d == 0]
+    else:
+        orders = [2 * d for d in range(1, x + 1) if x % d == 0 and (x // d) % 2 == 1]
+    for o in orders:
+        phi = _sp.cyclotomic_poly(o, _U)
+        res = _sp.expand(_sp.resultant(B.as_expr(), phi, _U))
+        # Gaussian-integer resultant: r | B(zeta) in Z[i][zeta] forces
+        # r | N(res); use the Gaussian norm as the integer bound
+        if res == 0:
+            return None
+        if res.is_integer:
+            N *= int(abs(res))
+        else:
+            nres = _sp.expand(res * _sp.conjugate(res))
+            if not nres.is_integer or nres == 0:
+                return None
+            N *= int(abs(nres))
+    # strip the primes we never need to worry about: 2 (parities), and the
+    # frame primes cannot divide S_x/C_x-values of the same side
+    while N % 2 == 0:
+        N //= 2
+    return N
+
+
+def _closure_content(Lat, Rat, facts):
+    """The closure with BOUNDED CONTENT: X | P^e Y, and Y | X * (product
+    of polynomial atoms G_i with gcd(Y, G_i) | N_i)  ==>  X = +-P^e Y / d
+    for some d | prod N_i (d | Y).  Returns list of (X, P^e Y, N)."""
+    divs, _ = _closure(Lat, Rat, facts)
     eqs = []
+    for X, (tgt, e) in divs.items():
+        if e != 1 or X in (_P, _Q) or not X.is_Symbol:
+            continue
+        Ps = {B: f for B, f in tgt.items() if B in (_P, _Q)}
+        Ys = {B: f for B, f in tgt.items() if B not in (_P, _Q)}
+        if len(Ys) != 1 or len(Ps) > 1:
+            continue
+        (Y, fy), = Ys.items()
+        if fy != 1 or not Y.is_Symbol:
+            continue
+        backY, eY = divs.get(Y, ({}, 0))
+        if eY != 1 or X not in backY:
+            continue
+        others = [B for B in backY if B != X]
+        N = 1
+        ok = True
+        for G in others:
+            if G.is_Symbol:
+                ok = False
+                break
+            cb = content_bound(G, Y)
+            if cb is None:
+                ok = False
+                break
+            N *= cb
+        if not ok:
+            continue
+        if Ps:
+            (P_, pe), = Ps.items()
+            backP, _ = divs.get(P_, ({}, 0))
+            if set(backP) != {X} or not _coprime(P_, Y, facts):
+                continue
+            eqs.append((X, P_**pe * Y, N))
+        else:
+            eqs.append((X, Y, N))
+    return eqs
+
+
+def sliver_kill(P_l_lbar, d, p_min=5):
+    """The d > 1 content case: w^k = P/d with P = U + iV, U odd, V even
+    and V divisible by p^{2e} (e >= 1, as a polynomial), gcd(U, V) = 1.
+    Then (q^k - U)(q^k + U) = V^2 with coprime even factors, the halves
+    are {a^2, p^{4e} b^2} with ab = V/2 != 0, so q^k >= p^{4e} + 1; while
+    d q^k = |P| <= |P|_max.  Kill if d (p^{4e} + 1) > |P|_max for all
+    p >= p_min.  Returns e or None."""
+    P_ = _sp.expand(P_l_lbar)
+    if not P_.is_polynomial(_L, _LB):
+        return None
+    V = _sp.expand((P_ - P_.subs(_sp.I, -_sp.I)) / (2 * _sp.I))
+    # careful: conjugation of the polynomial in L, LB swaps L <-> LB as well
+    Pc = _sp.expand(P_.subs({_L: _LB, _LB: _L, _sp.I: -_sp.I}, simultaneous=True))
+    V = _sp.expand((P_ - Pc) / (2 * _sp.I))
+    Vp = _sp.Poly(V, _L, _LB)
+    if Vp.is_zero:
+        return None
+    e = min(min(mon) for mon in Vp.monoms())        # power of (L LB) = p^2 dividing V
+    if e < 1:
+        return None
+    bound = _abs_coeff_bound(P_)
+    cnd = _sp.expand(d * (_P**(4 * e) + 1) - bound)
+    poly = _sp.Poly(cnd, _P)
+    if poly.LC() <= 0 or cnd.subs(_P, p_min) <= 0 or poly.count_roots(inf=p_min) != 0:
+        return None
+    return e
+
+
+def content_equalities(pattern, max_terms=6):
+    """Equalities X = +-P^e Y / d (d | N) from the closure WITH bounded
+    content, over all collapses, Pythagorean rewrites and splits."""
+    from itertools import combinations
+    found = {}
+    equations = []
     for d in all_collapses(pattern):
+        if d["dead"]:
+            return None, []
         red, y0, x0, ep, eq, ok = endpoint_identity(pattern, d)
         if ok:
-            eqs.append(red)
-    for (X, val), b in r["branches"].items():
-        nm = str(X)
-        if nm[0] not in "UC":
-            continue
-        partner = _sp.Symbol(("V" if nm[0] == "U" else "S") + nm[1:])
-        side, k = ("w", int(nm[1:])) if nm[0] == "U" else ("l", int(nm[1:]))
-        for sgn in (1, -1):
-            if b[sgn] != "open":
+            equations.append(red)
+    for expr in equations:
+        for label, e2 in _pyth_subs(expr):
+            terms = list(_sp.Add.make_args(_sp.expand(e2)))
+            n = len(terms)
+            if n < 2 or n > max_terms:
                 continue
-            for e in eqs:
-                if X not in e.free_symbols:
-                    continue
-                res = _sp.factor(_sp.expand(e.subs(X, sgn * val)))
-                for f in _sp.Mul.make_args(res):
-                    f = f.base if f.is_Pow else f
-                    if partner in f.free_symbols and _sp.degree(f, partner) == 1:
-                        sol = _sp.solve(f, partner)
-                        if sol:
-                            out.append((side, k, sgn * val, sol[0]))
-    return "COINCIDENCE", out
+            idx = list(range(n))
+            for k in range(1, n // 2 + 1):
+                for GL in combinations(idx, k):
+                    if k * 2 == n and 0 not in GL:
+                        continue
+                    GR = [j for j in idx if j not in GL]
+                    FL = _sp.factor(sum(terms[i] for i in GL))
+                    FR = _sp.factor(-sum(terms[j] for j in GR))
+                    Lat, Rat = _atoms(_sp.Mul.make_args(FL)), _atoms(_sp.Mul.make_args(FR))
+                    polys = [A for A in list(Lat) + list(Rat) if A != "const" and not A.is_Symbol]
+                    if len(polys) > 2 or any(len(_sp.Add.make_args(A)) > 3 for A in polys):
+                        continue
+                    facts = set()
+                    for A in polys:
+                        _binomial_facts(A, facts)
+                    for X, val, N in _closure_content(Lat, Rat, facts):
+                        if _sp.expand(val - X) == 0 or _sp.expand(val + X) == 0:
+                            continue
+                        key = (X, val)
+                        found[key] = min(found.get(key, N), N)
+    return equations, [(X, val, N) for (X, val), N in found.items()]
+
+
+def pinned_systems(pattern, max_terms=6):
+    """For each equality X = +-P^e Y / d (content d | N) whose residual
+    pins the partner symbol, return (side, k, d, U, V) with U + iV the
+    pinned w^k (or l^k for the mirror types) TIMES d, in Lucas symbols."""
+    out = []
+    equations, eqs = content_equalities(pattern, max_terms=max_terms)
+    if equations is None:
+        return "DEAD-no-pure-factor", out
+    if not eqs:
+        return "NO-EQUALITY", out
+    partner_of = {"U": "V", "V": "U", "C": "S", "S": "C"}
+    for X, val, N in eqs:
+        nm = str(X)
+        if nm[0] not in "UVCS":
+            continue
+        partner = _sp.Symbol(partner_of[nm[0]] + nm[1:])
+        side, k = ("w" if nm[0] in "UV" else "l"), int(nm[1:])
+        is_re = nm[0] in "UC"
+        for dd in [d for d in range(1, N + 1) if N % d == 0]:
+            for sgn in (1, -1):
+                Xval = sgn * val / dd
+                for e in equations:
+                    if X not in e.free_symbols:
+                        continue
+                    res = _sp.factor(_sp.expand(e.subs(X, Xval)))
+                    if res == 0:
+                        continue
+                    factors = [(f.base if f.is_Pow else f) for f in _sp.Mul.make_args(res)]
+                    # parity-dead residual for this branch?
+                    if all(factor_nonzero(f) for f in factors):
+                        continue
+                    for f in factors:
+                        if partner in f.free_symbols and _sp.degree(f, partner) == 1:
+                            sol = _sp.solve(f, partner)
+                            if sol:
+                                Upart, Vpart = (sgn * val, sol[0] * dd) if is_re else (sol[0] * dd, sgn * val)
+                                out.append((side, k, dd, Upart, Vpart))
+    return ("COINCIDENCE" if out else "COINCIDENCE-unpinned"), out
 
 
 def lucas_to_L(expr, side):
@@ -988,33 +1207,142 @@ def kill_pattern(pattern, jmax=6, amax=12):
     v = valuation_layer(pattern)
     if v["status"] == "DEAD-valuation":
         return "DEAD-valuation", None
+    r = run_chase(pattern)
+    if r["status"] in ("DEAD-parity", "DEAD-residual"):
+        return r["status"], None
     status, systems = pinned_systems(pattern)
     if status != "COINCIDENCE":
         return status, None
-    if not systems:
-        return "COINCIDENCE-unpinned", None
+    # group the pinned branches by the equality they come from: a pattern
+    # is dead as soon as ONE equality has every (sign, content) branch dead
+    groups = {}
+    for side, k, dd, U, V in systems:
+        groups.setdefault((side, k, str(U).replace("-", "")), []).append((side, k, dd, U, V))
     certs = []
-    for side, k, U, V in systems:
-        # the pinned Gaussian integer must be a 2k-th power of the OTHER prime's
-        # Gaussian prime: w^k = rho^{2k} = P(l, lbar)  (or l^k = pi^{2k} = P(w, wbar))
-        P_ = _sp.cancel(lucas_to_L(U + _sp.I * V, "l" if side == "w" else "w"))
-        if not P_.is_polynomial(_L, _LB):
-            certs.append((side, k, 0, False, None))
-            return "COINCIDENCE-open", certs        # pinned only up to a rational cofactor
-        P_ = _sp.expand(P_)
-        okall = True
-        for sg in (1, -1):
-            for cj in (False, True):
-                PP = sg * P_
-                if cj:
-                    PP = PP.subs({_L: _LB, _LB: _L}, simultaneous=True)
-                c = concentration_kill(_sp.expand(PP), jmax=jmax, amax=amax)
-                if c is None:
-                    okall = False
-                certs.append((side, k, sg, cj, c))
-        if not okall:
-            return "COINCIDENCE-open", certs
-    return "DEAD-concentration", certs
+    for key, branches in groups.items():
+        all_dead = True
+        for side, k, dd, U, V in branches:
+            P_ = _sp.cancel(lucas_to_L(U + _sp.I * V, "l" if side == "w" else "w"))
+            if not P_.is_polynomial(_L, _LB):
+                all_dead = False
+                certs.append((side, k, dd, 0, False, None))
+                break
+            P_ = _sp.expand(P_)
+            for sg in (1, -1):
+                for cj in (False, True):
+                    PP = sg * P_
+                    if cj:
+                        PP = PP.subs({_L: _LB, _LB: _L}, simultaneous=True)
+                    PP = _sp.expand(PP)
+                    c = None
+                    if dd == 1:
+                        c = concentration_kill(PP, jmax=jmax, amax=amax)
+                    if c is None:
+                        e = sliver_kill(PP, dd)
+                        c = {"sliver": e, "d": dd} if e else None
+                    certs.append((side, k, dd, sg, cj, c))
+                    if c is None:
+                        all_dead = False
+            if not all_dead:
+                break
+        if all_dead:
+            return "DEAD-concentration", certs
+    return "COINCIDENCE-open", certs
+
+
+# ------------------------------------------- Block B: the unit collapse
+#
+# The four Block-B children of A3.10 carry a q^4 lever on the l-side:
+# after cancelling a common factor the collapse reads  T * M = -+2 Y q^4 C2
+# with M = Im(l w^4)-type a q-unit, T in {C1^2 - 3 S1^2, 3 C1^2 - S1^2}
+# odd and coprime to Y and C2, so T = +-q^4 (a UNIT COLLAPSE); and
+# T = p^2 - 4 s1^2 or 4 c1^2 - p^2 splits into coprime factors
+# {p -+ 2 s1} or {2 c1 -+ p} that must be {1, q^4}, leaving
+# c1^2 (or s1^2) = (3 q^4 +- 1)(q^4 +- 3)/16 -- dead 2-adically.
+
+def block_b_lemma(pattern):
+    """Machine-verified kill of a Block-B child.  Returns the certificate
+    dict; raises AssertionError if any step fails."""
+    c1, s1 = _sp.symbols("c1 s1", real=True)
+    qq = _sp.Symbol("q", positive=True)
+    C1, S1, C2 = _sp.Symbol("C1"), _sp.Symbol("S1"), _sp.Symbol("C2")
+    cert = {"pattern": pattern}
+    # 1. the q-lever collapse equation
+    red = None
+    for d in all_collapses(pattern):
+        e, y0, x0, ep, eq, ok = endpoint_identity(pattern, d)
+        if ok and _Q in e.free_symbols:
+            red = e
+            break
+    assert red is not None, "no q-lever collapse"
+    expr = _sp.expand(red)
+    qpart = sum(t for t in _sp.Add.make_args(expr) if _Q in t.free_symbols)
+    rest = _sp.expand(expr - qpart)
+    FL, FR = _sp.factor(rest), _sp.factor(-qpart)
+    atomsL = _atoms(_sp.Mul.make_args(FL))
+    atomsR = _atoms(_sp.Mul.make_args(FR))
+    # 2. structure: rest = const * X * T * M ; -qpart = const * C1 * S1 * q^4 * (C1-S1)(C1+S1)
+    symsL = [a for a in atomsL if a != "const"]
+    X = [a for a in symsL if a in (C1, S1)]
+    assert len(X) == 1, atomsL
+    X = X[0]
+    Y = S1 if X == C1 else C1
+    T = [a for a in symsL if not a.is_Symbol and all(str(s)[0] in "CS" for s in a.free_symbols)]
+    M = [a for a in symsL if not a.is_Symbol and any(str(s)[0] in "UV" for s in a.free_symbols)]
+    assert len(T) == 1 and len(M) == 1, atomsL
+    T, M = T[0], M[0]
+    assert atomsR.get(_Q, 0) == 4 and atomsR.get(C1, 0) == 1 and atomsR.get(S1, 0) == 1, atomsR
+    others = [a for a in atomsR if a not in (_Q, C1, S1, "const")]
+    assert set(map(str, others)) == {"C1 - S1", "C1 + S1"}, others
+    cert["T"], cert["M"], cert["cancel"] = str(T), str(M), str(X)
+    # 3. unit and coprimality facts
+    assert is_unit_at(M, _Q), "M not a q-unit"
+    assert _parity_poly(T) == "odd", "T not odd"
+    assert content_bound(T, Y) == 1, ("gcd(T, Y)", content_bound(T, Y))
+    assert content_bound(T, C2) == 1, ("gcd(T, C2)", content_bound(T, C2))
+    # hence q^4 | T M with M a q-unit => q^4 | T; and T | 2 Y q^4 C2 with T odd,
+    # coprime to Y and C2 => T | q^4  =>  T = +-q^4  (unit collapse)
+    # 4. the Z-form of T and the coprime split
+    Tcs = _sp.expand(T.subs({C1: c1, S1: s1}))
+    p2 = c1**2 + s1**2
+    if _sp.expand(Tcs - (p2 - 4 * s1**2)) == 0:
+        kind = "p2-4s1^2"
+    elif _sp.expand(Tcs - (4 * c1**2 - p2)) == 0:
+        kind = "4c1^2-p2"
+    else:
+        raise AssertionError(("T form", Tcs))
+    cert["form"] = kind
+    # factors (p - 2 s1)(p + 2 s1) = eps q^4  [or (2 c1 - p)(2 c1 + p)]: odd, coprime
+    # (a common divisor divides 2p and q^4), so {|small|, large} = {1, q^4}
+    p_, v = _sp.symbols("p v", positive=True)
+    for eps in (1, -1):
+        if kind == "p2-4s1^2":
+            # p - 2 s1 = eps (small factor = eps), p + 2 s1 = q^4
+            psol, ssol = (qq**4 + eps) / 2, (qq**4 - eps) / 4
+            other_sq = _sp.expand(psol**2 - ssol**2)       # = c1^2
+        else:
+            # 2 c1 - p = eps, 2 c1 + p = q^4
+            csol, psol = (qq**4 + eps) / 4, (qq**4 - eps) / 2
+            other_sq = _sp.expand(psol**2 - csol**2)       # = s1^2
+        sixteen = _sp.factor(_sp.expand(16 * other_sq))
+        # it must be (3 q^4 +- 1)(q^4 +- 3): coprime odd parts, so q^4 +- 3 has square odd part
+        cert[f"eps={eps}"] = str(sixteen)
+        f1 = _sp.expand(3 * qq**4 + (eps if kind == "p2-4s1^2" else -eps))
+        f2 = _sp.expand(qq**4 + (3 * eps if kind == "p2-4s1^2" else -3 * eps))
+        assert _sp.expand(f1 * f2 - 16 * other_sq) == 0, (sixteen, f1, f2)
+        # 2-adic kill of q^4 + 3 eps' = 2^b v^2 (v odd), eps' = sign in f2
+        e2 = 3 if _sp.expand(f2 - (qq**4 + 3)) == 0 else -3
+        # residues of q^4 + e2 mod 16 over odd q are all equal to 4 (e2 = 3) or 14 (e2 = -3)
+        res = {(q0**4 + e2) % 16 for q0 in range(1, 16, 2)}
+        assert res == ({4} if e2 == 3 else {14}), res
+        if e2 == 3:
+            # 4 v^2 = q^4 + 3  =>  (2v - q^2)(2v + q^2) = 3, impossible for q >= 2 (2v + q^2 > 3)
+            cert["kill+"] = "q^4+3 = 4v^2 => (2v-q^2)(2v+q^2) = 3 impossible"
+        else:
+            # 2 v^2 = q^4 - 3 => v^2 = 7 mod 8, impossible
+            assert 7 not in {x * x % 8 for x in range(8)}
+            cert["kill-"] = "q^4-3 = 2v^2 => v^2 = 7 mod 8 impossible"
+    return cert
 
 
 def box_classes(a, b):
