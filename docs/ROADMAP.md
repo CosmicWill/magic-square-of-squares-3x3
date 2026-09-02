@@ -171,6 +171,93 @@ of the terrain. The findings that set the next phase:
   only centers the theorems do not cover and push the verified
   bound well past 10^7 on that thin set.
 
+### R.6 The 2026-09-02 breather: what the corpus says, and where a proof can come from
+
+*Drafted after entries 68–79 (the (2,2) box, the rigidity lemma
+campaign, the Rank-1 Theorem, the certificates) and **adopted
+2026-09-02** as the standing plan: A is the main thrust with B
+alongside; C is held ready as the pivot the moment ω ≥ 3 stalls.*
+
+**What the corpus says, in five sentences.** (1) Every route we built
+converges on one terminal layer: a magic square is an additive
+quadruple in $D(m)$, and $D(m)$ is the set of imaginary parts of
+squares in the *free abelian group of rational points on the unit
+circle* — generators $g_p = \pi_p/\bar\pi_p$, one per prime $p\equiv1\pmod4$ —
+so the whole problem is a relation $\operatorname{Im}u_1+\operatorname{Im}u_2=\operatorname{Im}u_3$
+among elements of that group with bounded exponents. (2) The sieve
+front (A9) is a proven elementary law that *leaks* (golden centers);
+the surface front (A8) constrains families, not points; neither can
+carry nonexistence. (3) The additive ladder has proven the problem
+for split parts $p^a$, $pq$, $p^2q$, $p^3q$, and $p^2q^2$ up to a
+rigidity lemma that is now a theorem for every prime outside a thin,
+explicitly characterized set (transparent primes whose congruent-
+number curve has rank $\ge2$). (4) The tools that actually *finished*
+cases are exactly three: valuation combinatorics, classical rank-0
+descents (Fermat/Ljunggren quartics), and — new here — **reduction
+rigidity**: two 2-descent-equivalent points with incompatible
+reductions at a special prime (the Rank-1/Rank-$r$ criteria). (5) The
+convergent heuristic ($\sum_m |D(m)|^3/m^2$, an absolutely convergent
+Euler product) says the expected number of additive triples over *all*
+$m$ is $O(1)$ with a negligible tail beyond $10^7$ — so A3.C is a
+sound target and existence is not a realistic bet.
+
+**The honest wall.** A uniform proof of A3.C for all $\omega$ is a
+statement about a torus equation whose $S$-unit group *varies with
+$m$*. Every finiteness tool (Laurent/ESS, Baker, Chabauty, Faltings)
+is per-$S$ or per-curve; none is uniform in $S$. The rigidity lemma
+showed the true shape of the residual obstruction: positive-rank
+curves whose ranks vary with the prime. So the realistic unconditional
+summit is not "A3.C for all $m$" by present tools; it is **"no
+additive triple for every $m$ outside an explicit thin set $T$, with
+$T$ verified empty in range"** — plus the conditional finiteness from
+the surface. That is still the strongest statement anyone would have.
+
+**The proposal, in order.**
+
+- **A. The uniform $\omega\le2$ theorem, reorganized as Lucas
+  coincidences (main thrust, weeks).** Every residual endpoint of the
+  $(a,b)$ ladder is an equality between a term of the Lucas-type
+  sequence $\operatorname{Re}\rho^{2k}$ and a prime power times a term
+  of $\operatorname{Re}\pi^{2j}$ (the rigidity lemma is $(k,j)=(4,2)$).
+  Classify the endpoints as one two-parameter family, prove the order
+  lemma in general ($p^2\mid\operatorname{Re}\rho^{2k}\Rightarrow 4k\mid p-1$
+  in exact form), bring Bilu–Hanrot–Voutier primitive divisors and the
+  size relation $q^k\approx p^{j+2}$, and generalize reduction rigidity
+  to the frame curves of each $(k,j)$. Target: Theorem A3.11 with an
+  explicit exceptional set; A3.10 falls as the special case.
+- **B. The $(1,1,1)$ box with the new arsenal (parallel, cheap).** 27
+  orbit-families; the mod-$p$ criteria, PARI certificates and the $L'$
+  sieve did not exist when N4 was surveyed. Either it closes — a new
+  theorem, "three first-power split primes cannot carry a triple" — or
+  it exposes the $\omega\ge3$ obstruction concretely.
+- **C. The quadruple pivot (the creative bet).** A3.C is *stronger*
+  than needed. The exact condition is the quadruple: $\{d_4,d_1,d_3\}$
+  a 3-term AP in $D(m)$ *whose common difference $d_2$ is also in
+  $D(m)$*. Euler's four-squares-in-AP descent works precisely because
+  it uses both relations at once; our machine has only ever used one.
+  If $\omega\ge3$ stalls for triples, attack quadruples: two relations
+  give two levers per prime, and the second relation may be exactly
+  the "second point" the rank-$\ge2$ curves were missing.
+- **D. The A2.L descent, revisited in the additive language (one
+  session).** The function-field degree-halving descent is the only
+  known mechanism that *finishes* problems of this species. The
+  autopsy (M12-E) found the transplant to $\mathbb{Z}$ blocked by a
+  "dimensional" wall — diagnosed before the additive reformulation
+  existed. Re-run the autopsy on the torus equation: if the wall is
+  the sieve-vs-additive gap, the terminal layer may close it.
+- **E. The paper (W8, now).** A3.6–A3.10, the rigidity campaign, the
+  Rank-1 Theorem and the "descent blind at $p$" phenomenon are a
+  coherent story with new mathematics in it; writing it is the
+  community lever and the rigor audit.
+- **F. Insurance and calibration (background only).** The targeted
+  $\omega\ge3$ desert (N6) on the thin set the theorems do not cover;
+  the PARI generator campaign for the 22 rank-2 curves only if cheap.
+
+**What not to do.** No more box-by-box grinding without a uniform
+lemma in hand (R.5.1 stands); no descent-only local criteria at $p$
+(proven vacuous, entry 79); no further $(D,E)$-level reciprocity
+(entry 75); no sieve refinements as a route to nonexistence (R.1).
+
 ## 0. Doctrine
 
 1. **Both directions are the goal.** A constructed square is a proof.

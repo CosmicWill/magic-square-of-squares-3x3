@@ -3102,3 +3102,31 @@ n >= 1.3e8 (conductor >= 5e17; hours of sieve each). Not claiming the
 lemma in full, or A3.10. Checks a3.rigidity_pari_certificates (data
 re-verified exactly; FULL recomputes the three large L' values) and
 a3.rigidity_rank_certificates. Suite 166.
+
+## 2026-09-02 — Entry 80: the breather — ROADMAP §R.6 adopted
+
+A full look at the corpus after entries 68-79. The findings that set
+the plan (ROADMAP §R.6): every route converges on the additive
+terminal layer, which is a relation Im u1 + Im u2 = Im u3 in the free
+abelian group of rational points on the unit circle (one generator
+per prime = 1 mod 4); the sieve front leaks and the surface front
+constrains families, so neither carries nonexistence; exactly three
+tools ever finished cases (valuations, classical rank-0 descents,
+and reduction rigidity); the convergent heuristic sum makes A3.C a
+sound target with a negligible tail beyond 10^7. The honest wall: no
+finiteness tool is uniform in the S-unit group, so the reachable
+unconditional summit is "no additive triple outside an explicit thin
+set, verified empty in range" plus the conditional finiteness.
+
+ADOPTED: A (main) -- the uniform omega <= 2 theorem reorganized as
+Lucas coincidences Re rho^{2k} = +-p^s Re pi^{2j} across the whole
+(a,b) ladder, with the general order lemma, primitive divisors, the
+size relation and generalized reduction rigidity; target Theorem
+A3.11 with an explicit exceptional set. B (parallel) -- the (1,1,1)
+box with the new arsenal. C (pivot, held ready) -- the quadruple
+condition (a 3-term AP in D(m) whose common difference is in D(m)):
+two relations, two levers per prime, Euler's four-squares descent as
+the model. D -- the A2.L descent revisited in the additive language
+(one session). E -- the paper. F -- insurance only. Explicitly closed
+roads: box-by-box grinding without a uniform lemma, descent-only
+local criteria at p, (D,E)-level reciprocity, sieve refinements.
