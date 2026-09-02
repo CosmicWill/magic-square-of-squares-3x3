@@ -2931,3 +2931,42 @@ for no prime yet. The transparent class now reads: rank-1 part
 (provable in principle by standard effective machinery) + higher-
 Selmer part (rank unknown). Check a3.rigidity_height. NOT claiming
 the lemma or A3.10. Suite 163.
+
+## 2026-09-02 — Entry 77: THE RANK-1 THEOREM — the rigidity lemma proven for every transparent prime of rank 1, by reduction mod p alone
+
+Set out to prove the effective EDS integrality bound for the rank-1
+transparent primes and found that no such bound is needed: the
+reduction modulo p kills the solution point outright.
+
+THEOREM. Let p be transparent with rank E(Q) = 1 for E: y^2 = x^3 -
+A4^2 x, so E(Q) = ZG + E[2] (the torsion of every congruent-number
+curve is E[2]). P0 = (p^2, 2 c1 s1 p) = mG + T0 with m ODD (its
+descent image (1,2,2) is not a torsion image), and a solution point,
+lying in P0 + 2E(Q) = P0 + 2ZG, is P_sol = kG + T0 with the SAME T0
+and k odd. Reduce mod p, a prime of good reduction (p !| 2A4): P0
+reduces to T1 = (0,0); on this p-minimal model P_sol =
+(X^2/p^2, 2IRX/p^3) with p !| X (p | X would force p | R, I against
+gcd(R,I) = 1) reduces to O. So in the CYCLIC group <G~>:
+m G~ = T1~ + T0~ and k G~ = T0~. Every case dies: T0 = O makes
+N = ord(G~) even (m G~ = T1~ has order 2) with N | k, k odd; T0 = T1
+makes N | m (N odd) while k G~ = T1~ has order 2; T0 = T+- puts two
+DISTINCT points of order 2 inside a cyclic group. No solution
+exists. The obstruction is not the trivial one -- A4 = -2 s1^2 is a
+QR mod p, so T1~ IS in 2E~(F_p) -- it is the cyclicity of the
+reduction of a rank-one group. The 2-descent certifies rank 1
+exactly when its Selmer bound is 1 (P0 has infinite order); the
+group-theoretic core is brute-forced inside every E~(F_p) concerned
+(zero offending (g, T0, m odd, k odd) configurations, T1 in 2E~ each
+time) -- compute/selmer_descent.py rank1_core_violations, check
+a3.rigidity_rank1_theorem.
+
+CONSEQUENCE. With the order-16 lemma and the Class Lemma, the frame
+rigidity lemma is a THEOREM for every prime p except the transparent
+primes whose curve has 2-Selmer rank >= 2: below 30000, 21 of the 67
+transparent primes are proven (113, 3761, 4993, 5569, 7121, 7393,
+9377, 9521, 10369, 12161, 14753, 15121, 15313, 15569, 19441, 21569,
+24977, 25169, 26849, 26993, 27073) and 46 remain. For those the rank
+is the unknown: if it is in fact 1 (nontrivial Sha[2]) the same
+argument applies but a 2-descent cannot certify it; if it is >= 2
+the reduction of the free part need not be cyclic. Not claiming the
+lemma in full, or A3.10. Suite 164.

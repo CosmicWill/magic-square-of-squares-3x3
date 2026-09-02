@@ -942,6 +942,44 @@ Siegel/Baker on the cyclic subgroup, not a height comparison.
 transparent class into a rank-1 part (provable in principle) and a
 higher-Selmer part (rank unknown), and is a proof for no prime yet.**
 
+**The Rank-1 Theorem (entry 77; check `a3.rigidity_rank1_theorem`) —
+PROVEN, with no heights and no divisibility sequences.**  Let $p$ be
+transparent with $\operatorname{rank}E(\mathbb{Q})=1$ for
+$E:\ y^2=x^3-A_4^2x$, so $E(\mathbb{Q})=\mathbb{Z}G\oplus E[2]$ (the
+torsion of every congruent-number curve is $E[2]$).  Then
+$P_0=mG+T_0$ with **$m$ odd** — its descent image $(1,2,2)$ is not a
+torsion image, so $P_0\notin2E(\mathbb{Q})+E[2]$ — and any solution
+point, lying in $P_0+2E(\mathbb{Q})=P_0+2\mathbb{Z}G$, is
+$P_{\mathrm{sol}}=kG+T_0$ with the **same** $T_0$ and $k$ odd.
+Reduce modulo $p$, a prime of good reduction ($p\nmid2A_4$):
+$P_0=(p^2,2c_1s_1p)$ reduces to $T_1=(0,0)$, while on this
+$p$-minimal model $P_{\mathrm{sol}}=(X^2/p^2,\,2IRX/p^3)$ with
+$p\nmid X$ (else $p\mid R,I$ against $\gcd(R,I)=1$) reduces to $O$.
+Hence, in the **cyclic** group $\langle\tilde G\rangle\subset\tilde E(\mathbb{F}_p)$,
+$$m\tilde G=\tilde T_1+\tilde T_0,\qquad k\tilde G=\tilde T_0.$$
+Every case dies.  $T_0=O$: $m\tilde G=\tilde T_1$ has order $2$, so
+$N=\operatorname{ord}\tilde G$ is even, yet $N\mid k$ with $k$ odd.
+$T_0=T_1$: $N\mid m$ forces $N$ odd, but $k\tilde G=\tilde T_1$ has
+order $2$.  $T_0=T_\pm$: $\tilde T_\pm$ and $\tilde T_\mp$ are two
+*distinct* points of order $2$ inside a cyclic group.  So **no
+solution exists.**  The obstruction is not the trivial one — $A_4\equiv-2s_1^2$
+is a quadratic residue mod $p$, so $\tilde T_1\in2\tilde E(\mathbb{F}_p)$ —
+it is the cyclicity of the reduction of a rank-one group.  The
+2-descent certifies rank $1$ exactly when its Selmer bound is $1$
+($P_0$ has infinite order), and the group-theoretic core is verified
+by brute force inside every $\tilde E(\mathbb{F}_p)$ concerned (zero
+offending configurations).
+
+**Consequence.**  With the order-16 lemma, the Class Lemma and this
+theorem, **the frame rigidity lemma is a theorem for every prime $p$
+except the transparent primes whose curve $E_{A_4}$ has 2-Selmer rank
+$\ge2$** — below $30000$: $21$ of the $67$ transparent primes are
+proven (113, 3761, 4993, 5569, 7121, …), $46$ remain.  For those the
+rank itself is the unknown; if it is in fact $1$ (nontrivial
+$Ш[2]$) the same argument applies but cannot be certified by a
+2-descent, and if it is $\ge2$ the reduction of the free part need
+not be cyclic.
+
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct

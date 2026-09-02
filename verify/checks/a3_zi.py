@@ -2012,3 +2012,74 @@ def _(ctx):
              f"{dict(Counter(seen.values()))}; rank-1 primes: odd multiples "
              f"non-integral to k=7 -- NOT a proof (needs effective EDS "
              f"bound; higher ranks undetermined)")
+
+
+@check("a3.rigidity_rank1_theorem", DOC)
+def _(ctx):
+    """THE RANK-1 THEOREM (entry 77) -- PROVEN, no heights, no EDS.
+    Let p be transparent with rank E(Q) = 1, E: y^2 = x^3 - A4^2 x,
+    so E(Q) = Z G + E[2] (torsion is E[2] for every congruent-number
+    curve).  P0 = (p^2, 2 c1 s1 p) = m G + T0 with m ODD (its descent
+    image (1,2,2) is not a torsion image), and a solution point
+    P_sol in P0 + 2E(Q) is k G + T0 with the SAME T0 and k odd.
+    Reduce mod p (good reduction: p !| 2 A4):  P0 reduces to
+    T1 = (0,0), while P_sol = (X^2/p^2, 2IRX/p^3) with p !| X reduces
+    to O.  Hence m G~ = T1~ + T0~ and k G~ = T0~ in the CYCLIC group
+    <G~>.  Every case dies:  T0 = O forces N = ord(G~) even with N | k
+    but k odd;  T0 = T1 forces N | m (odd) while k G~ has order 2
+    (N even);  T0 = T+- puts two distinct points of order 2 inside a
+    cyclic group.  So NO solution exists for such p.  The 2-descent
+    certifies rank 1 whenever the Selmer bound is 1 (P0 has infinite
+    order).  Pinned: all ingredients on each such prime (good
+    reduction, A4 a QR mod p so T1 IS in 2E~(F_p) -- the kill is the
+    cyclic structure, not a trivial obstruction -- P0 = T1 mod p,
+    2 P0 = O mod p, m odd) and the group-theoretic core brute-forced
+    inside E~(F_p): zero configurations (g, T0, m odd, k odd).
+    With the order-16 and Class Lemmas this makes the rigidity lemma
+    a THEOREM for every non-transparent prime and every transparent
+    prime of 2-Selmer rank 1."""
+    from compute.selmer_descent import (
+        selmer_rank_bound, sqfree, descent_image, frame_point,
+        add_points, rank1_core_violations)
+    from compute.zi_additive import gaussian_prime_over
+    from compute.quartic_sieve import is_transparent
+
+    def legendre(a, q):
+        a %= q
+        return 0 if a == 0 else (1 if pow(a, (q - 1) // 2, q) == 1 else -1)
+
+    N = ctx.bound(full=12000, fast=6000)
+    proven, higher = [], []
+    for p in range(17, N, 16):
+        d = 2
+        while d * d <= p and p % d:
+            d += 1
+        if d * d <= p:
+            continue
+        a, b = gaussian_prime_over(p)
+        c1, s1 = abs(a*a - b*b), abs(2*a*b)
+        A4 = c1*c1 - s1*s1
+        if not is_transparent(A4):
+            continue
+        rb = selmer_rank_bound(abs(sqfree(A4)))
+        if rb != 1:
+            higher.append(p)
+            continue
+        # ingredients
+        require(A4 % p != 0 and legendre(A4, p) == 1, p)
+        x0, y0 = frame_point(p, c1, s1)
+        require((x0 % p, y0 % p) == (0, 0), p)
+        P2 = add_points((x0, y0), (x0, y0), -A4*A4)
+        require(P2[0].denominator % p == 0, p)
+        require(descent_image(x0, A4) == (1, 2, 2), p)
+        # p !| X for any solution: p | X would force p | R, I against gcd = 1
+        # (pure algebra; recorded).  Group-theoretic core:
+        bad, t1_in_2E = rank1_core_violations(A4, p)
+        require(bad == 0, (p, bad))
+        require(t1_in_2E, p)
+        proven.append(p)
+    require(len(proven) >= 1)
+    ctx.note(f"RANK-1 THEOREM: rigidity lemma PROVEN for transparent p < {N} "
+             f"with 2-Selmer rank 1: {proven}; core verified in E~(F_p) "
+             f"(0 violations, T1 in 2E~ each time); remaining transparent "
+             f"primes (Selmer bound >= 2, rank undetermined): {len(higher)}")

@@ -177,6 +177,72 @@ def frame_point(p, c1, s1):
     return (p * p, 2 * c1 * s1 * p)
 
 
+def fp_curve_points(A4, p):
+    """All points of y^2 = x^3 - A4^2 x over F_p (None = O)."""
+    pts = [None]
+    sq = {}
+    for y in range(p):
+        sq.setdefault((y * y) % p, []).append(y)
+    for x in range(p):
+        r = (x**3 - A4 * A4 * x) % p
+        for y in sq.get(r, []):
+            pts.append((x, y))
+    return pts
+
+
+def fp_add(P, Q, A, p):
+    """Group law on y^2 = x^3 + A x over F_p (None = O)."""
+    if P is None:
+        return Q
+    if Q is None:
+        return P
+    x1, y1 = P
+    x2, y2 = Q
+    if x1 == x2:
+        if (y1 + y2) % p == 0:
+            return None
+        lam = (3 * x1 * x1 + A) * pow(2 * y1, -1, p) % p
+    else:
+        lam = (y2 - y1) * pow(x2 - x1, -1, p) % p
+    x3 = (lam * lam - x1 - x2) % p
+    return (x3, (lam * (x1 - x3) - y1) % p)
+
+
+def rank1_core_violations(A4, p):
+    """THE RANK-1 THEOREM's group-theoretic core (entry 77), brute
+    forced in E~(F_p) for y^2 = x^3 - A4^2 x:  count the configurations
+    (g in E~(F_p), T0 in E~[2], m odd, k odd) with
+        m g + T0 = T1 := (0,0)   and   k g + T0 = O.
+    The theorem's case analysis says there are NONE (a cyclic group
+    has at most one element of order 2; parity of m, k).  Returns the
+    count (must be 0) and whether T1 lies in 2 E~(F_p) (it does, so the
+    kill is the cyclic structure, not a trivial descent obstruction)."""
+    A = (-A4 * A4) % p
+    pts = fp_curve_points(A4, p)
+    T1 = (0, 0)
+    tors = [None, T1, (A4 % p, 0), ((-A4) % p, 0)]
+    bad = 0
+    for g in pts:
+        if g is None:
+            continue
+        mult, Q, j = {}, None, 0
+        while True:
+            mult.setdefault(Q, []).append(j)
+            Q = fp_add(Q, g, A, p)
+            j += 1
+            if Q is None:
+                mult.setdefault(Q, []).append(j)
+                break
+        for T0 in tors:
+            tk = T0
+            tm = fp_add(T1, T0, A, p)
+            if any(x % 2 for x in mult.get(tk, [])) and \
+               any(x % 2 for x in mult.get(tm, [])):
+                bad += 1
+    doubles = {fp_add(P, P, A, p) for P in pts}
+    return bad, (T1 in doubles)
+
+
 def add_points(P, Q, A):
     """Group law on y^2 = x^3 + A x with exact Fractions; None = O."""
     from fractions import Fraction as Fr
