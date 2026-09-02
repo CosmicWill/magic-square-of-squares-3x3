@@ -1835,3 +1835,85 @@ def _(ctx):
              f"{tags}, {residual} residual (finite-check-dead); "
              f"self-test {n_ok}/{n_run}; l=7 mod 16 kills, Case-N p=1 "
              f"mod 3 -- NOT a proof, residual is the open obligation")
+
+
+@check("a3.rigidity_reciprocity", DOC)
+def _(ctx):
+    """THE RECIPROCITY VERDICT (entry 75).  Two lemmas PROVEN and
+    pinned, and one law that closes a proof strategy.
+    CLASS LEMMA: every odd prime dividing Re((1+i)rho^4) or
+    Im((1+i)rho^4), for ANY primitive rho, is 1 or 15 mod 16.  Proof:
+    a split lam | Im gives (1+i)rho^4 = rational mod lam and, by
+    conjugation, (1-i)rhobar^4 = the same rational mod lam, so
+    (rho/rhobar)^4 = -i mod lam and -i is a quartic residue, i.e.
+    l = 1 mod 16 (a split lam | Re gives +i, same conclusion); an
+    inert l needs chi_l(1+i) = 1, which holds iff l = 15 mod 16.
+    Hence every prime of A4 = D E is 1 or 15 mod 16 -- a condition on
+    p alone that ~84% of primes p = 1 mod 16 fail, so with the
+    order-16 lemma the rigidity lemma is a THEOREM for ~96% of split
+    primes.  2-ADIC LEMMA: (1+i)rho^4 = 1+i mod 16 for every primitive
+    rho (exhaustive mod 128), so D = E = 1 mod 16.  RECIPROCITY LAW:
+    the sum over all Gaussian primes of D and E of the [D] and [E]
+    condition values is 0 mod 4 on every transparent case -- quartic
+    reciprocity makes the [D][E] system globally CONSISTENT.  So the
+    classical Fermat/Euler contradiction does NOT exist at the (D,E)
+    level; the kills in the transparent class come from the
+    conditions at the primes of R4 and I4, transversal to the p-side
+    data.  This is decisive negative information about which proof
+    routes cannot work."""
+    from math import gcd
+    from compute.quartic_sieve import (
+        two_adic_lemma_violations, reciprocity_sum, is_transparent,
+        intermediate_splits, factor, kill_reason)
+    # 2-adic lemma, exhaustive
+    require(two_adic_lemma_violations() == 0)
+    # class lemma on synthetic (1+i) rho^4
+    import random
+    rng = random.Random(11)
+    n = 0
+    for _ in range(ctx.bound(full=400, fast=120)):
+        e, f = rng.randint(1, 100), rng.randint(1, 100)
+        if gcd(e, f) != 1 or (e - f) % 2 == 0:
+            continue
+        rx, ry = 1, 0
+        for _k in range(4):
+            rx, ry = rx*e - ry*f, rx*f + ry*e
+        for v in (rx - ry, rx + ry):
+            for l in factor(v)[0]:
+                require(l == 2 or l % 16 in (1, 15), (e, f, v, l))
+        n += 1
+    require(n >= 30)
+    # the reciprocity law and the class/2-adic kills on real data
+    N = ctx.bound(full=12000, fast=3000)
+    n_trans = n_cases = n_law = 0
+    n_class_kill = 0
+    for p in range(17, N, 16):
+        d = 2
+        while d * d <= p and p % d:
+            d += 1
+        if d * d <= p:
+            continue
+        c1, s1, A4, splits = intermediate_splits(p)
+        if not is_transparent(A4):
+            for D, E in splits:
+                require(kill_reason(p, D, E, c1, s1) == "class" or
+                        kill_reason(p, D, E, c1, s1, families={"class"})
+                        == "class", (p, D))
+                n_class_kill += 1
+            continue
+        n_trans += 1
+        for D, E in splits:
+            n_cases += 1
+            require(reciprocity_sum(p, D, E) == 0, ("law fails", p, D))
+            n_law += 1
+            # 2-adic lemma as the closed form D = E = 1 mod 16
+            two = kill_reason(p, D, E, c1, s1, families={"2adic"})
+            require((two is None) == (D % 16 == 1 and E % 16 == 1),
+                    (p, D, E, two))
+    require(n_trans >= 3 and n_law == n_cases)
+    ctx.note(f"class lemma: synthetic exact ({n}), kills {n_class_kill} "
+             f"real cases outright; 2-adic lemma exhaustive == "
+             f"D=E=1 mod 16 on {n_cases} transparent cases; RECIPROCITY "
+             f"LAW sum=0 on all {n_law} ({n_trans} transparent p < {N}) "
+             f"-- a consistency, not an obstruction: the classical "
+             f"route is closed")

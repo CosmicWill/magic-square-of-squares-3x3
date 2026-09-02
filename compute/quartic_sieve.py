@@ -150,33 +150,53 @@ _COMBOS = ((1, 2), (1, -2), (1, 3), (1, -3), (1, 4), (1, -4),
            (2, 1), (2, -1), (3, 1), (3, -1))
 
 
-def kill_reason(p, D, E, c1, s1, combos=True):
+ALL_FAMILIES = frozenset({"2adic", "class", "D", "E", "R", "I", "K", "C"})
+
+
+def kill_reason(p, D, E, c1, s1, combos=True, families=ALL_FAMILIES):
     """None if every condition holds (the case SURVIVES the sieve);
     otherwise the tag of a failing family.  With SIGNED (D, E) the
     equation (1+i) rho^4 = E + i p^2 D is exact (no unit), so every
-    condition is unit-free."""
+    condition is unit-free.  `families` restricts which condition
+    families are applied (all by default)."""
     R4, I4 = (p*p*D + E) // 2, (p*p*D - E) // 2
     # 2-adic: rho^4 mod 32 / 64 lies in a fixed small set
-    if (R4 % 32, I4 % 32) not in _FOURTH32:
-        return "2adic"
-    if (R4 % 64, I4 % 64) not in _FOURTH64:
-        return "2adic"
+    if "2adic" in families:
+        if (R4 % 32, I4 % 32) not in _FOURTH32:
+            return "2adic"
+        if (R4 % 64, I4 % 64) not in _FOURTH64:
+            return "2adic"
     fixed = []
-    for l in factor(D)[0]:
-        for chi in gaussian_primes_over(l):
-            fixed.append(((chi(E, 0) + chi(1, 1) - chi(2, 0)) % 4, "D"))
-    for l in factor(E)[0]:
-        for chi in gaussian_primes_over(l):
-            fixed.append(((chi(p*p*D, 0) - chi(1, 1)) % 4, "E"))
-    for l in factor(R4)[0]:
-        for chi in gaussian_primes_over(l):
-            fixed.append(((chi(0, 1) + chi(I4, 0)) % 4, "R"))
-    for l in factor(I4)[0]:
-        if l == 2:
-            continue
-        for chi in gaussian_primes_over(l):
-            fixed.append((chi(R4, 0) % 4, "I"))
-    if D in (c1 + s1, c1 - s1, -(c1 + s1), -(c1 - s1)):
+    # CLASS LEMMA (proven): every prime of D E is 1 or 15 mod 16 --
+    # a split lam | D gives (rho/rhobar)^4 = -i mod lam (a split
+    # lam | E gives +i), so i is a quartic residue mod lam, i.e.
+    # l = 1 mod 16; an inert l needs chi_l(1+i) = 1, i.e. l = 15 mod 16.
+    if "class" in families:
+        for l in list(factor(D)[0]) + list(factor(E)[0]):
+            if l % 16 not in (1, 15):
+                return "class"
+    # [D] lam | D:  E = (1+i) rho^4  =>  chi(E) = chi(1+i)
+    if "D" in families:
+        for l in factor(D)[0]:
+            for chi in gaussian_primes_over(l):
+                fixed.append(((chi(E, 0) - chi(1, 1)) % 4, "D"))
+    # [E] lam | E:  i p^2 D = (1+i) rho^4  =>  chi(p^2 D) = chi(1+i) - chi(i)
+    if "E" in families:
+        for l in factor(E)[0]:
+            for chi in gaussian_primes_over(l):
+                fixed.append(((chi(p*p*D, 0) - chi(1, 1) + chi(0, 1)) % 4,
+                              "E"))
+    if "R" in families:
+        for l in factor(R4)[0]:
+            for chi in gaussian_primes_over(l):
+                fixed.append(((chi(0, 1) + chi(I4, 0)) % 4, "R"))
+    if "I" in families:
+        for l in factor(I4)[0]:
+            if l == 2:
+                continue
+            for chi in gaussian_primes_over(l):
+                fixed.append((chi(R4, 0) % 4, "I"))
+    if "K" in families and D in (c1 + s1, c1 - s1, -(c1 + s1), -(c1 - s1)):
         K = (p*p - 1) * D // 2
         for l in factor(K)[0]:
             if l == 2:
@@ -185,7 +205,7 @@ def kill_reason(p, D, E, c1, s1, combos=True):
                 v = chi(c1, s1)
                 if v is not None:
                     fixed.append(((2 * v) % 4, "K"))
-    if combos:
+    if combos and "C" in families:
         for u, v in _COMBOS:
             for l in factor(u*R4 + v*I4)[0]:
                 if l == 2:
@@ -199,6 +219,50 @@ def kill_reason(p, D, E, c1, s1, combos=True):
         if v % 4:
             return tag
     return None
+
+
+def two_adic_lemma_violations():
+    """2-ADIC LEMMA (proven by exhaustion, entry 75): for every
+    primitive rho, (1+i) rho^4 = 1 + i (mod 16), i.e. rho^4 = 1 mod
+    (1+i)^7.  Hence in (1+i) rho^4 = E + i p^2 D both E and p^2 D are
+    1 mod 16, and with p = 1 mod 16 (so p^2 = 1 mod 32): D = E = 1
+    (mod 16).  Returns the number of primitive residues mod 128
+    violating it (0)."""
+    bad = 0
+    for e in range(128):
+        for f in range(128):
+            if (e - f) % 2 == 0:
+                continue
+            rx, ry = 1, 0
+            for _ in range(4):
+                rx, ry = (rx*e - ry*f) % 128, (rx*f + ry*e) % 128
+            if ((rx - ry) % 16, (rx + ry) % 16) != (1, 1):
+                bad += 1
+    return bad
+
+
+def reciprocity_sum(p, D, E):
+    """The sum, over every Gaussian prime of D and of E, of the [D]
+    and [E] condition values (exponents mod 4).  RECIPROCITY LAW
+    (observed on every transparent case tested, entry 75): this sum
+    is 0 mod 4 -- quartic reciprocity makes the [D][E] system globally
+    CONSISTENT.  It is a law, not an obstruction: the classical
+    Fermat/Euler contradiction does not exist at the (D, E) level."""
+    tot = 0
+    for l in factor(D)[0]:
+        for chi in gaussian_primes_over(l):
+            tot += (chi(E, 0) - chi(1, 1)) % 4
+    for l in factor(E)[0]:
+        for chi in gaussian_primes_over(l):
+            tot += (chi(p*p*D, 0) - chi(1, 1) + chi(0, 1)) % 4
+    return tot % 4
+
+
+def is_transparent(A4):
+    """CLASS LEMMA (proven): a solution needs every prime of A4 to be
+    1 or 15 mod 16; primes p whose A4 satisfies this form the thin
+    'transparent' class (~16% of p = 1 mod 16)."""
+    return all(l % 16 in (1, 15) for l in factor(A4)[0])
 
 
 def intermediate_splits(p):
@@ -233,13 +297,17 @@ def self_test(trials=200, seed=7):
             rx, ry = rx*e - ry*f, rx*f + ry*e
         ax, ay = rx - ry, rx + ry
         good = True
+        # class lemma must hold on true solutions
+        for l in list(factor(ax)[0]) + list(factor(ay)[0]):
+            if l != 2 and l % 16 not in (1, 15):
+                good = False
         for l in factor(ay)[0]:
             for chi in gaussian_primes_over(l):
-                if (chi(ax, 0) + chi(1, 1) - chi(2, 0)) % 4:
+                if (chi(ax, 0) - chi(1, 1)) % 4:
                     good = False
         for l in factor(ax)[0]:
             for chi in gaussian_primes_over(l):
-                if (chi(ay, 0) - chi(1, 1)) % 4:
+                if (chi(ay, 0) - chi(1, 1) + chi(0, 1)) % 4:
                     good = False
         for l in factor(rx)[0]:
             for chi in gaussian_primes_over(l):

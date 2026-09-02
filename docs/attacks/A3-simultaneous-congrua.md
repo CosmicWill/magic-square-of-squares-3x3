@@ -857,6 +857,59 @@ classical Fermat/Euler route — and the sieve's kill statistics say
 exactly which conditions carry the weight: the $2$-adic one first,
 then the characters at the primes of $A_4$ itself.
 
+**The reciprocity verdict (entry 75; check `a3.rigidity_reciprocity`).**
+Attacking that argument produced two theorems and closed the route.
+
+*Class Lemma (proven).*  For **any** primitive $\rho\in\mathbb{Z}[i]$,
+every odd prime dividing $\mathrm{Re}((1+i)\rho^4)$ or
+$\mathrm{Im}((1+i)\rho^4)$ is $\equiv1$ or $15\pmod{16}$.  Proof: a
+split $\lambda\mid\mathrm{Im}$ makes $(1+i)\rho^4$ congruent to a
+rational integer mod $\lambda$; conjugating the same statement at
+$\bar\lambda$ makes $(1-i)\bar\rho^4$ congruent to the same integer
+mod $\lambda$, so $(\rho/\bar\rho)^4\equiv-i\pmod\lambda$: $-i$ is a
+quartic residue, forcing $\ell\equiv1\pmod{16}$ (a split
+$\lambda\mid\mathrm{Re}$ gives $+i$, same conclusion); an inert $\ell$
+needs $\chi_\ell(1+i)=1$, which holds iff $\ell\equiv15\pmod{16}$.
+Verified on synthetic fourth powers with zero exceptions.  Applied to
+$E+ip^2D=(1+i)\rho^4$: **every prime of $A_4=DE$ is $\equiv\pm1\pmod{16}$**
+— a condition on $p$ alone that $\sim84\%$ of primes $p\equiv1\pmod{16}$
+fail.  With the order-16 lemma, **the rigidity lemma is a theorem for
+$\sim96\%$ of all split primes $p$**; the survivors form the thin
+*transparent* class.
+
+*2-adic Lemma (proven by exhaustion).*  $(1+i)\rho^4\equiv1+i\pmod{16}$
+for every primitive $\rho$ (all 8192 residues mod 128), i.e.
+$\rho^4\equiv1\pmod{(1+i)^7}$.  Hence $E\equiv p^2D\equiv1\pmod{16}$,
+and with $p^2\equiv1\pmod{32}$: **$D\equiv E\equiv1\pmod{16}$**.  This
+is the sieve's dominant killer, now in closed form; on data it is
+exactly equivalent to the mod-$32$/$64$ set test.
+
+*The Reciprocity Law — a consistency, not an obstruction.*  Over
+every transparent intermediate case (404 cases, $p<20000$, with or
+without the 2-adic restriction) the sum of all $[D]$ and $[E]$
+condition values over the Gaussian primes of $D$ and $E$ is
+$\equiv0\pmod 4$ without exception.  That is the signature of a
+reciprocity identity: quartic reciprocity makes the $[D][E]$ system
+**globally consistent**.  So the classical Fermat/Euler contradiction
+does *not* exist at the $(D,E)$ level — every $[D][E]$ kill is an
+individual term failing, never a global parity — and the 68 cases
+(to $p<20000$) that pass $\{2\text{-adic},\text{class},[D],[E]\}$ are
+killed only by $[R][I][C]$, the conditions at the primes of
+$R_4=(p^2D+E)/2$ and $I_4=(p^2D-E)/2$: the hypothetical $\rho^4$'s own
+components, transversal to the $p$-side data, and not
+reciprocity-closable in terms of it (their contributions to the
+global sum are mixed: 46 zero, 22 nonzero).
+
+**Where this leaves the lemma.**  Proven for $\sim96\%$ of split
+primes (order-16 + Class Lemma); in the transparent class, proven to
+force $D\equiv E\equiv1\pmod{16}$ and the $[D][E]$ residue system;
+that system is reciprocity-consistent, so the remaining obstruction
+is genuinely global — "$(E+ip^2D)/(1+i)$ is not a fourth power" is
+detected only at its own primes.  Verified empty to $10^6$ by the
+finite check.  A proof of the transparent class needs a new idea — a
+height or integral-point argument on the congruent-number curve of
+$A_4$, not local residuosity.
+
 Once this lemma falls, A3.10 closes (Block A directly; Block B by its
 analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct

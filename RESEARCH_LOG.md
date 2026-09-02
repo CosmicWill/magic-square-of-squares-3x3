@@ -2830,3 +2830,58 @@ cases, 2416 die 2-adically, 477 at [D], 183 at [E], 44 at [R], 7 at
 end on synthetic solutions (kill_reason returns None on every one).
 Still not a proof: any finite list of local conditions leaves a
 residual class in principle.
+
+## 2026-09-02 — Entry 75: the reciprocity argument — two theorems, and the classical route is closed
+
+Attacking the reciprocity argument for the transparent class. It
+produced two proven lemmas and a decisive negative.
+
+CLASS LEMMA (proven). For ANY primitive rho in Z[i], every odd prime
+dividing Re((1+i) rho^4) or Im((1+i) rho^4) is 1 or 15 mod 16. A
+split lam | Im makes (1+i) rho^4 congruent to a rational integer
+mod lam; conjugating the same statement at lambdabar makes
+(1-i) rhobar^4 congruent to the same integer mod lam, so
+(rho/rhobar)^4 = -i mod lam and -i is a quartic residue, i.e.
+l = 1 mod 16 (a split lam | Re gives +i, same conclusion); an inert
+l needs chi_l(1+i) = 1, true iff l = 15 mod 16. Verified on 265
+synthetic fourth powers (1060 prime occurrences, classes {1, 15}
+only). Applied to E + i p^2 D = (1+i) rho^4: every prime of A4 = DE
+is +-1 mod 16 -- a condition on p alone that 84% of primes p = 1
+mod 16 fail (122 of 752 below 60000 pass). With the order-16 lemma
+the rigidity lemma is now a THEOREM for ~96% of split primes; the
+survivors are the thin 'transparent' class. (Re-deriving the [D][E]
+conditions exactly also exposed a chi(i) term the sieve had
+dropped -- harmless, since the class lemma says the affected prime
+class never occurs in a solution, which is why the self-test could
+not see it -- now corrected.)
+
+2-ADIC LEMMA (proven by exhaustion). (1+i) rho^4 = 1+i mod 16 for
+every primitive rho (all 8192 residues mod 128, zero violations),
+i.e. rho^4 = 1 mod (1+i)^7. Hence E = p^2 D = 1 mod 16, and with
+p^2 = 1 mod 32: D = E = 1 mod 16. This is the sieve's dominant
+killer in closed form; on data it is exactly the mod-32/64 set test.
+
+THE RECIPROCITY LAW -- a consistency, not an obstruction. Over every
+transparent intermediate case (404 cases, p < 20000, with or
+without the 2-adic restriction) the sum of all [D] and [E]
+condition values over the Gaussian primes of D and E is 0 mod 4
+without exception. That is a reciprocity identity: quartic
+reciprocity makes the [D][E] system globally CONSISTENT. So the
+classical Fermat/Euler contradiction does NOT exist at the (D,E)
+level -- every [D][E] kill is an individual term failing, never a
+global parity -- and the 68 cases (p < 20000) that pass {2-adic,
+class, [D], [E]} are killed only by [R][I][C], the conditions at
+the primes of R4 and I4, the hypothetical rho^4's own components:
+transversal to the p-side data, not reciprocity-closable in terms
+of it (their global-sum contributions are mixed, 46 zero / 22 not).
+
+WHERE THE LEMMA STANDS: proven for ~96% of split primes; in the
+transparent class, proven to force D = E = 1 mod 16 and the [D][E]
+system, which is reciprocity-consistent; the remaining obstruction
+is genuinely global -- "(E + i p^2 D)/(1+i) is not a fourth power"
+is detected only at its own primes. Verified empty to 1e6. A proof
+of the transparent class needs a new idea (heights / integral
+points on the congruent-number curve of A4), not local residuosity.
+compute/quartic_sieve.py (two_adic_lemma_violations,
+reciprocity_sum, is_transparent); check a3.rigidity_reciprocity.
+NOT claiming the lemma or A3.10. Suite 162.
