@@ -16,7 +16,10 @@ def _ledger_and_queue():
     keys).  A wave check must assert that its own kills are IN the
     ledger (by mechanism tag) and that no closed pattern ever
     reappears in the queue — never a count of the live queue, which
-    later waves shrink."""
+    later waves shrink.  Keys are (classes, coeffs) WITHOUT the
+    provenance tag, so a pattern cannot dodge either guard by being
+    re-recorded under a different tag; rows are moved queue -> ledger
+    verbatim, so raw (uncanonicalized) equality is the right level."""
     import json as _json
     with open(os.path.join(DATA, "data_g2block_closed.json"),
               encoding="utf-8") as fh:
@@ -24,8 +27,8 @@ def _ledger_and_queue():
     with open(os.path.join(DATA, "data_queue_remaining.json"),
               encoding="utf-8") as fh:
         rem = _json.load(fh)
-    lkeys = {_json.dumps(t[:3]) for t in led}
-    qkeys = {_json.dumps(t[:3]) for t in rem}
+    lkeys = {_json.dumps(t[1:3]) for t in led}
+    qkeys = {_json.dumps(t[1:3]) for t in rem}
     require(len(lkeys) == len(led), "duplicate ledger rows")
     require(not (lkeys & qkeys), sorted(lkeys & qkeys)[:2])
     return led, rem, lkeys, qkeys
