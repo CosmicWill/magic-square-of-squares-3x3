@@ -2787,3 +2787,121 @@ def _(ctx):
         ctx.note(f"(2,2) box, 120/120 distinct OPEN patterns dead: {dict(tally)}")
     ctx.note(f"32 ledger patterns by the window finisher: {dict(how)}; frame facts on {n_checked} primes; "
              f"cofactor-pair solver re-derived for (a,a') = (3,1), (1,3) with control")
+
+
+@check("a3.residual_finisher", DOC)
+def _(ctx):
+    """THE RESIDUAL FINISHER (entry 88, build B v1; compute/residual_kill.py):
+    a collapse equation linear in the legs (X_k, Y_k) of one index of one
+    side, A X_k + B Y_k = 0 with coprime legs, forces the rigid form
+    (X_k, Y_k) = +-(B, -A)/gcd(A, B), i.e. the coincidence frame^k =
+    +-(B - iA)/g, killed by parity (the Im-leg is 0 mod 4) or by the
+    concentration / sliver certifiers over every sign, conjugation and
+    content branch.  (i) The rigid-form lemma on random coprime data.
+    (ii) H2 {(2,+-1),(3,1),(3,-1)}: the linear form is A = p^2 S4 =
+    4 C1 S1 (C1^2 - S1^2)(C1^2 + S1^2), B a fixed sextic (symbolic); the
+    same-sign combos die (DEAD-residual-concentration, all four d = 1
+    branches certified, content bound 3), and M2-opp's four rows die in
+    kill_pattern -- so 8 of the 12 hand-closed (3,1) patterns are now
+    machine theorems.  (iii) THE GAP, pinned: for the four H2 X6-route
+    rows the machine kills every content-1 branch but NONE of the
+    content-3 branches; content 3 occurs exactly when 3 | S1 (verified on
+    every split prime in range), a case entry 66's hand proof never
+    treated.  The residual system q^4 = (X/d)^2 + (A/d)^2 has no prime q
+    for any split p in range, for both contents -- evidence, not proof.
+    (iv) A (3,3)-box mirror pattern (linear in the l-legs) dies too."""
+    import random
+    from math import gcd, isqrt
+    import sympy as sp
+    from compute.residual_kill import residual_kill, linear_forms
+    from compute.lucas_endpoints import kill_pattern
+    # (i) the rigid-form lemma: A U + B V = 0, gcd(U, V) = 1  =>  (U, V) = +-(B, -A)/gcd(A, B)
+    rng = random.Random(88)
+    for _ in range(300):
+        u, v = rng.randint(-60, 60), rng.randint(-60, 60)
+        if (u, v) == (0, 0) or gcd(abs(u), abs(v)) != 1:
+            continue
+        t = rng.randint(1, 30) * rng.choice((1, -1))
+        A, B = t * v, -t * u                       # A u + B v = 0
+        g = gcd(abs(A), abs(B))
+        require((u, v) in ((B // g, -A // g), (-B // g, A // g)), (u, v, A, B))
+    # (ii) H2 same-sign combos and M2-opp
+    C1, S1 = sp.symbols("C1 S1")
+    p2 = C1 ** 2 + S1 ** 2
+    H2_same = [(((2, -1), 1), ((3, -1), 1), ((3, 1), 1)), (((2, 1), 1), ((3, -1), 1), ((3, 1), 1)),
+               (((2, -1), 1), ((3, -1), -1), ((3, 1), -1)), (((2, 1), 1), ((3, -1), -1), ((3, 1), -1))]
+    H2_x6 = [(((2, -1), 1), ((3, -1), 1), ((3, 1), -1)), (((2, -1), 1), ((3, -1), -1), ((3, 1), 1)),
+             (((2, 1), 1), ((3, -1), 1), ((3, 1), -1)), (((2, 1), 1), ((3, -1), -1), ((3, 1), 1))]
+    for pat in H2_same + H2_x6:
+        forms = linear_forms(pat)
+        require(isinstance(forms, list) and forms, pat)
+        side, k, A, B, d = forms[0]
+        require(side == "w" and k == 2, (pat, side, k))
+        require(sp.Poly(A, C1, S1).total_degree() == 6 and sp.Poly(B, C1, S1).total_degree() == 6, (pat, A, B))
+        if pat in H2_x6:
+            # the X6-route: A = +-p^2 S4 = +-4 C1 S1 (C1^2 - S1^2)(C1^2 + S1^2), B the sextic X
+            require(sp.expand(A - 4 * C1 * S1 * (C1 ** 2 - S1 ** 2) * p2) == 0 or
+                    sp.expand(A + 4 * C1 * S1 * (C1 ** 2 - S1 ** 2) * p2) == 0, (pat, A))
+        else:
+            # the same-sign combos: A = +-8 C1 S1 Q with Q in {2C1^4 - 5C1^2S1^2 + S1^4, C1^4 - 5C1^2S1^2 + 2S1^4}
+            # (the two brackets C6 -+ 2 c1 R5 / C6 +- 2 s1^2 P5 of entry 66)
+            Qs = (2 * C1 ** 4 - 5 * C1 ** 2 * S1 ** 2 + S1 ** 4, C1 ** 4 - 5 * C1 ** 2 * S1 ** 2 + 2 * S1 ** 4)
+            require(any(sp.expand(A - sg * 8 * C1 * S1 * Q) == 0 for sg in (1, -1) for Q in Qs), (pat, A))
+    n_same = 0
+    for pat in H2_same:
+        v, cert = kill_pattern(pat)
+        require(v.startswith("DEAD"), (pat, v))
+        if v == "DEAD-residual-concentration":
+            require(cert["content_bound"] in (1, 3) and all(c is not None for sg, cj, c in cert["branches"][1]), (pat, cert))
+            n_same += 1
+    require(n_same >= 2, n_same)
+    led, _, _, _ = _ledger_and_queue()
+    m2 = [(cls, coef) for box, cls, coef, tag in led if tag == "M2-opp (P5' descent)"]
+    require(len(m2) == 4)
+    for cls, coef in m2:
+        pat = tuple((tuple(jk), c) for jk, c in zip(cls, coef))
+        v, _c = kill_pattern(pat)
+        require(v.startswith("DEAD"), (pat, v))
+    # (iii) the gap: the X6-route rows -- every content-1 branch dead, no content-3 branch dead
+    for pat in H2_x6:
+        v, rep = residual_kill(pat)
+        require(v == "OPEN", (pat, v))
+        r = [x for x in rep if x.get("status") == "some branch open"]
+        require(r, (pat, rep))
+        br = r[0]["branches"]
+        require(r[0]["content_bound"] == 3 and all(c is not None for sg, cj, c in br[1]), (pat, br.get(1)))
+        require(3 in br and all(c is None for sg, cj, c in br[3]), (pat, br.get(3)))
+    # content 3 <=> 3 | S1, and the residual system is empty in range for both contents
+    def frame(p):
+        for a in range(1, isqrt(p) + 1):
+            b2 = p - a * a
+            b = isqrt(b2)
+            if b * b == b2 and a > b > 0:
+                return a * a - b * b, 2 * a * b
+    def iroot4(n):
+        r = round(n ** 0.25)
+        return next((c for c in (r - 1, r, r + 1) if c > 0 and c ** 4 == n), None)
+    bound = ctx.bound(full=20000, fast=3000)
+    n_p = 0
+    for p in range(5, bound, 4):
+        if any(p % q == 0 for q in range(2, isqrt(p) + 1)):
+            continue
+        c, s = frame(p)
+        A = 4 * p * p * c * s * (c * c - s * s)
+        X = -3 * c ** 6 + 35 * c ** 4 * s ** 2 - 25 * c ** 2 * s ** 4 + s ** 6
+        require((gcd(abs(A), abs(X)) % 3 == 0) == (s % 3 == 0), (p, c, s))
+        for Xs in (X, -X, c ** 6 - 25 * c ** 4 * s ** 2 + 35 * c ** 2 * s ** 4 - 3 * s ** 6):
+            g = gcd(abs(A), abs(Xs))
+            for d in (1, 3):
+                if g % d:
+                    continue
+                q = iroot4((Xs // d) ** 2 + (A // d) ** 2)
+                require(q is None or any(q % r == 0 for r in range(2, isqrt(q) + 1)), (p, d, q))
+        n_p += 1
+    require(n_p >= 100)
+    # (iv) the mirror on a (3,3)-box pattern linear in the l-legs
+    v, cert = kill_pattern((((1, -3), 1), ((1, -2), 1), ((1, 3), -1)))
+    require(v == "DEAD-residual-concentration" and cert["side"] == "l", (v, cert if v != "DEAD-residual-concentration" else cert["side"]))
+    ctx.note("rigid forms + concentration: H2 same-sign x4 and M2-opp x4 are machine theorems; the four H2 "
+             "X6-route rows are open at content 3 only (3 | S1), empty in range for both contents; "
+             f"{n_p} split primes checked")

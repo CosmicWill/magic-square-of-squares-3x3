@@ -1222,6 +1222,9 @@ def kill_pattern(pattern, jmax=6, amax=12):
         wk = _window_stage(pattern)
         if wk:
             return "DEAD-window", wk
+        rv, rc = _residual_stage(pattern)
+        if rv:
+            return rv, rc
         return status, None
     # group the pinned branches by the equality they come from: a pattern
     # is dead as soon as ONE equality has every (sign, content) branch dead
@@ -1262,7 +1265,26 @@ def kill_pattern(pattern, jmax=6, amax=12):
     wk = _window_stage(pattern)
     if wk:
         return "DEAD-window", wk
+    rv, rc = _residual_stage(pattern)
+    if rv:
+        return rv, rc
     return "COINCIDENCE-open", certs
+
+
+def _residual_stage(pattern):
+    """The RESIDUAL finisher (entry 88, build B): a collapse equation linear
+    in the legs of one index of one side forces the rigid Gaussian form
+    X^k = +-(B - iA)/g, killed by parity or by the concentration/sliver
+    certifiers -- compute/residual_kill.py.  Returns (verdict, cert) or
+    (None, None)."""
+    try:
+        from compute.residual_kill import residual_kill
+        v, cert = residual_kill(pattern)
+    except Exception:
+        return None, None
+    if v in ("DEAD-residual-parity", "DEAD-residual-concentration"):
+        return v, cert
+    return None, None
 
 
 def _window_stage(pattern):

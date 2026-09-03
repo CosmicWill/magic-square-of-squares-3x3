@@ -1623,6 +1623,63 @@ $|tt'|$ unbounded) or pins whose window is not a constant ($[1,7]$:
 $q^2<7p^6$ leaves $q$ up to $p^3$).  Size bookkeeping is exhausted
 there; what remains needs the residual equation itself — build B.
 
+## 2.19 Build B: the residual finisher — rigid forms, and the content-3 gap in H2
+
+*(2026-09-02; entry 88; `compute/residual_kill.py`; check
+`a3.residual_finisher`.)*
+
+**Mechanism** (the H2 tree of §2.9, made mechanical).  When a collapse
+equation of an OPEN pattern involves one frame only through the legs
+of a single index, $A\,X_k+B\,Y_k=0$ with $A,B$ in the other frame's
+Lucas values, coprimality of the legs forces the **rigid form**
+$(X_k,Y_k)=\pm(B,-A)/g$, $g=\gcd(A,B)$, i.e. the coincidence
+$$\text{frame}^k=\pm\frac{B-iA}{g},$$
+a pinned system of the §2.14 type with a multi-term Gaussian
+polynomial.  It is killed by parity (the Im-leg is $\equiv0\bmod4$, so
+an odd $A$ is dead at once), by the content lemma bounding $g$, and by
+the concentration and sliver certifiers over every sign, conjugation
+and content branch.  No lever is needed: the linear relation carries
+it.  The mirror (linear in the $\ell$-legs, coefficients in the
+$w$-frame) is the same code with the roles swapped.
+
+**Result.**  $96$ of the $168$ single-lever ladder survivors die
+($8$, $12$, $28$, $24$, $24$ in the boxes $(3,2)$, $(4,1)$, $(5,1)$,
+$(4,2)$, $(3,3)$), and in the $(3,1)$ audit $8$ of the $12$
+hand-closed patterns become machine theorems: the four H2 same-sign
+combos (four $d=1$ branches each, content bound $3$) and all four
+M2-opp rows.  The ladder stands at
+
+| box | (2,1) | (2,2) | (3,2) | (4,1) | (5,1) | (4,2) | (3,3) |
+|---|---|---|---|---|---|---|---|
+| dead / total | 26/26 | 120/120 | 302/322 | 126/140 | 192/220 | 518/576 | 652/732 |
+
+$1936/2136$ ($90.6\%$).  **Every remaining single lever ($72$) is one
+residual**: the H2 opposite-sign form $A=p^2S_4=2p^2C_2S_2$, $B=X$ a
+fixed sextic in $(C_1,S_1)$, at level $k=2$ or its replications.  The
+machine kills all four content-$1$ branches (the certificate:
+$\rho^4+\bar\ell^{6}=-2C_1\ell^5$, so $\ell^5$ sits in one factor of
+$(\rho^2+i\bar\ell^3)(\rho^2-i\bar\ell^3)$ and the other has modulus
+$<2p$ but $\ge p^5-2p^3$) and none of the content-$3$ branches.
+
+**The content-3 gap.**  $3\mid A$ always ($3\mid C_1S_1$ or
+$C_1^2\equiv S_1^2$), and $3\mid X\iff3\mid S_1$; so **half of all
+frames have content $3$**, and then $(U_2,V_2)=\pm(X,-A)/3$.  Entry 66
+wrote $q^4=X^2+(2SCp^2)^2$ — content $1$ — and never treated this
+case; its "$p\le16$" step could not be reconstructed either, but the
+machine's concentration kill replaces it for content $1$.  For content
+$3$: $3\rho^4+\bar\ell^6=-2C_1\ell^5$ does not factor over
+$\mathbb Z[i]$; over $\mathbb Z[\zeta_{12}]$ it does, and the norm
+argument kills it whenever $\pi$ is inert there ($p\not\equiv1\bmod
+12$) — but $3\mid S_1$ forces $p\equiv1\pmod{12}$, exactly the split
+case where the two conjugate factors can each absorb one prime above
+$\pi$.  Reduction mod $3$ forces $9\mid S_1$; mod $9$, $27$ and the
+$2$-adic residues are all consistent.  **So Theorem A3.9 rests on one
+open lemma:** for $p\equiv1\pmod{12}$ with $9\mid S_1$, the four H2
+X6-route patterns have no solution with $\gcd(A,X)=3$.  The residual
+system is empty for every split $p<20000$ in both contents (a fact,
+not a proof).  The same lemma, at level $k$, is what the $72$ ladder
+singles need.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

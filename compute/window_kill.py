@@ -79,7 +79,9 @@ def cheb_cofactor(kind, n):
 
 
 def _big_primes(n):
-    return [r for r, _ in sp.factorint(n).items() if r >= PMIN]
+    """Primes r | n that a lever prime could equal: r >= 5 and r = 1 mod 4
+    (a frame prime splits in Z[i]; 7 or 11 can never be p or q)."""
+    return [r for r, _ in sp.factorint(n).items() if r >= PMIN and r % 4 == 1]
 
 
 def _targets(kind, n, e):

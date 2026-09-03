@@ -3589,3 +3589,49 @@ equation itself -- the chase of build B. Checks: a3.window_finisher
 factorizations, bounds, gcd | n, residues), the exact ranges, the
 target lists; (vi) the [1,5] finishers on fixed (3,2) patterns; H3's
 requirement changed to pincers. Suite 172.
+
+## 2026-09-02 — Entry 88: build B v1, the residual finisher — rigid forms; 96 more singles dead (ladder 1936/2136); and the content-3 gap in H2
+
+compute/residual_kill.py: when a collapse equation is LINEAR in the
+legs (X_k, Y_k) of one index of one frame, A X_k + B Y_k = 0 with
+coefficients in the other frame, coprimality of the legs forces the
+RIGID FORM (X_k, Y_k) = +-(B, -A)/gcd(A, B), i.e. frame^k = +-(B -
+iA)/g -- a pinned system with a multi-term Gaussian polynomial, killed
+by parity (Im-leg = 0 mod 4), the content lemma (g bounded), and the
+concentration / sliver certifiers over every sign, conjugation and
+content branch. The mirror (linear in the l-legs) is the same code.
+Wired into kill_pattern as the last stage (DEAD-residual-parity /
+DEAD-residual-concentration).
+
+RESULT: 96 of the 168 single-lever survivors die (8/16 (3,2), 12/20
+(4,1), 28/44 (5,1), 24/40 (4,2), 24/48 (3,3)); the ladder stands at
+1936/2136 (90.6%): (3,2) 302/322, (4,1) 126/140, (5,1) 192/220, (4,2)
+518/576, (3,3) 652/732. In the (3,1) audit, 8 of the 12 hand-closed
+patterns are now machine theorems: the four H2 same-sign combos
+(A = p^2 S4 = 4 C1 S1 (C1^2 - S1^2) p^2, B a fixed sextic; all four
+d = 1 branches certified, content bound 3) and the four M2-opp rows.
+
+THE CONTENT-3 GAP. Every remaining single lever (72) and the four H2
+X6-route rows are ONE residual: w^k = +-(X - i p^2 S4)/g. The machine
+kills all four content-1 branches (rho^4 + lbar^6 = -2 C1 l^5: l^5 in
+one factor of (rho^2 + i lbar^3)(rho^2 - i lbar^3), the other of
+modulus < 2p yet >= p^5 - 2p^3) and none of the content-3 branches.
+3 | A always and 3 | X iff 3 | S1, so HALF of all frames have content
+3 (2250 of 4500 to p < 20000). Entry 66 wrote q^4 = X^2 + (2SCp^2)^2
+-- content 1 -- and never treated this case; its "p <= 16" step could
+not be reconstructed (the machine's concentration kill replaces it for
+content 1). For content 3: 3 rho^4 + lbar^6 = -2 C1 l^5 does not
+factor over Z[i]; over Z[zeta_12] the norm argument kills it when pi
+is inert (p != 1 mod 12), but 3 | S1 forces p = 1 mod 12 -- the split
+case, where each conjugate factor can absorb one prime above pi (the
+blind-descent phenomenon again). Mod 3 forces 9 | S1; mod 9, 27 and
+the 2-adic residues are consistent; the character condition mod p is
+satisfiable. STATUS: Theorem A3.9 rests on one open lemma -- for p = 1
+mod 12 with 9 | S1 the four H2 X6-route patterns have no solution
+with gcd(A, X) = 3 -- numerically empty for every split p < 20000 in
+both contents (a3.residual_finisher pins all of this: the rigid-form
+lemma, the H2 linear form, the same-sign kills, M2-opp by machine,
+the exact branch pattern of the gap, content 3 <=> 3 | S1, and the
+emptiness in range). Recorded as a gap, not re-claimed. The
+doubles (128) are untouched by v1 (no linear form): the residual
+equation there is quadratic in the legs -- v2.
