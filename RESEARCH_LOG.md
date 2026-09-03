@@ -3921,3 +3921,60 @@ genus-13 curve for each J is not uniform either); the uniform program
 therefore cannot close the (J,1) boxes for J >= 5 with the present
 toolkit, and the honest statement is the box theorem conditional on
 R_J, verified to p < 10^6.
+
+## 2026-09-02 — Entry 93: the quadruple pivot works on every candidate; the cyclotomic splitting reduces R_J to J != 1 mod 3
+
+TWO ATTACKS on the frontier, both from the step-back discussion.
+
+THE QUADRUPLE PIVOT (reconnaissance, validated). MSS3 requires an
+additive QUADRUPLE in some D(m): x, y, x+y, x-y -- two additive triples
+sharing two elements with opposite relative sign, both holding for the
+SAME center, so TWO relations, TWO levers per prime. Enumerating
+candidates among the 92 open triples: 56 candidate quadruples (0 in
+(3,2), 8 in (5,1), 16 in (4,2), 32 in (3,3)). ALL 56 die by the pooled
+two-lever pincer: a p-lever from one triple and a q-lever from the
+other bound the same prime both ways (e.g. (5,1): p^2 | Im(w) gives
+q > p^4/2 while q^2 | Re(l^9) gives q^4 < 2p, so p^15 < const). This is
+exactly the mechanism the plan reserved the pivot for -- the second
+relation is the missing lever. Direct search: NO quadruple in any D(m)
+with |D(m)| >= 3 for m < 4000 (320 rich centers). Honest status:
+reconnaissance -- validates the pivot on every enumerated candidate; a
+rigorous quadruple theorem needs the joint-valuation engine and the
+completeness of the label enumeration (two elements sharing a (j,k)
+label is necessary, not sufficient, for a real shared element).
+a3.quadruple_pivot pins the representative pincers and the emptiness.
+
+THE CYCLOTOMIC SPLITTING (theorem, thin residual): R_J holds for J = 1
+mod 3, up to a residual empty in range. Z_J = l^{2J} + l^{2J-1} lbar +
+lbar^{2J} has the factor F = l^2 + l lbar + lbar^2 = 3 C1^2 - S1^2
+exactly when 3 | J - 1 (F/lbar^2 = sigma^2 + sigma + 1 vanishes at a
+primitive cube root sigma = l/lbar). F, G = Z_J/F are coprime as
+polynomials, Res_L(F,G) = R_J * lbar^{4(J-1)} (R_J = 19, 61, 127 for
+J = 4, 7, 10 -- fixed and odd). A solution 3 rho^4 = Z_J has ideal
+(3)(rho)^4 = (F)(G); rho (norm q) is coprime to gcd(F,G) except for
+q | R_J (finite), so all of (rho)^4 lands in one factor:
+  MAIN BRANCH, UNCONDITIONAL: (rho)^4 | (G) => F | 3 => |F| <= 3, but
+    |3 C1^2 - S1^2| = 3 mod 8 (C1 odd, S1 even) and is never +-1 or
+    +-3 (the conics (2 C1)^2 - p^2 = -+1, -+3 have no prime-hypotenuse
+    frame: (2C1 - p)(2C1 + p) = -+1, -+3 with odd same-parity factors),
+    so |F| >= 5. Contradiction.
+  SECOND BRANCH, THIN: (rho)^4 | (F) => |F| >= q^k = |Z_J|/d = |F||G|/d
+    => |G| <= d <= 3, with G a form of degree 2J - 2 >= 6 -- a thin
+    Diophantine-approximation residual (the frame angle within 3/p^{2J-2}
+    of a root of G), empty on frames p < 30000 for J = 4, 7, 10.
+So Conjecture R_J is now OPEN ONLY for J != 1 mod 3 (the frontier is
+J = 2 mod 3 and J = 0 mod 3). This subsumes and cleans entry 90's J = 4
+polynomial gcd (which was the same factor's Re-partner). The kill is NOT
+wired into kill_pattern -- no J = 1 mod 3, J >= 7 pattern is in the
+measured ladder, and the thin branch is only empty-in-range, so it must
+not silently change ladder verdicts; it lives as an analysis function
+and the reduction is pinned in a3.cyclotomic_split. Suite 177.
+
+Also recorded from the step-back (doc 2.24 planned): R_J follows from
+ABC over Q(i) with quality 4J/(J+4) (1.71 at J = 3, 2.22 at J = 5 --
+above the record 1.63); local methods CANNOT prove R_J (pi = rho = 1
+solves the bare equation); A3.C in full is a case of the n-conjecture
+(n = 6) over Q(i); the residual is a Q(i)-point of the superelliptic
+3 X^4 = y^{2J} + y^{2J-1} + 1 (genus J - 1, Faltings-finite, non-
+uniform). These place the conjecture inside the standard framework and
+say plainly that a proof needs a global method.

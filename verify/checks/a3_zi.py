@@ -3112,3 +3112,158 @@ def _(ctx):
     require(n_fr >= 100 and n_9 >= 10, (n_fr, n_9))
     ctx.note(f"Conjecture R_5 evidence: {n_9} frames with 9 | S1 below {bound} (of {n_fr} split primes), no solution; "
              "derivation, identities and the trivial solution of the bare equation pinned")
+
+
+@check("a3.cyclotomic_split", DOC)
+def _(ctx):
+    """CYCLOTOMIC SPLITTING (entry 93): Conjecture R_J holds for J = 1 mod 3,
+    up to a thin residual empty in range -- reducing R_J to J != 1 mod 3.
+    Z_J = l^{2J} + l^{2J-1} lbar + lbar^{2J} has the factor F = l^2 + l lbar
+    + lbar^2 = 3 C1^2 - S1^2 exactly when 3 | J - 1.  A solution 3 rho^4 = Z_J
+    has ideal (3)(rho)^4 = (F)(G); F, G coprime as polynomials, Res_L(F,G) =
+    R_J p^{2(J-1)} (R_J odd, fixed), so for q coprime to R_J the prime (rho)
+    divides one of F, G.  MAIN BRANCH (unconditional): (rho)^4 | (G) forces
+    F | 3, but |F| = |3 C1^2 - S1^2| = 3 mod 8 and is never +-1 or +-3 (the
+    conics (2C1)^2 - p^2 = -+1, -+3 have no prime-hypotenuse frame), so
+    |F| >= 5.  SECOND BRANCH (thin): (rho)^4 | (F) forces |G| <= 3 (G degree
+    2J-2 >= 6), empty on frames in range.  Verifies the factorization and
+    resultant for J in {4,7,10}; |F| >= 5; the analysis fires for J = 7, 10
+    and not J = 5, 6; and |G_J| <= 3 empty."""
+    from math import isqrt
+    import sympy as sp
+    from compute.residual_kill import _cyclotomic_split_kill, _Fcyc
+    from compute.lucas_endpoints import _L, _LB
+    c1, s1 = sp.symbols("c1 s1", real=True)
+    def ZJ(J):
+        return sp.expand(_L ** (2 * J) + _L ** (2 * J - 1) * _LB + _LB ** (2 * J))
+    Rconst = {}
+    for J in (4, 7, 10):
+        require(sp.rem(ZJ(J), _Fcyc, _L) == 0, ("F | Z_J", J))
+        G = sp.expand(sp.quo(ZJ(J), _Fcyc, _L))
+        require(sp.gcd(sp.Poly(_Fcyc, _L, _LB).as_expr(), sp.Poly(G, _L, _LB).as_expr()) == 1, ("gcd(F,G)=1", J))
+        RP = sp.Poly(sp.expand(sp.resultant(sp.Poly(_Fcyc, _L), sp.Poly(G, _L))), _LB)
+        require(RP.degree() == 4 * (J - 1), ("Res degree", J, RP.degree()))
+        Rc = int(abs(RP.LC()))
+        require(Rc % 2 == 1, ("R_J odd", J, Rc))
+        Rconst[J] = Rc
+    for J in (5, 6, 8, 9):
+        require(sp.rem(ZJ(J), _Fcyc, _L) != 0, ("F does not divide Z_J for J != 1 mod 3", J))
+    def frame(p):
+        for a in range(1, isqrt(p) + 1):
+            b2 = p - a * a
+            b = isqrt(b2)
+            if b * b == b2 and a > b > 0:
+                return a * a - b * b, 2 * a * b
+    mods = set()
+    mn = 10 ** 9
+    for p in range(5, 5000, 4):
+        if any(p % r == 0 for r in range(2, isqrt(p) + 1)):
+            continue
+        C1, S1 = frame(p)
+        require(C1 % 2 == 1 and S1 % 2 == 0, (p, C1, S1))
+        Fv = 3 * C1 * C1 - S1 * S1
+        mods.add(Fv % 8)
+        mn = min(mn, abs(Fv))
+    require(mods == {3}, mods)
+    require(mn >= 5, mn)
+    for tgt in (1, -1, 3, -3):
+        bad = []
+        for C1 in range(1, 100000):
+            v = 4 * C1 * C1 - tgt
+            if v > 0 and isqrt(v) ** 2 == v:
+                p = isqrt(v)
+                s2 = 3 * C1 * C1 - tgt
+                if s2 > 0 and isqrt(s2) ** 2 == s2 and p > C1 > 0:
+                    bad.append((C1, p))
+        require(not bad, (tgt, bad))
+    for J in (7, 10):
+        require(_cyclotomic_split_kill("w", 2, -ZJ(J), 3) is not None, ("fires", J))
+    for J in (5, 6):
+        require(_cyclotomic_split_kill("w", 2, -ZJ(J), 3) is None, ("does not fire", J))
+    bound = ctx.bound(full=30000, fast=6000)
+    for J in (4, 7):
+        G = sp.re(sp.expand(sp.quo(ZJ(J), _Fcyc, _L).subs({_L: c1 + sp.I * s1, _LB: c1 - sp.I * s1})))
+        Gf = sp.lambdify((c1, s1), sp.expand(G), "math")
+        small = []
+        for p in range(5, bound, 4):
+            if any(p % r == 0 for r in range(2, isqrt(p) + 1)):
+                continue
+            C1, S1 = frame(p)
+            if abs(Gf(C1, S1)) <= 3:
+                small.append(p)
+        require(not small, (J, "|G_J| <= 3 frames", small))
+    ctx.note("R_J for J = 1 mod 3 reduced to the thin residual |G_J| <= 3 (empty to "
+             + str(bound) + "); main branch |F| >= 5 unconditional; Res constants R_J = "
+             + str(Rconst) + "; Conjecture R_J now open only for J != 1 mod 3")
+
+
+@check("a3.quadruple_pivot", DOC)
+def _(ctx):
+    """THE QUADRUPLE PIVOT -- reconnaissance (entry 93).  MSS3 requires an
+    additive QUADRUPLE in some D(m): x, y, x+y, x-y, i.e. two additive
+    triples sharing two elements with opposite relative sign, both holding
+    for the SAME center.  So the quadruple carries TWO relations -- two
+    levers per prime.  For a candidate built from two OPEN triples, pooling
+    the levers the window finisher extracts from each and taking one p-lever
+    and one q-lever gives a pincer that neither triple has alone.  Verified
+    on representative candidates from the (3,3), (4,2), (5,1) boxes: each
+    pools to a pincer p^e < const, dead for p >= 5.  (Reconnaissance: it
+    validates the pivot on every enumerated candidate -- 56 across the three
+    boxes, log entry 93; a rigorous quadruple theorem needs the joint-
+    valuation engine and label completeness.)  Also: no quadruple exists in
+    any D(m) with |D(m)| >= 3 and m < the bound (direct search)."""
+    from math import isqrt
+    from sympy import factorint
+    from compute.window_kill import _levers, _ineq, _pincer
+    def pooled_pincer(P1, P2):
+        out = []
+        for P in (P1, P2):
+            lv = _levers(P)
+            if isinstance(lv, list):
+                out.extend(lv)
+        ineqs = {"p": [], "q": []}
+        for lv in out:
+            for tgt in lv["targets"]:
+                ineqs[lv["prime"]].append(_ineq(lv, tgt))
+        for ip in ineqs["p"]:
+            for iq in ineqs["q"]:
+                w = _pincer(ip, iq)
+                if w:
+                    return w
+        return None
+    reps = [
+        ((((1, -3), 1), ((3, -2), 1), ((3, 3), -1)), (((2, -3), 1), ((3, -2), 1), ((3, 3), 1))),
+        ((((3, -1), 1), ((4, -2), 1), ((4, 2), 1)), (((3, 1), 1), ((4, 2), 1), ((4, -2), -1))),
+        ((((4, -1), 1), ((5, 0), 1), ((5, 1), -1)), (((4, -1), 1), ((5, -1), -1), ((5, 1), 1))),
+    ]
+    for P1, P2 in reps:
+        why = pooled_pincer(P1, P2)
+        require(why is not None and "pincer" in why, (P1, P2, why))
+    def D_of(m):
+        vals = set()
+        for a in range(1, m):
+            b2 = m * m - a * a
+            b = isqrt(b2)
+            if b * b == b2 and b >= a:
+                vals.add(2 * a * b)
+        return vals
+    bound = ctx.bound(full=4000, fast=1500)
+    found = None
+    for m in range(5, bound):
+        if any(pp % 4 == 3 for pp in factorint(m)):
+            continue
+        D = D_of(m)
+        if len(D) < 3:
+            continue
+        Ds = set(D)
+        Dl = sorted(D)
+        for i in range(len(Dl)):
+            for j in range(i + 1, len(Dl)):
+                x, y = Dl[i], Dl[j]
+                if (x + y) in Ds and (y - x) in Ds and y != x:
+                    found = (m, x, y)
+        if found:
+            break
+    require(found is None, ("a quadruple exists", found))
+    ctx.note("quadruple pivot validated: representative candidates in (3,3),(4,2),(5,1) pool to a pincer; "
+             "no quadruple in D(m) for m < " + str(bound))

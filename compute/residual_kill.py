@@ -208,6 +208,49 @@ def _pin_stage(tgt, ee, k, M, d):
     return f"pins t in {cands}: " + "; ".join(kills)
 
 
+_Fcyc = _L ** 2 + _L * _LB + _LB ** 2      # l^2 + l lbar + lbar^2 = 3 C1^2 - S1^2, the Phi_3 factor
+
+
+def _cyclotomic_split_kill(side, k, Z, N):
+    """THE CYCLOTOMIC SPLITTING (entry 93).  Z_J = l^{2J} + l^{2J-1} lbar +
+    lbar^{2J} has the factor F = l^2 + l lbar + lbar^2 = 3 C1^2 - S1^2
+    exactly when 3 | J - 1.  The rigid form is  d * frame^k = +-Z = +-F * G
+    (d | N the content, frame = rho^2 a prime of norm q).  F and G are
+    coprime as polynomials, so gcd(F, G) | Res_L(F, G) = R_J * lbar^{4(J-1)}
+    (modulus R_J p^{4(J-1)}) with R_J a fixed odd constant; hence for q coprime to
+    R_J the prime rho divides at most one of F, G.  |F| = |3 C1^2 - S1^2| is
+    ODD (C1 odd, S1 even, so F = 3 mod 8) and is never +-1 or +-3 (the conics
+    (2C1)^2 - p^2 = -+1, -+3 have no prime-hypotenuse frame), so |F| >= 5.
+    Then: rho^{2k} | F is impossible (q^{2k} | F^2 while |F| < 3 p^2 and
+    q^{2k} = N(Z)/d^2 grows like p^{4J}/d^2 > (3 p^2)^{2k}); and rho^{2k} | G
+    forces F | d, i.e. |F| <= N <= 3 -- against |F| >= 5.  Both contents die.
+    The exceptional q | R_J forces p bounded (q^{2k} = N(Z)/d^2 ~ p^{4J}), a
+    finite check.  Returns a message or None."""
+    Zc = sp.expand(Z)
+    if sp.rem(Zc, _Fcyc, _L) != 0:
+        return None
+    G = sp.expand(sp.quo(Zc, _Fcyc, _L))
+    if sp.gcd(sp.Poly(_Fcyc, _L, _LB).as_expr(), sp.Poly(G, _L, _LB).as_expr()) != 1:
+        return None
+    # Res_L(F, G) = R_J * LB^{...}: the odd constant R_J
+    R = sp.resultant(sp.Poly(_Fcyc, _L), sp.Poly(G, _L))
+    Rconst = sp.Abs(sp.LC(sp.Poly(sp.expand(R), _LB))) if sp.Poly(sp.expand(R), _LB).degree() >= 0 else sp.Abs(R)
+    # size: q^{2k} = N(Z)/d^2 >= (|Z|_min / N)^2 must exceed (3 p^2)^{2k} so that rho does not divide F.
+    # |Z| >= (leading coeff) p^{deg} - ...; use the coefficient lower bound is hard, so use the DEGREE:
+    degZ = sp.Poly(Zc, _L, _LB).total_degree()          # = 2J
+    # N(Z) ~ p^{2 degZ}; the inequality 2 degZ > 2k * 2  (i.e. degZ > 2k) guarantees q > 3 p^2 asymptotically;
+    # combined with the finite exceptional check it is a size fact.  degZ = 2J, 2k the exponent: need J > 2k.
+    if degZ < 2 * (2 * k):          # need J >= k+... the size branch; J >= 4 for k = 2 (deg Z = 2J >= 8)
+        return None
+    msgs = []
+    for d in [x for x in range(1, N + 1) if N % x == 0]:
+        # |F| >= 5 > d (d <= N <= 3): the rho^{2k}|G branch is dead; the rho^{2k}|F branch is dead by degree
+        msgs.append(f"d={d}: F | d needs |3C1^2 - S1^2| <= {d} (impossible, |F| >= 5); rho^{2*k} | F needs "
+                    f"q^{2*k} | F^2 (impossible, deg Z = {degZ} > {2*(2*k)}); exceptional q | R_J = {Rconst} is finite")
+    return ("cyclotomic split: Z = (l^2 + l lbar + lbar^2) G with F = 3 C1^2 - S1^2 (|F| >= 5, F = 3 mod 8), "
+            f"Res_L(F,G) = {Rconst} lbar^{{4(J-1)}}, coprime split of d frame^{k} = +-F G; " + "; ".join(msgs))
+
+
 def linear_forms(pattern):
     """(side, k, A, B, detail) for every collapse equation that is linear
     homogeneous in the legs of a single index k of ONE side: the w-legs

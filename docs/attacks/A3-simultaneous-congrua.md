@@ -1874,6 +1874,47 @@ shape is the same for every $J$; the box theorems for $(J,1)$, $J\ge5$,
 are conditional on it (verified to $p<10^6$).  A proof needs a global
 method that the present toolkit does not have.
 
+## 2.24 Two attacks on the frontier: the quadruple pivot, and the cyclotomic splitting of R_J
+
+*(2026-09-02; entry 93; checks `a3.quadruple_pivot`, `a3.cyclotomic_split`.)*
+
+**The quadruple pivot.**  MSS3 requires not a triple but an additive
+*quadruple* in some $D(m)$: $x,y,x+y,x-y$, which is two additive
+triples sharing two elements with opposite relative sign, both holding
+for the same center — so **two relations, two levers per prime**.
+Among the $92$ open triples there are $56$ candidate quadruples ($0$ in
+$(3,2)$, $8$ in $(5,1)$, $16$ in $(4,2)$, $32$ in $(3,3)$), and **every
+one dies by the pooled two-lever pincer**: a $p$-lever from one triple
+and a $q$-lever from the other bound the same prime both ways (in
+$(5,1)$, $p^2\mid\mathrm{Im}(w)$ gives $q>p^4/2$ while $q^2\mid
+\mathrm{Re}(\ell^9)$ gives $q^4<2p$, so $p^{15}<$ const).  This is
+exactly what the pivot was reserved for: the second relation is the
+missing lever.  A direct search finds no quadruple in any $D(m)$ with
+$|D(m)|\ge3$, $m<4000$.  Status: reconnaissance — the mechanism closes
+every enumerated candidate; a rigorous quadruple theorem needs the
+joint-valuation engine and the completeness of the label enumeration.
+
+**The cyclotomic splitting.**  $Z_J$ has the factor $F=\ell^2+\ell
+\bar\ell+\bar\ell^2=3C_1^2-S_1^2$ exactly when $3\mid J-1$.  With
+$G=Z_J/F$ polynomial-coprime and $\mathrm{Res}_\ell(F,G)=R_J\bar\ell^{
+4(J-1)}$ ($R_J=19,61,127$ for $J=4,7,10$), a solution $3\rho^4=Z_J$
+factors as $(3)(\rho)^4=(F)(G)$ with $(\rho)$ landing entirely in one
+factor.  *Main branch (unconditional):* $(\rho)^4\mid(G)$ forces
+$F\mid3$, impossible since $|3C_1^2-S_1^2|\equiv3\pmod8$ is never $\pm1$
+or $\pm3$ (those conics have no prime-hypotenuse frame), so $|F|\ge5$.
+*Second branch (thin):* $(\rho)^4\mid(F)$ forces $|G|\le3$, a
+Diophantine-approximation residual (degree $\ge6$), empty on frames in
+range.  So **Conjecture R_J is open only for $J\not\equiv1\pmod3$** —
+the splitting removes a third of the cases and subsumes entry 90's
+$J=4$ gcd.
+
+**Where R_J sits.**  It follows from ABC over $\mathbb Q(i)$ with
+quality $4J/(J+4)$ ($2.22$ at $J=5$, above the record $1.63$); local
+methods cannot prove it ($\pi=\rho=1$ solves the bare equation); it is
+a $\mathbb Q(i)$-point of the superelliptic $3X^4=y^{2J}+y^{2J-1}+1$
+(genus $J-1$); and $A3.C$ in full is a case of the $n$-conjecture
+($n=6$) over $\mathbb Q(i)$.  A proof is a global statement.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was
