@@ -114,19 +114,26 @@ def _targets(kind, n, e):
             out.append(t)
         return out
     # odd n >= 3
-    leg = _targets(kind, 1, e)[0]
-    leg = dict(leg)
-    leg["name"] = f"({kind}{n}: leg {leg['name']})"
+    legs = [dict(t) for t in _targets(kind, 1, e)]
+    for lg in legs:
+        lg["name"] = f"({kind}{n}: leg {lg['name']})"
     Q = cheb_cofactor(kind, n)
-    cof = {"name": f"({kind}{n}: cof {Q.as_expr()})", "bexp": n - 1, "bconst": n, "parity": "odd",
-           "res8": 1 if kind == "Re" else n % 8, "leg": False, "index": 1, "Q": Q, "n": n, "e": e}
-    out = [leg, cof]
-    # split cases when the lever prime may divide n
+    if kind == "Im" and n == 3:
+        # entry 90: the index-3 Im-cofactor 4 X1^2 - P^2 = (2 X1 - P)(2 X1 + P) -- coprime odd
+        # factors (gcd | 2P, both odd, P does not divide 2 X1), each of modulus < 3P
+        cofs = [{"name": f"(Im3: 2X1{sg}P)", "bexp": 1, "bconst": 3, "parity": "odd", "res8": None,
+                 "leg": False, "index": 1, "Q": None, "n": 3, "e": e, "lin3": sg} for sg in ("-", "+")]
+    else:
+        cofs = [{"name": f"({kind}{n}: cof {Q.as_expr()})", "bexp": n - 1, "bconst": n, "parity": "odd",
+                 "res8": 1 if kind == "Re" else n % 8, "leg": False, "index": 1, "Q": Q, "n": n, "e": e}]
+    out = legs + cofs
+    # split cases when the lever prime may divide n: R^{e-k} may land on ANY of the
+    # coprime pieces (every leg and every cofactor piece), with R on another
     for r in _big_primes(n):
         v = sp.multiplicity(r, n)
         for k in range(1, v + 1):
             if e - k >= 1:
-                for base in (leg, cof):
+                for base in legs + cofs:
                     s = dict(base)
                     s["name"] = f"{base['name']} [split: R={r} | n, R^{e - k}]"
                     s["e"] = e - k
@@ -348,15 +355,114 @@ def _pair_solver(lv_p, tp, lv_q, tq):
 
 def _cof_pair(lv_p, tp, lv_q, tq):
     """Compatibility wrapper (index 3): tp/tq may be {'cof': a} with
-    a in {1, 3} meaning the cofactor 4 X1^2 - a P^2."""
+    a in {1, 3} meaning the cofactor 4 X1^2 - a P^2 (the coarse index-3
+    cofactor targets of entry 87, kept for the pair-solver control)."""
     def norm(lv, t):
         if "Q" in t:
             return t
         a = t["cof"]
         kind = "Re" if a == 3 else "Im"
-        full = [x for x in _targets(kind, 3, lv["e"]) if x["Q"] is not None and x.get("e", lv["e"]) == lv["e"]][0]
-        return full
+        Q = cheb_cofactor(kind, 3)
+        return {"name": f"({kind}3: cof {Q.as_expr()})", "bexp": 2, "bconst": 3, "parity": "odd",
+                "res8": 1 if kind == "Re" else 3, "leg": False, "index": 1, "Q": Q, "n": 3, "e": lv["e"]}
     return _pair_solver(lv_p, norm(lv_p, tp), lv_q, norm(lv_q, tq))
+
+
+# ------------------------------------------- bounded primes (entry 90)
+def _split_primes_below(bound):
+    out = []
+    p = 5
+    while p < bound:
+        if sp.isprime(p):
+            out.append(p)
+        p += 4
+    return out
+
+
+def _relation_nonzero_on_frames(pattern, fl, fw):
+    """The cleared relation evaluated exactly on explicit frames (all sign
+    choices of the imaginary legs): True iff it never vanishes."""
+    terms = cleared_terms(pattern)
+    cP, sP = fl
+    cR, sR = fw
+    for s1 in (1, -1):
+        for s2 in (1, -1):
+            tot = 0
+            for cc, wp, wq, ec, poly in terms:
+                for (a1, b1, c_, d_), v in poly.items():
+                    tot += v * cP ** a1 * (s1 * sP) ** b1 * cR ** c_ * (s2 * sR) ** d_
+            if tot == 0:
+                return False
+    return True
+
+
+def _bounded_prime_kill(pattern, levers, chosen, ineqs):
+    """When the two levers' inequalities bound one prime, p^ex < K (ex > 0)
+    or the mirror for q, that prime ranges over the explicit finite set of
+    split primes below K^{1/ex}; for each, its frame is explicit, every
+    lever of the OTHER prime divides an explicit integer value of that
+    frame (so the other prime ranges over an explicit finite set), and the
+    relation is evaluated exactly on the finitely many frame pairs."""
+    cands = {"p": None, "q": None}
+    for ip in ineqs["p"]:
+        for iq in ineqs["q"]:
+            al, ka, be = ip
+            ga, kb, de = iq
+            ex = sp.nsimplify(al * ga - be * de)
+            if ex <= 0:
+                continue
+            Kp = ka ** ga * kb ** be
+            Kq = kb ** al * ka ** de
+            bp = sp.N(Kp ** (1 / ex), 30)
+            bq = sp.N(Kq ** (1 / ex), 30)
+            for key, b in (("p", bp), ("q", bq)):
+                if b < 10 ** 6:
+                    val = int(sp.ceiling(b)) + 1
+                    cands[key] = val if cands[key] is None else min(cands[key], val)
+    for key in ("p", "q"):
+        if cands[key] is None:
+            continue
+        primes = _split_primes_below(cands[key])
+        others = [lv for lv in levers if lv["prime"] != key]
+        if not others:
+            continue
+        dead_all = True
+        detail = []
+        for P0 in primes:
+            fr = _frame_of(P0)
+            if fr is None:
+                dead_all = False
+                break
+            c0, s0 = fr
+            # the other prime's levers divide explicit values of THIS prime's frame
+            oth_cands = None
+            for lv in others:
+                val = _gauss_trig(lv["kind"], c0, s0, lv["n"])
+                if val == 0:
+                    dead_all = False
+                    break
+                ps = {int(r) for r, m in sp.factorint(abs(val)).items() if r % 4 == 1 and r >= PMIN and r != P0 and m >= lv["e"]}
+                oth_cands = ps if oth_cands is None else (oth_cands & ps)
+            if not dead_all:
+                break
+            if oth_cands:
+                for Q0 in sorted(oth_cands):
+                    fr2 = _frame_of(Q0)
+                    if fr2 is None:
+                        dead_all = False
+                        break
+                    fl, fw = ((c0, s0), fr2) if key == "p" else (fr2, (c0, s0))
+                    if not _relation_nonzero_on_frames(pattern, fl, fw):
+                        dead_all = False
+                        break
+                if not dead_all:
+                    break
+            detail.append((P0, sorted(oth_cands) if oth_cands else []))
+        if dead_all:
+            return (f"bounded prime: the pincer leaves {key} < {cands[key]}; for each such split prime the other "
+                    f"lever's value on its explicit frame admits only the partner primes {detail[:4]}"
+                    f"{' ...' if len(detail) > 4 else ''}, and the relation is nonzero on every explicit frame pair")
+    return None
 
 
 # ------------------------------------------- pin and substitute
@@ -561,6 +667,11 @@ def window_kill(pattern):
         if why is None:
             try:
                 why = _explicit_split_kill(pattern, levers, chosen)
+            except Exception:
+                why = None
+        if why is None:
+            try:
+                why = _bounded_prime_kill(pattern, levers, chosen, ineqs)
             except Exception:
                 why = None
         names = [tgt["name"] for lv, tgt in chosen]

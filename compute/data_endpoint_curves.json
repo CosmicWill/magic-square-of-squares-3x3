@@ -1,0 +1,41 @@
+{
+ "_doc": "Endpoint curves of the residual trees (entry 90). PARI/GP 2.17.4 output recorded as data; the suite checks durable invariants (models, torsion points, correspondences) and never runs gp.",
+ "k3_H2_quartic": {
+  "origin": "k=3 replications of H2 in the (3,3) box: the Re3-cofactor pin 4U1^2 - 3q^2 = -3p^2 splits as (q-p)/2 = 3a^2, (q+p)/2 = b^2, so q = b^2 + 3a^2, p = b^2 - 3a^2, U1 = 3ab, and V1^2 = q^2 - U1^2 = b^4 - 3a^2 b^2 + 9a^4 must be a square: the quartic y^2 = x^4 - 3x^2 + 9, x = b/a",
+  "quartic": "y^2 = x^4 - 3*x^2 + 9",
+  "weierstrass": [
+   0,
+   -3,
+   0,
+   -36,
+   108
+  ],
+  "conductor": 144,
+  "torsion": {
+   "order": 4,
+   "structure": [
+    2,
+    2
+   ],
+   "points": [
+    [
+     -6,
+     0
+    ],
+    [
+     3,
+     0
+    ]
+   ]
+  },
+  "ellrank": [
+   0,
+   0,
+   0,
+   []
+  ],
+  "analytic_rank": 0,
+  "rational_points_on_quartic": "(0, +-3) and the two points at infinity (leading coefficient 1 is a square); x = b/a = 0 or infinity gives no frame (a, b >= 1)",
+  "conclusion": "the branch is empty: rank 0 (Selmer upper bound 0 -- unconditional), E(Q) = the four 2-torsion points"
+ }
+}

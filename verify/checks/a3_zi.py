@@ -2698,7 +2698,10 @@ def _(ctx):
         elif tag == "G3 double-pincer":
             require(all("pincer" in c.get("why", "") for c in cert["cases"]), (pat, whys))
         else:
-            require("index-3 cofactor pair" in whys and sum("pincer" in c.get("why", "") for c in cert["cases"]) == 3, (pat, whys))
+            # entry 86: the index-3 cofactor pair; entry 90: with the Im-cofactor split into
+            # (2X1 -+ P) the last case is a bounded-prime explicit kill (p < 10 or p < 7)
+            require(("index-3 cofactor pair" in whys or "bounded prime" in whys)
+                    and sum("pincer" in c.get("why", "") for c in cert["cases"]) >= 3, (pat, whys))
         how[tag] += 1
     require(dict(how) == {"H3 double-lever (Fermat)": 8, "G3 double-pincer": 20, "G3 index-3 window (entry 86)": 4}, dict(how))
     # (iii) the cofactor-pair solver re-derived independently, with a control
@@ -2762,6 +2765,12 @@ def _(ctx):
             ['(Im4->(Re2: C1-+S1))', '(Im4->(Im2->(C1: a-+b)))', '(Im4->(Im2->(S1: a)))', '(Im4->(Im2->(S1: b)))'])
     require(all(t["bexp"] == Fraction(1, 2) for t in _targets("Re", 1, 2) + _targets("Im", 1, 2)))
     require(len(_targets("Re", 5, 2)) == 4 and sum("split" in t["name"] for t in _targets("Re", 5, 2)) == 2)
+    # entry 90: Im5 has two deep legs (a, b) and one cofactor; the split cases cover every piece
+    require(len(_targets("Im", 5, 2)) == 6 and sum("split" in t["name"] for t in _targets("Im", 5, 2)) == 3)
+    # and the index-3 Im-cofactor is split into (2X1 - P)(2X1 + P), bound 3P each
+    im3 = _targets("Im", 3, 2)
+    require(sorted(t["name"] for t in im3) == ['(Im3: 2X1+P)', '(Im3: 2X1-P)', '(Im3: leg (S1: a))', '(Im3: leg (S1: b))'], [t["name"] for t in im3])
+    require(all(t["bexp"] == 1 and t["bconst"] == 3 for t in im3 if "2X1" in t["name"]))
     # (vi) the pin-and-substitute and explicit-frame finishers on fixed (3,2)-box patterns
     # of the [1,5] shape (p^2 on an index-1 w-leg, q^2 on Re/Im(l^5)): the S1/V1 branch dies
     # by 4 | t, the leg pin U1 = +-p^2 substituted into the cofactor pin gives either a sign
@@ -2933,9 +2942,22 @@ def _(ctx):
         require(a * a < p and b * b < p and (a - b) ** 2 < 2 * p and (a + b) ** 2 < 2 * p)
         n_deep += 1
     require(n_deep >= 10)
+    # (v) entry 90 -- the polynomial gcd: for the (J,1)-type family {(3,1),(4,-1),(4,1)} the linear
+    # form's coefficients share the factor C1^2 - 3 S1^2 (the cofactor of C3), which never vanishes
+    # on a frame; after cancelling it the Gaussian form has degree 6 and the size kill applies
+    from compute.residual_kill import _cancel_polynomial_gcd, _frame_zero_of
+    C1_, S1_ = sp.symbols("C1 S1")
+    pat41 = (((3, 1), 1), ((4, -1), 1), ((4, 1), -1))
+    forms41 = linear_forms(pat41)
+    require(forms41 and forms41[0][0] == "w" and forms41[0][1] == 2, forms41[:1])
+    require(_frame_zero_of(C1_ ** 2 - 3 * S1_ ** 2, (C1_, S1_)) == [], "C1^2 - 3 S1^2 has no frame zero")
+    require(_frame_zero_of(4 * C1_ - 3 * S1_, (C1_, S1_)) == [5], "4 C1 - 3 S1 vanishes on the frame of 5 (C1, S1) = (3, 4)")
+    v41, c41 = kill_pattern(pat41)
+    require(v41 == "DEAD-residual-size", (pat41, v41))
     ctx.note("rigid forms: H2 same-sign x4 (concentration), H2 X6-route x4 (the deep size kill -- the "
              "content-3 lemma) and M2-opp x4 are machine theorems; content 3 <=> 3 | S1 and the residual "
-             f"system is empty in range for both contents ({n_p} split primes)")
+             f"system is empty in range for both contents ({n_p} split primes); the (4,1) J=4 family dies "
+             "after the polynomial gcd")
 
 
 @check("a3.box31_machine", DOC)

@@ -3720,3 +3720,90 @@ q <= kappa p^J meets the deep lever q >= p^4/2 at J = 4 with a
 constant to spare, so a leg of rho is pinned to +-p^2 exactly and the
 residual must be chased after the pin. Both are build B v2, with the
 doubles' non-homogeneous cofactor pairs.
+
+## 2026-09-02 — Entry 90: build B v2a — the polynomial gcd, the split Im-cofactor, bounded primes; ladder 2036/2136 (95.3%)
+
+The two open single-lever families had exact failure modes. (i) The
+(J,1)-type families with J >= 4: the linear form's coefficients A and
+B share the POLYNOMIAL factor C1^2 - 3 S1^2 (the cofactor of C3), so
+v1 reported the content as unbounded -- but a common polynomial factor
+that never vanishes on a frame is a factor of the relation, not
+content: F (A' U + B' V) = 0 with F != 0. residual_kill now cancels
+the polynomial gcd of (A, B) after checking that no irreducible factor
+vanishes on a frame (a zero needs C1/S1 = m/n rational with m odd, n
+even and m^2 + n^2 a prime square; the rational roots are enumerated;
+any hit refuses the cancellation). After cancelling, the Gaussian form
+of the J = 4 family drops from degree 8 to 6 and the size kill takes
+it (q <= 2.2 p^3 against q >= p^4/2). (ii) The index-3 Im-cofactor
+4 X1^2 - P^2 = (2X1 - P)(2X1 + P) -- coprime odd factors of modulus
+< 3P -- is now two fine targets in window_kill instead of one coarse
+target bounded by 3P^2. With it the G3 index-3 rows lose their
+cofactor-pair route and die instead by the new BOUNDED-PRIME finisher:
+when the levers' inequalities leave p^ex < K with K > 5^ex, p (or q)
+ranges over the explicit split primes below K^{1/ex}; each has an
+explicit frame, the other lever divides an explicit integer value of
+it (so the partner prime is explicit too), and the relation is
+evaluated exactly on the finitely many frame pairs. Soundness fix on
+the way: the split cases (lever prime dividing n) must cover every
+leg and every cofactor piece, not the first of each.
+
+RESULT: 20 of the 32 open singles die (all 4 in (4,1), 8 in (5,1), 8
+in (4,2)) and 22 more doubles ([1,7] x10, [3,5] x4, [6,6] x8): (3,2)
+310/322, (4,1) 138/140, (5,1) 210/220, (4,2) 542/576, (3,3) 668/732;
+2036/2136 (95.3%), 100 open = 12 singles + 88 doubles.
+
+WHAT IS LEFT, exactly. The 12 singles: the k = 3 replications of H2
+in (3,3) (8) -- the rigid form is w^6 = +-Z/g so q <= 1.2 p, and the
+only surviving target is the index-3 Re-cofactor 4U1^2 - 3q^2 (bound
+3q^2 ~ 4.3 p^2), whose window pins 4U1^2 - 3q^2 = +-t p^2 with t in
+{+-1, +-3}: a finite tree of conics (2U1)^2 - 3q^2 = t p^2, most
+branches dead by parity, size or the norm form of Q(sqrt 3) (-1 is
+not a norm), one branch landing on the genus-1 quartic V1^2 = b^4 -
+3a^2 b^2 + 9a^4 (q = b^2 + 3a^2, p = b^2 - 3a^2) that needs a rank
+computation; and the J = 5 family {(4,+-1),(5,1),(5,-1)} in (5,1)
+(4), where after the gcd the Gaussian form has degree 8, q <= 1.73
+p^4 against q >= p^4/2 -- a constant gap -- and the window |t| <
+1.3 sqrt p is no longer constant, so no pin: the residual needs the
+rigid form's exact structure (a concentration-type argument for the
+content, or the norm/angle equations). The 88 doubles need the
+non-homogeneous cofactor pairs. All of this is build B v2b: conic
+splitting after pins, elliptic endpoints by rank (PARI), and the
+pair residuals.
+
+The genus-1 endpoint of the k = 3 conic tree, settled (same entry,
+later): PARI/GP on y^2 = x^4 - 3x^2 + 9 (x = b/a) gives the model
+[0, -3, 0, -36, 108], conductor 144, torsion Z/2 x Z/2, and ellrank =
+[0, 0, 0, []] -- rank 0 with Selmer upper bound 0, unconditional; the
+analytic rank is 0 as well. So E(Q) is the four 2-torsion points and
+the quartic's rational points are (0, +-3) and the two at infinity,
+none a frame (a, b >= 1). That branch of the tree is empty; the
+certificate is recorded in compute/data_endpoint_curves.json (the
+suite never runs gp). What v2b must build is the conic-splitting tree
+itself -- pins 4U1^2 - 3q^2 = +-t p^2 and (2U1 -+ q) = t p^2 with
+coprime splits, Pell/conic parametrizations, residue and size kills,
+and endpoint recognition (Fermat quartics, or rank-0 curves by data).
+
+The complete conic tree of the k = 3 replications, by hand (the spec
+for v2b). Rigid form w^6 = +-Z/g, Z = -(l^6 + lbar^6 + l^5 lbar),
+g in {1, 3}: q^6 = |Z|/g <= 3p^6/g gives q <= 1.2 p. The lever p^2 |
+Im(rho^12): its deep targets u, v, u -+ v (< sqrt(2q)) and 2U1 -+ q
+(< 3q) all contradict q <= 1.2 p by size; only the index-3
+Re-cofactor 4U1^2 - 3q^2 remains, and since -3q^2 < 4U1^2 - 3q^2 <
+q^2 the pin 4U1^2 - 3q^2 = t p^2 has t in {1, -1, -3} (t <= q^2/p^2
+< 1.44, t >= -3q^2/p^2 > -4.3, t odd). With x = 2U1:
+  t = -1: x^2 + p^2 = 3q^2 forces 3 | x and 3 | p -- dead.
+  t = +1: (x - p)(x + p) = 3q^2, coprime odd factors, so 2p in
+    {3q^2 - 1, q^2 - 3}: p = (3q^2 - 1)/2 violates q >= p/1.2, and
+    p = (q^2 - 3)/2 = 3 mod 4 is not a split prime -- dead.
+  t = -3: x = 3y and (q - p)(q + p) = 3y^2 with coprime halves and
+    8 | q^2 - p^2, so the halves are {3a^2, 4b^2}, {4a^2, 3b^2},
+    {a^2, 12b^2} (each makes p or q = 3 mod 4 -- dead) or {12a^2, b^2}:
+    q = 12a^2 + b^2, p = b^2 - 12a^2, U1 = 6ab, and V1^2 = q^2 - U1^2 =
+    b^4 - 12a^2 b^2 + 144a^4 -- the quartic y^2 = x^4 - 12x^2 + 144,
+    isomorphic (x = 2x') to y^2 = x'^4 - 3x'^2 + 9: rank 0 by the PARI
+    certificate, rational points (0, +-3) and infinity only -- dead.
+Every branch closed; the tree uses only coprime splits, residues mod
+4, the size window, and one rank-0 endpoint. The v2b module must
+generate exactly this: pin the surviving cofactor target, split the
+conic by coprimality, parametrize, apply the residue and size
+filters, and recognize the endpoint curve against the data file.

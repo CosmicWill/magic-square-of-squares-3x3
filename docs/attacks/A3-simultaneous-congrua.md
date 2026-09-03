@@ -1752,6 +1752,49 @@ the window pins a leg of $\rho$ to $\pm p^2$ exactly and the residual
 must be chased after that pin.  Both are the next build (v2), together
 with the doubles' non-homogeneous cofactor pairs.
 
+## 2.21 Build B v2a: the polynomial gcd, the split index-3 cofactor, bounded primes
+
+*(2026-09-02; entry 90.)*
+
+Three mechanical pieces, each answering an exact failure mode.  **The
+polynomial gcd.**  For the $(J,1)$-type families the coefficients
+$A,B$ of the linear form share the factor $C_1^2-3S_1^2$ (the cofactor
+of $C_3$); a common polynomial factor that never vanishes on a frame
+is a factor of the relation, not content, so the rigid form is built
+from $A/F$, $B/F$ — after checking that no irreducible factor of $F$
+vanishes on a frame (a zero needs $C_1/S_1=m/n$ rational with $m$ odd,
+$n$ even and $m^2+n^2$ a prime square; the rational roots are
+enumerated).  For $J=4$ the Gaussian form drops from degree $8$ to $6$
+and the size kill applies.  **The split index-3 cofactor.**
+$4X_1^2-P^2=(2X_1-P)(2X_1+P)$, coprime odd factors of modulus $<3P$,
+replaces the coarse target bounded by $3P^2$.  **Bounded primes.**
+When the levers' inequalities leave $p^{e}<K$ with $K>5^{e}$, $p$ (or
+$q$) ranges over the explicit split primes below $K^{1/e}$; each has an
+explicit frame, the other lever divides an explicit integer value of
+it, and the relation is evaluated exactly on the finitely many frame
+pairs (this is how the G3 index-$3$ rows now die, at $p<10$).
+
+**Result.**  $20$ of the $32$ singles and $22$ more doubles:
+
+| box | (2,1) | (2,2) | (3,2) | (4,1) | (5,1) | (4,2) | (3,3) |
+|---|---|---|---|---|---|---|---|
+| dead / total | 26/26 | 120/120 | 310/322 | 138/140 | 210/220 | 542/576 | 668/732 |
+
+$2036/2136$ ($95.3\%$); $100$ open: $88$ doubles and $12$ singles.
+The $12$ are precisely: the $k=3$ replications of H2 in $(3,3)$ ($8$),
+where $w^6=\pm Z/g$ gives $q\le1.2p$ and the only surviving target is
+the index-$3$ Re-cofactor $4U_1^2-3q^2$, whose window pins
+$4U_1^2-3q^2=\pm tp^2$, $t\in\{\pm1,\pm3\}$ — a finite tree of conics
+$(2U_1)^2-3q^2=tp^2$ (most branches dead by parity, size, or the norm
+form of $\mathbb Q(\sqrt3)$; one lands on the genus-$1$ quartic
+$V_1^2=b^4-3a^2b^2+9a^4$ with $q=b^2+3a^2$, $p=b^2-3a^2$, which needs a
+rank computation); and the $J=5$ family $\{(4,\pm1),(5,1),(5,-1)\}$
+($4$), where after the gcd the form has degree $8$, $q\le1.73p^4$
+against $q\ge p^4/2$, and the window $|t|<1.3\sqrt p$ is no longer a
+constant — no pin, so the residual needs the rigid form's exact
+structure.  Build B v2b: conic splitting after pins, elliptic
+endpoints by rank, and the doubles' pair residuals.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

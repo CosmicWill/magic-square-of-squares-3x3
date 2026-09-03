@@ -109,8 +109,68 @@ def linear_forms(pattern):
                 continue
             if other_prime in A.free_symbols or other_prime in B.free_symbols:
                 continue
+            # entry 90: cancel the POLYNOMIAL gcd of A and B -- a common factor F(C1, S1)
+            # that never vanishes on a frame is not content, it is a factor of the
+            # relation (A U + B V = F (A' U + B' V) = 0 with F != 0)
+            A, B, F = _cancel_polynomial_gcd(A, B, side)
+            if A is None:
+                continue
             out.append((side, k, A, B, d))
     return out
+
+
+def _frame_zero_of(G, cs):
+    """Does the homogeneous polynomial G(C, S) vanish on some frame?  A zero
+    needs C/S = x rational with C odd, S even and C^2 + S^2 a prime square
+    (C, S the legs of pi^2, p = a^2 + b^2): from the rational roots x = m/n of
+    G(x, 1), (C, S) = +-(m, n) up to a scalar t, p^2 = t^2 (m^2 + n^2), so
+    m^2 + n^2 must be a perfect square s^2 and p = t s prime forces t = 1,
+    p = s.  Returns the list of such primes (usually empty)."""
+    C, S = cs
+    x = sp.Symbol("x")
+    g = sp.Poly(sp.expand(G.subs({C: x * S})).subs(S, 1), x) if S in G.free_symbols else None
+    if g is None:
+        # G depends on C only: G(C) = 0 has finitely many C; each fixes C, and S ranges over
+        # frames with that C -- infinitely many in principle; refuse to cancel
+        return None
+    found = []
+    for r in sp.roots(g, filter="Q"):
+        r = sp.Rational(r)
+        m, n = int(r.p), int(r.q)
+        if m % 2 == 0 or n % 2 == 1:
+            continue
+        s2 = m * m + n * n
+        sq = sp.integer_nthroot(s2, 2)
+        if sq[1] and sp.isprime(int(sq[0])) and int(sq[0]) % 4 == 1:
+            found.append(int(sq[0]))
+    if g.degree() == 0 and g.LC() == 0:
+        return None
+    return found
+
+
+def _cancel_polynomial_gcd(A, B, side):
+    """Divide A and B by their polynomial gcd F when F is a product of factors
+    that never vanish on a frame.  Returns (A', B', F) or (None, None, F)
+    when a factor may vanish (conservative)."""
+    F = sp.gcd(A, B)
+    if F.is_number:
+        return A, B, F
+    letters = ("C", "S") if side == "w" else ("U", "V")
+    syms = [sy for sy in F.free_symbols if str(sy)[0] in letters]
+    ks = {int(str(sy)[1:]) for sy in syms}
+    if len(ks) != 1:
+        return None, None, F
+    k = ks.pop()
+    C, S = sp.Symbol(f"{letters[0]}{k}"), sp.Symbol(f"{letters[1]}{k}")
+    for fac, mult in sp.factor_list(F)[1]:
+        if fac.is_number:
+            continue
+        if fac.free_symbols - {C, S}:
+            return None, None, F          # a prime symbol or other index inside the gcd: refuse
+        z = _frame_zero_of(fac, (C, S))
+        if z is None or z:
+            return None, None, F
+    return sp.expand(sp.cancel(A / F)), sp.expand(sp.cancel(B / F)), F
 
 
 def _gcd_bound(A, B, prime=_P):
