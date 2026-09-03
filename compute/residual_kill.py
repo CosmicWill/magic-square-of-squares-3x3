@@ -38,6 +38,39 @@ from compute.lucas_endpoints import (all_collapses, endpoint_identity, concentra
 from compute.window_kill import _targets, PMIN
 
 
+def _size_kill_d(side, k, A, B, Z, d):
+    """The size/pin kill for ONE content d: every deep target of Im(rho^{2k})
+    either contradicts the lever by size or has all its pins dead."""
+    ZA = sp.expand(lucas_to_L(A, "l" if side == "w" else "w"))
+    if ZA == 0:
+        return None
+    PA = sp.Poly(ZA, _L, _LB)
+    m = min(min(mon) for mon in PA.monoms())
+    if m < 1:
+        return None
+    M = _abs_coeff_bound(sp.expand(Z))
+    if M == 0:
+        return None
+    msgs = []
+    for tgt in _targets("Im", k, 2 * m):
+        h, c = sp.nsimplify(tgt["bexp"]), tgt["bconst"]
+        ee = tgt.get("e", 2 * m)
+        lhs_exp = sp.nsimplify(ee * k / h)
+        rhs = sp.nsimplify(c ** (k / h)) * M / d
+        if not lhs_exp.is_integer:
+            return None
+        cnd = sp.expand(_P ** int(lhs_exp) - rhs)
+        poly = sp.Poly(cnd, _P)
+        if poly.LC() <= 0 or cnd.subs(_P, PMIN) <= 0 or poly.count_roots(inf=PMIN) != 0:
+            pin = _pin_stage(tgt, ee, k, M, d)
+            if pin is None:
+                return None
+            msgs.append(f"{tgt['name']} survives the size window; {pin}")
+            continue
+        msgs.append(f"{tgt['name']} gives p^{ee} < {c} q^{h} against q^{k} <= {sp.factor(M)}/{d}")
+    return (f"d={d}: the Im-leg carries p^{2*m}; " + "; ".join(msgs[:5]) + (" ..." if len(msgs) > 5 else ""))
+
+
 def _size_kill(side, k, A, B, Z, N):
     """The rigid-form SIZE kill (entry 89): frame^k = +-(B - iA)/g gives
     q^k = |B - iA|/g <= M(p)/g with M the coefficient bound of the Gaussian
@@ -75,11 +108,104 @@ def _size_kill(side, k, A, B, Z, N):
             cnd = sp.expand(_P ** int(lhs_exp) - rhs)          # must be > 0 for all p >= PMIN
             poly = sp.Poly(cnd, _P)
             if poly.LC() <= 0 or cnd.subs(_P, PMIN) <= 0 or poly.count_roots(inf=PMIN) != 0:
-                return None
+                pin = _pin_stage(tgt, ee, k, M, d)
+                if pin is None:
+                    return None
+                msgs.append(f"d={d}: {tgt['name']} survives the size window; {pin}")
+                continue
             msgs.append(f"d={d}: {tgt['name']} gives p^{ee} < {c} q^{h} against q^{k} <= {sp.factor(M)}/{d}")
     return ("rigid-form size: the Im-leg carries p^%d (the (L LB)-content of A); its deep coprime "
             "targets are all below sqrt(2q)-scale, while |frame^k| = |B - iA|/g bounds q above; " % (2 * m)
             + "; ".join(msgs[:4]) + (" ..." if len(msgs) > 4 else ""))
+
+
+def _qmax_bound(M, d, k):
+    """q < (M/d)^{1/k}: the exact expression in p when M/d = c p^D with k | D
+    (strict: |Z| = M needs all angles aligned, impossible for a frame), else None."""
+    Mp = sp.Poly(sp.expand(M), _P)
+    if len(Mp.terms()) != 1:
+        return None
+    (D,), cval = Mp.terms()[0]
+    if D % k:
+        return None
+    return sp.nsimplify((sp.Rational(cval) / d) ** sp.Rational(1, k)) * _P ** (D // k)
+
+
+def _poly_pos(cnd):
+    """cnd (a polynomial in p) >= 0 for every p >= PMIN (exact Sturm count);
+    the strictness lives in q < qmax."""
+    cnd = sp.expand(cnd)
+    if cnd == 0:
+        return True
+    poly = sp.Poly(cnd, _P)
+    if poly.degree() == 0:
+        return poly.LC() >= 0
+    v0 = cnd.subs(_P, PMIN)
+    if poly.LC() <= 0 or v0 < 0:
+        return False
+    n = poly.count_roots(inf=PMIN)
+    return n == (1 if v0 == 0 else 0)
+
+
+def _pin_stage(tgt, ee, k, M, d):
+    """PINS (entry 91).  A target T of Im(rho^{2k}) whose size window does not
+    contradict the lever p^{ee} | T is pinned: T = t p^{ee} with 0 < |t| <
+    c q^h / p^{ee} < c qmax^h / p^{ee}, a constant when the exponents match
+    (q < qmax = (M/d)^{1/k} strictly).  For the known target shapes each
+    admissible t is tested:
+      * the index-3 Re-cofactor  4 U1^2 - 3 q^2 = t p^{ee}:  4 U1^2 = 3 q^2 +
+        t p^{ee} lies strictly in (0, 4 q^2), so t > 0 forces t p^{ee} < q^2
+        and t < 0 forces |t| p^{ee} < 3 q^2 (both against qmax); and mod 3,
+        4 U1^2 = t p^{ee} = t (ee even, p != 3), so t = 2 mod 3 makes
+        U1^2 = 2 mod 3 -- impossible;
+      * the linear pieces 2 U1 -+ q = t p^{ee}:  |t| p^{ee} < 3 q against qmax;
+      * the deep legs u, v, u -+ v = t p^{ee}:  t^2 p^{2 ee} < 2 q against qmax.
+    Returns a message when every admissible t dies, else None."""
+    qmax = _qmax_bound(M, d, k)
+    if qmax is None:
+        return None
+    h, c = sp.nsimplify(tgt["bexp"]), tgt["bconst"]
+    ratio = sp.nsimplify(c * qmax ** h / _P ** ee)              # |t| < ratio(p)
+    if sp.limit(ratio, _P, sp.oo) == sp.oo:
+        return None
+    r0 = sp.nsimplify(ratio.subs(_P, PMIN))
+    if not (r0.is_number and r0 < 50):
+        return None
+    tmax = int(sp.floor(r0))
+    cands = []
+    for t in range(-tmax, tmax + 1):
+        if t == 0 or abs(t) >= r0:
+            continue
+        if tgt["parity"] == "odd" and t % 2 == 0:
+            continue
+        if tgt["parity"] == "even4" and t % 4:
+            continue
+        cands.append(t)
+    name = tgt["name"]
+    kills = []
+    for t in cands:
+        why = None
+        if "cof 4*u - 3" in name:
+            if t > 0:
+                if _poly_pos(t * _P ** ee - qmax ** 2):
+                    why = f"t={t}: t p^{ee} = 4U1^2 - 3q^2 < q^2 fails against q < {qmax}"
+                elif t % 3 == 2:
+                    why = f"t={t}: 4U1^2 = t mod 3 = 2 mod 3, no square"
+            else:
+                if (t % 3) == 2:
+                    why = f"t={t}: 4U1^2 = 3q^2 + t p^{ee} = t mod 3 = 2 mod 3, no square"
+                elif _poly_pos(-t * _P ** ee - 3 * qmax ** 2):
+                    why = f"t={t}: |t| p^{ee} < 3q^2 fails against q < {qmax}"
+        elif "2X1" in name or "2U1" in name:
+            if _poly_pos(abs(t) * _P ** ee - 3 * qmax):
+                why = f"t={t}: |t| p^{ee} = |2U1 -+ q| < 3q fails against q < {qmax}"
+        elif tgt.get("deep"):
+            if _poly_pos(t * t * _P ** (2 * ee) - 2 * qmax):
+                why = f"t={t}: t^2 p^{2*ee} < 2q fails against q < {qmax}"
+        if why is None:
+            return None
+        kills.append(why)
+    return f"pins t in {cands}: " + "; ".join(kills)
 
 
 def linear_forms(pattern):
@@ -258,17 +384,30 @@ def residual_kill(pattern):
         if sz:
             return "DEAD-residual-size", {"side": side, "k": k, "A": str(A), "B": str(B), "content_bound": N,
                                          "rigid": f"{side}^{k} = +-(B - iA)/g", "why": sz}
+        # per content: size/pin kill OR concentration/sliver branches (entry 91)
         dead = True
         branches = {}
+        sizes = {}
+        used_size = False
         for dd in [x for x in range(1, N + 1) if N % x == 0]:
             ok, certs = _residual_branches(Z / dd, dd)
             branches[dd] = certs
             if not ok:
+                try:
+                    szd = _size_kill_d(side, k, A, B, Z, dd)
+                except Exception:
+                    szd = None
+                if szd:
+                    sizes[dd] = szd
+                    used_size = True
+                    continue
                 dead = False
                 break
         if dead:
-            return "DEAD-residual-concentration", {"side": side, "k": k, "A": str(A), "B": str(B), "content_bound": N,
-                                                  "rigid": f"{side}^{k} = +-(B - iA)/g", "branches": branches}
+            verdict = "DEAD-residual-size" if used_size else "DEAD-residual-concentration"
+            return verdict, {"side": side, "k": k, "A": str(A), "B": str(B), "content_bound": N,
+                             "rigid": f"{side}^{k} = +-(B - iA)/g", "branches": branches, "size_kills": sizes,
+                             "why": "; ".join(sizes.values())}
         report.append({"side": side, "k": k, "A": str(A), "B": str(B), "content_bound": N, "status": "some branch open",
                        "branches": branches})
     return "OPEN", report

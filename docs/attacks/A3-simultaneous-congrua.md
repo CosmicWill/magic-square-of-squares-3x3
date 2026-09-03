@@ -1795,6 +1795,47 @@ constant — no pin, so the residual needs the rigid form's exact
 structure.  Build B v2b: conic splitting after pins, elliptic
 endpoints by rank, and the doubles' pair residuals.
 
+## 2.22 The pin stage — the k = 3 family closed; the (J,1) content-3 residual is the frontier
+
+*(2026-09-02; entry 91.)*
+
+The conic tree of §2.21 collapses to two lines once the content-$3$
+size bound is used sharply.  For the $k=3$ replications, $w^6=\pm Z/3$
+with $|Z|<3p^6$ gives $q<p$; every deep target of $\mathrm{Im}(\rho^{12})$
+then dies by size except the index-$3$ Re-cofactor $4U_1^2-3q^2$,
+whose window $|t|<3q^2/p^2<3$ leaves $t=\pm1$: $t=+1$ needs
+$p^2=4U_1^2-3q^2<q^2<p^2$, and $t=-1$ makes $4U_1^2\equiv-1\equiv2
+\pmod3$.  Mechanized as a **pin stage** inside the size kill: a target
+that survives the size window is pinned to $T=tp^{e}$, the admissible
+$t$ are enumerated from the window with $q<q_{\max}=(M/d)^{1/k}$, and
+each $t$ is tested by the target's shape (range against $q_{\max}$,
+the mod-$3$ obstruction of the Re-cofactor).  The size kill works per
+content: each $d\mid N$ dies by size/pin or by the concentration and
+sliver branches.  All $8$ die.
+
+| box | (2,1) | (2,2) | (3,2) | (4,1) | (5,1) | (4,2) | (3,3) |
+|---|---|---|---|---|---|---|---|
+| dead / total | 26/26 | 120/120 | 310/322 | 138/140 | 210/220 | 542/576 | 676/732 |
+
+$2044/2136$ ($95.7\%$); $92$ open: $88$ doubles and $4$ singles.
+
+**The frontier residual.**  The four singles are the $J=5$ family
+$\{(4,\pm1),(5,1),(5,-1)\}$: rigid form $w^2=\pm(B-iA)/g$ with
+$A=p^2S_8$, $Z=-(\ell^{10}+\ell^9\bar\ell+\bar\ell^{10})$, no
+polynomial gcd, content bound $3$.  Content $1$ dies by concentration.
+Content $3$ is the degree-$10$ cousin of the content-$3$ lemma,
+$$3\rho^4=\bar\ell^{10}+2C_1\ell^9,\qquad 9\mid S_1,\ p\equiv1\pmod{12},$$
+and here the deep descent's $q\ge p^4/2$ meets only $q<p^5$: a gap of a
+factor $p$, so no pin and no size kill — the same for every
+$(J,1)$-type family with $J\ge5$.  The residual is empty for all $181$
+frames with $9\mid S_1$ below $20000$.  Whatever kills it must use more
+than size: the congruence $3\rho^4\equiv\bar\ell^{2J}\pmod{\pi^{4J-2}}$
+pins $\rho^4$ to one residue class whose lift is the equation itself,
+and over $\mathbb Z[\zeta_{12}]$ the factors $\sqrt3\rho^2\mp\bar\ell^J$
+each absorb one prime above $\pi$ (blind descent).  This single
+residual and the $88$ doubles are the frontier of the uniform
+$\omega\le2$ program.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

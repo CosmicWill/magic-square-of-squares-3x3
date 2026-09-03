@@ -3807,3 +3807,63 @@ Every branch closed; the tree uses only coprime splits, residues mod
 generate exactly this: pin the surviving cofactor target, split the
 conic by coprimality, parametrize, apply the residue and size
 filters, and recognize the endpoint curve against the data file.
+
+## 2026-09-02 — Entry 91: the pin stage — the k = 3 family closed (ladder 2044/2136); the (J,1) content-3 residual is the frontier
+
+THE PIN STAGE (residual_kill). The conic tree of entry 90 collapses
+to two lines once the content-3 size bound is used sharply: for the
+k = 3 replications the rigid form is w^6 = +-Z/3 with |Z| < 3p^6, so
+q^6 < p^6, q < p. Then every deep target of Im(rho^12) dies by size
+(the legs need q >= p^4/2, the linear pieces 2U1 -+ q need p^2 < 3q)
+except the index-3 Re-cofactor 4U1^2 - 3q^2, whose window |t| <
+3q^2/p^2 < 3 leaves t = +-1: t = +1 needs p^2 = 4U1^2 - 3q^2 < q^2 <
+p^2, dead; t = -1 makes 4U1^2 = 3q^2 - p^2 = -1 = 2 mod 3, no square,
+dead. Mechanized: when a target survives the size window it is
+PINNED, T = t p^{ee}, the admissible t are enumerated from the window
+(q < qmax = (M/d)^{1/k} strictly), and each t is tested by the
+target's shape (the Re3 cofactor: range 0 < 3q^2 + t p^{ee} < 4q^2
+against qmax, and the mod-3 obstruction; the linear pieces and the
+deep legs: range against qmax). The size kill now works PER CONTENT:
+each d | N dies by size/pin or by the concentration/sliver branches
+(d = 1 by concentration, d = 3 by the pins here); the positivity
+tests are non-strict since q < qmax is strict. All 8 k = 3 patterns
+of the (3,3) box die (DEAD-residual-size with the pin certificate).
+
+LADDER: 2044/2136 (95.7%): (3,2) 310/322, (4,1) 138/140, (5,1)
+210/220, (4,2) 542/576, (3,3) 676/732; 92 open = 4 singles + 88
+doubles.
+
+THE FRONTIER RESIDUAL. The four singles left are the J = 5 family
+{(4,+-1),(5,1),(5,-1)} of the (5,1) box: rigid form w^2 = +-(B -
+iA)/g with A = p^2 S8, Z = -(l^10 + l^9 lbar + lbar^10), no
+polynomial gcd, content bound 3. Content 1 dies by concentration
+(Z + lbar^10 = -2 C1 l^9). Content 3 is the degree-10 cousin of the
+content-3 lemma: 3 rho^4 = lbar^10 + 2 C1 l^9 with 9 | S1, p = 1 mod
+12 (the same mod-3 and mod-4 facts). The deep descent gives q >=
+p^4/2 but the size only q < p^5: a gap of a factor p, so no pin (the
+window |t| < 1.07 sqrt p is not a constant) and no size kill. The
+same happens for every (J,1)-type family with J >= 5 (q < p^J against
+q >= p^4/2). Numerically the residual is empty: for all 181 frames
+with 9 | S1 below 20000, Z/3 is not a Gaussian fourth power (either
+conjugate). What kills it must use more than size: the congruence
+3 rho^4 = lbar^{2J} mod pi^{4J-2} pins rho^4 to one residue class,
+and the equation says the lift is exactly lbar^{2J} + 2 C1 l^{2J-1};
+over Z[zeta_12] the two factors sqrt3 rho^2 -+ lbar^J each absorb one
+prime above pi (p splits), so the norm argument gives nothing -- the
+blind-descent situation. This is the single-lever frontier; the 88
+doubles are the other.
+
+Reconnaissance on the doubles (same entry, later). For a [3,5]
+survivor ((2,-2),(3,-1),(3,2)) the cleared relation is a quartic
+binary form in the w-legs (c2, s2) and a sextic in the l-legs, and
+the rational-root theorem in each frame gives mutual divisibilities:
+c2 | S2 C2 p^2, s2 | 8 c1 s1 (2c1^4 - 5c1^2 s1^2 + s1^4), s1 | 2 c2 s2
+q^2, c1 | 2 c2 s2 (5 s2^2 - 3 c2^2). They bound q above by ~32 p^6 but
+the p-lever's cofactor branch (p^2 | 4c2^2 - 3q^2) gives only q >
+p/sqrt3 below -- no pincer; after pinning the q-lever's cofactor the
+other collapse becomes a quadratic-versus-linear equation in the
+index-2 legs with the pin parameter t' inside (quadratic rigid forms),
+not a closed form. The doubles need a genuinely new mechanism; the
+inert-prime observation (a cofactor lever forces the lever prime to
+split in Q(sqrt 3) or Q(sqrt 5): p = 1 mod 12, q = +-1 mod 5) is a
+constraint, not a kill.

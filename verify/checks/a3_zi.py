@@ -2954,6 +2954,16 @@ def _(ctx):
     require(_frame_zero_of(4 * C1_ - 3 * S1_, (C1_, S1_)) == [5], "4 C1 - 3 S1 vanishes on the frame of 5 (C1, S1) = (3, 4)")
     v41, c41 = kill_pattern(pat41)
     require(v41 == "DEAD-residual-size", (pat41, v41))
+    # (vi) entry 91 -- the pin stage on the k = 3 replication of H2 in the (3,3) box: at content 3
+    # the rigid form w^6 = +-Z/3 gives q < p; every deep target dies by size except the index-3
+    # Re-cofactor, whose window leaves t = +-1: t = 1 needs 4U1^2 - 3q^2 = p^2 < q^2 (dead) and
+    # t = -1 makes 4U1^2 = 2 mod 3 (dead)
+    pat33 = (((2, -3), 1), ((3, -3), 1), ((3, 3), -1))
+    v33, c33 = kill_pattern(pat33)
+    require(v33 == "DEAD-residual-size", (pat33, v33))
+    w33 = str(c33.get("why", ""))
+    require("pins t in [-1, 1]" in w33 and "2 mod 3" in w33 and "q < p" in w33, w33[:400])
+    require(3 in c33.get("size_kills", {}) and all(c is not None for sg, cj, c in c33["branches"][1]), "content 1 by concentration, content 3 by the pins")
     ctx.note("rigid forms: H2 same-sign x4 (concentration), H2 X6-route x4 (the deep size kill -- the "
              "content-3 lemma) and M2-opp x4 are machine theorems; content 3 <=> 3 | S1 and the residual "
              f"system is empty in range for both contents ({n_p} split primes); the (4,1) J=4 family dies "
