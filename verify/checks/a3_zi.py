@@ -3267,3 +3267,77 @@ def _(ctx):
     require(found is None, ("a quadruple exists", found))
     ctx.note("quadruple pivot validated: representative candidates in (3,3),(4,2),(5,1) pool to a pincer; "
              "no quadruple in D(m) for m < " + str(bound))
+
+
+@check("a3.quadruple_engine", DOC)
+def _(ctx):
+    """THE RIGOROUS QUADRUPLE ENGINE (entry 94; compute/quadruple.py) --
+    a direct attack on MSS3, and an HONEST correction of entry 93.  MSS3
+    <=> a quadruple u, v, u+v, u-v in one D(m) = two additive triples
+    T1 = {u,v,u+v}, T2 = {u,v,u-v} sharing the pair {u,v} (u's sign
+    opposite).  Both hold for the same frame, so the quadruple carries
+    every lever of T1 and of T2; the SOUND kill requires a pincer for
+    EVERY selection of one target per lever (the frame realizes one target
+    per lever, unknown to us) -- not merely the best target, which is what
+    the entry-93 reconnaissance used.  Under the sound rule:
+      * BALANCED boxes -- each triple gives both a p-lever and a q-lever,
+        so opposing bounds pincer.  A (4,2) pair dies for every selection
+        (min exponent >= 2: p^2 < const, dead for p >= 5).  No quadruple,
+        no MSS3, for those split parts.
+      * (J,1)-TYPE / DIAGONAL boxes -- T1 gives only p-levers, so both
+        triples bound q ~ p^J (the SAME direction): a compatible size
+        WINDOW, not a pincer.  A (5,1) pair SURVIVES the pincer via the
+        shallow-cofactor disjunct q^2 < 9 p^8 (q < 3 p^4) against the
+        p-lever q > p^4/2 -- exactly the frontier residual R_J.  The
+        quadruple does NOT bypass R_J here.
+    So the pivot is not a uniform MSS3 kill; it closes the balanced boxes
+    and reduces the (J,1)/diagonal boxes to the same frontier.  Verifies:
+    the soundness property (pooled_kill is all-selections); a (4,2) pair
+    dies with exponent >= 2; a (5,1) pair survives with a documented
+    compatible-window selection."""
+    from compute.quadruple import pooled_kill, quadruple_pairs, _lever_disjunctions
+    # (i) a (4,2) killing pair: every selection pincers, exponent >= 2
+    T1 = (((3, -1), 1), ((4, -2), 1), ((4, 2), 1))
+    T2 = (((3, 1), 1), ((4, 2), 1), ((4, -2), -1))
+    ok, exp = pooled_kill(T1, T2)
+    require(ok is True, ("(4,2) pair should die", ok, exp))
+    require(exp >= 2, ("(4,2) pincer exponent", exp))
+    # both triples supply a p-lever AND a q-lever (opposing bounds)
+    d1 = _lever_disjunctions(T1)
+    d2 = _lever_disjunctions(T2)
+    require({p for p, _ in d1} == {"p", "q"} and {p for p, _ in d2} == {"p", "q"},
+            ("(4,2) triples give both primes", d1, d2))
+    # (ii) a (5,1) surviving pair: some selection does NOT pincer (the frontier window)
+    S1 = (((4, -1), 1), ((5, -1), -1), ((5, 1), 1))
+    S2 = (((4, -1), 1), ((5, 0), 1), ((5, 1), -1))
+    ok2, info2 = pooled_kill(S1, S2)
+    require(ok2 is False, ("(5,1) pair should survive the pincer", ok2))
+    require(isinstance(info2, dict) and "selection" in info2, info2)
+    # T1 gives only p-levers (no opposing q-lever) -- the structural reason
+    ds1 = _lever_disjunctions(S1)
+    require({p for p, _ in ds1} == {"p"}, ("(5,1) T1 gives only p-levers", ds1))
+    # the surviving selection is a compatible window: a p-lever (q > p^4/2, from p^2 < c q^{1/2})
+    # and the shallow q-cofactor (q < 3 p^4, from q^2 < 9 p^8) -- both q ~ p^4, no pincer
+    sel = info2["selection"]
+    require(any(be == 8 for (al, ka, be) in sel), ("the shallow q-cofactor target q^2 < * p^8", sel))
+    # (iii) the soundness property: a pair whose only pincer is best-target is NOT killed
+    # (entry-93 reconnaissance used pooled_pincer = best target; the sound engine requires all)
+    from compute.window_kill import _levers, _ineq, _pincer
+    def best_target_pincer(P1, P2):
+        ineqs = {"p": [], "q": []}
+        for P in (P1, P2):
+            lv = _levers(P)
+            if isinstance(lv, list):
+                for L in lv:
+                    for tgt in L["targets"]:
+                        ineqs[L["prime"]].append(_ineq(L, tgt))
+        for ip in ineqs["p"]:
+            for iq in ineqs["q"]:
+                if _pincer(ip, iq):
+                    return True
+        return False
+    require(best_target_pincer(S1, S2) is True, "entry-93 best-target pincer passes on the (5,1) pair")
+    require(pooled_kill(S1, S2)[0] is False, "the sound engine does NOT -- the correction")
+    ctx.note("rigorous quadruple engine: balanced boxes (e.g. (4,2)) die by the pooled pincer (no MSS3 there); "
+             "(J,1)/diagonal boxes ((5,1),(3,3)) survive the pincer via the shallow-cofactor window (the frontier "
+             "residual R_J) -- correcting entry 93's best-target 'all die'. Next: the joint residual solver.")

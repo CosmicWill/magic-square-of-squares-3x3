@@ -3978,3 +3978,55 @@ solves the bare equation); A3.C in full is a case of the n-conjecture
 3 X^4 = y^{2J} + y^{2J-1} + 1 (genus J - 1, Faltings-finite, non-
 uniform). These place the conjecture inside the standard framework and
 say plainly that a proof needs a global method.
+
+## 2026-09-03 — Entry 94: the rigorous quadruple engine — MSS3 attacked directly; the pivot pincers in balanced boxes, reduces to the frontier in the rest (correcting entry 93)
+
+Built compute/quadruple.py: the SOUND quadruple engine. MSS3 <=> a
+quadruple u, v, u+v, u-v in one D(m) = two additive triples
+T1 = {u,v,u+v}, T2 = {u,v,u-v} sharing the pair {u,v} (u's sign
+opposite, v's same), both holding for the same frame (same p, q). The
+quadruple carries every lever of T1 and of T2; the SOUND kill requires
+a pincer for EVERY selection of one target per lever (the true frame
+realizes one target per lever, unknown to us). Completeness: survey_box
+enumerates every open triple (a triple dead on its own kills the
+quadruple a fortiori), and we enumerate every pair sharing the
+structure; so every live quadruple (both triples open) is an
+enumerated pair.
+
+CORRECTION OF ENTRY 93. The reconnaissance used the BEST target and
+reported "all 56 candidate quadruples die." Under the SOUND rule (all
+selections), over the current 92 open triples: 16 pairs die, 40
+survive. The best-target claim was over-optimistic; the honest count
+is below.
+
+RESULT (sound, box-agnostic over the 92 open triples):
+  - 16 pairs DIE by the pooled pincer -- the BALANCED shapes, where
+    each triple gives BOTH a p-lever and a q-lever, so opposing bounds
+    are incompatible (e.g. the (4,2)-shape pair: T1 p^2 < c q^2 and T2
+    q^2 < c p^4 -> min pincer exponent 2, p^2 < const, dead for p >= 5).
+    Those quadruples are impossible: no MSS3 realizes them.
+  - 40 pairs SURVIVE the pincer -- the (5,1)-shape (8) and (3,3)-shape
+    (32). Here the two triples bound the SAME direction: T1 gives only
+    p-levers, so both levers read q ~ p^J (a compatible size WINDOW, not
+    a pincer). The (5,1) survivors are exactly the frontier residual
+    R_5 (the shallow cofactor q^2 < 9 p^8 of Re(l^9) against q > p^4/2);
+    the (3,3) survivors are a diagonal window p ~ q. The quadruple does
+    NOT bypass the frontier in these shapes.
+
+STRUCTURAL LESSON: the second relation is a genuine second lever, but
+it pincers only when the two triples bound OPPOSITE prime-ratio
+directions -- which balanced boxes (both exponents >= 2, each frame
+side rich enough) provide and (J,1)-type boxes (b = 1, only p-levers)
+do not. So the quadruple pivot rigorously kills MSS3 in the balanced
+boxes and reduces the rest to the same residuals (R_J and the diagonal
+window) already isolated. It narrows MSS3 to those residuals; it is not
+a uniform solution. a3.quadruple_engine pins a (4,2) kill (exp >= 2), a
+(5,1) survivor (the compatible window), and the soundness correction
+(the best-target pincer passes where the sound engine does not).
+
+NEXT: the JOINT residual solver. Where the pincer leaves a window, the
+two triples give TWO actual equations in the SAME rho (e.g. both
+rho^4 = +-Z_i/g_i with the same q): a genuinely overdetermined system
+that size alone cannot see. Solving it (or reducing both to one R_J)
+is the path to closing the surviving 40 -- the real remaining work on
+MSS3 for omega = 2.

@@ -1915,6 +1915,44 @@ a $\mathbb Q(i)$-point of the superelliptic $3X^4=y^{2J}+y^{2J-1}+1$
 (genus $J-1$); and $A3.C$ in full is a case of the $n$-conjecture
 ($n=6$) over $\mathbb Q(i)$.  A proof is a global statement.
 
+## 2.25 The rigorous quadruple engine: MSS3 attacked directly
+
+*(2026-09-03; entry 94; `compute/quadruple.py`, check `a3.quadruple_engine`.)*
+
+MSS3 $\iff$ a quadruple $u,v,u+v,u-v$ in one $D(m)$, which is two
+additive triples $T_1=\{u,v,u+v\}$, $T_2=\{u,v,u-v\}$ on the shared
+pair $\{u,v\}$ (with $u$'s sign opposite), both holding for the same
+frame.  The quadruple carries **every lever of $T_1$ and of $T_2$**;
+the sound kill demands a pincer for *every* selection of one target per
+lever (the true frame realizes one per lever, unknown to us).
+survey_box's complete open-triple enumeration makes it complete: every
+live quadruple (both triples open) is an enumerated pair.
+
+**Correcting the reconnaissance (2.24).**  The best-target count "all
+$56$ die" was optimistic.  Under the sound rule, over the $92$ open
+triples: **$16$ pairs die, $40$ survive.**
+
+* **Die ($16$, the balanced shapes).**  Each triple gives both a
+  $p$-lever and a $q$-lever, so the bounds oppose: a $(4,2)$-shape pair
+  has $T_1:p^2<c\,q^2$ and $T_2:q^2<c\,p^4$, min pincer exponent $2$
+  ($p^2<$ const, dead for $p\ge5$).  Those quadruples are impossible.
+* **Survive ($40$: $8$ of $(5,1)$-shape, $32$ of $(3,3)$-shape).**  Here
+  $T_1$ gives only $p$-levers, so both levers read the same direction
+  $q\sim p^J$ — a compatible size *window*, not a pincer.  The $(5,1)$
+  survivors are exactly the frontier residual $R_5$ (the shallow
+  cofactor $q^2<9p^8$ of $\mathrm{Re}(\ell^9)$ against $q>p^4/2$); the
+  $(3,3)$ survivors are a diagonal window $p\sim q$.
+
+**Reading.**  The second relation is a real second lever, but it
+pincers only when the two triples bound *opposite* prime-ratio
+directions — which balanced boxes provide and $(J,1)$-type boxes
+($b=1$, only $p$-levers) do not.  So the pivot rigorously kills MSS3 in
+the balanced shapes and reduces the rest to the residuals already
+isolated ($R_J$ and the diagonal window); it narrows MSS3, it does not
+solve it.  The next build is the **joint residual solver**: where the
+pincer leaves a window, $T_1$ and $T_2$ give two equations in the same
+$\rho$, an overdetermined system size alone cannot see.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was
