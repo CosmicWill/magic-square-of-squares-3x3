@@ -3635,3 +3635,23 @@ the exact branch pattern of the gap, content 3 <=> 3 | S1, and the
 emptiness in range). Recorded as a gap, not re-claimed. The
 doubles (128) are untouched by v1 (no linear form): the residual
 equation there is quadratic in the legs -- v2.
+
+Build B v2 reconnaissance (same entry, later). The cleanest form of a
+pattern's relation is its ANGLE POLYNOMIAL: with u = w/wbar = w^2/q^2,
+H(u) = sum_i c_i p^{2wp_i} (l^{2j_i} u^{K0+k_i} - lbar^{2j_i} u^{K0-k_i})
+(K0 = max|k|), and the relation says H(u) = 0 with u in Q(i). A linear
+factor of H over Q(i)(l, lbar) of the unit-modulus form u = eps
+(l/lbar)^n is impossible (w or w l would be purely imaginary up to a
+unit, forcing an even norm), and the top/bottom coefficients give the
+Gaussian divisibilities rho^2 | h_0 and rhobar^2 | h_{2K0} -- which
+reproduce exactly the q-levers the collapses already show. Numeric
+frames (p = 13, 29, 37, 53, 61) factored over Q(i): 122 of the 128
+double-lever survivors have an IRREDUCIBLE angle polynomial (degree 2,
+4 or 6 in u) at every frame, so no uniform algebraic factor exists;
+the other 6 ([5,5] x4, [3,5] x2 in the (3,3) box) carry the spurious
+unit-modulus linear factor u = -1 or -(l/lbar)^{+-1} and live on the
+remaining irreducible quintic. Symbolic multivariate factoring over
+Q(i) stalled in sympy (15 min, no output) and is not needed. So the
+doubles need the non-homogeneous cofactor pair or a residual chase
+after a pin -- build B v2 proper -- not more factoring. The content-3
+lemma remains the decisive open piece for A3.9.
