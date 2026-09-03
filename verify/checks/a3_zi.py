@@ -3008,3 +3008,107 @@ def _(ctx):
         ctx.note(f"(3,1) box, 78/78 distinct OPEN patterns dead: {dict(full)}")
     ctx.note(f"the 12 hand-closed rows of the (3,1) ledger by machine: {dict(tally)} -- Theorem A3.9 "
              "rests on machine certificates alone")
+
+
+@check("a3.frontier_residual", DOC)
+def _(ctx):
+    """THE FRONTIER RESIDUAL (entry 92) -- pinned, not claimed.  For the
+    (J,1)-type family {(J-1,+-1),(J,1),(J,-1)}, J >= 5, the content-3 branch
+    of the rigid form is 3 rho^4 = lbar^{2J} + 2 C1 l^{2J-1}.  (i) The
+    machine's own derivation for J = 5: the rigid form's Gaussian polynomial
+    is -(L^10 + L^9 LB + LB^10), content bound 3, content 1 dead by
+    concentration, content 3 open (residual_kill reports OPEN with exactly
+    that branch pattern).  (ii) Symbolic identities: Z + LB^{2J} = -(L +
+    LB) L^{2J-1}; C_{2J} + p^2 C_{2J-2} = 2 C1 C_{2J-1}; |Z|^2 - p^{4J} =
+    8 C1 C_{2J-1} C_{2J}; and over Z[sqrt3]: (s rho^2 + lbar^J)(s rho^2 -
+    lbar^J) = 3 rho^4 - lbar^{2J} = 2 C1 l^{2J-1} when the equation holds.
+    (iii) Local methods cannot work: Z(pi = 1) = 3 solves the bare equation.
+    (iv) Frame facts on data: 3 | Z iff 3 | S1; rho^4 = +-1 mod 3 for every
+    Gaussian prime of odd norm.  (v) Emptiness on data: no frame with 9 | S1
+    below the bound makes Z/3 a Gaussian fourth power (J = 5), either
+    conjugate.  This is Conjecture R_J's evidence, recorded as data."""
+    from math import isqrt, gcd
+    import sympy as sp
+    from compute.residual_kill import residual_kill, linear_forms
+    from compute.lucas_endpoints import lucas_to_L, _L, _LB
+    # (i) the machine's derivation at J = 5
+    pat = (((4, -1), 1), ((5, -1), 1), ((5, 1), -1))
+    forms = linear_forms(pat)
+    require(forms and forms[0][0] == "w" and forms[0][1] == 2, forms[:1])
+    side, k, A, B, d = forms[0]
+    Z = sp.expand(lucas_to_L(B - sp.I * A, "l"))
+    require(Z in (-(_L ** 10 + _L ** 9 * _LB + _LB ** 10), _L ** 10 + _L ** 9 * _LB + _LB ** 10), Z)
+    v, rep = residual_kill(pat)
+    require(v == "OPEN", v)
+    r = [x for x in rep if x.get("status") == "some branch open"]
+    require(r and r[0]["content_bound"] == 3 and all(c is not None for sg, cj, c in r[0]["branches"][1])
+            and all(c is None for sg, cj, c in r[0]["branches"][3]), "content 1 dead, content 3 open")
+    # (ii) symbolic identities in c1, s1 (l = c1 + i s1)
+    c1, s1, s = sp.symbols("c1 s1 s", real=True)
+    l, lb = c1 + sp.I * s1, c1 - sp.I * s1
+    for J in (3, 5, 7):
+        Zs = sp.expand(l ** (2 * J) + l ** (2 * J - 1) * lb + lb ** (2 * J))
+        require(sp.expand(Zs + lb ** (2 * J) - (-(l + lb) * l ** (2 * J - 1)) - 2 * lb ** (2 * J)) == 0 or
+                sp.expand(Zs - lb ** (2 * J) - (l + lb) * l ** (2 * J - 1)) == 0, J)
+        C = lambda n: sp.re(sp.expand(l ** n)); S = lambda n: sp.im(sp.expand(l ** n))
+        p2 = c1 ** 2 + s1 ** 2
+        require(sp.expand(C(2 * J) + p2 * C(2 * J - 2) - 2 * c1 * C(2 * J - 1)) == 0, ("C identity", J))
+        require(sp.expand(sp.expand(Zs * sp.conjugate(Zs)) - p2 ** (2 * J) - 8 * c1 * C(2 * J - 1) * C(2 * J)) == 0, ("norm identity", J))
+        rho2 = sp.Symbol("R")            # stands for rho^2; 3 R^2 = Zs is the equation
+        F = sp.expand((s * rho2 + lb ** J) * (s * rho2 - lb ** J))
+        require(sp.expand(F.subs(s ** 2, 3) - (3 * rho2 ** 2 - lb ** (2 * J))) == 0, ("zeta12 factorization", J))
+    # (iii) the trivial solution of the bare equation
+    require(all((1 ** (2 * J) + 1 ** (2 * J - 1) * 1 + 1 ** (2 * J)) == 3 for J in (3, 5, 7)))
+    # (iv) frame facts on data
+    def frame(p):
+        for a in range(1, isqrt(p) + 1):
+            b2 = p - a * a
+            b = isqrt(b2)
+            if b * b == b2 and a > b > 0:
+                return a * a - b * b, 2 * a * b
+    def gmul(x, y):
+        return (x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0])
+    def gpow(x, n):
+        out = (1, 0)
+        for _ in range(n):
+            out = gmul(out, x)
+        return out
+    def Z_of(l_, lb_, J):
+        a_, b_, c_ = gpow(l_, 2 * J), gmul(gpow(l_, 2 * J - 1), lb_), gpow(lb_, 2 * J)
+        return (a_[0] + b_[0] + c_[0], a_[1] + b_[1] + c_[1])
+    bound = ctx.bound(full=200000, fast=20000)
+    n_fr = 0
+    n_9 = 0
+    for p in range(5, bound, 4):
+        if any(p % r == 0 for r in range(2, isqrt(p) + 1)):
+            continue
+        C1_, S1_ = frame(p)
+        Zp = Z_of((C1_, S1_), (C1_, -S1_), 5)
+        require(((Zp[0] % 3 == 0) and (Zp[1] % 3 == 0)) == (S1_ % 3 == 0), (p, "3 | Z iff 3 | S1"))
+        # rho^4 = +-1 mod 3 for the Gaussian prime above p
+        a_ = next(a for a in range(1, isqrt(p) + 1) if isqrt(p - a * a) ** 2 == p - a * a)
+        r4 = gpow((a_, isqrt(p - a_ * a_)), 4)
+        require(r4[1] % 3 == 0 and r4[0] % 3 in (1, 2), (p, r4))
+        n_fr += 1
+        if S1_ % 9:
+            continue
+        n_9 += 1
+        for l_, lb_ in (((C1_, S1_), (C1_, -S1_)), ((C1_, -S1_), (C1_, S1_))):
+            Zc = Z_of(l_, lb_, 5)
+            z = (Zc[0] // 3, Zc[1] // 3)
+            nz = z[0] * z[0] + z[1] * z[1]
+            c4 = round(nz ** 0.25)
+            for cand in (c4 - 1, c4, c4 + 1):
+                if cand > 0 and cand ** 4 == nz:
+                    # a Gaussian w with N(w) = cand and eps w^4 = z would be a solution: exclude exactly
+                    for aa in range(0, isqrt(cand) + 1):
+                        bb2 = cand - aa * aa
+                        bb = isqrt(bb2)
+                        if bb * bb == bb2:
+                            for w in ((aa, bb), (aa, -bb), (bb, aa), (bb, -aa)):
+                                w4 = gpow(w, 4)
+                                for eps in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                                    require(gmul(eps, w4) != z, (p, "a solution of the frontier residual"))
+    require(n_fr >= 100 and n_9 >= 10, (n_fr, n_9))
+    ctx.note(f"Conjecture R_5 evidence: {n_9} frames with 9 | S1 below {bound} (of {n_fr} split primes), no solution; "
+             "derivation, identities and the trivial solution of the bare equation pinned")

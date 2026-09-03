@@ -3867,3 +3867,57 @@ not a closed form. The doubles need a genuinely new mechanism; the
 inert-prime observation (a cofactor lever forces the lever prime to
 split in Q(sqrt 3) or Q(sqrt 5): p = 1 mod 12, q = +-1 mod 5) is a
 constraint, not a kill.
+
+## 2026-09-02 — Entry 92: the frontier residual — reconnaissance, no theorem; Conjecture R_J named
+
+THE OBJECT. For the (J,1)-type family {(J-1,+-1),(J,1),(J,-1)}, J >= 5,
+the content-3 branch of the rigid form is
+    3 rho^4 = l^{2J} + l^{2J-1} lbar + lbar^{2J} = lbar^{2J} + 2 C1 l^{2J-1}
+(the other sign dies mod 4: rho^4 = 1 mod 4 for every unit while the
+right side is 3 mod 4), with 3 | Z iff 3 | S1, then 9 | S1 (rho^4 =
++-1 mod 3), hence p = 1 mod 12. Content 1 dies by concentration
+(Z + lbar^{2J} = -2 C1 l^{2J-1}: l^{2J-1} in one factor of (rho^2 -+
+lbar^J), the other of modulus < 2p yet >= p^{2J-1} - 2p^J). Content 3
+is the frontier. The two real equations are 3 U2 = C_{2J} + 2 C1
+C_{2J-1} and 3 V2 = p^2 S_{2J-2} (U2 + i V2 = rho^4), and the norm
+identity 9q^4 - p^{4J} = 8 C1 C_{2J-1} C_{2J} (using C_{2J} + p^2
+C_{2J-2} = 2 C1 C_{2J-1}).
+
+WHAT FAILS AND WHY. (i) Size: the deep descent gives q >= p^4/2 (p^2
+exactly divides one of the four coprime legs u, v, u-+v of rho, each
+< sqrt(2q)), the norm gives q < p^J; the gap p^{J-4} is fatal for
+J >= 5 and there is no constant window (|t| = |u|/p^2 < sqrt2
+p^{J/2-2}). (ii) Local methods cannot work at all: the bare equation
+has the solution pi = 1, rho = 1 for every J (Z(1) = 3), so no
+congruence obstruction exists; the frame conditions (a, b >= 1,
+opposite parity, coprime) are what exclude it. (iii) The factorization
+over Z[zeta_12], (sqrt3 rho^2 + lbar^J)(sqrt3 rho^2 - lbar^J) = 2 C1
+l^{2J-1}: the case "both primes above pi in one factor" dies by norms
+(4 C1^2 p^{4J-2} < p^{8J-4}); the split case puts p^{4J-2} on each
+side and yields only constraints -- 3 a quartic residue mod p, and
+(new) every prime r = 5 mod 12 dividing C1 to an EVEN power (the ideal
+b with b . sigma(b) = (2C1) must be sigma-stable at primes inert in
+K/Q(i)). On the 1480 frames with 9 | S1 below 200000 these keep 217
+(15%). (iv) The small-representative form: rho^2 is the unique
+element of modulus < p^{2J-1}/2 in the class of -lbar^J s^{-1} mod
+pi^{4J-2} (s^2 = 3), and the equation asks that class's small lift to
+satisfy 3 rho_0^4 - lbar^{2J} = (pi^2 + pibar^2) pi^{4J-2} exactly --
+tautologically consistent, nothing to squeeze. (v) Geometry: with
+y = l/lbar and X = rho/pibar^J the residual is a Q(i)-point of the
+superelliptic curve 3X^4 = y^{2J} + y^{2J-1} + 1, genus 13 for J = 5
+(finitely many points by Faltings, non-effective; the trivial point
+y = 1 is the solution above). No elliptic quotient is visible.
+
+EVIDENCE. Empty for all 6503 frames with 9 | S1 below 10^6 (J = 5),
+for all 1480 frames below 200000 with J = 7 and J = 9, and -- without
+any primality -- for every primitive pi = a + bi of norm <= 20000
+(J = 5). CONJECTURE R_J (2026-09-02): for every J >= 5 the equation
+3 rho^4 = lbar^{2J} + 2 C1 l^{2J-1} has no solution with pi, rho
+Gaussian primes of odd norm. It gates the single-lever part of the
+uniform omega <= 2 program: the (J,1)-type family is the ONLY
+single-lever residual left in the ladder, and its shape is the same
+for every J. A proof would need a global method (Chabauty on the
+genus-13 curve for each J is not uniform either); the uniform program
+therefore cannot close the (J,1) boxes for J >= 5 with the present
+toolkit, and the honest statement is the box theorem conditional on
+R_J, verified to p < 10^6.

@@ -1836,6 +1836,44 @@ each absorb one prime above $\pi$ (blind descent).  This single
 residual and the $88$ doubles are the frontier of the uniform
 $\omega\le2$ program.
 
+## 2.23 The frontier residual: reconnaissance, and Conjecture R_J
+
+*(2026-09-02; entry 92; check `a3.frontier_residual`.)*
+
+For the $(J,1)$-type family with $J\ge5$ the content-$3$ branch is
+$$3\rho^4=\bar\ell^{2J}+2C_1\ell^{2J-1},\qquad 9\mid S_1,\ p\equiv1\pmod{12},$$
+with the real equations $3U_2=C_{2J}+2C_1C_{2J-1}$, $3V_2=p^2S_{2J-2}$
+and the norm identity $9q^4-p^{4J}=8C_1C_{2J-1}C_{2J}$.  Everything in
+the toolkit was tried on it.  *Size:* the deep descent's $q\ge p^4/2$
+against $q<p^J$ leaves a gap $p^{J-4}$; no constant window.  *Local
+methods cannot work:* the bare equation has the solution $\pi=\rho=1$
+for every $J$ ($Z(1)=3$), so only the frame conditions exclude
+solutions and no congruence can.  *$\mathbb Z[\zeta_{12}]$:* the case
+with both primes above $\pi$ in one factor dies by norms; the split
+case gives constraints only — $3$ a quartic residue mod $p$, and every
+prime $r\equiv5\pmod{12}$ of $C_1$ to an even power (the ideal
+$\mathfrak b$ with $\mathfrak b\,\sigma(\mathfrak b)=(2C_1)$ is
+$\sigma$-stable at primes inert in $K/\mathbb Q(i)$) — keeping $15\%$
+of the frames.  *Small representatives:* $\rho^2$ is the unique element
+of modulus $<p^{2J-1}/2$ in the class of $-\bar\ell^J s^{-1}$ modulo
+$\pi^{4J-2}$ ($s^2\equiv3$), and the equation asks that lift to satisfy
+the identity exactly — tautologically consistent.  *Geometry:* with
+$y=\ell/\bar\ell$, $X=\rho/\bar\pi^J$ it is a $\mathbb Q(i)$-point of
+$3X^4=y^{2J}+y^{2J-1}+1$, genus $13$ at $J=5$: finitely many by
+Faltings, non-effective, and not uniform in $J$.
+
+**Evidence.**  Empty for all $6503$ frames with $9\mid S_1$ below
+$10^6$ ($J=5$), for all $1480$ frames below $200000$ at $J=7$ and
+$J=9$, and, with no primality at all, for every primitive $\pi$ of norm
+$\le20000$ ($J=5$).
+
+**Conjecture R_J.**  For every $J\ge5$, $3\rho^4=\bar\ell^{2J}+
+2C_1\ell^{2J-1}$ has no solution with $\pi,\rho$ Gaussian primes of odd
+norm.  It is the only single-lever residual left in the ladder and its
+shape is the same for every $J$; the box theorems for $(J,1)$, $J\ge5$,
+are conditional on it (verified to $p<10^6$).  A proof needs a global
+method that the present toolkit does not have.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was
