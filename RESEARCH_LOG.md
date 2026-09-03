@@ -3655,3 +3655,68 @@ Q(i) stalled in sympy (15 min, no output) and is not needed. So the
 doubles need the non-homogeneous cofactor pair or a residual chase
 after a pin -- build B v2 proper -- not more factoring. The content-3
 lemma remains the decisive open piece for A3.9.
+
+## 2026-09-02 — Entry 89: the deep descent — the content-3 lemma is a theorem; Theorem A3.9 by machine
+
+THE LEMMA. Take the surviving branch 3 rho^4 = l^6 + lbar^6 + l^5 lbar
+(mod 4 kills the other sign: rho^4 = 1 mod 4 for every Gaussian unit
+while the right side is 3 mod 4). The rigid form gives V2 = Im(rho^4)
+= -+A/3 with A = p^2 S4, so p^2 | Im(rho^4). Descend one level below
+the frame: rho = u + iv is the Gaussian prime itself, u^2 + v^2 = q,
+gcd(u, v) = 1, opposite parity, and Im(rho^4) = 4uv(u-v)(u+v) with
+four PAIRWISE COPRIME factors each < sqrt(2q). So p^2 divides one of
+them and q >= p^4/2; while 3q^2 = |l^6 + lbar^6 + l^5 lbar| <= 3p^6
+gives q <= p^3. Hence p <= 2: no solution for any p, either content
+(g = 1: q <= sqrt3 p^3, p <= 2 sqrt3). This IS entry 66's descent
+("p^4 in a leg of q^2; p^2 | (g -+ h) or p^2 | gh" = p^2 | u -+ v or
+uv), content-independent all along; its crude bound 64p^6 left
+"p <= 16" and a finite residue check, and only that check was
+content-1-specific. With the sharp bound nothing finite remains. So
+the entry-88 "gap" was a gap in the RECORD (the finite check) and in
+the machine (no deep targets), not in the mathematics of the descent.
+
+MADE UNIFORM. (i) Deep targets in window_kill: the index-1 legs of a
+frame X = pi^2 recurse to the legs of pi = a + bi: C1 = (a-b)(a+b)
+(coprime odd factors < sqrt(2P)), S1 = 2ab (coprime factors < sqrt P)
+-- every w-lever inequality gains a square root (q >= p^{4e}/2 at the
+deepest level instead of p^{2e}); rational exponents throughout the
+pincer/window engine. (ii) The rigid-form SIZE kill in residual_kill:
+q^k = |B - iA|/g <= M(p)/g (coefficient bound) while the Im-leg carries
+the (L LB)-content p^{2m} of A and divides one deep coprime factor of
+Im(rho^{2k}); each target's p^{2m} < c q^h with the size bound is a
+polynomial inequality in p, false on [5, oo) by an exact Sturm count
+(verdict DEAD-residual-size). Every remaining single lever of the
+ladder is this residual at level k = 2 or 4.
+
+THEOREM A3.9 BY MACHINE: the (3,1) box under the complete stack is
+78/78 (16 residual parity, 8 valuation, 16 concentration, 6 unit
+collapse, 12 window, 4 rigid form + concentration = H2 same-sign, 4
+rigid form + size = H2 X6-route, 12 doubled = Lemma G4; 330 s). The
+twelve rows that rested on hand trees (H2 x8, M2-opp x4) are certified
+by a3.box31_machine on every run; the FULL profile runs the whole box.
+With entries 85-86: THEOREMS A3.7, A3.8, A3.9 AND A3.10 ALL REST ON
+MACHINE CERTIFICATES ALONE. The deep targets also close 18 of the 128
+double-lever survivors ([1,7] x10, [2,8] x6, [2,10] x2). Checks:
+a3.box31_machine (new), a3.residual_finisher (iii) rewritten -- the
+X6 rows must die by the size kill, and the concentration-only branch
+pattern is kept as a control that content 1 alone would not have
+sufficed -- plus the deep frame facts on real primes;
+a3.window_finisher's target names and [1,5] mechanisms updated. Suite
+174. Bug on the way: a ten-minute test batch "hung" -- it was only
+buffered stdout; flush in long batches.
+
+Ladder after the deep descent: the size kill takes 40 more singles and
+the deep targets 18 doubles -- (3,2) 310/322, (4,1) 134/140, (5,1)
+202/220, (4,2) 534/576, (3,3) 668/732; with (2,1) 26/26 and (2,2)
+120/120: 1994/2136 (93.4%), 142 open = 110 doubles + 32 singles. The
+32 singles are two families the size kill misses by structure: the
+k = 3 replications of H2 in (3,3) (8), where the lever can land on the
+index-3 Im-cofactor 4U1^2 - q^2, bounded by the targets at 3q^2 but
+factoring as (2U1 - q)(2U1 + q) with coprime odd factors < 3q (the
+missing deep target), after which the pin 2U1 +- q = +-t p^2, t in
+{+-1, +-3}, must be substituted; and the (J,1)-type families
+{(J-1,+-k),(J,k),(J,-k)} with J >= 4 (24), where the rigid-form bound
+q <= kappa p^J meets the deep lever q >= p^4/2 at J = 4 with a
+constant to spare, so a leg of rho is pinned to +-p^2 exactly and the
+residual must be chased after the pin. Both are build B v2, with the
+doubles' non-homogeneous cofactor pairs.

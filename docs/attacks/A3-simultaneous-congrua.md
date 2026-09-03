@@ -1680,6 +1680,78 @@ system is empty for every split $p<20000$ in both contents (a fact,
 not a proof).  The same lemma, at level $k$, is what the $72$ ladder
 singles need.
 
+## 2.20 The deep descent: the content-3 lemma is a theorem — Theorem A3.9 by machine
+
+*(2026-09-02; entry 89; `compute/window_kill.py` (deep targets),
+`compute/residual_kill.py` (the rigid-form size kill); checks
+`a3.box31_machine`, `a3.residual_finisher` (iii), `a3.window_finisher`.)*
+
+**The lemma.**  Fix the surviving branch $3\rho^4=\ell^6+\bar\ell^6+
+\ell^5\bar\ell$ (mod $4$ kills the other sign).  The rigid form says
+$V_2=\mathrm{Im}(w^2)=\mp A/3$ with $A=p^2S_4$, so $p^2\mid
+\mathrm{Im}(\rho^4)$.  Now descend one level further than the frame:
+$\rho=u+iv$ is the Gaussian prime itself, $u^2+v^2=q$, $\gcd(u,v)=1$,
+opposite parity, and
+$$\mathrm{Im}(\rho^4)=4uv(u-v)(u+v),$$
+four **pairwise coprime** factors each of modulus $<\sqrt{2q}$.  So
+$p^2$ divides one of them and $q\ge p^4/2$.  On the other side
+$3q^2=|\ell^6+\bar\ell^6+\ell^5\bar\ell|\le3p^6$ gives $q\le p^3$.
+Hence $p^4/2\le p^3$, $p\le2$: **no solution for any $p$, either
+content** ($g=1$ gives $q\le\sqrt3\,p^3$, $p\le2\sqrt3$).  This is
+exactly the descent of entry 66 — "$p^4$ in a leg of $q^2$, then
+$p^2\mid(g\mp h)$ or $p^2\mid gh$" *is* $p^2\mid u\pm v$ or $p^2\mid
+uv$ — which was content-independent all along; its crude bound
+$64p^6$ left "$p\le16$" and a finite residue check, and only that
+check was content-$1$-specific.  With the sharp bound nothing finite
+remains.  Numerically the content-$3$ frames are half of all frames
+and none solves the system to $p<20000$; the lemma now explains why.
+
+**Made uniform.**  Two mechanical pieces.  *(i) Deep targets:* the
+index-$1$ legs of a frame $X=\pi^2$ recurse to the legs of $\pi=a+bi$
+itself — $C_1=(a-b)(a+b)$ with coprime odd factors $<\sqrt{2P}$,
+$S_1=2ab$ with coprime factors $<\sqrt P$ — so every lever inequality
+of the window finisher gains a square root: $p^{2e}\mid\mathrm{Trig}(w^n)$
+now bounds $q$ below by $p^{4e}/2$ at the deepest level instead of
+$p^{2e}$.  *(ii) The rigid-form size kill:* from $\text{frame}^k=\pm
+(B-iA)/g$, $q^k=|B-iA|/g\le M(p)/g$ with $M$ the coefficient bound,
+while the Im-leg carries the $(\ell\bar\ell)$-content $p^{2m}$ of $A$
+and hence divides one deep coprime factor of $\mathrm{Im}(\rho^{2k})$;
+each target's inequality $p^{2m}<c\,q^{h}$ combined with the size
+bound is a polynomial inequality in $p$, false on $[5,\infty)$ by an
+exact Sturm count.  Every remaining single lever of the ladder is this
+residual at level $k=2$ or $4$.
+
+**Theorem A3.9 by machine.**  The $(3,1)$ box under the complete stack:
+$78/78$ distinct OPEN patterns dead — $16$ residual parity, $8$
+valuation, $16$ concentration, $6$ unit collapse, $12$ window, $4$
+rigid form + concentration (H2 same-sign), $4$ rigid form + size (H2
+X6-route, the lemma), $12$ doubled (Lemma G4).  The twelve rows that
+rested on hand trees (H2 $\times8$, M2-opp $\times4$) are certified by
+`a3.box31_machine` on every run.  With §2.16–2.17, **Theorems A3.7,
+A3.8, A3.9 and A3.10 all rest on machine certificates alone.**
+
+**On the ladder.**  The size kill takes $40$ more singles and the deep
+targets $18$ of the $128$ doubles ($[1,7]\times10$, $[2,8]\times6$,
+$[2,10]\times2$):
+
+| box | (2,1) | (2,2) | (3,2) | (4,1) | (5,1) | (4,2) | (3,3) |
+|---|---|---|---|---|---|---|---|
+| dead / total | 26/26 | 120/120 | 310/322 | 134/140 | 202/220 | 534/576 | 668/732 |
+
+$1994/2136$ ($93.4\%$); $142$ open: $110$ doubles and $32$ singles.
+The $32$ singles are two families the size kill misses by structure,
+not by strength: the $k=3$ replications of H2 in the $(3,3)$ box
+($8$), where the lever can land on the index-$3$ Im-cofactor
+$4U_1^2-q^2$, which the targets bound by $3q^2$ but which factors as
+$(2U_1-q)(2U_1+q)$ with coprime odd factors $<3q$ — the missing deep
+target — and then needs the pin $2U_1\pm q=\pm tp^2$, $t\in\{\pm1,\pm3\}$,
+substituted; and the $(J,1)$-type families $\{(J{-}1,\pm k),(J,k),(J,-k)\}$
+with $J\ge4$ ($24$), where the rigid-form bound $q\le\kappa p^{J}$ and
+the deep lever $q\ge p^4/2$ meet at $J=4$ with a constant to spare, so
+the window pins a leg of $\rho$ to $\pm p^2$ exactly and the residual
+must be chased after that pin.  Both are the next build (v2), together
+with the doubles' non-homogeneous cofactor pairs.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

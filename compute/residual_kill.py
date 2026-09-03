@@ -34,7 +34,52 @@ import sympy as sp
 
 from compute.lucas_endpoints import (all_collapses, endpoint_identity, concentration_kill, sliver_kill,
                                      lucas_to_L, content_bound, content_bound_poly, is_unit_at,
-                                     _parity_poly, _P, _Q, _L, _LB)
+                                     _parity_poly, _abs_coeff_bound, _P, _Q, _L, _LB)
+from compute.window_kill import _targets, PMIN
+
+
+def _size_kill(side, k, A, B, Z, N):
+    """The rigid-form SIZE kill (entry 89): frame^k = +-(B - iA)/g gives
+    q^k = |B - iA|/g <= M(p)/g with M the coefficient bound of the Gaussian
+    polynomial Z, and the Im-leg Y_k = -+A/g carries the p-power of A:
+    p^{2m} | Y_k where m is the (L LB)-content of A (g is prime to p).  An
+    odd prime power dividing Y_k = Im(rho^{2k}) divides one coprime factor
+    of it, the deepest being the legs u, v, u -+ v of rho itself (u^2 + v^2
+    = q), each < sqrt(2q): the window finisher's targets of Im(X^k) with the
+    deep index-1 level.  Every target gives  p^{2m} < c q^h;  with
+    q <= (M/g)^{1/k} this reads  p^{2mk/h} < c^{k/h} M(p)/g,  a polynomial
+    inequality false for all p >= 5 (exact Sturm count) -- a kill when it
+    fails for EVERY target and every content d | N.  (The roles of p and q
+    swap for the mirror; the bound uses the same letters.)"""
+    m = None
+    ZA = sp.expand(lucas_to_L(A, "l" if side == "w" else "w"))
+    if ZA == 0:
+        return None
+    PA = sp.Poly(ZA, _L, _LB)
+    m = min(min(mon) for mon in PA.monoms())
+    if m < 1:
+        return None
+    M = _abs_coeff_bound(sp.expand(Z))            # |Z| <= M(p) as a polynomial in the coefficient prime
+    if M == 0:
+        return None
+    msgs = []
+    for d in [x for x in range(1, N + 1) if N % x == 0]:
+        for tgt in _targets("Im", k, 2 * m):
+            h, c = sp.nsimplify(tgt["bexp"]), tgt["bconst"]
+            ee = tgt.get("e", 2 * m)
+            # p^{ee} < c q^h  and  q^k <= M/d   =>   p^{ee k / h} < c^{k/h} M / d
+            lhs_exp = sp.nsimplify(ee * k / h)
+            rhs = sp.nsimplify(c ** (k / h)) * M / d
+            if not lhs_exp.is_integer:
+                return None
+            cnd = sp.expand(_P ** int(lhs_exp) - rhs)          # must be > 0 for all p >= PMIN
+            poly = sp.Poly(cnd, _P)
+            if poly.LC() <= 0 or cnd.subs(_P, PMIN) <= 0 or poly.count_roots(inf=PMIN) != 0:
+                return None
+            msgs.append(f"d={d}: {tgt['name']} gives p^{ee} < {c} q^{h} against q^{k} <= {sp.factor(M)}/{d}")
+    return ("rigid-form size: the Im-leg carries p^%d (the (L LB)-content of A); its deep coprime "
+            "targets are all below sqrt(2q)-scale, while |frame^k| = |B - iA|/g bounds q above; " % (2 * m)
+            + "; ".join(msgs[:4]) + (" ..." if len(msgs) > 4 else ""))
 
 
 def linear_forms(pattern):
@@ -121,8 +166,8 @@ def _residual_branches(P_expr, d, jmax=6, amax=14):
 
 def residual_kill(pattern):
     """Returns (verdict, details).  Verdicts: 'DEAD-residual-parity',
-    'DEAD-residual-concentration', 'OPEN' (with the surviving branches),
-    'NO-LINEAR-FORM', or 'DEAD-no-pure-factor'."""
+    'DEAD-residual-size', 'DEAD-residual-concentration', 'OPEN' (with the
+    surviving branches), 'NO-LINEAR-FORM', or 'DEAD-no-pure-factor'."""
     forms = linear_forms(pattern)
     if isinstance(forms, str):
         return forms, None
@@ -146,6 +191,13 @@ def residual_kill(pattern):
         if not sp.expand(Z).is_polynomial(_L, _LB):
             report.append({"k": k, "status": "rigid form not polynomial"})
             continue
+        try:
+            sz = _size_kill(side, k, A, B, Z, N)
+        except Exception:
+            sz = None
+        if sz:
+            return "DEAD-residual-size", {"side": side, "k": k, "A": str(A), "B": str(B), "content_bound": N,
+                                         "rigid": f"{side}^{k} = +-(B - iA)/g", "why": sz}
         dead = True
         branches = {}
         for dd in [x for x in range(1, N + 1) if N % x == 0]:

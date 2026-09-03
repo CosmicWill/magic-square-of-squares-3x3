@@ -91,9 +91,17 @@ def _targets(kind, n, e):
     leg (bool), index (frame index of a leg), Q (cofactor polynomial in
     u or None), n, e (effective exponent)."""
     if n == 1:
+        # THE DEEP LEVEL (entry 89): the frame X = pi^2 is itself a square, pi = a + bi
+        # with a^2 + b^2 = P prime, gcd(a, b) = 1, opposite parity.  So
+        #   Re(X) = C1 = (a - b)(a + b)   coprime odd factors, each < sqrt(2P);
+        #   Im(X) = S1 = 2ab              coprime factors a, b, each < sqrt(P).
+        # An odd prime power dividing C1 or S1 divides ONE of these -- bounds in
+        # P^{1/2}, the strongest windows the frames allow.
+        half = sp.Rational(1, 2)
         if kind == "Re":
-            return [{"name": "C1", "bexp": 1, "bconst": 1, "parity": "odd", "res8": None, "leg": True, "index": 1, "Q": None, "n": 1, "e": e}]
-        return [{"name": "S1", "bexp": 1, "bconst": 1, "parity": "even4", "res8": None, "leg": True, "index": 1, "Q": None, "n": 1, "e": e}]
+            return [{"name": "(C1: a-+b)", "bexp": half, "bconst": SQRT2, "parity": "odd", "res8": None, "leg": False, "index": 1, "Q": None, "n": 1, "e": e, "deep": True}]
+        return [{"name": "(S1: a)", "bexp": half, "bconst": 1, "parity": "unknown", "res8": None, "leg": False, "index": 1, "Q": None, "n": 1, "e": e, "deep": True},
+                {"name": "(S1: b)", "bexp": half, "bconst": 1, "parity": "unknown", "res8": None, "leg": False, "index": 1, "Q": None, "n": 1, "e": e, "deep": True}]
     if n % 2 == 0:
         h = n // 2
         if kind == "Re":
@@ -163,7 +171,8 @@ def _levers(pattern):
             tg = _targets(kind, nn, ee)
             if side == "w":
                 for t in tg:
-                    t["name"] = t["name"].replace("C1", "U1").replace("S1", "V1")
+                    t["name"] = (t["name"].replace("C1", "U1").replace("S1", "V1")
+                                 .replace("a-+b", "u-+v").replace(": a)", ": u)").replace(": b)", ": v)"))
             levers.append({"prime": prime, "e": ee, "targets": tg, "where": where,
                            "side": side, "kind": kind, "n": nn})
     return levers
@@ -179,7 +188,7 @@ def _pincer(ip, iq):
     """p^al < ka q^be and q^ga < kb p^de: contradiction for p, q >= PMIN?"""
     al, ka, be = ip
     ga, kb, de = iq
-    ex = al * ga - be * de
+    ex = sp.nsimplify(al * ga - be * de)
     if ex <= 0:
         return None
     if sp.Integer(PMIN) ** ex >= ka ** ga * kb ** be:

@@ -2757,15 +2757,20 @@ def _(ctx):
     require(poly_range(cheb_cofactor("Re", 3))[0::2] == (-3, 1) and poly_range(cheb_cofactor("Im", 3))[0::2] == (-1, 3))
     lo5, _, hi5, _ = poly_range(cheb_cofactor("Re", 5))
     require(lo5 <= Fraction(-5, 4) + Fraction(1, 10 ** 12) and hi5 == 5, (lo5, hi5))
-    require([t["name"] for t in _targets("Im", 4, 2)] == ['(Im4->(Re2: C1-+S1))', '(Im4->(Im2->C1))', '(Im4->(Im2->S1))'])
+    # entry 89: the index-1 legs recurse one level deeper, to the legs a, b of pi = a + bi itself
+    require([t["name"] for t in _targets("Im", 4, 2)] ==
+            ['(Im4->(Re2: C1-+S1))', '(Im4->(Im2->(C1: a-+b)))', '(Im4->(Im2->(S1: a)))', '(Im4->(Im2->(S1: b)))'])
+    require(all(t["bexp"] == Fraction(1, 2) for t in _targets("Re", 1, 2) + _targets("Im", 1, 2)))
     require(len(_targets("Re", 5, 2)) == 4 and sum("split" in t["name"] for t in _targets("Re", 5, 2)) == 2)
     # (vi) the pin-and-substitute and explicit-frame finishers on fixed (3,2)-box patterns
     # of the [1,5] shape (p^2 on an index-1 w-leg, q^2 on Re/Im(l^5)): the S1/V1 branch dies
     # by 4 | t, the leg pin U1 = +-p^2 substituted into the cofactor pin gives either a sign
     # contradiction or p^2 = (2C1)^2 + m^2 against the unique two-squares representation;
     # the split target (lever prime 5, frame (3,4)) dies by explicit evaluation
-    for pat, need in (((((2, -2), 1), ((3, 1), 1), ((3, 2), 1)), ("sign", "explicit frame")),
-                      ((((2, -2), 1), ((3, 1), 1), ((3, 2), -1)), ("4 | t", "explicit frame"))):
+    # (entry 89: with the deep targets the U1/V1 branches die by pincers -- p^2 divides a leg of rho
+    # itself, below sqrt(2q) -- and only the split target needs the explicit frame)
+    for pat, need in (((((2, -2), 1), ((3, 1), 1), ((3, 2), 1)), ("pincer", "explicit frame")),
+                      ((((2, -2), 1), ((3, 1), 1), ((3, 2), -1)), ("pincer", "explicit frame"))):
         cert = window_kill(pat)
         require(cert and cert.get("kills"), (pat, cert))
         whys = " | ".join(c.get("why", "") for c in cert["cases"])
@@ -2862,16 +2867,29 @@ def _(ctx):
         pat = tuple((tuple(jk), c) for jk, c in zip(cls, coef))
         v, _c = kill_pattern(pat)
         require(v.startswith("DEAD"), (pat, v))
-    # (iii) the gap: the X6-route rows -- every content-1 branch dead, no content-3 branch dead
+    # (iii) entry 89 -- THE CONTENT-3 LEMMA, by the deep descent: the X6-route rows die by the
+    # rigid-form SIZE kill.  The Im-leg V2 = -+A/g carries p^2 (A = p^2 S4), and V2 = Im(rho^4)
+    # = 4uv(u-v)(u+v) with rho = u + iv, u^2 + v^2 = q, pairwise coprime factors below sqrt(2q):
+    # so q >= p^4/2, while g q^2 = |l^6 + lbar^6 + l^5 lbar| <= 3 p^6 gives q <= sqrt(3/g) p^3 --
+    # impossible for p >= 5, both contents.  (Entry 66's descent was this; only its finite
+    # residue check was content-1-specific.)  The exact branch pattern that exposed the gap is
+    # kept as a control: concentration alone kills every content-1 branch and no content-3 one.
     for pat in H2_x6:
-        v, rep = residual_kill(pat)
-        require(v == "OPEN", (pat, v))
-        r = [x for x in rep if x.get("status") == "some branch open"]
-        require(r, (pat, rep))
-        br = r[0]["branches"]
-        require(r[0]["content_bound"] == 3 and all(c is not None for sg, cj, c in br[1]), (pat, br.get(1)))
-        require(3 in br and all(c is None for sg, cj, c in br[3]), (pat, br.get(3)))
-    # content 3 <=> 3 | S1, and the residual system is empty in range for both contents
+        v, cert = residual_kill(pat)
+        require(v == "DEAD-residual-size", (pat, v))
+        require(cert["content_bound"] == 3 and "deep coprime targets" in cert["why"] and "d=3" in cert["why"], (pat, cert))
+        v2, c2 = kill_pattern(pat)
+        require(v2 == "DEAD-residual-size", (pat, v2))
+    from compute.residual_kill import _residual_branches, _gcd_bound
+    import sympy as _sp
+    from compute.lucas_endpoints import lucas_to_L as _l2L
+    side, k, A, B, d = linear_forms(H2_x6[0])[0]
+    Z = _l2L(B - _sp.I * A, "l")
+    ok1, certs1 = _residual_branches(Z, 1)
+    ok3, certs3 = _residual_branches(Z / 3, 3)
+    require(ok1 and not ok3 and all(c is None for sg, cj, c in certs3), "control: concentration kills content 1 only")
+    # content 3 <=> 3 | S1 (half of all frames), and the residual system is empty in range for both
+    # contents -- corroboration of the uniform kill above
     def frame(p):
         for a in range(1, isqrt(p) + 1):
             b2 = p - a * a
@@ -2901,7 +2919,60 @@ def _(ctx):
     require(n_p >= 100)
     # (iv) the mirror on a (3,3)-box pattern linear in the l-legs
     v, cert = kill_pattern((((1, -3), 1), ((1, -2), 1), ((1, 3), -1)))
-    require(v == "DEAD-residual-concentration" and cert["side"] == "l", (v, cert if v != "DEAD-residual-concentration" else cert["side"]))
-    ctx.note("rigid forms + concentration: H2 same-sign x4 and M2-opp x4 are machine theorems; the four H2 "
-             "X6-route rows are open at content 3 only (3 | S1), empty in range for both contents; "
-             f"{n_p} split primes checked")
+    require(v.startswith("DEAD-residual") and cert["side"] == "l", (v, cert.get("side") if isinstance(cert, dict) else cert))
+    # the deep frame facts on real split primes: pi = a + bi, C1 = (a-b)(a+b), S1 = 2ab, the four
+    # factors pairwise coprime, a, b < sqrt(p), |a -+ b| < sqrt(2p)
+    n_deep = 0
+    for p in range(5, 400, 4):
+        if any(p % q == 0 for q in range(2, isqrt(p) + 1)):
+            continue
+        a = next(a for a in range(1, isqrt(p) + 1) if isqrt(p - a * a) ** 2 == p - a * a)
+        b = isqrt(p - a * a)
+        require(a * a - b * b == (a - b) * (a + b) and 2 * a * b == 2 * a * b and gcd(a, b) == 1 and (a + b) % 2 == 1)
+        require(gcd(a - b, a + b) == 1 and gcd(a, a - b) == 1 and gcd(b, a + b) == 1)
+        require(a * a < p and b * b < p and (a - b) ** 2 < 2 * p and (a + b) ** 2 < 2 * p)
+        n_deep += 1
+    require(n_deep >= 10)
+    ctx.note("rigid forms: H2 same-sign x4 (concentration), H2 X6-route x4 (the deep size kill -- the "
+             "content-3 lemma) and M2-opp x4 are machine theorems; content 3 <=> 3 | S1 and the residual "
+             f"system is empty in range for both contents ({n_p} split primes)")
+
+
+@check("a3.box31_machine", DOC)
+def _(ctx):
+    """THEOREM A3.9 BY MACHINE (entry 89): every distinct OPEN pattern of the
+    (3,1) box dies in the complete machine.  The 12 hand-closed ledger rows
+    (H2 x8, M2-opp x4) -- the only patterns of the box that ever rested on a
+    hand tree -- die here with their mechanisms: the H2 same-sign combos by
+    the rigid form + concentration, the H2 X6-route rows by the rigid form
+    + the deep size kill (the content-3 lemma), M2-opp by the window /
+    residual finishers.  FULL: the whole box, 78/78 (the 12 doubled
+    patterns are Lemma G4's)."""
+    from collections import Counter
+    from compute.lucas_endpoints import kill_pattern
+    led, _, _, _ = _ledger_and_queue()
+    rows = [(cls, coef, tag) for box, cls, coef, tag in led
+            if tag in ("H2 (parity / leg-window)", "M2-opp (P5' descent)")]
+    require(len(rows) == 12, len(rows))
+    tally = Counter()
+    for cls, coef, tag in rows:
+        pat = tuple((tuple(jk), c) for jk, c in zip(cls, coef))
+        v, cert = kill_pattern(pat)
+        require(v.startswith("DEAD"), (pat, v))
+        tally[(tag, v)] += 1
+    require(tally[("H2 (parity / leg-window)", "DEAD-residual-size")] == 4, dict(tally))
+    require(tally[("H2 (parity / leg-window)", "DEAD-residual-concentration")] == 4, dict(tally))
+    require(sum(n for (tag, v), n in tally.items() if tag.startswith("M2")) == 4, dict(tally))
+    if ctx.profile == "FULL":
+        from compute.lucas_endpoints import survey_box
+        verdict, opens = survey_box(3, 1)
+        distinct = [tuple(pattern) for pattern, kind in opens if kind == "distinct"]
+        require(len(distinct) == 78, len(distinct))
+        full = Counter()
+        for pat in distinct:
+            v, _c = kill_pattern(pat)
+            require(v.startswith("DEAD"), (pat, v))
+            full[v] += 1
+        ctx.note(f"(3,1) box, 78/78 distinct OPEN patterns dead: {dict(full)}")
+    ctx.note(f"the 12 hand-closed rows of the (3,1) ledger by machine: {dict(tally)} -- Theorem A3.9 "
+             "rests on machine certificates alone")

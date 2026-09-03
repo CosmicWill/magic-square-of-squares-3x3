@@ -1282,7 +1282,7 @@ def _residual_stage(pattern):
         v, cert = residual_kill(pattern)
     except Exception:
         return None, None
-    if v in ("DEAD-residual-parity", "DEAD-residual-concentration"):
+    if v in ("DEAD-residual-parity", "DEAD-residual-size", "DEAD-residual-concentration"):
         return v, cert
     return None, None
 
