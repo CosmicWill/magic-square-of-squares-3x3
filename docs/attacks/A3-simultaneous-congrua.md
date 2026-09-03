@@ -1953,6 +1953,47 @@ solve it.  The next build is the **joint residual solver**: where the
 pincer leaves a window, $T_1$ and $T_2$ give two equations in the same
 $\rho$, an overdetermined system size alone cannot see.
 
+## 2.26 The joint residual solver: no MSS3 for a family of split-part shapes
+
+*(2026-09-03; entry 95; `compute/quadruple.py` `joint_residual_kill`,
+check `a3.quadruple_joint`, data `compute/data_quadruple_pairs.json`.)*
+
+Where the two-lever pincer (2.25) left a compatible window, the two
+triples of a quadruple give two cleared relations $R_1=R_2=0$ on one
+frame ($c_1,s_1=\mathrm{Re},\mathrm{Im}\,\ell$; $c_2,s_2=\mathrm{Re},
+\mathrm{Im}\,w$).  Eliminating the $w$-frame, $\mathrm{Res}_{s_2}(R_1,
+R_2)=0$ is necessary for a common $s_2$.  It factors; every non-monomial
+factor is **pure in $(c_1,s_1)$** (the $w$-frame decouples — no
+$c_2$-mixing factor arises) and homogeneous, so it vanishes on a frame
+only if $c_1/s_1$ is a rational root that is a **frame ratio**
+($r=m/n$ with $m^2+n^2$ a perfect square).  None of the joint forms has
+such a root, so $\mathrm{Res}$ has no frame zero, no common $s_2$, no
+quadruple.
+
+**The complete result.**  The $92$ open triples give $56$ quadruple
+pairs; **all $56$ die** — $16$ by the pincer, $40$ by the joint solver
+(degree-$26$ form for $(5,1)$; degrees $6,56,64$ for $(3,3)$), zero
+survivors.  The boxes $(2,1),(2,2),(3,1),(4,1)$ have no open triple.
+
+**Theorem (quadruple / MSS3).**  No 3×3 magic square of distinct
+squares has center norm $m$ whose split part is $p^aq^b$ for
+$(a,b)\in\{(2,1),(2,2),(3,1),(3,2),(4,1),(4,2),(5,1),(3,3)\}$
+($p,q$ distinct primes $\equiv1\bmod4$, and transposes).  *Proof.*
+MSS3 $\iff$ a quadruple in $D(m)$; a quadruple is two additive triples
+sharing a pair, both patterns in box $(a,b)$; each is machine-dead or
+one of the $92$ open triples; all $56$ open pairs die; the other boxes
+have no open triple. $\blacksquare$
+
+**Significance.**  This is the first family of shapes where MSS3 is
+killed *directly*, and it includes $(3,2),(4,2),(5,1),(3,3)$ where the
+no-triple conjecture A3.C is still open ($R_J$).  MSS3 is strictly
+easier than A3.C: the quadruple's two relations overdetermine the
+frame, and eliminating the shared prime leaves a single binary form
+whose only candidate roots are finitely many rationals, none a frame
+ratio.  The corollary's minimal $\omega=2$ shapes $p^2q^2$ and $p^4q$
+are eliminated.  *Scope:* a finite family, not all $\omega=2$ and not a
+general MSS3 theorem; the next step is $(5,2),(6,1),(4,3),(4,4),\dots$
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was

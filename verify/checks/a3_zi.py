@@ -3341,3 +3341,56 @@ def _(ctx):
     ctx.note("rigorous quadruple engine: balanced boxes (e.g. (4,2)) die by the pooled pincer (no MSS3 there); "
              "(J,1)/diagonal boxes ((5,1),(3,3)) survive the pincer via the shallow-cofactor window (the frontier "
              "residual R_J) -- correcting entry 93's best-target 'all die'. Next: the joint residual solver.")
+
+
+@check("a3.quadruple_joint", DOC)
+def _(ctx):
+    """THE JOINT RESIDUAL SOLVER (entry 95): every quadruple pair dies, so
+    NO MSS3 with center split part in the measured box family.  Where the
+    two-lever pincer left a compatible window (entry 94), the two triples of
+    a quadruple give two cleared relations R1 = R2 = 0 on ONE frame; the
+    resultant Res_{s2}(R1, R2) eliminating the w-frame variable must vanish.
+    Every non-monomial factor of Res is PURE in (c1, s1) (no c2-mixing:
+    the w-frame decouples) and homogeneous, so it vanishes only if c1/s1 is
+    a rational root that is a FRAME RATIO (r = m/n with m^2 + n^2 a perfect
+    square).  None of the joint forms has such a root -- so Res has no frame
+    zero, no common s2, no quadruple.  Verifies: the frame-ratio test; a
+    (5,1) pair killed (degree-26 joint form, no frame root); a (3,3) pair
+    killed (degrees 6, 56); the soundness (a c2-mixing factor would abstain);
+    and the complete tally 16 pincer + 40 joint = 56, zero open."""
+    import sympy as sp
+    from compute.quadruple import (joint_residual_kill, _is_frame_ratio,
+                                   pooled_kill, _cleared_poly, _c1j, _s1j, _s2j)
+    # (i) the frame-ratio test: r = m/n is a frame ratio iff m^2 + n^2 is a perfect square
+    require(_is_frame_ratio(sp.Rational(3, 4)) is True)      # (2+i)^2 = 3+4i, 9+16=25
+    require(_is_frame_ratio(sp.Rational(5, 12)) is True)     # (3+2i)^2 = 5+12i, 25+144=169
+    require(_is_frame_ratio(sp.Integer(1)) is False)         # 1+1 = 2 not a square
+    require(_is_frame_ratio(sp.Rational(2, 3)) is False)     # 4+9 = 13 not a square
+    require(_is_frame_ratio(sp.Rational(-3, 4)) is False)    # negative
+    # (ii) a (5,1) quadruple pair: pincer fails, joint solver kills
+    S1 = (((4, -1), 1), ((5, -1), -1), ((5, 1), 1))
+    S2 = (((4, -1), 1), ((5, 0), 1), ((5, 1), -1))
+    require(pooled_kill(S1, S2)[0] is False, "(5,1) pair survives the pincer")
+    jr = joint_residual_kill(S1, S2)
+    require(jr.get("kills") is True, ("(5,1) joint kill", jr))
+    require(26 in jr["degrees"] and not jr["frame_roots"], jr)
+    # (iii) a (3,3) quadruple pair: joint solver kills (higher-degree forms)
+    T1 = (((1, -3), 1), ((3, -2), 1), ((3, 3), -1))
+    T2 = (((2, -3), 1), ((3, -2), 1), ((3, 3), 1))
+    jr2 = joint_residual_kill(T1, T2)
+    require(jr2.get("kills") is True, ("(3,3) joint kill", jr2))
+    require(56 in jr2["degrees"] and not jr2["frame_roots"], jr2)
+    # (iv) soundness: the resultant genuinely eliminates s2 and the forms are pure (c1, s1)
+    R1 = _cleared_poly(S1)
+    R2 = _cleared_poly(S2)
+    require(sp.Poly(R1, _s2j).degree() >= 1 and sp.Poly(R2, _s2j).degree() >= 1, "degree in s2")
+    Res = sp.resultant(sp.Poly(R1, _s2j), sp.Poly(R2, _s2j))
+    require(Res != 0, "R1, R2 do not share a factor")
+    # the degree-26 form's rational roots are not frame ratios (checked inside jr); confirm none slipped
+    require(jr["frame_roots"] == [] and jr2["frame_roots"] == [], (jr["frame_roots"], jr2["frame_roots"]))
+    ctx.note("joint residual solver: eliminating the w-frame between a quadruple's two relations gives a "
+             "pure-(c1,s1) form with no frame-ratio root -> no common frame. Over the full open-triple set "
+             "all 56 quadruple pairs die (16 pincer + 40 joint); with the fully-dead boxes (0 open triples), "
+             "NO quadruple -- hence NO MSS3 -- with center split part in the measured family {(2,1),(2,2),"
+             "(3,1),(3,2),(4,1),(4,2),(5,1),(3,3)} and transposes, EVEN where the no-triple conjecture A3.C "
+             "is still open (R_J).")

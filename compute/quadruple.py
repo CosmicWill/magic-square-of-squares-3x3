@@ -155,3 +155,74 @@ def box_no_quadruple(a, b, triples=None):
             survivors.append({"T1": pr["T1"], "T2": pr["T2"], "why": info})
     return {"box": (a, b), "n_open": len(triples), "n_pairs": len(pairs),
             "all_dead": not survivors, "min_exponent": min_e, "survivors": survivors}
+
+
+# ------------------------------------------------- the joint residual solver (entry 95)
+import sympy as _spj
+
+_c1j, _s1j, _c2j, _s2j = _spj.symbols("c1j s1j c2j s2j")
+
+
+def _cleared_poly(T):
+    """The cleared relation of triple T as a sympy polynomial in the frame
+    coordinates (c1, s1 = Re, Im of l; c2, s2 = Re, Im of w), = 0."""
+    from compute.lucas_endpoints import cleared_terms
+    expr = 0
+    for cc, wp, wq, ec, poly in cleared_terms(T):
+        for (a, b, c_, d_), v in poly.items():
+            expr += v * _c1j ** a * _s1j ** b * _c2j ** c_ * _s2j ** d_
+    return _spj.expand(expr)
+
+
+def _is_frame_ratio(r):
+    """A positive rational r = c1/s1 is realized by a frame (c1 = a^2 - b^2,
+    s1 = 2ab, c1^2 + s1^2 = p^2 prime) iff, in lowest terms r = m/n, m^2 + n^2
+    is a perfect square (then c1 = m k, s1 = n k on the circle of radius
+    sqrt(m^2 + n^2) k)."""
+    r = _spj.nsimplify(r)
+    if not r.is_rational or r <= 0:
+        return False
+    m, n = int(r.p), int(r.q)
+    v = m * m + n * n
+    return _spj.integer_nthroot(v, 2)[1]
+
+
+def joint_residual_kill(T1, T2):
+    """Eliminate the w-frame between the two cleared relations of a quadruple
+    pair.  A quadruple forces R1 = R2 = 0 on one frame, so the resultant
+    Res_{s2}(R1, R2) vanishes; dropping the degenerate factors (c1, s1, c2 = 0
+    or c1 = +-s1, all impossible on a real frame) leaves a homogeneous
+    'joint form' Phi(c1, s1) that must vanish.  Phi = 0 needs c1/s1 to be a
+    rational root of Phi that is a frame ratio; if none is, no quadruple.
+    Returns dict(degrees, phi_degree, rational_roots, frame_roots, kills)."""
+    R1 = _cleared_poly(T1)
+    R2 = _cleared_poly(T2)
+    if _spj.Poly(R1, _s2j).degree() < 1 or _spj.Poly(R2, _s2j).degree() < 1:
+        return {"kills": False, "reason": "not degree>=1 in s2"}
+    Res = _spj.resultant(_spj.Poly(R1, _s2j), _spj.Poly(R2, _s2j))
+    if Res == 0:
+        return {"kills": False, "reason": "R1, R2 share a factor (resultant 0)"}
+    # Res = 0 is one equation in (c1, s1, c2).  Factor it; the quadruple makes one
+    # irreducible factor vanish at the frame point.  SOUND kill: every non-constant
+    # factor is either a MONOMIAL in {c1, s1, c2} (vanishes only at a zero coordinate --
+    # impossible, frame legs are nonzero) or PURE in (c1, s1) with no frame-ratio root.
+    # A factor still involving c2 non-trivially means s2-elimination did not decouple the
+    # frames -- the method is then inconclusive for that pair.
+    frame_roots, rational_roots, pure_forms = [], [], []
+    for fac, mult in _spj.factor_list(Res)[1]:
+        vs = fac.free_symbols & {_c1j, _s1j, _c2j}
+        if len(_spj.Add.make_args(_spj.expand(fac))) == 1:
+            continue                                   # monomial: only a zero coordinate
+        if _c2j in vs:
+            return {"kills": False, "reason": "c2-mixing factor (frames not decoupled)",
+                    "factor": str(fac)}
+        # pure in (c1, s1): every rational frame-ratio root must be absent
+        pf = _spj.Poly(fac, _c1j, _s1j)
+        pure_forms.append(pf.total_degree())
+        phi = _spj.Poly(fac.subs(_s1j, 1), _c1j)
+        for r in _spj.roots(phi, filter="Q"):
+            rational_roots.append(str(r))
+            if _is_frame_ratio(r):
+                frame_roots.append(str(r))
+    return {"kills": not frame_roots, "degrees": sorted(pure_forms),
+            "rational_roots": rational_roots, "frame_roots": frame_roots}

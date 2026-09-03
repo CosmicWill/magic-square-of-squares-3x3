@@ -4030,3 +4030,58 @@ rho^4 = +-Z_i/g_i with the same q): a genuinely overdetermined system
 that size alone cannot see. Solving it (or reducing both to one R_J)
 is the path to closing the surviving 40 -- the real remaining work on
 MSS3 for omega = 2.
+
+## 2026-09-03 — Entry 95: the joint residual solver closes every quadruple — no MSS3 for a family of split-part shapes (direct, where A3.C is still open)
+
+The joint residual solver finishes the quadruple attack. Where the
+two-lever pincer left a compatible size window (entry 94), the two
+triples T1, T2 of a quadruple give two cleared relations R1 = R2 = 0
+on ONE frame (c1, s1 = Re, Im of l; c2, s2 = Re, Im of w). Eliminate
+the w-frame: Res_{s2}(R1, R2) = 0 is necessary for a common s2. It
+factors; every non-monomial factor is PURE in (c1, s1) (the w-frame
+decouples -- no c2-mixing factor arises for any pair) and homogeneous,
+so it vanishes on a frame only if c1/s1 is a rational root that is a
+FRAME RATIO (r = m/n with m^2 + n^2 a perfect square). NONE of the
+joint forms has such a root. So Res has no frame zero, no common s2,
+no quadruple. compute/quadruple.py: joint_residual_kill.
+
+COMPLETE RESULT (compute/data_quadruple_pairs.json): the 92 open
+triples of the measured ladder give 56 quadruple pairs (pairing over
+the full set = the same 56, so no cross-box pairs were missed). ALL 56
+DIE: 16 by the pooled pincer (balanced boxes, entry 94), 40 by the
+joint residual solver (degree-26 form for (5,1); degrees 6, 56, 64 for
+(3,3)). ZERO survivors. The boxes (2,1),(2,2),(3,1),(4,1) have 0 open
+triples (every triple machine-dead). So no quadruple whose two triples
+are both open, none with a dead triple -> NO quadruple in any of the
+measured boxes.
+
+THEOREM (quadruple / MSS3, entry 95). No 3x3 magic square of distinct
+squares has center norm m whose split part is p^a q^b for
+  (a,b) in {(2,1),(2,2),(3,1),(3,2),(4,1),(4,2),(5,1),(3,3)}
+(p, q distinct primes = 1 mod 4, and p<->q transposes). Proof: MSS3
+<=> a quadruple in D(m) (doc 2); a quadruple = two additive triples
+sharing a pair, both patterns in box (a,b); each is machine-dead or
+one of the 92 open; all 56 open-open pairs die (pincer or joint
+solver); the other boxes have no open triple. QED.
+
+SIGNIFICANCE. This is the FIRST set of split-part shapes where MSS3 is
+killed DIRECTLY -- and it INCLUDES (3,2),(4,2),(5,1),(3,3), where the
+no-triple conjecture A3.C is still OPEN (the frontier residual R_J).
+MSS3 is strictly easier than A3.C: the quadruple's two relations
+overdetermine the frame, and eliminating the shared prime leaves a
+single-prime binary form whose only candidate roots are the finitely
+many rationals, none a frame ratio. The corollary's minimal omega=2
+shapes p^2 q^2 = (2,2) and p^4 q = (4,1) are eliminated. Honest scope:
+a finite family, not all omega=2 (e.g. (5,2),(6,1),(4,3),(4,4) not yet
+run); not a general MSS3 theorem. a3.quadruple_joint pins the frame-
+ratio test, a (5,1) and a (3,3) joint kill, and the soundness (no
+c2-mixing factor, no frame root). Suite 179.
+
+SOUNDNESS. (1) MSS3 <=> quadruple: repo reduction. (2) survey_box
+enumerates every triple of a box (the completeness audit). (3) pincer:
+sound (entry 94). (4) joint solver: Res=0 necessary for a common root;
+degenerate factors (c1, s1, c2 = 0; c1 = +-s1; the tan(pi/8) quadratics)
+never hold on a frame; pure-(c1,s1) factors checked for frame-ratio
+roots (r = m/n a frame ratio iff m^2 + n^2 is a square); the solver
+abstains (kills=False) on any c2-mixing factor and none arose. Next:
+extend to (5,2),(6,1),(4,3),(4,4),... toward all omega = 2.
