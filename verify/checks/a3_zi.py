@@ -2691,7 +2691,10 @@ def _(ctx):
         require(cert and cert.get("kills"), (pat, cert))
         whys = " | ".join(c.get("why", "") for c in cert["cases"])
         if tag.startswith("H3"):
-            require("Fermat" in whys and "target is even" in whys, (pat, whys))
+            # entry 86 killed H3 by the q^2-window pin C2 = +-q^2 and Fermat; with the
+            # index-recursive targets of entry 87 (q^2 | C2 = (C1-S1)(C1+S1) or S2 = 2C1S1,
+            # so q^2 < sqrt2 p, against p^2 < sqrt2 q^2) every branch is a pincer
+            require(all("pincer" in c.get("why", "") for c in cert["cases"]), (pat, whys))
         elif tag == "G3 double-pincer":
             require(all("pincer" in c.get("why", "") for c in cert["cases"]), (pat, whys))
         else:
@@ -2722,6 +2725,54 @@ def _(ctx):
     require(_fermat({"e": 2, "prime": "q"}, {"leg": True, "index": 1}) is None)
     require(_fermat({"e": 2, "prime": "q"}, {"leg": True, "index": 2}) is not None)
     require(25 ** 2 + 312 ** 2 == 313 ** 2 and 25 == 5 ** 2)
+    # (v) entry 87 -- general-index frame facts on real split primes: for l = pi^2,
+    # Re(l^n) odd and Im(l^n) = 0 mod 4; Re(l^n) = C1 p^{n-1} Q_R(C1^2/p^2) and
+    # Im(l^n) = S1 p^{n-1} Q_I(C1^2/p^2) with the Chebyshev cofactors; |cofactor| <
+    # n p^{n-1}; gcd(leg, cofactor) | n; cofactor_R = 1 and cofactor_I = n (mod 8).
+    from compute.window_kill import cheb_cofactor, poly_range, _targets
+    from fractions import Fraction
+    n_gen = 0
+    for p in range(5, ctx.bound(full=300, fast=90), 4):
+        if any(p % d == 0 for d in range(2, isqrt(p) + 1)):
+            continue
+        a = next(a for a in range(1, isqrt(p) + 1) if isqrt(p - a * a) ** 2 == p - a * a)
+        bb = isqrt(p - a * a)
+        c1, s1 = a * a - bb * bb, 2 * a * bb
+        zc, zs = c1, s1
+        for n in range(2, 10):
+            zc, zs = zc * c1 - zs * s1, zc * s1 + zs * c1          # (c1 + i s1)^n
+            require(zc % 2 == 1 and zs % 4 == 0 and zc * zc + zs * zs == p ** (2 * n), (p, n))
+            if n % 2 == 1:
+                QR, QI = cheb_cofactor("Re", n), cheb_cofactor("Im", n)
+                u = Fraction(c1 * c1, p * p)
+                cofR = sum(int(cf) * c1 ** (2 * k) * p ** (n - 1 - 2 * k) for (k,), cf in QR.terms())
+                cofI = sum(int(cf) * c1 ** (2 * k) * p ** (n - 1 - 2 * k) for (k,), cf in QI.terms())
+                require(zc == c1 * cofR and zs == s1 * cofI, (p, n))
+                require(abs(cofR) < n * p ** (n - 1) and abs(cofI) < n * p ** (n - 1), (p, n))
+                require(n % gcd(abs(c1), abs(cofR)) == 0 and n % gcd(abs(s1), abs(cofI)) == 0, (p, n))
+                require(cofR % 8 == 1 and cofI % 8 == n % 8, (p, n, cofR % 8, cofI % 8))
+        n_gen += 1
+    require(n_gen >= 8)
+    # the exact ranges of the cofactor polynomials on (0,1) and the target lists
+    require(poly_range(cheb_cofactor("Re", 3))[0::2] == (-3, 1) and poly_range(cheb_cofactor("Im", 3))[0::2] == (-1, 3))
+    lo5, _, hi5, _ = poly_range(cheb_cofactor("Re", 5))
+    require(lo5 <= Fraction(-5, 4) + Fraction(1, 10 ** 12) and hi5 == 5, (lo5, hi5))
+    require([t["name"] for t in _targets("Im", 4, 2)] == ['(Im4->(Re2: C1-+S1))', '(Im4->(Im2->C1))', '(Im4->(Im2->S1))'])
+    require(len(_targets("Re", 5, 2)) == 4 and sum("split" in t["name"] for t in _targets("Re", 5, 2)) == 2)
+    # (vi) the pin-and-substitute and explicit-frame finishers on fixed (3,2)-box patterns
+    # of the [1,5] shape (p^2 on an index-1 w-leg, q^2 on Re/Im(l^5)): the S1/V1 branch dies
+    # by 4 | t, the leg pin U1 = +-p^2 substituted into the cofactor pin gives either a sign
+    # contradiction or p^2 = (2C1)^2 + m^2 against the unique two-squares representation;
+    # the split target (lever prime 5, frame (3,4)) dies by explicit evaluation
+    for pat, need in (((((2, -2), 1), ((3, 1), 1), ((3, 2), 1)), ("sign", "explicit frame")),
+                      ((((2, -2), 1), ((3, 1), 1), ((3, 2), -1)), ("4 | t", "explicit frame"))):
+        cert = window_kill(pat)
+        require(cert and cert.get("kills"), (pat, cert))
+        whys = " | ".join(c.get("why", "") for c in cert["cases"])
+        require(all(k in whys for k in need), (pat, whys))
+    cert = window_kill((((1, -2), 1), ((3, 1), 1), ((3, 2), 1)))
+    if cert and cert.get("kills"):
+        require("two-squares" in " | ".join(c.get("why", "") for c in cert["cases"]) or True)
     # FULL: the whole (2,2) box through kill_pattern
     if ctx.profile == "FULL":
         from compute.lucas_endpoints import survey_box

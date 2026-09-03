@@ -3527,3 +3527,65 @@ targets (odd n: Chebyshev cofactor with exact sup bound, gcd | n; even
 n: recursion through the half-index legs), is now the larger win (236)
 and build (B), the residual-system finisher for single levers, the
 deeper one (168).
+
+## 2026-09-02 — Entry 87: the audit of A3.9 and A3.7 by machine; build A (general-index targets, pin-and-substitute, explicit frames)
+
+THE AUDIT (per the entry-86 lesson). The (1,1) box: its 8 distinct
+OPEN patterns all die in the machine (4 residual parity, 4 doubled =
+Lemma G4) -- Theorem A3.7 is a machine theorem. The (3,1) box: of 78
+distinct OPEN patterns 66 die (16 residual, 8 valuation, 16
+concentration, 6 unit collapse, 8 window, 12 doubled); the 12 machine
+survivors are EXACTLY the two hand-tree families of the A3.9 ledger:
+H2 {(2,+-1),(3,1),(3,-1)} x8 ("parity / leg-window") and M2-opp
+{(2,+-1),(3,0),(3,-+1)} x4 ("P5' descent"). Both are single p-levers
+p^2 | Re/Im(w^2) -- the residual-system shape. Their checks
+(a3.h1h2_closed, the M2-opp check) pin the polynomial identities and
+the finite residue kills, but the case analysis assigning identities
+to sign classes is hand work of the same kind that hid the G3 gap.
+Status: A3.9 stands on 12 hand-closed patterns that the machine
+cannot yet reproduce; they are the first targets of build B, and
+nothing new is claimed about them here.
+
+BUILD A (same entry): general-index targets in compute/window_kill.py.
+Uniform in the index: odd n has Re(X^n) = X1 P^{n-1} Q_R(u) and
+Im(X^n) = Y1 P^{n-1} Q_I(u) with the Chebyshev cofactors Q_R =
+T_n(x)/x, Q_I = U_{n-1}(x) (u = x^2 = X1^2/P^2), |cofactor| < n P^{n-1}
+(|cos n.th| <= n|cos th|, |sin n.th| <= n|sin th|), gcd(leg, cofactor)
+| n, and -- since the frames are Gaussian squares -- Re-values odd,
+Im-values 0 mod 4, cofactor_R = 1 and cofactor_I = n (mod 8); even n
+recurses through the half-index legs (S_{2h} = 2 C_h S_h, C_{2h} =
+(C_h -+ S_h)(C_h +- S_h)); when the lever prime may divide n the split
+cases carry the reduced exponent. New finishers: the homogeneous
+cofactor-pair solver (exact polynomial ranges on the open interval,
+strict at non-attained ends, p = q excluded -- the closed-interval
+version let rho = 1 through and was caught by the four G3 patterns);
+the pin-and-substitute step (an index-1 leg pin U1 = +-p^e gives
+q^2 = p^{2e} + V1^2; the cofactor pin with its residue then reads
+p^{n-1}(Q(u) - t') = t' V1^2: a sign contradiction, or with (u-1) |
+Q - t', W = -p^{n-3}H(u)/t' a perfect square, and W = k^2(p^2 - a^2
+C1^2), a >= 2, is impossible by the unique two-squares representation
+of p^2); and the explicit-frame finisher for split cases (the lever
+prime is then 5 with frame (3,4); the partner lever's value is an
+explicit integer -- 3 or 4 here -- with no admissible prime-power
+divisor, or the relation is evaluated exactly on the finitely many
+explicit frame pairs). With the recursive targets H3 dies by pincers
+alone (q^2 | C1 -+ S1 < sqrt2 p or C1, S1 < p against p^2 < sqrt2 q^2)
+-- a simpler proof than section 2.10's Fermat pin.
+
+RESULT: 108 of the 404 ladder survivors die -- all 72 of the [1,5]
+shape (V1 branch by 4 | t, U1 branch by pin+substitute: sign for the
+Im-cofactor, two squares for the Re-cofactor, explicit frame for the
+split), 4 [3,5], 8 [4,5], 16 [4,6], 8 [6,6]. The ladder now stands at
+1840/2136 (86%): (3,2) 294/322, (4,1) 114/140, (5,1) 164/220, (4,2)
+494/576, (3,3) 628/732. The 296 left: 168 single levers (untouched --
+build B) and 128 double levers ([3,5] x36, [1,7] x20, [4,6] x16,
+[6,6] x16, [4,5] x8, [3,7] x8, [4,8] x8, [2,8] x6, [1,9] x4, [5,5]
+x4, [2,10] x2) whose open tuples are non-homogeneous cofactor pairs
+(different degrees in p and q, |t t'| unbounded) or pins whose window
+is not a constant ([1,7]: q^2 < 7 p^6 leaves q up to p^3). Size
+bookkeeping is exhausted there; what remains needs the residual
+equation itself -- the chase of build B. Checks: a3.window_finisher
+(v) general-index frame facts on real primes (Chebyshev
+factorizations, bounds, gcd | n, residues), the exact ranges, the
+target lists; (vi) the [1,5] finishers on fixed (3,2) patterns; H3's
+requirement changed to pincers. Suite 172.

@@ -1560,6 +1560,69 @@ $\gcd\mid n$ (even $n$ by recursion through the half-index legs) is the
 uniform extension and the larger next win; the residual-system
 finisher for single levers is the deeper one.
 
+## 2.18 Build A: targets at every index — and the audit of A3.7 and A3.9 by machine
+
+*(2026-09-02; entry 87; `compute/window_kill.py`; `a3.window_finisher`
+(v)–(vi).)*
+
+**The audit first.**  Per the lesson of §2.17, the $(1,1)$ and $(3,1)$
+boxes were run through the complete machine.  $(1,1)$: all $8$
+distinct OPEN patterns die ($4$ residual parity, $4$ doubled) — Theorem
+A3.7 is a machine theorem.  $(3,1)$: $66$ of $78$ die; the $12$
+survivors are *exactly* the two hand-tree families of the A3.9 ledger,
+H2 $\{(2,\pm1),(3,1),(3,-1)\}$ ($8$) and M2-opp
+$\{(2,\pm1),(3,0),(3,\mp1)\}$ ($4$), both single $p$-levers
+$p^2\mid\mathrm{Re}/\mathrm{Im}(w^2)$.  Their checks pin the polynomial
+identities and the finite residue kills; the assignment of identities
+to sign classes is hand work of the kind that hid the G3 gap.  So
+**A3.9 stands on $12$ hand-closed patterns the machine cannot yet
+reproduce** — the first targets of build B; nothing new is claimed
+about them.
+
+**Targets at every index.**  The frames are Gaussian squares,
+$\ell=\pi^2$, $w=\rho^2$, so $X^n=(\pi^n)^2$ with $\pi^n=a+bi$,
+$a^2+b^2=P^n$ odd: $\mathrm{Re}(X^n)=a^2-b^2$ is odd and
+$\mathrm{Im}(X^n)=2ab\equiv0\pmod4$ at every index.  For odd $n$,
+with $x=X_1/P$ and $u=x^2$,
+$$\mathrm{Re}(X^n)=X_1P^{\,n-1}\,\frac{T_n(x)}{x},\qquad
+  \mathrm{Im}(X^n)=Y_1P^{\,n-1}\,U_{n-1}(x),$$
+Chebyshev cofactors that are polynomials in $u$; $|\cos n\theta|\le
+n|\cos\theta|$ and $|\sin n\theta|\le n|\sin\theta|$ give
+$|\text{cofactor}|<nP^{n-1}$; $\gcd(\text{leg},\text{cofactor})\mid n$;
+termwise $X_1^2\equiv P^2\equiv1\pmod 8$ gives cofactor$_R\equiv1$ and
+cofactor$_I\equiv n\pmod8$.  Even $n=2h$ recurses through the
+half-index legs.  When the lever prime may divide $n$ the split cases
+carry the reduced exponent, and the lever prime is then explicit ($5$,
+frame $(3,4)$): the partner lever's value is an explicit integer and
+the relation is evaluated exactly on the finitely many explicit frame
+pairs.  Three finishers use the targets: the pincer and the window as
+before (with the exact parity and residue of every target); the
+**homogeneous cofactor-pair solver** (exact ranges of the cofactor
+polynomials on the open interval, strict at non-attained ends, $p\ne q$
+— a closed-interval version let $p/q=1$ through and was caught by the
+four G3 patterns); and **pin-and-substitute**: an index-$1$ leg pin
+$U_1=\pm p^e$ gives $q^2=p^{2e}+V_1^2$, and the cofactor pin with its
+residue reads $p^{n-1}(Q(u)-t')=t'V_1^2$ — a sign contradiction, or,
+with $(u-1)\mid Q-t'$, a perfect square $W=-p^{n-3}H(u)/t'$; when
+$W=k^2(p^2-a^2C_1^2)$ with $a\ge2$, $p^2=(aC_1)^2+m^2$ contradicts the
+unique two-squares representation of $p^2$.  With the recursive
+targets H3 dies by pincers alone ($q^2\mid C_1\mp S_1<\sqrt2p$ or
+$C_1,S_1<p$, against $p^2<\sqrt2q^2$), a simpler proof than §2.10's.
+
+**Result.**  $108$ of the $404$ ladder survivors die — all $72$ of the
+$[1,5]$ shape and $36$ across $[3,5]$, $[4,5]$, $[4,6]$, $[6,6]$:
+
+| box | (2,1) | (2,2) | (3,2) | (4,1) | (5,1) | (4,2) | (3,3) |
+|---|---|---|---|---|---|---|---|
+| dead / total | 26/26 | 120/120 | 294/322 | 114/140 | 164/220 | 494/576 | 628/732 |
+
+$1840/2136$ ($86\%$).  The $296$ left are the $168$ single levers
+(untouched) and $128$ double levers whose open tuples are
+non-homogeneous cofactor pairs (different degrees in $p$ and $q$,
+$|tt'|$ unbounded) or pins whose window is not a constant ($[1,7]$:
+$q^2<7p^6$ leaves $q$ up to $p^3$).  Size bookkeeping is exhausted
+there; what remains needs the residual equation itself — build B.
+
 **Ledger after entry 79: the rigidity lemma is a theorem for $39$ of the
 $67$ transparent primes below $30000$** ($32$ of certified rank $1$, $4$
 rank-2 primes by the criterion, $3$ by $L'$ where the 2-descent was
