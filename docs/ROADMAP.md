@@ -301,6 +301,54 @@ not active.
 the ω = 2 theorem is evidence, not a path; Conjecture R_J is unreduced
 (entry 96).
 
+### R.8 The 2026-09-04 plan after the (1,1,1) lift
+
+*Adopted 2026-09-04 (entry 99), after entries 97–98 opened ω = 3.  Reports
+against the long-term goal G of R.7.*
+
+**The fact that shapes it.**  The thirteen rank-0 quartics that do all the
+elliptic killing in the (1,1,1) box are five curves up to isomorphism —
+32a2 (j = 1728, CM by ℤ[i], the Fermat/congruent-number curve), 48a1,
+48a3, 56a2, 80a1 — because the Pythagorean frame conditions are double
+covers of the circle branched at degenerate frame values, so the genus-1
+pieces are (2,2)-covers of the line branched over four points with only a
+few possible cross-ratios.  If that holds for every box, the elliptic part
+of every quadruple curve is a twist of a curve from a fixed finite list,
+and uniformity reduces to ranks: **the Fermat–Euler descent as the
+universal mechanism, the monomial lemma for the families.**  This is the
+current candidate for G.
+
+**The plan, in order.**
+1. **Quotient towers for the 600 finite classes** (even → u = t²; reciprocal
+   → the genus-2 sextics split into two elliptic curves; PARI ranks at every
+   level; enumerate lifts at rank 0).  Record every quotient's j-invariant:
+   the test of the finite-list reading.
+2. **The 1267 high-bidegree components without factoring pullbacks**:
+   irreducibility mod small primes, then smoothness (a smooth irreducible
+   (4,4) component has genus 9, Faltings-finite); PARI multivariate
+   factorization where sympy stalls.
+3. **The (2,1,1) box** with the same engine (Chebyshev elements).  Do the
+   five curves and the monomial lemma still do all the killing?
+4. **The structural lemma**: every quadruple component's Pythagorean cover is
+   branched only over degenerate frame values, hence its genus-1 quotients
+   are twists of curves from a fixed finite list.  The theoretical core.
+5. Kept warm: the uniform ω = 2 column p^J q via the joint forms' extreme
+   coefficients.
+
+**Lines recorded, not started.**  The S-unit framing (each additive relation
+is a six-term unit equation in ℚ(i); Laurent's theorem: solutions in a
+torus lie on translates of subtori — the monomial families — plus isolated
+points — the curve points; the only framework in view for ω ≥ 4, where one
+elimination leaves a surface).  The near-miss literature (7-of-9 and 8-of-9
+squares should sit on positive-rank objects at larger boxes; translate one
+into the frame language).  A targeted ω = 3 desert (centers pqr swept far
+beyond 10⁷, recording near-quadruples).  Infrastructure: PARI/FLINT
+factorization above bidegree 6.
+
+**Still needed for a proof**: uniformity across boxes with unbounded
+exponents (phase 4 is the route in view) and ω ≥ 4 (the S-unit framing is
+the route in view).  Nothing at ω = 3 is closed.
+
 ## 0. Doctrine
 
 1. **Both directions are the goal.** A constructed square is a proof.

@@ -2201,6 +2201,23 @@ did not factor in ten minutes).  What the engine can see is either dead
 for all primes or on a curve with finitely many rational points.  Not a
 theorem for the box.
 
+**The five curves (entry 99).**  Identified with PARI, the thirteen killing
+quartics are five curves up to isomorphism: Cremona **32a2** ($j=1728$, CM
+by $\mathbb Z[i]$ — the Fermat/congruent-number curve of $x^4-y^4=z^2$ and
+of four squares in arithmetic progression), **48a1**, **48a3**, **56a2**,
+**80a1**; all full $2$-torsion, rank $0$, conductor $2^k\cdot\{1,3,5,7\}$.
+The reading: a Pythagorean frame is a square in the rational circle group,
+so each frame condition is a double cover of the circle branched at the
+degenerate frame values; two such conditions on a rational component give
+a $(2,2)$-cover of the line branched over four points — genus $1$ — whose
+$j$-invariant is fixed by the cross-ratio of the branch points, and only a
+few cross-ratios can arise from degenerate values.  If this persists across
+boxes, the genus-$1$ pieces of every quadruple curve are twists of curves
+from a fixed finite list and a uniform theorem needs only their ranks: the
+Fermat–Euler descent as the universal mechanism, with the monomial lemma
+disposing of the positive-dimensional families.  The plan built on this is
+ROADMAP R.8.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

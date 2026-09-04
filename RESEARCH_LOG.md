@@ -4404,3 +4404,84 @@ candidate class, the monomial lemma on the doubling and tripling
 families with a non-monomial control, the (1,2) factor's two branches
 both monomial with degenerate missed points). Doc 2.29; ROADMAP
 M14-B (R.7 status updated); memory.
+
+
+## 2026-09-04 — Entry 99: the step back — the thirteen killing curves are five (32a2, 48a1, 48a3, 56a2, 80a1); the branched-cover reading; the plan after the lift (ROADMAP R.8)
+
+THE FACT. Identifying the thirteen rank-0 quartic models of entries
+97-98 with PARI (ellfromeqn, ellidentify): they are FIVE curves up to
+isomorphism -- Cremona 32a2 (j = 1728, CM by Z[i]: the Fermat /
+congruent-number curve of x^4 - y^4 = z^2 and of four squares in
+arithmetic progression), 48a1 (j = 35152/9), 48a3 (j = 1556068/81),
+56a2 (j = 740772/49), 80a1 (j = 148176/25); each model is a quadratic
+twist or 2-isogenous form of one of them; all have full 2-torsion,
+rank 0, conductor 2^k x {1, 3, 5, 7}. Recorded in
+compute/data_omega3_box111.json (curve_classes, isomorphism_classes);
+pinned in a3.omega3_engine (labels and j-invariants recomputed with
+PARI for the FAST sample, all in FULL).
+
+THE READING. A Pythagorean frame is a square in the rational circle
+group, so each frame condition is a double cover of the circle
+branched at the degenerate frame values (t in {0, inf, +-i} in the
+ratio; tau in {0, inf, +-1, +-i}). Two frame conditions on a rational
+component are a (2,2)-cover of the line branched over four points --
+genus 1 -- and the j-invariant is fixed by the cross-ratio of the
+branch points. Since the branch points are always degenerate frame
+values, only a few cross-ratios can arise, which is why the whole
+elliptic part of the box is carried by five classical curves. If this
+holds for every box (with the exponent entering through Chebyshev
+polynomials and multiplying the branch locus by roots of unity), the
+genus-1 pieces of every quadruple curve are twists of curves from a
+FIXED FINITE LIST, and a uniform theorem needs only their ranks --
+the Fermat-Euler descent as the universal mechanism, with the monomial
+lemma (entry 98) disposing of the positive-dimensional families. This
+is the strongest candidate so far for the long-term goal G of R.7.
+
+THE PLAN (ROADMAP R.8; in order).
+ 1. Quotient towers for the 600 finite classes: t -> -t gives y^2 =
+    g(t^2) of genus 1 or 2; u -> 1/u splits the genus-2 sextics into
+    two elliptic curves. PARI ranks at every level; enumerate lifts
+    where a quotient has rank 0. Record every quotient's j-invariant:
+    the test of the finite-list reading.
+ 2. The 1267 high-bidegree components without factoring the pullback:
+    irreducibility mod small primes, then smoothness (a smooth
+    irreducible (4,4) component has genus 9 -> Faltings-finite); PARI
+    multivariate factorization where sympy stalls.
+ 3. The (2,1,1) box with the same engine (exponent 2: Chebyshev
+    elements). The question: do the five curves and the monomial
+    lemma still do all the killing?
+ 4. The structural lemma: every quadruple component's Pythagorean
+    cover is branched only over degenerate frame values, hence its
+    genus-1 quotients are twists of curves from a fixed finite list.
+    The theoretical core; what turns box results into a family
+    theorem.
+ 5. Kept warm: the uniform omega = 2 column p^J q via the joint forms'
+    extreme coefficients (3 and 63 at (5,1)).
+
+LINES WORTH OPENING (recorded, not started).
+ - The S-unit framing: Im u_A +- Im u_B = Im u_C is a six-term unit
+   equation in Q(i); by Laurent's theorem (Mordell-Lang for tori) the
+   solutions of a subvariety of a torus in a finitely generated group
+   lie on finitely many translates of subtori plus isolated points.
+   The subtori are exactly the monomial families the lemma kills; the
+   isolated points are the curve points. It explains the shape of the
+   (1,1,1) analysis and is the only framework in view for omega >= 4,
+   where one elimination leaves a surface, not a curve.
+ - The near-miss literature: the known 7-of-9 and 8-of-9 squares of
+   squares should sit on positive-rank objects the engine would
+   produce at larger boxes; translating one into the frame language
+   shows which class it inhabits and why it fails to close.
+ - A targeted omega = 3 desert: centers p q r use a 13-element D(m)
+   and can be swept far beyond 10^7, recording near-quadruples; if
+   they cluster on the 600 finite classes, that is where the
+   difficulty lives.
+ - Infrastructure: PARI (or FLINT) factorization for anything above
+   bidegree 6; sympy is the bottleneck of phases 2 and 3.
+
+WHAT A PROOF STILL NEEDS, unchanged: uniformity across boxes with
+unbounded exponents (phase 4 is the only route in view) and omega >=
+4 (the S-unit framing is the only route in view). Nothing about MSS3
+at omega = 3 is closed.
+
+Suite 181 (a3.omega3_engine extended). Doc 2.29 addendum; ROADMAP R.8;
+memory.

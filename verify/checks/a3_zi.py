@@ -3630,6 +3630,12 @@ def _(ctx):
         require(len(cs) == 5 and cs[1] == 0 and cs[3] == 0 and cs[0] > 0 and cs[4] > 0, cs)
         require(m["rank"] == 0 and all(sp.Rational(v) in (0, 1, -1) for v in m["tvals"]), m)
     require(is_frame_ratio(sp.Rational(3, 4)) and is_frame_ratio(sp.Rational(-5, 12)) and not is_frame_ratio(sp.Integer(1)))
+    # (iii') entry 99: the thirteen models are FIVE curves up to isomorphism -- all full 2-torsion, rank 0,
+    # conductor 2^k x {1,3,5,7}: 32a2 (j = 1728, CM by Z[i]), 48a1, 48a3, 56a2, 80a1
+    require(data["isomorphism_classes"] == ["32a2", "48a1", "48a3", "56a2", "80a1"], data["isomorphism_classes"])
+    require(len(data["curve_classes"]) == 13 and {c["j"] for c in data["curve_classes"]} ==
+            {"148176/25", "1556068/81", "1728", "35152/9", "740772/49"}, "five j-invariants")
+    require(all(c["conductor"] in (32, 48, 56, 80) for c in data["curve_classes"]))
     # (iv) the same-prime factors: distinct primes never give t_g = +-t_h or t_g t_h = +-1
     ts = {}
     for p_, (a, b) in ((5, (2, 1)), (13, (3, 2)), (17, (4, 1)), (29, (5, 2)), (37, (6, 1)), (41, (5, 4))):
@@ -3656,6 +3662,17 @@ def _(ctx):
         for m in data["models"][:n]:
             r = quartic_points(m["model"])
             require(r.get("rank_hi") == 0 and r.get("complete") and sorted(r["tvals"]) == sorted(m["tvals"]), (m["model"], r))
+        # the j-invariants / Cremona labels recomputed for the same models
+        import subprocess as _sub
+        from compute.pari_genus1 import GP as _GP
+        lines = []
+        for c in data["curve_classes"][:n]:
+            poly = " + ".join(f"({x})*t^{4-i}" for i, x in enumerate(c["model"]))
+            lines.append(f'E = ellinit(ellfromeqn(y^2 - ({poly}))); print("RES ", E.j, " ", ellidentify(E)[1][1]);')
+        out = _sub.run([_GP, "-q", "-f"], input='default(parisize,"128M");\n' + "\n".join(lines),
+                       capture_output=True, text=True, timeout=120).stdout
+        got = [tuple(l.split()[1:3]) for l in out.splitlines() if l.startswith("RES")]
+        require(got == [(c["j"], c["label"]) for c in data["curve_classes"][:n]], ("j / label", got))
         ctx.note("PARI: the bilinear class tan a tan b = -3 dies on y^2 = 9u^4 - 14u^2 + 9 (rank 0, torsion 8, "
                  "points u in {0,+-1,inf} only); a (2,2) class dies on y^2 = t^4 + 18t^2 + 1; " + str(n) +
                  " of the 13 killing models re-certified (rank 0, complete enumeration)")
@@ -3667,4 +3684,5 @@ def _(ctx):
              "in the primes (349 trivial; 13 rank-0 even quartics of conductor 32/48/56/80; the MONOMIAL LEMMA -- every "
              "rational Pythagorean family is an angle-multiple coincidence w_g^a = eps w_h^b, impossible for distinct "
              "primes; non-square discriminants), 600 Faltings-finite (even reciprocal hyperelliptic models, genus 2/3/5), "
-             "1267 not yet analysed (bidegree > 6); no infinite or candidate class remains. Not a theorem for the box.")
+             "1267 not yet analysed (bidegree > 6); no infinite or candidate class remains. The thirteen killing quartics "
+             "are five curves up to isomorphism: 32a2, 48a1, 48a3, 56a2, 80a1 (entry 99). Not a theorem for the box.")

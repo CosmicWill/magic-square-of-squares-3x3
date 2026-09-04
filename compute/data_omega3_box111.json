@@ -141092,5 +141092,262 @@
     }
    ]
   }
- ]
+ ],
+ "curve_classes": [
+  {
+   "model": [
+    1,
+    0,
+    18,
+    0,
+    1
+   ],
+   "j": "148176/25",
+   "conductor": 80,
+   "label": "80a1",
+   "jacobian": [
+    0,
+    18,
+    0,
+    -4,
+    -72
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    -3,
+    0,
+    1
+   ],
+   "j": "148176/25",
+   "conductor": 80,
+   "label": "80a1",
+   "jacobian": [
+    0,
+    -3,
+    0,
+    -4,
+    12
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    -6,
+    0,
+    25
+   ],
+   "j": "148176/25",
+   "conductor": 80,
+   "label": "80a1",
+   "jacobian": [
+    0,
+    -6,
+    0,
+    -100,
+    600
+   ]
+  },
+  {
+   "model": [
+    25,
+    0,
+    -6,
+    0,
+    1
+   ],
+   "j": "148176/25",
+   "conductor": 80,
+   "label": "80a1",
+   "jacobian": [
+    0,
+    -6,
+    0,
+    -100,
+    600
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    34,
+    0,
+    1
+   ],
+   "j": "1556068/81",
+   "conductor": 48,
+   "label": "48a3",
+   "jacobian": [
+    0,
+    34,
+    0,
+    -4,
+    -136
+   ]
+  },
+  {
+   "model": [
+    9,
+    0,
+    -14,
+    0,
+    9
+   ],
+   "j": "1556068/81",
+   "conductor": 48,
+   "label": "48a3",
+   "jacobian": [
+    0,
+    -14,
+    0,
+    -324,
+    4536
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "j": "1728",
+   "conductor": 32,
+   "label": "32a2",
+   "jacobian": [
+    0,
+    6,
+    0,
+    -4,
+    -24
+   ]
+  },
+  {
+   "model": [
+    9,
+    0,
+    10,
+    0,
+    1
+   ],
+   "j": "35152/9",
+   "conductor": 48,
+   "label": "48a1",
+   "jacobian": [
+    0,
+    10,
+    0,
+    -36,
+    -360
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    10,
+    0,
+    9
+   ],
+   "j": "35152/9",
+   "conductor": 48,
+   "label": "48a1",
+   "jacobian": [
+    0,
+    10,
+    0,
+    -36,
+    -360
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    1,
+    0,
+    1
+   ],
+   "j": "35152/9",
+   "conductor": 48,
+   "label": "48a1",
+   "jacobian": [
+    0,
+    1,
+    0,
+    -4,
+    -4
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    -3,
+    0,
+    4
+   ],
+   "j": "740772/49",
+   "conductor": 56,
+   "label": "56a2",
+   "jacobian": [
+    0,
+    -3,
+    0,
+    -16,
+    48
+   ]
+  },
+  {
+   "model": [
+    4,
+    0,
+    -3,
+    0,
+    1
+   ],
+   "j": "740772/49",
+   "conductor": 56,
+   "label": "56a2",
+   "jacobian": [
+    0,
+    -3,
+    0,
+    -16,
+    48
+   ]
+  },
+  {
+   "model": [
+    1,
+    0,
+    30,
+    0,
+    1
+   ],
+   "j": "740772/49",
+   "conductor": 56,
+   "label": "56a2",
+   "jacobian": [
+    0,
+    30,
+    0,
+    -4,
+    -120
+   ]
+  }
+ ],
+ "isomorphism_classes": [
+  "32a2",
+  "48a1",
+  "48a3",
+  "56a2",
+  "80a1"
+ ],
+ "note_curves": "entry 99: the thirteen killing quartics are five curves up to isomorphism (Cremona labels), all with full 2-torsion, rank 0, conductor 2^k x {1,3,5,7}: 32a2 (j = 1728, CM by Z[i], the Fermat/congruent-number curve), 48a1, 48a3, 56a2, 80a1 -- each model a twist/quotient of one of these."
 }
