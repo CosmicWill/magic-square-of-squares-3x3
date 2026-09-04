@@ -4485,3 +4485,84 @@ at omega = 3 is closed.
 
 Suite 181 (a3.omega3_engine extended). Doc 2.29 addendum; ROADMAP R.8;
 memory.
+
+
+## 2026-09-04 — Entry 100: quotient towers — 296 of the 600 finite classes die through eight rank-0 elliptic quotients; 304 remain, blocked by positive-rank quotients; the five-curve pattern is a (2,2)-level fact
+
+THE TOWERS (compute/omega3_towers.py). A finite class has a component
+whose rational points lie on a hyperelliptic model y^2 = D(t) of genus
+2, 3 or 5 (D = the squarefree part of the discriminant of the component
+in its quadratic variable, t the other frame ratio) -- or, at the
+pullback level, the same in tau. Every Phi-level model is EVEN in t
+(the conjugate frame t -> -t; verified on all of them), the leading
+coefficient is always a square (the points at infinity are t = inf),
+and some models carry a (twisted) reciprocity t^d D(kappa/t) = c D(t),
+kappa rational, found from the ratio of extreme coefficients. Each
+involution gives a quotient curve over Q receiving the rational
+points:
+    u = t^2            y^2 = G(u),      D(t) = G(t^2);
+    w = t + kappa/t    y^2 = P(w),      D(t) = t^{d/2} P(w);
+    odd companion      an even quotient polynomial Q(x) = Qt(x^2) also
+                       gives Y^2 = x Qt(x) (quotient by x -> -x, y -> -y);
+and iterates to depth 3. A genus-1 quotient with PARI rank 0 (2-descent
++ Cassels-Tate; unconditional) and a complete point enumeration (a
+rank-0 quartic is empty or a torsor under E_tors) has finitely many
+rational points; their preimages in t are solved exactly (t = +-sqrt u;
+t^2 - w t + kappa = 0), the roots of square parts carried along; if no
+preimage is a non-degenerate frame ratio (level t) or a non-degenerate
+tau, the class is DEAD. The genus-2 sextic quotients of the genus-5
+models are even, so they split further into two elliptic curves (the
+shared cubic and the odd companion); this is how the genus-5 models
+die. Height searches (hyperellratpoints, H = 2000) on the models that
+survive are recorded as evidence only.
+
+RESULT. Of the 600 finite classes, 296 are DEAD (all three frames were
+tried; the recorded best frame first). Eight quotient curves do all
+the killing, each of rank 0:
+    30a2 (u = t^2; torsion 12)                       96 classes
+    80a1 (w = t - 1/t)                               48
+    11a3 (odd companion of w = t + 1/t; torsion 5)   40
+    48a3 (w = t - 1/t)                               36
+    528j2 (w = t + 1/t)                              32
+    24a1 (u = t^2)                                   20
+    128c2, 400d1 (w = t - 1/t)                       12 each
+The 304 that remain: 224 have every elliptic quotient of rank 1, 24 of
+rank 2 (13280a1, 664a1, 389a1 appear), 56 have no elliptic quotient
+(only genus-2 quotients, or a (3,3) component with no hyperelliptic
+model). No rank-0 quotient ever left a live candidate. Height searches
+to 2000 on 276 of the 304 found NO non-degenerate point: every one of
+them looks empty; none is proven. Box tally now: dead 1373, finite 304,
+unknown 1267 (of 2944).
+
+THE FIVE-CURVE PATTERN, CORRECTED. Entry 99 read the thirteen (2,2)-
+level killers -- five curves up to isomorphism -- as a sign that the
+elliptic part of the box lives on a fixed finite list. The towers say
+otherwise at the higher-genus level: the quotient curves of the genus
+3 and 5 models range over two dozen isomorphism classes (killers of
+conductor 11 to 528; positive-rank quotients of conductor 88 to 13280,
+including the rank-2 curves 389a1, 664a1, 13280a1). The branched-cover
+argument is right for the (2,2) components (two frame conditions on a
+rational curve, four branch points) and wrong as a claim about
+towers, whose quotients are twisted by the model's coefficients. The
+long-term reading (R.7 G) is weakened, not refuted: the mechanism is
+uniform (descent on explicit curves) but the curve list is not
+finite in the naive sense. Recorded as such.
+
+WHAT BLOCKS THE 304, PRECISELY. Rank-1 elliptic quotients: the
+classical situation where the points of the genus-3 curve are the
+points of the rank-1 curve E_u with u a square -- elliptic-curve
+Chabauty / two-cover descent (Magma or Sage), not available here.
+Rank 2: the same, harder. No elliptic quotient: genus-2 Jacobians
+(Chabauty-Coleman when the rank is < 2) and the (3,3) plane components
+(genus <= 4, no hyperelliptic model). The height searches make all 304
+very likely empty; they are the sharpest open items of the box and
+they are effective in principle.
+
+NEXT. The (2,1,1) box (does the same engine, with Chebyshev elements,
+produce the same shapes?) and the high-bidegree components (1267)
+before any further effort on the 304, which needs tools we do not
+have. Suite 182 (a3.omega3_towers: the quotient identities on a model,
+the data census -- eight killers, evenness of every Phi-level model,
+rank 0 and no live lift for every killing quotient, searches empty --
+and with PARI two live tower kills; a3.omega3_engine's tally updated).
+Doc 2.30; ROADMAP R.8 status; memory.

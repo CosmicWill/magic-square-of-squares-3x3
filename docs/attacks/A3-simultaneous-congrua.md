@@ -2218,6 +2218,46 @@ Fermat–Euler descent as the universal mechanism, with the monomial lemma
 disposing of the positive-dimensional families.  The plan built on this is
 ROADMAP R.8.
 
+## 2.30 Quotient towers: 296 more classes dead; what blocks the last 304
+
+*(2026-09-04; entry 100; check `a3.omega3_towers`; code `compute/omega3_towers.py`.)*
+
+**The towers.**  A finite class has a component whose rational points lie
+on a hyperelliptic model $y^2=D(t)$ of genus $2,3,5$ ($D$ the squarefree
+part of the discriminant in the component's quadratic variable, $t$ the
+other frame ratio), or the same in $\tau$ at the pullback level.  Every
+$\Phi$-level model is even (the conjugate frame $t\to-t$), its leading
+coefficient is a square (the points at infinity are $t=\infty$), and some
+carry a twisted reciprocity $t^dD(\kappa/t)=cD(t)$.  Each involution gives
+a quotient curve over $\mathbb Q$ receiving the rational points: $u=t^2$
+($D=G(t^2)$), $w=t+\kappa/t$ ($D=t^{d/2}P(w)$), and the odd companion
+$Y^2=xQ_0(x)$ of an even quotient polynomial $Q(x)=Q_0(x^2)$; iterated to
+depth three.  A genus-$1$ quotient of PARI rank $0$ with a complete point
+enumeration lifts to finitely many $t$; if none is a non-degenerate frame
+ratio the class is dead.  The genus-$2$ sextic quotients of the genus-$5$
+models are even and split into two elliptic curves, which is how those
+die.
+
+**Result.**  $296$ of the $600$ finite classes are dead, through eight
+rank-$0$ quotient curves: 30a2 ($u=t^2$, torsion $12$; $96$ classes), 80a1
+($w=t-1/t$; $48$), 11a3 (odd companion of $w=t+1/t$, torsion $5$; $40$),
+48a3 ($36$), 528j2 ($32$), 24a1 ($20$), 128c2 and 400d1 ($12$ each).  The
+$304$ that remain: $224$ have only rank-$1$ elliptic quotients, $24$ rank
+$2$ (389a1, 664a1, 13280a1 appear), $56$ none (genus-$2$ quotients only, or
+a $(3,3)$ component with no hyperelliptic model).  Height searches to
+$2000$ on $276$ of them found no non-degenerate point.  Box tally: **dead
+$1373$, finite $304$, unknown $1267$.**
+
+**The five-curve pattern, corrected.**  The branched-cover argument of
+§2.29 is right for the $(2,2)$ components and wrong as a claim about
+towers: the quotient curves of the genus-$3$ and $-5$ models range over two
+dozen isomorphism classes, killers of conductor $11$ to $528$ and
+positive-rank quotients up to conductor $13280$.  The mechanism is uniform;
+the curve list is not finite in the naive sense.  The remaining $304$ are
+the classical elliptic-Chabauty / two-cover situation (points of a rank-$1$
+curve with a square coordinate), effective in principle with tools not
+available here (Magma, Sage); the searches make them very likely empty.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

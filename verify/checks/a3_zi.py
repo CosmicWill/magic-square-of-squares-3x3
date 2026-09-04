@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 1077, "finite": 600, "unknown": 1267}, data["tally"])
+    require(data["tally"] == {"dead": 1373, "finite": 304, "unknown": 1267}, data["tally"])   # entry 100 (towers)
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,8 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1077)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1373)
+    require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
     require(monomial_relation(2 * lam / (1 - lam ** 2), lam) == (1, 2, "1"))
@@ -3686,3 +3687,84 @@ def _(ctx):
              "primes; non-square discriminants), 600 Faltings-finite (even reciprocal hyperelliptic models, genus 2/3/5), "
              "1267 not yet analysed (bidegree > 6); no infinite or candidate class remains. The thirteen killing quartics "
              "are five curves up to isomorphism: 32a2, 48a1, 48a3, 56a2, 80a1 (entry 99). Not a theorem for the box.")
+
+
+@check("a3.omega3_towers", DOC)
+def _(ctx):
+    """QUOTIENT TOWERS (entry 100): the 600 finite classes of the (1,1,1) box
+    under the frame symmetries.  Every finite model y^2 = D(t) is EVEN (t -> -t is
+    the conjugate frame); the quotients u = t^2, w = t + kappa/t (twisted
+    reciprocity t^d D(kappa/t) = c D(t)), the odd companion Y^2 = x Q(x) of an
+    even quotient polynomial Q(x^2), and their iterates are curves of lower genus
+    receiving the rational points.  A genus-1 quotient with PARI rank 0 and a
+    complete point enumeration lifts to finitely many t (t = +-sqrt(u);
+    t^2 - w t + kappa = 0), the square-part roots carried along; if none is a
+    non-degenerate frame ratio the class is DEAD.  RESULT: 296 of the 600 die,
+    through eight rank-0 quotient curves -- 30a2 (12-torsion), 80a1, 11a3
+    (5-torsion), 48a3, 528j2, 24a1, 128c2, 400d1; 304 remain finite: 224 blocked
+    only by rank-1 elliptic quotients, 24 by rank 2, 56 with no elliptic quotient
+    (genus-2 quotients, or (3,3) components with no hyperelliptic model); height
+    searches to 2000 on 276 of the 304 found no non-degenerate point (evidence,
+    not proof).  The five-curve pattern of entry 99 is a (2,2)-level fact: the
+    tower quotients range over two dozen curves of conductor up to 13280.  Box
+    tally: dead 1373, finite 304, unknown 1267.  Verifies the quotient
+    identities symbolically on a model, the data-file census, and with PARI two
+    live tower kills (a genus-3 model through u = t^2, a genus-5 model through
+    the odd companion of its w = t + 1/t quotient)."""
+    import json
+    import sympy as sp
+    from compute.omega3_towers import (is_even, even_part, twisted_kappas, reciprocal_quotient,
+                                       all_quotients, tower_frame, tower, lift_to_t)
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    T = data["towers"]
+    require(T["n_finite_before"] == 600 and T["n_dead_by_towers"] == 296 and T["n_finite_after"] == 304, T)
+    require({k["label"] for k in T["killing_quotients"]} == {"30a2", "80a1", "11a3", "48a3", "528j2", "24a1", "128c2", "400d1"},
+            [k["label"] for k in T["killing_quotients"]])
+    require(sum(k["classes"] for k in T["killing_quotients"]) == 296)
+    require(T["searched_with_nondegenerate_point"] == 0 and T["searched"] >= 270, (T["searched"], T["searched_with_nondegenerate_point"]))
+    # every finite model recorded is even; every killing quotient has rank 0 and only degenerate/non-frame lifts
+    n_models = 0
+    for e in data["classes"]:
+        if "towers" not in e:
+            continue
+        for fr in e["towers"]["frames"].values():
+            for b in fr["components"]:
+                if b.get("deg") and b.get("level") == "Phi":          # Phi-level models are even; Psi-level need not be
+                    require(b["even"] is True, ("even model", e["cand"]))
+                    n_models += 1
+                for q in b["quotients"]:
+                    if q.get("verdict") == "dead":
+                        require(q["rank"] == [0, 0] and q["candidates"] == [], ("dead quotient", e["cand"], q))
+    require(n_models >= 500, n_models)
+    # the quotient identities on a genus-3 model: D(t) = G(t^2) and, when twisted-reciprocal, D(t) = t^4 P(t + kappa/t)
+    t = sp.Symbol("t_")
+    D = sp.expand((t ** 2 + 1) * (t ** 2 + 4) * (t ** 2 + 9) * (t ** 2 + 36))       # even, kappa = +-6
+    G = even_part(D, t, sp.Symbol("u_"))
+    require(sp.expand(G.subs(sp.Symbol("u_"), t ** 2) - D) == 0, "u = t^2 quotient identity")
+    ks = twisted_kappas(D, t)
+    require(6 in ks and -6 in ks, ks)
+    Pw = reciprocal_quotient(D, t, sp.Symbol("w_"), 6)
+    require(sp.expand(t ** 4 * Pw.subs(sp.Symbol("w_"), t + 6 / t) - D) == 0, "w = t + kappa/t quotient identity")
+    require(lift_to_t([("u",)], [sp.Rational(9, 4)]) == [sp.Rational(3, 2), sp.Rational(-3, 2)])
+    require(sorted(lift_to_t([("w", 1)], [sp.Rational(5, 2)])) == [sp.Rational(1, 2), 2])
+    require(all(q[0] == "D.u" or True for q in all_quotients(D, t)) and len(all_quotients(D, t)) >= 3)
+    if gp_available():
+        # a genus-3 class dead through u = t^2 (30a2) and a genus-5 class dead through the odd companion (11a3)
+        c3 = ((0, 0, 1), (0, 1, -1), (1, -1, 1), (1, 0, 0), 1, -1, -1, -1)
+        fr = tower_frame(c3, 1)
+        require(fr["verdict"] == "dead", fr["verdict"])
+        labs = {q.get("label") for c in fr["components"] for q in (c.get("towers") or {}).get("quotients", []) if q.get("verdict") == "dead"}
+        require(labs & {"30a2", "24a1"}, labs)
+        c5 = ((0, 0, 1), (0, 1, -1), (1, -1, -1), (1, 1, -1), 1, -1, -1, -1)
+        fr = tower_frame(c5, 0)
+        require(fr["verdict"] == "dead", fr["verdict"])
+        names = {(q.get("name"), q.get("label")) for c in fr["components"] for q in (c.get("towers") or {}).get("quotients", []) if q.get("verdict") == "dead"}
+        require(any(n == "D.w(1).odd" for n, l in names), names)
+        ctx.note("PARI: a genus-3 model dies through its u = t^2 quotient and a genus-5 model through the odd companion of "
+                 "its w = t + 1/t quotient (11a3); " + str(len(T["killing_quotients"])) + " killing quotient curves in the data")
+    else:
+        ctx.note("PARI/GP not found: live tower kills not re-run (data-file consistency verified)")
+    ctx.note("quotient towers: 296 of the 600 finite classes dead (eight rank-0 quotient curves); 304 remain (rank-1/2 "
+             "elliptic quotients or none; searches to 2000 empty); box tally dead 1373, finite 304, unknown 1267")
