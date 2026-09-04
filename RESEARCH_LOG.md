@@ -4566,3 +4566,68 @@ the data census -- eight killers, evenness of every Phi-level model,
 rank 0 and no live lift for every killing quotient, searches empty --
 and with PARI two live tower kills; a3.omega3_engine's tally updated).
 Doc 2.30; ROADMAP R.8 status; memory.
+
+
+## 2026-09-04 — Entry 101: the (2,1,1) box — the engine generalized; a seeded sample of 400 of its 79,368 new classes: the same killers and the monomial lemma recur (angle multiples up to 4); coverage drops with the exponent
+
+THE BOX. Split part p^2 q r. compute.omega3.set_box(exps) rebuilds the
+engine for any exponents (a, b, c): labels (j, k, l) with |j| <= a etc.,
+mod sign; element E = (c1^2+s1^2)^(a-|j|) (c2^2+s2^2)^(b-|k|)
+(c3^2+s3^2)^(c-|l|) Im(l^{2j} w^{2k} v^{2l}), a (2a, 2b, 2c)-form; the
+symmetry group is the conjugations times the permutations of frames
+with EQUAL exponents. For (2,1,1): 22 labels, (4,2,2)-forms -- Im(l^4)
+= 4 c1 s1 (c1^2 - s1^2), the Chebyshev double-angle formula, is what
+the exponent-2 frame contributes -- agreeing with cleared_terms on a
+(2,1) pattern (cross-check); group of order 16; 89,732 classes, of
+which 8,720 are (1,1,1) classes with an extra common weight (same
+curves), 1,724 are omega = 2 sub-box classes (dead by the quadruple
+theorem), and 79,368 are NEW: some |j| = 2 with both other frames
+present.
+
+THE SAMPLE (compute/data_omega3_box211_sample.json; seed 20260904; 400
+new classes; a3.omega3_box211). Through the full engine -- decision
+(rank-0 quartics, monomial lemma, non-square discriminants) and then
+the towers on the finite ones:
+   dead 88 (55 at the decision level, 33 by the towers)
+   finite 55
+   unknown 257
+Median 9 s per class, mean 21 s, max 225 s: a full sweep of the 79,368
+is ~60 CPU-hours at this cost and was NOT run.
+
+THE SAME SHAPES RECUR. The rank-0 genus-1 models that kill at the
+decision level are the (1,1,1) list -- t^4 + 18t^2 + 1, t^4 + t^2 + 1,
+t^4 + 34t^2 + 1, 9t^4 - 14t^2 + 9, t^4 - 3t^2 + 1, 25t^4 - 6t^2 + 1,
+9t^4 + 10t^2 + 1, t^4 + 10t^2 + 9 -- plus a few new twists: t^4 - 14t^2
++ 1 (the most used, 17 kills), 4t^4 + 7t^2 + 4, t^4 - 6t^2 + 1, 3t^4 -
+10t^2 + 3. The monomial lemma kills every genus-0 Pythagorean family
+again, and the relations now include the angle multiples the
+exponent-2 frame makes available: (a,b) = (2,1) x126, (3,2) x92, (1,2)
+x60, (2,-1) x52, (1,-2) x52, (4,1) x40, (3,1) x34, (3,-1), (1,-3),
+(2,3), (2,-3), (3,-2), (1,3), (4,-1), (1,-4), (1,4). The tower killers
+are the same eight (30a2 through u = t^2 and its deeper w-quotient,
+11a3 through the odd companion, 24a1, 80a1, 400d1, 528j2, 128c2, 48a3)
+plus 34a2, 592c1, 48a1, 56a2, 14a4, 80a2; the positive-rank quotients
+are again small-conductor curves (88a1, 352b1/c1, 185b1, 1840d1,
+156a1, 128a2, 200b2, 184b1, 57a1, 92b1, 176c1). So: yes -- the
+mechanism transfers unchanged to the exponent-2 frame, and the curve
+list grows modestly (new twists), consistent with entry 100's reading
+that the mechanism is uniform while the list is not naively finite.
+
+WHAT CHANGES: COVERAGE. 64% of the sampled classes are 'unknown' (vs
+43% in (1,1,1)): the eliminated resultants reach bidegree (16,16) --
+the sample's components are (2,1), (8,4), (1,2), (4,2), (12,6),
+(12,8), (6,4), (3,2), (2,2), (10,8), (8,8), (12,4), ... -- and
+components above bidegree 6 are not pulled back (sympy cannot factor
+their pullbacks in reasonable time). Every class the engine can see is
+dead or on a curve with finitely many rational points, exactly as in
+(1,1,1); the fraction it can see shrinks with the exponent. This makes
+R.8 phase 2 (the high-bidegree components by a cheaper route:
+irreducibility mod p, smoothness, PARI factorization) the bottleneck
+for every box beyond (1,1,1), ahead of the 304 that need Magma/Sage.
+
+NEXT. Phase 2 before any full sweep; the sweep itself (~60 CPU-hours)
+is a background job to run once phase 2 raises the coverage. Suite 183
+(a3.omega3_box211: the box construction, the (4,2,2)-forms, the
+cross-check, the data-file census, a live PARI kill of a sampled
+class; FULL re-enumerates the 89,732 classes; the engine is reset to
+(1,1,1) afterwards). Doc 2.31; ROADMAP R.8 status + M14-D; memory.

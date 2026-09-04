@@ -3768,3 +3768,77 @@ def _(ctx):
         ctx.note("PARI/GP not found: live tower kills not re-run (data-file consistency verified)")
     ctx.note("quotient towers: 296 of the 600 finite classes dead (eight rank-0 quotient curves); 304 remain (rank-1/2 "
              "elliptic quotients or none; searches to 2000 empty); box tally dead 1373, finite 304, unknown 1267")
+
+
+@check("a3.omega3_box211", DOC)
+def _(ctx):
+    """THE (2,1,1) BOX (entry 101): the engine generalized to any exponents
+    (compute.omega3.set_box), and a seeded sample of the new classes.  Split part
+    p^2 q r: 22 labels (j in [-2,2], k, l in [-1,1], mod sign), every element a
+    (4,2,2)-form -- Im(l^4) enters through the Chebyshev formula -- agreeing with
+    the repo's two-frame relations on a (2,1) pattern; the symmetry group is the
+    conjugations times the swap of the two exponent-1 frames (order 16);
+    89732 classes, 79368 of them new (some |j| = 2, all three frames present).
+    A seeded uniform sample of 400 new classes through the full engine
+    (decision + towers): dead 88, finite 55, unknown 257 -- the last because the
+    components reach bidegree (16,16) and those above the pullback threshold are
+    not analysed; median 9 s per class, so a full sweep is ~60 CPU-hours (not
+    run).  THE SAME SHAPES RECUR: the rank-0 quartics are the (1,1,1) models plus
+    a few new twists (t^4 - 14t^2 + 1, 4t^4 + 7t^2 + 4, 3t^4 - 10t^2 + 3); the
+    monomial lemma now sees angle multiples up to 4 ((3,1), (4,1), (3,2), (1,4),
+    ...); the tower killers are the same 30a2, 11a3, 24a1, 80a1, 400d1, 528j2,
+    128c2, 48a3 plus 34a2, 592c1, 48a1, 56a2, 14a4, 80a2.  Verifies the box
+    construction, the cross-check, the data-file census, and with PARI one live
+    kill of a sampled class; FULL re-enumerates the 89732 classes.  The engine is
+    reset to the (1,1,1) box afterwards."""
+    import json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.lucas_endpoints import cleared_terms
+    from compute.pari_genus1 import gp_available
+    try:
+        O.set_box((2, 1, 1))
+        require(len(O.LABELS) == 22 and len(O.E) == 22 and len(O.GROUP) == 16, (len(O.LABELS), len(O.GROUP)))
+        for lab, e in O.E.items():
+            for (c, s_), d in zip(O.FR, (4, 2, 2)):
+                P_ = sp.Poly(e, c, s_)
+                require(P_.is_homogeneous and P_.total_degree() == d, ("(4,2,2)-form", lab))
+        pat = (((2, -1), 1), ((1, 1), 1), ((2, 1), -1))
+        ref = 0
+        for cc, wp, wq, ec, poly in cleared_terms(pat):
+            for (a, b, c_, d_), v in poly.items():
+                ref += v * O.c1 ** a * O.s1 ** b * O.c2 ** c_ * O.s2 ** d_
+        mine = O.E[(2, -1, 0)] + O.E[(1, 1, 0)] - O.E[(2, 1, 0)]
+        require(sp.expand(mine - ref * (O.c3 ** 2 + O.s3 ** 2)) == 0, "(2,1,1) elements vs cleared_terms on a (2,1) pattern")
+        with open(os.path.join(DATA, "data_omega3_box211_sample.json"), encoding="utf-8") as fh:
+            data = json.load(fh)
+        require(data["n_classes"] == 89732 and data["n_new_three_frame"] == 79368, (data["n_classes"], data["n_new_three_frame"]))
+        require(data["sample"]["n"] == 400 == len(data["classes"]) and data["sample"]["seed"] == 20260904)
+        require(data["tally"] == {"unknown": 257, "finite": 55, "dead": 88}, data["tally"])
+        require(data["dead_by"] == {"towers": 33, "decision": 55}, data["dead_by"])
+        # every class key canonical in the (2,1,1) group
+        for e in data["classes"]:
+            A, B, C, D, eA, eB, eC, eD = e["cand"]
+            k = O.canon_cand(((tuple(A), eA), (tuple(B), eB), (tuple(C), eC), (tuple(D), eD)))
+            require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
+            require(any(abs(x[0]) == 2 for x in (A, B, C, D)), ("new class", e["cand"]))
+        models = {tuple(m["model"]) for m in data["rank0_models"]}
+        require({(1, 0, 18, 0, 1), (9, 0, -14, 0, 9), (1, 0, 1, 0, 1), (1, 0, 34, 0, 1)} <= models, "the (1,1,1) killers recur")
+        require((1, 0, -14, 0, 1) in models, "a new twist appears")
+        require({"3,1", "4,1", "3,2", "1,2", "2,1"} <= set(data["monomial_relations"]), data["monomial_relations"].keys())
+        kl = {k["label"] for k in data["tower_killers"]}
+        require({"30a2", "11a3", "24a1", "80a1"} <= kl, kl)
+        if gp_available():
+            fast = sorted((e for e in data["classes"] if e["verdict_before_towers"] == "dead"), key=lambda e: e["t_decide"] or 99)[0]
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in fast["cand"])
+            best, frames = O.decide_class(cand)
+            require(best == "dead", (cand, best))
+            ctx.note("PARI: the sampled class " + str(cand) + " re-decided dead in the (2,1,1) box")
+        if ctx.bound(full=1, fast=0) == 1:
+            require(len(O.all_candidates()) == 89732, "class enumeration")
+    finally:
+        O.set_box((1, 1, 1))
+    require(O.BOX == (1, 1, 1) and len(O.LABELS) == 13, "engine reset to (1,1,1)")
+    ctx.note("(2,1,1) box: 22 elements ((4,2,2)-forms), 89732 classes, 79368 new; sampled 400: dead 88, finite 55, unknown 257 -- "
+             "the same killers and the monomial lemma recur, with higher angle multiples; coverage drops (bidegree > 6 not pulled "
+             "back); a full sweep is ~60 CPU-hours, not run.")

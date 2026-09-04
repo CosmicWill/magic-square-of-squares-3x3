@@ -2258,6 +2258,41 @@ the classical elliptic-Chabauty / two-cover situation (points of a rank-$1$
 curve with a square coordinate), effective in principle with tools not
 available here (Magma, Sage); the searches make them very likely empty.
 
+## 2.31 The (2,1,1) box: the same engine, the same shapes, less coverage
+
+*(2026-09-04; entry 101; check `a3.omega3_box211`; data
+`compute/data_omega3_box211_sample.json`; `compute.omega3.set_box`.)*
+
+**The box.**  Split part $p^2qr$.  The engine now takes any exponents
+$(a,b,c)$: labels $|j|\le a$ etc. mod sign, elements
+$(c_1^2+s_1^2)^{a-|j|}(c_2^2+s_2^2)^{b-|k|}(c_3^2+s_3^2)^{c-|l|}
+\operatorname{Im}(\ell^{2j}w^{2k}v^{2l})$ — $(2a,2b,2c)$-forms — and the
+symmetry group of conjugations and permutations of frames with equal
+exponents.  For $(2,1,1)$: $22$ labels, $(4,2,2)$-forms (the exponent-$2$
+frame enters through $\operatorname{Im}\ell^4=4c_1s_1(c_1^2-s_1^2)$, the
+Chebyshev formula), agreeing with the two-frame relations on a $(2,1)$
+pattern; $89{,}732$ classes, $79{,}368$ of them new.
+
+**The sample.**  $400$ new classes, seeded, through decision and towers:
+dead $88$ ($55$ at the decision level, $33$ by towers), finite $55$,
+unknown $257$.  Median $9$ s per class; a full sweep is about $60$
+CPU-hours and was not run.
+
+**The same shapes recur.**  The rank-$0$ quartics that kill are the
+$(1,1,1)$ list plus a few new twists ($t^4-14t^2+1$, $4t^4+7t^2+4$,
+$3t^4-10t^2+3$, $t^4-6t^2+1$); the monomial lemma kills every rational
+family again, now with angle multiples up to $4$ ($(2,1),(3,2),(4,1),
+(3,1),(1,4),\dots$); the tower killers are the same eight curves plus
+34a2, 592c1, 48a1, 56a2, 14a4, 80a2.  The mechanism transfers unchanged
+to the exponent-$2$ frame; the curve list grows modestly.
+
+**What changes is coverage.**  The resultants reach bidegree $(16,16)$ and
+components above bidegree $6$ are not pulled back, so $64\%$ of the sampled
+classes are unknown ($43\%$ in $(1,1,1)$).  Everything the engine sees is
+dead or Faltings-finite; the fraction it sees shrinks with the exponent.
+The high-bidegree components (R.8 phase 2) are therefore the bottleneck for
+every box beyond $(1,1,1)$.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

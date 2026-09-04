@@ -63,24 +63,49 @@ lam, T = sp.symbols("lam T")
 ORDER = {"dead": 0, "finite": 1, "candidate": 2, "infinite": 3, "unknown": 4}
 
 
-def elem(lab):
+def elem_box(lab, exps):
+    """Element of D(m) for split part p^a q^b r^c (exps = (a, b, c)) with label
+    (j, k, l), |j| <= a etc.: the (2a, 2b, 2c)-form
+    (c1^2+s1^2)^(a-|j|) (c2^2+s2^2)^(b-|k|) (c3^2+s3^2)^(c-|l|) Im(l^{2j} w^{2k} v^{2l})."""
     R, I = sp.Integer(1), sp.Integer(0)
     W = sp.Integer(1)
-    for (c, s), e in zip(FR, lab):
+    for (c, s), e, a in zip(FR, lab, exps):
         z = sp.expand((c + sp.I * s) ** (2 * abs(e)))
         r, i = z.as_real_imag()
         if e < 0:
             i = -i
         R, I = sp.expand(R * r - I * i), sp.expand(R * i + I * r)
-        W *= (c ** 2 + s ** 2) ** (1 - abs(e))
+        W *= (c ** 2 + s ** 2) ** (a - abs(e))
     return sp.expand(W * I)
 
 
-LABELS = [lab for lab in itertools.product((-1, 0, 1), repeat=3)
-          if lab != (0, 0, 0) and next(x for x in lab if x != 0) > 0]
-E = {lab: elem(lab) for lab in LABELS}
-GROUP = [(perm, conj) for perm in itertools.permutations(range(3))
-         for conj in itertools.product((1, -1), repeat=3)]
+def elem(lab):
+    return elem_box(lab, (1, 1, 1))
+
+
+def _build_box(exps):
+    labs = [lab for lab in itertools.product(*[range(-a, a + 1) for a in exps])
+            if any(lab) and next(x for x in lab if x != 0) > 0]
+    Ebox = {lab: elem_box(lab, exps) for lab in labs}
+    perms = [p for p in itertools.permutations(range(3)) if all(exps[p[i]] == exps[i] for i in range(3))]
+    G = [(perm, conj) for perm in perms for conj in itertools.product((1, -1), repeat=3)]
+    return labs, Ebox, G
+
+
+BOX = (1, 1, 1)
+LABELS, E, GROUP = _build_box(BOX)
+
+
+def set_box(exps):
+    """Switch the engine to the box p^a q^b r^c: rebuilds the elements, the labels
+    and the symmetry group (conjugations x permutations of frames with EQUAL
+    exponents).  The (1,1,1) box is the default."""
+    global BOX, LABELS, E, GROUP
+    exps = tuple(int(x) for x in exps)
+    if exps != BOX:
+        BOX = exps
+        LABELS, E, GROUP = _build_box(BOX)
+    return BOX
 
 
 def canon_lab(lab, eps):
@@ -112,7 +137,7 @@ def canon_cand(cand):
 
 
 def all_candidates():
-    """The quadruple candidate classes of the (1,1,1) box (2944)."""
+    """The quadruple candidate classes of the current box ((1,1,1): 2944)."""
     seen = set()
     for A, B in itertools.combinations(LABELS, 2):
         rest = [x for x in LABELS if x not in (A, B)]
