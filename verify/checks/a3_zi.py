@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 1373, "finite": 1528, "unknown": 43}, data["tally"])     # entry 102 (genus bounds)
+    require(data["tally"] == {"dead": 1376, "finite": 1568, "unknown": 0}, data["tally"])      # entry 103 (exact genera; box closed)
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,7 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1373)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1376)      # 1373 + the 3 common-factor kills (entry 103)
     require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
@@ -3685,8 +3685,10 @@ def _(ctx):
              "in the primes (349 trivial; 13 rank-0 even quartics of conductor 32/48/56/80; the MONOMIAL LEMMA -- every "
              "rational Pythagorean family is an angle-multiple coincidence w_g^a = eps w_h^b, impossible for distinct "
              "primes; non-square discriminants), 600 Faltings-finite (even reciprocal hyperelliptic models, genus 2/3/5), "
-             "1267 not yet analysed (bidegree > 6); no infinite or candidate class remains. The thirteen killing quartics "
-             "are five curves up to isomorphism: 32a2, 48a1, 48a3, 56a2, 80a1 (entry 99). Not a theorem for the box.")
+             "1267 of bidegree > 6 (exact genera 3..23 by resolution, entry 103; 3 degenerate classes dead by the "
+             "common-factor rule); no infinite or candidate class remains. The thirteen killing quartics are five curves "
+             "up to isomorphism: 32a2, 48a1, 48a3, 56a2, 80a1 (entry 99). Box closed: dead 1376, finite 1568, unknown 0 "
+             "-- finiteness, not yet effectivity: not a theorem for the box.")
 
 
 @check("a3.omega3_towers", DOC)
@@ -3856,14 +3858,22 @@ def _(ctx):
     EXACTLY over the number fields of the branch values (PARI; discriminant
     factors up to degree 40), for both projections; skipped factors only lower
     the bound.  Absolute irreducibility: irreducible mod p with a smooth
-    F_p-point.  RESULT: of the 1267 unknown classes, 1224 are certified finite
-    (g_lb >= 2, certified); 43 remain, every one absolutely irreducible with the
-    bound lost at singular points (mostly bidegree (4,4)).  Box tally: dead 1373,
-    finite 1528, unknown 43.  Also pinned: the local sieve of entry 102 is
-    VACUOUS (the all-real residue class always solves an Im-type relation).
-    Verifies the bound on a genus-1 control (exact, both projections), a live
-    certification of a high-bidegree component, the data census, and the
-    sieve's vacuity."""
+    F_p-point.  RESULT AS COMMITTED IN ENTRY 102: 1224 of the 1267 certified,
+    43 remaining.  CORRECTED IN ENTRY 103: those bounds were computed with
+    PARI's factor over a NON-MONIC modulus, which silently changes the
+    generator of the branch-value field; 204 component bounds were wrong in
+    value (182 too low, 22 too high), none crossed the threshold downward, so
+    the 1224 certifications stood, and the recomputation (nffactor against
+    nfinit of the monic integral polynomial of the scaled root) certifies 1264
+    of the 1267 -- the 3 others are the degenerate classes, which have no
+    high-bidegree component at all (killed in entry 103 by the common-factor
+    rule).  The exact genera of a3.omega3_resolve supersede the bounds.  Also
+    pinned: the local sieve of entry 102 is VACUOUS (the all-real residue class
+    always solves an Im-type relation).  Verifies the bound on a genus-1
+    control (exact, both projections), a live certification of a high-bidegree
+    component against the CORRECTED record, the data census (with the
+    entry-102 numbers kept as the record of the correction), and the sieve's
+    vacuity."""
     import json
     import sympy as sp
     from compute.omega3 import frame_factors, tg, th
@@ -3873,8 +3883,9 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     Gb = data["genus_bounds"]
-    require(Gb["n_unknown_before"] == 1267 and Gb["n_certified_finite"] == 1224 and Gb["n_unknown_after"] == 43, Gb)
-    require(Gb["degree_cap"] == 40 and sum(Gb["certified_by_bidegree"].values()) >= 1224)
+    require(Gb["n_unknown_before"] == 1267 and Gb["n_certified_finite"] == 1264 and Gb["n_unknown_after"] == 3, Gb)
+    require(Gb["entry102_as_committed"] == {"n_certified_finite": 1224, "n_unknown_after": 43}, Gb["entry102_as_committed"])
+    require("NON-MONIC" in Gb["correction"] and Gb["degree_cap"] == 40 and sum(Gb["certified_by_bidegree"].values()) >= 1264)
     require(all(x["g_lb"] <= 1 for x in Gb["not_certified"]), Gb["not_certified"])
     n_fin, n_unk = 0, 0
     for e in data["classes"]:
@@ -3887,9 +3898,8 @@ def _(ctx):
                     any(fr["verdict"] in ("finite", "dead") for fr in e["genus"]["frames"].values()), ("certified", e["cand"]))
         elif e["verdict"] == "unknown":
             n_unk += 1
-            require(all(c.get("abs_irred_p") for fr in e["genus"]["frames"].values() for c in fr["components"] if "g_lb" in c),
-                    ("the 43 are absolutely irreducible", e["cand"]))
-    require((n_fin, n_unk) == (1224, 43), (n_fin, n_unk))
+    require((n_fin, n_unk) == (1264, 0), (n_fin, n_unk))
+    require(all("corrected" in e["genus"] for e in data["classes"] if "genus" in e), "every bound record is the corrected one")
     if gp_available():
         # (i) the genus-1 control: the (2,2) component tg^2 th + 2 tg th^2 - 2 tg + th of the class below
         c22 = ((0, 0, 1), (0, 1, -1), (0, 1, 1), (1, -1, -1), 1, -1, 1, -1)
@@ -3921,6 +3931,117 @@ def _(ctx):
         require(v == "survives" and all(n > 0 for n in counts.values()), (v, m, counts))
     else:
         ctx.note("PARI/GP not found: live genus bounds not re-run (data-file consistency verified)")
-    ctx.note("genus lower bounds: 1224 of the 1267 unknown classes certified Faltings-finite; 43 remain (absolutely "
-             "irreducible, bound lost at singular points, mostly (4,4)); box tally dead 1373, finite 1528, unknown 43; "
-             "the local sieve is vacuous (recorded)")
+    ctx.note("genus lower bounds (corrected, entry 103): 1264 of the 1267 classes certified Faltings-finite, the 3 others "
+             "degenerate (no high-bidegree component); entry 102's 1224 certifications all stand, its 43 'unknown' were a "
+             "non-monic-modulus factorization artefact; superseded by the exact genera; the local sieve is vacuous (recorded)")
+
+
+@check("a3.omega3_resolve", DOC)
+def _(ctx):
+    """THE EXACT GENUS BY RESOLUTION, AND THE BOX CLOSED (entry 103).  For an
+    absolutely irreducible plane curve of bidegree (dg, dh), g = p_a - sum_Q
+    delta_Q with p_a = (dg-1)(dh-1) and delta_Q = sum m_P (m_P - 1)/2 over the
+    infinitely near points of the blow-up tree at Q (directions in extension
+    fields through PARI rnfequation, every field monic integral and factored
+    by nffactor against its own nfinit); the branch count r_Q is the number of
+    smooth terminal points.  CROSS-CHECK: Riemann-Hurwitz for the t-projection
+    with the exact ramification R = R_lb + sum_Q (m_Q - r_Q) must give 2g.
+    RESULT: every high-bidegree component of the 1264 classes has exact genus
+    between 3 and 23, consistent, certified absolutely irreducible; the 3
+    'degenerate' classes of entry 97 (every resultant vanished) have a common
+    factor of their two relations depending on every frame, and R1 = R2 = 0
+    iff G = 0 or the reduced pair vanishes: every branch is a degenerate frame,
+    a norm, or a same-prime relation t_g = +-t_h, t_g t_h = +-1 (the (2,+-2)
+    monomial relation, dead by the monomial lemma) -- DEAD.  BOX (1,1,1):
+    dead 1376, finite 1568, unknown 0: every class is impossible for all three
+    primes or has, in some frame, only components with finitely many rational
+    points.  Verifies eight textbook singularities (delta, branches), the
+    genus-1 control, a live re-resolution of a recorded component, the three
+    common-factor kills live, and the data census."""
+    import json
+    import sympy as sp
+    from compute.omega3 import frame_factors, decide_class, reduced_relations, tg, th
+    from compute.omega3_resolve import exact_genus_checked
+    from compute.omega3_genus import absolutely_irreducible
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    require(data["entry"] == 103 and data["tally"] == {"dead": 1376, "finite": 1568, "unknown": 0}, data["tally"])
+    Rs = data["resolution"]
+    require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
+    require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
+    require(min(lo for lo, hi in Rs["genus_range_by_bidegree"].values()) == 3 and
+            max(hi for lo, hi in Rs["genus_range_by_bidegree"].values()) == 23, Rs["genus_range_by_bidegree"])
+    CF = data["common_factors"]
+    require(CF["n_classes"] == 48 and CF["kinds"] == {"norm": 28, "monomial": 26, "same-prime": 12} and len(CF["killed"]) == 3, CF)
+    killed = {json.dumps(c) for c in CF["killed"]}
+    n_res, n_cf = 0, 0
+    for e in data["classes"]:
+        if "resolution" in e:
+            n_res += 1
+            require(e["verdict"] == "finite", ("resolution class verdict", e["cand"]))
+            fr = e["resolution"]["frames"][str(e["frame"])]
+            require(fr["verdict"] == "finite" and fr["components"], ("certifying frame", e["cand"]))
+            for c in fr["components"]:
+                if c["verdict"] == "finite":
+                    require(c.get("genus", 0) >= 2 and c.get("consistent") is True and c.get("abs_irred_p"), ("component", e["cand"], c["deg"]))
+                else:
+                    require(c["verdict"] == "dead", ("component", e["cand"], c["deg"], c["verdict"]))
+        if json.dumps(e["cand"]) in killed:
+            n_cf += 1
+            require(e["verdict"] == "dead" and str(e["mechanism"]).startswith("common factor") and "common_factors" in e, e["cand"])
+            require(all(v == "dead" for v, kind, fr_, phi in e["common_factors"]), e["common_factors"])
+    require((n_res, n_cf) == (1264, 3), (n_res, n_cf))
+    # the three kills, live (no PARI needed): the common factor and every frame
+    expect = {}
+    for e in data["classes"]:
+        if json.dumps(e["cand"]) in killed:
+            expect[json.dumps(e["cand"])] = sorted(kind for v, kind, fr_, phi in e["common_factors"])
+    for k, kinds in expect.items():
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in json.loads(k))
+        A, B, common = reduced_relations(cand)
+        require(sorted(kind for v, kind, fr_, phi in common) == kinds and all(v == "dead" for v, kind, fr_, phi in common), (cand, common))
+        best, frames = decide_class(cand)
+        require(best == "dead", (cand, best, {f: fr["verdict"] for f, fr in frames.items()}))
+    if gp_available():
+        # (i) textbook singularities: (m, delta, branches) at the origin, with the Riemann-Hurwitz cross-check
+        cases = {"node": (th ** 2 - tg ** 2 - tg ** 3, (2, 1, 2)), "cusp": (th ** 2 - tg ** 3, (2, 1, 1)),
+                 "tacnode": (th ** 2 - tg ** 4, (2, 2, 2)), "triple point": (th ** 3 - tg ** 3 + tg ** 4, (3, 3, 3)),
+                 "E6": (th ** 3 - tg ** 4, (3, 3, 1)), "E8": (th ** 3 - tg ** 5, (3, 4, 1)),
+                 "conjugate node x^2 + t^2": (th ** 2 + tg ** 2 + th ** 3 - tg ** 5, (2, 1, 2)),
+                 "x^4 + t^4": (th ** 4 + tg ** 4 - th ** 5 + tg ** 6, (4, 6, 4))}
+        for name, (phi, mdr) in cases.items():
+            P = sp.Poly(sp.expand(phi), tg, th)
+            g, det = exact_genus_checked(sp.expand(phi), P.degree(tg), P.degree(th))
+            origin = [(x["m"], x["delta"], x["r"]) for x in det["singular"] if x["chart"] == "tx" and x["tfactor"] == "t"]
+            require(g is not None and det.get("consistent") is True and origin == [mdr], (name, g, det.get("consistent"), origin))
+        # (ii) the genus-1 control: exact genus 1, consistent
+        c22 = ((0, 0, 1), (0, 1, -1), (0, 1, 1), (1, -1, -1), 1, -1, 1, -1)
+        curves, live = frame_factors(c22, 0)
+        phi = [c for c in curves if (c[1], c[2]) == (2, 2)][0][0]
+        g, det = exact_genus_checked(phi, 2, 2)
+        require(g == 1 and det.get("consistent") is True, (g, det.get("consistent")))
+        # (iii) a live re-resolution of the first recorded (4,4) component certified in its class's frame
+        for e in data["classes"]:
+            if "resolution" not in e:
+                continue
+            fr = e["resolution"]["frames"][str(e["frame"])]
+            hit = [c for c in fr["components"] if c["verdict"] == "finite" and tuple(c["deg"]) == (4, 4)]
+            if not hit:
+                continue
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+            curves, live = frame_factors(cand, e["frame"])
+            phi = [c for c in curves if (c[1], c[2]) == (4, 4)][0][0]
+            g, det = exact_genus_checked(phi, 4, 4)
+            require(g == hit[0]["genus"] and g >= 2 and det.get("consistent") is True and absolutely_irreducible(phi) is not None,
+                    (cand, g, hit[0]["genus"], det.get("consistent")))
+            require(sorted((x["m"], x["delta"], x["r"]) for x in det["singular"]) ==
+                    sorted((x["m"], x["delta"], x["r"]) for x in hit[0]["singular"]), (cand, "singular points"))
+            ctx.note("PARI: the (4,4) component of " + str(cand) + " re-resolved: exact genus " + str(g) + ", singular points (m, delta, r) "
+                     + str(sorted((x["m"], x["delta"], x["r"]) for x in det["singular"])) + ", Riemann-Hurwitz consistent")
+            break
+    else:
+        ctx.note("PARI/GP not found: live resolutions not re-run (data-file consistency and the three common-factor kills verified)")
+    ctx.note("exact genera by resolution: every high-bidegree component of the 1264 classes has genus 3..23 (cross-checked, "
+             "certified); the 3 degenerate classes die by the common-factor rule; BOX (1,1,1) CLOSED: dead 1376, finite 1568, "
+             "unknown 0")

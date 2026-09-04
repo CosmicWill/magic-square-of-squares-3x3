@@ -2323,16 +2323,65 @@ $\ge0$, so the bound stays valid); both projections taken.  Absolute
 irreducibility is certified by irreducibility mod $p$ with a smooth
 $\mathbb F_p$-point.  The genus-$1$ control gives $g\ge1$ exactly.
 
-**Result.**  $1224$ of the $1267$ classes are certified Faltings-finite
-(bounds of $21$ for $(8,8)$, $14$ for $(7,5)$, $9$ for $(4,8)$, $7$ for
-$(6,6)$); $43$ remain, all absolutely irreducible, the bound lost at
-singular points where the branch count is below the multiplicity (mostly
-bidegree $(4,4)$; Newton–Puiseux at those points would sharpen it).  **Box
-tally: dead $1373$, finite $1528$, unknown $43$.**  Every class but $43$ is
-impossible for all three primes or lies on an explicit curve with finitely
-many rational points; the finite set — $304$ hyperelliptic models blocked
-by positive-rank quotients and $1224$ high-genus components — is the whole
-remaining obstruction, effective in principle beyond PARI.
+**Result as committed (entry 102).**  $1224$ of the $1267$ classes were
+certified Faltings-finite; $43$ remained.  **Corrected in entry 103 (§2.33):**
+those bounds were computed with PARI's `factor` over a *non-monic* modulus,
+which silently rescales the generator of the branch-value field; $204$ of
+the component bounds were wrong in value ($182$ too low, $22$ too high),
+none crossed the threshold downward, so the $1224$ certifications stand;
+the recomputation (nffactor against nfinit of the monic integral polynomial
+of the scaled root) certifies $1264$ of the $1267$, and the $3$ others are
+the degenerate classes, which have no high-bidegree component at all.  The
+exact genera of §2.33 supersede the bounds.
+
+## 2.33 The box closed: exact genera by resolution, and the three degenerate classes
+
+*(2026-09-04; entry 103; check `a3.omega3_resolve`; code `compute/omega3_resolve.py`,
+`compute.omega3.reduced_relations`.)*
+
+**The exact genus.**  For an absolutely irreducible $\Phi(t,x)=0$ of
+bidegree $(d_g,d_h)$, $g=p_a-\sum_Q\delta_Q$ with $p_a=(d_g-1)(d_h-1)$ and
+$\delta_Q=\sum_P m_P(m_P-1)/2$ over the infinitely near points of the
+blow-up tree at the singular point $Q$; the tree also counts the branches
+$r_Q$.  Directions that are conjugate over the current field are handled in
+the extension (PARI `rnfequation`, every field monic integral and factored
+by `nffactor` against its own `nfinit`) and counted with multiplicity.
+*Cross-check:* with $r_Q$ known, Riemann–Hurwitz for the $t$-projection is
+exact, $R=R_{\rm lb}+\sum_Q(m_Q-r_Q)$, and $2g=2-2d_h+R$ must agree with
+$p_a-\sum\delta_Q$ — required for every component (discriminant factors
+to degree $400$).  Validated on the textbook singularities (node, cusp,
+tacnode, triple point, $E_6$, $E_8$, the conjugate node $x^2+t^2$,
+$x^4+t^4$), the genus-$1$ control, and $40$ recorded hyperelliptic genera.
+
+**Result.**  All $1264$ high-bidegree classes are certified finite, each in
+its recorded frame by one component of exact genus between $3$ and $23$
+($(4,4)$: $3$–$9$; $(6,6)$: $5$–$13$; $(6,8)$, $(8,6)$: $5$–$19$; $(8,8)$:
+$11$–$23$), consistent and absolutely irreducible.  The exact genus equals
+the corrected bound for $1144$ components.  Among the $8086$ Galois orbits
+of singular points there is no cusp: $6260$ nodes, $888$ tacnodes, ordinary
+triple, $4$-fold and $6$-fold points, and $128$ orbits with fewer branches
+than the multiplicity — exactly where the bound of §2.32 lost.
+
+**The three degenerate classes.**  Their two relations share a common
+factor $G$ depending on every frame ($4s_2s_3(c_1^2+s_1^2)$,
+$4s_3(c_2s_1-c_1s_2)$, $4s_3(c_1c_2+s_1s_2)$), so every resultant vanished.
+But $R_1=R_2=0$ iff $G=0$ or $R_1/G=R_2/G=0$: the factors of $G$ are
+degenerate frames, norms, or the same-prime relations $t_1=t_2$,
+$t_1t_2=-1$ (the $(2,\pm2)$ monomial relation $w_1^2=\pm w_2^2$, impossible
+for distinct primes), and the reduced pairs force a degenerate frame or
+the same relations.  The engine now divides out the common factor first;
+$48$ classes have one (norms, monomials, same-prime factors only), $45$
+already dead, the $3$ now dead.
+
+**The box.**  $\boxed{\text{dead }1376,\ \text{finite }1568,\ \text{unknown }0}$
+of $2944$: every class is impossible for every triple of distinct primes,
+uniformly, or has in some frame only components with finitely many
+rational points — hence can be carried by at most finitely many prime
+pairs.  This is finiteness, not effectivity: the $304$ hyperelliptic models
+blocked by positive-rank quotients and the $1264$ curves of genus $3$–$23$
+need Chabauty-type methods (Magma/Sage) to make their finite sets explicit,
+and the uniform statement of goal G is exactly that those sets contain no
+non-degenerate frame pair.
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 

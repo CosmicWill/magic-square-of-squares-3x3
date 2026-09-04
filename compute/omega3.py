@@ -172,17 +172,81 @@ def relations(cand):
     return (sp.expand(eA * E[A] + eB * E[B] - eC * E[C]), sp.expand(eA * E[A] - eB * E[B] - eD * E[D]))
 
 
-def frame_factors(cand, f):
-    """Eliminate frame f.  Returns None (degenerate: no s_f dependence or Res = 0)
-    or (curves, live_univariate): curves = [(phi, dg, dh)] the genuine curve
-    components of Res in (tg, th); live_univariate = frame-ratio roots of linear
-    univariate factors (candidates).  Monomials, univariate factors without a
-    frame-ratio root and the same-prime factors are dropped (dead)."""
+def _ratio_form(fe, g, h):
+    """A polynomial in the frames g, h as a polynomial in the ratios (tg, th):
+    s_g = tg c_g, s_h = th c_h, the monomial in c_g, c_h stripped."""
+    (cg, sg), (ch, sh) = FR[g], FR[h]
+    phi = sp.expand(fe.subs({sg: tg * cg, sh: th * ch}, simultaneous=True))
+    return sp.expand(sp.Mul(*[q ** m2 for q, m2 in sp.factor_list(phi)[1] if q.free_symbols & {tg, th}]))
+
+
+def classify_common_factor(fac):
+    """An irreducible COMMON factor of the two relations is a condition in its
+    own right, whichever frame is eliminated (R1 = R2 = 0 iff G = 0 or the
+    reduced pair vanishes).  Returns (verdict, kind, frames, phi):
+    'dead' for a monomial in the c's and s's (a degenerate frame), a norm
+    c_f^2 + s_f^2 (never zero) or a same-prime factor in two frames
+    (t_g = +-t_h, t_g t_h = +-1: the (2,+-2) monomial relation w_g^2 = eps
+    w_h^2, impossible for distinct primes by the monomial lemma of entry 98);
+    'curve' for any other factor in exactly two frames (phi in (tg, th) with
+    (g, h) the frames, to be decided as a component); 'unknown' otherwise."""
+    fe = sp.expand(fac)
+    if len(sp.Add.make_args(fe)) == 1:
+        return "dead", "monomial", None, None
+    for cf, sf in FR:
+        if sp.expand(fe - (cf ** 2 + sf ** 2)) == 0 or sp.expand(fe + (cf ** 2 + sf ** 2)) == 0:
+            return "dead", "norm", None, None
+    frames = [i for i, (cf, sf) in enumerate(FR) if {cf, sf} & fe.free_symbols]
+    if len(frames) == 2:
+        g, h = frames
+        phi = _ratio_form(fe, g, h)
+        if phi in SAME or sp.expand(-phi) in SAME:
+            return "dead", "same-prime", (g, h), phi
+        if phi.free_symbols & {tg, th}:
+            return "curve", "curve", (g, h), phi
+    return "unknown", "three-frame", tuple(frames), fe
+
+
+def reduced_relations(cand):
+    """(R1/G, R2/G, common): the relations with their common factor G divided
+    out, and the classification of G's irreducible factors (entry 103; three
+    classes of the (1,1,1) box have G depending on every frame, so every
+    resultant vanished and the engine called them degenerate)."""
     R1, R2 = relations(cand)
+    if R1 == 0 or R2 == 0:
+        return R1, R2, []
+    G = sp.gcd(R1, R2)
+    if not G.free_symbols:
+        return R1, R2, []
+    common = [classify_common_factor(fac) for fac, _m in sp.factor_list(G)[1]]
+    A = sp.expand(sp.cancel(R1 / G))
+    B = sp.expand(sp.cancel(R2 / G))
+    assert sp.expand(A * G - R1) == 0 and sp.expand(B * G - R2) == 0
+    return A, B, common
+
+
+def frame_factors(cand, f):
+    """Eliminate frame f.  Returns None (degenerate: no s_f dependence or Res = 0,
+    or a common factor of the relations that is not decided) or (curves,
+    live_univariate): curves = [(phi, dg, dh)] the genuine curve components of
+    Res in (tg, th), plus any common factor of the relations that is a curve in
+    the frames (g, h); live_univariate = frame-ratio roots of linear univariate
+    factors (candidates).  Monomials, univariate factors without a frame-ratio
+    root, the same-prime factors and the dead common factors are dropped."""
+    R1, R2, common = reduced_relations(cand)
     cf, sf = FR[f]
     g, h = [i for i in range(3) if i != f]
     (cg, sg), (ch, sh) = FR[g], FR[h]
     if R1 == 0 or R2 == 0:
+        return None
+    extra = []
+    for verdict, kind, frames, phi in common:
+        if verdict == "dead":
+            continue
+        if verdict == "curve" and frames == (g, h):
+            Pg = sp.Poly(phi, tg, th)
+            extra.append((phi, Pg.degree(tg), Pg.degree(th)))
+            continue
         return None
     P1, P2 = sp.Poly(R1, sf), sp.Poly(R2, sf)
     if P1.degree() < 1 or P2.degree() < 1:
@@ -190,7 +254,7 @@ def frame_factors(cand, f):
     Res = sp.expand(sp.resultant(P1, P2))
     if Res == 0:
         return None
-    curves, live = [], []
+    curves, live = list(extra), []
     for fac, mult in sp.factor_list(Res)[1]:
         fe = sp.expand(fac)
         if len(sp.Add.make_args(fe)) == 1:

@@ -1,4 +1,4 @@
-"""A RIGOROUS LOWER BOUND ON THE GEOMETRIC GENUS of a plane curve (entry 102).
+"""A RIGOROUS LOWER BOUND ON THE GEOMETRIC GENUS of a plane curve (entries 102-103).
 
 For an absolutely irreducible Phi(t, x) = 0 (bidegree (dg, dh) in P^1 x P^1),
 project to the t-line: degree dh.  Riemann-Hurwitz for the normalization:
@@ -12,14 +12,17 @@ sum_Q (I_Q - m_Q) >= 0, nonzero only at roots b of the discriminant or of the
 leading coefficient, or at b = infinity.  Hence
     g >= 1 - dh + (1/2) sum_b sum_{Q over b} (I_Q - m_Q),
 computed EXACTLY: the branch values are grouped by the irreducible factors q of
-Disc_x(Phi) * lc_x(Phi) over Q; over a root a of q the fiber Phi(a, x) is
-factored in K = Q[a]/(q) (PARI), each factor h of multiplicity I giving deg(h)
-conjugate points; the multiplicity m of those points is the least k for which
-some order-k partial derivative of Phi, evaluated at t = a, is not divisible by
-h in K[x].  The point x = infinity and the value b = infinity are handled in the
-charts x -> 1/x, t -> 1/t.  Factors q of degree above a cap are skipped (their
-contribution is >= 0, so skipping keeps the bound valid).  The bound is taken
-for both projections.
+Disc_x(Phi) * lc_x(Phi) over Q; over a root of q the fiber is factored in the
+number field K = Q[a]/(q~) -- q~ the MONIC INTEGRAL polynomial c^{n-1} q(a/c)
+of the scaled root c*b (PARI's factor over a non-monic modulus silently changes
+the generator; nffactor against nfinit(q~) keeps every object in one
+presentation -- the entry-103 fix) -- each factor h of multiplicity I giving
+deg(h) conjugate points; the multiplicity m of those points is the least k for
+which some order-k partial derivative of Phi, evaluated at t = b, is not
+divisible by h in K[x].  The point x = infinity and the value b = infinity are
+handled in the charts x -> 1/x, t -> 1/t.  Factors q of degree above a cap are
+skipped (their contribution is >= 0, so skipping keeps the bound valid).  The
+bound is taken for both projections.
 
 ABSOLUTE IRREDUCIBILITY (needed for the genus to be the genus of one curve): Phi
 irreducible over F_p with a smooth F_p-point is absolutely irreducible (Frobenius
@@ -60,14 +63,25 @@ def _pari_poly(phi, swap=False):
     return str(sp.expand(e)).replace("**", "^")
 
 
-def ramification_bound(phi, dg, dh, swap=False, degmax=12, timeout=900):
-    """Lower bound on 2g - 2 + 2*deg for the projection to the t-line; returns
-    (R_lb, details) or (None, error)."""
+PARI_FIELD = r"""
+monicfield(q) = { my(n = poldegree(q, a), c = pollead(q, a), qm);
+  qm = subst(q, a, a / c) * c^(n - 1); qm = qm / content(qm) * denominator(content(qm));
+  if(pollead(qm, a) != 1, qm = qm / pollead(qm, a));
+  [qm, c] };
+fieldfactor(nfq, P) = { my(F, v = variable(nfq.pol));
+  F = nffactor(nfq, P);
+  for(i = 1, #F~, F[i,1] = subst(lift(F[i,1]), v, Mod(v, nfq.pol)));
+  F };
+"""
+
+
+def ramification_bound(phi, dg, dh, swap=False, degmax=40, timeout=900):
+    """Lower bound R_lb on the ramification of the projection to the t-line;
+    returns (R_lb, details) or (None, error)."""
     if swap:
         dg, dh = dh, dg
     s = _pari_poly(phi, swap)
-    script = f"""
-x; t; a;
+    script = "x; t; a;\n" + PARI_FIELD + f"""
 phi = {s};
 dg = {dg}; dh = {dh}; DEGMAX = {degmax};
 mult(P, A, h) = {{ my(k = 0, ok = 1, d);
@@ -75,11 +89,11 @@ mult(P, A, h) = {{ my(k = 0, ok = 1, d);
     for(i = 0, k, d = P; for(u = 1, i, d = deriv(d, t)); for(u = 1, k - i, d = deriv(d, x));
       d = subst(d, t, A); if(d != 0 && (d % h) != 0, ok = 0)));
   k }};
-contrib(P, A) = {{ my(PK, F, R = 0, mI, h, m, degx, Pst);
+contrib(P, A, nfq) = {{ my(PK, F, R = 0, mI, h, m, degx, Pst);
   PK = subst(P, t, A);
   if(PK == 0, return([-1, "fiber vanishes"]));
   degx = poldegree(PK, x);
-  if(degx > 0, F = factor(PK);
+  if(degx > 0, F = if(nfq == 0, factor(PK), fieldfactor(nfq, PK));
     for(i = 1, #F~, h = F[i,1]; mI = F[i,2]; m = mult(P, A, h); R += poldegree(h, x) * (mI - m)));
   if(degx < dh,
     Pst = numerator(subst(P, x, 1/x) * x^dh); mI = dh - degx; m = mult(Pst, A, x); R += (mI - m));
@@ -89,12 +103,13 @@ R = 0; skipped = 0; notes = "";
 D = poldisc(phi, x); L = pollead(phi, x);
 F = factor(D * L);
 for(i = 1, #F~, q = F[i,1]; if(poldegree(q, t) <= 0, next); if(poldegree(q, t) > DEGMAX, skipped++; next);
-  q = subst(q, t, a);
-  A = if(poldegree(q, a) == 1, -polcoeff(q, 0, a) / polcoeff(q, 1, a), Mod(a, q));
-  c = contrib(phi, A); if(c[1] < 0, notes = concat(notes, c[2]); next);
-  R += poldegree(q, a) * c[1]);
+  qa = subst(q, t, a);
+  if(poldegree(qa, a) == 1, A = -polcoeff(qa, 0, a) / polcoeff(qa, 1, a); nfq = 0,
+    mf = monicfield(qa); nfq = nfinit(mf[1]); A = Mod(a, mf[1]) / mf[2]);
+  c = contrib(phi, A, nfq); if(c[1] < 0, notes = concat(notes, c[2]); next);
+  R += poldegree(qa, a) * c[1]);
 phi2 = numerator(subst(phi, t, 1/t) * t^dg);
-c = contrib(phi2, 0); if(c[1] >= 0, R += c[1], notes = concat(notes, c[2]));
+c = contrib(phi2, 0, 0); if(c[1] >= 0, R += c[1], notes = concat(notes, c[2]));
 print("RES ", R, " ", skipped, " ", notes);
 }}
 """
@@ -105,7 +120,7 @@ print("RES ", R, " ", skipped, " ", notes);
     return int(m.group(1)), {"skipped_factors": int(m.group(2)), "notes": m.group(3).strip()}
 
 
-def genus_lower_bound(phi, dg, dh, degmax=12):
+def genus_lower_bound(phi, dg, dh, degmax=40):
     """max over the two projections of ceil((2 - 2 deg + R_lb)/2)."""
     best, info = None, {}
     for swap in (False, True):

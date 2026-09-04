@@ -4719,3 +4719,132 @@ finite classes wait for Chabauty-type tools (Magma/Sage). Suite 184
 (a3.omega3_genus: the control curve, a live certification, the census,
 the sieve's vacuity; a3.omega3_engine's tally updated). Doc 2.32;
 ROADMAP R.8 phase 2 + M14-E; memory.
+
+## 2026-09-04 — Entry 103: the exact genus by resolution closes the (1,1,1) box — every high-bidegree component has genus 3..23; the three "degenerate" classes die by a common-factor rule; entry 102's bounds corrected (a non-monic-modulus factorization). Box (1,1,1): dead 1376, finite 1568, unknown 0
+
+THE TASK. The 43 classes left 'unknown' by entry 102: sharpen the
+genus lower bound with the branch counts at the singular points
+(Newton-Puiseux), so that every high-bidegree component gets its
+exact genus.
+
+FIRST, A CORRECTION OF ENTRY 102. Building the resolution tool exposed
+a bug in the genus bound as committed: PARI's `factor` of a polynomial
+over Q[a]/(q) with q NON-MONIC silently rescales the generator, so the
+fiber factorization over a branch-value field with a non-monic minimal
+polynomial (7t^2 - 1, 3t^2 - 1, 9t^2 - 7, ...) was expressed in a
+different generator from the derivatives it was compared with. The
+bound was recomputed with the fiber factored by nffactor against
+nfinit of the MONIC INTEGRAL polynomial c^{n-1} q(a/c) of the scaled
+root (compute/omega3_genus.py: monicfield, fieldfactor). Effect: 204
+of the 1268 component bounds were wrong in value (182 too low, 22 too
+high: (6,8)/(8,6) components at 21 instead of 19); NONE crossed the
+threshold downward, so every one of the 1224 certifications of entry
+102 stands; 40 of its 43 'unknown' are certified by the corrected
+bound (the (4,4) bounds of -1 become 3, the (4,6) bounds of -2 become
+2, the (6,8) bound of -3 becomes 11); the 3 others are the DEGENERATE
+classes of entry 97, which have no high-bidegree component at all.
+Corrected count: 1264 of the 1267 certified by the bound. The data
+file keeps the entry-102 numbers as the record of the correction
+(genus_bounds.entry102_as_committed).
+
+THE TOOL (compute/omega3_resolve.py): THE EXACT GENUS BY RESOLUTION.
+For an absolutely irreducible Phi(t, x) = 0 of bidegree (dg, dh) in
+P^1 x P^1, g = p_a - sum_Q delta_Q, p_a = (dg-1)(dh-1), and delta_Q =
+sum m_P (m_P - 1)/2 over the infinitely near points P of the blow-up
+tree at Q; the same tree counts the branches r_Q (the smooth terminal
+points). Blow-up at a point of multiplicity m: the directions are the
+roots of the tangent cone C(1, lam); for each, the strict transform
+F(T, T(X + lam))/T^m; the vertical direction F(XT, X)/X^m when T | C.
+An irreducible factor of degree e > 1 of C(1, lam) over the current
+field gives e conjugate directions with identical structure: the
+field is EXTENDED (PARI rnfequation -> an absolute field, made monic
+integral by scaling the root, every coefficient transported through
+the embedding of the old generator), one direction resolved there and
+counted e times; four levels of extension are allowed. The singular
+points are the common zeros of Phi and its partials in the four charts
+(gcd of two resultants, factored over Q; the x-coordinate factored over
+the field of the t-value; points in extensions handled by the same
+mechanism, counted with their conjugates). CROSS-CHECK: with r_Q known,
+Riemann-Hurwitz for the t-projection is exact, R = R_lb + sum_Q (m_Q -
+r_Q), R_lb the multiplicity bound of entry 102 (corrected), and 2g =
+2 - 2 dh + R is REQUIRED to agree with p_a - sum delta. The
+cross-check needs every discriminant factor: 92 (8,8)/(8,6)
+components have one factor of degree between 40 and 400 (cap raised
+to 400; 14 s each). Validation: node, cusp, tacnode, ordinary triple
+point, E6, E8, the conjugate node x^2 + t^2 (needs the extension), x^4
++ t^4 (delta 6, four branches) -- all (delta, r) textbook values; the
+genus-1 (2,2) control gives 1; 40 hyperelliptic components of entries
+97-100 reproduce their recorded genera. Pitfalls met: rnfequation
+returns a NON-MONIC absolute polynomial when the relative polynomial
+is not integral (scale the root by the leading coefficient after
+clearing denominators); a closure cannot be stored in a gp vector;
+`conj` and `I` are reserved names.
+
+RESULT (compute/data_omega3_box111.json, block 'resolution';
+a3.omega3_resolve). All 1267 classes in 337 s (8 workers): 1264
+CERTIFIED FINITE, every one in its recorded frame, by ONE component of
+exact genus between 3 and 23, cross-checked and certified absolutely
+irreducible -- no inconsistency, no error. Exact genera by bidegree
+(min..max): (4,4) 3..9, (4,6) 3..7, (6,6) 5..13, (6,8) 5..19, (8,6)
+5..19, (7,5) 7..14, (8,8) 11..23; (4,5), (5,4), (7,4) exactly 7,
+(5,5), (5,7) exactly 10, (4,8) exactly 9. The exact genus equals the
+corrected bound for 1144 of the 1264 components and exceeds it for
+120. The singular points (8086 Galois orbits): 6260 nodes, 888
+tacnodes (2,2,2), 152 + 56 higher double points (2,3,2), (2,4,2), 96
+ordinary triple points, 84 ordinary 4-fold and 12 ordinary 6-fold
+points (6,15,6), 300 4-fold points with 4 tangent branches (4,8,4),
+and 128 orbits where the branch count is BELOW the multiplicity --
+(4,8,3), (4,8,2), (4,7,3), (3,4,2) -- exactly the points where entry
+102's bound lost. There is NO cusp in the whole box: every double
+point has two branches. The 3 remaining 'unknown' were the degenerate
+classes -- the pullback route for genus <= 1 components (the
+Pythagorean pullback factored in PARI, each factor resolved) was
+built and validated but never needed: no component has genus below 3.
+
+THE THREE DEGENERATE CLASSES, DEAD. They are (0,0,1),(0,1,0),
+(0,1,-1),(0,1,1) with signs (+,-,-,+) and (0,0,1),(1,-1,0),(1,-1,-1),
+(1,-1,1) with signs (+,-,-,+) and (+,+,+,-). Their two relations have
+a COMMON FACTOR G depending on every frame -- 4 s2 s3 (c1^2 + s1^2),
+4 s3 (c2 s1 - c1 s2), 4 s3 (c1 c2 + s1 s2) -- so every resultant
+vanished and entry 97 called every frame degenerate. But R1 = R2 = 0
+iff G = 0 or the reduced pair R1/G = R2/G = 0, and both parts are
+decided by the existing rules: the factors of G are monomials
+(degenerate frames), norms (never zero) or the same-prime relations
+t_1 = t_2, t_1 t_2 = -1 (equal or perpendicular frame angles: the
+(2,+-2) monomial relation w_1^2 = +-w_2^2, impossible for distinct
+primes by the monomial lemma of entry 98); the reduced pairs are
+c3 s2 = c2 s3 = -c3 s2 (a degenerate frame) and, for the other two,
+(c3 = 0 or t_1 = t_2) and (s3 = 0 or t_1 t_2 = -1). The engine now
+divides out the common factor first (compute.omega3.reduced_relations,
+classify_common_factor; a common factor that is a genuine two-frame
+curve would be added as a component; none occurs). A census over all
+2944 classes: 48 have a non-constant common factor (28 norms, 26
+monomials, 12 same-prime factors), 45 of them already dead and
+unchanged, the 3 degenerate ones now DEAD.
+
+THE BOX, CLOSED: dead 1376, finite 1568, unknown 0 (of 2944). Every
+class of the (1,1,1) box is either impossible for every triple of
+distinct primes, uniformly (1376: trivial factors, the five rank-0
+quartics, the monomial lemma, eight rank-0 quotient towers, the
+common-factor rule), or has in some frame only components with
+finitely many rational points (1568: 304 hyperelliptic models blocked
+by positive-rank elliptic quotients, 1264 curves of exact genus 3..23).
+Since a frame ratio determines its prime, a finite class can be
+carried by at most finitely many prime pairs (q, r). WHAT THIS IS NOT:
+a theorem that no MSS3 has split part pqr. Faltings finiteness is not
+effective; making the 1568 finite sets explicit (Chabauty-type methods
+on the 304 models and on curves of genus up to 23, with their frame
+symmetries) is the whole remaining obstruction for this box, beyond
+PARI. The uniform statement of R.7 (G) is now exactly: the finite sets
+are empty of non-degenerate frame pairs.
+
+NEXT (ROADMAP R.8). (a) The (2,1,1) sweep with the resolution tool
+(the 64% unknown of the sample were high-bidegree components; ~60
+CPU-hours, a background job); (b) the structural lemma (phase 4) --
+the branch loci and the j-invariants along the box; (c) effective
+finiteness: which of the 1568 curves admit Chabauty (Jacobian rank <
+genus) -- needs Magma/Sage. Suite 185 (a3.omega3_resolve: eight
+textbook singularities, the genus-1 control, a live re-resolution, the
+three common-factor kills live, the census; a3.omega3_genus corrected;
+a3.omega3_engine's tally). Doc 2.32 corrected, 2.33; ROADMAP R.8
+phase 2 + M14-F; memory.
