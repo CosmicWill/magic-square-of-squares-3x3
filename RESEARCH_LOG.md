@@ -4202,3 +4202,122 @@ re-verified live, a joint orbit in FULL; the machine's rigid form at J =
 G_7 irreducible over Q(i); 5 does not divide R_J). a3.quadruple_joint,
 a3.cyclotomic_split, a3.quadruple_pivot re-worded. Suite 180. Doc 2.27;
 ROADMAP M13-Z (M13-W, M13-Y annotated).
+
+
+## 2026-09-03 — Entry 97: the ω = 3 front opened — the (1,1,1) box's quadruples are curves; 821 of 2944 classes dead uniformly in the primes, by thirteen classical rank-0 curves; the obstruction made explicit
+
+DIRECTION (adopted). Two decisions of the day, recorded in ROADMAP
+R.7: (G) a LONG-TERM GOAL -- a global invariant for all omega, in the
+historic pattern of descent on a curve or surface with finitely many
+rational points, or a reduction of omega >= 3 to lower omega -- to be
+updated as the fronts move; and the ACTIVE FRONT is omega >= 3, on
+the reasoning that it is where the problem's mass sits and where a
+proof attempt learns the most. The additive desert already says the
+regime is numerically empty (no additive triple or quadruple in any
+D(m) for m < 10^7, 3.1 million centers with omega >= 2), so the work
+is structural.
+
+THE ENGINE (compute/omega3.py, compute/pari_genus1.py). Split part
+p q r with frames l = pi^2, w = rho^2, v = sigma^2. An element of D(m)
+has a label (j,k,l) in {-1,0,1}^3 minus 0 (mod sign; a label and its
+negative are the same element with Im negated) and equals the
+(2,2,2)-form (c1^2+s1^2)^(1-|j|) (c2^2+s2^2)^(1-|k|) (c3^2+s3^2)^(1-|l|)
+Im(l^{2j} w^{2k} v^{2l}) (negative exponent = conjugate) -- the
+three-frame extension of cleared_terms, cross-checked against it on
+a (1,1) pattern. A quadruple d_A + d_B = d_C, d_A - d_B = d_D gives two
+relations R1 = R2 = 0 on ONE frame. Eliminating a frame f:
+Res_{s_f}(R1,R2) = monomial x Phi_f, with Phi_f(t_g, t_h) = 0 a PLANE
+CURVE in the two other frame ratios t = s/c -- because R1, R2 are
+homogeneous in (c_f, s_f), the resultant of two binary forms is a
+power of c_f times a form in the remaining variables. The curve
+depends only on the pattern, NOT on the primes: at omega = 2 this
+elimination gave a binary form (points, entry 95); at omega = 3 it
+gives a curve, and the whole box becomes rational points on finitely
+many fixed curves -- the long-term goal's own shape.
+
+CLASSES. 13 elements; quadruple candidates (A, B, C, D, signs) modulo
+the frame group S3 x (Z/2)^3 (permuting and conjugating frames), the
+global sign and the A<->B swap: 2944 classes. Every two-frame class
+(a (1,1) sub-box quadruple; 28 of them) dies at once -- consistent
+with A3.7.
+
+SOUND KILLS (all uniform in p, q, r). (1) Res = 0 is necessary, so an
+irreducible factor vanishes at the frame: monomials never; a
+univariate factor only at a rational root that is a frame ratio
+(|t| = n/m, m^2 + n^2 a square; irreducible of degree >= 2 has none);
+the factors t_g = +-t_h, t_g t_h = +-1 force the same prime (unique
+factorization in Z[i]; pinned numerically). (2) A component quadratic
+in one variable: a rational point needs the discriminant, a polynomial
+in the other ratio, to be a rational square -- a rational point on
+y^2 = disc(t) on its squarefree model, or a root of the square part.
+Genus 1: PARI ellrank rank 0 plus a COMPLETE enumeration (the quartic
+is empty or a torsor under E(Q) = E_tors, so exactly |E_tors| points,
+infinity included when the leading coefficient is a square) gives ALL
+rational t; if none is a non-degenerate frame ratio (t not in
+{0, +-1, inf}: s = 0, a = +-b, c = 0 are not frames) the component is
+DEAD. Genus >= 2: finitely many points (Faltings) -- 'finite'. (3) The
+PYTHAGOREAN PULLBACK t = 2 tau/(1 - tau^2), tau = b/a (pi = a + bi):
+Psi(tau_g, tau_h) = 0 is the curve of Pythagorean frame pairs
+(composite norms allowed); its factors are decided the same way (a
+rational tau must avoid {0, +-1, inf}); a genus-0 factor is an
+INFINITE Pythagorean family. Frame verdict = worst component; class
+verdict = best frame; order dead < finite < candidate < infinite <
+unknown. The engine abstains on components of bidegree > 6.
+
+RESULT (compute/data_omega3_box111.json; a3.omega3_engine):
+  dead      821  (349 by trivial factors; 472 by rank-0 curves)
+  finite    540  (Faltings-finite hyperelliptic models, genus 2/3/5)
+  infinite  316  (a genus-0 factor of the Pythagorean pullback)
+  unknown  1267  (bidegree > 6 not pulled back; 3 degenerate)
+The 472 curve kills use only THIRTEEN distinct genus-1 models, all
+even quartics y^2 = a t^4 + b t^2 + c with tiny coefficients:
+t^4+18t^2+1 (100 kills), t^4+34t^2+1 (74), 9t^4-14t^2+9 (70),
+t^4-3t^2+1 (50), t^4+t^2+1 (48), 25t^4-6t^2+1, t^4-6t^2+25, 9t^4+10t^2+1,
+t^4+10t^2+9, t^4+6t^2+1, 4t^4-3t^2+1, t^4-3t^2+4, t^4+30t^2+1 --
+conductors 32, 48, 56, 80, torsion (Z/2)^2 or Z/4 x Z/2, rank 0, and
+their rational points are exactly t in {0, +-1, inf}. These are the
+Fermat-Euler curves (x^4 - y^4 = z^2 and its twists): the descents
+that settled four squares in arithmetic progression reappear as the
+obstruction to three-prime quadruples. Example: the class {v-pure,
+w-pure, l-pure, Im(l^2 wbar^2)} with signs (+,-,-,-) forces tan alpha
+tan beta = -3 between two frame angles; with alpha, beta Pythagorean
+this is the genus-1 curve y^2 = 9u^4 - 14u^2 + 9, rank 0, torsion 8,
+whose rational points are u in {0, +-1, inf}: no frames. The
+even-ness of every model is the conjugate-frame symmetry t -> -t; the
+finite models are also reciprocal (t -> 1/t, the associate frame), so
+they carry quotient towers down to elliptic curves -- the classical
+route to their rational points, not yet executed.
+
+WHAT IS AND IS NOT PROVEN. Nothing about MSS3 at omega = 3 is closed.
+What is proven: 821 of the 2944 quadruple shapes of the (1,1,1) box
+cannot occur for ANY three distinct split primes -- a uniform-in-the-
+primes statement, the first of its kind at omega = 3, obtained by
+exactly the long-term goal's mechanism (rational points on fixed
+curves of genus >= 1 with rank-0 Jacobians). What is characterized:
+the rest. 540 shapes sit on Faltings-finite curves (effective
+determination needed: quotient towers, then Chabauty where towers
+stop); 316 shapes carry a rational family of Pythagorean pairs on the
+projection, so descent on the projected curve cannot finish them --
+the third frame's Pythagorean condition (a further double cover of the
+family: one more curve) and the primality/coprimality of the three
+norms are what remains, i.e. the arithmetic the two-frame ladder
+supplied through valuations and levers; 1267 shapes have components
+of bidegree 7 to 16 the engine did not pull back (arithmetic genus
+>= 9; likely finite; unverified). Numerically all 2944 are empty far
+out (the desert), so the 316 'infinite' shapes are the place to look
+for the mechanism that kills composite-norm solutions.
+
+NEXT (in order). (a) Pull back the bidegree-> 6 components (compute
+cost only) and take the third-frame lift of the 316 genus-0 families
+(parametrize, substitute into R1, R2, solve the common root, impose
+the third Pythagorean condition -> a curve; its genus and rank). (b)
+The quotient towers of the 540 finite models (even + reciprocal ->
+elliptic quotients; PARI ranks; where rank 0, enumerate). (c) Then the
+(2,1,1) box, and the question whether the killing curves stay in the
+same finite family as the box grows -- the sign of a uniform theorem.
+
+Suite 181 (a3.omega3_engine: elements, cross-check, data-file
+consistency and tally, model shapes, the same-prime lemma, and with
+PARI two live kills plus model re-certification; FULL re-enumerates
+the 2944 classes). Doc 2.28; ROADMAP R.7 (the goal and the front),
+M14-A; memory.

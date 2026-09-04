@@ -3536,3 +3536,109 @@ def _(ctx):
              "give 14 distinct quadruple orbits (entry 95's 56 = 4 x 14), all dead (4 pincer + 10 joint) -- the "
              "MSS3 theorem stands; entry 93's cyclotomic 'reduction of R_J' is withdrawn: at J = 1 mod 3 the "
              "machine cancels F and leaves rho^4 = +-G_J with content bound 1, all branches open.")
+
+
+@check("a3.omega3_engine", DOC)
+def _(ctx):
+    """THE omega = 3 ENGINE (entry 97): the (1,1,1) box's quadruples as curves.
+    Three first-power split primes p q r; an element of D(m) has a label in
+    {-1,0,1}^3 minus 0 (mod sign) and is a (2,2,2)-form in the three frames.
+    A quadruple d_A + d_B = d_C, d_A - d_B = d_D gives two relations R1 = R2 = 0
+    on one frame; eliminating a frame f, Res_{s_f}(R1,R2) = monomial x Phi_f
+    with Phi_f(t_g, t_h) = 0 a PLANE CURVE in the two other frame ratios that
+    depends only on the pattern, not on the primes.  SOUND KILLS: a univariate
+    factor needs a frame-ratio root; t_g = +-t_h and t_g t_h = +-1 force the
+    same prime; a component quadratic in one variable needs a rational point
+    on y^2 = disc(t) (squarefree model, or a root of the square part) -- genus
+    1 with PARI rank 0 and a complete point enumeration gives all rational t,
+    and if none is a non-degenerate frame ratio the component is dead; the
+    Pythagorean pullback t = 2tau/(1-tau^2) is decided the same way.  RESULT
+    (compute/data_omega3_box111.json): of the 2944 candidate classes (mod the
+    frame group S3 x conjugations, the global sign, the A<->B swap), 821 are
+    DEAD uniformly in the primes -- 349 by trivial factors, 472 by 13 rank-0
+    even quartics y^2 = a t^4 + b t^2 + c of conductor 32/48/56/80; 540 are
+    FINITE (Faltings: even reciprocal hyperelliptic models of genus 2, 3, 5);
+    316 INFINITE (a genus-0 factor of the Pythagorean pullback: a rational
+    family of Pythagorean pairs on the projection -- the third frame and the
+    primality of the norms are the remaining obstructions); 1267 UNKNOWN
+    (components of bidegree > 6 not pulled back, or degenerate).  The box is
+    NOT closed; the obstruction is now explicit.  Verifies the elements, the
+    cross-check with cleared_terms, the data file (canonical keys, tally, the
+    models' shape and degenerate points), and -- with PARI -- two live kills and
+    the models' certificates (rank 0, complete enumeration)."""
+    import json
+    import sympy as sp
+    from compute.omega3 import (E, LABELS, canon_cand, decide_class, frame_factors, decide_component,
+                                is_frame_ratio, all_candidates, tg, th, c1, s1, c2, s2, c3, s3)
+    from compute.pari_genus1 import gp_available, quartic_points
+    from compute.lucas_endpoints import cleared_terms
+    # (i) the 13 elements are (2,2,2)-forms; they agree with the repo's two-frame relations
+    require(len(LABELS) == 13 and len(E) == 13)
+    for lab, e in E.items():
+        for (c, s) in ((c1, s1), (c2, s2), (c3, s3)):
+            P = sp.Poly(e, c, s)
+            require(P.is_homogeneous and P.total_degree() == 2, ("(2,2,2)-form", lab))
+    pat = (((1, 0), 1), ((0, 1), 1), ((1, 1), -1))
+    ref = 0
+    for cc, wp, wq, ec, poly in cleared_terms(pat):
+        for (a, b, c_, d_), v in poly.items():
+            ref += v * c1 ** a * s1 ** b * c2 ** c_ * s2 ** d_
+    mine = E[(1, 0, 0)] + E[(0, 1, 0)] - E[(1, 1, 0)]
+    require(sp.expand(mine - ref * (c3 ** 2 + s3 ** 2)) == 0, "three-frame elements vs cleared_terms")
+    # (ii) the data file: canonical, distinct, the tally
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
+    require(data["tally"] == {"dead": 821, "finite": 540, "infinite": 316, "unknown": 1267}, data["tally"])
+    keys = set()
+    for e in data["classes"]:
+        A, B, C, D, eA, eB, eC, eD = e["cand"]
+        k = canon_cand(((tuple(A), eA), (tuple(B), eB), (tuple(C), eC), (tuple(D), eD)))
+        require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
+        keys.add(k)
+    require(len(keys) == 2944, "distinct classes")
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 821)
+    # (iii) the killing models: even quartics (t -> -t is the conjugate frame), rank 0, only degenerate points
+    require(len(data["models"]) == 13, len(data["models"]))
+    for m in data["models"]:
+        cs = m["model"]
+        require(len(cs) == 5 and cs[1] == 0 and cs[3] == 0 and cs[0] > 0 and cs[4] > 0, cs)
+        require(m["rank"] == 0 and all(sp.Rational(v) in (0, 1, -1) for v in m["tvals"]), m)
+    require(is_frame_ratio(sp.Rational(3, 4)) and is_frame_ratio(sp.Rational(-5, 12)) and not is_frame_ratio(sp.Integer(1)))
+    # (iv) the same-prime factors: distinct primes never give t_g = +-t_h or t_g t_h = +-1
+    ts = {}
+    for p_, (a, b) in ((5, (2, 1)), (13, (3, 2)), (17, (4, 1)), (29, (5, 2)), (37, (6, 1)), (41, (5, 4))):
+        ts[p_] = sp.Rational(2 * a * b, a * a - b * b)
+    for p_ in ts:
+        for q_ in ts:
+            if p_ != q_:
+                require(ts[p_] not in (ts[q_], -ts[q_]) and ts[p_] * ts[q_] not in (1, -1), (p_, q_))
+    # (v) live kills and certificates (PARI)
+    bil = ((0, 0, 1), (1, -1, 0), (0, 1, 0), (1, 0, 0), 1, -1, -1, -1)      # tan(alpha) tan(beta) = -3
+    sq = ((0, 0, 1), (0, 1, -1), (0, 1, 1), (1, -1, -1), 1, -1, 1, -1)       # a (2,2) genus-1 class
+    if gp_available():
+        for cand in (bil, sq):
+            best, frames = decide_class(cand)
+            require(best == "dead", (cand, best, {f: fr["verdict"] for f, fr in frames.items()}))
+        ff = frame_factors(bil, 2)
+        require(ff is not None)
+        curves, live = ff
+        require(len(curves) == 1 and sp.expand(curves[0][0] - (tg * th + 3)) == 0 and not live, [str(c[0]) for c in curves])
+        v, info = decide_component(*curves[0])
+        require(v == "dead" and any(tuple(x.get("model", {}).get("model", ())) == (9, 0, -14, 0, 9)
+                                    for x in info["pullback"] if x["kind"] == "curve"), info)
+        n = ctx.bound(full=len(data["models"]), fast=3)
+        for m in data["models"][:n]:
+            r = quartic_points(m["model"])
+            require(r.get("rank_hi") == 0 and r.get("complete") and sorted(r["tvals"]) == sorted(m["tvals"]), (m["model"], r))
+        ctx.note("PARI: the bilinear class tan a tan b = -3 dies on y^2 = 9u^4 - 14u^2 + 9 (rank 0, torsion 8, "
+                 "points u in {0,+-1,inf} only); a (2,2) class dies on y^2 = t^4 + 18t^2 + 1; " + str(n) +
+                 " of the 13 killing models re-certified (rank 0, complete enumeration)")
+    else:
+        ctx.note("PARI/GP not found: live kills and model certificates not re-run (data-file consistency verified)")
+    if ctx.bound(full=1, fast=0) == 1:
+        require(len(all_candidates()) == 2944, "class enumeration")
+    ctx.note("omega = 3, box (1,1,1): 2944 quadruple classes -> 821 dead uniformly in the primes (349 trivial + 472 by 13 "
+             "rank-0 even quartics of conductor 32/48/56/80), 540 Faltings-finite (even reciprocal hyperelliptic models, "
+             "genus 2/3/5), 316 with a genus-0 Pythagorean family on the projection, 1267 not yet analysed (bidegree > 6). "
+             "Not a theorem for the box; the obstruction is explicit and classical in shape.")

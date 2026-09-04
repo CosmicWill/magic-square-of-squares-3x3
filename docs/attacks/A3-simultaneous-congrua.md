@@ -2085,6 +2085,72 @@ parameter value — the gcd stage may have cancelled the factor being
 exploited; audit every test on a frame ratio against all four
 orientations; count orbits, not listings.
 
+## 2.28 The ω = 3 front: the (1,1,1) box's quadruples are curves
+
+*(2026-09-03; entry 97; check `a3.omega3_engine`; code `compute/omega3.py`,
+`compute/pari_genus1.py`; data `compute/data_omega3_box111.json`.)*
+
+**The setting.**  Split part $pqr$, frames $\ell=\pi^2$, $w=\rho^2$,
+$v=\sigma^2$.  An element of $D(m)$ has a label $(j,k,l)\in\{-1,0,1\}^3
+\setminus 0$ (mod sign) and equals the $(2,2,2)$-form
+$(c_1^2+s_1^2)^{1-|j|}(c_2^2+s_2^2)^{1-|k|}(c_3^2+s_3^2)^{1-|l|}
+\operatorname{Im}(\ell^{2j}w^{2k}v^{2l})$ (negative exponents are
+conjugates).  A quadruple $d_A+d_B=d_C$, $d_A-d_B=d_D$ gives two
+relations $R_1=R_2=0$ on one frame.  Eliminating a frame $f$,
+$\operatorname{Res}_{s_f}(R_1,R_2)=c_f^{\,k}\,\Phi_f$ with
+$\Phi_f(t_g,t_h)=0$ a **plane curve in the two other frame ratios**
+$t=s/c$, depending only on the pattern, not on the primes.  At $\omega=2$
+the same elimination gave a binary form (§2.26); at $\omega=3$ the whole
+box becomes rational points on finitely many fixed curves — the shape of
+the long-term goal (ROADMAP R.7).  Modulo the frame group $S_3\times
+(\mathbb Z/2)^3$, the global sign and the $A\leftrightarrow B$ swap there
+are $2944$ candidate classes; every two-frame class dies at once.
+
+**Sound kills (uniform in $p,q,r$).**  $\operatorname{Res}=0$ is
+necessary, so an irreducible factor vanishes at the frame.  Monomials
+never; a univariate factor only at a rational root that is a frame ratio
+($|t|=n/m$, $m^2+n^2$ a square); $t_g=\pm t_h$ and $t_gt_h=\pm1$ force the
+same prime.  A component quadratic in one variable needs a rational
+point on $y^2=\operatorname{disc}(t)$ (squarefree model, or a root of the
+square part); when that curve has genus $1$ with **PARI rank $0$** and a
+complete enumeration (a quartic with rank-$0$ Jacobian is empty or a
+torsor under $E_{\mathrm{tors}}$, so it has exactly $|E_{\mathrm{tors}}|$
+points), every rational $t$ is known, and if none is a non-degenerate
+frame ratio ($t\notin\{0,\pm1,\infty\}$) the component is dead.  Genus
+$\ge2$ is Faltings-finite.  The **Pythagorean pullback**
+$t=2\tau/(1-\tau^2)$, $\tau=b/a$, gives the curve of Pythagorean frame
+pairs $\Psi(\tau_g,\tau_h)=0$, decided the same way; a genus-$0$ factor
+is an infinite Pythagorean family.
+
+**Result.**  Of the $2944$ classes: **$821$ dead** uniformly in the primes
+($349$ by trivial factors, $472$ by rank-$0$ curves); $540$ *finite*
+(hyperelliptic models of genus $2,3,5$); $316$ *infinite* (a genus-$0$
+factor of the pullback); $1267$ *unknown* (bidegree $>6$, not pulled back).
+The $472$ curve kills use only **thirteen** genus-$1$ models, all even
+quartics $y^2=at^4+bt^2+c$ of conductor $32,48,56,80$ — $t^4+18t^2+1$,
+$t^4+34t^2+1$, $9t^4-14t^2+9$, $t^4-3t^2+1$, $t^4+t^2+1$, … — with rank
+$0$ and rational points exactly $t\in\{0,\pm1,\infty\}$: the Fermat–Euler
+family ($x^4-y^4=z^2$ and its twists).  Example: the class $\{$$v$-pure,
+$w$-pure, $\ell$-pure, $\operatorname{Im}(\ell^2\bar w^2)\}$ forces
+$\tan\alpha\tan\beta=-3$ between two frame angles; with both Pythagorean
+this is $y^2=9u^4-14u^2+9$, rank $0$, torsion $8$, points
+$u\in\{0,\pm1,\infty\}$ — no frames.  Every model is even ($t\to-t$ is
+the conjugate frame); the finite models are also reciprocal ($t\to1/t$,
+the associate frame), so they carry quotient towers down to elliptic
+curves — the classical route, not yet executed.
+
+**What this is and is not.**  Not a theorem for the box.  It is the
+first uniform-in-the-primes statement at $\omega=3$ ($821$ shapes cannot
+occur for any three split primes), obtained by exactly the long-term
+goal's mechanism, and an explicit map of the rest: $540$ shapes on
+Faltings-finite curves (towers, then Chabauty where towers stop); $316$
+shapes with a rational family of Pythagorean pairs on the projection,
+where descent on the projected curve cannot finish and the third
+frame's Pythagorean condition plus the primality of the norms must
+enter; $1267$ high-bidegree shapes not yet analysed.  Next: the
+third-frame lift of the $316$ families, the pullback of the high-degree
+components, the quotient towers of the $540$, then the $(2,1,1)$ box.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
