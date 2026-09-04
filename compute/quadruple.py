@@ -57,41 +57,76 @@ def _labels(pat):
     return {jk: c for jk, c in pat}
 
 
+def _normalize(pat):
+    """The survey NORMAL FORM of a pattern: labels with j >= 0, and k > 0 when
+    j = 0.  A label (j,k) and its negative (-j,-k) are the SAME D-element with
+    Im negated (full conjugation of z^2), so flipping a label flips its
+    coefficient.  Global sign: first coefficient positive."""
+    out = []
+    for (j, k), c in pat:
+        if j < 0 or (j == 0 and k < 0):
+            j, k, c = -j, -k, -c
+        out.append(((j, k), c))
+    out = tuple(sorted(out))
+    if out and out[0][1] < 0:
+        out = tuple((jk, -c) for jk, c in out)
+    return out
+
+
+def _partial_conj(pat):
+    """The w -> wbar image (j,k) -> (j,-k), normalized.  The l -> lbar image
+    (j,k) -> (-j,k) is the same pattern (each is the full conjugate of the
+    other), so a pattern has exactly two images under the frame symmetries:
+    itself and this one."""
+    return _normalize(tuple(((j, -k), c) for (j, k), c in pat))
+
+
+def _orbit_key(P, Q):
+    """Unordered pair modulo simultaneous partial conjugation (and global signs)."""
+    a = tuple(sorted([_normalize(P), _normalize(Q)]))
+    b = tuple(sorted([_partial_conj(P), _partial_conj(Q)]))
+    return min(a, b)
+
+
 def _sym(pat, sj, sk):
     return tuple(((sj * j, sk * k), c) for (j, k), c in pat)
 
 
 def quadruple_pairs(triples):
-    """All (T1, T2) among the open triples that share two elements with the
-    quadruple sign structure (u opposite, v same).  T2 is taken over all
-    conjugation images so that 'same element' is matched up to the symmetry
-    (j,k) ~ (-j,-k).  Returns a list of dicts."""
-    out = []
-    n = len(triples)
-    for i in range(n):
-        P1 = triples[i]
-        c1 = _labels(P1)
-        for j2 in range(i, n):
-            for sj in (1, -1):
-                for sk in (1, -1):
-                    if j2 == i and (sj, sk) == (1, 1):
-                        continue
-                    Q = _sym(triples[j2], sj, sk)
-                    c2 = _labels(Q)
-                    shared = sorted(set(c1) & set(c2))
-                    if len(shared) != 2:
-                        continue
-                    A, B = shared
-                    # opposite relative sign on the shared pair (quadruple)
-                    if c1[A] * c1[B] != -(c2[A] * c2[B]):
-                        continue
-                    cc = [jk for jk in c1 if jk not in shared]
-                    ee = [jk for jk in c2 if jk not in shared]
-                    if len(cc) != 1 or len(ee) != 1 or cc[0] == ee[0]:
-                        continue
-                    out.append({"T1": P1, "T2": Q, "shared": shared,
-                                "third1": cc[0], "third2": ee[0]})
-    return out
+    """All DISTINCT quadruple pairs (T1, T2) among the open triples.  T2 ranges
+    over every triple and its partial conjugate (the only two images of a
+    pattern under the frame symmetries); labels are compared in the survey
+    NORMAL FORM -- a raw-label comparison after the conjugation images (the
+    entry-95 version) can never match a j > 0 label under l -> lbar and turns a
+    shared j = 0 element (0,k) into (0,-k), so it was blind to pairs sharing a
+    j = 0 element (harmless for the entry-95 boxes, whose 92 open triples have
+    no j = 0 label -- entry 96 audit) and listed each orbit four times (56 =
+    4 x 14).  A pair must share exactly two elements with OPPOSITE relative
+    sign (u opposite, v same) and have distinct thirds.  One representative per
+    orbit under simultaneous partial conjugation.  Returns a list of dicts."""
+    out = {}
+    N = [_normalize(t) for t in triples]
+    for P in N:
+        cP = _labels(P)
+        for Q0 in N:
+            for Q in (Q0, _partial_conj(Q0)):
+                if Q == P:
+                    continue
+                cQ = _labels(Q)
+                shared = sorted(set(cP) & set(cQ))
+                if len(shared) != 2:
+                    continue
+                A, B = shared
+                # opposite relative sign on the shared pair (quadruple)
+                if cP[A] * cP[B] != -(cQ[A] * cQ[B]):
+                    continue
+                cc = [jk for jk in cP if jk not in shared]
+                ee = [jk for jk in cQ if jk not in shared]
+                if len(cc) != 1 or len(ee) != 1 or cc[0] == ee[0]:
+                    continue
+                out.setdefault(_orbit_key(P, Q), {"T1": P, "T2": Q, "shared": shared,
+                                                   "third1": cc[0], "third2": ee[0]})
+    return list(out.values())
 
 
 def _lever_disjunctions(T):
@@ -175,16 +210,18 @@ def _cleared_poly(T):
 
 
 def _is_frame_ratio(r):
-    """A positive rational r = c1/s1 is realized by a frame (c1 = a^2 - b^2,
-    s1 = 2ab, c1^2 + s1^2 = p^2 prime) iff, in lowest terms r = m/n, m^2 + n^2
-    is a perfect square (then c1 = m k, s1 = n k on the circle of radius
-    sqrt(m^2 + n^2) k)."""
+    """A rational r = c1/s1 is realized by a frame iff, in lowest terms |r| =
+    m/n, m^2 + n^2 is a perfect square (then (c1, s1) = t (m, n) up to signs on
+    the circle c1^2 + s1^2 = p^2).  EITHER SIGN counts: the frame l = pi^2 can
+    be any of +-pi^2, +-pibar^2 (associates and the conjugate of the Gaussian
+    prime), so c1/s1 = +-(a^2 - b^2)/(2ab) -- the entry-95 version rejected
+    negative ratios, a soundness gap closed by the entry-96 audit (no joint
+    form has a negative frame-ratio root either, so the results stand)."""
     r = _spj.nsimplify(r)
-    if not r.is_rational or r <= 0:
+    if not r.is_rational or r == 0:
         return False
-    m, n = int(r.p), int(r.q)
-    v = m * m + n * n
-    return _spj.integer_nthroot(v, 2)[1]
+    m, n = abs(int(r.p)), abs(int(r.q))
+    return bool(_spj.integer_nthroot(m * m + n * n, 2)[1])
 
 
 def joint_residual_kill(T1, T2):

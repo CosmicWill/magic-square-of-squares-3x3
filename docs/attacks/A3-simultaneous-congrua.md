@@ -1908,6 +1908,14 @@ range.  So **Conjecture R_J is open only for $J\not\equiv1\pmod3$** —
 the splitting removes a third of the cases and subsumes entry 90's
 $J=4$ gcd.
 
+> **Erratum (entry 96, §2.27).**  The equation $3\rho^4=Z_J$ analysed
+> above is *not* the machine's residual for $J\equiv1\pmod3$: the
+> polynomial-gcd stage (entry 90) cancels $F$, and the residual finisher
+> then reports content bound $1$ with every branch open, so the frontier
+> there is $\rho^4=\pm G_J$ ($G_J$ irreducible over $\mathbb Q(i)$).  The
+> literal equation is unsolvable outright by a norm argument — which is
+> exactly why $F$ is cancelled.  **The reduction of R_J is withdrawn.**
+
 **Where R_J sits.**  It follows from ABC over $\mathbb Q(i)$ with
 quality $4J/(J+4)$ ($2.22$ at $J=5$, above the record $1.63$); local
 methods cannot prove it ($\pi=\rho=1$ solves the bare equation); it is
@@ -1966,14 +1974,16 @@ R_2)=0$ is necessary for a common $s_2$.  It factors; every non-monomial
 factor is **pure in $(c_1,s_1)$** (the $w$-frame decouples — no
 $c_2$-mixing factor arises) and homogeneous, so it vanishes on a frame
 only if $c_1/s_1$ is a rational root that is a **frame ratio**
-($r=m/n$ with $m^2+n^2$ a perfect square).  None of the joint forms has
+($|r|=m/n$ with $m^2+n^2$ a perfect square — either sign, entry 96).  None of the joint forms has
 such a root, so $\mathrm{Res}$ has no frame zero, no common $s_2$, no
 quadruple.
 
-**The complete result.**  The $92$ open triples give $56$ quadruple
-pairs; **all $56$ die** — $16$ by the pincer, $40$ by the joint solver
-(degree-$26$ form for $(5,1)$; degrees $6,56,64$ for $(3,3)$), zero
-survivors.  The boxes $(2,1),(2,2),(3,1),(4,1)$ have no open triple.
+**The complete result.**  The $92$ open triples give $14$ distinct
+quadruple orbits (entry 95 listed each four times as $56$; corrected in
+entry 96, §2.27); **all $14$ die** — $4$ by the pincer, $10$ by the joint
+solver (degree-$26$ form for $(5,1)$; degrees $6,56,64$ for $(3,3)$),
+zero survivors.  The boxes $(1,1),(2,1),(2,2),(3,1),(4,1)$ have no open
+triple.
 
 **Theorem (quadruple / MSS3).**  No 3×3 magic square of distinct
 squares has center norm $m$ whose split part is $p^aq^b$ for
@@ -1981,7 +1991,7 @@ $(a,b)\in\{(2,1),(2,2),(3,1),(3,2),(4,1),(4,2),(5,1),(3,3)\}$
 ($p,q$ distinct primes $\equiv1\bmod4$, and transposes).  *Proof.*
 MSS3 $\iff$ a quadruple in $D(m)$; a quadruple is two additive triples
 sharing a pair, both patterns in box $(a,b)$; each is machine-dead or
-one of the $92$ open triples; all $56$ open pairs die; the other boxes
+one of the $92$ open triples; all $14$ open orbits die; the other boxes
 have no open triple. $\blacksquare$
 
 **Significance.**  This is the first family of shapes where MSS3 is
@@ -2008,6 +2018,72 @@ analogue) and the corollary sharpens to: *the split part of any MSS3
 center is $p^3q^2$-or-higher, $p^4q$-or-higher, or has $\ge3$ distinct
 split primes* — leaving $\omega=2$ with only the $a,b\ge2$,
 $\max(a,b)\ge3$ boxes, which the uniform lemma is built to sweep.
+
+## 2.27 The audit of entries 93–95: the theorem stands; the cyclotomic reduction is withdrawn
+
+*(2026-09-03; entry 96; check `a3.audit_entry96`; data `compute/data_quadruple_pairs.json`.)*
+
+Entries 93–95 were re-verified by recomputation outside their own code
+paths: the $92$ open triples rebuilt from the entry-90 survivors ($100$
+patterns through `kill_pattern`: $92$ open, $8$ dead — $12$ in $(3,2)$,
+$8$ in $(5,1)$, $28$ in $(4,2)$, $44$ in $(3,3)$); the pairs re-enumerated
+independently and compared orbit by orbit; every pair re-killed; the
+cyclotomic algebra re-derived; the $(J,1)$ rigid form re-derived by
+machine for each $J$.
+
+**Frame ratios have either sign.**  The frame $\ell=\pi^2$ may be any of
+$\pm\pi^2,\pm\bar\pi^2$, so $c_1/s_1=\pm(a^2-b^2)/(2ab)$; $3-4i=
+\overline{(2+i)^2}$ is a frame with ratio $-3/4$.  The entry-95 test
+rejected negative ratios — a gap in the code, closed.  Re-killing every
+joint form with $|r|$ tested: each linear factor has root $\pm1$ only
+($1+1=2$ is not a square); the other factors are irreducible of degree
+$\ge2$ (no rational root at all); every pure factor is homogeneous, $R_1,
+R_2$ are bihomogeneous, and no $c_2$-mixing factor arises.  Every kill
+stands.
+
+**Orbits, not listings.**  Labels live in the survey normal form ($j\ge0$;
+$k>0$ when $j=0$); a label and its negative are the same element with
+$\operatorname{Im}$ negated, so flipping a label flips its coefficient.
+The entry-95 enumeration compared raw labels after the conjugation
+images: under $\ell\to\bar\ell$ no $j>0$ label can match, and under
+$w\to\bar w$ a shared $(0,k)$ becomes $(0,-k)$ — blind to a shared $j=0$
+element (a synthetic example is pinned) and listing each orbit four
+times.  The $92$ open triples carry no $j=0$ label, so the kill list was
+complete; in normal form they give **14 distinct quadruple orbits** —
+$2$ in $(5,1)$, $4$ in $(4,2)$, $8$ in $(3,3)$ — all dead: $4$ pincer
+$+$ $10$ joint.  `quadruple_pairs` now normalizes, takes $T_2$ over each
+triple and its partial conjugate (the only two images — the
+$\ell$-conjugate image equals the $w$-conjugate image after
+normalization), and returns one representative per orbit.
+
+**Theorem (unchanged in substance).**  No 3×3 magic square of distinct
+squares has center split part $p^aq^b$ with $(a,b)\in\{(1,1),(2,1),(2,2),
+(3,1),(3,2),(4,1),(4,2),(5,1),(3,3)\}$ or a transpose.
+
+**The cyclotomic splitting (§2.24) analysed the wrong equation.**  For
+$J\equiv1\pmod3$ the machine's rigid form of the $(J,1)$ single is
+$Z_J/(-F)$: the polynomial-gcd stage cancels $F=3C_1^2-S_1^2$, which
+never vanishes on a frame, and the residual finisher then reports
+content bound $1$ with all four branches open ($G_J$ irreducible over
+$\mathbb Q(i)$; degree $12$ at $J=7$, $18$ at $J=10$).  The frontier at
+$J\equiv1\pmod3$ is therefore $\rho^4=\pm G_J$, untouched by §2.24.  The
+literal equation $3\rho^4=Z_J$ is unsolvable outright: $F\in\mathbb Z$
+with $|F|\ge5$; if $\rho\nmid F$ then $F\mid3$; if $\rho^a\,\|\,F$ with
+$a\ge1$ then $q^a\mid F$ (as $F$ is real) and $N(G)\ge q^{4-a}$, so
+$3q^2=|F||G|\ge q^{(a+4)/2}$ forces $q\le9$, i.e. $q=5$ and $5\mid\gcd(F,
+G)\mid R_J$ — and $5\nmid R_J$ ($G(\omega)\equiv0\pmod5$ would need
+$\omega\in\mathbb F_5$).  That is precisely why the machine divides $F$
+out.  **The reduction of R_J to $J\not\equiv1\pmod3$ is withdrawn.**
+Conjecture R_J is to be read as: the machine's $(J,1)$ residual has no
+frame solution — $3\rho^4=\pm Z_J$ for $J\not\equiv1$, $\rho^4=\pm G_J$
+for $J\equiv1\pmod3$.  The shape "$3\rho^4=Z_J$ for all $J\ge5$" was
+generalized by hand from $J=5$ in §2.23 (entry 92); the audit flags it
+there as well.
+
+**Lessons.**  Re-derive a hand-generalized shape by machine for every
+parameter value — the gcd stage may have cancelled the factor being
+exploited; audit every test on a frame ratio against all four
+orientations; count orbits, not listings.
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 

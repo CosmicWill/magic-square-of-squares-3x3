@@ -4085,3 +4085,120 @@ never hold on a frame; pure-(c1,s1) factors checked for frame-ratio
 roots (r = m/n a frame ratio iff m^2 + n^2 is a square); the solver
 abstains (kills=False) on any c2-mixing factor and none arose. Next:
 extend to (5,2),(6,1),(4,3),(4,4),... toward all omega = 2.
+
+
+## 2026-09-03 — Entry 96: the audit of entries 93–95 — the MSS3 theorem stands (14 orbits, frame ratios of either sign); the cyclotomic "reduction of R_J" is withdrawn
+
+WHY. The model behind this session was switched mid-work (commits
+fbe4f93, e4726c6, 07cf397 -- entries 93, 94, 95 -- carry a different
+attribution trailer than the rest of the session). The three commits
+were re-verified from scratch, by recomputation that does not go
+through the code paths they introduced: (1) the 92 open triples were
+rebuilt from the entry-90 survivor files (100 patterns -> kill_pattern
+-> 92 open, 8 dead, 0 errors: 12 in (3,2), 8 in (5,1), 28 in (4,2), 44
+in (3,3)); (2) the quadruple pairs were re-enumerated with a separately
+written normal-form enumeration and compared orbit by orbit with the
+committed one; (3) every pair was re-killed (pincer, then the resultant,
+its factorization, homogeneity, and a SIGN-AGNOSTIC frame-ratio test);
+(4) the cyclotomic algebra was re-derived independently; (5) the (J,1)
+rigid form was re-derived from the machine for each J instead of taken
+from the J = 5 case. Scratchpad: audit_opus.py, audit_opus_worker.py,
+cyc_audit.py, audit_opus_report.json.
+
+FINDING 1 -- ENTRY 95, A SOUNDNESS GAP IN THE CODE, CLOSED; KILLS
+UNCHANGED. `_is_frame_ratio` rejected negative ratios (the check even
+pinned `-3/4 -> False` as "negative"). But the frame l = pi^2 may be any
+of +-pi^2, +-pibar^2 (associates and the conjugate of the Gaussian
+prime), so c1/s1 = +-(a^2-b^2)/(2ab): 3 - 4i = conj((2+i)^2) is a frame
+with ratio -3/4. A joint form with a negative frame-ratio root would
+have been passed as a kill. Re-running all joint kills with |r| tested:
+every linear factor of every joint form has root +1 or -1 only (1 + 1 =
+2 is not a square), so no frame root of EITHER sign exists; the
+degree-26 (5,1) forms and the degree-56/64 (3,3) forms are irreducible
+over Q beyond those linear and quadratic factors (an irreducible factor
+of degree >= 2 has no rational root at all); every pure factor is
+homogeneous, R1 and R2 are bihomogeneous, no c2-mixing factor arises,
+and the monomial factors (c1, s1, c2 = 0) are the only others. Every
+joint kill stands. Fixed: `_is_frame_ratio` tests |r|.
+
+FINDING 2 -- ENTRY 95, THE ENUMERATION: A BLIND SPOT (NOT TRIGGERED)
+AND A 4x INFLATED COUNT. `quadruple_pairs` applied the four
+conjugation images (sj, sk) to T2's labels and compared RAW labels. The
+survey lists labels in a normal form (j >= 0; k > 0 when j = 0). Under
+l -> lbar every j > 0 label becomes negative and can never match; under
+w -> wbar a shared j = 0 element (0,k) becomes (0,-k) and fails to match
+although it is the same element (a label and its negative are the same
+D-element with Im negated, so the COEFFICIENT flips). So a pair whose
+shared elements include a j = 0 element could be MISSED (demonstrated
+on a synthetic pair in a3.audit_entry96). The 92 open triples of the
+measured ladder carry NO j = 0 label, so the entry-95 kill list was
+complete. The same raw comparison listed every orbit four times: the
+"56 pairs" are 14 distinct quadruple orbits (2 in (5,1), 4 in (4,2), 8
+in (3,3)); the honest tally is 4 pincer + 10 joint, zero open. Fixed:
+`quadruple_pairs` normalizes labels, takes T2 over each triple and its
+partial conjugate (the only two images -- the l-conjugate image equals
+the w-conjugate image after normalization, verified on all 100
+patterns), and returns one representative per orbit.
+
+THE THEOREM STANDS. No 3x3 magic square of distinct squares has center
+split part p^a q^b for (a,b) in {(2,1),(2,2),(3,1),(3,2),(4,1),(4,2),
+(5,1),(3,3)} and transposes -- the same statement as entry 95, now with
+14 orbits (not 56) and the sign-agnostic frame test. Also (1,1) has 0
+open triples (ladder_surv_11 empty; A3.7), so the family includes
+(1,1) as well. compute/data_quadruple_pairs.json now stores the 92
+triples by box and the 14 orbits with their verdicts, degrees, roots
+and homogeneity flags (the entry-95 file stored tallies only).
+
+FINDING 3 -- ENTRY 93, THE CYCLOTOMIC SPLITTING KILLED A STRAW MAN;
+ITS "REDUCTION OF R_J TO J != 1 mod 3" IS WITHDRAWN. The algebra is
+right (re-derived: F | Z_J iff 3 | J-1 for J = 2..13; Res_L(F, G_J) =
+R_J lbar^{4(J-1)} with R_J = 19, 61, 127, 217 for J = 4, 7, 10, 13; F = 3
+mod 8 and never +-1, +-3; and the "thin" second branch is in fact EMPTY
+outright: rho^4 | F with F a rational integer forces q^4 | F, against
+|F||G| = 3q^2). But the equation it analyses, 3 rho^4 = Z_J, is NOT the
+machine's residual for J = 1 mod 3. Re-deriving the rigid form of the
+(J,1) single by machine: for J = 5, 6, 8 it is -Z_J, but for J = 4, 7,
+10 it is Z_J / (-F) -- the polynomial-gcd stage of entry 90 cancels F =
+3C1^2 - S1^2 because F never vanishes on a frame -- and the residual
+finisher reports CONTENT BOUND 1 with all four branches open (G_J is
+irreducible over Q(i): degree 12 at J = 7, 18 at J = 10). So at J = 1
+mod 3 the frontier is rho^4 = +-G_J, and entry 93 never touched it. The
+literal equation 3 rho^4 = Z_J is unsolvable by a two-line norm
+argument: F is a rational integer with |F| >= 5; if rho does not divide
+F then F | 3; if rho^a || F with a >= 1 then q^a | F and N(G) >= q^(4-a),
+so 3q^2 = |F||G| >= q^((a+4)/2) forces q <= 9, i.e. q = 5 and then
+5 | gcd(F,G) | R_J -- and 5 never divides R_J (G(omega) = 0 mod 5 would
+need omega in F_5). That unsolvability is exactly why the machine
+divides F out. The over-generalization of the shape "3 rho^4 = Z_J for
+all J >= 5" from the J = 5 derivation originates in entry 92 and was
+compounded in entry 93. Conjecture R_J should be read as: the machine's
+(J,1) residual has no frame solution -- 3 rho^4 = +-Z_J for J != 1 mod
+3, rho^4 = +-G_J for J = 1 mod 3. Nothing about R_J is reduced.
+
+FINDING 4 -- ENTRY 94 CONFIRMED. `pooled_kill` enumerates every target
+selection over the pooled levers and needs a p/q pincer in each; the 4
+pincer orbits are the (4,2) ones (exponent 2), and the 10 others
+survive the pincer exactly as entry 94 said (in orbit counts: 4 and 10,
+not 16 and 40). Entry 93's best-target reconnaissance stays as entry 94
+corrected it.
+
+EXTENSION STATUS (not a theorem yet). Box (6,1): 16 open triples, all
+raw-listed pairs dead by the joint solver (sequential run; in orbits
+presumably 4, to be recounted under the fixed enumeration); (5,2),
+(4,3), (4,4) not completed -- the resultants are the cost. Recorded as
+pending, not claimed.
+
+LESSONS (memory). (i) A hand-generalized equation shape must be
+re-derived by machine for each parameter value; the gcd stage may have
+cancelled the very factor one is about to exploit. (ii) Any test on a
+frame coordinate ratio must be audited against ALL frame orientations
+(signs of c1, s1). (iii) Counts of "pairs" must be counts of orbits
+under the frame symmetries, or they inflate.
+
+Suite: a3.audit_entry96 (frame-ratio signs; the synthetic blind spot;
+the 92 -> 14 orbits with the raw listing = 56 reproduced; pincer orbits
+re-verified live, a joint orbit in FULL; the machine's rigid form at J =
+5, 7, 10 with content bounds 3, 1, 1 and all branches open at J = 7, 10;
+G_7 irreducible over Q(i); 5 does not divide R_J). a3.quadruple_joint,
+a3.cyclotomic_split, a3.quadruple_pivot re-worded. Suite 180. Doc 2.27;
+ROADMAP M13-Z (M13-W, M13-Y annotated).

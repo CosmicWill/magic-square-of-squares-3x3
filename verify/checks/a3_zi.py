@@ -3116,8 +3116,12 @@ def _(ctx):
 
 @check("a3.cyclotomic_split", DOC)
 def _(ctx):
-    """CYCLOTOMIC SPLITTING (entry 93): Conjecture R_J holds for J = 1 mod 3,
-    up to a thin residual empty in range -- reducing R_J to J != 1 mod 3.
+    """CYCLOTOMIC SPLITTING (entry 93) -- WITHDRAWN AS A REDUCTION (entry 96).
+    The equation 3 rho^4 = Z_J analysed here is NOT the machine's residual for
+    J = 1 mod 3: the polynomial-gcd stage cancels F, and the reduced form
+    rho^4 = +-G_J has content bound 1 with every branch open (a3.audit_entry96).
+    The algebra below stands as stated -- the literal equation 3 rho^4 = Z_J
+    has no solution for J = 1 mod 3 -- but that is not the frontier there.
     Z_J = l^{2J} + l^{2J-1} lbar + lbar^{2J} has the factor F = l^2 + l lbar
     + lbar^2 = 3 C1^2 - S1^2 exactly when 3 | J - 1.  A solution 3 rho^4 = Z_J
     has ideal (3)(rho)^4 = (F)(G); F, G coprime as polynomials, Res_L(F,G) =
@@ -3194,7 +3198,8 @@ def _(ctx):
         require(not small, (J, "|G_J| <= 3 frames", small))
     ctx.note("R_J for J = 1 mod 3 reduced to the thin residual |G_J| <= 3 (empty to "
              + str(bound) + "); main branch |F| >= 5 unconditional; Res constants R_J = "
-             + str(Rconst) + "; Conjecture R_J now open only for J != 1 mod 3")
+             + str(Rconst) + "; the literal equation 3 rho^4 = Z_J is unsolvable for J = 1 mod 3, but it is "
+             "not the machine's residual there (F is cancelled; content bound 1) -- entry 96")
 
 
 @check("a3.quadruple_pivot", DOC)
@@ -3208,8 +3213,8 @@ def _(ctx):
     and one q-lever gives a pincer that neither triple has alone.  Verified
     on representative candidates from the (3,3), (4,2), (5,1) boxes: each
     pools to a pincer p^e < const, dead for p >= 5.  (Reconnaissance: it
-    validates the pivot on every enumerated candidate -- 56 across the three
-    boxes, log entry 93; a rigorous quadruple theorem needs the joint-
+    validates the pivot on every enumerated candidate -- 56 raw listings = 14
+    distinct orbits (entry 96) across the three boxes, log entry 93; a rigorous quadruple theorem needs the joint-
     valuation engine and label completeness.)  Also: no quadruple exists in
     any D(m) with |D(m)| >= 3 and m < the bound (direct search)."""
     from math import isqrt
@@ -3357,7 +3362,9 @@ def _(ctx):
     zero, no common s2, no quadruple.  Verifies: the frame-ratio test; a
     (5,1) pair killed (degree-26 joint form, no frame root); a (3,3) pair
     killed (degrees 6, 56); the soundness (a c2-mixing factor would abstain);
-    and the complete tally 16 pincer + 40 joint = 56, zero open."""
+    and the complete tally: 14 distinct quadruple orbits (4 pincer + 10 joint),
+    zero open -- entry 95 listed each orbit four times as 56 = 16 + 40, and
+    its frame-ratio test rejected negative ratios (both corrected, entry 96)."""
     import sympy as sp
     from compute.quadruple import (joint_residual_kill, _is_frame_ratio,
                                    pooled_kill, _cleared_poly, _c1j, _s1j, _s2j)
@@ -3366,7 +3373,8 @@ def _(ctx):
     require(_is_frame_ratio(sp.Rational(5, 12)) is True)     # (3+2i)^2 = 5+12i, 25+144=169
     require(_is_frame_ratio(sp.Integer(1)) is False)         # 1+1 = 2 not a square
     require(_is_frame_ratio(sp.Rational(2, 3)) is False)     # 4+9 = 13 not a square
-    require(_is_frame_ratio(sp.Rational(-3, 4)) is False)    # negative
+    require(_is_frame_ratio(sp.Rational(-3, 4)) is True)     # negative ratios are frames too: conj((2+i)^2) = 3-4i (entry 96)
+    require(_is_frame_ratio(sp.Integer(-1)) is False)        # 1+1 = 2 not a square, either sign
     # (ii) a (5,1) quadruple pair: pincer fails, joint solver kills
     S1 = (((4, -1), 1), ((5, -1), -1), ((5, 1), 1))
     S2 = (((4, -1), 1), ((5, 0), 1), ((5, 1), -1))
@@ -3390,7 +3398,141 @@ def _(ctx):
     require(jr["frame_roots"] == [] and jr2["frame_roots"] == [], (jr["frame_roots"], jr2["frame_roots"]))
     ctx.note("joint residual solver: eliminating the w-frame between a quadruple's two relations gives a "
              "pure-(c1,s1) form with no frame-ratio root -> no common frame. Over the full open-triple set "
-             "all 56 quadruple pairs die (16 pincer + 40 joint); with the fully-dead boxes (0 open triples), "
+             "all 14 distinct quadruple orbits die (4 pincer + 10 joint; entry 95's 56 = 4 x 14); with the "
+             "fully-dead boxes (0 open triples), "
              "NO quadruple -- hence NO MSS3 -- with center split part in the measured family {(2,1),(2,2),"
              "(3,1),(3,2),(4,1),(4,2),(5,1),(3,3)} and transposes, EVEN where the no-triple conjecture A3.C "
              "is still open (R_J).")
+
+
+@check("a3.audit_entry96", DOC)
+def _(ctx):
+    """THE AUDIT OF ENTRIES 93-95 (entry 96) -- three findings, pinned.
+    (i) FRAME RATIOS HAVE EITHER SIGN: l = pi^2 may be any of +-pi^2, +-pibar^2,
+    so c1/s1 = +-(a^2-b^2)/(2ab); the entry-95 _is_frame_ratio rejected negative
+    ratios -- a soundness gap in the joint solver, closed (no joint form has a
+    negative frame-ratio root either, so every kill stands).
+    (ii) LABEL NORMAL FORM: the survey lists labels with j >= 0 (k > 0 when
+    j = 0).  The entry-95 quadruple_pairs compared RAW labels after the
+    conjugation images: under l -> lbar no j > 0 label can match, and under
+    w -> wbar a shared (0,k) becomes (0,-k) -- blind to pairs sharing a j = 0
+    element (shown on a synthetic pair) -- and it listed every orbit four
+    times (56 = 4 x 14).  The 92 open triples of the measured ladder carry no
+    j = 0 label, so the entry-95 kill list was complete; in normal form they
+    give exactly 14 distinct quadruple orbits (2 in (5,1), 4 in (4,2), 8 in
+    (3,3)), all dead: 4 pincer + 10 joint (data_quadruple_pairs.json; pincer
+    orbits re-verified live, a joint orbit in full mode).
+    (iii) THE CYCLOTOMIC SPLITTING KILLED A STRAW MAN: for J = 1 mod 3 the
+    machine's rigid form of the (J,1) single is Z_J / (-F) -- the gcd stage
+    (entry 90) cancels F = 3C1^2 - S1^2, which never vanishes on a frame --
+    and the residual finisher reports CONTENT BOUND 1 with every branch open
+    (G_J irreducible over Q(i)).  The frontier at J = 1 mod 3 is rho^4 = +-G_J,
+    untouched by entry 93.  The equation 3 rho^4 = Z_J that entry 93 analysed
+    is unsolvable outright: F is a rational integer with |F| >= 5; if rho does
+    not divide F then F | 3; if rho^a || F with a >= 1 then q^a | F and
+    N(G) >= q^(4-a), so 3q^2 = |F||G| >= q^((a+4)/2) forces q <= 9, i.e. q = 5
+    and 5 | gcd(F,G) | R_J -- and 5 never divides R_J.  Entry 93's 'R_J
+    reduced to J != 1 mod 3' is withdrawn; the (J,1) singles at J = 1 mod 3
+    remain open with their own residual."""
+    import json
+    import sympy as sp
+    from compute.quadruple import (_is_frame_ratio, quadruple_pairs, _normalize, _partial_conj,
+                                   pooled_kill, joint_residual_kill)
+    from compute.residual_kill import linear_forms, residual_kill, _Fcyc
+    from compute.lucas_endpoints import lucas_to_L, _L, _LB
+    # (i) the frame-ratio test is sign-agnostic
+    require(_is_frame_ratio(sp.Rational(3, 4)) and _is_frame_ratio(sp.Rational(-3, 4)), "3-4i is a frame")
+    require(_is_frame_ratio(sp.Rational(-12, 5)) and not _is_frame_ratio(sp.Integer(-1))
+            and not _is_frame_ratio(sp.Integer(0)), "sign-agnostic, zero excluded")
+    # (ii) the raw-label blind spot on a synthetic pair sharing a j = 0 element
+    P = (((0, 1), 1), ((2, 1), 1), ((3, 2), -1))
+    Q = (((0, 1), 1), ((1, -3), -1), ((2, -1), 1))
+    Qs = _partial_conj(Q)
+    require(_partial_conj(P) != P and len(set(dict(P)) & set(dict(Q))) == 1, "P not self-conjugate; P, Q share one label")
+    require(set(dict(P)) & set(dict(Qs)) == {(0, 1), (2, 1)}, Qs)
+    require(len(quadruple_pairs([P, Q])) == 1, "normal-form enumeration finds the pair")
+
+    def raw_pairs(triples):                      # the entry-95 logic, verbatim in spirit
+        out = 0
+        for i, P1 in enumerate(triples):
+            c1 = dict(P1)
+            for j2 in range(i, len(triples)):
+                for sj in (1, -1):
+                    for sk in (1, -1):
+                        if j2 == i and (sj, sk) == (1, 1):
+                            continue
+                        Qr = tuple(((sj * j, sk * k), c) for (j, k), c in triples[j2])
+                        c2 = dict(Qr)
+                        sh = sorted(set(c1) & set(c2))
+                        if len(sh) != 2:
+                            continue
+                        A, B = sh
+                        if c1[A] * c1[B] != -(c2[A] * c2[B]):
+                            continue
+                        cc = [jk for jk in c1 if jk not in sh]
+                        ee = [jk for jk in c2 if jk not in sh]
+                        if len(cc) != 1 or len(ee) != 1 or cc[0] == ee[0]:
+                            continue
+                        out += 1
+        return out
+    require(raw_pairs([P, Q]) == 0, "the raw-label enumeration misses it")
+    # the measured ladder's 92 open triples: no j = 0 label; 14 orbits; all dead
+    with open(os.path.join(DATA, "data_quadruple_pairs.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    trips = [tuple((tuple(jk), c) for jk, c in p) for box, rows in data["open_triples_by_box"].items() for p in rows]
+    require(len(trips) == 92 and data["n_open_triples"] == 92, len(trips))
+    require(not any(j == 0 for T in trips for (j, k), c in T), "no j = 0 label among the 92")
+    orbits = quadruple_pairs(trips)
+    require(len(orbits) == 14 == data["n_orbits"], (len(orbits), data["n_orbits"]))
+    require(raw_pairs([_normalize(T) for T in trips]) == 56, "entry 95's raw listing = 56 = 4 x 14")
+    tally = data["tally"]
+    require(tally.get("OPEN", 0) == 0 and tally.get("pincer", 0) + tally.get("joint", 0) == 14, tally)
+    require(all(o["frame_roots_any_sign"] == [] for o in data["orbits"] if o["verdict"] == "joint"),
+            "no joint form has a frame-ratio root of either sign")
+    require(all(o["all_pure_homogeneous"] and not o["c2_mixing"] for o in data["orbits"] if o["verdict"] == "joint"))
+    live = 0
+    for o in data["orbits"]:
+        T1 = tuple((tuple(jk), c) for jk, c in o["T1"])
+        T2 = tuple((tuple(jk), c) for jk, c in o["T2"])
+        if o["verdict"] == "pincer":
+            ok, e = pooled_kill(T1, T2)
+            require(ok is True and e >= 1, ("pincer orbit", o["T1"], o["T2"], ok, e))
+            live += 1
+    require(live == tally.get("pincer", 0), live)
+    if ctx.bound(full=1, fast=0) == 1:
+        o = next(o for o in data["orbits"] if o["verdict"] == "joint" and 26 in o["degrees"])
+        jr = joint_residual_kill(tuple((tuple(jk), c) for jk, c in o["T1"]),
+                                 tuple((tuple(jk), c) for jk, c in o["T2"]))
+        require(jr.get("kills") is True and jr["frame_roots"] == [], jr)
+    # (iii) for J = 1 mod 3 the machine cancels F and leaves content bound 1
+    for J, cb in ((5, 3), (7, 1), (10, 1)):
+        pat = (((J - 1, -1), 1), ((J, -1), 1), ((J, 1), -1))
+        side, k, A, B, d = linear_forms(pat)[0]
+        Z = sp.expand(lucas_to_L(B - sp.I * A, "l"))
+        ZJ = sp.expand(_L ** (2 * J) + _L ** (2 * J - 1) * _LB + _LB ** (2 * J))
+        qt, rm = sp.div(sp.Poly(ZJ, _L, _LB), sp.Poly(Z, _L, _LB))
+        require(rm.is_zero, ("machine form divides Z_J", J))
+        if J % 3 == 1:
+            require(sp.expand(qt.as_expr() + _Fcyc) == 0, ("Z_J / machine form = -F", J, qt.as_expr()))
+        else:
+            require(sp.expand(qt.as_expr() + 1) == 0, ("machine form = -Z_J", J))
+        verdict, forms = residual_kill(pat)
+        require(verdict == "OPEN" and forms[0]["content_bound"] == cb, (J, verdict, forms[0].get("content_bound")))
+        if J % 3 == 1:
+            require(all(c is None for sg, cj, c in forms[0]["branches"][1]), ("all branches open at J", J))
+    G7 = sp.expand(lucas_to_L(linear_forms((((6, -1), 1), ((7, -1), 1), ((7, 1), -1)))[0][3]
+                              - sp.I * linear_forms((((6, -1), 1), ((7, -1), 1), ((7, 1), -1)))[0][2], "l"))
+    fl = sp.factor_list(G7, _L, _LB, extension=sp.I)[1]
+    require(len(fl) == 1 and fl[0][1] == 1 and sp.Poly(fl[0][0], _L, _LB).total_degree() == 12,
+            ("G_7 irreducible over Q(i)", [(sp.Poly(f, _L, _LB).total_degree(), m) for f, m in fl]))
+    # the literal equation's exceptional prime: 5 never divides R_J
+    for J, RJ in ((4, 19), (7, 61), (10, 127), (13, 217)):
+        ZJ = sp.expand(_L ** (2 * J) + _L ** (2 * J - 1) * _LB + _LB ** (2 * J))
+        G = sp.quo(sp.Poly(ZJ, _L, _LB), sp.Poly(_Fcyc, _L, _LB))
+        Res = sp.factor(sp.resultant(sp.Poly(_Fcyc, _L), sp.Poly(G.as_expr(), _L)))
+        Rc = abs(int(sp.Poly(Res, _LB).LC()))
+        require(Rc == RJ and Rc % 5 != 0, (J, Rc))
+    ctx.note("audit of entries 93-95: frame ratios sign-agnostic (gap closed, kills unchanged); the 92 open triples "
+             "give 14 distinct quadruple orbits (entry 95's 56 = 4 x 14), all dead (4 pincer + 10 joint) -- the "
+             "MSS3 theorem stands; entry 93's cyclotomic 'reduction of R_J' is withdrawn: at J = 1 mod 3 the "
+             "machine cancels F and leaves rho^4 = +-G_J with content bound 1, all branches open.")
