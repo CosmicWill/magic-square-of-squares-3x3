@@ -2151,6 +2151,56 @@ enter; $1267$ high-bidegree shapes not yet analysed.  Next: the
 third-frame lift of the $316$ families, the pullback of the high-degree
 components, the quotient towers of the $540$, then the $(2,1,1)$ box.
 
+## 2.29 The third-frame lift: the monomial lemma kills every rational family
+
+*(2026-09-03; entry 98; check `a3.omega3_engine`; code `compute/omega3.py`.)*
+
+**The families.**  Each of the $316$ "infinite" classes of §2.28 had, in
+its best frame, a genus-$0$ factor of the Pythagorean pullback: a
+rational curve of Pythagorean frame pairs $(\tau_g,\tau_h)$ on the
+projected relation.  Parametrizing every such factor (linear in one
+variable; quadratic with a discriminant that is a square times a
+constant; or a conic through a small rational point, with the points a
+parametrization can miss — square-part roots, roots of the leading
+coefficient, a base point with $y_0=0$ — kept as candidates) and writing
+$w=(1+i\tau)/(1-i\tau)=\pi/\bar\pi$ for each prime's own circle point,
+**every family satisfies a monomial relation identically**:
+$w_g^{\,a}=\varepsilon\,w_h^{\,b}$ with $\varepsilon$ a unit, the
+relations found being $(a,b)=(1,2),(1,-2),(2,1),(2,-1),(1,3),(2,3)$ in
+best frames (also $(3,2),(3,1)$ elsewhere).  They are angle-multiple
+coincidences: the $(1,2)$ family is $\tau_g=t_h$, the half-angle of one
+prime equal to the full angle of the other (the first example
+$t_gt_h^2-t_g+2t_h=0$ is the double-angle formula itself); $(1,3)$ is
+tripling; negative $b$ are conjugate versions.
+
+**The monomial lemma.**  For frames of distinct split primes $p\ne q$, a
+relation $w_g^{\,a}=\varepsilon w_h^{\,b}$ ($a\ge1$, $b\ne0$,
+$\varepsilon$ a unit) is impossible: clearing denominators,
+$\pi_g^{\,a}\bar\pi_h^{\,b}=\varepsilon\bar\pi_g^{\,a}\pi_h^{\,b}$ (for
+$b>0$), so the Gaussian prime $\pi_g$ divides $\bar\pi_g^{\,a}\pi_h^{\,b}$,
+hence $\pi_g\sim\bar\pi_g$ ($p=2$) or $\pi_g\sim\pi_h$ ($p=q$); for $b<0$
+exchange $\pi_h,\bar\pi_h$.  This generalizes the same-prime lemma
+($a=b=1$).  A family on which such a relation holds identically
+contains no frame pair of distinct primes at all, for any primes: the
+kill is uniform.  The remaining genus-$0$ shapes (the $(2,2)$ factors and
+the pullbacks of bilinear components) have discriminant $=$ (non-square
+constant)$\times$(square), so no rational points off the square part,
+whose roots are degenerate.  **The lift to the third frame was never
+needed.**
+
+**Result.**  Over the $2944$ classes: **dead $1077$** (349 trivial; the
+thirteen rank-$0$ curves; $248$ by the monomial lemma; $72$ by non-square
+discriminants, counted in best frames), finite $600$, unknown $1267$
+(bidegree $>6$, not pulled back), **no class infinite or candidate**.  Of
+the $316$, $256$ died and $60$ became finite.  Within the box, the
+obstruction to a uniform theorem is now purely the finite one: $600$
+classes on even reciprocal hyperelliptic curves of genus $2,3,5$ (quotient
+towers, then Chabauty where towers stop) and the high-bidegree components
+(a cheaper factorization route is needed; one bidegree-$(4,4)$ pullback
+did not factor in ten minutes).  What the engine can see is either dead
+for all primes or on a curve with finitely many rational points.  Not a
+theorem for the box.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

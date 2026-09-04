@@ -3562,14 +3562,26 @@ def _(ctx):
     family of Pythagorean pairs on the projection -- the third frame and the
     primality of the norms are the remaining obstructions); 1267 UNKNOWN
     (components of bidegree > 6 not pulled back, or degenerate).  The box is
-    NOT closed; the obstruction is now explicit.  Verifies the elements, the
-    cross-check with cleared_terms, the data file (canonical keys, tally, the
-    models' shape and degenerate points), and -- with PARI -- two live kills and
-    the models' certificates (rank 0, complete enumeration)."""
+    NOT closed; the obstruction is now explicit.
+    ENTRY 98 -- THE THIRD-FRAME LIFT: every genus-0 factor of the Pythagorean
+    pullback is a rational family of frame pairs; parametrized, EVERY one of
+    them is a MONOMIAL relation w_g^a = eps w_h^b between the two primes' circle
+    points w = pi/pibar (angle doubling (1,2), tripling (1,3), (2,1), (2,3),
+    conjugate variants), impossible for distinct primes (pi_g would divide
+    pibar_g^a pi_h^b), or has a non-square constant discriminant (no rational
+    points off its square part, whose roots are degenerate).  The lift to the
+    third frame was never needed.  Lifted tally: dead 1077, finite 600,
+    unknown 1267; no class is 'infinite' or 'candidate'.  Verifies the
+    elements, the cross-check with cleared_terms, the data file (canonical keys,
+    tally, the models' shape and degenerate points), the monomial lemma on the
+    doubling family and a non-monomial control, and -- with PARI -- two live
+    kills and the models' certificates (rank 0, complete enumeration)."""
     import json
     import sympy as sp
     from compute.omega3 import (E, LABELS, canon_cand, decide_class, frame_factors, decide_component,
-                                is_frame_ratio, all_candidates, tg, th, c1, s1, c2, s2, c3, s3)
+                                is_frame_ratio, all_candidates, monomial_relation, parametrize, pyth,
+                                tg, th, ug, uh, c1, s1, c2, s2, c3, s3)
+    lam = sp.Symbol("lam")
     from compute.pari_genus1 import gp_available, quartic_points
     from compute.lucas_endpoints import cleared_terms
     # (i) the 13 elements are (2,2,2)-forms; they agree with the repo's two-frame relations
@@ -3589,7 +3601,9 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 821, "finite": 540, "infinite": 316, "unknown": 1267}, data["tally"])
+    require(data["tally"] == {"dead": 1077, "finite": 600, "unknown": 1267}, data["tally"])
+    require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
+    require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
     for e in data["classes"]:
         A, B, C, D, eA, eB, eC, eD = e["cand"]
@@ -3597,7 +3611,18 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 821)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1077)
+    # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
+    # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
+    require(monomial_relation(2 * lam / (1 - lam ** 2), lam) == (1, 2, "1"))
+    require(monomial_relation((3 * lam - lam ** 3) / (1 - 3 * lam ** 2), lam) == (1, 3, "1"))
+    require(monomial_relation(lam, 2 * lam / (1 - lam ** 2)) == (2, 1, "1"))
+    require(monomial_relation(lam, (lam + 1) / (2 - lam)) is None, "non-monomial control")
+    # the doubling factor of the (1,2) family ug uh^2 - ug + 2 uh: parametrized, both branches are monomial
+    fe = sp.expand(ug * uh ** 2 - ug + 2 * uh)
+    pars, how, cands = parametrize(fe, uh, ug)
+    require(len(pars) == 2 and all(monomial_relation(a, b) is not None for a, b in pars), (how, pars))
+    require(all(x in (0, 1, -1) or y in (0, 1, -1) for x, y in cands), ("missed points are degenerate", cands))
     # (iii) the killing models: even quartics (t -> -t is the conjugate frame), rank 0, only degenerate points
     require(len(data["models"]) == 13, len(data["models"]))
     for m in data["models"]:
@@ -3638,7 +3663,8 @@ def _(ctx):
         ctx.note("PARI/GP not found: live kills and model certificates not re-run (data-file consistency verified)")
     if ctx.bound(full=1, fast=0) == 1:
         require(len(all_candidates()) == 2944, "class enumeration")
-    ctx.note("omega = 3, box (1,1,1): 2944 quadruple classes -> 821 dead uniformly in the primes (349 trivial + 472 by 13 "
-             "rank-0 even quartics of conductor 32/48/56/80), 540 Faltings-finite (even reciprocal hyperelliptic models, "
-             "genus 2/3/5), 316 with a genus-0 Pythagorean family on the projection, 1267 not yet analysed (bidegree > 6). "
-             "Not a theorem for the box; the obstruction is explicit and classical in shape.")
+    ctx.note("omega = 3, box (1,1,1), after the third-frame lift (entry 98): 2944 quadruple classes -> 1077 dead uniformly "
+             "in the primes (349 trivial; 13 rank-0 even quartics of conductor 32/48/56/80; the MONOMIAL LEMMA -- every "
+             "rational Pythagorean family is an angle-multiple coincidence w_g^a = eps w_h^b, impossible for distinct "
+             "primes; non-square discriminants), 600 Faltings-finite (even reciprocal hyperelliptic models, genus 2/3/5), "
+             "1267 not yet analysed (bidegree > 6); no infinite or candidate class remains. Not a theorem for the box.")

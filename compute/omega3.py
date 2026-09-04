@@ -1,4 +1,4 @@
-"""THE omega = 3 ENGINE (entry 97): the (1,1,1) box's quadruples as curves.
+"""THE omega = 3 ENGINE (entries 97-98): the (1,1,1) box's quadruples as curves.
 
 Split part p q r (three first-power split primes) with frames l = pi^2 = c1 +
 i s1, w = rho^2 = c2 + i s2, v = sigma^2 = c3 + i s3.  An element of D(m) has a
@@ -31,8 +31,21 @@ THE DECISION (sound kills only):
   * Otherwise the PYTHAGOREAN PULLBACK t = 2 tau/(1 - tau^2) in both
     variables: Psi(tau_g, tau_h) = 0 is the curve of Pythagorean frame pairs
     (composite norms allowed).  Its factors are decided the same way (a
-    rational tau must avoid {0, +-1, inf}); a genus-0 factor is an INFINITE
-    Pythagorean family (the primality of the norms is then the only obstruction).
+    rational tau must avoid {0, +-1, inf}); a GENUS-0 factor is parametrized
+    (entry 98) and decided by:
+      - THE MONOMIAL LEMMA: with w = (1 + i tau)/(1 - i tau) = pi/pibar the
+        prime's own circle point, w_g^a = eps w_h^b (a >= 1, b != 0, eps a
+        unit) is impossible for distinct primes: pi_g^a pibar_h^b = eps
+        pibar_g^a pi_h^b makes the prime pi_g divide pibar_g^a pi_h^b (b > 0)
+        or pibar_g^a pibar_h^|b| (b < 0), so pi_g ~ pibar_g (p = 2) or
+        pi_g ~ pi_h / pibar_h (p = q).  A family satisfying such a relation
+        identically is DEAD;
+      - THE THIRD-FRAME LIFT otherwise: substitute the family into R1, R2, take
+        the common root t_f (gcd), and impose 1 + t_f^2 = square -- a curve in
+        the family parameter, decided by its genus (PARI for genus 1).
+    Rational points the parametrization can miss (roots of the square part of
+    the discriminant, of the leading coefficient, a base point with y0 = 0)
+    are kept as CANDIDATES unless degenerate.
 Frame verdict = worst component; class verdict = best frame.  Order:
 dead < finite < candidate < infinite < unknown.
 """
@@ -46,6 +59,7 @@ c1, s1, c2, s2, c3, s3 = sp.symbols("c1 s1 c2 s2 c3 s3", real=True)
 FR = [(c1, s1), (c2, s2), (c3, s3)]
 tg, th = sp.symbols("tg th")
 ug, uh = sp.symbols("ug uh")
+lam, T = sp.symbols("lam T")
 ORDER = {"dead": 0, "finite": 1, "candidate": 2, "infinite": 3, "unknown": 4}
 
 
@@ -120,6 +134,10 @@ def degenerate(v):
     return v in (0, 1, -1)
 
 
+def pyth(tau):
+    return 2 * tau / (1 - tau ** 2)
+
+
 SAME = [sp.expand(x) for x in (tg - th, tg + th, tg * th - 1, tg * th + 1, th - tg, -tg - th, 1 - tg * th, -1 - tg * th)]
 
 
@@ -139,8 +157,10 @@ def frame_factors(cand, f):
     cf, sf = FR[f]
     g, h = [i for i in range(3) if i != f]
     (cg, sg), (ch, sh) = FR[g], FR[h]
+    if R1 == 0 or R2 == 0:
+        return None
     P1, P2 = sp.Poly(R1, sf), sp.Poly(R2, sf)
-    if R1 == 0 or R2 == 0 or P1.degree() < 1 or P2.degree() < 1:
+    if P1.degree() < 1 or P2.degree() < 1:
         return None
     Res = sp.expand(sp.resultant(P1, P2))
     if Res == 0:
@@ -170,6 +190,7 @@ def frame_factors(cand, f):
     return curves, live
 
 
+# ------------------------------------------------------------------ PARI models
 _cache = {}
 
 
@@ -227,7 +248,219 @@ def _disc_model(poly, var, oth):
     return sqf, dfl, ((dd - 1) // 2 if dd >= 1 else 0)
 
 
-def decide_component(phi, dg, dh, pullback_max_degree=6):
+# ------------------------------------------------------------------ genus 0 (entry 98)
+def sqrt_rational(C):
+    C = sp.nsimplify(C)
+    if not C.is_rational or C <= 0:
+        return None
+    p, q = sp.integer_nthroot(int(C.p), 2), sp.integer_nthroot(int(C.q), 2)
+    if p[1] and q[1]:
+        return sp.Rational(p[0], q[0])
+    return None
+
+
+def conic_point(a, b, c, bound=60):
+    """A rational point (u0, y0) on y^2 = a u^2 + b u + c, by search."""
+    for den in range(1, bound + 1):
+        for num in range(-bound * den, bound * den + 1):
+            u0 = sp.Rational(num, den)
+            v = a * u0 ** 2 + b * u0 + c
+            if v >= 0:
+                r = sqrt_rational(v)
+                if r is not None:
+                    return u0, r
+    return None
+
+
+def _rational_roots(poly, var):
+    out = []
+    if poly == 0 or not poly.free_symbols:
+        return out
+    for q, m2 in sp.factor_list(poly)[1]:
+        if q.free_symbols and sp.Poly(q, var).degree() == 1:
+            cs = sp.Poly(q, var).all_coeffs()
+            out.append(sp.Rational(-cs[1], cs[0]))
+    return out
+
+
+def parametrize(fe, var, oth):
+    """Rational parametrizations of the irreducible genus-0 factor fe(ug, uh)
+    (linear or quadratic in var): returns (branches, how, candidates) with
+    branches = [(ug(lam), uh(lam))] and candidates = the rational points the
+    branches can miss, as (oth value, var value) pairs."""
+    P = sp.Poly(fe, var)
+    dv = P.degree()
+    cands = []
+    if dv == 1:
+        a1, a0 = P.all_coeffs()
+        expr = sp.cancel(-a0 / a1)
+        sol = {oth: lam, var: expr.subs(oth, lam)}
+        return [(sol[ug], sol[uh])], "linear", cands
+    if dv != 2:
+        return [], f"degree {dv}", cands
+    a2, a1, a0 = P.all_coeffs()
+    # points where the leading coefficient vanishes: fe is linear in var there
+    for r0 in _rational_roots(sp.expand(a2), oth):
+        b1, b0 = sp.expand(a1).subs(oth, r0), sp.expand(a0).subs(oth, r0)
+        if b1 != 0:
+            cands.append((r0, sp.Rational(-b0, b1) if b0 != 0 else sp.Integer(0)))
+    disc = sp.expand(a1 ** 2 - 4 * a2 * a0)
+    if disc == 0:
+        expr = sp.cancel(-a1 / (2 * a2))
+        sol = {oth: lam, var: expr.subs(oth, lam)}
+        return [(sol[ug], sol[uh])], "double root", cands
+    dfl = sp.factor_list(disc)
+    C = dfl[0]
+    sqf, h = sp.Integer(1), sp.Integer(1)
+    for q, m in dfl[1]:
+        if m % 2 == 1:
+            sqf *= q
+        h *= q ** (m // 2)
+    # square-part roots: disc = 0 there with a double rational root of the quadratic
+    for r0 in _rational_roots(sp.expand(h), oth):
+        aa2 = sp.expand(a2).subs(oth, r0)
+        if aa2 != 0:
+            cands.append((r0, sp.cancel(-sp.expand(a1).subs(oth, r0) / (2 * aa2))))
+    if not sqf.free_symbols:                       # disc = C h^2
+        r = sqrt_rational(C * sqf)
+        if r is None:
+            return [], "disc = nonsquare * square", cands
+        out = []
+        for sgn in (1, -1):
+            expr = sp.cancel((-a1 + sgn * r * h) / (2 * a2))
+            sol = {oth: lam, var: expr.subs(oth, lam)}
+            out.append((sol[ug], sol[uh]))
+        return out, "disc square", cands
+    Q = sp.Poly(sp.expand(C * sqf), oth)
+    if Q.degree() > 2:
+        return [], f"disc squarefree degree {Q.degree()}", cands
+    cs = Q.all_coeffs()
+    while len(cs) < 3:
+        cs = [0] + cs
+    qa, qb, qc = cs
+    if qa == 0:
+        u_of, y_of = (lam ** 2 - qc) / qb, lam
+    else:
+        pt = conic_point(qa, qb, qc)
+        if pt is None:
+            return [], "conic: no rational point found", cands
+        u0, y0 = pt
+        if y0 == 0:                                   # vertical tangent: the base point is missed
+            aa2 = sp.expand(a2).subs(oth, u0)
+            if aa2 != 0:
+                cands.append((u0, sp.cancel(-sp.expand(a1).subs(oth, u0) / (2 * aa2))))
+        u = sp.Symbol("u_")
+        eq = sp.expand(qa * u ** 2 + qb * u + qc - (y0 + lam * (u - u0)) ** 2)
+        quo = sp.cancel(eq / (u - u0))
+        sol = sp.solve(quo, u)
+        if not sol:
+            return [], "conic parametrization failed", cands
+        u_of = sp.cancel(sol[0])
+        y_of = sp.cancel(y0 + lam * (u_of - u0))
+    out = []
+    for sgn in (1, -1):
+        expr = sp.cancel(sp.cancel((-a1 + sgn * y_of * h.subs(oth, u_of)) / (2 * a2)).subs(oth, u_of))
+        sol = {oth: u_of, var: expr}
+        out.append((sp.cancel(sol[ug]), sp.cancel(sol[uh])))
+    return out, "conic", cands
+
+
+def monomial_relation(taug, tauh, amax=4):
+    """(a, b, eps) with w_g^a = eps w_h^b identically on the family, or None."""
+    wg = sp.cancel((1 + sp.I * taug) / (1 - sp.I * taug))
+    wh = sp.cancel((1 + sp.I * tauh) / (1 - sp.I * tauh))
+    for a in range(1, amax + 1):
+        for b in range(-amax, amax + 1):
+            if b == 0:
+                continue
+            r = sp.simplify(sp.cancel(sp.expand(wg ** a) / sp.expand(wh ** b)))
+            if r.free_symbols:
+                continue
+            if sp.simplify(r ** 4) == 1:
+                return (a, b, str(r))
+    return None
+
+
+def lift(cand, f, taug, tauh):
+    """Third frame: the common root t_f of R1, R2 on the family (frame g = tau_g,
+    frame h = tau_h), and the frame condition 1 + t_f^2 = square as a curve
+    in the family parameter."""
+    R1, R2 = relations(cand)
+    g, h = [i for i in range(3) if i != f]
+    subs = {FR[g][0]: 1, FR[g][1]: pyth(taug), FR[h][0]: 1, FR[h][1]: pyth(tauh), FR[f][0]: 1, FR[f][1]: T}
+    P1 = sp.expand(sp.numer(sp.together(R1.subs(subs))))
+    P2 = sp.expand(sp.numer(sp.together(R2.subs(subs))))
+    if P1 == 0 or P2 == 0:
+        return {"status": "a relation vanishes identically on the family", "verdict": "unknown"}
+    G = sp.Poly(sp.gcd(P1, P2), T)
+    dT = G.degree()
+    if dT < 1:
+        return {"status": "no common root in T", "verdict": "dead"}
+    if dT > 1:
+        return {"status": f"common root of degree {dT}", "verdict": "unknown"}
+    a, b = G.all_coeffs()
+    tf = sp.cancel(-b / a)
+    N, D = sp.fraction(sp.together(tf))
+    S = sp.expand(N ** 2 + D ** 2)
+    if S == 0:
+        return {"status": "t_f undefined", "verdict": "unknown"}
+    dfl = sp.factor_list(S)
+    sqf = sp.expand(sp.Mul(*[q for q, m in dfl[1] if m % 2 == 1]))
+    dd = sp.Poly(sqf, lam).degree() if sqf.free_symbols else 0
+    genus = (dd - 1) // 2 if dd >= 1 else 0
+    rec = {"status": "linear", "tf": str(tf)[:80], "sqf_deg": dd, "genus": genus}
+    if genus == 0:
+        if dd == 0 and sqrt_rational(dfl[0]) is None:
+            rec["verdict"] = "candidate"                # only the square-part roots remain (not enumerated here)
+        else:
+            rec["verdict"] = "infinite"
+    elif genus == 1:
+        cs = [int(c) for c in sp.Poly(sp.expand(dfl[0] * sqf), lam).all_coeffs()]
+        r = quartic_points(cs)
+        rec["pari"] = {k: r[k] for k in r if k != "points"}
+        if "error" in r:
+            rec["verdict"] = "unknown"
+        elif r["rank_hi"] > 0:
+            rec["verdict"] = "infinite"
+        elif r["complete"]:
+            rec["verdict"] = "candidate" if r["tvals"] else "dead"
+        else:
+            rec["verdict"] = "unknown"
+    else:
+        rec["verdict"] = "finite"
+    return rec
+
+
+def decide_genus0(fe, var, oth, cand=None, f=None):
+    """A genus-0 factor of the Pythagorean pullback: parametrize, then the
+    monomial lemma, else the third-frame lift."""
+    pars, how, cands = parametrize(fe, var, oth)
+    live_c = [(str(a), str(b)) for a, b in cands if not (degenerate(a) or degenerate(b))]
+    info = {"how": how, "candidates": live_c}
+    worst = "candidate" if live_c else "dead"
+    if not pars:
+        if how == "disc = nonsquare * square":
+            return worst, info
+        return "unknown", dict(info, note=how)
+    branches = []
+    for taug, tauh in pars:
+        br = {"tau_g": str(taug)[:60], "tau_h": str(tauh)[:60]}
+        mono = monomial_relation(taug, tauh)
+        if mono:
+            br.update({"monomial": mono, "verdict": "dead"})
+        elif cand is not None:
+            lf = lift(cand, f, taug, tauh)
+            br.update({"lift": lf, "verdict": lf["verdict"]})
+        else:
+            br["verdict"] = "infinite"
+        branches.append(br)
+        if ORDER[br["verdict"]] > ORDER[worst]:
+            worst = br["verdict"]
+    info["branches"] = branches
+    return worst, info
+
+
+def decide_component(phi, dg, dh, cand=None, f=None, pullback_max_degree=6):
     info = {"deg": (dg, dh)}
     for var, oth, dv in ((th, tg, dh), (tg, th, dg)):
         if dv == 2:
@@ -247,8 +480,7 @@ def decide_component(phi, dg, dh, pullback_max_degree=6):
             break
     if dg + dh > pullback_max_degree:
         return "unknown", dict(info, note="high degree, no pullback")
-    psi = sp.expand(phi.subs({tg: 2 * ug / (1 - ug ** 2), th: 2 * uh / (1 - uh ** 2)})
-                    * (1 - ug ** 2) ** dg * (1 - uh ** 2) ** dh)
+    psi = sp.expand(phi.subs({tg: pyth(ug), th: pyth(uh)}) * (1 - ug ** 2) ** dg * (1 - uh ** 2) ** dh)
     psi = sp.expand(sp.cancel(psi))
     worst, facs = "dead", []
     for fac, mult in sp.factor_list(psi)[1]:
@@ -269,27 +501,34 @@ def decide_component(phi, dg, dh, pullback_max_degree=6):
                 facs.append({"kind": "univariate", "deg": max(eg, eh), "verdict": v})
         else:
             v, finf = "unknown", {"deg": (eg, eh)}
-            done = False
-            for var, oth, dv in ((uh, ug, eh), (ug, uh, eg)):
-                if dv == 2:
-                    dm = _disc_model(fe, var, oth)
-                    if dm is None:
-                        v, finf = "infinite", dict(finf, note="disc 0")
-                    else:
-                        sqf, dfl, genus = dm
-                        finf["genus"] = genus
-                        if genus == 0:
-                            v = "infinite"
-                        elif genus == 1:
-                            v, minf = decide_model(sqf, oth, "tau", square_part_roots(dfl, oth))
-                            finf["model"] = minf
+            if eh == 1 or eg == 1:                              # genus 0: linear in a variable
+                var, oth = (uh, ug) if eh == 1 else (ug, uh)
+                v, ginf = decide_genus0(fe, var, oth, cand, f)
+                finf.update(genus=0, **ginf)
+            else:
+                done = False
+                for var, oth, dv in ((uh, ug, eh), (ug, uh, eg)):
+                    if dv == 2:
+                        dm = _disc_model(fe, var, oth)
+                        if dm is None:
+                            v, ginf = decide_genus0(fe, var, oth, cand, f)
+                            finf.update(genus=0, **ginf)
                         else:
-                            v = "finite"
-                    done = True
-                    break
-            if not done:
-                v = "finite" if (eg - 1) * (eh - 1) >= 2 else "unknown"
-                finf["arith_genus"] = (eg - 1) * (eh - 1)
+                            sqf, dfl, genus = dm
+                            finf["genus"] = genus
+                            if genus == 0:
+                                v, ginf = decide_genus0(fe, var, oth, cand, f)
+                                finf.update(ginf)
+                            elif genus == 1:
+                                v, minf = decide_model(sqf, oth, "tau", square_part_roots(dfl, oth))
+                                finf["model"] = minf
+                            else:
+                                v = "finite"
+                        done = True
+                        break
+                if not done:
+                    v = "finite" if (eg - 1) * (eh - 1) >= 2 else "unknown"
+                    finf["arith_genus"] = (eg - 1) * (eh - 1)
             facs.append(dict(finf, kind="curve", verdict=v))
         if ORDER[v] > ORDER[worst]:
             worst = v
@@ -304,7 +543,7 @@ def decide_frame(cand, f):
     curves, live_uni = ff
     worst, details = ("candidate" if live_uni else "dead"), []
     for phi, dg, dh in curves:
-        v, info = decide_component(phi, dg, dh)
+        v, info = decide_component(phi, dg, dh, cand, f)
         details.append(dict(info, verdict=v, phi=str(phi)[:80]))
         if ORDER[v] > ORDER[worst]:
             worst = v

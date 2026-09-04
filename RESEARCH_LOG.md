@@ -4321,3 +4321,86 @@ consistency and tally, model shapes, the same-prime lemma, and with
 PARI two live kills plus model re-certification; FULL re-enumerates
 the 2944 classes). Doc 2.28; ROADMAP R.7 (the goal and the front),
 M14-A; memory.
+
+
+## 2026-09-03 — Entry 98: the third-frame lift — every rational Pythagorean family of the (1,1,1) box is an angle-multiple coincidence, dead by the monomial lemma; 1077 of 2944 classes now dead, none infinite
+
+THE TASK. Entry 97 left 316 classes whose best frame elimination has a
+genus-0 factor in the Pythagorean pullback: a rational curve of
+Pythagorean frame pairs (tau_g, tau_h) on the projection, i.e. a
+one-parameter family of pairs of Gaussian integers (composite norms
+allowed) satisfying the projected relation. Descent on the projected
+curve cannot finish these; the plan was to LIFT each family to the
+third frame (substitute into R1, R2, take the common root t_f, impose
+1 + t_f^2 = square -- a curve in the family parameter) and decide that
+curve. Built and run (compute/omega3.py: parametrize, monomial_
+relation, lift, decide_genus0; pass 5 re-decided all 2592 live classes).
+
+THE FINDING: THE LIFT WAS NEVER NEEDED. Parametrizing every genus-0
+factor (linear in a variable; or quadratic with a discriminant that is
+a square times a constant, or a conic through a small rational point)
+and testing the two frames' own circle points w = (1 + i tau)/(1 - i tau)
+= pi/pibar, EVERY family satisfies a MONOMIAL relation identically:
+w_g^a = eps w_h^b with eps a unit -- across the box the relations found
+in best frames are (a,b) = (1,2) x424, (1,-2) x112, (2,1) x120,
+(2,-1) x72, (1,3) x48, (2,3) x64 (over all frames also (3,2), (3,1)).
+These are angle-multiple coincidences: the (1,2) family is
+tau_g = t_h, "the half-angle of g equals the full angle of h", i.e. the
+frame angle of one prime is twice the other's (the first example,
+t_g th^2 - t_g + 2 t_h = 0, is literally the double-angle formula);
+(1,3) is tripling; (2,3) is 2 alpha_g = 3 alpha_h + pi/4; negative b
+are the conjugate versions.
+
+THE MONOMIAL LEMMA (proved; pinned). For two frames of DISTINCT split
+primes p != q, a relation w_g^a = eps w_h^b (a >= 1, b != 0, eps a
+unit) is impossible. Proof: clearing denominators, pi_g^a pibar_h^b =
+eps pibar_g^a pi_h^b (b > 0), so the Gaussian prime pi_g divides
+pibar_g^a pi_h^b, hence pi_g ~ pibar_g (p = 2) or pi_g ~ pi_h (p = q);
+for b < 0 the same with pi_h and pibar_h exchanged. This generalizes
+the same-prime lemma (the a = b = 1 case) of entry 97. A family on
+which the relation holds identically therefore contains no frame pair
+of distinct primes at all -- for ANY primes: the kill is uniform.
+
+THE OTHER GENUS-0 SHAPE. The (2,2) genus-0 factors (and the (1,1)
+components' pullbacks) have discriminant = (non-square constant) x
+(square polynomial): no rational points off the square part, and the
+square-part roots -- with the roots of the leading coefficient and any
+base point with y0 = 0, the points a parametrization can miss, all
+kept as candidates -- are degenerate (tau in {0, +-1, inf}). Dead.
+
+RESULT (compute/data_omega3_box111.json regenerated; a3.omega3_engine):
+  dead     1077  (349 trivial; 13 rank-0 curves; 248 by the monomial
+                  lemma; 72 by non-square discriminants; in best frames)
+  finite    600  (Faltings-finite hyperelliptic models, genus 2/3/5)
+  unknown  1267  (bidegree > 6 not pulled back; 3 degenerate)
+  infinite    0     candidate    0
+Of the 316 'infinite' classes, 256 became dead and 60 became finite
+(a genus >= 2 component remained in the same frame). The thirteen
+killing curves are unchanged. The high-degree components stay
+unanalysed: pulling back a single bidegree-(4,4) component did not
+factor within ten minutes in sympy -- a different route is needed
+there (compute cost, not mathematics).
+
+WHAT THIS SAYS. At omega = 3 the rational families that descent on
+curves cannot reach are exactly the multiplicative coincidences
+between two of the three primes, and unique factorization in Z[i]
+kills them without any arithmetic on the third prime. So within the
+(1,1,1) box the obstruction to a uniform theorem is now purely the
+finite one: 600 classes on curves of genus 2, 3, 5 (effective methods:
+quotient towers -- the models are even and reciprocal -- then
+Chabauty) and 1267 high-bidegree components. Nothing about MSS3 at
+omega = 3 is closed; but every class the engine can see is either dead
+for all primes or sits on a curve with finitely many rational points.
+
+NEXT. (a) The quotient towers of the 600 finite models (t -> -t and
+t -> 1/t: y^2 = f(t) even reciprocal of degree 8 -> a conic in
+w = t^2 + 1/t^2 with a square-tower of conditions; PARI ranks at the
+elliptic levels); (b) the high-bidegree components by a cheaper route
+(evaluate at the Pythagorean parametrization numerically first; factor
+over Q only what a p-adic test says is reducible); (c) the (2,1,1) box.
+
+Suite 181 (a3.omega3_engine updated: lifted tally, no infinite or
+candidate class, the monomial lemma on the doubling and tripling
+families with a non-monomial control, the (1,2) factor's two branches
+both monomial with degenerate missed points). Doc 2.29; ROADMAP
+M14-B (R.7 status updated); memory.
