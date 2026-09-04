@@ -4631,3 +4631,91 @@ is a background job to run once phase 2 raises the coverage. Suite 183
 cross-check, the data-file census, a live PARI kill of a sampled
 class; FULL re-enumerates the 89,732 classes; the engine is reset to
 (1,1,1) afterwards). Doc 2.31; ROADMAP R.8 status + M14-D; memory.
+
+
+## 2026-09-04 — Entry 102: phase 2 — a rigorous genus lower bound certifies 1224 of the 1267 high-bidegree classes Faltings-finite; 43 remain; the local sieve is vacuous. Box (1,1,1): dead 1373, finite 1528, unknown 43
+
+THE TASK. 1267 classes of the (1,1,1) box were 'unknown': in every
+frame their resultant has a component of bidegree above the pullback
+threshold with degree >= 3 in both variables (no hyperelliptic model),
+and sympy cannot factor its Pythagorean pullback. Finiteness needs the
+geometric genus, and the components are SINGULAR -- exactly at the
+degenerate frame values t = 0, inf, +-i and, for the (8,8) ones, at
+t = -1 +- sqrt 2 (the tan(pi/8) values) -- so smoothness cannot give it.
+
+WHAT WAS TRIED FIRST AND FAILED (recorded). (1) A local sieve
+(compute/omega3_sieve.py): the frames' residues are constrained (c odd,
+s = 0 mod 4, (c, s) != (0, 0) mod every prime; at most one frame of
+norm l mod l = 1 mod 4) and the relations must hold mod every m. It is
+VACUOUS: every element is an imaginary part, so the all-real residue
+class s_1 = s_2 = s_3 = 0 mod m always solves both congruences, and
+real frames can have s divisible by any power of 2 and any odd prime
+(a = 32, b = 3: s = 192, p = 1033). The counts are positive for every
+modulus on dead, finite and unknown classes alike. The omega = 2
+ladder's parity kills worked through exact valuations of lever values,
+not residues. (2) Real points: all 40 sampled unknown components have
+real points (exact Sturm counts), so no 'no real points' kill. (3)
+PARI factors the pullbacks instantly (sympy's expansion was the
+bottleneck), but the (4,4) pullback is irreducible of bidegree (8,8):
+factoring does not decide these.
+
+THE TOOL (compute/omega3_genus.py). For an absolutely irreducible plane
+curve Phi(t, x) = 0 of bidegree (dg, dh), Riemann-Hurwitz for the
+projection to the t-line gives 2g - 2 = -2 dh + sum_P (e_P - 1), and
+over a value b the ramification is dh - #(points of the normalization
+over b) >= dh - sum_{Q over b} m_Q, since a point of multiplicity m_Q
+carries at most m_Q branches. With I_Q the root multiplicity of x_Q in
+the fiber Phi(b, x) (x = infinity included through the chart x -> 1/x)
+and sum_Q I_Q = dh:
+    g >= 1 - dh + (1/2) sum_b sum_{Q over b} (I_Q - m_Q),
+nonzero only at roots of Disc_x(Phi) * lc_x(Phi) and at b = infinity.
+Computed EXACTLY: the branch values are grouped by the irreducible
+factors q of the discriminant over Q; over a root a of q the fiber is
+factored in K = Q[a]/(q) (PARI), each factor h of multiplicity I giving
+deg(h) conjugate points; m is the least k for which some order-k
+partial derivative of Phi at t = a is not divisible by h in K[x]; the
+value b = infinity uses the chart t -> 1/t. Factors q of degree above a
+cap are skipped (their contribution is >= 0: skipping keeps the bound
+valid); the cap 40 recovers every factor met. Both projections are
+taken. ABSOLUTE IRREDUCIBILITY is certified by irreducibility mod p
+with a smooth F_p-point (Frobenius permutes the absolute components
+transitively; a smooth rational point lies on exactly one). If a
+component were irreducible over Q but not absolutely, every rational
+point would lie on all its conjugate components at once -- finitely
+many -- so finiteness would hold anyway; the certificate is what lets
+the genus bound be about one curve. Control: the (2,2) genus-1
+component tg^2 th + 2 tg th^2 - 2 tg + th gives g_lb = 1 exactly in
+both projections (R = 4). Pitfall met and fixed: gp in batch mode ends
+a command at each newline unless it is inside braces -- the main loop
+must be braced.
+
+RESULT (compute/data_omega3_box111.json; a3.omega3_genus). Of the 1267
+unknown classes, 1224 are CERTIFIED FINITE (g_lb >= 2 with the
+certificate); 43 remain 'unknown'. By bidegree, components met /
+certified: (8,8) 226/222, (4,4) 202/130, (6,8) 156/154, (6,6) 92/92,
+(8,6) 86/86, (4,8) 64/64, (7,5) 64/64, (6,4) 60/44, (8,4) 56/56, (4,6)
+48/16, (7,6) 48/48, (8,5) 40/40, (5,6) 40/40, (5,5) 32/32, (7,4) 32/32,
+(4,5) 32/32, (6,7) 32/32, (5,8) 24/24, (5,7) 8/8, (5,4) 8/8. The bounds
+are large where they succeed (21 for (8,8), 14 for (7,5), 9 for (4,8),
+7 for (6,6)); the losses are the (4,4), (4,6)/(6,4) and a few (8,8),
+(6,8) components with g_lb in {-1, -2, -3}, all absolutely irreducible
+-- the bound is lost at their singular points, where the number of
+branches is smaller than the multiplicity (cusps and worse). Sharpening
+it needs the branch count (Newton-Puiseux at the singular points), not
+new mathematics.
+
+THE BOX NOW: dead 1373, finite 1528, unknown 43 (of 2944). Every class
+but 43 is either impossible for all three primes or sits on an
+explicit curve with finitely many rational points. The 'finite' set is
+the whole remaining obstruction: 304 hyperelliptic models blocked by
+positive-rank elliptic quotients (entry 100) and 1224 high-genus
+components (this entry) -- effective in principle, beyond PARI.
+
+NEXT. (a) The branch count at the singular points of the 43 (Newton
+polygon / Puiseux over the branch-value fields) to close the box's
+classification; (b) the (2,1,1) sweep, now that phase 2 can classify
+its 64% unknown (the same tool applies unchanged); (c) the 304 + 1224
+finite classes wait for Chabauty-type tools (Magma/Sage). Suite 184
+(a3.omega3_genus: the control curve, a live certification, the census,
+the sieve's vacuity; a3.omega3_engine's tally updated). Doc 2.32;
+ROADMAP R.8 phase 2 + M14-E; memory.

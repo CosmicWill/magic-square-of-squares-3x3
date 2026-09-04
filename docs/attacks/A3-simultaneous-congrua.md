@@ -2293,6 +2293,47 @@ dead or Faltings-finite; the fraction it sees shrinks with the exponent.
 The high-bidegree components (R.8 phase 2) are therefore the bottleneck for
 every box beyond $(1,1,1)$.
 
+## 2.32 Phase 2: a genus lower bound certifies the high-bidegree classes finite
+
+*(2026-09-04; entry 102; check `a3.omega3_genus`; code `compute/omega3_genus.py`,
+`compute/omega3_sieve.py`.)*
+
+**The obstruction.**  $1267$ classes had, in every frame, a component of
+bidegree $\ge(3,3)$ with no hyperelliptic model, singular exactly at the
+degenerate frame values ($t=0,\infty,\pm i$, and $-1\pm\sqrt2$ for the
+$(8,8)$ ones), absolutely irreducible, with real points, and with an
+irreducible pullback.  Two attempts failed and are recorded: a local
+sieve (frames have $c$ odd, $s\equiv0\bmod4$, $(c,s)\ne(0,0)$ mod every
+prime) is vacuous because every element is an imaginary part and the
+all-real residue class always solves an Im-type relation; and factoring
+the pullback (PARI does it instantly) leaves an irreducible curve of
+doubled bidegree.
+
+**The bound.**  For an absolutely irreducible $\Phi(t,x)=0$ of bidegree
+$(d_g,d_h)$, Riemann–Hurwitz for the projection to the $t$-line gives
+$2g-2=-2d_h+\sum_P(e_P-1)$, and over a branch value $b$ the ramification is
+at least $d_h-\sum_{Q\mid b}m_Q$, since a point of multiplicity $m_Q$
+carries at most $m_Q$ branches; with $I_Q$ the root multiplicity of $x_Q$
+in the fiber ($x=\infty$ included), $g\ge1-d_h+\tfrac12\sum_b\sum_{Q\mid
+b}(I_Q-m_Q)$.  Computed exactly: branch values grouped by the irreducible
+factors $q$ of the discriminant, the fiber factored over $\mathbb Q[a]/(q)$
+in PARI, $m_Q$ the least order of a partial derivative not divisible by the
+point's factor; factors of degree above $40$ skipped (their contribution is
+$\ge0$, so the bound stays valid); both projections taken.  Absolute
+irreducibility is certified by irreducibility mod $p$ with a smooth
+$\mathbb F_p$-point.  The genus-$1$ control gives $g\ge1$ exactly.
+
+**Result.**  $1224$ of the $1267$ classes are certified Faltings-finite
+(bounds of $21$ for $(8,8)$, $14$ for $(7,5)$, $9$ for $(4,8)$, $7$ for
+$(6,6)$); $43$ remain, all absolutely irreducible, the bound lost at
+singular points where the branch count is below the multiplicity (mostly
+bidegree $(4,4)$; Newton–Puiseux at those points would sharpen it).  **Box
+tally: dead $1373$, finite $1528$, unknown $43$.**  Every class but $43$ is
+impossible for all three primes or lies on an explicit curve with finitely
+many rational points; the finite set — $304$ hyperelliptic models blocked
+by positive-rank quotients and $1224$ high-genus components — is the whole
+remaining obstruction, effective in principle beyond PARI.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

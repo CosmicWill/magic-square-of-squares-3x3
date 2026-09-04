@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 1373, "finite": 304, "unknown": 1267}, data["tally"])   # entry 100 (towers)
+    require(data["tally"] == {"dead": 1373, "finite": 1528, "unknown": 43}, data["tally"])     # entry 102 (genus bounds)
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3842,3 +3842,85 @@ def _(ctx):
     ctx.note("(2,1,1) box: 22 elements ((4,2,2)-forms), 89732 classes, 79368 new; sampled 400: dead 88, finite 55, unknown 257 -- "
              "the same killers and the monomial lemma recur, with higher angle multiples; coverage drops (bidegree > 6 not pulled "
              "back); a full sweep is ~60 CPU-hours, not run.")
+
+
+@check("a3.omega3_genus", DOC)
+def _(ctx):
+    """THE GENUS LOWER BOUND (entry 102): the high-bidegree components of the
+    (1,1,1) box are Faltings-finite.  For an absolutely irreducible plane curve
+    Phi(t, x) = 0, Riemann-Hurwitz for the projection to the t-line gives
+    2g - 2 = -2 dh + sum (e_P - 1), and over a branch value b the ramification is
+    at least dh - sum_{Q over b} m_Q (a point of multiplicity m_Q carries at most
+    m_Q branches): g >= 1 - dh + (1/2) sum_b sum_Q (I_Q - m_Q), with I_Q the
+    root multiplicity of x_Q in the fiber (x = infinity included).  Computed
+    EXACTLY over the number fields of the branch values (PARI; discriminant
+    factors up to degree 40), for both projections; skipped factors only lower
+    the bound.  Absolute irreducibility: irreducible mod p with a smooth
+    F_p-point.  RESULT: of the 1267 unknown classes, 1224 are certified finite
+    (g_lb >= 2, certified); 43 remain, every one absolutely irreducible with the
+    bound lost at singular points (mostly bidegree (4,4)).  Box tally: dead 1373,
+    finite 1528, unknown 43.  Also pinned: the local sieve of entry 102 is
+    VACUOUS (the all-real residue class always solves an Im-type relation).
+    Verifies the bound on a genus-1 control (exact, both projections), a live
+    certification of a high-bidegree component, the data census, and the
+    sieve's vacuity."""
+    import json
+    import sympy as sp
+    from compute.omega3 import frame_factors, tg, th
+    from compute.omega3_genus import genus_lower_bound, absolutely_irreducible
+    from compute.omega3_sieve import sieve_class
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    Gb = data["genus_bounds"]
+    require(Gb["n_unknown_before"] == 1267 and Gb["n_certified_finite"] == 1224 and Gb["n_unknown_after"] == 43, Gb)
+    require(Gb["degree_cap"] == 40 and sum(Gb["certified_by_bidegree"].values()) >= 1224)
+    require(all(x["g_lb"] <= 1 for x in Gb["not_certified"]), Gb["not_certified"])
+    n_fin, n_unk = 0, 0
+    for e in data["classes"]:
+        if "genus" not in e:
+            continue
+        if e["verdict"] == "finite":
+            n_fin += 1
+            require(any(c.get("verdict") == "finite" and c.get("g_lb", 0) >= 2 and c.get("abs_irred_p")
+                        for fr in e["genus"]["frames"].values() for c in fr["components"]) or
+                    any(fr["verdict"] in ("finite", "dead") for fr in e["genus"]["frames"].values()), ("certified", e["cand"]))
+        elif e["verdict"] == "unknown":
+            n_unk += 1
+            require(all(c.get("abs_irred_p") for fr in e["genus"]["frames"].values() for c in fr["components"] if "g_lb" in c),
+                    ("the 43 are absolutely irreducible", e["cand"]))
+    require((n_fin, n_unk) == (1224, 43), (n_fin, n_unk))
+    if gp_available():
+        # (i) the genus-1 control: the (2,2) component tg^2 th + 2 tg th^2 - 2 tg + th of the class below
+        c22 = ((0, 0, 1), (0, 1, -1), (0, 1, 1), (1, -1, -1), 1, -1, 1, -1)
+        curves, live = frame_factors(c22, 0)
+        phi = [c for c in curves if (c[1], c[2]) == (2, 2)][0][0]
+        g, info = genus_lower_bound(phi, 2, 2)
+        require(g == 1 and info["direct"]["R_lb"] == 4 and info["swap"]["R_lb"] == 4, (g, info))
+        require(absolutely_irreducible(phi) is not None)
+        # (ii) a live certification: the first class certified through an (8,8) or (6,6) component
+        for e in data["classes"]:
+            if "genus" not in e or e["verdict"] != "finite":
+                continue
+            hit = None
+            for f, fr in e["genus"]["frames"].items():
+                for c in fr["components"]:
+                    if c.get("verdict") == "finite" and tuple(c["deg"]) in ((8, 8), (6, 6)) and c.get("g_lb", 0) >= 2:
+                        hit = (int(f), tuple(c["deg"]), c["g_lb"])
+            if hit:
+                cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+                f, deg, glb = hit
+                curves, live = frame_factors(cand, f)
+                phi = [c for c in curves if (c[1], c[2]) == deg][0][0]
+                g2, info2 = genus_lower_bound(phi, deg[0], deg[1], degmax=40)
+                require(g2 == glb and g2 >= 2 and absolutely_irreducible(phi) is not None, (cand, deg, g2, glb))
+                ctx.note("PARI: the " + str(deg) + " component of " + str(cand) + " re-certified with genus >= " + str(g2))
+                break
+        # (iii) the sieve is vacuous: a dead class survives every modulus with positive counts
+        v, m, counts = sieve_class(c22)
+        require(v == "survives" and all(n > 0 for n in counts.values()), (v, m, counts))
+    else:
+        ctx.note("PARI/GP not found: live genus bounds not re-run (data-file consistency verified)")
+    ctx.note("genus lower bounds: 1224 of the 1267 unknown classes certified Faltings-finite; 43 remain (absolutely "
+             "irreducible, bound lost at singular points, mostly (4,4)); box tally dead 1373, finite 1528, unknown 43; "
+             "the local sieve is vacuous (recorded)")
