@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 1376, "finite": 1568, "unknown": 0}, data["tally"])      # entry 103 (exact genera; box closed)
+    require(data["tally"] == {"dead": 1448, "finite": 1496, "unknown": 0}, data["tally"])      # entry 105 (quotient kills)
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,7 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1376)      # 1373 + the 3 common-factor kills (entry 103)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1448)      # 1373 + 3 common-factor kills + 72 quotient kills (entry 105)
     require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
@@ -3898,7 +3898,10 @@ def _(ctx):
                     any(fr["verdict"] in ("finite", "dead") for fr in e["genus"]["frames"].values()), ("certified", e["cand"]))
         elif e["verdict"] == "unknown":
             n_unk += 1
-    require((n_fin, n_unk) == (1264, 0), (n_fin, n_unk))
+        elif e["verdict"] == "dead":
+            require(e.get("verdict_before_quotients") == "finite", ("a bound-certified class dead only by a quotient kill", e["cand"]))
+            n_dead_q = locals().get("n_dead_q", 0) + 1
+    require((n_fin, n_unk) == (1192, 0), (n_fin, n_unk))      # 1264 bound-certified classes, 72 of them dead by quotients (entry 105)
     require(all("corrected" in e["genus"] for e in data["classes"] if "genus" in e), "every bound record is the corrected one")
     if gp_available():
         # (i) the genus-1 control: the (2,2) component tg^2 th + 2 tg th^2 - 2 tg + th of the class below
@@ -3966,7 +3969,7 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] == 103 and data["tally"] == {"dead": 1376, "finite": 1568, "unknown": 0}, data["tally"])
+    require(data["entry"] == 105 and data["tally"] == {"dead": 1448, "finite": 1496, "unknown": 0}, data["tally"])
     Rs = data["resolution"]
     require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
     require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
@@ -3979,7 +3982,7 @@ def _(ctx):
     for e in data["classes"]:
         if "resolution" in e:
             n_res += 1
-            require(e["verdict"] == "finite", ("resolution class verdict", e["cand"]))
+            require(e["verdict"] == "finite" or (e["verdict"] == "dead" and e.get("verdict_before_quotients") == "finite"), ("resolution class verdict", e["cand"]))
             fr = e["resolution"]["frames"][str(e["frame"])]
             require(fr["verdict"] == "finite" and fr["components"], ("certifying frame", e["cand"]))
             for c in fr["components"]:
@@ -4074,7 +4077,7 @@ def _(ctx):
     from compute.omega3_finiteness import base_locus, frame_ratio_prime
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["tally"] == {"dead": 1376, "finite": 1568, "unknown": 0}, data["tally"])
+    require(data["tally"] == {"dead": 1448, "finite": 1496, "unknown": 0}, data["tally"])
     BL = data["base_locus"]
     require(BL["n_finite"] == 1568 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)
     require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 544}, BL["status_counts"])
@@ -4089,7 +4092,9 @@ def _(ctx):
             fin.append(e)
         else:
             require(e["verdict"] == "dead", (e["cand"], e["verdict"]))
-    require(len(fin) == 1568)
+            if e.get("verdict_before_quotients") == "finite":
+                require(e["base_locus"]["admissible"] == [], ("quotient-killed class keeps its base-locus record", e["cand"]))
+    require(len(fin) == 1496)      # 1568 finite classes before the 72 quotient kills of entry 105
     # (i) the prime from the ratio: 5 = 2^2 + 1^2 gives 4/3 (and -4/3, 3/4), 13 gives 12/5, 17 gives 8/15; 1 and 2/3 are not frames
     require([frame_ratio_prime(sp.Rational(*x)) for x in ((4, 3), (-4, 3), (3, 4), (12, 5), (8, 15), (1, 1), (2, 3))] == [5, 5, 5, 13, 17, None, None])
     # (ii) live recomputation of the base locus
@@ -4235,3 +4240,106 @@ def _(ctx):
         ctx.note("PARI/GP not found: live re-decisions not run (data-file consistency verified)")
     ctx.note("(2,1,1) sample re-decided: finite 217 + 125 provisional, dead 55, unknown 3 (was finite 55, dead 88 after towers, "
              "unknown 257); no regression; the full sweep runs at ~1.2 s/class")
+
+
+@check("a3.omega3_minors", DOC)
+def _(ctx):
+    """THE MINOR FORMULA (entry 105, attempt C).  In the frame f to eliminate
+    every element of the (1,1,1) box is linear in (X, Y, N) = (2 c_f s_f,
+    c_f^2 - s_f^2, c_f^2 + s_f^2) with X^2 + Y^2 = N^2, so the relations are
+    R_i = a_i X + b_i Y + c_i N and the classical resultant of two binary
+    quadratics gives Res_{s_f}(R1, R2) = 4 (D_X^2 + D_Y^2 - D_N^2), the D's
+    the 2x2 minors: EVERY QUADRUPLE CURVE IS A COMPONENT OF THE PULLBACK OF
+    THE CIRCLE under the minor map (D_X : D_Y : D_N) of bidegree <= (4,4).
+    Its singular points are base points of the map (the relations become
+    proportional: the third frame is free on a line meeting the circle twice,
+    a node) or tangencies with the circle, which on the whole box lie only
+    over t in {0, +-1, +-i, tan(+-22.5 deg)}.  The base points sit at torsion
+    points of the circle (order dividing 24) and at 'half-Pythagorean' values
+    (cos 2theta rational).  Verifies the identity live, the divisibility of
+    every component, the singular-point test on a bounded sample, and the
+    census (1264/1264 divide; 878 classes with every affine singular point on
+    the base locus; the exceptions over t^2 + 1, t, t +- 1, t^2 +- 2t - 1 only)."""
+    import json
+    import sympy as sp
+    from compute.omega3 import frame_factors, tg, th
+    from compute.omega3_minors import minors, resultant_identity, singular_on_base_locus
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    M = data["minor_formula"]
+    require(M["n_classes"] == 1264 and M["claim1_divides"] == 1264 and M["claim2_all_on_base_locus"] == 878 and M["t_factors_tested"] == 3908, M)
+    require(M["exceptions_by_t_factor"] == {"t": 62, "t^2 + 1": 334, "t + 1": 4, "t - 1": 4, "t^2 + 2*t - 1": 2, "t^2 - 2*t - 1": 2}, M["exceptions_by_t_factor"])
+    require(len(M["singular_t_factor_census"]) == 50 and sum(M["singular_t_factor_census"].values()) == 8086, "singular census")
+    require(all(r["divides"] for r in M["classes"]) and len(M["classes"]) == 1264)
+    for q in list(M["torsion_t_factors"]) + list(M["half_pythagorean_cos2theta"]):
+        require(any(k.endswith("'" + q + "')") for k in M["singular_t_factor_census"]), ("census has", q))
+    # the torsion orders: tan(k pi / n) is a root of N_n(t) = ((1+it)^n - (1-it)^n)/(2i)
+    t = sp.Symbol("t")
+    for q, n in M["torsion_t_factors"].items():
+        Nn = sp.Poly(sp.expand(sp.simplify(((1 + sp.I * t) ** n - (1 - sp.I * t) ** n) / (2 * sp.I))), t)
+        require(Nn.rem(sp.Poly(sp.sympify(q.replace("^", "**")), t)).is_zero, ("torsion order", q, n))
+    nb = ctx.bound(full=30, fast=4)
+    for r in M["classes"][:nb]:
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"]); f = r["frame"]
+        require(resultant_identity(cand, f), ("Res = 4(DX^2 + DY^2 - DN^2)", cand, f))
+        DX, DY, DN = minors(cand, f)
+        F = sp.expand(DX ** 2 + DY ** 2 - DN ** 2)
+        curves, live = frame_factors(cand, f)
+        require(all(sp.div(sp.Poly(F, tg, th), sp.Poly(phi, tg, th))[1].is_zero for phi, dg, dh in curves), ("component divides", cand, f))
+        if gp_available():
+            phi = [x[0] for x in curves if (x[1], x[2]) == tuple(r["deg"])][0]
+            res = singular_on_base_locus(phi, (DX, DY, DN), [q for q, st in r["singular_t_factors"]])
+            require(sorted(res) == sorted((q, st) for q, st in r["singular_t_factors"]), ("singular points vs record", cand, res, r["singular_t_factors"]))
+    ctx.note("minor formula: Res = 4(D_X^2 + D_Y^2 - D_N^2) and the divisibility verified live on " + str(nb) + " classes"
+             + ("; singular-point tests reproduced" if gp_available() else "; PARI not found: singular tests not re-run"))
+    ctx.note("every quadruple curve of the box is a component of the pullback of the circle under the minor map; 1264/1264 divide; "
+             "singular points = base points of the map (878 classes entirely) or tangencies over t in {0, +-1, +-i, tan 22.5}; "
+             "base points at torsion (order | 24) and half-Pythagorean values (50 t-factors, 8086 orbits)")
+
+
+@check("a3.omega3_quotients", DOC)
+def _(ctx):
+    """QUOTIENT KILLS (entry 105, attempt B step 1).  Every certified component
+    of the (1,1,1) box is invariant under the joint sign change (t_g, t_h) ->
+    (-t_g, -t_h) and 944 carry a further involution on one coordinate; the
+    quotient by an involution has lower genus, and a genus-1 quotient that is
+    quadratic in a variable has the hyperelliptic model y^2 = disc: PARI's
+    unconditional rank bound with a complete enumeration lists every rational
+    point, each lifts to finitely many rational preimages, and if none is a
+    pair of admissible frame ratios the class is DEAD -- the mechanism of the
+    quotient towers (entry 100), now on the non-hyperelliptic curves.  RESULT:
+    72 of the 1264 certified classes die this way (routes {'negrec_h': 32, 'neg_g': 16, 'rec_g': 16, 'rec_h': 8});
+    box tally dead 1448, finite 1496, unknown 0.  Verifies the census and
+    re-runs the kill live on a bounded number of killed classes."""
+    import json
+    from compute.omega3 import frame_factors
+    from compute.omega3_quotients import analyse
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    G = data["quotients"]
+    require(G["n_components"] == 1264 and G["n_dead"] == 72 and G["kill_routes"] == {'negrec_h': 32, 'neg_g': 16, 'rec_g': 16, 'rec_h': 8}, {k: G[k] for k in ("n_components", "n_dead", "kill_routes")})
+    require(G["quotient_errors"] == 0 and sum(1 for r in G["classes"] if r["dead"]) == 72)
+    killed = []
+    for e in data["classes"]:
+        if e.get("verdict_before_quotients") == "finite":
+            require(e["verdict"] == "dead" and str(e["mechanism"]).startswith("quotient kill") and "resolution" in e, e["cand"])
+            ks = [q for q in e["quotients"] if q.get("verdict") == "dead"]
+            require(ks and all(q["rank"] == [0, 0] and q["admissible"] == [] and q["genus"] == 1 for q in ks), (e["cand"], ks))
+            killed.append(e)
+    require(len(killed) == 72)
+    if gp_available():
+        n = ctx.bound(full=6, fast=2)
+        for e in killed[:n]:
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+            curves, live = frame_factors(cand, e["frame"])
+            comp = [c for c in e["resolution"]["frames"][str(e["frame"])]["components"] if c["verdict"] == "finite"][0]
+            phi = [x[0] for x in curves if (x[1], x[2]) == tuple(comp["deg"])][0]
+            sym = {k: True for k in next(r["sym"] for r in G["classes"] if r["cand"] == e["cand"])}
+            res = analyse(phi, comp["deg"][0], comp["deg"][1], sym)
+            require(any(q.get("verdict") == "dead" for q in res), (cand, [(q["by"], q.get("genus"), q.get("verdict")) for q in res]))
+        ctx.note("PARI: " + str(n) + " quotient kills re-run live (genus-1 quotient, rank 0, complete lift, no admissible pair)")
+    else:
+        ctx.note("PARI/GP not found: quotient kills not re-run (data-file consistency verified)")
+    ctx.note("quotient kills: 72 classes of the (1,1,1) box dead through rank-0 genus-1 quotients; box tally dead 1448, finite 1496, unknown 0")

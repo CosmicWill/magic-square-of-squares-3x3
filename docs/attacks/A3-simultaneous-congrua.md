@@ -2428,6 +2428,98 @@ two-pass.  On the entry-101 sample no verdict regressed, $254$ of $257$
 unknown classes became finite ($129$ rigorously, $125$ provisionally), and
 the cost fell from $21$ s to $1.2$ s per class.  The full sweep was launched.
 
+## 2.35 The quadruple curves as pullbacks of the circle: the minor formula, the singular locus, the lift (attempt C, first step)
+
+*(2026-09-05; entry 105; check `a3.omega3_minors`.)*
+
+**The trigonometric form.**  Write a frame as $\ell=c+is=p\,e^{i\theta}$, so
+$t=s/c=\tan\theta$ and $e^{i\theta}=\pi/\bar\pi$ is the circle-group generator
+of the prime.  Every element of the $(1,1,1)$ box is, up to the common factor
+$c_1^2c_2^2c_3^2\sec^2\theta_1\sec^2\theta_2\sec^2\theta_3$,
+$$e(j,k,l)=\sin\bigl(2(j\theta_1+k\theta_2+l\theta_3)\bigr),\qquad j,k,l\in\{-1,0,1\}$$
+(checked on all 13 labels), and the two quadruple relations are two
+three-term sine relations among linear forms in the angles.  *The primes
+enter only through "$\tan\theta_i$ is the ratio of a prime's frame".*
+
+**The minor formula (theorem).**  Fix the frame $f$ to eliminate.  In
+$(X,Y,N)=(2c_fs_f,\;c_f^2-s_f^2,\;c_f^2+s_f^2)$, with $X^2+Y^2=N^2$, every
+element is linear: an element with $l=\pm1$ is $\operatorname{Im}((Y\pm iX)Z)=
+Y\operatorname{Im}Z\pm X\operatorname{Re}Z$ and one with $l=0$ is $N\operatorname{Im}Z'$, where
+$Z,Z'$ are monomials $\ell_g^{2j}\ell_h^{2k}$ in the other two frames.  So
+$$R_1=a_1X+b_1Y+c_1N,\qquad R_2=a_2X+b_2Y+c_2N,$$
+with $a_i,b_i,c_i$ bihomogeneous forms of bidegree $\le(2,2)$ in the frames
+$g,h$ (real and imaginary parts of the monomials).  Writing $R_i=A_ic_f^2+B_ic_fs_f+C_is_f^2$,
+one has $(a_i,b_i,c_i)=(B_i/2,(A_i-C_i)/2,(A_i+C_i)/2)$, and the classical
+resultant of two binary quadratics,
+$\operatorname{Res}=(A_1C_2-A_2C_1)^2-(A_1B_2-A_2B_1)(B_1C_2-B_2C_1)$, is exactly
+$$\operatorname{Res}_{s_f}(R_1,R_2)=4\,(D_X^2+D_Y^2-D_N^2),\qquad
+(D_X,D_Y,D_N)=(a_1,b_1,c_1)\times(a_2,b_2,c_2).$$
+Hence **every quadruple curve $\Phi_f$ is a component of the pullback of the
+circle $X^2+Y^2=N^2$ under the rational map $m=(D_X:D_Y:D_N)\colon
+\mathbb P^1\times\mathbb P^1\dashrightarrow\mathbb P^2$ given by the three
+$2\times2$ minors, of bidegree $\le(4,4)$** — which is why the components
+never exceed bidegree $(8,8)$.  Verified on 30 sampled certified classes
+(every component divides $D_X^2+D_Y^2-D_N^2$; 30/30).
+
+**The singular locus.**  For $F=m^*(X^2+Y^2-N^2)$ one has $dF=2(D_XdD_X+D_YdD_Y-D_NdD_N)$,
+so the singular points of $\Phi_f$ are of two kinds: the **base points** of
+$m$, where $D_X=D_Y=D_N=0$ — the two relations become proportional, the third
+frame is unconstrained on a whole line, which meets the circle in two points:
+the two branches of a node (nodes are 6260 of the 8086 singular orbits of the
+box) — and points where $m$ is tangent to the circle.  On the sample the
+second kind occurs only over the degenerate frame values $t=\pm i$ and $t=0$
+(21 of 30 classes have every affine singular point on the base locus; the 9
+exceptions are all at $t^2+1$ or $t$).  The base locus is where the two rows
+$(a_i,b_i,c_i)$ — vectors of cosines and sines of $2(j\theta_g+k\theta_h)$ — are
+proportional: three trigonometric equations of small frequency in two angles,
+whose common zeros are the torsion points $e^{2i\theta}$ of order dividing $24$
+($t=\pm1$, $t^2=3$, $3t^2=1$, $t^2\pm2t=1$, $t^2\pm4t=-1$) and the
+"half-Pythagorean" points with $\cos2\theta\in\{\tfrac13,\tfrac34,\tfrac14,\tfrac23,\tfrac18,\tfrac56,\tfrac54\}$
+(where $e^{2i\theta}=\alpha/\bar\alpha$ for a small-norm $\alpha$ in
+$\mathbb Q(\sqrt{-2}),\mathbb Q(\sqrt{-7}),\mathbb Q(\sqrt{-15}),\mathbb Q(\sqrt{-5}),\mathbb Q(\sqrt{-11})$, or $w=2$),
+plus six quartic values — the 50 $t$-factors of the census, 8086 orbits.  The
+base points of the *elimination* (both rows zero, entry 104's finiteness check)
+are the rank-0 part of this locus.
+
+**The third frame in closed form.**  At a point of $\Phi_f$ the eliminated
+frame is $(X:Y:N)=(D_X:D_Y:D_N)$, so $t_f=D_X/(D_N+D_Y)$ and the Pythagorean
+condition for $f$ reads
+$$2\,D_N\,(D_N+D_Y)=\square\quad\text{on }\Phi_f$$
+(since $(D_N+D_Y)^2+D_X^2=2D_N(D_N+D_Y)$ on the curve).  So the full
+frame-triple curve is the $(2,2,2)$-cover of $\Phi_f$ cut by $1+t_g^2=\square$,
+$1+t_h^2=\square$ and this condition — three double covers with explicit
+branch loci: $t_g=\pm i$, $t_h=\pm i$, and $D_N(D_N+D_Y)=0$ on $\Phi_f$.  The
+structural lemma of R.9.C is the statement that these branch loci stay on the
+torsion/half-Pythagorean set for every box; the minor formula makes it a
+question about the zeros of two explicit forms on the curve.
+
+**What generalizes.**  For a box with exponent $a_f$ on the eliminated frame,
+the elements are polynomials of degree $a_f$ in $(X,Y,N)$ (Chebyshev in the
+double angle), so $\Phi_f$ is the pullback of a curve of degree $a_f$ in the
+plane of $(X:Y:N)$ intersected with the circle — the resultant of two degree-$a_f$
+forms restricted to the conic — and the same three double covers describe the
+frame conditions.  Uniformity in the exponents is the question of how the
+base loci of these maps grow.
+
+## 2.36 Quotient kills: 72 finite classes die through rank-0 quotients by their involutions
+
+*(2026-09-05; entry 105; check `a3.omega3_quotients`; code `compute/omega3_quotients.py`.)*
+
+Every certified component of the $(1,1,1)$ box is invariant under the
+joint sign change $(t_g,t_h)\mapsto(-t_g,-t_h)$, and $944$ of the $1264$
+carry a further involution on one coordinate ($t\mapsto-t$, $1/t$, $-1/t$)
+or the swap.  The quotient by an involution has lower genus; a genus-$1$
+quotient that is quadratic in a variable has the hyperelliptic model
+$y^2=\mathrm{disc}(u)$, PARI's unconditional rank bound with a complete
+enumeration lists every rational point, each lifts to finitely many
+rational preimages, and if none is a pair of admissible frame ratios the
+class is dead — the mechanism of the quotient towers (§2.30) on the
+non-hyperelliptic curves.  Result: **72 classes die** (routes: negrec_h 32, neg_g 16, rec_g 16, rec_h 8).
+**Box tally: dead $1448$, finite $1496$, unknown $0$.**  The genus
+$\ge2$ quotients and the positive-rank genus-$1$ quotients are the honest
+Chabauty list for attempt B.
+
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

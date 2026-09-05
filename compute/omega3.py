@@ -204,7 +204,40 @@ def classify_common_factor(fac):
             return "dead", "same-prime", (g, h), phi
         if phi.free_symbols & {tg, th}:
             return "curve", "curve", (g, h), phi
+    mono = frame_monomial_factor(fe)
+    if mono is not None:
+        return "dead", "three-frame monomial " + mono, tuple(frames), fe
     return "unknown", "three-frame", tuple(frames), fe
+
+
+def frame_monomial_factor(fe, emax=2):
+    """Is fe (up to a constant) the real or imaginary part of a monomial
+    prod_i (c_i + i s_i)^{e_i} in the frames, exponents |e_i| <= emax (negative
+    = the conjugate)?  Such a factor is an ANGLE RELATION among the frames,
+    sum_i e_i theta_i = 0 or 90 degrees (mod 180): in the circle group,
+    prod w_i^{2 e_i} = +-1 -- a monomial relation among distinct primes,
+    impossible by unique factorization in Z[i] (the monomial lemma of entry 98,
+    with three frames).  Returns a description or None (entry 105)."""
+    import itertools
+    fe = sp.expand(fe)
+    syms = fe.free_symbols
+    idx = [i for i, (cf, sf) in enumerate(FR) if {cf, sf} & syms]
+    if not idx:
+        return None
+    for exps in itertools.product([e for e in range(-emax, emax + 1) if e != 0], repeat=len(idx)):
+        z = sp.Integer(1)
+        for i, e in zip(idx, exps):
+            cf, sf = FR[i]
+            z *= (cf + sp.I * sf) ** abs(e) if e > 0 else (cf - sp.I * sf) ** abs(e)
+        z = sp.expand(z)
+        zb = sp.expand(z.subs(sp.I, -sp.I))
+        for part, name in ((sp.expand((z + zb) / 2), "Re"), (sp.expand((z - zb) / (2 * sp.I)), "Im")):
+            if part == 0:
+                continue
+            q = sp.cancel(fe / part)
+            if q.is_number and q != 0:
+                return name + "(" + " ".join(f"l{i+1}^{e}" for i, e in zip(idx, exps)) + ")"
+    return None
 
 
 def reduced_relations(cand):
@@ -529,7 +562,7 @@ def parametrize(fe, var, oth):
     return out, "conic", cands
 
 
-def _monomial_relation_sympy(taug, tauh, amax=4):
+def _monomial_relation_sympy(taug, tauh, amax=8):
     """The entry-98 implementation (sympy simplify on the rational functions):
     kept for cross-validation only -- it took up to 24 s per call."""
     wg = sp.cancel((1 + sp.I * taug) / (1 - sp.I * taug))
@@ -561,7 +594,7 @@ def _gauss_parts(tau):
     return Q + iP, Q - iP
 
 
-def monomial_relation(taug, tauh, amax=4):
+def monomial_relation(taug, tauh, amax=8):
     """(a, b, eps) with w_g^a = eps w_h^b identically on the family, or None
     (entry 104: an EXACT polynomial identity over Q(i) -- with w = A/B, A = Q + iP,
     B = Q - iP, the relation is A_g^a B_h^b = eps B_g^a A_h^b for b > 0 and

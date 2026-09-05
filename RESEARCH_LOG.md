@@ -4968,3 +4968,121 @@ implementations against each other, the alarmed/capped bound against
 the full one, the engine's genus verdict, the fast decisions;
 a3.omega3_box211_resample: the census and live re-decisions). Doc 2.34;
 ROADMAP R.8 phase 1 note, R.9, M14-G; memory.
+
+## 2026-09-05 — Entry 105: the quadruple curves are pullbacks of the circle (the minor formula); the singular locus is the base locus plus torsion fibers; 72 finite classes die through rank-0 quotients by their involutions; the (2,1,1) box has tan 5θ families and three-frame monomial factors
+
+WHILE THE SWEEP RUNS (3 workers, below-normal priority; 61,000 of the
+79,368 classes done at this writing). Two threads, as agreed: the
+quotient kills in the background (attempt B, step 1) and the structural
+lemma by hand (attempt C, first step).
+
+THE TRIGONOMETRIC FORM. With a frame l = c + is = p e^(i theta),
+t = tan theta and e^(i theta) = pi/pibar the circle-group generator of
+the prime. Every element of the (1,1,1) box is, up to the common
+factor c1^2 c2^2 c3^2 sec^2 theta_1 sec^2 theta_2 sec^2 theta_3,
+    e(j,k,l) = sin(2(j theta_1 + k theta_2 + l theta_3)),
+checked on all 13 labels: the quadruple relations are two three-term
+sine relations among linear forms in the angles, and the primes enter
+only through "tan theta_i is the ratio of a prime's frame".
+
+THE MINOR FORMULA (a theorem; compute/omega3_minors.py; a3.omega3_minors).
+Fix the frame f to eliminate and put (X, Y, N) = (2 c_f s_f, c_f^2 -
+s_f^2, c_f^2 + s_f^2), X^2 + Y^2 = N^2. Every element is LINEAR in
+(X, Y, N): an element with l = +-1 is Im((Y +- iX) Z) = Y Im Z +- X Re Z
+and one with l = 0 is N Im Z', Z, Z' monomials in the other two frames.
+So R1 = a1 X + b1 Y + c1 N, R2 = a2 X + b2 Y + c2 N with a_i, b_i, c_i
+bihomogeneous forms of bidegree <= (2,2) in the frames g, h (the real
+and imaginary parts of the monomials), and the classical resultant of
+two binary quadratic forms is, exactly,
+    Res_{s_f}(R1, R2) = 4 (D_X^2 + D_Y^2 - D_N^2),
+(D_X, D_Y, D_N) = (a1, b1, c1) x (a2, b2, c2). Hence EVERY QUADRUPLE
+CURVE Phi_f IS A COMPONENT OF THE PULLBACK OF THE CIRCLE X^2 + Y^2 = N^2
+UNDER THE MINOR MAP m = (D_X : D_Y : D_N), of bidegree <= (4,4) -- which
+is why no component exceeds bidegree (8,8). Verified on all 1264
+certified classes (every component divides D_X^2 + D_Y^2 - D_N^2; the
+identity itself re-derived live in the check).
+
+THE SINGULAR LOCUS. For F = m*(X^2 + Y^2 - N^2), dF = 2(D_X dD_X + D_Y
+dD_Y - D_N dD_N): a singular point of Phi_f is a BASE POINT of m (all
+three minors vanish: the two relations become proportional, the third
+frame is free on a whole line, which meets the circle in two points --
+the two branches of a node; nodes are 6260 of the 8086 singular orbits)
+or a point where m is tangent to the circle. Tested exactly over the
+branch-value fields (affine chart, all 1264 components, 3908 singular
+t-factors): 878 classes have every affine singular point on the base
+locus, and the exceptions lie ONLY over t^2 + 1 (334), t (62), t +- 1
+(8) and t^2 +- 2t - 1 (4) -- the circle's branch points +-i and torsion
+values. The base points are where two rows of cosines and sines of
+2(j theta_g + k theta_h) are proportional; the census of all 8086
+singular orbits (50 distinct t-factors) shows them at the TORSION
+POINTS of the circle of order dividing 24 -- t = +-1 (n = 4), t^2 = 3 and
+3t^2 = 1 (n = 3, 6), t^2 +- 2t = 1 (n = 8), t^2 +- 4t = -1 (n = 12) --
+and at the "HALF-PYTHAGOREAN" values with cos 2theta rational:
+1/3, 3/4, 1/4, 2/3, 1/8, 5/6 (e^(2i theta) = alpha/alphabar for a
+small-norm alpha of Q(sqrt -2), Q(sqrt -7), Q(sqrt -15), Q(sqrt -5),
+Q(sqrt -11)) and 5/4 (w = 2, w = 1/2), plus six quartic values. The base
+points of the ELIMINATION (both rows zero; entry 104's finiteness check)
+are the rank-0 part of this locus.
+
+THE THIRD FRAME IN CLOSED FORM. At a point of Phi_f, (X : Y : N) =
+(D_X : D_Y : D_N), so t_f = D_X / (D_N + D_Y), and the Pythagorean
+condition for f reads 2 D_N (D_N + D_Y) = square on Phi_f (since (D_N +
+D_Y)^2 + D_X^2 = 2 D_N (D_N + D_Y) on the curve). The frame-triple curve
+is therefore the (2,2,2)-cover of Phi_f cut by 1 + t_g^2 = square,
+1 + t_h^2 = square and this condition: three double covers with explicit
+branch loci (t_g = +-i, t_h = +-i, and the zeros of D_N (D_N + D_Y) on
+Phi_f). The structural lemma of R.9.C -- branch loci on the
+torsion/half-Pythagorean set for every box -- is now a question about
+the zeros of two explicit forms on the curve. For a box with exponent
+a_f on the eliminated frame the elements are polynomials of degree a_f
+in (X, Y, N) (Chebyshev in the double angle) and the same picture holds
+with the resultant of two degree-a_f forms on the conic.
+
+THE QUOTIENT KILLS (compute/omega3_quotients.py; a3.omega3_quotients).
+The symmetry census of the 1264 certified components: every one is
+invariant under the joint sign change (t_g, t_h) -> (-t_g, -t_h) (the
+conjugation of every frame); 434 under t_h -> -1/t_h and 416 under t_g
+-> -1/t_g (a frame rotated by a right angle), 322 under joint
+reciprocity, 46 under the swap, 30 + 30 under a single sign change; 320
+carry only the joint one. The quotient by a single-coordinate involution
+is the squarefree image of the resultant against the invariant's relation
+(t^2 - u, t^2 - ut + 1, t^2 - ut - 1), the factor vanishing on the curve;
+by the joint sign change, the image in (t_g^2, t_g t_h). Exact genera by
+the resolution tool: joint quotient g=1: 96, g=2: 132, g=3: 268, g=4: 210, g=5: 28, g=6: 124, g=7: 132, g=8: 152, g=9: 50, g=10: 72; negrec
+g=0: 24, g=1: 32, g=2: 52, g=3: 166, g=4: 68, g=5: 80, g=6: 48, g=7: 208, g=9: 172; rec g=0: 16, g=1: 24, g=4: 10, g=5: 26, g=9: 12; neg g=1: 32, g=3: 8, g=4: 2, g=5: 10, g=9: 8.
+A genus-1 quotient quadratic in a variable has the hyperelliptic model
+y^2 = disc(u): PARI's unconditional rank bound with a complete
+enumeration (entry 97's quartic_points; the square-part roots added)
+lists every rational point; each lifts to the finitely many rational
+preimages; if none is a pair of non-degenerate Pythagorean frame ratios
+the class is DEAD. RESULT: 72 of the 1264 certified classes die (routes:
+negrec_h 32, neg_g 16, rec_g 16, rec_h 8), the mechanism of the quotient towers on the non-hyperelliptic
+curves. BOX (1,1,1): dead 1448, finite 1496, unknown 0. The
+finiteness statement of entry 104 is unchanged (the killed classes keep
+their base-locus records). Genus >= 2 quotients are recorded; they and
+the positive-rank genus-1 quotients are the Chabauty list.
+
+THE SWEEP'S FIRST LESSONS (engine fixes, in the sweep's records only
+from a restart; entry 106 will re-decide them). Of 61,000 classes: 32
+'infinite' -- all from a (5,1) component whose pullback factor is
+LINEAR, the family t_h = tan 5 theta_g: the monomial relation w_h =
+w_g^5, one beyond the search cap 4 of entry 98; the cap is now 8 (the
+exact identity makes it free) and the family dies by the monomial lemma.
+26 'degenerate' -- every frame degenerate because the two relations
+share a THREE-FRAME common factor such as Re(l1bar l2 l3bar) = 0, the
+angle relation theta_1 - theta_2 - theta_3 = +-90 degrees, i.e. the
+monomial relation w_1^2 w_2^-2 w_3^-2 = -1 among three distinct primes,
+impossible by unique factorization: classify_common_factor now
+recognizes Re/Im of frame monomials (frame_monomial_factor) and these
+classes are dead. 128 'unknown' -- mostly high-bidegree components of
+EXACT GENUS 0 OR 1 (136 (4,4) components of genus 1 so far; (8,4),
+(4,8), (4,12), (12,4) of genus 1; (5,2), (3,5) of genus 0), which the
+(1,1,1) box never had and which need the elliptic and parametrization
+routes at high bidegree; and a few failed absolute-irreducibility
+certificates. The sweep's census and these routes are entry 106.
+
+Suite 190 (a3.omega3_minors: the identity live, the divisibility, the
+singular-point test on a bounded sample, the census; a3.omega3_quotients:
+the census and live re-kills; the tallies of a3.omega3_engine,
+a3.omega3_resolve, a3.omega3_finiteness). Doc 2.35-2.36; ROADMAP R.9
+attempts B and C, M14-H; memory.
