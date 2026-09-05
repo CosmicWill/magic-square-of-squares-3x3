@@ -2383,6 +2383,51 @@ need Chabauty-type methods (Magma/Sage) to make their finite sets explicit,
 and the uniform statement of goal G is exactly that those sets contain no
 non-degenerate frame pair.
 
+## 2.34 The sweep made fast, and the finiteness statement for shape (1,1,1)
+
+*(2026-09-05; entry 104; checks `a3.omega3_finiteness`, `a3.omega3_sweep_engine`,
+`a3.omega3_box211_resample`; code `compute/omega3_finiteness.py`, `compute/omega3.py`.)*
+
+**The finiteness statement.**  With every class of the $(1,1,1)$ box dead
+or finite (§2.33), one gap separated the engine from a statement about
+squares: a *base point* of the elimination — a frame pair $(t_g,t_h)$ at
+which every coefficient of both relations, as polynomials in the
+eliminated frame, vanishes — makes the relations hold for every third
+frame, i.e. a square for every third prime.  The base locus is a
+zero-dimensional system per class, solved exactly: $1024$ of the $1568$
+finite classes have an empty base locus and $544$ have only the degenerate
+points $t\in\{0,\pm1\}$; no admissible base point.  Since a frame ratio
+$t=m/n$ in lowest terms determines its prime $p=\sqrt{m^2+n^2}$, every
+square of that shape is one of finitely many frame pairs on a component
+with finitely many rational points, times finitely many third ratios:
+
+> **Up to scaling by the inert cofactor, only finitely many $3\times3$
+> magic squares of squares have a center whose split part is a product of
+> three distinct first-power primes.**
+
+Ineffective (Faltings gives no bound), and resting on the engine's
+verdicts — PARI's factorization over number fields, its unconditional rank
+bounds, and the genus computations, each pinned by live recomputation in
+the suite.  Not a theorem that no such square exists.
+
+**The sweep made fast.**  The $(2,1,1)$ sweep's true baseline was $\sim470$
+CPU-hours (the sample's mean, $21$ s per class, not its median).  Profiles
+found two culprits: the monomial test (sympy's `simplify` on rational
+functions with Gaussian coefficients, $95\%$ of the slowest class) and the
+six-variable factorization of the resultant.  The monomial test is now an
+exact polynomial identity over $\mathbb Q(i)$ (with $\tau=P/Q$ and
+$w=(Q+iP)/(Q-iP)$, $w_g^a=\varepsilon w_h^b$ is $A_g^aB_h^b=\varepsilon
+B_g^aA_h^b$), and the resultant is dehomogenized first: the relations are
+bihomogeneous in every frame, so with $c=1$, $s=t$ they are polynomials in
+$s_f$ over $\mathbb Q[t_g,t_h]$ whose bivariate resultant carries exactly
+the non-monomial factors of the six-variable one.  The genus routes of
+§§2.32–2.33 now run inside the engine (the bound first, with a field-degree
+cap and an alarm that only skip fields; the resolution second, certified
+only with its cross-check, else *provisional*), and the class decision is
+two-pass.  On the entry-101 sample no verdict regressed, $254$ of $257$
+unknown classes became finite ($129$ rigorously, $125$ provisionally), and
+the cost fell from $21$ s to $1.2$ s per class.  The full sweep was launched.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

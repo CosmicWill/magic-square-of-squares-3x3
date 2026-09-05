@@ -4045,3 +4045,193 @@ def _(ctx):
     ctx.note("exact genera by resolution: every high-bidegree component of the 1264 classes has genus 3..23 (cross-checked, "
              "certified); the 3 degenerate classes die by the common-factor rule; BOX (1,1,1) CLOSED: dead 1376, finite 1568, "
              "unknown 0")
+
+
+@check("a3.omega3_finiteness", DOC)
+def _(ctx):
+    """THE FINITENESS STATEMENT FOR SHAPE (1,1,1) (entry 104).  With every class
+    of the box dead or finite (entry 103), one gap separated the engine from
+    a statement about squares: a BASE POINT of the elimination -- a frame
+    pair (t_g, t_h) where every coefficient of both relations (as polynomials
+    in the eliminated frame) vanishes -- makes the relations hold for every
+    third frame, i.e. a square for every third prime.  The base locus is a
+    zero-dimensional system per class (the resultant is not identically
+    zero); compute/omega3_finiteness.py solves it exactly (lex Groebner
+    basis, rational roots).  RESULT: 1024 of the 1568 finite classes have an
+    empty base locus, 544 have only the degenerate points t in {0, +-1}; no
+    admissible base point.  Since a frame ratio determines its prime (t = m/n
+    in lowest terms gives p = sqrt(m^2 + n^2)), every square of that shape is
+    one of finitely many frame pairs on a component with finitely many
+    rational points, times finitely many third ratios: UP TO SCALING, ONLY
+    FINITELY MANY 3x3 MAGIC SQUARES OF SQUARES HAVE A CENTER WHOSE SPLIT PART
+    IS A PRODUCT OF THREE DISTINCT FIRST-POWER PRIMES.  Ineffective (Faltings),
+    resting on the engine's verdicts (PARI factorization over number fields,
+    unconditional rank bounds, the genus computations).  Verifies the
+    prime-from-ratio rule, the census, and a live recomputation of the base
+    locus of a bounded number of finite classes (all of them in FULL)."""
+    import json
+    import sympy as sp
+    from compute.omega3_finiteness import base_locus, frame_ratio_prime
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    require(data["tally"] == {"dead": 1376, "finite": 1568, "unknown": 0}, data["tally"])
+    BL = data["base_locus"]
+    require(BL["n_finite"] == 1568 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)
+    require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 544}, BL["status_counts"])
+    require(set(BL["points_by_value"]) == {"('0', '0')", "('1', '0')", "('-1', '0')", "('1', '1')", "('-1', '-1')", "('-1', '1')", "('1', '-1')"},
+            BL["points_by_value"])
+    fin = []
+    for e in data["classes"]:
+        if e["verdict"] == "finite":
+            b = e["base_locus"]
+            require(b["admissible"] == [] and b["status"] in ("empty (Groebner basis 1)", "zero-dimensional"), (e["cand"], b["status"]))
+            require(all(sp.Rational(a) in (0, 1, -1) and sp.Rational(c) in (0, 1, -1) for a, c in (b["points"] or [])), (e["cand"], b["points"]))
+            fin.append(e)
+        else:
+            require(e["verdict"] == "dead", (e["cand"], e["verdict"]))
+    require(len(fin) == 1568)
+    # (i) the prime from the ratio: 5 = 2^2 + 1^2 gives 4/3 (and -4/3, 3/4), 13 gives 12/5, 17 gives 8/15; 1 and 2/3 are not frames
+    require([frame_ratio_prime(sp.Rational(*x)) for x in ((4, 3), (-4, 3), (3, 4), (12, 5), (8, 15), (1, 1), (2, 3))] == [5, 5, 5, 13, 17, None, None])
+    # (ii) live recomputation of the base locus
+    nb = ctx.bound(full=len(fin), fast=30)
+    for e in fin[:nb]:
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+        r = base_locus(cand, e["frame"])
+        require(r["status"] == e["base_locus"]["status"] and [list(p) for p in r["points"]] == [list(p) for p in e["base_locus"]["points"]]
+                and r["admissible"] == [], (cand, r["status"], r["points"]))
+    ctx.note("base loci of " + str(nb) + " finite classes recomputed live (bound=" + str(nb) + ")")
+    ctx.note("FINITENESS (shape (1,1,1)): every class dead or finite, no admissible base point (1024 empty, 544 with only "
+             "degenerate points) -- up to scaling, finitely many magic squares of squares have split part pqr; ineffective")
+
+
+@check("a3.omega3_sweep_engine", DOC)
+def _(ctx):
+    """THE SWEEP ENGINE (entry 104): the same verdicts, an order of magnitude
+    faster.  (1) The monomial test is an EXACT polynomial identity over Q(i):
+    with tau = P/Q and w = (Q + iP)/(Q - iP), the relation w_g^a = eps w_h^b is
+    A_g^a B_h^b = eps B_g^a A_h^b (b > 0) or A_g^a A_h^|b| = eps B_g^a B_h^|b|
+    (b < 0), eps the ratio of leading coefficients, a fourth root of unity --
+    milliseconds where sympy's simplify took up to 24 s per call (95% of the
+    slowest class).  (2) High-bidegree components are decided IN the engine:
+    the corrected genus lower bound first (a cap on the branch-value field
+    degree and an alarm on each nfinit only SKIP fields, which lowers the
+    bound: still valid), the exact genus by resolution second (certified only
+    with its Riemann-Hurwitz cross-check; otherwise recorded as provisional,
+    verdict unknown).  The unsound arithmetic-genus shortcut for pullback
+    factors of degree >= 3 in both variables (never triggered in any committed
+    verdict) is replaced by the same route.  (3) decide_class_fast: every
+    frame cheaply first (a dead frame ends it), then the genus route frame by
+    frame, stopping at the first finite frame -- lossless for dead verdicts,
+    since a high-degree component is never dead.  Verifies the two monomial
+    implementations against each other, the alarm-guarded bound against the
+    full one, and the fast decision against the recorded verdicts."""
+    import json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import (monomial_relation, _monomial_relation_sympy, parametrize, lam, ug, uh,
+                                frame_factors, decide_class, decide_class_fast, exact_genus_verdict)
+    from compute.omega3_genus import ramification_bound
+    from compute.pari_genus1 import gp_available
+    # (1) the monomial identity: the check cases and the doubling family's two branches, old vs new
+    cases = [(2 * lam / (1 - lam ** 2), lam), ((3 * lam - lam ** 3) / (1 - 3 * lam ** 2), lam), (lam, 2 * lam / (1 - lam ** 2)),
+             (lam, (lam + 1) / (2 - lam)), (lam, -lam), (lam, 1 / lam), ((lam - 1) / (lam + 1), lam)]
+    pars, how, _c = parametrize(sp.expand(ug * uh ** 2 - ug + 2 * uh), uh, ug)
+    cases += list(pars)
+    for a, b in cases:
+        r_new, r_old = monomial_relation(a, b), _monomial_relation_sympy(a, b)
+        require(r_new == r_old, ("monomial old vs new", str(a)[:40], str(b)[:40], r_new, r_old))
+    require(monomial_relation(2 * lam / (1 - lam ** 2), lam) == (1, 2, "1") and monomial_relation(lam, -lam) == (1, -1, "1")
+            and monomial_relation(lam, 1 / lam) is not None and monomial_relation(lam, (lam + 1) / (2 - lam)) is None)
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    if gp_available():
+        saved = (O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT)
+        try:
+            # (2) the alarm-guarded / capped bound never exceeds the full one: an (8,8) component of the data
+            e = next(e for e in data["classes"] if "resolution" in e and any(tuple(c["deg"]) == (8, 8) for c in e["mechanism"]))
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+            curves, live = frame_factors(cand, e["frame"])
+            phi = [c for c in curves if (c[1], c[2]) == (8, 8)][0][0]
+            R_full, i_full = ramification_bound(phi, 8, 8, degmax=40)
+            R_cap, i_cap = ramification_bound(phi, 8, 8, degmax=12)
+            R_alarm, i_alarm = ramification_bound(phi, 8, 8, degmax=40, nf_seconds=1)
+            require(R_full is not None and R_cap is not None and R_alarm is not None and 0 <= R_cap <= R_full and 0 <= R_alarm <= R_full,
+                    (R_full, R_cap, R_alarm))
+            require(i_cap["skipped_factors"] >= i_full["skipped_factors"], (i_cap, i_full))
+            # the engine's genus verdict on that component: finite by the bound, with the certificate
+            O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT = 5, 40, 300
+            v, inf = exact_genus_verdict(phi, 8, 8)
+            require(v == "finite" and inf["route"] == "bound" and inf["g_lb"] >= 2 and inf.get("abs_irred_p"), (v, {k: x for k, x in inf.items() if k != "bound"}))
+            # the genus-1 control stays with the pullback machinery
+            c22 = ((0, 0, 1), (0, 1, -1), (0, 1, 1), (1, -1, -1), 1, -1, 1, -1)
+            curves, live = frame_factors(c22, 0)
+            phi22 = [c for c in curves if (c[1], c[2]) == (2, 2)][0][0]
+            v22, inf22 = exact_genus_verdict(phi22, 2, 2)
+            require(v22 == "unknown" and inf22["g_lb"] == 1 and inf22.get("exact_genus") == 1, (v22, {k: x for k, x in inf22.items() if k != "bound"}))
+            # (3) the fast decision: two dead classes and a finite class of the data agree with the recorded verdicts
+            bil = ((0, 0, 1), (1, -1, 0), (0, 1, 0), (1, 0, 0), 1, -1, -1, -1)
+            for cc, expect in ((bil, "dead"), (c22, "dead"), (cand, "finite")):
+                best, frames = decide_class_fast(cc)
+                require(best == expect, (cc, best, {f: fr["verdict"] for f, fr in frames.items()}))
+            b0, _f0 = decide_class(bil)
+            require(b0 == "dead")
+            ctx.note("PARI: the (8,8) component of " + str(cand) + ": R_lb full/capped/alarmed = " + str((R_full, R_cap, R_alarm)) +
+                     "; engine verdict finite by the bound; the genus-1 control left to the pullback route; fast decisions agree")
+        finally:
+            O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT = saved
+    else:
+        ctx.note("PARI/GP not found: the monomial identity verified; the genus routes not re-run")
+    ctx.note("sweep engine: exact monomial identity over Q(i) (old and new agree on every case), genus routes in the engine "
+             "(bound with cap/alarm, resolution with cross-check, provisional otherwise), two-pass fast decision")
+
+
+@check("a3.omega3_box211_resample", DOC)
+def _(ctx):
+    """THE (2,1,1) SAMPLE RE-DECIDED BY THE FAST ENGINE (entry 104), decision
+    level, same seed and classes as entry 101.  No class got a worse verdict;
+    254 of the 257 'unknown' became finite (129 rigorously -- the genus bound
+    or the resolution with its cross-check -- and 125 provisionally: an exact
+    genus >= 2 whose Riemann-Hurwitz cross-check could not be completed under
+    the sweep's caps), the 88 finite and 55 dead were reproduced, 3 remain
+    unknown.  Tally: finite 217, finite* 125 (provisional), dead 55, unknown
+    3.  Time (six-variable factorization): median 10 s, mean 18 s per class;
+    the bivariate backend then took the first 40 classes from 13.1 s to 1.2 s
+    per class.  Verifies the data file's census and a live re-decision of a
+    bounded number of sampled classes against it."""
+    import json
+    from compute import omega3 as O
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box211_resample.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    require(data["entry"] == 104 and data["n_sample"] == 400 and data["seed"] == 20260904)
+    require(data["tally"] == {"finite*": 125, "finite": 217, "dead": 55, "unknown": 3}, data["tally"])
+    T = data["transitions"]
+    require(T == {"('unknown', 'finite')": 129, "('unknown', 'finite*')": 125, "('finite', 'finite')": 88, "('dead', 'dead')": 55,
+                  "('unknown', 'unknown')": 3}, T)
+    require(data["genus_routes"] == {"resolution-provisional": 125, "bound": 128, "resolution": 1}, data["genus_routes"])
+    ORD = O.ORDER
+    for c in data["classes"]:
+        require(ORD[c["verdict"]] <= ORD[c["verdict_entry101"]], ("no regression", c["cand"], c["verdict_entry101"], c["verdict"]))
+        if c["verdict"] == "finite":
+            fr = [f for f in c["frames"].values() if f["verdict"] == "finite"]
+            require(fr and all(x["verdict"] in ("finite", "dead") for x in fr[0]["components"]), ("finite frame", c["cand"]))
+            require(c["provisional"] == any(x.get("genus", {}).get("provisional") for f in fr for x in f["components"]), ("provisional flag", c["cand"]))
+    if gp_available():
+        n = ctx.bound(full=12, fast=3)
+        saved = (O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT, O.PROVISIONAL_FINITE)
+        O.set_box((2, 1, 1))
+        try:
+            O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT, O.PROVISIONAL_FINITE = 5, 20, 60, True
+            for c in data["classes"][:n]:
+                cand = tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"])
+                best, frames = O.decide_class_fast(cand)
+                require(ORD[best] <= ORD[c["verdict_entry101"]] and (best == c["verdict"] or ORD[best] < ORD[c["verdict"]]),
+                        (cand, c["verdict_entry101"], c["verdict"], best))
+            ctx.note("PARI: " + str(n) + " sampled classes re-decided live by the fast engine, verdicts as recorded or better")
+        finally:
+            O.set_box((1, 1, 1))
+            O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT, O.PROVISIONAL_FINITE = saved
+    else:
+        ctx.note("PARI/GP not found: live re-decisions not run (data-file consistency verified)")
+    ctx.note("(2,1,1) sample re-decided: finite 217 + 125 provisional, dead 55, unknown 3 (was finite 55, dead 88 after towers, "
+             "unknown 257); no regression; the full sweep runs at ~1.2 s/class")

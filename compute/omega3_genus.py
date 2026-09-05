@@ -75,15 +75,18 @@ fieldfactor(nfq, P) = { my(F, v = variable(nfq.pol));
 """
 
 
-def ramification_bound(phi, dg, dh, swap=False, degmax=40, timeout=900):
+def ramification_bound(phi, dg, dh, swap=False, degmax=40, timeout=900, nf_seconds=0):
     """Lower bound R_lb on the ramification of the projection to the t-line;
-    returns (R_lb, details) or (None, error)."""
+    returns (R_lb, details) or (None, error).  nf_seconds > 0 puts an alarm on
+    each branch-value field's nfinit: a field that takes longer is SKIPPED,
+    which only lowers the bound (entry 104: (2,1,1) branch fields reach degree
+    36 with 300-bit discriminants, minutes each)."""
     if swap:
         dg, dh = dh, dg
     s = _pari_poly(phi, swap)
     script = "x; t; a;\n" + PARI_FIELD + f"""
 phi = {s};
-dg = {dg}; dh = {dh}; DEGMAX = {degmax};
+dg = {dg}; dh = {dh}; DEGMAX = {degmax}; NFSEC = {nf_seconds};
 mult(P, A, h) = {{ my(k = 0, ok = 1, d);
   while(ok, k++; ok = 1;
     for(i = 0, k, d = P; for(u = 1, i, d = deriv(d, t)); for(u = 1, k - i, d = deriv(d, x));
@@ -105,7 +108,10 @@ F = factor(D * L);
 for(i = 1, #F~, q = F[i,1]; if(poldegree(q, t) <= 0, next); if(poldegree(q, t) > DEGMAX, skipped++; next);
   qa = subst(q, t, a);
   if(poldegree(qa, a) == 1, A = -polcoeff(qa, 0, a) / polcoeff(qa, 1, a); nfq = 0,
-    mf = monicfield(qa); nfq = nfinit(mf[1]); A = Mod(a, mf[1]) / mf[2]);
+    mf = monicfield(qa);
+    nfq = if(NFSEC > 0, alarm(NFSEC, nfinit(mf[1])), nfinit(mf[1]));
+    if(type(nfq) == "t_ERROR", skipped++; next);
+    A = Mod(a, mf[1]) / mf[2]);
   c = contrib(phi, A, nfq); if(c[1] < 0, notes = concat(notes, c[2]); next);
   R += poldegree(qa, a) * c[1]);
 phi2 = numerator(subst(phi, t, 1/t) * t^dg);
@@ -120,12 +126,12 @@ print("RES ", R, " ", skipped, " ", notes);
     return int(m.group(1)), {"skipped_factors": int(m.group(2)), "notes": m.group(3).strip()}
 
 
-def genus_lower_bound(phi, dg, dh, degmax=40):
+def genus_lower_bound(phi, dg, dh, degmax=40, timeout=900, nf_seconds=0):
     """max over the two projections of ceil((2 - 2 deg + R_lb)/2)."""
     best, info = None, {}
     for swap in (False, True):
         d = dg if swap else dh
-        R, det = ramification_bound(phi, dg, dh, swap=swap, degmax=degmax)
+        R, det = ramification_bound(phi, dg, dh, swap=swap, degmax=degmax, timeout=timeout, nf_seconds=nf_seconds)
         if R is None:
             info["swap" if swap else "direct"] = {"error": str(det)[:200]}
             continue

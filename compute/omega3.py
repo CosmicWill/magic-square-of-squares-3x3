@@ -225,6 +225,59 @@ def reduced_relations(cand):
     return A, B, common
 
 
+FACTOR_BACKEND = "bivariate"         # "bivariate" (entry 104): dehomogenize, then a bivariate resultant and factorization;
+                                     # "sympy": the entry-97 six-variable route; "pari": gp's factor (too slow on six variables)
+
+
+def _resultant_factors_bivariate(R1, R2, cf, sf, g, h):
+    """The relations are bihomogeneous in every frame, so with c_f = c_g = c_h = 1,
+    s_g = t_g, s_h = t_h they become polynomials in s_f over Q[t_g, t_h]; their
+    resultant is the dehomogenized resultant (the substitution is a ring map on
+    the coefficients and keeps the degrees in s_f), and its irreducible factors
+    are the ratio forms of the non-monomial factors of the six-variable
+    resultant.  A bivariate factorization instead of a six-variable one: the
+    step that took 95% of the remaining time.  Returns None when a degree in
+    s_f drops (the caller falls back) or the resultant vanishes."""
+    (cg, sg), (ch, sh) = FR[g], FR[h]
+    sub = {cf: 1, cg: 1, ch: 1, sg: tg, sh: th}
+    Q1 = sp.Poly(sp.expand(R1.subs(sub, simultaneous=True)), sf)
+    Q2 = sp.Poly(sp.expand(R2.subs(sub, simultaneous=True)), sf)
+    if Q1.degree() != sp.Poly(R1, sf).degree() or Q2.degree() != sp.Poly(R2, sf).degree():
+        return None
+    Res = sp.expand(sp.resultant(Q1, Q2))
+    if Res == 0:
+        return None
+    return [sp.expand(fac) for fac, m in sp.factor_list(Res)[1]]
+
+
+def _resultant_factors_pari(R1, R2, sf, g, h):
+    """The irreducible factors of Res_{s_f}(R1, R2) as polynomials in the frame
+    ratios (tg, th) of the two other frames, through gp: polresultant, factor.
+    Every factor of the bihomogeneous resultant is bihomogeneous in (c_g, s_g)
+    and (c_h, s_h), so its ratio form is the substitution c = 1, s = t --
+    no second factorization.  Returns None when the resultant vanishes."""
+    import subprocess as _sub
+    from compute.pari_genus1 import GP
+    (cg, sg), (ch, sh) = FR[g], FR[h]
+    body = "c1; s1; c2; s2; c3; s3; tg; th;\n"
+    body += "R1 = " + str(R1).replace("**", "^") + ";\nR2 = " + str(R2).replace("**", "^") + ";\n{\n"
+    body += "Res = polresultant(R1, R2, %s); if(Res == 0, print(\"ZERO\"), F = factor(Res);\n" % sf
+    body += "  for(i = 1, #F~, q = subst(subst(subst(subst(F[i,1], %s, tg * %s), %s, th * %s), %s, 1), %s, 1);\n" % (sg, cg, sh, ch, cg, ch)
+    body += "    print(\"FAC \", q)));\n}\n"
+    cp = _sub.run([GP, "-q", "-f"], input='default(parisize,"512M");\n' + body, capture_output=True, text=True, timeout=600)
+    out = cp.stdout
+    if "ZERO" in out:
+        return None
+    if "FAC" not in out and "***" in (out + cp.stderr):
+        raise RuntimeError("gp resultant failed: " + (out + cp.stderr)[-300:])
+    loc = {"tg": tg, "th": th, "c1": c1, "s1": s1, "c2": c2, "s2": s2, "c3": c3, "s3": s3}
+    phis = []
+    for line in out.splitlines():
+        if line.startswith("FAC "):
+            phis.append(sp.expand(sp.sympify(line[4:].strip().replace("^", "**"), locals=loc)))
+    return phis
+
+
 def frame_factors(cand, f):
     """Eliminate frame f.  Returns None (degenerate: no s_f dependence or Res = 0,
     or a common factor of the relations that is not decided) or (curves,
@@ -251,16 +304,38 @@ def frame_factors(cand, f):
     P1, P2 = sp.Poly(R1, sf), sp.Poly(R2, sf)
     if P1.degree() < 1 or P2.degree() < 1:
         return None
-    Res = sp.expand(sp.resultant(P1, P2))
-    if Res == 0:
-        return None
+    if FACTOR_BACKEND == "bivariate":
+        phis = _resultant_factors_bivariate(R1, R2, cf, sf, g, h)
+        if phis is None:
+            Res = sp.expand(sp.resultant(P1, P2))
+            if Res == 0:
+                return None
+            phis = []
+            for fac, mult in sp.factor_list(Res)[1]:
+                fe = sp.expand(fac)
+                if len(sp.Add.make_args(fe)) == 1:
+                    continue
+                phi = sp.expand(fe.subs({sg: tg * cg, sh: th * ch}))
+                phi = sp.expand(sp.Mul(*[q ** m2 for q, m2 in sp.factor_list(phi)[1] if q.free_symbols & {tg, th}]))
+                phis.append(phi)
+    elif FACTOR_BACKEND == "pari":
+        phis = _resultant_factors_pari(R1, R2, sf, g, h)
+        if phis is None:
+            return None
+    else:
+        Res = sp.expand(sp.resultant(P1, P2))
+        if Res == 0:
+            return None
+        phis = []
+        for fac, mult in sp.factor_list(Res)[1]:
+            fe = sp.expand(fac)
+            if len(sp.Add.make_args(fe)) == 1:
+                continue
+            phi = sp.expand(fe.subs({sg: tg * cg, sh: th * ch}))
+            phi = sp.expand(sp.Mul(*[q ** m2 for q, m2 in sp.factor_list(phi)[1] if q.free_symbols & {tg, th}]))
+            phis.append(phi)
     curves, live = list(extra), []
-    for fac, mult in sp.factor_list(Res)[1]:
-        fe = sp.expand(fac)
-        if len(sp.Add.make_args(fe)) == 1:
-            continue
-        phi = sp.expand(fe.subs({sg: tg * cg, sh: th * ch}))
-        phi = sp.expand(sp.Mul(*[q ** m2 for q, m2 in sp.factor_list(phi)[1] if q.free_symbols & {tg, th}]))
+    for phi in phis:
         if phi == 0 or not (phi.free_symbols & {tg, th}):
             continue
         Pg = sp.Poly(phi, tg, th)
@@ -454,8 +529,9 @@ def parametrize(fe, var, oth):
     return out, "conic", cands
 
 
-def monomial_relation(taug, tauh, amax=4):
-    """(a, b, eps) with w_g^a = eps w_h^b identically on the family, or None."""
+def _monomial_relation_sympy(taug, tauh, amax=4):
+    """The entry-98 implementation (sympy simplify on the rational functions):
+    kept for cross-validation only -- it took up to 24 s per call."""
     wg = sp.cancel((1 + sp.I * taug) / (1 - sp.I * taug))
     wh = sp.cancel((1 + sp.I * tauh) / (1 - sp.I * tauh))
     for a in range(1, amax + 1):
@@ -468,6 +544,62 @@ def monomial_relation(taug, tauh, amax=4):
             if sp.simplify(r ** 4) == 1:
                 return (a, b, str(r))
     return None
+
+
+_MONO_CACHE = {}
+_UNITS = {1: "1", -1: "-1", sp.I: "I", -sp.I: "-I"}
+
+
+def _gauss_parts(tau):
+    """tau = P/Q (a rational function of lam) -> (Q + iP, Q - iP) as polynomials
+    over Q(i); w = (1 + i tau)/(1 - i tau) = (Q + iP)/(Q - iP).  No reduction is
+    needed: a common factor of P and Q multiplies both sides of the identity."""
+    N, D = sp.fraction(sp.together(tau))
+    P = sp.Poly(sp.expand(N), lam, domain="QQ_I")
+    Q = sp.Poly(sp.expand(D), lam, domain="QQ_I")
+    iP = P * sp.Poly(sp.I, lam, domain="QQ_I")
+    return Q + iP, Q - iP
+
+
+def monomial_relation(taug, tauh, amax=4):
+    """(a, b, eps) with w_g^a = eps w_h^b identically on the family, or None
+    (entry 104: an EXACT polynomial identity over Q(i) -- with w = A/B, A = Q + iP,
+    B = Q - iP, the relation is A_g^a B_h^b = eps B_g^a A_h^b for b > 0 and
+    A_g^a A_h^|b| = eps B_g^a B_h^|b| for b < 0; eps = the ratio of leading
+    coefficients, a fourth root of unity.  Same search order as entry 98.)"""
+    key = (str(taug), str(tauh), amax)
+    if key in _MONO_CACHE:
+        return _MONO_CACHE[key]
+    res = None
+    Ag, Bg = _gauss_parts(taug)
+    Ah, Bh = _gauss_parts(tauh)
+    if not (Ag.is_zero or Bg.is_zero or Ah.is_zero or Bh.is_zero):
+        pw = {}
+        def power(Pp, n):
+            k = (id(Pp), n)
+            if k not in pw:
+                pw[k] = Pp ** n
+            return pw[k]
+        for a in range(1, amax + 1):
+            for b in range(-amax, amax + 1):
+                if b == 0:
+                    continue
+                if b > 0:
+                    L, R = power(Ag, a) * power(Bh, b), power(Bg, a) * power(Ah, b)
+                else:
+                    L, R = power(Ag, a) * power(Ah, -b), power(Bg, a) * power(Bh, -b)
+                if L.degree() != R.degree():
+                    continue
+                eps = sp.nsimplify(sp.expand(L.LC() / R.LC()))
+                if eps not in _UNITS:
+                    continue
+                if (L - R * sp.Poly(eps, lam, domain="QQ_I")).is_zero:
+                    res = (a, b, _UNITS[eps])
+                    break
+            if res:
+                break
+    _MONO_CACHE[key] = res
+    return res
 
 
 def lift(cand, f, taug, tauh):
@@ -549,6 +681,74 @@ def decide_genus0(fe, var, oth, cand=None, f=None):
     return worst, info
 
 
+_GENUS_CACHE = {}
+_PULLBACK_CACHE = {}
+RESOLVE_TIMEOUT = 300
+HIGH_DEGREE_ROUTE = "genus"          # "genus": bound then resolution; "skip": leave high-degree components unknown
+NF_SECONDS = 0                       # alarm (s) on each branch-value field's nfinit in the bound; 0 = none (entries 102-103)
+BOUND_DEGMAX = 40                    # branch-value fields above this degree are skipped in the bound (valid; the sweep uses 20)
+PROVISIONAL_FINITE = False           # the sweep only: an exact genus >= 2 without its cross-check counts as finite, flagged 'provisional'
+
+
+def exact_genus_verdict(phi, dg, dh):
+    """(verdict, info) for a component by its genus, in rigorous steps
+    (entries 102-104).  (1) The corrected Riemann-Hurwitz LOWER BOUND
+    (degree-40 cap; with NF_SECONDS > 0 an alarm skips a branch-value field
+    whose nfinit is slow -- skipping only lowers the bound): g_lb >= 2 certifies.
+    (2) Else the EXACT genus by resolution (entry 103), certified only when its
+    Riemann-Hurwitz cross-check completes with no skipped factor and agrees;
+    an exact genus >= 2 without the cross-check is recorded as PROVISIONAL and
+    the verdict stays 'unknown' (the sweep's census counts it; a rigorous pass
+    can finish it).  'finite' also needs the absolute-irreducibility
+    certificate.  Genus <= 1 components are left to the pullback machinery.
+    Memoized per polynomial."""
+    key = (str(phi), dg, dh)
+    if key in _GENUS_CACHE:
+        return _GENUS_CACHE[key]
+    from compute.omega3_genus import genus_lower_bound, ramification_bound, absolutely_irreducible
+    inf = {}
+    try:
+        g_lb, binfo = genus_lower_bound(phi, dg, dh, degmax=BOUND_DEGMAX, timeout=RESOLVE_TIMEOUT, nf_seconds=NF_SECONDS)
+    except Exception as e:                      # pragma: no cover
+        g_lb, binfo = None, {"error": repr(e)[:160]}
+    inf["g_lb"] = g_lb
+    inf["bound"] = {k: {kk: vv for kk, vv in v.items() if kk != "notes"} for k, v in binfo.items() if isinstance(v, dict)}
+    certified_by = "bound" if (g_lb is not None and g_lb >= 2) else None
+    if certified_by is None:
+        from compute.omega3_resolve import exact_genus
+        try:
+            g, det = exact_genus(phi, dg, dh, timeout=RESOLVE_TIMEOUT)
+        except Exception as e:                  # pragma: no cover
+            g, det = None, {"error": repr(e)[:160]}
+        inf.update(exact_genus=g, p_a=det.get("p_a"), sum_delta=det.get("sum_delta"))
+        if det.get("error"):
+            inf["error"] = str(det["error"])[-200:]
+        if g is not None and g >= 2:
+            # the cross-check needs every discriminant factor: hopeless when the capped bound already skipped one
+            hopeless = BOUND_DEGMAX < 40 and inf["bound"].get("direct", {}).get("skipped_factors", 0) > 0
+            R, rinfo = (None, {}) if hopeless else ramification_bound(
+                phi, dg, dh, swap=False, degmax=(400 if BOUND_DEGMAX >= 40 else BOUND_DEGMAX), timeout=RESOLVE_TIMEOUT, nf_seconds=NF_SECONDS)
+            if R is not None and rinfo.get("skipped_factors", 0) == 0:
+                two_g = 2 - 2 * dh + R + det["branch_correction"]
+                inf["consistent"] = (two_g == 2 * g)
+                if inf["consistent"]:
+                    certified_by = "resolution"
+            else:
+                inf["consistent"] = None
+                inf["provisional"] = True
+                if PROVISIONAL_FINITE:
+                    certified_by = "resolution-provisional"
+    if certified_by:
+        pr = absolutely_irreducible(phi)
+        inf["abs_irred_p"] = pr
+        inf["route"] = certified_by
+        v = "finite" if pr is not None else "unknown"
+    else:
+        v = "unknown"
+    _GENUS_CACHE[key] = (v, inf)
+    return v, inf
+
+
 def decide_component(phi, dg, dh, cand=None, f=None, pullback_max_degree=6):
     info = {"deg": (dg, dh)}
     for var, oth, dv in ((th, tg, dh), (tg, th, dg)):
@@ -568,11 +768,18 @@ def decide_component(phi, dg, dh, cand=None, f=None, pullback_max_degree=6):
                 return "finite", info
             break
     if dg + dh > pullback_max_degree:
-        return "unknown", dict(info, note="high degree, no pullback")
-    psi = sp.expand(phi.subs({tg: pyth(ug), th: pyth(uh)}) * (1 - ug ** 2) ** dg * (1 - uh ** 2) ** dh)
-    psi = sp.expand(sp.cancel(psi))
+        if HIGH_DEGREE_ROUTE == "skip":
+            return "unknown", dict(info, note="high degree, genus route skipped")
+        v, ginf = exact_genus_verdict(phi, dg, dh)              # entry 104: the genus tools, in the engine
+        info["genus"] = ginf
+        return v, (info if v == "finite" else dict(info, note="high degree: genus not certified >= 2"))
+    pkey = (str(phi), dg, dh)
+    if pkey not in _PULLBACK_CACHE:
+        psi = sp.expand(phi.subs({tg: pyth(ug), th: pyth(uh)}) * (1 - ug ** 2) ** dg * (1 - uh ** 2) ** dh)
+        psi = sp.expand(sp.cancel(psi))
+        _PULLBACK_CACHE[pkey] = sp.factor_list(psi)[1]
     worst, facs = "dead", []
-    for fac, mult in sp.factor_list(psi)[1]:
+    for fac, mult in _PULLBACK_CACHE[pkey]:
         fe = sp.expand(fac)
         if not fe.free_symbols:
             continue
@@ -615,9 +822,9 @@ def decide_component(phi, dg, dh, cand=None, f=None, pullback_max_degree=6):
                                 v = "finite"
                         done = True
                         break
-                if not done:
-                    v = "finite" if (eg - 1) * (eh - 1) >= 2 else "unknown"
-                    finf["arith_genus"] = (eg - 1) * (eh - 1)
+                if not done:                                    # degree >= 3 in both variables: the exact genus
+                    v, ginf = exact_genus_verdict(sp.expand(fe.subs({ug: tg, uh: th}, simultaneous=True)), eg, eh)
+                    finf["genus"] = ginf
             facs.append(dict(finf, kind="curve", verdict=v))
         if ORDER[v] > ORDER[worst]:
             worst = v
@@ -642,6 +849,35 @@ def decide_frame(cand, f):
 def decide_class(cand):
     """Best frame verdict for a candidate class, with the per-frame records."""
     frames = {f: decide_frame(cand, f) for f in range(3)}
+    vs = [fr["verdict"] for fr in frames.values() if fr["verdict"] != "degenerate"]
+    best = min(vs, key=lambda v: ORDER[v]) if vs else "degenerate"
+    return best, frames
+
+
+def decide_class_fast(cand):
+    """The sweep's decision (entry 104): pass 1 decides every frame with the
+    high-degree components skipped (cheap: resultants, models, pullbacks) --
+    a dead frame ends it; pass 2 certifies the high-degree components by
+    genus, frame by frame in order of the largest bidegree met, stopping at
+    the first frame that is finite or dead.  Same verdicts as decide_class
+    on every class where a dead frame exists or one certified frame suffices."""
+    global HIGH_DEGREE_ROUTE
+    saved = HIGH_DEGREE_ROUTE
+    HIGH_DEGREE_ROUTE = "skip"
+    try:
+        frames = {f: decide_frame(cand, f) for f in range(3)}
+    finally:
+        HIGH_DEGREE_ROUTE = saved
+    vs = [fr["verdict"] for fr in frames.values() if fr["verdict"] != "degenerate"]
+    best = min(vs, key=lambda v: ORDER[v]) if vs else "degenerate"
+    if best in ("dead", "finite", "candidate", "infinite", "degenerate"):
+        return best, frames
+    def size(f):
+        return max((max(c["deg"]) for c in frames[f].get("components", []) if c.get("verdict") == "unknown"), default=0)
+    for f in sorted([f for f in frames if frames[f]["verdict"] == "unknown"], key=size):
+        frames[f] = decide_frame(cand, f)
+        if frames[f]["verdict"] in ("dead", "finite"):
+            break
     vs = [fr["verdict"] for fr in frames.values() if fr["verdict"] != "degenerate"]
     best = min(vs, key=lambda v: ORDER[v]) if vs else "degenerate"
     return best, frames

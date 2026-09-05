@@ -4848,3 +4848,123 @@ textbook singularities, the genus-1 control, a live re-resolution, the
 three common-factor kills live, the census; a3.omega3_genus corrected;
 a3.omega3_engine's tally). Doc 2.32 corrected, 2.33; ROADMAP R.8
 phase 2 + M14-F; memory.
+
+## 2026-09-05 — Entry 104: the sweep made fast (21 s to 1.2 s per class) and the finiteness statement for shape (1,1,1); the big-picture overview (ROADMAP R.9); the (2,1,1) sweep launched
+
+THE ASK. Run the (2,1,1) sweep faster than the recorded "~60 CPU-hours",
+then step back: findings, plans, ambitious attempts.
+
+THE BASELINE, CORRECTED. Entry 101 projected the sweep from the sample's
+median (9 s). The sample's own mean is 21.3 s per class with a heavy tail
+(max 224 s): 79,368 classes = ~470 CPU-hours, 2.5 days on 8 cores. The
+"60 CPU-hours" of entries 101-103 undercounted the tail.
+
+WHERE THE TIME WENT (profiles). (1) The slowest class (224 s; verdict
+dead; components (2,2) and (3,2) only): 380 of 399 profiler-seconds in
+monomial_relation -- sympy's simplify/cancel on rational functions with
+Gaussian coefficients, 16 calls of ~24 s -- while the resultants of all
+three frames took 1.6 s and the exact genera of all six components 0.4
+s. (2) After that fix, an 8-second class: 43 of 45 s in sympy's
+factor_list on the six-variable resultant (Wang's Hensel lifting).
+
+THE FIXES (compute/omega3.py; a3.omega3_sweep_engine). (a) THE MONOMIAL
+TEST AS AN EXACT POLYNOMIAL IDENTITY over Q(i): with tau = P/Q and w =
+(Q + iP)/(Q - iP), the relation w_g^a = eps w_h^b is A_g^a B_h^b = eps
+B_g^a A_h^b (b > 0) or A_g^a A_h^|b| = eps B_g^a B_h^|b| (b < 0), eps the
+ratio of leading coefficients, a fourth root of unity (sympy Poly over
+QQ_I; the old routine kept as _monomial_relation_sympy). Old and new
+agree on the check cases and on all 16 parametrizations of the slowest
+class; 80x faster; that class 224 s -> 5.7 s. (b) THE GENUS ROUTES IN
+THE ENGINE for components above the pullback threshold (formerly
+'unknown'): the corrected Riemann-Hurwitz lower bound first (rigorous on
+its own; a cap on the branch-value field degree and, new, an ALARM on
+each nfinit only skip fields, which lowers the bound), then the exact
+genus by resolution, certified only with its cross-check, else recorded
+as PROVISIONAL; the sweep may count a provisional genus >= 2 as finite
+(flag PROVISIONAL_FINITE, every record carries the flag). The unsound
+arithmetic-genus shortcut for pullback factors of degree >= 3 in both
+variables (never triggered in any committed verdict) is replaced by the
+same route. (c) decide_class_fast: every frame cheaply first (a dead
+frame ends it), then the genus route frame by frame in order of the
+largest bidegree, stopping at the first finite frame -- lossless for
+dead verdicts, since a high-degree component is never dead. (d) THE
+BIVARIATE BACKEND for frame_factors: the relations are bihomogeneous in
+every frame, so with c_f = c_g = c_h = 1, s_g = t_g, s_h = t_h they are
+polynomials in s_f over Q[t_g, t_h]; their resultant is the
+dehomogenized resultant and its irreducible factors are the ratio forms
+of the non-monomial factors of the six-variable one (a degree drop in
+s_f falls back to the old route). 144 of 144 frame eliminations on
+sampled classes of both boxes agree with the six-variable route; 2.5-4.5x
+faster on frame_factors, ~10x on whole classes. (e) Memoization of the
+pullback factorization, the genus records and the monomial test.
+
+WHAT DID NOT WORK, recorded. PARI's factor on the six-variable resultant
+hung past 600 s (the dehomogenization is the right fix, not the
+backend). The resolution's nested extension fields overflowed PARI's
+stack on a (12,12) component (nfinit on a polynomial inflated by the
+root scaling): polredbest now reduces every absolute field with the
+generator transported, the stack may grow to 3 GB, a degree guard (48)
+fails fast -- that point (multiplicity 4 over t^2 + 1) still exceeds
+the guard, and the bound covers it (g >= 34). Branch-value fields of
+the (2,1,1) components reach degree 32-36 with 255-290-bit discriminants
+(nfinit 11-84 s each): hence the alarm; PARI's alarm(s, code) returns
+the timeout as a t_ERROR object, not an exception. A field-degree cap
+alone loses the bound (the big fields carry the ramification).
+
+THE SAMPLE RE-DECIDED (compute/data_omega3_box211_resample.json;
+a3.omega3_box211_resample): the 400 classes of entry 101, decision level,
+same seed. NO CLASS GOT A WORSE VERDICT. Transitions from entry 101's
+decision verdicts: unknown -> finite 129, unknown -> finite (provisional)
+125, finite -> finite 88, dead -> dead 55, unknown -> unknown 3. Tally:
+finite 217, provisional 125, dead 55, unknown 3 (entry 101 after towers:
+finite 55, dead 88, unknown 257). Certified components: 128 by the bound,
+1 by the resolution with cross-check, 125 provisional (exact genera 9-32
+without the cross-check). Time with the six-variable factorization:
+median 10.0 s, mean 18.1 s (entry 101: 19.3 s); with the bivariate
+backend the first 40 classes take 1.2 s per class (13.1 s before):
+~30-45 CPU-hours for the box, 4-6 hours on 8 cores.
+
+THE FINITENESS STATEMENT FOR SHAPE (1,1,1) (compute/omega3_finiteness.py;
+a3.omega3_finiteness; data block base_locus). With every class dead or
+finite (entry 103), one gap separated the engine from a statement about
+squares: a BASE POINT of the elimination -- a frame pair (t_g, t_h) at
+which every coefficient of both relations, as polynomials in the
+eliminated frame, vanishes -- makes the relations hold for every third
+frame: a square for every third prime. The base locus is a
+zero-dimensional system per class (the resultant is not identically
+zero), solved exactly (lex Groebner basis, rational roots): 1024 of the
+1568 finite classes have an empty base locus, 544 have only the
+degenerate points t in {0, +-1} (122 rational points, all degenerate);
+NO ADMISSIBLE BASE POINT. A frame ratio determines its prime (t = m/n in
+lowest terms gives p = sqrt(m^2 + n^2)), so: UP TO SCALING BY THE INERT
+COFACTOR, ONLY FINITELY MANY 3x3 MAGIC SQUARES OF SQUARES HAVE A CENTER
+WHOSE SPLIT PART IS A PRODUCT OF THREE DISTINCT FIRST-POWER PRIMES.
+Ineffective (Faltings gives no bound); resting on the engine's verdicts
+(PARI's factorization over number fields, its unconditional rank bounds,
+the genus computations, each pinned by live recomputation). The same
+statement will follow for every box the engine closes without
+provisional verdicts. NOT a theorem that no such square exists.
+
+THE BIG PICTURE: ROADMAP R.9 (findings, plans, ambitious attempts):
+what is proven (omega = 1; four omega = 2 boxes; the quadruple theorem
+at the frontier; the (1,1,1) box closed as finiteness), what the
+findings say (the primes disappear from the equations at omega = 3; the
+wall is now effectivity, uniformity in the exponents, and dimension at
+omega >= 4), the plan, and six attempts: A the finiteness theorem per
+shape (this entry), B effectivity ("no MSS3 of shape (1,1,1)") through
+the Jacobian decomposition under the frame symmetries and Chabauty, C
+the structural lemma (branch loci at degenerate frame values), D omega
+>= 4 (surfaces; Bombieri-Lang; fibrations by omega = 3 curves; the
+S-unit framing), E the uniform omega = 2 theorem, F the function-field
+descent on the frame curves.
+
+THE SWEEP. Launched 2026-09-05 at the decision level (no towers), 8
+workers, resumable (a JSONL of records; a restart skips the classes
+done; scratchpad omega3_211_sweep.py); entry 105 will report the box.
+
+Suite 188 (a3.omega3_finiteness: the prime-from-ratio rule, the census,
+live base loci; a3.omega3_sweep_engine: the two monomial
+implementations against each other, the alarmed/capped bound against
+the full one, the engine's genus verdict, the fast decisions;
+a3.omega3_box211_resample: the census and live re-decisions). Doc 2.34;
+ROADMAP R.8 phase 1 note, R.9, M14-G; memory.

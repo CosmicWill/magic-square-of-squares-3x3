@@ -39,7 +39,7 @@ from compute.pari_genus1 import GP
 
 def _gp(script, timeout=900):
     try:
-        cp = subprocess.run([GP, "-q", "-f"], input='default(parisize,"1G");\n' + script, capture_output=True, text=True, timeout=timeout)
+        cp = subprocess.run([GP, "-q", "-f"], input='default(parisize,"1G"); default(parisizemax,"3G");\n' + script, capture_output=True, text=True, timeout=timeout)
     except (subprocess.TimeoutExpired, OSError) as e:
         return "", repr(e)
     return cp.stdout, cp.stderr
@@ -49,6 +49,7 @@ def _gp(script, timeout=900):
 PARI_LIB = r"""
 x; t; w4; w3; w2; w1; a;
 WV = [w1, w2, w3, w4];
+MAXDEG = 48;
 mult(F) = { my(m = 10^9, cT); if(F == 0, return(-1));
   for(i = 0, poldegree(F, t), cT = polcoeff(F, i, t); if(cT == 0, next);
     for(j = 0, poldegree(cT, x), if(polcoeff(cT, j, x) != 0, m = min(m, i + j))));
@@ -74,7 +75,11 @@ extend(fld, f) = { my(nfK, v, lvl, wv, fw, RE, absP, alpha, k, nfL, lam, mf, Dn)
     alpha = Mod(subst(lift(alpha), wv, wv / Dn), absP);
     lam = Mod(wv, absP) / Dn - k * alpha);
   if(pollead(absP, wv) != 1 || denominator(content(absP)) != 1, error("non-monic absolute field"));
-  nfL = nfinit(absP);
+  if(poldegree(absP, wv) > MAXDEG, error("extension field too large"));
+  pr = polredbest(absP, 1); absP2 = pr[1]; rt = pr[2];
+  alpha = if(alpha == 0, 0, subst(lift(alpha), wv, rt));
+  lam = subst(lift(lam), wv, rt);
+  nfL = nfinit(absP2);
   [[wv, nfL, lvl + 1], lam, alpha] };
 tr(e, fld, alpha) = if(fld[2] == 0, e, subst(lift(e), fld[1], alpha));
 rootfactor(fld, Cl) = { my(F); if(fld[2] == 0, factor(Cl), fieldfactor(fld[2], Cl)) };
@@ -180,14 +185,14 @@ def pullback_genera(phi, dg, dh, timeout=900):
     return facs
 
 
-def exact_genus_checked(phi, dg, dh, degmax=400):
+def exact_genus_checked(phi, dg, dh, degmax=400, timeout=900):
     """Exact genus with the Riemann-Hurwitz cross-check; returns (g, details).
     The cross-check needs every discriminant factor (cap 400: the (8,8)
     components have one factor of degree between 40 and 400)."""
-    g, det = exact_genus(phi, dg, dh)
+    g, det = exact_genus(phi, dg, dh, timeout=timeout)
     if g is None:
         return None, det
-    R, info = ramification_bound(phi, dg, dh, swap=False, degmax=degmax)
+    R, info = ramification_bound(phi, dg, dh, swap=False, degmax=degmax, timeout=timeout)
     det["rh"] = {"R_lb": R, "info": info}
     if R is not None and info.get("skipped_factors", 0) == 0:
         two_g = 2 - 2 * dh + R + det["branch_correction"]
