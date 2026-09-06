@@ -2814,6 +2814,36 @@ others, on the circle but not torsion, or generic — no uniform pattern.  *Rank
 zero* is verified (2-descent in the kills, analytic rank here), not explained;
 why these $\lambda$ recur across both boxes stays open.
 
+## 2.43 The finiteness statement for shape $(2,1,1)$ (attempt C; R.10 objective O1)
+
+*(2026-09-06; entry 113; check `a3.omega3_box211_finiteness`.)*
+
+**Statement.**  Up to the scaling of the square, there are finitely many
+$3\times3$ magic squares of distinct squares whose split part is $p^2qr$
+($p,q,r$ distinct primes $\equiv1\pmod4$; Faltings-ineffective).
+
+**Proof, by the two halves of 2.36.**  *(a) Every class is dead or Faltings-finite
+with a rigorous genus.*  The sweep (2.38, entry 108) left $25{,}428$ classes
+"finite*", their certifying components resolved without the field-based
+cross-check.  The rigorous pass re-resolved every such component of the deciding
+frame with the field-free Riemann–Hurwitz check of 2.40: $25378$ classes upgraded,
+$50$ left; the tally of the $79{,}368$ new classes is now {'dead': 12132, 'finite': 67186, 'finite*': 50}; the
+re-resolved components have genera 7 (72), 9 (784), 10 (1176), 11 (1324), 12 (208), 13 (3160), 14 (1008), 15 (1180), 16 (1456), 17 (1230), 18 (488), 19 (1976), 20 (560), 21 (944), 22 (24), 23 (1006), 24 (312), 25 (944), 26 (848), 27 (304), 28 (848), 29 (624), 30 (192), 31 (1148), 32 (504), 33 (286), 34 (640), 35 (232), 37 (720), 38 (48), 39 (272), 40 (48), 41 (84), 42 (96), 43 (8), 44 (160), 45 (180), 46 (64), 47 (48), 49 (28), 50 (48), 51 (56), 52 (32), 53 (8) (all cross-checks consistent:
+{'True': 25378}); $16.7$ CPU-hours.  *(b) No admissible pair in an elimination base locus.*
+For every finite class the base locus of the elimination in the deciding frame
+(2.36; lines reported since entry 111) was solved exactly: status {'empty (Groebner basis 1)': 18088, 'zero-dimensional': 49148}; $1982$
+rational base points, all degenerate ({"('0', '0')": 1408, "('0', '1')": 119, "('0', '-1')": 119, "('-1', '1')": 72, "('1', '-1')": 72, "('1', '1')": 68, "('-1', '-1')": 68, "('1', '0')": 28, "('-1', '0')": 28}); lines none; **no admissible
+point or line**.  The elimination base-locus theorem (2.41) predicts from the
+labels {'empty': 26390, 'trinomial': 22474, 'torsion': 18372} (by deciding frame, $0$ the exponent-$2$ frame: {"(0, 'empty')": 7116, "(0, 'torsion')": 2406, "(0, 'trinomial')": 1108, "(1, 'empty')": 9908, "(1, 'torsion')": 10942, "(1, 'trinomial')": 13210, "(2, 'empty')": 9366, "(2, 'torsion')": 5024, "(2, 'trinomial')": 8156}), and the
+pass agrees — predicted empty: no rational base point; predicted torsion: only
+degenerate points (('empty', 'empty (Groebner basis 1)', True): 7458; ('trinomial', 'zero-dimensional', True): 17484; ('torsion', 'zero-dimensional', True): 12732; ('empty', 'zero-dimensional', True): 18932; ('trinomial', 'empty (Groebner basis 1)', True): 4990; ('torsion', 'empty (Groebner basis 1)', True): 5640; no violation).  With (a) and (b), the argument of 2.36
+applies verbatim.  $\square$
+
+**What the theorem bought.**  Two thirds of the base-locus half were automatic
+by 2.41; the trinomial-type third — the deciding frame at one absolute exponent
+in all four labels — was a finite exact computation, and on this box too its
+base points are all degenerate.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

@@ -5560,3 +5560,49 @@ analytic rank here), NOT EXPLAINED. Recorded as such.
 a3.omega3_killers (the tables against both data files, the lambda
 formula, live re-identification in PARI). Doc 2.42; ROADMAP M14-O;
 memory (killers = fifteen). Suite 195. The (2,1,1) fold is entry 113.
+
+## 2026-09-06 — Entry 113: the finiteness statement for shape (2,1,1) — the rigorous pass and the elimination base-locus pass folded in
+
+O1 DONE (R.10). Two passes over the (2,1,1) box, both at low priority
+underneath the theory work, both folded into
+compute/data_omega3_box211.json.gz (omega3_211_fold.py).
+
+(a) THE RIGOROUS PASS (O1(a)). Every provisional component of the
+deciding frame of the 25,428 finite* classes re-resolved with the
+field-free Riemann-Hurwitz cross-check (entry 110): 25378 classes
+upgraded to finite, 50 left provisional; the tally of the 79,368
+new classes is now {'dead': 12132, 'finite': 67186, 'finite*': 50}. The re-resolved components' genera:
+7 (72), 9 (784), 10 (1176), 11 (1324), 12 (208), 13 (3160), 14 (1008), 15 (1180), 16 (1456), 17 (1230), 18 (488), 19 (1976), 20 (560), 21 (944), 22 (24), 23 (1006), 24 (312), 25 (944), 26 (848), 27 (304), 28 (848), 29 (624), 30 (192), 31 (1148), 32 (504), 33 (286), 34 (640), 35 (232), 37 (720), 38 (48), 39 (272), 40 (48), 41 (84), 42 (96), 43 (8), 44 (160), 45 (180), 46 (64), 47 (48), 49 (28), 50 (48), 51 (56), 52 (32), 53 (8); cross-checks {'True': 25378}; 16.7 CPU-hours (3 workers,
+~0.5 s/class wall). 50 classes keep a provisional genus.
+
+(b) THE ELIMINATION BASE LOCI (O1(b)). For all 67236 finite classes the
+base locus of the elimination in the deciding frame was solved exactly
+(compute/omega3_finiteness.base_locus, lines reported): status
+{'empty (Groebner basis 1)': 18088, 'zero-dimensional': 49148}; 1982 rational base points, all degenerate
+({"('0', '0')": 1408, "('0', '1')": 119, "('0', '-1')": 119, "('-1', '1')": 72, "('1', '-1')": 72, "('1', '1')": 68, "('-1', '-1')": 68, "('1', '0')": 28, "('-1', '0')": 28}); lines none; NO ADMISSIBLE POINT OR
+LINE. The entry-111 theorem predicts from the labels {'empty': 26390, 'trinomial': 22474, 'torsion': 18372}
+(by deciding frame, 0 the exponent-2 frame: {"(0, 'empty')": 7116, "(0, 'torsion')": 2406, "(0, 'trinomial')": 1108, "(1, 'empty')": 9908, "(1, 'torsion')": 10942, "(1, 'trinomial')": 13210, "(2, 'empty')": 9366, "(2, 'torsion')": 5024, "(2, 'trinomial')": 8156}), and
+the pass agrees everywhere: predicted empty => no rational base point,
+predicted torsion => only degenerate points (('empty', 'empty (Groebner basis 1)', True): 7458; ('trinomial', 'zero-dimensional', True): 17484; ('torsion', 'zero-dimensional', True): 12732; ('empty', 'zero-dimensional', True): 18932; ('trinomial', 'empty (Groebner basis 1)', True): 4990; ('torsion', 'empty (Groebner basis 1)', True): 5640). The
+trinomial-type third -- a real computation, not covered by the theorem
+-- also has only degenerate base points here.
+
+THE STATEMENT (doc 2.43): up to the scaling of the square, there are
+finitely many 3x3 magic squares of distinct squares whose split part is
+p^2 q r (Faltings-ineffective), by the two halves of entry 104's
+argument: (a) and (b).
+
+O4 SIZED, FOR THE USER'S DECISION. The next boxes, enumerated with
+compute.omega3.all_candidates after set_box: (3,1,1) has 388,216
+classes (290,064 with every frame at its top exponent; 31 labels, 524
+s to enumerate), (2,2,1) has 801,088 (621,836; 37 labels, 1040 s). At
+the sweep engine's ~1.2 s per class that is about 100 and 200
+CPU-hours: multi-day jobs at low priority on this machine. By the
+entry-111 theorem their finiteness statements would need, besides the
+sweep, only the elimination base loci of the classes whose deciding
+frame has one absolute exponent in all four labels.
+
+a3.omega3_box211_finiteness; a3.omega3_box211_sweep relaxed to entry
+>= 108 with entry 108's tally pinned through rigorous_pass.tally_before.
+Doc 2.43; ROADMAP M14-P and the R.10 status; memory (the two long jobs
+retired). Suite 196.

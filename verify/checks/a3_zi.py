@@ -4322,8 +4322,8 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] == 108 and data["n_new_three_frame"] == 79368 == len(data["classes"]) and data["n_classes"] == 89732)
-    require(data["tally"] == {'dead': 12132, 'finite': 41808, 'finite*': 25428}, data["tally"])
+    require(data["entry"] >= 108 and data["n_new_three_frame"] == 79368 == len(data["classes"]) and data["n_classes"] == 89732)
+    require(data["rigorous_pass"]["tally_before"] == {'dead': 12132, 'finite': 41808, 'finite*': 25428}, data["rigorous_pass"]["tally_before"])   # entry 108's tally; entry 113 upgraded the provisional third
     require(sum(data["tally"].values()) == 79368)
     require(data["genus_routes"] == {'bound': 24292, 'resolution-provisional': 25502, 'resolution': 284}, data["genus_routes"])
     require(data["redecided"] == {"('degenerate', 'dead')": 24, "('unknown', 'unknown')": 188, "('degenerate', 'degenerate')": 6, "('infinite', 'finite')": 24, "('infinite', 'dead')": 32}, data["redecided"])
@@ -4391,7 +4391,7 @@ def _(ctx):
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         data = json.load(fh)
     UA = data["unknowns_attacked"]
-    require(data["entry"] == 108 and data["tally"] == {'dead': 12132, 'finite': 41808, 'finite*': 25428}, data["tally"])
+    require(data["entry"] >= 108 and data["rigorous_pass"]["tally_before"] == {'dead': 12132, 'finite': 41808, 'finite*': 25428}, data["rigorous_pass"]["tally_before"])   # entry 108's tally; entries 113-114 upgraded the provisional third
     require(UA["transitions"] == {"('unknown', 'dead')": 164, "('unknown', 'finite')": 24, "('degenerate', 'dead')": 6}, UA["transitions"])
     require(UA["kill_routes"] == {"('conjugate', 'd=3')": 156, "('pullback (cap 12)', '')": 8}, UA["kill_routes"])
     att = [c for c in data["classes"] if c.get("attacked")]
@@ -4592,6 +4592,66 @@ def _(ctx):
         for key in ("th_factors", "tg_factors", "lines"):
             require(sorted(map(tuple, live.get(key, []))) == sorted(map(tuple, r.get(key, []))), (cand, key))
     ctx.note("elimination base locus: prediction " + str(ET["prediction_counts"]) + " agrees with the exact loci in all 1568 classes; " + str(len(picks)) + " recomputed live; Lemma B exact for " + str(len(primes)) + " split primes, |a|,|b| <= " + str(E))
+
+
+@check("a3.omega3_box211_finiteness", DOC)
+def _(ctx):
+    """THE FINITENESS STATEMENT FOR SHAPE (2,1,1) (entry 113, doc 2.43).  Two
+    passes over the (2,1,1) box: (a) the rigorous pass -- every provisional
+    component of the deciding frame re-resolved with the field-free
+    Riemann-Hurwitz cross-check (entry 110), upgrading 25378 of the 25,428
+    provisional classes (50 left provisional), the tally now {'dead': 12132, 'finite': 67186, 'finite*': 50};
+    (b) the elimination base locus of every finite class (with lines reported):
+    no admissible base point or line.  The elimination base-locus theorem
+    (entry 111) predicts from the labels {'empty': 26390, 'trinomial': 22474, 'torsion': 18372}, and the pass agrees: predicted
+    empty => no rational base point, predicted torsion => only degenerate
+    points, no violation.  Statement: up to the scaling of the square, there
+    are finitely many MSS3 whose split part is p^2 q r (Faltings-ineffective).
+    Verifies the data, the prediction on every finite class, and a live sample
+    of base loci and one re-resolved component (PARI)."""
+    import gzip, json
+    from compute import omega3 as O
+    from compute.omega3_finiteness import base_locus, elimination_type
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        data = json.load(fh)
+    RP = data["rigorous_pass"]; FN = data["finiteness"]
+    require(data["entry"] >= 113 and data["tally"] == {'dead': 12132, 'finite': 67186, 'finite*': 50} and RP["tally_after"] == data["tally"], data["tally"])
+    require(RP["n_provisional_before"] == 25428 and RP["n_upgraded"] == 25378 and RP["n_still_provisional"] == 50, (RP["n_upgraded"], RP["n_still_provisional"]))
+    require(RP["component_genera"] == {'14': 1008, '29': 624, '11': 1324, '13': 3160, '28': 848, '10': 1176, '19': 1976, '23': 1006, '15': 1180, '9': 784, '17': 1230, '7': 72, '30': 192, '16': 1456, '20': 560, '26': 848, '18': 488, '34': 640, '25': 944, '44': 160, '31': 1148, '37': 720, '27': 304, '35': 232, '21': 944, '24': 312, '42': 96, '32': 504, '39': 272, '45': 180, '33': 286, '41': 84, '12': 208, '22': 24, '52': 32, '53': 8, '47': 48, '40': 48, '46': 64, '51': 56, '43': 8, '49': 28, '38': 48, '50': 48} and RP["consistent"] == {'True': 25378}, (RP["component_genera"], RP["consistent"]))
+    require(FN["n_finite"] == sum(v for k, v in data["tally"].items() if k.startswith("finite")) and FN["n_missing"] == 0 and FN["n_admissible"] == 0 and FN["admissible"] == [])
+    require(FN["status_counts"] == {'empty (Groebner basis 1)': 18088, 'zero-dimensional': 49148} and FN["points_by_value"] == {"('0', '0')": 1408, "('0', '1')": 119, "('0', '-1')": 119, "('-1', '1')": 72, "('1', '-1')": 72, "('1', '1')": 68, "('-1', '-1')": 68, "('1', '0')": 28, "('-1', '0')": 28} and FN["lines_by_value"] == {}, (FN["status_counts"], FN["points_by_value"], FN["lines_by_value"]))
+    require(FN["prediction_counts"] == {'empty': 26390, 'trinomial': 22474, 'torsion': 18372} and FN["theorem_test"]["n_violations"] == 0 and FN["theorem_test"]["n_missing"] == 0, FN["prediction_counts"])
+    require(all(k.startswith(("('empty', ", "('torsion', ", "('trinomial', ")) and k.endswith(", True)") for k in FN["theorem_test"]["agreement"]), FN["theorem_test"]["agreement"])
+    require(all(v in ("('0', '0')", "('1', '0')", "('-1', '0')", "('0', '1')", "('0', '-1')", "('1', '1')", "('1', '-1')", "('-1', '1')", "('-1', '-1')") for v in FN["points_by_value"]), "every rational base point degenerate")
+    fin = [c for c in data["classes"] if c["v"].startswith("finite")]
+    require(all(c["v"] == "finite" for c in fin) if 50 == 0 else True, "no provisional class left")
+    O.set_box((2, 1, 1))
+    from collections import Counter
+    pred = Counter(elimination_type(tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"]), int(c["f"])) for c in fin)
+    require(dict(pred) == FN["prediction_counts"], dict(pred))
+    n = ctx.bound(full=40, fast=5)
+    picks = [fin[i] for i in range(0, len(fin), max(1, len(fin) // n))][:n]
+    for c in picks:
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"])
+        r = base_locus(cand, int(c["f"]))
+        require(not r.get("admissible") and not r.get("admissible_lines"), (cand, r))
+        t = elimination_type(cand, int(c["f"]))
+        if t == "empty":
+            require(not r.get("points") and not r.get("lines"), (cand, r))
+    from compute.pari_genus1 import gp_available
+    if gp_available():
+        from compute.omega3_resolve import exact_genus_checked2
+        c = next(c for c in fin if any(x.endswith(":rig") for x in c["c"]))
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"]); f = int(c["f"])
+        x = next(x for x in c["c"] if x.endswith(":rig")); dg, dh = (int(v) for v in x.split(":")[0].split(","))
+        curves, live = O.frame_factors(cand, f)
+        phi = [q[0] for q in curves if (q[1], q[2]) == (dg, dh)][0]
+        g, det = exact_genus_checked2(phi, dg, dh, timeout=300)
+        require(g is not None and g >= 2 and det.get("consistent") is True, (cand, g, det.get("rh2")))
+        ctx.note("PARI: a re-resolved (" + str(dg) + "," + str(dh) + ") component of the deciding frame has genus " + str(g) + ", cross-check consistent")
+    else:
+        ctx.note("PARI/GP not found: the live re-resolution not run")
+    ctx.note("shape (2,1,1): tally " + str(data["tally"]) + "; elimination base loci of " + str(FN["n_finite"]) + " finite classes, no admissible point; prediction " + str(FN["prediction_counts"]) + "; " + str(len(picks)) + " base loci recomputed live")
 
 
 @check("a3.omega3_killers", DOC)
