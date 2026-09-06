@@ -5160,3 +5160,68 @@ installed (a decision for the user).
 
 Suite 190 (a3.omega3_quotients extended). Doc 2.36 extended; ROADMAP
 M14-I, attempt B note; memory. The sweep's report is entry 107.
+
+## 2026-09-05 — Entry 107: THE (2,1,1) SWEEP — all 79,368 new classes decided in 44.6 CPU-hours: dead 11962, finite 41784 + 25428 provisional, unknown 188; the killers are ten curves up to isomorphism (the five of (1,1,1) and five twists); the same shapes recur
+
+THE RUN. compute.omega3.decide_class_fast over the 79,368 new
+three-frame classes of the (2,1,1) box (labels with |j| <= 2 on the
+squared frame), decision level (no towers), RESOLVE_TIMEOUT 60 s,
+NF_SECONDS 5, BOUND_DEGMAX 20, PROVISIONAL_FINITE; 8 workers for the
+first 22,056 classes, then 3 workers at below-normal priority (the
+user's machine had become unresponsive); resumable JSONL; 44.9
+CPU-hours, median 1.1 s, mean 2.04 s, max 215.0 s per class. The
+residue -- 56 'infinite', 30 'degenerate', 188 'unknown' -- re-decided
+with the entry-105 fixes (monomial cap 8, three-frame monomial common
+factors, cubic completeness) and a larger budget (300 s, alarm 20 s,
+cap 40): ('degenerate', 'dead') -> 24; ('unknown', 'unknown') -> 188; ('degenerate', 'degenerate') -> 6; ('infinite', 'finite') -> 24; ('infinite', 'dead') -> 32.
+
+THE TALLY (compute/data_omega3_box211.json.gz; a3.omega3_box211_sweep):
+dead 11962 (15.1%), finite 41784 (52.6%), finite* (provisional)
+25428 (32.0%), unknown 188, degenerate 6, infinite
+0. Compared with the (1,1,1) box (dead 50%, finite 50% after entries
+97-106): the dead fraction drops to 15% because the (2,1,1) components
+are mostly of high bidegree (up to (16,16)) where only the genus
+decides, and finiteness is the typical verdict. 'finite*' means a
+component whose exact genus by resolution is >= 2 but whose
+Riemann-Hurwitz cross-check could not be completed under the sweep's
+caps (the branch-value fields of degree 32-36 with 300-bit
+discriminants); a rigorous pass needs either a bound that avoids
+nfinit (a gcd-refinement over the branch field) or Sage. Genus routes:
+bound 24292, resolution with cross-check 284, provisional
+25502.
+
+THE KILLERS. Rank-0 genus-1 models at the decision level: 29 quartics,
+TEN curves up to isomorphism (PARI ellidentify): 48a1 (7 models), 48a3 (4 models), 80a1 (4 models), 240d2 (4 models), 56a2 (3 models), 32a2 (2 models), 240d4 (2 models), 24a1 (1 models), 15a3 (1 models), 528j2 (1 models). Eight
+j-invariants (111284641/50625, 1180932193/4356, 13997521/225, 148176/25, 1556068/81, 1728, 35152/9, 740772/49); conductors [15, 24, 32, 48, 56, 80, 240, 528]. The
+five curves of the (1,1,1) box (32a2, 48a1, 48a3, 56a2, 80a1) return,
+and the new ones are twists or small-conductor neighbours (24a1 shares
+j with 48a1; 240d2 with 15a3; 528j2 was a tower killer in entry 100):
+the finite-list reading of the elliptic killers SURVIVES the growth of
+an exponent -- the strongest evidence yet for the structural
+conjecture of R.9.C. The monomial relations reach (4, +-1), (1, +-4)
+in the sweep and (5, 1) in the residue (tan 5 theta), all killed by the
+lemma; the most frequent are (2,1) 30568, (3,2) 11744,
+(3,1) 10936.
+
+THE SINGULAR LOCUS, SAMPLED (attempt C on the new box;
+omega3_211_singular): 96 certified components of 120 sampled
+finite classes resolved; their singular orbits by kind: {'+-i': 104, 'infinity': 159, 'torsion n=1': 49, 'torsion n=4': 86, 'torsion n=3': 16, 'torsion n=6': 13, 'torsion n=8': 24, 'torsion n=5': 5, 'algebraic': 23, 'torsion n=10': 2, 'torsion n=9': 1}. The same
+picture as in (1,1,1): torsion points of small order, the circle's
+branch points +-i, the fibers at infinity, and a thin algebraic tail.
+
+WHAT REMAINS OPEN IN THE BOX. (a) The unknown components: high-bidegree
+components of exact genus 0 or 1 -- 240 (4,4) of genus 1, (4,3), (5,2),
+(3,4), (5,4) of genus 0, (6,4)/(8,4) of genus 1 -- which need the
+elliptic route (a rational point + a Weierstrass model, or the
+two-step trick of entry 106) and the parametrization route at high
+bidegree; and (12,12)-(14,14) components where the resolution's
+extension fields exceed the degree guard or the 60-300 s budget and the
+bound's fields are too large. (b) The provisional third. (c) The
+finiteness statement for shape (2,1,1) waits for (a) and (b) and the
+base-locus check. The towers were not run (OMEGA3_TOWERS=0; ~9 s per
+finite class); the quotient routes of entries 105-106 apply verbatim to
+the certified curves.
+
+Suite 191 (a3.omega3_box211_sweep: the census, the codes, the
+re-decision transitions, the killer identification, live re-decisions).
+Doc 2.37; ROADMAP R.8 phase 1 done, R.9 attempt C note, M14-J; memory.

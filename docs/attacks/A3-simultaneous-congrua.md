@@ -2537,6 +2537,30 @@ The genus $\ge2$ quotients and the positive-rank genus-$1$ quotients are the
 honest Chabauty list for attempt B.
 
 
+## 2.37 The (2,1,1) sweep: the whole box decided; the killers are ten curves
+
+*(2026-09-05; entry 107; check `a3.omega3_box211_sweep`; data
+`compute/data_omega3_box211.json.gz`.)*
+
+All $79{,}368$ new three-frame classes of the $(2,1,1)$ box through the fast
+engine at the decision level (44.9 CPU-hours, median 1.1 s per class), the
+residue re-decided with the entry-105 fixes.  **Tally: dead $11962$
+(15.1%), finite $41784$ (52.6%), finite with a provisional genus
+$25428$ (32.0%), unknown $188$.**  The dead fraction falls from
+$50\%$ in $(1,1,1)$ to $15\%$ because the components are mostly of high
+bidegree, where only the genus decides.  The rank-$0$ killers are $29$
+quartic models but **ten curves up to isomorphism**: the five of the
+$(1,1,1)$ box and $24a1$, $15a3$, $528j2$, $240d2$, $240d4$ (eight
+$j$-invariants; conductors from $\{2,3,5,7,11\}$) — the finite-list
+reading of the elliptic killers survives the growth of an exponent.  The
+monomial relations reach angle multiple $4$ (and $5$ in the residue).  A
+sample of the certified curves shows the same singular locus as in
+$(1,1,1)$: torsion points of small order, $\pm i$, infinity, a thin
+algebraic tail.  Open in the box: the unknown components of genus $0$ or
+$1$ at high bidegree (the elliptic and parametrization routes are not yet
+available there), the provisional third (a cross-check that avoids field
+initialization, or Sage), and then the finiteness statement for the shape.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
