@@ -2690,6 +2690,76 @@ count.  It reproduces the field-based check (2g = 42 on a certified $(8,8)$ in
 $(2,1,1)$ box; the rigorous pass over the $25{,}428$ provisional classes runs on
 it (entry 111 reports).
 
+## 2.41 The elimination base-locus theorem (attempt C, the finiteness statements made structural)
+
+*(2026-09-06; entry 111; check `a3.omega3_elimination`.)*
+
+**What the finiteness statements need.**  A finiteness statement for an exponent
+shape (2.36 for $pqr$) rests on two facts about every class: every component of the
+quadruple curve $\Phi_f$ of the deciding frame is Faltings-finite, and the
+*elimination base locus* — the pairs $(t_g,t_h)$ at which every coefficient of both
+relations, as polynomials in the eliminated frame, vanishes, so that the relations
+hold for every third frame — contains no admissible pair.  The second fact was a
+census (entry 104: 122 rational base points, all degenerate).  It is a theorem.
+
+**The coefficients.**  In the torus coordinates $w_j=e^{2i\theta_j}$ an element is
+proportional to $W_e-W_e^{-1}$, $W_e=\prod_j w_j^{e_j}$.  Write $W_e=M_e\,w_f^{l_e}$
+with $M_e$ a monomial in the two other frames.  A relation
+$\sum_{e\in S}\varepsilon_e(W_e-W_e^{-1})=0$ ($|S|=3$) is a Laurent polynomial in $w_f$
+whose coefficient of $w_f^{\,j}$ is
+$$c_j=\sum_{l_e=j}\varepsilon_eM_e-\sum_{l_e=-j}\varepsilon_eM_e^{-1},$$
+with $\#\{l_e=j\}+\#\{l_e=-j\}$ terms for $j\ne0$ and $2\,\#\{l_e=0\}$ terms for $j=0$.
+Each term is a monomial in $(w_g,w_h)$ with a sign.
+
+**Lemma A (monomials and binomials).**  A monomial never vanishes on the torus
+$|w_g|=|w_h|=1$.  A binomial $\varepsilon M+\varepsilon'M'$ vanishes exactly on the
+torsion coset $M/M'=\mp1$, i.e. $w_g^aw_h^b=\pm1$ with $(a,b)$ the exponent
+difference; if $(a,b)=(0,0)$ it is identically zero or nowhere zero.
+
+**Lemma B (no admissible pair on a proper torsion coset).**  The frame of a split
+prime $p$ is $\ell=u\pi_p^2$ ($u$ a unit, $\pi_p$ a Gaussian prime over $p$), so
+$w_p=\ell/\bar\ell=\pm(\pi_p/\bar\pi_p)^2$.  If $w_g^aw_h^b$ is a root of unity with
+$(a,b)\ne(0,0)$ and $p_g\ne p_h$, then $\pi_g^{2a}\pi_h^{2b}=\zeta\,\bar\pi_g^{2a}\bar\pi_h^{2b}$
+in $\mathbb Z[i]$ with $\zeta$ a unit; the four primes $\pi_g,\bar\pi_g,\pi_h,\bar\pi_h$ are
+pairwise non-associate, so unique factorization forces $a=b=0$.  In the same way no
+frame ratio is a torsion point ($\pi_p^2$ is not associate to $\bar\pi_p^2$); the
+rational torsion points are exactly the degenerate values $t\in\{0,\pm1,\infty\}$.
+
+**Theorem (elimination base locus).**  Let $f$ be the eliminated frame.  For each
+relation call it *empty-type* if some $j\ne0$ has exactly one element with
+$|l_e|=j$ (then $c_j$ is a monomial), *torsion-type* if every nonzero coefficient is
+a binomial (at most two elements at each $|l_e|=j>0$ and at most one with $l_e=0$),
+and *trinomial-type* otherwise (all three elements at the same $|l_e|=j>0$).  Then the
+elimination base locus is
+
+* empty on the torus, if either relation is empty-type;
+* a union of torsion cosets and torsion points, if both are torsion-type — and then
+  it contains no admissible pair (Lemma B);
+* contained in the torsion cosets of the torsion-type relation, if one relation is
+  torsion-type and the other trinomial-type — again no admissible pair;
+* the intersection of the two trinomial curves $\{c_{j_1}^{(1)}=0\}\cap\{c_{j_2}^{(2)}=0\}$
+  (with their conjugates) if both are trinomial-type, i.e. exactly when **the
+  eliminated frame appears with the same absolute exponent in all four labels**.
+
+*Proof.*  The locus is the common zero set of all coefficients of both relations;
+Lemma A describes each coefficient's zero set; Lemma B excludes admissible pairs on
+proper torsion cosets, and the cosets are proper because a monomial ratio of two
+distinct labels' monomials has $(a,b)\ne(0,0)$ unless the labels agree outside $f$,
+in which case the binomial is a constant multiple of a monomial (empty) or zero
+(then the coefficient is absent).  $\square$
+
+**Corollary.**  For every exponent shape the base-locus condition of the finiteness
+statement is automatic except for the classes in which the eliminated frame has the
+same absolute exponent in all four labels; for those it is the finite intersection
+of two trinomial curves (or, if the trinomials share a factor, a curve to be
+examined), and it is a finite exact computation.  On the $(1,1,1)$ box: 834 empty-type, 516 torsion-type and 218 trinomial-type classes among the 1568 finite at entry 104;
+the exact loci agree with the prediction in every class (empty -> empty: 502; torsion -> empty: 372; empty -> points: 332; trinomial -> empty: 150; torsion -> points: 144; trinomial -> points: 68), and the
+trinomial-type classes' base points are on the toric boundary ($t=\pm i$, 124 coordinates) or degenerate ($t=0$, 12); the torsion-type loci carry degenerate values, boundary points and torsion of order 3 and 6 only.
+
+**The minor-map base locus, extended.**  The census of 2.40 covered the $1264$ classes
+with a resolution block; the $304$ finite classes with a single low-bidegree
+component are now included: status {'curves + lines': 154, 'points': 88, 'curves': 46, 'lines + points': 16}; curves {'curve': 212, 'perpendicular frames (same prime)': 16, 'equal frames (same prime)': 16} (the 200 self-base classes are exactly the trinomial-type ones there, $18+200=218$); lines {'tg = +-i': 104, 'th = +-i': 48, 'th = degenerate rational 0': 20, 'tg = degenerate rational 0': 6, 'th = degenerate rational 1': 6, 'th = degenerate rational -1': 6}; coordinate kinds {'degenerate rational 0': 208, '+-i': 180, 'degenerate rational 1': 104, 'degenerate rational -1': 104, 'algebraic deg 6': 64, 'algebraic deg 4': 44}; no coordinate is a frame ratio.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

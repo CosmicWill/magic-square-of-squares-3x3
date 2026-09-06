@@ -68,12 +68,14 @@ def base_locus(cand, f):
     uni = [e for e in G.exprs if not (e.free_symbols - {th})]
     if not uni:
         return {"status": "not zero-dimensional", "basis": [str(e)[:80] for e in G.exprs], "points": None, "admissible": None}
-    pts = []
+    pts = []; lines = []
     for th0 in sp.Poly(uni[-1], th).ground_roots():
         if not th0.is_rational:
             continue
         rest = [e for e in (sp.expand(e.subs(th, th0)) for e in G.exprs) if e != 0]
         if not rest:
+            # the whole line t_h = th0 lies in the base locus (entry 111: reported, not skipped)
+            lines.append(str(th0))
             continue
         gg = rest[0]
         for e in rest[1:]:
@@ -83,7 +85,11 @@ def base_locus(cand, f):
                 if tg0.is_rational:
                     pts.append((tg0, th0))
     admissible = [(str(a), str(b)) for a, b in pts if not degenerate(a) and not degenerate(b) and is_frame_ratio(a) and is_frame_ratio(b)]
-    return {"status": "zero-dimensional", "points": [(str(a), str(b)) for a, b in pts], "admissible": admissible}
+    out = {"status": "zero-dimensional" if not lines else "lines t_h = " + ", ".join(lines), "points": [(str(a), str(b)) for a, b in pts], "admissible": admissible}
+    if lines:
+        out["lines"] = lines
+        out["admissible_lines"] = [c for c in lines if not degenerate(sp.Rational(c)) and is_frame_ratio(sp.Rational(c))]
+    return out
 
 
 def frame_ratio_prime(r):
@@ -98,3 +104,110 @@ def frame_ratio_prime(r):
     m, n = abs(int(r.p)), abs(int(r.q))
     s, ok = sp.integer_nthroot(m * m + n * n, 2)
     return int(s) if ok else None
+
+
+# ---------------------------------------------------------------------------------------------
+# The elimination base-locus theorem (entry 111, doc 2.41).
+#
+# In the torus coordinates w_j = e^{2 i theta_j} an element e(e) is proportional to
+# W_e - W_e^{-1}, W_e = prod w_j^{e_j}.  Writing W_e = M_e w_f^{l_e} with M_e a monomial in
+# the two other frames, a relation sum_e eps_e (W_e - W_e^{-1}) = 0 is a Laurent polynomial in
+# w_f whose coefficient of w_f^j is  sum_{l_e = j} eps_e M_e - sum_{l_e = -j} eps_e M_e^{-1}:
+# it has #{l_e = j} + #{l_e = -j} terms for j != 0 and 2 #{l_e = 0} terms for j = 0.
+# The elimination base locus (every coefficient of both relations zero) is therefore
+#   * EMPTY on the torus if some nonzero coefficient is a single monomial;
+#   * a union of TORSION COSETS if every nonzero coefficient is a binomial
+#     (eps M + eps' M' = 0  <=>  M/M' = +-1);
+#   * otherwise contained in the trinomial curve {top coefficient = 0} of a relation all of
+#     whose three elements carry the same |l_e| = j > 0.
+# LEMMA (no admissible pair on a torsion coset).  w_p = +-(pi_p / conj pi_p)^2 for the frame of
+# a split prime p; if w_g^a w_h^b is a root of unity with (a, b) != (0, 0) and p_g != p_h, unique
+# factorization in Z[i] (the four primes pi_g, conj pi_g, pi_h, conj pi_h pairwise non-associate)
+# forces a = b = 0.  Likewise no frame ratio is a torsion point.  Hence the base-locus condition
+# of the finiteness statement is AUTOMATIC unless the eliminated frame appears with the same
+# absolute exponent in all four labels (both relations trinomial-type).
+# ---------------------------------------------------------------------------------------------
+
+
+def _relation_type(labels, f):
+    """'empty' / 'torsion' / 'trinomial' for one relation (three labels) and frame f."""
+    ls = [lab[f] for lab in labels]
+    js = sorted({abs(l) for l in ls if l != 0})
+    if not js:
+        return "free"            # the relation does not involve frame f
+    for j in js:
+        if sum(1 for l in ls if abs(l) == j) == 1:
+            return "empty"
+    n0 = sum(1 for l in ls if l == 0)
+    if all(sum(1 for l in ls if abs(l) == j) <= 2 for j in js) and n0 <= 1:
+        return "torsion"
+    return "trinomial"
+
+
+def elimination_type(cand, f):
+    """The prediction for the elimination base locus of (cand, f) from the labels alone:
+    'empty' (some coefficient a monomial), 'torsion' (every coefficient a binomial, or one
+    relation torsion-type and the other trinomial-type: the locus lies on torsion cosets),
+    or 'trinomial' (both relations trinomial-type: the eliminated frame has the same absolute
+    exponent in all four labels; the locus is the intersection of two trinomial curves)."""
+    A, B, C, D = [tuple(x) for x in cand[:4]]
+    t1, t2 = _relation_type((A, B, C), f), _relation_type((A, B, D), f)
+    if "empty" in (t1, t2):
+        return "empty"
+    if "free" in (t1, t2):
+        return "free"
+    if t1 == t2 == "trinomial":
+        return "trinomial"
+    return "torsion"
+
+
+def elimination_locus(cand, f):
+    """The exact affine elimination base locus of (cand, f) with every coordinate classified
+    (compute.omega3_minors.classify_coordinate: degenerate / +-i (the toric boundary) /
+    torsion n=k / half-Pythagorean / algebraic).  Returns {'status', 'th_factors',
+    'tg_factors', 'lines'}; status 'empty', 'points', 'lines + points', 'lines',
+    'positive-dimensional' (a non-line component)."""
+    from compute.omega3_minors import classify_coordinate, _T
+    R1, R2, common = reduced_relations(cand)
+    cf, sf = FR[f]
+    g, h = [i for i in range(3) if i != f]
+    (cg, sg), (ch, sh) = FR[g], FR[h]
+    if R1 == 0 or R2 == 0:
+        return {"status": "a relation vanishes identically"}
+    coeffs = []
+    for R in (R1, R2):
+        P = sp.Poly(R, sf)
+        for c in P.all_coeffs():
+            c = sp.expand(c.subs({cf: 1, sg: tg * cg, sh: th * ch}, simultaneous=True))
+            if c == 0:
+                continue
+            c = sp.expand(sp.Mul(*[q ** m for q, m in sp.factor_list(c)[1] if q.free_symbols & {tg, th}]))
+            if not (c.free_symbols & {tg, th}):
+                return {"status": "empty", "th_factors": [], "tg_factors": [], "lines": []}
+            coeffs.append(c)
+    if not coeffs:
+        return {"status": "all coefficients vanish identically"}
+    out = {"lines": [], "th_factors": [], "tg_factors": []}
+    Gh = sp.groebner(coeffs, tg, th, order="lex")
+    if list(Gh.exprs) == [1]:
+        out["status"] = "empty"
+        return out
+    uh = [e for e in Gh.exprs if not (e.free_symbols - {th})]
+    ug = [e for e in sp.groebner(coeffs, th, tg, order="lex").exprs if not (e.free_symbols - {tg})]
+    if not uh or not ug:
+        # a component that is not a point: a line parallel to an axis, or a curve
+        for var, u, name in ((th, uh, "th"), (tg, ug, "tg")):
+            if u:
+                for q, m in sp.factor_list(u[-1])[1]:
+                    if q.free_symbols:
+                        out["lines"].append((name, str(q), classify_coordinate(sp.expand(q.subs(var, _T)))))
+        out["status"] = "lines" if out["lines"] else "positive-dimensional"
+        return out
+    out["status"] = "points"
+    for q, m in sp.factor_list(uh[-1])[1]:
+        if q.free_symbols:
+            out["th_factors"].append((str(q), classify_coordinate(sp.expand(q.subs(th, _T)))))
+    for q, m in sp.factor_list(ug[-1])[1]:
+        if q.free_symbols:
+            out["tg_factors"].append((str(q), classify_coordinate(sp.expand(q.subs(tg, _T)))))
+    return out

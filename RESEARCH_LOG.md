@@ -5442,3 +5442,74 @@ and its census is the next data point (O3, after O1).
 a3.omega3_baselocus (the census, live recomputation of a bounded number
 of base loci including a curve and a line case, the field-free check on
 a certified component). Doc 2.40; ROADMAP M14-M; memory. Suite 193.
+
+## 2026-09-06 — Entry 111: the elimination base-locus theorem — the base-locus half of every finiteness statement is structural; the minor-map census extended to the whole box
+
+O3 BY HAND, WHILE O1's TWO PASSES RUN UNDERNEATH.
+
+THE QUESTION. A finiteness statement (entry 104 for pqr) needs two
+facts per class: Faltings-finiteness of every component of the
+quadruple curve of the deciding frame, and that the ELIMINATION BASE
+LOCUS -- the pairs (t_g, t_h) at which every coefficient of both
+relations, as polynomials in the eliminated frame, vanishes, so that
+the relations hold for every third frame -- contains no admissible
+pair. The second was a census (entry 104: 122 rational base points,
+all degenerate). It is a theorem.
+
+THE THEOREM (doc 2.41; compute/omega3_finiteness.py: elimination_type,
+elimination_locus; a3.omega3_elimination). In the torus coordinates
+W_e = M_e w_f^{l_e} (M_e a monomial in the other two frames), the
+coefficient of w_f^j of a relation is sum_{l_e = j} eps_e M_e -
+sum_{l_e = -j} eps_e M_e^{-1}: #{l_e = j} + #{l_e = -j} signed
+monomials (2 #{l_e = 0} for j = 0). LEMMA A: a monomial never vanishes
+on the torus; a binomial vanishes exactly on a torsion coset w_g^a
+w_h^b = +-1, proper because two distinct labels never agree outside f.
+LEMMA B: w_p = +-(pi_p / conj pi_p)^2 for the frame of a split prime,
+and if w_g^a w_h^b is a root of unity with (a, b) != 0 and p_g != p_h,
+unique factorization in Z[i] (pi_g, conj pi_g, pi_h, conj pi_h
+pairwise non-associate) forces a = b = 0; likewise no frame ratio is a
+torsion point (the rational torsion points are the degenerate values).
+THEOREM: the elimination base locus is EMPTY if some relation has a
+monomial coefficient (some |l_e| = j > 0 carried by exactly one
+element); on TORSION COSETS if every coefficient is a binomial (two
+elements at |l_e| = j and one at 0), or if one relation is of that
+type and the other trinomial-type; and only when THE ELIMINATED FRAME
+HAS THE SAME ABSOLUTE EXPONENT IN ALL FOUR LABELS is it the
+intersection of two trinomial curves. Hence the base-locus condition
+of every finiteness statement is automatic except in that last case,
+where it is a finite exact computation.
+
+THE TEST ON THE (1,1,1) BOX (the 1568 classes finite at entry 104):
+prediction from the labels {'empty': 834, 'torsion': 516, 'trinomial': 218}; exact affine loci with
+every coordinate classified, in agreement with the prediction in
+every class (empty -> empty: 502; torsion -> empty: 372; empty -> points: 332; trinomial -> empty: 150; torsion -> points: 144; trinomial -> points: 68): the empty-type loci are empty
+or on the toric boundary (t = +-i), the torsion-type loci carry only
+degenerate values, boundary points and torsion of order 3 and 6, and
+the trinomial-type loci (150 empty, 68 with points) only boundary and
+degenerate points -- which is why entry 104's 122 rational base points
+were all degenerate. Lemma B is checked exactly (Gaussian rationals)
+for the split primes below 120 and |a|, |b| <= 4.
+
+THE MINOR-MAP CENSUS, EXTENDED. Entry 110's census covered the 1264
+classes with a resolution block; the 304 finite classes with a single
+low-bidegree component are now included (data block
+base_locus_minor_map.extension_low_bidegree): status {'curves + lines': 154, 'points': 88, 'curves': 46, 'lines + points': 16}; curves {'curve': 212, 'perpendicular frames (same prime)': 16, 'equal frames (same prime)': 16} (the 200 self-base classes are exactly the trinomial-type ones there, $18+200=218$); lines {'tg = +-i': 104, 'th = +-i': 48, 'th = degenerate rational 0': 20, 'tg = degenerate rational 0': 6, 'th = degenerate rational 1': 6, 'th = degenerate rational -1': 6}; coordinate kinds {'degenerate rational 0': 208, '+-i': 180, 'degenerate rational 1': 104, 'degenerate rational -1': 104, 'algebraic deg 6': 64, 'algebraic deg 4': 44}; no coordinate is a frame ratio. The 218 trinomial-type classes
+are exactly the self-base classes of the whole box (18 + 200): for
+them the quadruple curve is its own base locus, the minors give no
+third frame, and the finiteness statement is exactly the class's
+Faltings certificate.
+
+WHAT THIS CHANGES. A finiteness statement for any exponent shape now
+rests on Faltings-finiteness of the components plus a trinomial
+computation for the classes with one absolute exponent of the
+eliminated frame in all four labels; the (2,1,1) statement (entry 112)
+will be read in this light. A pitfall fixed on the way: the
+entry-104 solver skipped a full line t_h = c silently (a one-sided
+elimination); lines are now reported (compute/omega3_finiteness.
+base_locus), and none occurred on the box (the census above finds the
+elimination lines only at the boundary or at degenerate values).
+
+a3.omega3_elimination (the data, the label criterion, Lemma B exactly,
+live loci). Doc 2.41; ROADMAP M14-N and an R.10 status note; memory.
+Suite 194. The rigorous pass (O1(a)) and the elimination base-locus
+pass (O1(b)) over the (2,1,1) box continue underneath; entry 112.

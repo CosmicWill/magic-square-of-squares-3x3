@@ -4510,6 +4510,90 @@ def _(ctx):
     ctx.note("base locus of the minor map: " + str(len(picks)) + " classes recomputed live; census " + str(BL["status_counts"]) + "; outside the 18 self-base classes no base point is an admissible frame pair")
 
 
+@check("a3.omega3_elimination", DOC)
+def _(ctx):
+    """THE ELIMINATION BASE-LOCUS THEOREM (entry 111, doc 2.41).  The finiteness
+    statements need, besides Faltings-finiteness of the components, that the
+    elimination base locus (every coefficient of both relations zero in the
+    eliminated frame) contains no admissible pair.  Theorem: a coefficient of
+    w_f^j has #{l_e = j} + #{l_e = -j} signed monomial terms; a monomial never
+    vanishes on the torus, a binomial vanishes on a torsion coset, and by
+    unique factorization in Z[i] no pair of frame ratios of distinct split
+    primes lies on a proper torsion coset (no frame ratio is a torsion point).
+    So the locus is empty (empty-type: a monomial coefficient), on torsion
+    cosets (torsion-type: binomial coefficients), or -- only when the
+    eliminated frame has the same absolute exponent in all four labels -- the
+    intersection of two trinomial curves.  On the (1,1,1) box the prediction
+    from the labels agrees with the exact locus in all 1568 classes finite at
+    entry 104 ({'empty': 834, 'torsion': 516, 'trinomial': 218}), the trinomial-type classes (218) are exactly the
+    self-base classes of the minor-map census (18 with a resolution block +
+    200 low-bidegree), and every base point is on the toric boundary,
+    degenerate, or torsion of order 3 or 6.  Verifies the data, the label
+    criterion, Lemma B exactly for small primes and exponents, and a live
+    sample of exact loci against the prediction."""
+    import json
+    from fractions import Fraction
+    from compute.omega3_finiteness import elimination_type, elimination_locus
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    ET = data["elimination_theorem"]; EXT = data["base_locus_minor_map"]["extension_low_bidegree"]
+    require(ET["prediction_counts"] == {'empty': 834, 'torsion': 516, 'trinomial': 218} and ET["n_violations"] == 0 and len(ET["classes"]) == 1568, ET["prediction_counts"])
+    require(ET["agreement_predicted_vs_exact_status"] == {'empty -> empty': 502, 'torsion -> empty': 372, 'empty -> points': 332, 'trinomial -> empty': 150, 'torsion -> points': 144, 'trinomial -> points': 68}, ET["agreement_predicted_vs_exact_status"])
+    require(ET["coordinate_kinds_by_prediction"] == {'empty: +-i': 664, 'torsion: degenerate rational 0': 178, 'torsion: +-i': 96, 'torsion: degenerate rational 1': 30, 'torsion: degenerate rational -1': 30, 'torsion: torsion n=6': 8, 'torsion: torsion n=3': 8, 'trinomial: +-i': 124, 'trinomial: degenerate rational 0': 12}, ET["coordinate_kinds_by_prediction"])
+    require(EXT["n"] == 304 and EXT["n_self_base"] == 200 and EXT["n_frame_ratio_coordinates"] == 0 and EXT["status_counts"] == {'curves + lines': 154, 'points': 88, 'curves': 46, 'lines + points': 16} and EXT["curve_kinds"] == {'curve': 212, 'perpendicular frames (same prime)': 16, 'equal frames (same prime)': 16}, (EXT["status_counts"], EXT["curve_kinds"]))
+    # the label criterion: trinomial-type <=> the eliminated frame has one absolute exponent in all four labels (nonzero)
+    recs = {json.dumps(e["cand"]): e for e in data["classes"]}
+    for r in ET["classes"]:
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
+        require(elimination_type(cand, r["frame"]) == r["predicted"], (cand, r["predicted"]))
+        absl = {abs(lab[r["frame"]]) for lab in r["cand"][:4]}
+        require((r["predicted"] == "trinomial") == (len(absl) == 1 and 0 not in absl), (cand, absl))
+        coords = [k for key in ("th_factors", "tg_factors") for q, k in r.get(key, [])] + [k for n, q, k in r.get("lines", [])]
+        if r["predicted"] == "empty":
+            require(r["status"] == "empty" or all(k == "+-i" for k in coords), cand)
+        elif r["predicted"] == "torsion":
+            require(all(k.startswith(("degenerate rational", "+-i", "torsion n=")) for k in coords), cand)
+        require(not any(k.startswith("FRAME") for k in coords), cand)
+    tri = {json.dumps(r["cand"]) for r in ET["classes"] if r["predicted"] == "trinomial"}
+    self_base = {json.dumps(r["cand"]) for blk in (data["base_locus_minor_map"]["classes"], EXT["classes"]) for r in blk if any(k == "curve" for q, k in r.get("curves", []))}
+    require(len(tri) == 218 and tri == self_base, (len(tri), len(self_base)))
+    # Lemma B, exactly: g_p = pi_p / conj(pi_p) = (x + i y)^2 / p; w_p = +-g_p^2; g_p^{2a} g_q^{2b} is never a unit for (a, b) != 0
+    def gauss(p):
+        for x in range(1, int(p ** 0.5) + 1):
+            y2 = p - x * x; y = int(round(y2 ** 0.5))
+            if y > 0 and y * y == y2:
+                return (Fraction(x * x - y * y, p), Fraction(2 * x * y, p))   # g_p = (x + i y)^2 / p
+    def mul(u, v):
+        return (u[0] * v[0] - u[1] * v[1], u[0] * v[1] + u[1] * v[0])
+    def power(g, n):
+        r = (Fraction(1), Fraction(0)); base = g if n >= 0 else (g[0], -g[1])   # g^{-1} = conj(g) on the circle
+        for _ in range(abs(n)):
+            r = mul(r, base)
+        return r
+    units = {(Fraction(1), Fraction(0)), (Fraction(-1), Fraction(0)), (Fraction(0), Fraction(1)), (Fraction(0), Fraction(-1))}
+    primes = [p for p in range(5, ctx.bound(full=120, fast=45)) if all(p % q for q in range(2, int(p ** 0.5) + 1)) and p % 4 == 1]
+    G = {p: gauss(p) for p in primes}
+    E = ctx.bound(full=4, fast=2)
+    for p in primes:
+        require(all(power(G[p], 2 * k) not in units for k in range(1, 13)), ("torsion frame", p))
+    for i, p in enumerate(primes):
+        for q in primes[i + 1:]:
+            for a in range(-E, E + 1):
+                for b in range(-E, E + 1):
+                    if (a, b) != (0, 0):
+                        require(mul(power(G[p], 2 * a), power(G[q], 2 * b)) not in units, ("coset", p, q, a, b))
+    # live: exact loci against the prediction on a sample
+    n = ctx.bound(full=30, fast=4)
+    picks = [ET["classes"][i] for i in range(0, len(ET["classes"]), max(1, len(ET["classes"]) // n))][:n]
+    for r in picks:
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
+        live = elimination_locus(cand, r["frame"])
+        require(live["status"] == r["status"], (cand, live["status"], r["status"]))
+        for key in ("th_factors", "tg_factors", "lines"):
+            require(sorted(map(tuple, live.get(key, []))) == sorted(map(tuple, r.get(key, []))), (cand, key))
+    ctx.note("elimination base locus: prediction " + str(ET["prediction_counts"]) + " agrees with the exact loci in all 1568 classes; " + str(len(picks)) + " recomputed live; Lemma B exact for " + str(len(primes)) + " split primes, |a|,|b| <= " + str(E))
+
+
 @check("a3.omega3_quotients", DOC)
 def _(ctx):
     """QUOTIENT KILLS (entry 105, attempt B step 1).  Every certified component
