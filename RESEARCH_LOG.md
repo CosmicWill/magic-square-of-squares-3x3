@@ -5513,3 +5513,50 @@ a3.omega3_elimination (the data, the label criterion, Lemma B exactly,
 live loci). Doc 2.41; ROADMAP M14-N and an R.10 status note; memory.
 Suite 194. The rigorous pass (O1(a)) and the elimination base-locus
 pass (O1(b)) over the (2,1,1) box continue underneath; entry 112.
+
+## 2026-09-06 — Entry 112: the killers are fifteen curves, eleven of them Legendre — a correction to "ten", the Legendre form of every quotient-route model, and what is not explained
+
+O3, "WHY TEN KILLERS", WHILE O1's PASSES RUN.
+
+THE CORRECTION. Entries 100 and 107 listed ten killing curves up to
+isomorphism (32a2, 48a1, 48a3, 56a2, 80a1, 24a1, 15a3, 528j2, 240d2,
+240d4): assembled from the tower kills and the sweep's models, never
+re-checked against the other routes. Identifying in PARI (ellfromeqn,
+ellidentify, analytic rank) EVERY rank-0 model on record:
+(A) the coordinate/joint quotient models -- entry 105's and the (2,1,1)
+sweep's rank0_models, 31 quartics y^2 = q(x) -- are ELEVEN curves: the
+ten and 120b2 (y^2 = x^4 + x^2 + 4, y^2 = 4x^4 + x^2 + 1), through which
+entry 105 killed 16 components;
+(B) the two-step route of entry 106 (W = E/tau: cubic and quartic
+models) killed through FOUR MORE: 30a1 (16 kills) and 240b1 (16),
+neither with full rational 2-torsion, 30a2 and 240b2 (twists of each
+other, lambda = 32/5), 2 each. (A first computation took the constant
+term of non-monic factors as a root, so 15a3 came out with lambda = 3;
+fixed: 15a3 has lambda = 16, like its twist 240d2.)
+Fifteen curves across all routes. The sweep check's ten-label set stays
+valid (it pins the sweep engine's own models); the record now carries
+all fifteen (data block quotients.killers; a3.omega3_killers).
+
+THE LEGENDRE FORM (route A). All eleven have full rational 2-torsion
+(torsion 4 or 8), so each is y^2 = x(x-1)(x-lambda). By the largest
+element of the S_3-orbit, one value per curve: 120b2: 8/3; 15a3: 16; 240d2: 16; 240d4: 25/9; 24a1: 4; 32a2: 2; 48a1: 4; 48a3: 9; 528j2: 33; 56a2: 8; 80a1: 5. So lambda in {2, 8/3, 25/9, 4, 5, 8, 9, 16, 33}. Every even model y^2 = a x^4 + b x^2 + c has ac a
+square and lambda = (b - 2 sqrt(ac)) / (b + 2 sqrt(ac)) (checked for all
+27 even models; the four non-even ones are the (x,z)-route models,
+twists of 48a1/48a3). Kills by curve across both boxes and all routes:
+{'48a1': 5596, '80a1': 1346, '56a2': 332, '32a2': 166, '240d2': 88, '120b2': 16, '528j2': 60, '48a3': 2232, '15a3': 96, '240d4': 32, '24a1': 168, '240b1': 16, '30a1': 16, '30a2': 3, '240b2': 1}.
+
+WHAT IS AND IS NOT EXPLAINED. The SHAPE of a quotient-route killer is
+explained: a coordinate quotient of a quadruple curve is an even
+quartic with ac a square, hence a Legendre curve with that lambda.
+Every integer lambda is a power of two or one more than a power of
+two ({2, 4, 5, 8, 9, 16, 33}); 8/3 (120b2) and 25/9 (240d4) do not fit. The branch points of the route-A models in the
+torus coordinate w = (1+it)/(1-it) (roots of q): torsion for some
+(48a1's model x^4 - 14x^2 + 1: order 12; 32a2's x^4 -+ 6x^2 + 1: order
+8; 24a1's: orders 3 and 6), hyperbolic (real w) for others, on the
+circle but not torsion (80a1's x^4 - 3x^2 + 1: the golden ratio), or
+generic -- no uniform pattern (summary: {'torsion n=12': 4, 'circle non-torsion': 12, 'generic': 58, 'torsion n=8': 4, 'hyperbolic w': 42, 'torsion n=3': 2, 'torsion n=6': 2}). RANK ZERO IS VERIFIED (2-descent in the kills;
+analytic rank here), NOT EXPLAINED. Recorded as such.
+
+a3.omega3_killers (the tables against both data files, the lambda
+formula, live re-identification in PARI). Doc 2.42; ROADMAP M14-O;
+memory (killers = fifteen). Suite 195. The (2,1,1) fold is entry 113.

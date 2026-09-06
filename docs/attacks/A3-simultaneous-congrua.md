@@ -2760,6 +2760,60 @@ trinomial-type classes' base points are on the toric boundary ($t=\pm i$, 124 co
 with a resolution block; the $304$ finite classes with a single low-bidegree
 component are now included: status {'curves + lines': 154, 'points': 88, 'curves': 46, 'lines + points': 16}; curves {'curve': 212, 'perpendicular frames (same prime)': 16, 'equal frames (same prime)': 16} (the 200 self-base classes are exactly the trinomial-type ones there, $18+200=218$); lines {'tg = +-i': 104, 'th = +-i': 48, 'th = degenerate rational 0': 20, 'tg = degenerate rational 0': 6, 'th = degenerate rational 1': 6, 'th = degenerate rational -1': 6}; coordinate kinds {'degenerate rational 0': 208, '+-i': 180, 'degenerate rational 1': 104, 'degenerate rational -1': 104, 'algebraic deg 6': 64, 'algebraic deg 4': 44}; no coordinate is a frame ratio.
 
+## 2.42 The killers are fifteen curves, eleven of them Legendre (attempt C; R.10 objective O3, "why ten killers")
+
+*(2026-09-06; entry 112; check `a3.omega3_killers`.)*
+
+**A correction.**  Entries 100 and 107 listed ten killing curves up to
+isomorphism.  Identifying every rank-0 model on record gives more.  *(A) The
+coordinate and joint quotients* — the models of 2.37 (entry 105) and of the
+$(2,1,1)$ sweep, $31$ quartics $y^2=q(x)$ — are **eleven** curves: the ten and
+`120b2` ($y^2=x^4+x^2+4$, $y^2=4x^4+x^2+1$), which entry 105 used for $16$
+kills.  *(B) The two-step route* of entry 106 ($W=E/\tau$, cubic and quartic
+models) killed through **four more**: `30a1`, `240b1`, `30a2`, `240b2`.  Fifteen
+curves across all routes.
+
+**Legendre form of the quotient-route killers.**  All eleven have full rational
+$2$-torsion (torsion subgroup of order $4$ or $8$), so each is
+$y^2=x(x-1)(x-\lambda)$; writing the $S_3$-orbit of $\lambda$ by its largest
+element, one value per curve:
+
+| curve | $\lambda$ | kills (both boxes) | models $y^2=q(x)$, coefficients of $q$ |
+|---|---|---|---|
+| `120b2` | $8/3$ | 16 | (1, 0, 1, 0, 4); (4, 0, 1, 0, 1) |
+| `15a3` | $16$ | 96 | (15, 0, -34, 0, 15) |
+| `240d2` | $16$ | 88 | (1, 0, -62, 0, 1); (25, 0, 34, 0, 9); (4, 0, 7, 0, 4); (9, 0, 34, 0, 25) |
+| `240d4` | $25/9$ | 32 | (25, 0, -14, 0, 25); (9, 0, 82, 0, 9) |
+| `24a1` | $4$ | 168 | (3, 0, -10, 0, 3) |
+| `32a2` | $2$ | 166 | (1, 0, -6, 0, 1); (1, 0, 6, 0, 1) |
+| `48a1` | $4$ | 5596 | (1, 0, -14, 0, 1); (1, 0, 1, 0, 1); (1, 0, 10, 0, 9); (3, 0, 10, 0, 3); (5, -8, 10, -8, 5); (5, 8, 10, 8, 5); (9, 0, 10, 0, 1) |
+| `48a3` | $9$ | 2232 | (1, 0, 34, 0, 1); (5, -16, 10, 16, 5); (5, 16, 10, -16, 5); (9, 0, -14, 0, 9) |
+| `528j2` | $33$ | 60 | (1, 0, 130, 0, 1) |
+| `56a2` | $8$ | 332 | (1, 0, -3, 0, 4); (1, 0, 30, 0, 1); (4, 0, -3, 0, 1) |
+| `80a1` | $5$ | 1346 | (1, 0, -3, 0, 1); (1, 0, -6, 0, 25); (1, 0, 18, 0, 1); (25, 0, -6, 0, 1) |
+
+so $\lambda\in\{2, 8/3, 25/9, 4, 5, 8, 9, 16, 33\}$.  For every even model $y^2=ax^4+bx^2+c$ the
+product $ac$ is a square and
+$$\lambda=\frac{b-2\sqrt{ac}}{b+2\sqrt{ac}}$$
+(in the orbit; the four non-even models, twists of `48a1`/`48a3`, are the
+$(x,z)$-route models).  The two-step curves:
+
+| curve | form | kills |
+|---|---|---|
+| `240b1` | no full rational 2-torsion | 16 |
+| `240b2` | Legendre, lambda = 32/5 | 1 |
+| `30a1` | no full rational 2-torsion | 16 |
+| `30a2` | Legendre, lambda = 32/5 | 3 |
+
+**What is and is not explained.**  The *shape* of a quotient-route killer is
+explained: a coordinate quotient of a quadruple curve is $y^2=ax^4+bx^2+c$ with
+$ac$ a square, hence a Legendre curve with the $\lambda$ above; every integer value is a power of two or one more than a power of two ($\lambda\in\{2, 4, 5, 8, 9, 16, 33\}$), while $8/3$ and $25/9$ do not fit, and the branch
+points of the models in the torus coordinate are torsion for some (`48a1`:
+order $12$; `32a2`: order $8$; `24a1`: orders $3,6$), hyperbolic (real $w$) for
+others, on the circle but not torsion, or generic — no uniform pattern.  *Rank
+zero* is verified (2-descent in the kills, analytic rank here), not explained;
+why these $\lambda$ recur across both boxes stays open.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

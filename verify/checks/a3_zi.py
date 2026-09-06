@@ -4594,6 +4594,77 @@ def _(ctx):
     ctx.note("elimination base locus: prediction " + str(ET["prediction_counts"]) + " agrees with the exact loci in all 1568 classes; " + str(len(picks)) + " recomputed live; Lemma B exact for " + str(len(primes)) + " split primes, |a|,|b| <= " + str(E))
 
 
+@check("a3.omega3_killers", DOC)
+def _(ctx):
+    """THE KILLERS ARE FIFTEEN CURVES, ELEVEN OF THEM LEGENDRE (entry 112, doc
+    2.42).  (A) Every rank-0 coordinate/joint quotient model on record (entry
+    105's models and the (2,1,1) sweep's rank0_models: 31 quartics y^2 = q(x))
+    identifies in PARI as one of ELEVEN curves up to isomorphism -- the ten of
+    entries 100/107 plus 120b2, which entry 105 used for 16 kills and the list
+    omitted.  All eleven have full rational 2-torsion, so each is
+    y^2 = x(x-1)(x-lambda); the largest element of the S_3-orbit of lambda is
+    ['2', '8/3', '25/9', '4', '5', '8', '9', '16', '33'], one value per curve.  For every even model y^2 = a x^4 + b x^2 + c,
+    ac is a square and lambda = (b - 2 sqrt(ac)) / (b + 2 sqrt(ac)) lies in the
+    orbit.  (B) The two-step route of entry 106 killed through FOUR MORE
+    curves: 30a1, 240b1 (no full 2-torsion), 30a2 and 240b2 (twists, lambda
+    32/5).  Rank 0 is verified, not explained.  Verifies the tables against
+    both data files, the lambda formula (sympy), and re-identifies a bounded
+    subset in PARI (label, analytic rank, Legendre orbit)."""
+    import gzip, json, re, subprocess
+    from fractions import Fraction
+    import sympy as sp
+    from compute.pari_genus1 import gp_available, GP as GP_PATH
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        data2 = json.load(fh)
+    K = data["quotients"]["killers"]; T = K["models"]; T2 = K["two_step_models"]
+    require(K["n_labels_quotient_route"] == 11 and K["labels_quotient_route"] == ['120b2', '15a3', '240d2', '240d4', '24a1', '32a2', '48a1', '48a3', '528j2', '56a2', '80a1'] and K["lambda_representatives"] == ['2', '8/3', '25/9', '4', '5', '8', '9', '16', '33'], (K["labels_quotient_route"], K["lambda_representatives"]))
+    require(K["n_labels_two_step"] == 4 and K["labels_two_step"] == ['240b1', '240b2', '30a1', '30a2'] and K["n_labels_all"] == 15 and K["labels_all"] == sorted(set(K["labels_quotient_route"]) | set(K["labels_two_step"])))
+    require(K["lambda_by_label"] == {'120b2': '8/3', '15a3': '16', '240d2': '16', '240d4': '25/9', '24a1': '4', '32a2': '2', '48a1': '4', '48a3': '9', '528j2': '33', '56a2': '8', '80a1': '5'} and K["two_step_curves"] == {'240b1': 'no full rational 2-torsion', '30a1': 'no full rational 2-torsion', '30a2': 'Legendre, lambda = 32/5', '240b2': 'Legendre, lambda = 32/5'}, (K["lambda_by_label"], K["two_step_curves"]))
+    require(all(r["rank"] == 0 for r in T.values()) and len(T) == 31 and all(c["rank"] == 0 for r in T2.values() for c in r["curves"]), len(T))
+    km1 = data["quotients"]["killing_models"]; km2 = data["quotients"]["two_step"]["killing_models"]; km3 = data2["rank0_models"]
+    require(set(km1) <= set(T) and set(km3) <= set(T) and set(km2) == set(T2), "every recorded model in the tables")
+    require(all(T[k]["kills_111_entry105"] == v for k, v in km1.items()) and all(T[k]["kills_211"] == v for k, v in km3.items()) and all(T2[k]["kills_111_two_step"] == v for k, v in km2.items()), "kill counts")
+    ten = ['15a3', '240d2', '240d4', '24a1', '32a2', '48a1', '48a3', '528j2', '56a2', '80a1']
+    require(sum(r["kills_111_entry105"] for r in T.values() if r["label"] == "120b2") == 16 and set(K["labels_quotient_route"]) == set(ten) | {"120b2"}, "the correction")
+    for key, r in T.items():
+        a, b, c, dd, e = [int(x) for x in key.strip("()").split(",")]
+        require(str(max(Fraction(x) for x in r["legendre_orbit"])) == r["lambda"] and r["lambda"] == K["lambda_by_label"][r["label"]], key)
+        if b == 0 and dd == 0:
+            s_ = sp.sqrt(sp.Integer(a * e))
+            require(s_.is_Integer, (key, "ac a square"))
+            lam = Fraction(int(c - 2 * s_), int(c + 2 * s_))
+            require(str(lam) in r["legendre_orbit"] and r["lambda_formula"] == str(lam), (key, lam))
+    if gp_available():
+        n = ctx.bound(full=37, fast=3)
+        polys = [[int(x) for x in k.strip("()").split(",")] for k in T] + [p for r in T2.values() for p in r["polynomials"]]
+        expect = {tuple(int(x) for x in k.strip("()").split(",")): (r["label"], sorted(r["legendre_orbit"])) for k, r in T.items()}
+        for r in T2.values():
+            for p_, c_ in zip(r["polynomials"], r["curves"]):
+                expect[tuple(p_)] = (c_["label"], sorted(c_["legendre_orbit"]) if c_["legendre_orbit"] else None)
+        polys = polys[:n]
+        script = ("orbit(e) = my(l = []); for(a = 1, 3, for(b = 1, 3, for(c = 1, 3, if(a != b && b != c && a != c, l = concat(l, [(e[c] - e[a]) / (e[b] - e[a])]))))); vecsort(l, , 8);\n"
+                  "lam(E) = my(P = x^3 + E.b2/4*x^2 + E.b4/2*x + E.b6/4, F = factor(P)); if(#F~ < 3, return(0)); orbit(vector(3, k, -polcoeff(F[k,1], 0) / polcoeff(F[k,1], 1)));\n"
+                  "doit(c) = my(q = Pol(c, x), E, id); E = ellinit(ellfromeqn(y^2 - q)); id = ellidentify(E); print(\"RES \", c, \" \", id[1][1], \" \", ellanalyticrank(ellinit(id[1][1]))[1], \" \", lam(ellinit(id[1][1])));\n")
+        for c in polys:
+            script += "doit(" + str(c) + ");\n"
+        out = subprocess.run([GP_PATH, "-q"], input=script + "quit\n", capture_output=True, text=True, timeout=900).stdout
+        seen = 0
+        for line in out.splitlines():
+            m = re.match(r"RES \[([-\d, ]+)\] (\S+) (\d+) (0|\[[^\]]+\])", line.strip())
+            if m:
+                c = tuple(int(x.strip()) for x in m.group(1).split(","))
+                orbit = None if m.group(4) == "0" else sorted(str(Fraction(x.strip())) for x in m.group(4).strip("[]").split(","))
+                require(expect[c] == (m.group(2), orbit) and int(m.group(3)) == 0, (c, m.group(2), orbit, expect.get(c)))
+                seen += 1
+        require(seen == len(polys), (seen, len(polys), out[-300:]))
+        ctx.note("PARI: " + str(seen) + " models re-identified live (label, analytic rank 0, Legendre orbit)")
+    else:
+        ctx.note("PARI/GP not found: the live re-identification not run")
+    ctx.note("killers: fifteen curves across all routes -- eleven Legendre (" + ", ".join(K["labels_quotient_route"]) + "; lambda " + ", ".join(K["lambda_representatives"]) + ") and four two-step (" + ", ".join(K["labels_two_step"]) + "); kills by curve " + str(K["kills_by_label"]))
+
+
 @check("a3.omega3_quotients", DOC)
 def _(ctx):
     """QUOTIENT KILLS (entry 105, attempt B step 1).  Every certified component

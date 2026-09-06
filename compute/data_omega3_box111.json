@@ -1,5 +1,5 @@
 {
- "entry": 111,
+ "entry": 112,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
@@ -517867,6 +517867,859 @@
      "routes": []
     }
    ]
+  },
+  "killers": {
+   "note": "entry 112: every rank-0 model on record identified in PARI (ellfromeqn, ellidentify, analytic rank): (A) the coordinate/joint quotient models -- entry 105's and the (2,1,1) sweep's rank0_models, 31 quartics y^2 = q(x) -- are ELEVEN curves up to isomorphism, not the ten of entries 100/107: 120b2 (models (1, 0, 1, 0, 4), (4, 0, 1, 0, 1); 16 kills in entry 105) was missing. All eleven have full rational 2-torsion, so each is a Legendre curve y^2 = x(x-1)(x-lambda); the S_3-orbit and its largest element are recorded, one value per curve. Every even model y^2 = a x^4 + b x^2 + c has ac a square and lambda = (b - 2 sqrt(ac))/(b + 2 sqrt(ac)) (checked). (B) the two-step route of entry 106 (W = E/tau models, cubics and quartics) killed through FOUR MORE curves: 30a1 and 240b1 (no full rational 2-torsion), 30a2 and 240b2 (twists of each other, lambda = 32/5). A first computation took the constant term of non-monic factors as a root (15a3 came out with lambda = 3); fixed: roots = -F[k,1](0) / lc, and 15a3 has lambda = 16 like its twist 240d2. Fifteen curves across all routes. The branch points of the (A) models in the torus coordinate w = (1 + i t)/(1 - i t): torsion, hyperbolic (real w), on the circle but not torsion, or generic -- no uniform pattern. Rank 0 is verified, not explained.",
+   "n_labels_quotient_route": 11,
+   "labels_quotient_route": [
+    "120b2",
+    "15a3",
+    "240d2",
+    "240d4",
+    "24a1",
+    "32a2",
+    "48a1",
+    "48a3",
+    "528j2",
+    "56a2",
+    "80a1"
+   ],
+   "n_labels_two_step": 4,
+   "labels_two_step": [
+    "240b1",
+    "240b2",
+    "30a1",
+    "30a2"
+   ],
+   "n_labels_all": 15,
+   "labels_all": [
+    "120b2",
+    "15a3",
+    "240b1",
+    "240b2",
+    "240d2",
+    "240d4",
+    "24a1",
+    "30a1",
+    "30a2",
+    "32a2",
+    "48a1",
+    "48a3",
+    "528j2",
+    "56a2",
+    "80a1"
+   ],
+   "lambda_by_label": {
+    "120b2": "8/3",
+    "15a3": "16",
+    "240d2": "16",
+    "240d4": "25/9",
+    "24a1": "4",
+    "32a2": "2",
+    "48a1": "4",
+    "48a3": "9",
+    "528j2": "33",
+    "56a2": "8",
+    "80a1": "5"
+   },
+   "lambda_representatives": [
+    "2",
+    "8/3",
+    "25/9",
+    "4",
+    "5",
+    "8",
+    "9",
+    "16",
+    "33"
+   ],
+   "two_step_curves": {
+    "240b1": "no full rational 2-torsion",
+    "30a1": "no full rational 2-torsion",
+    "30a2": "Legendre, lambda = 32/5",
+    "240b2": "Legendre, lambda = 32/5"
+   },
+   "kills_by_label": {
+    "48a1": 5596,
+    "80a1": 1346,
+    "56a2": 332,
+    "32a2": 166,
+    "240d2": 88,
+    "120b2": 16,
+    "528j2": 60,
+    "48a3": 2232,
+    "15a3": 96,
+    "240d4": 32,
+    "24a1": 168,
+    "240b1": 16,
+    "30a1": 16,
+    "30a2": 3,
+    "240b2": 1
+   },
+   "branch_kinds_summary": {
+    "torsion n=12": 4,
+    "circle non-torsion": 12,
+    "generic": 58,
+    "torsion n=8": 4,
+    "hyperbolic w": 42,
+    "torsion n=3": 2,
+    "torsion n=6": 2
+   },
+   "models": {
+    "(1, 0, -14, 0, 1)": {
+     "label": "48a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 2036,
+     "branch_kinds": {
+      "torsion n=12": 4
+     },
+     "lambda_formula": "4/3"
+    },
+    "(1, 0, -3, 0, 1)": {
+     "label": "80a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-4",
+      "-1/4",
+      "1/5",
+      "4/5",
+      "5/4",
+      "5"
+     ],
+     "lambda": "5",
+     "kills_111_entry105": 28,
+     "kills_211": 490,
+     "branch_kinds": {
+      "circle non-torsion": 4
+     },
+     "lambda_formula": "5"
+    },
+    "(1, 0, -3, 0, 4)": {
+     "label": "56a2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-7",
+      "-1/7",
+      "1/8",
+      "7/8",
+      "8/7",
+      "8"
+     ],
+     "lambda": "8",
+     "kills_111_entry105": 0,
+     "kills_211": 86,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-7"
+    },
+    "(1, 0, -6, 0, 1)": {
+     "label": "32a2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-1",
+      "1/2",
+      "2"
+     ],
+     "lambda": "2",
+     "kills_111_entry105": 4,
+     "kills_211": 72,
+     "branch_kinds": {
+      "torsion n=8": 4
+     },
+     "lambda_formula": "2"
+    },
+    "(1, 0, -6, 0, 25)": {
+     "label": "80a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-4",
+      "-1/4",
+      "1/5",
+      "4/5",
+      "5/4",
+      "5"
+     ],
+     "lambda": "5",
+     "kills_111_entry105": 4,
+     "kills_211": 136,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-4"
+    },
+    "(1, 0, -62, 0, 1)": {
+     "label": "240d2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-15",
+      "-1/15",
+      "1/16",
+      "15/16",
+      "16/15",
+      "16"
+     ],
+     "lambda": "16",
+     "kills_111_entry105": 0,
+     "kills_211": 16,
+     "branch_kinds": {
+      "circle non-torsion": 4
+     },
+     "lambda_formula": "16/15"
+    },
+    "(1, 0, 1, 0, 1)": {
+     "label": "48a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 1340,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-1/3"
+    },
+    "(1, 0, 1, 0, 4)": {
+     "label": "120b2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-5/3",
+      "-3/5",
+      "3/8",
+      "5/8",
+      "8/5",
+      "8/3"
+     ],
+     "lambda": "8/3",
+     "kills_111_entry105": 8,
+     "kills_211": 0,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-3/5"
+    },
+    "(1, 0, 10, 0, 9)": {
+     "label": "48a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 1054,
+     "branch_kinds": {
+      "hyperbolic w=0": 1,
+      "hyperbolic w=-2": 1,
+      "generic": 1,
+      "hyperbolic w=-1/2": 1
+     },
+     "lambda_formula": "1/4"
+    },
+    "(1, 0, 130, 0, 1)": {
+     "label": "528j2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-32",
+      "-1/32",
+      "1/33",
+      "32/33",
+      "33/32",
+      "33"
+     ],
+     "lambda": "33",
+     "kills_111_entry105": 0,
+     "kills_211": 60,
+     "branch_kinds": {
+      "hyperbolic w=sqrt(17/16 - sqrt(33)/16)": 1,
+      "hyperbolic w=-sqrt(17/16 - sqrt(33)/16)": 1,
+      "hyperbolic w=sqrt(sqrt(33)/16 + 17/16)": 1,
+      "hyperbolic w=-sqrt(sqrt(33)/16 + 17/16)": 1
+     },
+     "lambda_formula": "32/33"
+    },
+    "(1, 0, 18, 0, 1)": {
+     "label": "80a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-4",
+      "-1/4",
+      "1/5",
+      "4/5",
+      "5/4",
+      "5"
+     ],
+     "lambda": "5",
+     "kills_111_entry105": 8,
+     "kills_211": 540,
+     "branch_kinds": {
+      "hyperbolic w=-1/2 + sqrt(5)/2": 1,
+      "hyperbolic w=1/2 - sqrt(5)/2": 1,
+      "hyperbolic w=1/2 + sqrt(5)/2": 1,
+      "hyperbolic w=-sqrt(5)/2 - 1/2": 1
+     },
+     "lambda_formula": "4/5"
+    },
+    "(1, 0, 30, 0, 1)": {
+     "label": "56a2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-7",
+      "-1/7",
+      "1/8",
+      "7/8",
+      "8/7",
+      "8"
+     ],
+     "lambda": "8",
+     "kills_111_entry105": 8,
+     "kills_211": 152,
+     "branch_kinds": {
+      "hyperbolic w=sqrt(9/7 - 4*sqrt(2)/7)": 1,
+      "hyperbolic w=-sqrt(9/7 - 4*sqrt(2)/7)": 1,
+      "hyperbolic w=sqrt(4*sqrt(2)/7 + 9/7)": 1,
+      "hyperbolic w=-sqrt(4*sqrt(2)/7 + 9/7)": 1
+     },
+     "lambda_formula": "7/8"
+    },
+    "(1, 0, 34, 0, 1)": {
+     "label": "48a3",
+     "rank": 0,
+     "legendre_orbit": [
+      "-8",
+      "-1/8",
+      "1/9",
+      "8/9",
+      "9/8",
+      "9"
+     ],
+     "lambda": "9",
+     "kills_111_entry105": 0,
+     "kills_211": 1114,
+     "branch_kinds": {
+      "hyperbolic w=sqrt(2)/2": 1,
+      "hyperbolic w=-sqrt(2)/2": 1,
+      "hyperbolic w=sqrt(2)": 1,
+      "hyperbolic w=-sqrt(2)": 1
+     },
+     "lambda_formula": "8/9"
+    },
+    "(1, 0, 6, 0, 1)": {
+     "label": "32a2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-1",
+      "1/2",
+      "2"
+     ],
+     "lambda": "2",
+     "kills_111_entry105": 0,
+     "kills_211": 90,
+     "branch_kinds": {
+      "hyperbolic w=-1 + sqrt(2)": 1,
+      "hyperbolic w=1 - sqrt(2)": 1,
+      "hyperbolic w=1 + sqrt(2)": 1,
+      "hyperbolic w=-sqrt(2) - 1": 1
+     },
+     "lambda_formula": "1/2"
+    },
+    "(15, 0, -34, 0, 15)": {
+     "label": "15a3",
+     "rank": 0,
+     "legendre_orbit": [
+      "-15",
+      "-1/15",
+      "1/16",
+      "15/16",
+      "16/15",
+      "16"
+     ],
+     "lambda": "16",
+     "kills_111_entry105": 0,
+     "kills_211": 96,
+     "branch_kinds": {
+      "circle non-torsion": 4
+     },
+     "lambda_formula": "16"
+    },
+    "(25, 0, -14, 0, 25)": {
+     "label": "240d4",
+     "rank": 0,
+     "legendre_orbit": [
+      "-16/9",
+      "-9/16",
+      "9/25",
+      "16/25",
+      "25/16",
+      "25/9"
+     ],
+     "lambda": "25/9",
+     "kills_111_entry105": 0,
+     "kills_211": 16,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-16/9"
+    },
+    "(25, 0, -6, 0, 1)": {
+     "label": "80a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-4",
+      "-1/4",
+      "1/5",
+      "4/5",
+      "5/4",
+      "5"
+     ],
+     "lambda": "5",
+     "kills_111_entry105": 4,
+     "kills_211": 136,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-4"
+    },
+    "(25, 0, 34, 0, 9)": {
+     "label": "240d2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-15",
+      "-1/15",
+      "1/16",
+      "15/16",
+      "16/15",
+      "16"
+     ],
+     "lambda": "16",
+     "kills_111_entry105": 0,
+     "kills_211": 24,
+     "branch_kinds": {
+      "hyperbolic w=0": 1,
+      "generic": 1,
+      "hyperbolic w=4": 1,
+      "hyperbolic w=1/4": 1
+     },
+     "lambda_formula": "1/16"
+    },
+    "(3, 0, -10, 0, 3)": {
+     "label": "24a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 168,
+     "branch_kinds": {
+      "torsion n=3": 2,
+      "torsion n=6": 2
+     },
+     "lambda_formula": "4"
+    },
+    "(3, 0, 10, 0, 3)": {
+     "label": "48a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 56,
+     "branch_kinds": {
+      "hyperbolic w=-2 + sqrt(3)": 1,
+      "hyperbolic w=-2 - sqrt(3)": 1,
+      "hyperbolic w=sqrt(3) + 2": 1,
+      "hyperbolic w=2 - sqrt(3)": 1
+     },
+     "lambda_formula": "1/4"
+    },
+    "(4, 0, -3, 0, 1)": {
+     "label": "56a2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-7",
+      "-1/7",
+      "1/8",
+      "7/8",
+      "8/7",
+      "8"
+     ],
+     "lambda": "8",
+     "kills_111_entry105": 0,
+     "kills_211": 86,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-7"
+    },
+    "(4, 0, 1, 0, 1)": {
+     "label": "120b2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-5/3",
+      "-3/5",
+      "3/8",
+      "5/8",
+      "8/5",
+      "8/3"
+     ],
+     "lambda": "8/3",
+     "kills_111_entry105": 8,
+     "kills_211": 0,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-3/5"
+    },
+    "(4, 0, 7, 0, 4)": {
+     "label": "240d2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-15",
+      "-1/15",
+      "1/16",
+      "15/16",
+      "16/15",
+      "16"
+     ],
+     "lambda": "16",
+     "kills_111_entry105": 0,
+     "kills_211": 24,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-1/15"
+    },
+    "(5, -16, 10, 16, 5)": {
+     "label": "48a3",
+     "rank": 0,
+     "legendre_orbit": [
+      "-8",
+      "-1/8",
+      "1/9",
+      "8/9",
+      "9/8",
+      "9"
+     ],
+     "lambda": "9",
+     "kills_111_entry105": 0,
+     "kills_211": 14,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": null
+    },
+    "(5, -8, 10, -8, 5)": {
+     "label": "48a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 28,
+     "branch_kinds": {
+      "hyperbolic w=0": 1,
+      "generic": 3
+     },
+     "lambda_formula": null
+    },
+    "(5, 16, 10, -16, 5)": {
+     "label": "48a3",
+     "rank": 0,
+     "legendre_orbit": [
+      "-8",
+      "-1/8",
+      "1/9",
+      "8/9",
+      "9/8",
+      "9"
+     ],
+     "lambda": "9",
+     "kills_111_entry105": 0,
+     "kills_211": 14,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": null
+    },
+    "(5, 8, 10, 8, 5)": {
+     "label": "48a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 28,
+     "branch_kinds": {
+      "hyperbolic w=0": 1,
+      "generic": 3
+     },
+     "lambda_formula": null
+    },
+    "(9, 0, -14, 0, 9)": {
+     "label": "48a3",
+     "rank": 0,
+     "legendre_orbit": [
+      "-8",
+      "-1/8",
+      "1/9",
+      "8/9",
+      "9/8",
+      "9"
+     ],
+     "lambda": "9",
+     "kills_111_entry105": 0,
+     "kills_211": 1090,
+     "branch_kinds": {
+      "generic": 4
+     },
+     "lambda_formula": "-8"
+    },
+    "(9, 0, 10, 0, 1)": {
+     "label": "48a1",
+     "rank": 0,
+     "legendre_orbit": [
+      "-3",
+      "-1/3",
+      "1/4",
+      "3/4",
+      "4/3",
+      "4"
+     ],
+     "lambda": "4",
+     "kills_111_entry105": 0,
+     "kills_211": 1054,
+     "branch_kinds": {
+      "hyperbolic w=0": 1,
+      "generic": 1,
+      "hyperbolic w=2": 1,
+      "hyperbolic w=1/2": 1
+     },
+     "lambda_formula": "1/4"
+    },
+    "(9, 0, 34, 0, 25)": {
+     "label": "240d2",
+     "rank": 0,
+     "legendre_orbit": [
+      "-15",
+      "-1/15",
+      "1/16",
+      "15/16",
+      "16/15",
+      "16"
+     ],
+     "lambda": "16",
+     "kills_111_entry105": 0,
+     "kills_211": 24,
+     "branch_kinds": {
+      "hyperbolic w=0": 1,
+      "hyperbolic w=-4": 1,
+      "generic": 1,
+      "hyperbolic w=-1/4": 1
+     },
+     "lambda_formula": "1/16"
+    },
+    "(9, 0, 82, 0, 9)": {
+     "label": "240d4",
+     "rank": 0,
+     "legendre_orbit": [
+      "-16/9",
+      "-9/16",
+      "9/25",
+      "16/25",
+      "25/16",
+      "25/9"
+     ],
+     "lambda": "25/9",
+     "kills_111_entry105": 0,
+     "kills_211": 16,
+     "branch_kinds": {
+      "hyperbolic w=-2": 1,
+      "hyperbolic w=2": 1,
+      "hyperbolic w=1/2": 1,
+      "hyperbolic w=-1/2": 1
+     },
+     "lambda_formula": "16/25"
+    }
+   },
+   "two_step_models": {
+    "[12, -1, 2, -1]": {
+     "polynomials": [
+      [
+       12,
+       -1,
+       2,
+       -1
+      ]
+     ],
+     "kills_111_two_step": 16,
+     "curves": [
+      {
+       "label": "240b1",
+       "rank": 0,
+       "legendre_orbit": null,
+       "lambda": null
+      }
+     ]
+    },
+    "[1, -2, 1, -12, 0]": {
+     "polynomials": [
+      [
+       1,
+       -2,
+       1,
+       -12,
+       0
+      ]
+     ],
+     "kills_111_two_step": 16,
+     "curves": [
+      {
+       "label": "30a1",
+       "rank": 0,
+       "legendre_orbit": null,
+       "lambda": null
+      }
+     ]
+    },
+    "[[9, 168, 784, 768, 0], [9, -168, 784, -768, 0]]": {
+     "polynomials": [
+      [
+       9,
+       168,
+       784,
+       768,
+       0
+      ],
+      [
+       9,
+       -168,
+       784,
+       -768,
+       0
+      ]
+     ],
+     "kills_111_two_step": 2,
+     "curves": [
+      {
+       "label": "30a2",
+       "rank": 0,
+       "legendre_orbit": [
+        "-27/5",
+        "-5/27",
+        "5/32",
+        "27/32",
+        "32/27",
+        "32/5"
+       ],
+       "lambda": "32/5"
+      },
+      {
+       "label": "30a2",
+       "rank": 0,
+       "legendre_orbit": [
+        "-27/5",
+        "-5/27",
+        "5/32",
+        "27/32",
+        "32/27",
+        "32/5"
+       ],
+       "lambda": "32/5"
+      }
+     ]
+    },
+    "[[3, 49, 168, 144], [3, -49, 168, -144]]": {
+     "polynomials": [
+      [
+       3,
+       49,
+       168,
+       144
+      ],
+      [
+       3,
+       -49,
+       168,
+       -144
+      ]
+     ],
+     "kills_111_two_step": 2,
+     "curves": [
+      {
+       "label": "30a2",
+       "rank": 0,
+       "legendre_orbit": [
+        "-27/5",
+        "-5/27",
+        "5/32",
+        "27/32",
+        "32/27",
+        "32/5"
+       ],
+       "lambda": "32/5"
+      },
+      {
+       "label": "240b2",
+       "rank": 0,
+       "legendre_orbit": [
+        "-27/5",
+        "-5/27",
+        "5/32",
+        "27/32",
+        "32/27",
+        "32/5"
+       ],
+       "lambda": "32/5"
+      }
+     ]
+    }
+   },
+   "correction": "entries 100/107 listed ten killing curves; the coordinate quotients of entry 105 also used 120b2 (16 kills) and the two-step route of entry 106 used 30a1, 240b1, 30a2, 240b2 (36 kills)."
   }
  },
  "base_locus_minor_map": {
