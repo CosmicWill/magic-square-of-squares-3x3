@@ -3969,7 +3969,7 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] == 106 and data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])
+    require(data["entry"] >= 106 and data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])
     Rs = data["resolution"]
     require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
     require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
@@ -4268,8 +4268,11 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     M = data["minor_formula"]
-    require(M["n_classes"] == 1264 and M["claim1_divides"] == 1264 and M["claim2_all_on_base_locus"] == 878 and M["t_factors_tested"] == 3908, M)
-    require(M["exceptions_by_t_factor"] == {"t": 62, "t^2 + 1": 334, "t + 1": 4, "t - 1": 4, "t^2 + 2*t - 1": 2, "t^2 - 2*t - 1": 2}, M["exceptions_by_t_factor"])
+    require(M["n_classes"] == 1264 and M["claim1_divides"] == 1264 and M["claim2_all_on_base_locus"] == 1248 and M["t_factors_tested"] == 3908, M)
+    require(M["exceptions_by_t_factor"] == {'t^2 + 1': 16}, M["exceptions_by_t_factor"])
+    require(M["census_v1"]["claim2_all_on_base_locus"] == 878, "the entry-105 census kept as the record of the correction")
+    D = M["dichotomy"]
+    require(D["n_exceptional_points_tested"] == 492 and all(("boundary" in k) or ("rank0" in k) or ("base" in k) for k in D["kinds"]), D["kinds"])
     require(len(M["singular_t_factor_census"]) == 50 and sum(M["singular_t_factor_census"].values()) == 8086, "singular census")
     require(all(r["divides"] for r in M["classes"]) and len(M["classes"]) == 1264)
     for q in list(M["torsion_t_factors"]) + list(M["half_pythagorean_cos2theta"]):
@@ -4294,8 +4297,8 @@ def _(ctx):
     ctx.note("minor formula: Res = 4(D_X^2 + D_Y^2 - D_N^2) and the divisibility verified live on " + str(nb) + " classes"
              + ("; singular-point tests reproduced" if gp_available() else "; PARI not found: singular tests not re-run"))
     ctx.note("every quadruple curve of the box is a component of the pullback of the circle under the minor map; 1264/1264 divide; "
-             "singular points = base points of the map (878 classes entirely) or tangencies over t in {0, +-1, +-i, tan 22.5}; "
-             "base points at torsion (order | 24) and half-Pythagorean values (50 t-factors, 8086 orbits)")
+             "singular points = base points of the map (1248 classes entirely; the entry-105 count 878 used a non-squarefree test) "
+             "or toric-boundary points over t = +-i with the eliminated frame at +-i too (the dichotomy theorem of entry 109)")
 
 
 @check("a3.omega3_box211_sweep", DOC)

@@ -562,6 +562,65 @@ computation on a fixed list.  ω ≥ 4 is where the problem's difficulty
 now sits, and it is a different kind of difficulty — dimension, not
 arithmetic — which is itself a finding.
 
+### R.10 The plan after the two closed boxes (2026-09-06): objectives, in order
+
+*Adopted after entries 103–109.  Supersedes the phase list of R.8 as the
+active plan; R.7's goal G and R.9's map of attempts stand.*
+
+**Where we stand.**  Box $(1,1,1)$: every class dead (1484) or Faltings-finite
+(1460); base loci empty ⇒ *up to scaling, finitely many magic squares of squares
+have split part $pqr$* (entry 104).  Box $(2,1,1)$: all $79{,}368$ new classes
+decided — dead $12{,}132$, finite $41{,}808$ rigorously and $25{,}428$ with a
+provisional genus, unknown $0$ (entries 107–108).  The elliptic killers are ten
+curves up to isomorphism across both boxes.  The quadruple curves are pullbacks
+of the circle under the minor map (entry 105), and their singular locus is now a
+theorem (entry 109): base points of the minor map, singular points of the space
+curve, or the toric boundary.  The engine decides a class in ~1 s.
+
+**O1 — The finiteness statement for shape $(2,1,1)$** *(mechanical; a day of
+CPU at low priority).*  (a) The rigorous pass over the $25{,}428$ provisional
+classes: a Riemann–Hurwitz cross-check that avoids initializing the large
+branch-value fields (gcd refinement over the branch field), or the bound with a
+longer alarm on three workers, or Sage.  (b) The base loci of every finite class
+(the entry-104 tool, minutes).  Output: Theorem A3.13, finiteness for the shape
+$(2,1,1)$, by the same argument as $(1,1,1)$.
+
+**O2 — The first exclusion theorem, "no MSS3 of shape $(1,1,1)$"** *(needs Sage
+or Magma).*  The $1460$ finite classes: $304$ hyperelliptic models blocked by
+positive-rank elliptic quotients (elliptic Chabauty), $1156$ curves of genus
+$3$–$23$ whose rank-$0$ quotients are exhausted (Jacobian decomposition under the
+frame symmetries; Chabauty–Coleman on quotients with rank below genus).  The
+quotient tools of entries 105–106 produce the exact list.  **Decision point:** a
+Sage installation in the WSL Ubuntu on this machine unblocks O2, the genus-$0$
+parametrizations, and O1(a) at once.
+
+**O3 — Uniformity in the exponents (attempt C, the theory thread).**  Done: the
+trigonometric form, the minor formula, the singular-locus dichotomy.  Next, in
+order: (i) the *base-locus theorem* — the base points of the minor map are
+torsion points of bounded order and half-Pythagorean points, by the structure of
+vanishing sums of few roots of unity (Conway–Jones) applied to the proportionality
+of the two coefficient rows; (ii) *why ten curves* — the genus-$1$ quotients of
+the quadruple curves as $(2,2)$-covers of the line branched over the torsion
+set, their $j$-invariants from cross-ratios, hence a finite list for every box
+$(a,1,1)$; (iii) the branch loci of the three frame double covers on $\Phi_f$
+(the third frame in closed form) — the statement that would make ω = 3 a rank
+question about a fixed list of twists.
+
+**O4 — The next boxes** *(cheap with the fast engine).*  Seeded samples of
+$1000$ classes of $(2,2,1)$ and $(3,1,1)$ (about a CPU-hour each) to test the
+ten-curve list, the monomial multiples and the singular-locus picture where the
+eliminated frame still has exponent $1$; then a first look at $(1,1,1,1)$
+(ω = 4): the common-factor reductions and whether the elimination surfaces fiber
+over ω = 3 curves (the reduction branch of G).
+
+**O5 — Kept warm.**  The uniform ω = 2 theorem (A3.11) and the P1 rigidity
+lemma; the S-unit framing for ω ≥ 4; the paper — the ω = 3 chapter (entries
+97–109) is now a coherent story with new mathematics in it.
+
+**Retired.**  The local sieve (vacuous); PARI's factor on six-variable
+resultants; the arithmetic-genus shortcut; median-based CPU estimates; the
+towers on the $(2,1,1)$ box (optional, ~9 s per finite class, deferred).
+
 ## 0. Doctrine
 
 1. **Both directions are the goal.** A constructed square is a proof.
@@ -895,6 +954,7 @@ computation — one focused session, highest information density),
 | ID | Statement to prove/compute | Workstream |
 |---|---|---|
 | M13-J | ✅ **SUPERSEDED by M13-N (2026-09-02): A3.10 is PROVEN** — the rigidity SYSTEM (not the one-equation lemma below) is what the ladder produces, and it is dead by concentration. Historical record: 🔬 2026-08-30 — **A3.10 (p²q²) REDUCED, not proven; pivot to the uniform program (P1)**. The (2,2) box partitions with zero gaps (`a3.p2q2_accounting`): 1008 machine + 34+26 A3.8 sub-boxes + 32 ledger (24 G3 + 8 H3) + 44 replications. The 18 j-children are p↔q transposes of k-children, so only the 26 k-children remain; 12 close rigorously (collapsed-valuation, x⁴+y⁴=2z², squeeze/pinch), 14 reduce to the **rigidity quartic c₂⁴−6c₂²s₂²+s₂⁴ = c₁⁴−s₁⁴** (`a3.p2q2_reduction`). **Corrected same day (entry 72): the bare quartic surface HAS a point, (1369,3320,1017,320) at height ~3300 — not a frame point (neither c²+s² is a square).** The real lemma is the **frame version** (both c²+s² perfect squares): empty on prime frames to 2000 and on all primitive Pythagorean frames with generators < 300; in Gaussian-prime form Re(ρ⁸) = N(π)²Re(π⁴), where primality gives the lever p ≡ 1 mod 16. Attack = Gaussian-prime arithmetic, not K3 geometry. **Descent (entry 73):** (R₄−I₄)(R₄+I₄)=p²A₄ splits p² into one factor ⟹ 2q⁴ = p⁴D² + (A₄/D)² over divisors D of A₄ — a finite check per prime, EMPTY for every p < 10⁶ and all q; D=±1 is Fermat x⁴+y⁴=z⁴, D=±A₄ is Ljunggren; Case N (D=c₁±s₁) ⟺ ρ⁴ = π² + K(1+i); general intermediate D OPEN (`a3.rigidity_frame_lemma`). **Intermediate case (entry 74):** the obstruction is quadratic but not local; "T square" is an integral point on the congruent-number curve y²=x³−A₄²x, which always has rank ≥ 1 (the frame point) — so no Selmer argument; the lever is the fourth power: quartic-residue conditions at primes of D, E, R₄, I₄, K plus the 2-adic (mod 32/64) and combination-prime families kill **all 3128 intermediate cases to p<15000** — the equation is exact (no unit) so every condition is a fixed equality (`a3.rigidity_quartic_sieve`, self-tested end to end). A sieve complete on data, not a proof. **Reciprocity verdict (entry 75):** two lemmas PROVEN — the Class Lemma (every prime of A₄ is ≡ ±1 mod 16; with the order-16 lemma the rigidity lemma is a theorem for ~96% of split primes) and the 2-adic Lemma (D ≡ E ≡ 1 mod 16); and the [D][E] condition-sum is ≡ 0 on every transparent case — quartic reciprocity is a CONSISTENCY, not an obstruction, so the classical route is closed; the residual obstruction is at the primes of R₄, I₄ (transversal). `a3.rigidity_reciprocity`. **Height argument (entry 76):** PROVEN that any solution is an integral point P_sol = (X², 2IRX) on the congruent-number curve y² = x³ − A²x with descent image (1,2,2) = that of the frame point, so P_sol ∈ P₀ + 2E(ℚ); a validated complete 2-descent (`compute/selmer_descent.py`) gives Selmer rank bounds {1: 4, 2: 5, 3: 5} on transparent p < 6000 — rank-1 primes reduce to effective integrality of odd multiples (EDS/Baker, standard, not done); higher-Selmer primes have undetermined rank. `a3.rigidity_height`. **RANK-1 THEOREM (entry 77), PROVEN with no heights:** on the p-minimal model P₀ reduces to (0,0) while P_sol reduces to O, and P_sol = kG + T₀ with the same T₀ and k, m odd — in the cyclic group ⟨G̃⟩ every case contradicts (parity, or two distinct order-2 points). The rigidity lemma is now a THEOREM for every non-transparent prime and every transparent prime of 2-Selmer rank 1 (21 of 67 transparent p < 30000); the 46 higher-Selmer transparent primes remain (rank undetermined). `a3.rigidity_rank1_theorem`. **Rank certificates (entry 78):** parity is free (root number of E_n by n mod 8; Selmer parity matches it on every transparent prime): 27 of the 46 have EVEN rank ≥ 2 (need a rank-2 argument, not a certificate); 19 have rank 1 or 3, and L′(E,1) ≠ 0 certifies rank 1 unconditionally (GZK). `compute/lseries_cm.py` (CM twist coefficients, controls to 12 digits) certified p = 337, 1201, 6353, 15073 (L′ = 2.1048, 0.4962, 1.5905, 0.2777, tails ≤ 10⁻⁵) → 25 of 67 transparent p < 30000 proven; 15 odd-rank primes have conductors beyond this machine and need PARI (`ellrank` / Cassels–Tate). `a3.rigidity_rank_certificates`. **PARI certificates (entry 79):** PARI/GP 2.17.4 (portable extraction) `ellrank` on all 67 curves: 32 certified rank 1 → proven; **Rank-r criterion** (T̃₁ ∉ 2⟨G̃ᵢ⟩ with 2-saturated generators ⟹ no solution) proves 4 rank-2 primes (3137, 8369, 9473, 13633) and provably fails for 3 (2657, 9137, 29201); 22 rank-2 curves lack their second generator (beyond effort 20); the 2-descent is BLIND at p (2 a quartic residue, trivial localization); segmented L′ certifies p = 4001, 4657, 4817 (Ш with 4-torsion). **39 of 67 transparent p < 30000 proven**; 28 remain (22 missing a generator, 3 criterion-fails, 3 huge conductors). `a3.rigidity_pari_certificates`, `compute/pari_rank.py`, `compute/data_pari_ranks.json`. **N4 verdict (ω=3 box (1,1,1)): valuation pruning weakens to 48%; 464/552 genuine patterns survive the machine, but only 27 orbit-families, 6 with a single-prime lever.** ω≥3 does NOT reduce for free. | W10 |
+| M14-L | 🧭 **2026-09-06 (entry 109) — THE SINGULAR-LOCUS DICHOTOMY IS A THEOREM; the plan reorganized (R.10).** With the eliminated frame at exponent 1 the relations are quadratics in w_f and the space curve Γ projects onto Φ_f: a vertical tangent means a double root of both quadratics, hence proportional quadratics (a base point of the minor map); two points of Γ over one point means two common roots, again proportional; so every singular point of Φ_f is a base point of the minor map, a singular point of Γ, or on the toric boundary. Verified exactly on all 492 exceptional points of the entry-105 census: all are base points (rank 0 or 1 rows; the old test used a non-squarefree gcd) except 28 boundary points over t = ±i with t_f = ±i; corrected census: 1248 of 1264 curves entirely on the base locus. R.10 = the reorganized plan: O1 finiteness for (2,1,1), O2 the exclusion theorem (Sage/Magma), O3 the base-locus theorem and the ten curves, O4 the next boxes, O5 kept warm. `a3.omega3_minors` updated. | W10 |
 | M14-K | 🧭 **2026-09-05 (entry 108) — NO UNKNOWN CLASS IN THE (2,1,1) BOX: the 188 unknowns decided (164 dead, 24 finite), the six degenerate classes dead; box dead 12132, finite 41808 + 25428 provisional.** Routes (`compute/omega3_unknowns.py`): the two-step trick one level up (a genus-1 component's own quartic model through a genus-0 quotient; rank-0 genus-1 quotients with preimages), the pullback at cap 12 for genus-0 components quadratic in a variable, and the decisive CONJUGATE-COMPONENTS KILL: 156 classes whose "genus-1" components are irreducible over ℚ but split over ℚ(√3) into conjugate pieces, so their rational points are the finitely many common zeros of the rational and √3-parts, none admissible. In the engine: a failed absolute-irreducibility certificate no longer blocks finiteness (the dichotomy); one-frame common factors t = ±1 are dead. Next for the shape's finiteness statement: the rigorous pass on the provisional third, then the base loci. `a3.omega3_unknowns`; suite 192. | W10 |
 | M14-J | 🏁 **2026-09-05 (entry 107) — THE (2,1,1) SWEEP DONE: all 79,368 new classes decided (44.9 CPU-hours); dead 11962, finite 41784 + 25428 provisional, unknown 188; the killers are TEN curves up to isomorphism.** The five curves of (1,1,1) return with five twists/neighbours (24a1, 15a3, 528j2, 240d2, 240d4; eight j-invariants; conductors from {2,3,5,7,11}): the finite-list reading of the elliptic killers survives the exponent growth (R.9.C). Monomial relations to angle multiple 4 (5 in the residue). Singular loci sampled: the same torsion/±i/algebraic-tail picture. Open: genus-0/1 components at high bidegree (no elliptic/parametrization route there yet), the provisional third (cross-check without nfinit, or Sage), then the finiteness statement for the shape. `a3.omega3_box211_sweep`; suite 191. | W10 |
 | M14-I | 🧭 **2026-09-05 (entry 106) — THE TWO-STEP QUOTIENT ROUTE: 36 more classes dead through a second involution of the joint quotient; box dead 1484, finite 1460.** The joint quotient E = Φ/σ of genus 1 has no quadratic model (bidegree up to (4,4) in both natural models); a second involution descends to E and W = E/τ̄ has lower degree — W of genus 1: rank 0 + preimages on E + squares on the curve; W of genus 0: parametrization, E's own quartic y² = Δ(λ), rank 0 (`compute/omega3_quotients.py`: two_step_joint, two_step_joint_more, _w_route). 32 kills through t → −1/t, 1/t; 4 through the swap. Blocked: 16 (non-quadratic W), 28 (no second involution). Bug fixed: cubic models never "complete" (point at infinity uncounted; no earlier kill affected). The 24 genus-0 quotients (hyperelliptic curves) need a rational parametrization of a (4,6)/(3,6) rational curve: Sage/Magma territory (WSL Ubuntu is available for a Sage install). `a3.omega3_quotients` extended; suite 190. | W10 |

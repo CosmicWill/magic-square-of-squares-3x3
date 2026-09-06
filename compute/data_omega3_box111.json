@@ -1,5 +1,5 @@
 {
- "entry": 106,
+ "entry": 109,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
@@ -390800,15 +390800,10 @@
   "note": "entry 105: in the frame f to eliminate every element is linear in (X, Y, N) = (2 c_f s_f, c_f^2 - s_f^2, c_f^2 + s_f^2), X^2 + Y^2 = N^2, so R1 = a1 X + b1 Y + c1 N, R2 = a2 X + b2 Y + c2 N with a_i, b_i, c_i forms of bidegree <= (2,2) in the other frames, and Res_{s_f}(R1, R2) = 4 (D_X^2 + D_Y^2 - D_N^2) with (D_X, D_Y, D_N) the cross product of the rows (the classical resultant of two binary quadratics): every quadruple curve is a component of the pullback of the circle under the minor map m = (D_X : D_Y : D_N) of bidegree <= (4,4). Claim 1 (every component divides D_X^2 + D_Y^2 - D_N^2) holds for all 1264 certified classes. Claim 2: singular points of the certified component that are base points of m (all three minors vanish at the point, tested exactly over the branch-value field, affine chart): 878 classes have every affine singular point on the base locus; the others' exceptions lie only over t^2 + 1 (334), t (62), t +- 1 (8), t^2 +- 2t - 1 (4): the circle's branch points and torsion values -- the tangency points of the minor map with the circle. Third frame at a point of Phi_f: (X : Y : N) = (D_X : D_Y : D_N), t_f = D_X / (D_N + D_Y), Pythagorean condition 2 D_N (D_N + D_Y) = square.",
   "n_classes": 1264,
   "claim1_divides": 1264,
-  "claim2_all_on_base_locus": 878,
+  "claim2_all_on_base_locus": 1248,
   "t_factors_tested": 3908,
   "exceptions_by_t_factor": {
-   "t": 62,
-   "t^2 + 1": 334,
-   "t + 1": 4,
-   "t - 1": 4,
-   "t^2 + 2*t - 1": 2,
-   "t^2 - 2*t - 1": 2
+   "t^2 + 1": 16
   },
   "singular_t_factor_census": {
    "('tx', 't^2 + 1')": 1398,
@@ -391289,11 +391284,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -391381,7 +391376,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -391389,7 +391384,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -391427,7 +391422,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -391443,7 +391438,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -391481,7 +391476,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -391489,7 +391484,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -391573,7 +391568,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -391581,7 +391576,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -391815,11 +391810,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -391857,11 +391852,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -392083,11 +392078,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -392395,7 +392390,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -392403,7 +392398,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -392441,7 +392436,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -392449,7 +392444,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -392637,11 +392632,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -392987,7 +392982,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -392995,7 +392990,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -393079,11 +393074,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -393183,11 +393178,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -393337,7 +393332,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -393345,7 +393340,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -393383,7 +393378,7 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -393399,7 +393394,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -393487,7 +393482,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -393503,7 +393498,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -393591,7 +393586,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -393599,7 +393594,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -393637,7 +393632,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -393645,7 +393640,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -393683,7 +393678,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "9*t^2 - 7",
@@ -393695,7 +393690,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -394283,7 +394278,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -394299,7 +394294,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -394345,11 +394340,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -394683,11 +394678,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -394725,11 +394720,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -394979,7 +394974,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -394991,15 +394986,15 @@
      ],
      [
       "t + 1",
-      "OFF"
+      "on"
      ],
      [
       "t - 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -395199,7 +395194,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -395219,7 +395214,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -395261,11 +395256,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -395453,7 +395448,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -395461,7 +395456,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -395499,7 +395494,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -395511,7 +395506,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -395853,7 +395848,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -395869,7 +395864,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -395965,11 +395960,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -396007,7 +396002,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 18*t^2 + 1",
@@ -396027,7 +396022,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -396065,7 +396060,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -396081,7 +396076,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -396127,11 +396122,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -396269,11 +396264,11 @@
     ],
     "genus": 15,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -396715,7 +396710,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -396735,7 +396730,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -396785,7 +396780,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -396793,7 +396788,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -397097,7 +397092,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -397109,7 +397104,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -397297,7 +397292,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -397313,7 +397308,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 - 18*t^2 + 5",
@@ -397717,7 +397712,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -397733,7 +397728,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -398125,7 +398120,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -398133,7 +398128,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -398171,7 +398166,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -398179,7 +398174,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -398217,7 +398212,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -398233,7 +398228,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -398483,7 +398478,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -398491,7 +398486,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -398579,7 +398574,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -398591,15 +398586,15 @@
      ],
      [
       "t + 1",
-      "OFF"
+      "on"
      ],
      [
       "t - 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -398649,7 +398644,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -398669,7 +398664,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -399381,7 +399376,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -399397,7 +399392,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -399489,7 +399484,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -399497,7 +399492,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -399535,7 +399530,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -399543,7 +399538,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -399618,11 +399613,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -400168,11 +400163,11 @@
     ],
     "genus": 15,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -400484,15 +400479,15 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -400576,7 +400571,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -400592,7 +400587,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -400638,7 +400633,7 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -400658,7 +400653,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -400696,11 +400691,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -400970,7 +400965,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -400978,7 +400973,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -401016,7 +401011,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -401024,7 +401019,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -401108,7 +401103,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -401116,7 +401111,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -401258,11 +401253,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -401342,11 +401337,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -401496,7 +401491,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -401504,7 +401499,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -401542,7 +401537,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -401558,7 +401553,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -401792,15 +401787,15 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -402488,11 +402483,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -402626,11 +402621,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -402872,11 +402867,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -402976,7 +402971,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -402984,7 +402979,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -403246,11 +403241,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -403304,7 +403299,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -403320,7 +403315,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -403358,7 +403353,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -403366,7 +403361,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -403508,7 +403503,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -403516,7 +403511,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -403566,7 +403561,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -403574,7 +403569,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -403658,7 +403653,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -403670,7 +403665,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -403828,11 +403823,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -403978,11 +403973,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -404219,11 +404214,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -404639,11 +404634,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -405417,7 +405412,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -405425,7 +405420,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -405437,7 +405432,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -405533,7 +405528,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -405541,7 +405536,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -406071,7 +406066,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -406079,7 +406074,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -406857,7 +406852,7 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -406873,7 +406868,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -406961,7 +406956,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -406969,7 +406964,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -407049,11 +407044,11 @@
     ],
     "genus": 15,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -407095,11 +407090,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -407411,7 +407406,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -407419,7 +407414,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -407457,15 +407452,15 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -407719,7 +407714,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -407735,7 +407730,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -407977,7 +407972,7 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -407985,7 +407980,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -408677,11 +408672,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -408719,11 +408714,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -408761,7 +408756,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -408781,7 +408776,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -408823,7 +408818,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -408831,7 +408826,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -408869,11 +408864,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -409077,7 +409072,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -409085,7 +409080,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -409189,15 +409184,15 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -409335,7 +409330,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -409343,7 +409338,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -409651,7 +409646,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 18*t^2 + 1",
@@ -409671,7 +409666,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -410127,7 +410122,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t + 1",
@@ -410139,7 +410134,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -410219,7 +410214,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -410227,7 +410222,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -410553,7 +410548,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -410561,7 +410556,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -410661,7 +410656,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -410681,7 +410676,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -410785,7 +410780,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -410805,7 +410800,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -411313,7 +411308,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -411321,7 +411316,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -411396,15 +411391,15 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -411534,7 +411529,7 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -411542,7 +411537,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -411580,7 +411575,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "9*t^2 - 7",
@@ -411588,7 +411583,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -411626,7 +411621,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -411634,7 +411629,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -412125,7 +412120,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -412133,7 +412128,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -412271,11 +412266,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -412371,7 +412366,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -412379,7 +412374,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -412391,7 +412386,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -412529,11 +412524,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -412571,11 +412566,11 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -412629,7 +412624,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -412637,7 +412632,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -412729,7 +412724,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -412737,7 +412732,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -413347,7 +413342,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -413355,7 +413350,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -413443,7 +413438,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -413451,7 +413446,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -413681,7 +413676,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -413689,7 +413684,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -413777,7 +413772,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -413793,7 +413788,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -414089,7 +414084,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -414105,7 +414100,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 - 18*t^2 + 5",
@@ -414377,11 +414372,11 @@
     ],
     "genus": 15,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -414531,7 +414526,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -414539,7 +414534,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -414665,11 +414660,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -414940,7 +414935,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t + 1",
@@ -414952,7 +414947,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -415265,7 +415260,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -415277,7 +415272,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -415715,11 +415710,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -415757,7 +415752,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 + 4*t - 3",
@@ -415773,7 +415768,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -416015,7 +416010,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416023,7 +416018,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -416161,11 +416156,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -416207,7 +416202,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416215,7 +416210,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -416303,7 +416298,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416311,7 +416306,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -416349,7 +416344,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -416361,7 +416356,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -416665,7 +416660,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416673,7 +416668,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -416711,7 +416706,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416719,7 +416714,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -416757,7 +416752,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416765,7 +416760,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -416815,7 +416810,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416831,7 +416826,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -416923,7 +416918,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -416939,7 +416934,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417023,7 +417018,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417031,7 +417026,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417165,7 +417160,7 @@
     ],
     "genus": 15,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -417173,7 +417168,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417211,11 +417206,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417357,7 +417352,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417365,7 +417360,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417403,7 +417398,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417419,7 +417414,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 - 18*t^2 + 5",
@@ -417461,7 +417456,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417469,7 +417464,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417507,7 +417502,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417523,7 +417518,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417561,7 +417556,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417577,7 +417572,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417719,7 +417714,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417727,7 +417722,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -417765,11 +417760,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -417811,7 +417806,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -417827,7 +417822,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -418053,7 +418048,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -418069,7 +418064,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -418107,7 +418102,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -418127,7 +418122,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -418215,7 +418210,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -418223,7 +418218,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -418411,7 +418406,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -418423,7 +418418,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -418806,7 +418801,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -418822,7 +418817,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -418860,7 +418855,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -418868,7 +418863,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -419068,7 +419063,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -419084,7 +419079,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -419372,7 +419367,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -419380,7 +419375,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -419418,7 +419413,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -419430,15 +419425,15 @@
      ],
      [
       "t + 1",
-      "OFF"
+      "on"
      ],
      [
       "t - 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -420104,7 +420099,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -420112,7 +420107,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -420204,7 +420199,7 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -420212,7 +420207,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -420308,7 +420303,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 + 4*t - 3",
@@ -420324,7 +420319,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -420408,7 +420403,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 12*t^2 - 1",
@@ -420420,7 +420415,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -420926,11 +420921,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -421026,11 +421021,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -421072,7 +421067,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -421080,7 +421075,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 + 12*t^2 - 5",
@@ -421172,7 +421167,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -421188,7 +421183,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -421276,7 +421271,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -421292,7 +421287,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -421338,11 +421333,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -421388,11 +421383,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -421526,11 +421521,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -421734,7 +421729,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -421742,7 +421737,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -421830,7 +421825,7 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -421838,7 +421833,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -421880,11 +421875,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -422034,7 +422029,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 9",
@@ -422046,7 +422041,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -422234,7 +422229,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -422242,7 +422237,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -422680,7 +422675,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -422688,7 +422683,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -422864,7 +422859,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -422880,7 +422875,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -422972,7 +422967,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 + 4*t - 3",
@@ -422988,7 +422983,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -423063,7 +423058,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "9*t^2 - 7",
@@ -423075,7 +423070,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -423501,11 +423496,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -423605,11 +423600,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -423697,15 +423692,15 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -423981,7 +423976,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -423989,7 +423984,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -424904,7 +424899,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -424916,7 +424911,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -425062,7 +425057,7 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -425070,7 +425065,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -425576,7 +425571,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -425588,7 +425583,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -425684,7 +425679,7 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -425692,7 +425687,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -425730,11 +425725,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -426196,7 +426191,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -426204,7 +426199,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -426396,7 +426391,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -426404,7 +426399,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -426570,7 +426565,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -426586,7 +426581,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -427066,7 +427061,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -427082,7 +427077,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -427400,11 +427395,11 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -427592,11 +427587,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -427634,7 +427629,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -427650,7 +427645,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 - 22*t^2 + 1",
@@ -427692,11 +427687,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -427742,7 +427737,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 14*t^2 + 5",
@@ -427762,7 +427757,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -427846,7 +427841,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 18*t^2 + 1",
@@ -427866,7 +427861,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -427904,7 +427899,7 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -427912,7 +427907,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -428108,7 +428103,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -428124,7 +428119,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -428254,7 +428249,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 9",
@@ -428266,7 +428261,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -428412,7 +428407,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -428420,7 +428415,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -428458,11 +428453,11 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -428570,11 +428565,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -428686,7 +428681,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 9",
@@ -428694,7 +428689,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -428732,7 +428727,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -428752,7 +428747,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -429032,7 +429027,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -429052,11 +429047,11 @@
      ],
      [
       "t^2 + 2*t - 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2*t - 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -429202,7 +429197,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -429218,7 +429213,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -429256,11 +429251,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -429340,11 +429335,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -429386,7 +429381,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -429406,7 +429401,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -429586,7 +429581,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -429594,7 +429589,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -429736,11 +429731,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -429782,7 +429777,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t + 1",
@@ -429794,7 +429789,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -429832,11 +429827,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -430066,7 +430061,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -430074,7 +430069,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -430208,7 +430203,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "9*t^2 - 7",
@@ -430216,7 +430211,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -430550,7 +430545,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -430566,7 +430561,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -430778,11 +430773,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -430969,7 +430964,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -430985,7 +430980,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -431139,11 +431134,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -431301,11 +431296,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -431655,7 +431650,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -431663,7 +431658,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -431767,11 +431762,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -432055,7 +432050,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -432071,7 +432066,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -432267,7 +432262,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -432275,7 +432270,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -432313,7 +432308,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 14*t^2 + 5",
@@ -432333,7 +432328,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -432629,11 +432624,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -432687,7 +432682,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -432703,7 +432698,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -433161,7 +433156,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -433169,7 +433164,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 + 12*t^2 - 5",
@@ -433211,11 +433206,11 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -433227,7 +433222,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -433451,11 +433446,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -433497,7 +433492,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -433505,7 +433500,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -433585,7 +433580,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -433593,7 +433588,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -433785,7 +433780,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -433793,7 +433788,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -433805,7 +433800,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -434185,7 +434180,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -434193,7 +434188,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434268,11 +434263,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -434326,7 +434321,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -434342,7 +434337,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434380,7 +434375,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -434388,7 +434383,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434476,11 +434471,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434518,7 +434513,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -434534,7 +434529,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434768,11 +434763,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434810,7 +434805,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -434818,7 +434813,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434856,7 +434851,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -434864,7 +434859,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -434964,7 +434959,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -434980,7 +434975,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -435026,7 +435021,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -435034,7 +435029,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -435126,7 +435121,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -435134,7 +435129,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -435172,7 +435167,7 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -435192,7 +435187,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -435392,7 +435387,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -435400,7 +435395,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -435534,7 +435529,7 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -435542,7 +435537,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -436026,7 +436021,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -436034,7 +436029,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -436072,7 +436067,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -436088,7 +436083,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -436580,7 +436575,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -436588,7 +436583,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -436822,7 +436817,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -436842,7 +436837,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -437212,7 +437207,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -437220,7 +437215,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -437392,7 +437387,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -437408,7 +437403,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -437516,7 +437511,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -437532,7 +437527,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 - 18*t^2 + 5",
@@ -437840,11 +437835,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -437986,7 +437981,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -437998,15 +437993,15 @@
      ],
      [
       "t + 1",
-      "OFF"
+      "on"
      ],
      [
       "t - 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -438056,7 +438051,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -438072,7 +438067,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -438360,11 +438355,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -438402,7 +438397,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t + 1",
@@ -438414,7 +438409,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -438576,7 +438571,7 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -438596,7 +438591,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -438688,7 +438683,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -438696,7 +438691,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -438876,7 +438871,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -438892,7 +438887,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -439034,11 +439029,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -439080,7 +439075,7 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -439088,7 +439083,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -439130,7 +439125,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -439138,7 +439133,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -439318,7 +439313,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -439326,7 +439321,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -439364,7 +439359,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -439380,7 +439375,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -439422,7 +439417,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -439442,7 +439437,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -439730,7 +439725,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -439746,7 +439741,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -439834,11 +439829,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -439926,7 +439921,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -439934,7 +439929,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -440022,11 +440017,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -440064,7 +440059,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -440080,7 +440075,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -440172,7 +440167,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 + 4*t - 3",
@@ -440188,7 +440183,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -440372,7 +440367,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -440384,7 +440379,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -440492,7 +440487,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -440500,7 +440495,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -440596,11 +440591,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -440700,7 +440695,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -440708,7 +440703,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -440904,7 +440899,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -440912,7 +440907,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -441120,7 +441115,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -441136,7 +441131,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -441174,7 +441169,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -441182,7 +441177,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -441308,7 +441303,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -441316,7 +441311,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -441400,7 +441395,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -441408,7 +441403,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -441662,11 +441657,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -441938,7 +441933,7 @@
     ],
     "genus": 15,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -441946,7 +441941,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -442138,11 +442133,11 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -442184,11 +442179,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -442572,7 +442567,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -442592,7 +442587,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -442826,11 +442821,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -442868,7 +442863,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -442876,7 +442871,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -442968,7 +442963,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -442976,7 +442971,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -443160,11 +443155,11 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -443176,7 +443171,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -443414,7 +443409,7 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -443422,7 +443417,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -443460,11 +443455,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -443606,7 +443601,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 9",
@@ -443614,7 +443609,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -443702,7 +443697,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -443710,7 +443705,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -444014,7 +444009,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -444022,7 +444017,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -444060,7 +444055,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -444080,11 +444075,11 @@
      ],
      [
       "t^2 + 2*t - 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2*t - 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -444564,7 +444559,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -444572,7 +444567,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -444664,7 +444659,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -444680,7 +444675,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -444860,11 +444855,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -444902,11 +444897,11 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -445060,7 +445055,7 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -445068,7 +445063,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -445164,7 +445159,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -445172,7 +445167,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -445318,7 +445313,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -445326,7 +445321,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -445622,7 +445617,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "7*t^2 - 1",
@@ -445630,7 +445625,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -445668,7 +445663,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -445684,7 +445679,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -445730,7 +445725,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -445746,7 +445741,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -445784,11 +445779,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -445838,7 +445833,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -445854,7 +445849,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -446026,7 +446021,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -446034,7 +446029,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -446356,7 +446351,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -446376,7 +446371,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -446564,11 +446559,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -446652,7 +446647,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -446668,7 +446663,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -446926,7 +446921,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -446934,7 +446929,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -447042,7 +447037,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -447062,7 +447057,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447150,11 +447145,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447410,7 +447405,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -447418,7 +447413,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447456,7 +447451,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -447472,7 +447467,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447510,7 +447505,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -447518,7 +447513,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -447672,7 +447667,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -447680,7 +447675,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447718,7 +447713,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -447730,7 +447725,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -447776,7 +447771,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -447784,7 +447779,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447822,7 +447817,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -447838,7 +447833,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447876,11 +447871,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -447918,11 +447913,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -448052,7 +448047,7 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -448060,7 +448055,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -448098,7 +448093,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -448106,7 +448101,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 7",
@@ -448252,7 +448247,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 12*t^2 - 1",
@@ -448264,7 +448259,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -448302,7 +448297,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -448310,7 +448305,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -448448,7 +448443,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -448456,7 +448451,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -448544,7 +448539,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -448552,7 +448547,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -448590,7 +448585,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -448602,7 +448597,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -448652,11 +448647,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -448814,7 +448809,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -448826,7 +448821,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -449068,7 +449063,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -449084,7 +449079,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -449330,7 +449325,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -449346,7 +449341,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -449442,7 +449437,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -449458,7 +449453,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^4 - 22*t^2 + 1",
@@ -450002,7 +449997,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -450010,7 +450005,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -450148,7 +450143,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -450168,7 +450163,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -450264,7 +450259,7 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -450272,7 +450267,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -450314,7 +450309,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -450330,7 +450325,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -450368,7 +450363,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -450376,7 +450371,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -450418,7 +450413,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -450426,7 +450421,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -450518,11 +450513,11 @@
     ],
     "genus": 5,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -450610,7 +450605,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -450626,7 +450621,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -450664,7 +450659,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -450672,7 +450667,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -450722,7 +450717,7 @@
     ],
     "genus": 16,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -450742,7 +450737,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -451072,7 +451067,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -451092,7 +451087,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -451292,11 +451287,11 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -451334,7 +451329,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -451342,7 +451337,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 2",
@@ -451434,7 +451429,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -451446,7 +451441,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -451550,7 +451545,7 @@
     ],
     "genus": 21,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -451566,7 +451561,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -451682,7 +451677,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "5*t^4 - 18*t^2 + 1",
@@ -451702,7 +451697,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -451740,7 +451735,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -451748,7 +451743,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -451898,7 +451893,7 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -451906,7 +451901,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -452040,7 +452035,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -452048,7 +452043,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -452060,7 +452055,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -452152,7 +452147,7 @@
     ],
     "genus": 23,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -452164,7 +452159,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 2*t - 1",
@@ -452214,7 +452209,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "3*t^2 - 1",
@@ -452222,7 +452217,7 @@
      ],
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 1",
@@ -452314,11 +452309,11 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t + 1",
@@ -452918,7 +452913,7 @@
     ],
     "genus": 9,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -452926,7 +452921,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -452964,7 +452959,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -452972,7 +452967,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ],
      [
       "t^2 + 4*t + 1",
@@ -453106,7 +453101,7 @@
     ],
     "genus": 17,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -453122,7 +453117,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -453206,11 +453201,11 @@
     ],
     "genus": 13,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
-      "OFF"
+      "on"
      ],
      [
       "t^2 - 3",
@@ -453393,11 +453388,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -453839,7 +453834,7 @@
     ],
     "genus": 7,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "2*t^2 - 1",
@@ -453847,7 +453842,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -453885,11 +453880,11 @@
     ],
     "genus": 10,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -453973,7 +453968,7 @@
     ],
     "genus": 11,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t",
@@ -453981,7 +453976,7 @@
      ],
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -454077,11 +454072,11 @@
     ],
     "genus": 3,
     "divides": true,
-    "all_on_base_locus": false,
+    "all_on_base_locus": true,
     "singular_t_factors": [
      [
       "t^2 + 1",
-      "OFF"
+      "on"
      ]
     ]
    },
@@ -454539,7 +454534,50 @@
      ]
     ]
    }
-  ]
+  ],
+  "census_v1": {
+   "note": "entry 105's test used a non-squarefree gcd for the singular x-coordinates, so base points of multiplicity >= 2 failed the divisibility test",
+   "claim2_all_on_base_locus": 878,
+   "exceptions_by_t_factor": {
+    "t": 62,
+    "t^2 + 1": 334,
+    "t + 1": 4,
+    "t - 1": 4,
+    "t^2 + 2*t - 1": 2,
+    "t^2 - 2*t - 1": 2
+   }
+  },
+  "dichotomy": {
+   "note": "entry 109: THE SINGULAR-LOCUS DICHOTOMY (theorem, doc 2.39): with the eliminated frame at exponent 1 the relations are quadratics q_i in w_f; a singular point of a component is a base point of the minor map (q_1, q_2 proportional), the projection of a singular point of the space curve Gamma = {R1 = R2 = 0}, or on the toric boundary (a frame at +-i). Every exception of the entry-105 census re-examined exactly over the branch fields: the rows at the singular point are rank 0 (both relations vanish identically in t_f), rank 1 (proportional, or one relation zero) -- base points after all, missed by the non-squarefree test -- or, over t = +-i only, points where the common root is at t_f = +-i or a quadratic drops degree (the toric boundary in the eliminated frame too).",
+   "n_exceptional_points_tested": 492,
+   "kinds": {
+    "torsion/other | rank0": 62,
+    "boundary t=+-i | rank0": 140,
+    "boundary t=+-i | one relation vanishes": 104,
+    "boundary t=+-i | base(quadratics proportional)": 146,
+    "boundary t=+-i | rank 1 vertical 0 ydeg [2, 2] Y0inf 1": 8,
+    "boundary t=+-i | rank 1 vertical 0 ydeg [2, 1] Y0inf 1": 4,
+    "torsion/other | base(quadratics proportional)": 12,
+    "boundary t=+-i | rank 1 vertical 0 ydeg [1, 2] Y0inf 1": 4,
+    "boundary t=+-i | rank 1 vertical 0 ydeg [1, 1] Y0inf 1": 8,
+    "boundary t=+-i | rank 2 vertical 0 ydeg [1, 1] Y0inf 0": 4
+   },
+   "details": {
+    "('t', 'rank0')": 62,
+    "('t^2 + 1', 'rank0')": 140,
+    "('t^2 + 1', 'one relation vanishes')": 104,
+    "('t^2 + 1', 'base(quadratics proportional)')": 146,
+    "('t^2 + 1', 'rank 1 vertical 0 ydeg [2, 2] Y0inf 1')": 8,
+    "('t^2 + 1', 'rank 1 vertical 0 ydeg [2, 1] Y0inf 1')": 4,
+    "('t + 1', 'base(quadratics proportional)')": 4,
+    "('t - 1', 'base(quadratics proportional)')": 4,
+    "('t^2 + 1', 'rank 1 vertical 0 ydeg [1, 2] Y0inf 1')": 4,
+    "('t^2 + 1', 'rank 1 vertical 0 ydeg [1, 1] Y0inf 1')": 8,
+    "('t^2 + 2*t - 1', 'base(quadratics proportional)')": 2,
+    "('t^2 - 2*t - 1', 'base(quadratics proportional)')": 2,
+    "('t^2 + 1', 'rank 2 vertical 0 ydeg [1, 1] Y0inf 0')": 4
+   }
+  }
  },
  "quotients": {
   "note": "entry 105 (attempt B, step 1): every certified component is invariant under the joint sign change (t_g, t_h) -> (-t_g, -t_h) and 944 carry a further involution on one coordinate (t -> -t, 1/t, -1/t) or the swap. compute/omega3_quotients.py forms the quotient by each single-coordinate involution (the squarefree image of the resultant against the invariant's relation) and by the joint sign change (invariants t_g^2, t_g t_h), computes its exact genus (resolution tool), and for a genus-1 quotient quadratic in a variable runs the rank-0 route with a complete lift: every rational point of the quotient (PARI ellrank + complete enumeration, square-part roots added) is lifted to the finitely many rational preimages; if none is a pair of non-degenerate Pythagorean frame ratios, the class is DEAD. Genus-0 quotients give nothing; genus >= 2 quotients are recorded.",

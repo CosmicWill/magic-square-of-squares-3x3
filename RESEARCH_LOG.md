@@ -5293,3 +5293,68 @@ over the finite classes; both are mechanical.
 Suite 192 (a3.omega3_unknowns: the census, live re-kills of the
 conjugate and own-model routes; a3.omega3_box211_sweep updated). Doc
 2.38; ROADMAP R.8, M14-K; memory.
+
+## 2026-09-06 — Entry 109: the singular-locus dichotomy is a theorem — a singular point of a quadruple curve is a base point of the minor map, a singular point of the space curve, or on the toric boundary; the census corrected (1248 of 1264 curves entirely on the base locus); the plan reorganized (ROADMAP R.10)
+
+THE THEOREM (doc 2.39). Write w = e^(2i theta) = (1 + it)/(1 - it) per
+frame; the three frames are coordinates on a 3-torus and each relation
+is a six-term Laurent polynomial R_i = sum_e eps_e Im(w_g^j w_h^k
+w_f^l). With the eliminated frame at exponent 1, w_f R_i is a quadratic
+q_i(w_f) whose coefficients are the rows of the minor formula (entry
+105), and the space curve Gamma = {R1 = R2 = 0} projects onto the
+elimination curve. At a smooth point of Gamma off the toric boundary,
+the image branch is singular only if the tangent of Gamma is vertical,
+i.e. dR1/dw_f = dR2/dw_f = 0 there; since R_i = q_i/w_f and q_i = 0, this
+says q_i'(w_f) = 0 -- w_f is a double root of BOTH quadratics -- so q_1
+and q_2 are multiples of (w - w_f)^2: proportional, a base point of the
+minor map. Two points of Gamma over the same (w_g, w_h) means two
+common roots of two quadratics, again proportional. Hence every
+singular point of a component is (1) a base point of the minor map,
+(2) the projection of a singular point of Gamma, or (3) on the toric
+boundary -- t_g, t_h or the common root at +-i (w in {0, inf}), where
+the Laurent description degenerates. The proof uses only the exponent
+of the eliminated frame: it holds for every box (a,1,1) eliminating a
+first-power frame.
+
+THE VERIFICATION, AND A CORRECTION OF ENTRY 105'S CENSUS. All 408
+'OFF' exceptions of the entry-105 test were re-examined exactly over
+the branch-value fields, point by point (492 points; the common root
+of the relations and the 2x3 Jacobian of (R1, R2) at each): 146 boundary t=+-i | base(quadratics proportional); 140 boundary t=+-i | rank0; 104 boundary t=+-i | one relation vanishes; 62 torsion/other | rank0; 12 torsion/other | base(quadratics proportional); 8 boundary t=+-i | rank 1 vertical 0 ydeg [2, 2] Y0inf 1; 8 boundary t=+-i | rank 1 vertical 0 ydeg [1, 1] Y0inf 1; 4 boundary t=+-i | rank 1 vertical 0 ydeg [2, 1] Y0inf 1; 4 boundary t=+-i | rank 1 vertical 0 ydeg [1, 2] Y0inf 1; 4 boundary t=+-i | rank 2 vertical 0 ydeg [1, 1] Y0inf 0. So
+every exception but the 28 boundary points IS a base point of the minor map
+-- the rows at the point have rank 0 (both relations vanish identically
+in t_f: the elimination's own base points, at t = 0 and +-1) or rank 1
+(proportional quadratics, or one relation zero) -- and the entry-105
+test had missed them because it divided the minors by a NON-SQUAREFREE
+gcd (a base point of multiplicity >= 2 fails a divisibility test by
+(x - x0)^2). With the squarefree fix (compute/omega3_minors.py), the
+census over all 1264 curves gives: 1248 curves with every affine
+singular point on the base locus, and the exceptions {'t^2 + 1': 16} -- all
+over t = +-i, where the common root is at t_f = +-i as well or a
+quadratic drops degree: the toric boundary in the eliminated frame.
+The entry-105 numbers (878, and exceptions at t, t +- 1, t^2 +- 2t - 1)
+are kept in the data file as the record of the correction.
+
+WHAT IT BUYS. The singular locus of every quadruple curve -- hence its
+genus, by resolution -- reduces to two explicit zero-dimensional
+systems on the torus: the proportionality of two coefficient rows (the
+base locus) and the rank drop of a 2x3 Jacobian of two six-term Laurent
+polynomials (the singular points of Gamma), plus the boundary. Both are
+questions about vanishing sums of few monomials on a torus, where the
+torsion part is bounded uniformly (Conway-Jones): the base-locus
+theorem of R.10.O3 has the shape of a classification of such sums, and
+on the box the answer is known (torsion of order dividing 24 and the
+half-Pythagorean points).
+
+THE PLAN REORGANIZED (ROADMAP R.10, superseding the R.8 phase list):
+O1 the finiteness statement for (2,1,1) (the rigorous pass on the
+provisional third + the base loci; mechanical); O2 the first exclusion
+theorem "no MSS3 of shape (1,1,1)" (elliptic Chabauty on 304 models,
+Chabauty on the quotients of 1156 curves; needs Sage or Magma -- a Sage
+install in the WSL Ubuntu is the decision point); O3 uniformity: the
+base-locus theorem, why the killers are ten curves, the branch loci of
+the three frame covers; O4 the next boxes (2,2,1), (3,1,1) sampled, and
+a first look at (1,1,1,1); O5 kept warm: uniform omega = 2, the S-unit
+framing, the paper.
+
+a3.omega3_minors updated (the corrected census, the dichotomy block).
+Doc 2.39; ROADMAP R.10, M14-L; memory.

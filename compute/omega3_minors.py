@@ -80,7 +80,7 @@ def singular_on_base_locus(phi, mins, tfactors, timeout=600):
     for q in tfactors:
         script += "q = " + q.replace("**", "^") + "; qa = subst(q, t, a);\n"
         script += "if(poldegree(qa, a) == 1, A = -polcoeff(qa, 0, a) / polcoeff(qa, 1, a), mf = monicfield(qa); A = Mod(a, mf[1]) / mf[2]);\n"
-        script += "PK = subst(phi, t, A); h = gcd(gcd(PK, deriv(PK, x)), subst(deriv(phi, t), t, A));\n"
+        script += "PK = subst(phi, t, A); h = gcd(gcd(PK, deriv(PK, x)), subst(deriv(phi, t), t, A)); if(type(h) == \"t_POL\" && poldegree(h, x) > 0, h = h / gcd(h, deriv(h, x)));\n"
         script += "if(type(h) != \"t_POL\" || poldegree(h, x) <= 0, print(\"SING \", q, \" | nosing\"),\n"
         script += "  ok = 1; for(i = 1, 3, M = [MX, MY, MN][i]; MK = subst(M, t, A); if(MK != 0 && (MK % h) != 0, ok = 0));\n"
         script += "  print(\"SING \", q, \" | \", if(ok, \"on\", \"OFF\")));\n"

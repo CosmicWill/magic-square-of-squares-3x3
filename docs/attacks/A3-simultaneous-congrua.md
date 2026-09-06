@@ -2586,6 +2586,60 @@ conjugates if not).  **Box $(2,1,1)$: dead $12132$, finite $41808$, finite with 
 provisional genus $25428$, unknown $0$.**  The finiteness statement for the shape
 waits for the rigorous pass on the provisional third and the base-locus check.
 
+## 2.39 The singular-locus dichotomy is a theorem (attempt C, second step)
+
+*(2026-09-06; entry 109; check `a3.omega3_dichotomy`.)*
+
+**Setting.**  Put $w=e^{2i\theta}=(1+it)/(1-it)$ for each frame; the three frames
+are coordinates on the torus $(\mathbb C^*)^3$, and each relation of a class
+is a Laurent polynomial
+$$R_i=\sum_e \varepsilon_e\operatorname{Im}\bigl(w_g^{j_e}w_h^{k_e}w_f^{l_e}\bigr),$$
+six monomials each.  When the eliminated frame $f$ has exponent $1$
+($l_e\in\{-1,0,1\}$), $w_fR_i$ is a quadratic $q_i(w_f)$ whose coefficients are
+the rows $(a_i,b_i,c_i)$ of the minor formula (§2.35).  The space curve
+$\Gamma=\{R_1=R_2=0\}$ projects onto the elimination curve; a component
+$\Phi_f$ is the image of the branches of $\Gamma$ over it.
+
+**Theorem (the dichotomy).**  Let $a_f=1$.  A singular point $p$ of a component
+$\Phi_f$ is one of:
+1. a **base point of the minor map** — the quadratics $q_1,q_2$ are proportional
+   at $p$ (all three minors vanish; the third frame is free on a line meeting
+   the circle twice: a node);
+2. the projection of a **singular point of $\Gamma$**;
+3. a point on the **toric boundary** — $t_g$ or $t_h$ equals $\pm i$ (a frame
+   at $w\in\{0,\infty\}$), or a common root of the $q_i$ at $w_f\in\{0,\infty\}$
+   ($t_f=\pm i$), where the Laurent description degenerates.
+
+*Proof.*  Take $\gamma=(p,w_f)\in\Gamma$ off the boundary with $\Gamma$ smooth at
+$\gamma$.  The projection $\pi\colon\Gamma\to(w_g,w_h)$ maps a neighbourhood of
+$\gamma$ isomorphically onto a smooth branch unless its differential kills the
+tangent line of $\Gamma$, i.e. the tangent is vertical: $\partial R_1/\partial w_f
+=\partial R_2/\partial w_f=0$ at $\gamma$.  Since $R_i=q_i(w_f)/w_f$ and
+$q_i(w_f)=0$, this says $q_i'(w_f)=0$: $w_f$ is a double root of both quadratics,
+so $q_1$ and $q_2$ are both multiples of $(w-w_f)^2$ — proportional — and $p$
+is a base point (case 1).  If the image branch is smooth but $\Phi_f$ is singular
+at $p$, another branch of $\Gamma$ passes over $p$: a second common root
+$w_f'\neq w_f$ of $q_1,q_2$, and two quadratics with two common roots are
+proportional (case 1 again).  What remains is a singular point of $\Gamma$
+(case 2) or a point where the argument's hypotheses fail (case 3). $\square$
+
+**What the census now says.**  Of the $8086$ singular orbits of the $1264$
+certified curves, $3908$ affine $t$-factors were tested against the base locus
+(§2.35): $878$ curves entirely on it, and $408$ exceptions.  Every exception is
+of type 3 or 2: of the 492 exceptional singular points re-examined exactly, 464 are base points after all (the rows at the point have rank 0 or 1 — the entry-105 test had used a non-squarefree gcd), and the remaining 28 lie over $t=\pm i$ with the eliminated frame at $\pm i$ too; with the corrected test, 1248 of the 1264 curves have every affine singular point on the base locus and the exceptions are {'t^2 + 1': 16}.  So on the whole box the singular points of
+the quadruple curves are the base points of the minor map, the toric boundary,
+and singular points of $\Gamma$ at the torsion values $t\in\{0,\infty,\pm1,\tan(\pm22.5^\circ)\}$.
+
+**Why it matters.**  The theorem reduces the singular locus — hence the genus,
+by resolution — to two explicit zero-dimensional systems on the torus: the
+proportionality of two coefficient rows (the base locus), and the rank drop of
+a $2\times3$ Jacobian of two six-term Laurent polynomials (the singular points of
+$\Gamma$).  Both are questions about *vanishing sums of few monomials on a torus*,
+where the torsion part is bounded uniformly (Conway–Jones), which is the shape
+of the base-locus theorem that R.10.O3 asks for.  The same proof applies to every
+box in which the eliminated frame has exponent $1$ — in particular to $(2,1,1)$
+eliminating a first-power frame, and to every $(a,1,1)$.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
