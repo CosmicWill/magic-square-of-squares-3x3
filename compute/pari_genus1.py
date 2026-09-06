@@ -48,7 +48,7 @@ print("RES ", r[1], " ", r[2], " ", T[1], " ", T[2], " | ", L);
     tvals = sorted({p[0] for p in pts})
     lc = coeffs[0]
     r0 = int(round(abs(lc) ** 0.5))
-    n_inf = 2 if (lc > 0 and r0 * r0 == lc and len(coeffs) == 5) else 0
+    n_inf = 1 if len(coeffs) == 4 else (2 if (lc > 0 and r0 * r0 == lc) else 0)   # a cubic model always has its one point at infinity (entry 106)
     return {"rank_lo": rank_lo, "rank_hi": rank_hi, "torsion_order": tors, "torsion": m.group(4),
             "points": pts, "tvals": tvals, "n_points": len(pts), "n_inf": n_inf,
             "complete": (rank_hi == 0 and len(pts) + n_inf == tors)}

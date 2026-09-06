@@ -5086,3 +5086,77 @@ singular-point test on a bounded sample, the census; a3.omega3_quotients:
 the census and live re-kills; the tallies of a3.omega3_engine,
 a3.omega3_resolve, a3.omega3_finiteness). Doc 2.35-2.36; ROADMAP R.9
 attempts B and C, M14-H; memory.
+
+## 2026-09-05 — Entry 106: the two-step quotient route — 36 more classes die through a second involution of the joint quotient; the cubic-model completeness bug; the genus-0 quotients need a parametrization tool. Box (1,1,1): dead 1484, finite 1460, unknown 0
+
+THE ASK (while the sweep runs: 50,400 of the 57,312 remaining classes
+done): try the 96 joint-sign quotients of genus 1 and the 40 genus-0
+quotients of entry 105.
+
+THE JOINT QUOTIENTS HAVE NO QUADRATIC MODEL. E = Phi/sigma (sigma the
+joint sign change) in the (x, y) = (t_g^2, t_g t_h) model has bidegree
+(3,4), (2,4), (4,4), (4,6) or (3,6); in the (x, z) = (t_g^2, t_h^2)
+model (compute/omega3_quotients.joint_quotient_xz: eliminate t_h against
+t_h^2 - z, the resultant is even in t_g, substitute x = t_g^2, keep the
+factor vanishing on the curve) it has bidegree (4,4) for a (4,4) curve
+-- the map to the (x, z)-plane is 2:1 on the curve and the degree only
+halves in the pullback, which is Phi together with its image under a
+single sign change. A genus-1 plane curve of bidegree (4,4) needs a
+rational point and a Riemann-Roch computation for a Weierstrass model;
+we have neither, so of the 80 targets only 12 were quadratic and none
+of those had a rank-0 model.
+
+THE TWO-STEP ROUTE (two_step_joint, two_step_joint_more, _w_route). A
+second involution tau of the curve descends to E: t -> -1/t or 1/t on
+one coordinate gives x -> 1/x (or z -> 1/z) on the (x, z) model; the
+joint reciprocity gives (x, z) -> (1/x, 1/z); the swap gives (x, z) ->
+(z, x). W = E/taubar is computed by the same resultant-and-image-factor
+step (coordinate_quotient with kind 'rec'; (x + 1/x, z + 1/z) in two
+steps; (x + z, xz) through T^2 - sT + p), and has LOWER degree. Two
+endgames. W of genus 1 and quadratic in a variable: the rank-0 route
+(PARI, complete enumeration, the square-part roots) lists every
+rational point of W; each has finitely many preimages on E (the roots
+of x^2 - vx + 1, or of T^2 - sT + p) and each of those lifts to the
+curve only when x and z are rational squares, to (+-sqrt x, +-sqrt z)
+tested on Phi; no admissible frame pair -> DEAD. W of genus 0 and
+quadratic in a variable: parametrized (the conic route of entry 98),
+and E is then the double cover y^2 = Delta(lambda) with Delta the
+discriminant of E's coordinate over W (v^2 - 4, or s^2 - 4p), i.e. E's
+own genus-1 quartic (or cubic) model; rank 0 -> the parameter values
+(with the parametrization's missed points) -> the same exact lift.
+RESULT: 36 of the 80 die -- 32 through a single-coordinate involution
+with W of genus 1 (models [12, -1, 2, -1] x16, [1, -2, 1, -12, 0] x16),
+4 through the swap with W of genus 0 (E's quartics [9, +-168, 784,
++-768, 0] and [3, +-49, 168, +-144]). Blocked: 16 with only the joint
+reciprocity, whose W is not quadratic in either variable; 28 with no
+second involution at all. BOX (1,1,1): dead 1484, finite 1460,
+unknown 0 (a3.omega3_quotients: the census and live re-kills of both
+routes; the tallies of the other checks).
+
+A BUG FOUND ON THE WAY (compute/pari_genus1.py). quartic_points counted
+the points at infinity of y^2 = f only for quartic f (two when the
+leading coefficient is a square), so a CUBIC model -- which always has
+its one point at infinity -- could never be 'complete', and 16 of the
+32 first-step kills above were blocked by the flag ('rank 0, torsion 2,
+one affine point found, not complete') until it was fixed (PARI's
+hyperellratpoints lists both signs of y, checked on y^2 = x^3 + 1:
+five affine points plus infinity = torsion 6). No earlier kill relied
+on a cubic model (the towers' rank-0 quotients were all certified
+dead; census of the data), so nothing committed changes.
+
+THE GENUS-0 QUOTIENTS (24 classes of bidegree (6,8), (8,6), (6,6)
+with a genus-0 quotient by t -> -1/t: the curve is HYPERELLIPTIC with
+that involution). The quotient has bidegree (4,6) or (3,6), e.g. a
+(4,6) rational curve with a 4-fold point at infinity and a conjugate
+pair of triple points over t^2 + 4, no rational point at small values.
+A hyperelliptic model y^2 = D(lambda) needs a rational parametrization
+of that curve (or a proof that it has no rational point, which would
+kill the class outright): a Riemann-Roch / adjoint-curve computation
+that neither sympy nor PARI provides. Sage (rational_parameterization,
+via Singular) and Magma do. WSL with Ubuntu 22.04 is on this machine;
+a Sage installation there would unblock this route and, more
+importantly, Chabauty for attempt B. Recorded as the blocker; not
+installed (a decision for the user).
+
+Suite 190 (a3.omega3_quotients extended). Doc 2.36 extended; ROADMAP
+M14-I, attempt B note; memory. The sweep's report is entry 107.

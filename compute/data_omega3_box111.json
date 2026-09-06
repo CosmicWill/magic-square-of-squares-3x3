@@ -1,11 +1,11 @@
 {
- "entry": 105,
+ "entry": 106,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
  "tally": {
-  "dead": 1448,
-  "finite": 1496,
+  "dead": 1484,
+  "finite": 1460,
   "unknown": 0
  },
  "n_models": 13,
@@ -3800,18 +3800,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -3926,7 +3917,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -3955,18 +3971,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -4081,7 +4088,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -4110,18 +4143,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -4236,7 +4260,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -4265,18 +4315,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -4391,7 +4432,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -4420,18 +4486,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -4546,7 +4603,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -4575,18 +4657,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -4701,7 +4774,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -4730,18 +4829,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -4856,7 +4946,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -4885,18 +5001,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -5011,7 +5118,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -14128,18 +14260,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -14254,7 +14377,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -14283,18 +14431,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -14409,7 +14548,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -14438,18 +14603,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -14564,7 +14720,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -14593,18 +14775,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -14719,7 +14892,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -14748,18 +14946,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -14874,7 +15063,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -14903,18 +15117,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -15029,7 +15234,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -15058,18 +15289,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -15184,7 +15406,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -15213,18 +15461,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -15339,7 +15578,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -15368,18 +15632,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -15494,7 +15749,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -15523,18 +15803,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -15649,7 +15920,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -15678,18 +15975,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -15804,7 +16092,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -15833,18 +16147,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -15959,7 +16264,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -15988,18 +16318,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -16114,7 +16435,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -16143,18 +16489,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -16269,7 +16606,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -16298,18 +16661,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -16424,7 +16778,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -16453,18 +16833,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -16579,7 +16950,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -16724,6 +17120,22 @@
       2,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -16871,6 +17283,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -17016,6 +17444,22 @@
       4,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -17163,6 +17607,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -17308,6 +17768,22 @@
       2,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -17455,6 +17931,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -17601,6 +18093,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -17746,6 +18254,22 @@
       2,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -26040,18 +26564,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -26166,7 +26681,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -26195,18 +26735,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -26321,7 +26852,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -26350,18 +26907,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -26476,7 +27024,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -26505,18 +27079,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -26631,7 +27196,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -26660,18 +27250,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -26786,7 +27367,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -26815,18 +27421,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -26941,7 +27538,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -26970,18 +27593,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [1, -2, 1, -12, 0]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -27096,7 +27710,33 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      1,
+      -2,
+      1,
+      -12,
+      0
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -27125,18 +27765,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution g descends to E and W = E/tau has genus 1; rank 0 on W, finitely many points, their preimages on E; model [12, -1, 2, -1]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -27251,7 +27882,32 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_g",
+     "genus_W": 1,
+     "deg_W": [
+      2,
+      4
+     ],
+     "verdict": "dead",
+     "level": "W genus 1",
+     "model": [
+      12,
+      -1,
+      2,
+      -1
+     ],
+     "rank": [
+      0,
+      0
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -33229,6 +33885,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -33374,6 +34046,22 @@
       4,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -33521,6 +34209,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -33666,6 +34370,22 @@
       2,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -33813,6 +34533,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -33958,6 +34694,22 @@
       4,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -34105,6 +34857,22 @@
       4
      ]
     }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
+    }
    ]
   },
   {
@@ -34250,6 +35018,22 @@
       2,
       4
      ]
+    }
+   ],
+   "two_step": [
+    {
+     "by": "two_step_recboth",
+     "genus_W": 1,
+     "deg_W": [
+      4,
+      4
+     ],
+     "verdict": "unknown",
+     "level": null,
+     "model": [],
+     "rank": [],
+     "admissible": null,
+     "note": "W not quadratic in either variable"
     }
    ]
   },
@@ -115352,7 +116136,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -115503,7 +116288,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -115654,7 +116440,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -115805,7 +116592,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -115956,7 +116744,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -116107,7 +116896,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -116258,7 +117048,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -116409,7 +117200,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -175574,7 +176366,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -175603,18 +176396,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution swap descends to E and W = E/tau has genus 0; W parametrized, E's own quartic model of rank 0; model [[9, 168, 784, 768, 0], [9, -168, 784, -768, 0]]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -175734,7 +176518,48 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_swap",
+     "genus_W": 0,
+     "deg_W": [
+      4,
+      2
+     ],
+     "verdict": "dead",
+     "level": "W genus 0",
+     "model": [
+      [
+       9,
+       168,
+       784,
+       768,
+       0
+      ],
+      [
+       9,
+       -168,
+       784,
+       -768,
+       0
+      ]
+     ],
+     "rank": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -175763,18 +176588,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution swap descends to E and W = E/tau has genus 0; W parametrized, E's own quartic model of rank 0; model [[3, 49, 168, 144], [3, -49, 168, -144]]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -175889,7 +176705,46 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_swap",
+     "genus_W": 0,
+     "deg_W": [
+      3,
+      2
+     ],
+     "verdict": "dead",
+     "level": "W genus 0",
+     "model": [
+      [
+       3,
+       49,
+       168,
+       144
+      ],
+      [
+       3,
+       -49,
+       168,
+       -144
+      ]
+     ],
+     "rank": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -176044,7 +176899,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -176199,7 +177055,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -176228,18 +177085,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution swap descends to E and W = E/tau has genus 0; W parametrized, E's own quartic model of rank 0; model [[3, 49, 168, 144], [3, -49, 168, -144]]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -176354,7 +177202,46 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_swap",
+     "genus_W": 0,
+     "deg_W": [
+      3,
+      2
+     ],
+     "verdict": "dead",
+     "level": "W genus 0",
+     "model": [
+      [
+       3,
+       49,
+       168,
+       144
+      ],
+      [
+       3,
+       -49,
+       168,
+       -144
+      ]
+     ],
+     "rank": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -176383,18 +177270,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "two-step quotient kill (entry 106): the joint quotient E = Phi/sigma has genus 1; the involution swap descends to E and W = E/tau has genus 0; W parametrized, E's own quartic model of rank 0; model [[9, 168, 784, 768, 0], [9, -168, 784, -768, 0]]; no admissible lift",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -176514,7 +177392,48 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": [
+    {
+     "by": "two_step_swap",
+     "genus_W": 0,
+     "deg_W": [
+      4,
+      2
+     ],
+     "verdict": "dead",
+     "level": "W genus 0",
+     "model": [
+      [
+       9,
+       168,
+       784,
+       768,
+       0
+      ],
+      [
+       9,
+       -168,
+       784,
+       -768,
+       0
+      ]
+     ],
+     "rank": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "admissible": [],
+     "note": null
+    }
+   ],
+   "verdict_before_quotients": "finite"
   },
   {
    "cand": [
@@ -176669,7 +177588,8 @@
       4
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -322450,7 +323370,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -322610,7 +323531,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -322765,7 +323687,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -322920,7 +323843,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -323075,7 +323999,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -323230,7 +324155,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -323390,7 +324316,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -323545,7 +324472,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -335506,7 +336434,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -335666,7 +336595,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -335821,7 +336751,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -335976,7 +336907,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -336131,7 +337063,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -336286,7 +337219,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -336446,7 +337380,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -336601,7 +337536,8 @@
       6
      ]
     }
-   ]
+   ],
+   "two_step": []
   },
   {
    "cand": [
@@ -513460,6 +514396,3439 @@
     ],
     "dead": false
    }
-  ]
+  ],
+  "two_step": {
+   "note": "entry 106: the joint quotient E = Phi/sigma of genus 1 (80 still-finite classes) has no model quadratic in a variable ((x, z) = (t_g^2, t_h^2) and (x, y) = (t_g^2, t_g t_h) models both of bidegree up to (4,4)); a SECOND involution of the curve descends to E, and W = E/tau (coordinate_quotient with kind 'rec' on the (x, z) model; the joint reciprocity through (x + 1/x, z + 1/z); the swap through (x + z, xz)) has lower degree. W of genus 1 and quadratic in a variable: the rank-0 route lists its points, each has finitely many preimages on E (a quadratic) and on the curve (x, z rational squares). W of genus 0: parametrized (conic route), E is the double cover y^2 = Delta(lambda) (Delta = v^2 - 4 or s^2 - 4p), its own genus-1 quartic: rank 0, the parameter values, the exact lift. Also fixed: quartic_points counted no point at infinity for CUBIC models (which always have one), so rank-0 cubics were never 'complete'; no earlier kill depended on a cubic.",
+   "n_targets": 80,
+   "n_dead": 36,
+   "kill_routes": {
+    "('two_step_g', 1)": 32,
+    "('two_step_swap', 0)": 4
+   },
+   "killing_models": {
+    "[12, -1, 2, -1]": 16,
+    "[1, -2, 1, -12, 0]": 16,
+    "[[9, 168, 784, 768, 0], [9, -168, 784, -768, 0]]": 2,
+    "[[3, 49, 168, 144], [3, -49, 168, -144]]": 2
+   },
+   "blocked": {
+    "('no second involution on E',)": 28,
+    "('two_step_recboth', 1, 'W not quadratic in either variable')": 16
+   },
+   "classes": [
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "negrec_g"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_g",
+       1,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "rec_both"
+     ],
+     "dead": false,
+     "routes": [
+      [
+       "two_step_recboth",
+       1,
+       "unknown"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap_rec"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap",
+      "swap_neg"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_swap",
+       0,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap",
+      "swap_neg"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_swap",
+       0,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap_rec"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap_rec"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap",
+      "swap_neg"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_swap",
+       0,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap",
+      "swap_neg"
+     ],
+     "dead": true,
+     "routes": [
+      [
+       "two_step_swap",
+       0,
+       "dead"
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      4
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both",
+      "swap_rec"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "deg": [
+      4,
+      6
+     ],
+     "genus": 3,
+     "sym": [
+      "neg_both"
+     ],
+     "dead": false,
+     "routes": []
+    }
+   ]
+  }
  }
 }

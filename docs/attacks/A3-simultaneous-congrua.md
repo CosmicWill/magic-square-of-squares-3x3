@@ -2515,9 +2515,26 @@ enumeration lists every rational point, each lifts to finitely many
 rational preimages, and if none is a pair of admissible frame ratios the
 class is dead — the mechanism of the quotient towers (§2.30) on the
 non-hyperelliptic curves.  Result: **72 classes die** (routes: negrec_h 32, neg_g 16, rec_g 16, rec_h 8).
-**Box tally: dead $1448$, finite $1496$, unknown $0$.**  The genus
-$\ge2$ quotients and the positive-rank genus-$1$ quotients are the honest
-Chabauty list for attempt B.
+**Box tally after entry 105: dead $1448$, finite $1496$, unknown $0$.**
+
+**The two-step route (entry 106).**  The joint quotient $E=\Phi/\sigma$ has
+genus $1$ for $96$ curves but no model quadratic in a variable (bidegree up to
+$(4,4)$ in both the $(t_g^2,t_gt_h)$ and the $(t_g^2,t_h^2)$ models).  A second
+involution $\tau$ of the curve descends to $E$, and $W=E/\bar\tau$ has lower
+degree: for $W$ of genus $1$ the rank-$0$ route lists its points and each has
+finitely many preimages on $E$ and on the curve (both coordinates rational
+squares); for $W$ of genus $0$ the parametrization makes $E$ the double cover
+$y^2=\Delta(\lambda)$, its own quartic model.  Result: **36 more classes die**
+(32 through $t\mapsto-1/t$ or $1/t$ with $W$ of genus $1$, $4$ through the swap
+with $W$ of genus $0$); $16$ are blocked by a non-quadratic $W$ and $28$ have no
+second involution.  A bug fixed on the way: a cubic model $y^2=f$ was never
+"complete" because its point at infinity was not counted.  **Box tally: dead
+$1484$, finite $1460$, unknown $0$.**  The $24$ genus-$0$ quotients
+(hyperelliptic curves of bidegree $(6,8)$, $(8,6)$, $(6,6)$) need a rational
+parametrization of a rational curve of bidegree $(4,6)$ or $(3,6)$ — a
+Riemann–Roch computation that Sage or Magma provides and our tools do not.
+The genus $\ge2$ quotients and the positive-rank genus-$1$ quotients are the
+honest Chabauty list for attempt B.
 
 
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)

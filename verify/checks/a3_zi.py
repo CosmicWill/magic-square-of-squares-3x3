@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 1448, "finite": 1496, "unknown": 0}, data["tally"])      # entry 105 (quotient kills)
+    require(data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])      # entry 106 (two-step quotient kills)
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,7 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1448)      # 1373 + 3 common-factor kills + 72 quotient kills (entry 105)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1484)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106)
     require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
@@ -3901,7 +3901,7 @@ def _(ctx):
         elif e["verdict"] == "dead":
             require(e.get("verdict_before_quotients") == "finite", ("a bound-certified class dead only by a quotient kill", e["cand"]))
             n_dead_q = locals().get("n_dead_q", 0) + 1
-    require((n_fin, n_unk) == (1192, 0), (n_fin, n_unk))      # 1264 bound-certified classes, 72 of them dead by quotients (entry 105)
+    require((n_fin, n_unk) == (1156, 0), (n_fin, n_unk))      # 1264 bound-certified classes, 72 + 36 of them dead by quotients (entries 105-106)
     require(all("corrected" in e["genus"] for e in data["classes"] if "genus" in e), "every bound record is the corrected one")
     if gp_available():
         # (i) the genus-1 control: the (2,2) component tg^2 th + 2 tg th^2 - 2 tg + th of the class below
@@ -3969,7 +3969,7 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] == 105 and data["tally"] == {"dead": 1448, "finite": 1496, "unknown": 0}, data["tally"])
+    require(data["entry"] == 106 and data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])
     Rs = data["resolution"]
     require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
     require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
@@ -4077,7 +4077,7 @@ def _(ctx):
     from compute.omega3_finiteness import base_locus, frame_ratio_prime
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["tally"] == {"dead": 1448, "finite": 1496, "unknown": 0}, data["tally"])
+    require(data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])
     BL = data["base_locus"]
     require(BL["n_finite"] == 1568 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)
     require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 544}, BL["status_counts"])
@@ -4094,7 +4094,7 @@ def _(ctx):
             require(e["verdict"] == "dead", (e["cand"], e["verdict"]))
             if e.get("verdict_before_quotients") == "finite":
                 require(e["base_locus"]["admissible"] == [], ("quotient-killed class keeps its base-locus record", e["cand"]))
-    require(len(fin) == 1496)      # 1568 finite classes before the 72 quotient kills of entry 105
+    require(len(fin) == 1460)      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106
     # (i) the prime from the ratio: 5 = 2^2 + 1^2 gives 4/3 (and -4/3, 3/4), 13 gives 12/5, 17 gives 8/15; 1 and 2/3 are not frames
     require([frame_ratio_prime(sp.Rational(*x)) for x in ((4, 3), (-4, 3), (3, 4), (12, 5), (8, 15), (1, 1), (2, 3))] == [5, 5, 5, 13, 17, None, None])
     # (ii) live recomputation of the base locus
@@ -4153,7 +4153,7 @@ def _(ctx):
         saved = (O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT)
         try:
             # (2) the alarm-guarded / capped bound never exceeds the full one: an (8,8) component of the data
-            e = next(e for e in data["classes"] if "resolution" in e and any(tuple(c["deg"]) == (8, 8) for c in e["mechanism"]))
+            e = next(e for e in data["classes"] if "resolution" in e and isinstance(e["mechanism"], list) and any(tuple(c["deg"]) == (8, 8) for c in e["mechanism"]))
             cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
             curves, live = frame_factors(cand, e["frame"])
             phi = [c for c in curves if (c[1], c[2]) == (8, 8)][0][0]
@@ -4321,14 +4321,22 @@ def _(ctx):
     G = data["quotients"]
     require(G["n_components"] == 1264 and G["n_dead"] == 72 and G["kill_routes"] == {'negrec_h': 32, 'neg_g': 16, 'rec_g': 16, 'rec_h': 8}, {k: G[k] for k in ("n_components", "n_dead", "kill_routes")})
     require(G["quotient_errors"] == 0 and sum(1 for r in G["classes"] if r["dead"]) == 72)
-    killed = []
+    TS = G["two_step"]
+    require(TS["n_targets"] == 80 and TS["n_dead"] == 36 and sum(1 for r in TS["classes"] if r["dead"]) == 36, {k: TS[k] for k in ("n_targets", "n_dead", "kill_routes")})
+    killed, killed2 = [], []
     for e in data["classes"]:
         if e.get("verdict_before_quotients") == "finite":
-            require(e["verdict"] == "dead" and str(e["mechanism"]).startswith("quotient kill") and "resolution" in e, e["cand"])
-            ks = [q for q in e["quotients"] if q.get("verdict") == "dead"]
-            require(ks and all(q["rank"] == [0, 0] and q["admissible"] == [] and q["genus"] == 1 for q in ks), (e["cand"], ks))
-            killed.append(e)
-    require(len(killed) == 72)
+            require(e["verdict"] == "dead" and "resolution" in e, e["cand"])
+            if str(e["mechanism"]).startswith("quotient kill"):
+                ks = [q for q in e["quotients"] if q.get("verdict") == "dead"]
+                require(ks and all(q["rank"] == [0, 0] and q["admissible"] == [] and q["genus"] == 1 for q in ks), (e["cand"], ks))
+                killed.append(e)
+            else:
+                require(str(e["mechanism"]).startswith("two-step quotient kill"), e["cand"])
+                ks = [x for x in e["two_step"] if x.get("verdict") == "dead"]
+                require(ks and all(x["admissible"] == [] and x["genus_W"] in (0, 1) for x in ks), (e["cand"], ks))
+                killed2.append(e)
+    require(len(killed) == 72 and len(killed2) == 36)
     if gp_available():
         n = ctx.bound(full=6, fast=2)
         for e in killed[:n]:
@@ -4340,6 +4348,17 @@ def _(ctx):
             res = analyse(phi, comp["deg"][0], comp["deg"][1], sym)
             require(any(q.get("verdict") == "dead" for q in res), (cand, [(q["by"], q.get("genus"), q.get("verdict")) for q in res]))
         ctx.note("PARI: " + str(n) + " quotient kills re-run live (genus-1 quotient, rank 0, complete lift, no admissible pair)")
+        from compute.omega3_quotients import two_step_joint, two_step_joint_more
+        n2 = ctx.bound(full=6, fast=2)
+        for e in killed2[:n2]:
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+            curves, live = frame_factors(cand, e["frame"])
+            comp = [c for c in e["resolution"]["frames"][str(e["frame"])]["components"] if c["verdict"] == "finite"][0]
+            phi = [x[0] for x in curves if (x[1], x[2]) == tuple(comp["deg"])][0]
+            sym = {k: True for k in next(r["sym"] for r in TS["classes"] if r["cand"] == e["cand"])}
+            res = two_step_joint(phi, sym) + two_step_joint_more(phi, sym)
+            require(any(x.get("verdict") == "dead" for x in res), (cand, [(x["by"], x.get("genus_W"), x.get("verdict")) for x in res]))
+        ctx.note("PARI: " + str(n2) + " two-step kills re-run live (joint quotient of genus 1, a second involution, W of genus 0 or 1, rank 0, exact lift)")
     else:
         ctx.note("PARI/GP not found: quotient kills not re-run (data-file consistency verified)")
-    ctx.note("quotient kills: 72 classes of the (1,1,1) box dead through rank-0 genus-1 quotients; box tally dead 1448, finite 1496, unknown 0")
+    ctx.note("quotient kills: 72 classes dead through rank-0 genus-1 quotients and 36 more through the two-step route; box tally dead 1484, finite 1460, unknown 0")
