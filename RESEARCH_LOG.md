@@ -5358,3 +5358,87 @@ framing, the paper.
 
 a3.omega3_minors updated (the corrected census, the dichotomy block).
 Doc 2.39; ROADMAP R.10, M14-L; memory.
+
+## 2026-09-06 — Entry 110: the base locus of the minor map classified over the box (no base point is an admissible frame pair); the Riemann–Hurwitz cross-check without field initialization; the rigorous pass over the provisional third launched
+
+TWO THREADS, AS AGREED (R.10: O3 by hand, O1 underneath).
+
+O1(a): THE FIELD-FREE CROSS-CHECK (compute/omega3_resolve.py:
+exact_ramification, exact_genus_checked2). The exact ramification of
+the t-projection is sum over branch values b of sum_{Q over b} (I_Q -
+r_Q). For smooth points r_Q = 1, and sum_Q (I_Q - 1) over a fiber is
+deg P_b - deg sqf(P_b) (the number of distinct roots over the closure)
+plus (I_inf - 1) for a root at x = infinity (the degree drop) -- only a
+gcd over Q(b) = Q[a]/(q~) is needed, no nfinit, no factorization over
+the field; the singular points contribute (1 - r_Q) more each, with
+r_Q the branch count of the resolution (conj * xdeg points per record).
+Validation: the certified (8,8) component gives 2g = 42 in 0.1 s (14 s
+with the field-based check); the (16,16) and (12,8) components of the
+(2,1,1) box are certified (genus 27 and 9, consistent). THE RIGOROUS
+PASS (omega3_211_rigorous.py, resumable JSONL, 3 workers at below-normal
+priority) re-resolves every provisional component of the deciding frame
+of the 25,378 provisional classes with this check; ~0.6 s per class
+wall, all rigorous so far; entry 111 reports.
+
+O3: THE BASE LOCUS OF THE MINOR MAP (compute/omega3_minors.py:
+base_locus_points, classify_coordinate; a3.omega3_baselocus). By the
+dichotomy theorem the singular points of every quadruple curve are the
+base points of the minor map plus the toric boundary, so the base locus
+is the whole singular story. THE EQUATIONS: in the torus coordinate w_f
+each relation is, after the unit factors (w + 1)^k, a quadratic q_i =
+alpha_i w^2 + beta_i w + gamma_i whose coefficients are Laurent
+polynomials in (w_g, w_h): alpha_i has one term per element of the
+relation with l_e != 0, beta_i one per element with l_e = 0, and
+gamma_i is the conjugate of alpha_i up to a monomial (checked
+symbolically). The base locus is the common zero set of alpha_1 gamma_2
+- alpha_2 gamma_1 and alpha_1 beta_2 - alpha_2 beta_1: two Laurent
+polynomials with at most nine monomials. When both alphas are single
+monomials (262 of the 1264 certified pairs; the term counts over the
+box: {'(2, 2)': 418, '(1, 2)': 294, '(1, 1)': 262, '(2, 1)': 174, '(2, 3)': 67, '(3, 2)': 31, '(3, 3)': 18}) the first equation is the torsion coset W_1/W_2 = +-1 and
+the second a one-variable Laurent equation of degree <= 4 along it --
+hence base-point coordinates of degree <= 4 over Q; in general the
+torsion part of such a system is bounded uniformly (Conway-Jones).
+
+THE CENSUS, exact over all 1264 certified classes (the common factor of
+the three minors; the full lines of the residual locus; its isolated
+points after saturation by the line equations; lex Groebner bases over
+Q, ~4 min): the base locus is the union of (i) CURVES -- the common
+factor of the three minors: a same-prime coset t_g = +-t_h or t_g t_h
+= +-1 (w_g = +-w_h^{+-1}: a point of it carries one prime's frame
+twice), or, for the 18 classes whose relations both involve the
+eliminated frame in all three elements (beta_1 = beta_2 = 0, so Res =
+(alpha_1 gamma_2 - alpha_2 gamma_1)^2), THE QUADRUPLE CURVE ITSELF -- a
+(4,4) curve of genus 7 or 9 (4 and 14 classes), certified finite, along which the minors give
+no third frame (w_f^2 = -gamma_1/alpha_1: two values over every point;
+these are the 18 (3,3) classes of the term count, checked): equal frames (same prime) in 36 classes; perpendicular frames (same prime) in 36 classes; the quadruple curve itself in 18 classes; conjugate frames (same prime) in 6 classes; conjugate-perpendicular frames (same prime) in 6 classes;
+(ii) LINES -- on the box only
+degenerate or boundary lines: t_h = +-i in 68 classes; t_h = 0 in 36 classes; (iii) ISOLATED POINTS whose
+coordinates, by irreducible factor, are: {'degenerate rational 0': 2384, '+-i': 2336, 'degenerate rational 1': 1184, 'degenerate rational -1': 1184, 'half-Pythagorean': 708, 'torsion n=6': 567, 'torsion n=3': 555, 'algebraic deg 4': 396, 'torsion n=8': 288, 'torsion n=12': 148, 'algebraic deg 2': 56}. The half-Pythagorean
+values are cos 2theta in {1/3, 1/4, 1/6, 1/8, 2/3, 3/4, 5/4, 5/6, 7/8, 7/9, -1/3, -1/4, -1/6, -1/8, -2/3, -3/4, -5/4, -5/6, -7/8, -7/9} (+-5/4 is the hyperbolic one, w = +-2,
++-1/2); the non-even quadratics are the values with tan 2theta in
+{+-2/3, +-3/2}; the quartics: t**4 + 34*t**2 + 1 (x100), 9*t**4 - 14*t**2 + 9 (x96), 11*t**4 - 26*t**2 + 11 (x28), 7*t**4 - 34*t**2 + 7 (x20), t**4 + 6*t**2 - 3 (x18), 3*t**4 - 6*t**2 - 1 (x18), 9*t**4 - 70*t**2 + 65 (x16), 13*t**4 - 30*t**2 + 5 (x16), 65*t**4 - 70*t**2 + 9 (x16), 5*t**4 - 30*t**2 + 13 (x16), 3*t**4 - 26*t**2 + 3 (x8), 3*t**4 - 4*t**3 - 18*t**2 - 4*t + 3 (x8), 3*t**4 + 4*t**3 - 18*t**2 + 4*t + 3 (x8), t**4 - 3*t**3 - 6*t**2 - 3*t + 1 (x4), t**4 + 3*t**3 - 6*t**2 + 3*t + 1 (x4), 5*t**4 - 18*t**2 + 1 (x4), t**4 - 18*t**2 + 5 (x4), 5*t**4 - 14*t**2 + 5 (x4), t**4 - 22*t**2 + 1 (x4), 5*t**4 - 12*t**2 - 1 (x2), t**4 + 12*t**2 - 5 (x2). Status of the loci: {'points': 1058, 'lines + points': 104, 'curves + points': 84, 'curves': 18}.
+A CORRECTION MADE BEFORE RECORDING: a first census tested only the
+t_g-then-t_h elimination and called 104 loci containing the line t_h =
+0 'zero-dimensional'; the recorded census tests both eliminations,
+divides out the common factor and saturates. NO COORDINATE OF AN
+ISOLATED POINT OR A LINE IS A FRAME RATIO, and a point of a same-prime
+coset carries one prime's frame twice: OUTSIDE THE 18 SELF-BASE CLASSES
+NO BASE POINT OF THE MINOR MAP IS AN ADMISSIBLE FRAME PAIR -- at a node
+of a quadruple curve the third frame has two values, but the node
+itself never carries two admissible frames; on the 18 self-base classes
+the statement is exactly the class's own (Faltings) finiteness, nothing
+more.
+
+WHAT THIS SETTLES AND WHAT IT LEAVES. Settled on the box: the singular
+locus of every quadruple curve is described completely -- the base
+locus (curves, lines, points, as above) and the boundary. Left for the
+theorem in general: the classification of the common zeros of two
+Laurent polynomials of this shape for an arbitrary box, where the
+torsion part is bounded by Conway-Jones and the algebraic part comes
+from the one-variable equations along the cosets; the (2,1,1) box,
+eliminating a first-power frame, obeys the same dichotomy (entry 109)
+and its census is the next data point (O3, after O1).
+
+a3.omega3_baselocus (the census, live recomputation of a bounded number
+of base loci including a curve and a line case, the field-free check on
+a certified component). Doc 2.40; ROADMAP M14-M; memory. Suite 193.

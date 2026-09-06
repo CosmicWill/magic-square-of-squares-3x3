@@ -87,3 +87,116 @@ def singular_on_base_locus(phi, mins, tfactors, timeout=600):
     script += "}\n"
     cp = subprocess.run([GP, "-q", "-f"], input='default(parisize,"512M");\n' + script, capture_output=True, text=True, timeout=timeout)
     return re.findall(r"SING\s+(.*?)\s+\|\s+(\w+)", cp.stdout)
+
+
+_T = sp.Symbol("t")
+_NS = {}
+
+
+def classify_coordinate(q):
+    """An irreducible polynomial over Q (a coordinate value of a base point):
+    'degenerate rational r', 'rational r' / 'FRAME RATIO r', '+-i', 'torsion n=k'
+    (tan(k pi/n)), 'half-Pythagorean cos2theta=c' (t^2 rational), 'algebraic deg d'."""
+    from compute.omega3 import is_frame_ratio, degenerate
+    P = sp.Poly(q, _T)
+    if P.degree() == 1:
+        r = -P.all_coeffs()[1] / P.all_coeffs()[0]
+        if degenerate(r):
+            return "degenerate rational " + str(r)
+        return ("FRAME RATIO " if is_frame_ratio(r) else "rational ") + str(r)
+    if sp.expand(q - (_T ** 2 + 1)) == 0:
+        return "+-i"
+    if not _NS:
+        for n in range(1, 49):
+            _NS[n] = sp.Poly(sp.expand(sp.simplify(((1 + sp.I * _T) ** n - (1 - sp.I * _T) ** n) / (2 * sp.I))), _T)
+    orders = [n for n in range(1, 49) if _NS[n].rem(P).is_zero]
+    if orders:
+        return "torsion n=" + str(orders[0])
+    if P.degree() == 2 and P.all_coeffs()[1] == 0:
+        a, b, c = P.all_coeffs()
+        return "half-Pythagorean cos2theta=" + str(sp.nsimplify((1 + c / a) / (1 - c / a)))
+    return "algebraic deg " + str(P.degree())
+
+
+# the same-prime cosets w_g = +-w_h^{+-1}: t_g = +-t_h or t_g t_h = +-1 -- a point of one carries
+# the frame of a single prime twice (equal, conjugate, perpendicular, conjugate-perpendicular).
+SAME_PRIME_COSETS = {"tg - th": "equal frames (same prime)", "tg + th": "conjugate frames (same prime)",
+                     "tg*th + 1": "perpendicular frames (same prime)", "tg*th - 1": "conjugate-perpendicular frames (same prime)"}
+
+
+def _line_in_locus(polys, var, q):
+    """Is the line var = root(q) (q irreducible over Q) contained in the common zero set?"""
+    dom = sp.QQ[tg] if var == th else sp.QQ[th]
+    Q = sp.Poly(q, var, domain=dom)
+    return all(sp.Poly(P, var, domain=dom).rem(Q).is_zero for P in polys)
+
+
+def _univariate(G, var):
+    u = [e for e in G.exprs if not (e.free_symbols - {var})]
+    return u[-1] if u else None
+
+
+def base_locus_points(cand, f):
+    """The affine base locus {D_X = D_Y = D_N = 0} of the minor map of (cand, f), exactly
+    (entry 110): the curves it contains (the common factor of the three minors: on the box a
+    same-prime coset t_g = +-t_h, t_g t_h = +-1, or -- for the 18 classes whose relations both
+    involve frame f in all three elements, beta_1 = beta_2 = 0 -- the quadruple curve itself,
+    alpha_1 gamma_2 = alpha_2 gamma_1, along which the minors give no third frame), the full
+    lines t_h = c and t_g = c of the residual locus (with their kind), and its isolated
+    points -- the zero set after saturation by the line equations -- as the irreducible
+    factors of the eliminants in t_h and in t_g, classified.  The status names the parts
+    present ('empty', 'points', 'lines', 'lines + points', 'curves', ...; 'curve' = a
+    residual non-line positive-dimensional component, not seen on the box)."""
+    DX, DY, DN = minors(cand, f)
+    polys = [q for q in (DX, DY, DN) if q != 0]
+    if not polys:
+        return {"status": "minors vanish identically"}
+    curves, lines = [], []
+    cf = sp.gcd(sp.gcd(polys[0], polys[1]) if len(polys) > 1 else polys[0], polys[-1])
+    if cf.free_symbols:
+        for q, m in sp.factor_list(cf)[1]:
+            if q.free_symbols == {th}:
+                lines.append(("th", str(q), classify_coordinate(sp.expand(q.subs(th, _T)))))
+            elif q.free_symbols == {tg}:
+                lines.append(("tg", str(q), classify_coordinate(sp.expand(q.subs(tg, _T)))))
+            elif q.free_symbols:
+                kind = SAME_PRIME_COSETS.get(str(sp.expand(q)), "curve")
+                curves.append((str(q), kind))
+        polys = [sp.cancel(q / cf) for q in polys]
+    G = sp.groebner(polys, tg, th, order="lex")
+    if list(G.exprs) == [1]:
+        return {"status": " + ".join([k for k, v in (("curves", curves), ("lines", lines)) if v]) or "empty", "curves": curves, "lines": lines, "th_factors": [], "tg_factors": []}
+    uh = _univariate(G, th)
+    ug = _univariate(sp.groebner(polys, th, tg, order="lex"), tg)
+    for var, u, name in ((th, uh, "th"), (tg, ug, "tg")):
+        if u is None:
+            continue
+        for q, m in sp.factor_list(u)[1]:
+            if q.free_symbols and _line_in_locus(polys, var, q):
+                lines.append((name, str(q), classify_coordinate(sp.expand(q.subs(var, _T)))))
+    out = {"curves": curves, "lines": lines, "th_factors": [], "tg_factors": []}
+    pre = "curves + " if curves else ""
+    if lines:
+        y = sp.Symbol("y_sat")
+        L = sp.Mul(*[sp.sympify(q) for _, q, _ in lines])
+        Gs = sp.groebner(polys + [1 - y * L], y, tg, th, order="lex")
+        rest = [e for e in Gs.exprs if y not in e.free_symbols]
+        if rest == [1]:
+            out["status"] = pre + "lines"
+            return out
+        Gr = sp.groebner(rest, tg, th, order="lex")
+        uh = _univariate(Gr, th)
+        ug = _univariate(sp.groebner(rest, th, tg, order="lex"), tg)
+        out["status"] = pre + "lines + points"
+    else:
+        out["status"] = pre + "points"
+    if uh is None or ug is None:
+        out["status"] = "curve"
+        return out
+    for q, m in sp.factor_list(uh)[1]:
+        if q.free_symbols:
+            out["th_factors"].append((str(q), classify_coordinate(sp.expand(q.subs(th, _T)))))
+    for q, m in sp.factor_list(ug)[1]:
+        if q.free_symbols:
+            out["tg_factors"].append((str(q), classify_coordinate(sp.expand(q.subs(tg, _T)))))
+    return out

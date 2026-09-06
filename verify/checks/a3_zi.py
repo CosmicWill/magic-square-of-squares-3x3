@@ -4435,6 +4435,81 @@ def _(ctx):
     ctx.note("unknowns attacked: " + str(UA["transitions"]) + "; routes " + str(UA["kill_routes"]) + "; box tally " + str(data["tally"]))
 
 
+@check("a3.omega3_baselocus", DOC)
+def _(ctx):
+    """THE BASE LOCUS OF THE MINOR MAP (entry 110) and the field-free cross-check.
+    By the dichotomy theorem (entry 109) the singular points of every quadruple
+    curve of the (1,1,1) box are the base points of the minor map plus the
+    toric boundary.  The affine base locus of each certified class, solved
+    exactly (the common factor of the three minors; the full lines of the
+    residual locus; its isolated points after saturation, by lex Groebner
+    bases over Q): the curves it contains are the same-prime cosets
+    t_g = +-t_h, t_g t_h = +-1 (w_g = +-w_h^{+-1}) and, for the 18 classes
+    whose relations both involve the eliminated frame in all three elements
+    (beta_1 = beta_2 = 0, Res = (alpha_1 gamma_2 - alpha_2 gamma_1)^2), the
+    quadruple curve itself -- a (4,4) curve of genus 7 or 9 along which the minors
+    give no third frame; the lines are only degenerate (t = 0) or boundary
+    (t = +-i) lines; the coordinates of the isolated points are degenerate
+    values, +-i, torsion points of order 3, 6, 8, 12, half-Pythagorean values
+    (t^2 rational), tan-2theta-rational values and quartic values -- and
+    NEVER a frame ratio.  Hence outside the 18 self-base classes no base point
+    is an admissible frame pair; on those 18 the statement is the class's own
+    finiteness certificate.  Structure (doc 2.40): in the torus coordinate the relations
+    are quadratics alpha w^2 + beta w + gamma, gamma conjugate to alpha, and
+    the base locus is the common zero set of two Laurent polynomials with at
+    most nine monomials; both alphas are single monomials for 262 of the
+    1264 pairs (a torsion coset and a one-variable equation of degree <= 4).
+    Also pinned: the Riemann-Hurwitz cross-check WITHOUT field initialization
+    (compute/omega3_resolve.exact_ramification: sum over branch values of
+    deg P_b - deg sqf(P_b) plus the resolution's branch counts) agrees with the
+    field-based one.  Verifies the census, a live recomputation of a bounded
+    number of base loci, and the field-free check on a certified component."""
+    import json
+    from compute.omega3 import frame_factors
+    from compute.omega3_minors import base_locus_points
+    from compute.omega3_resolve import exact_genus_checked2
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    BL = data["base_locus_minor_map"]
+    require(BL["status_counts"] == {'points': 1058, 'lines + points': 104, 'curves + points': 84, 'curves': 18} and BL["n_frame_ratio_coordinates"] == 0, BL["status_counts"])
+    require(BL["curve_kinds"] == {'equal frames (same prime)': 36, 'perpendicular frames (same prime)': 36, 'curve': 18, 'conjugate frames (same prime)': 6, 'conjugate-perpendicular frames (same prime)': 6} and BL["line_kinds"] == {'th = +-i': 68, 'th = degenerate rational 0': 36}, (BL["curve_kinds"], BL["line_kinds"]))
+    require(BL["coordinate_kinds"] == {'degenerate rational 0': 2384, '+-i': 2336, 'degenerate rational 1': 1184, 'degenerate rational -1': 1184, 'half-Pythagorean': 708, 'torsion n=6': 567, 'torsion n=3': 555, 'algebraic deg 4': 396, 'torsion n=8': 288, 'torsion n=12': 148, 'algebraic deg 2': 56}, BL["coordinate_kinds"])
+    require(BL["alpha_monomial_counts"] == {'(2, 2)': 418, '(1, 2)': 294, '(1, 1)': 262, '(2, 1)': 174, '(2, 3)': 67, '(3, 2)': 31, '(3, 3)': 18}, BL["alpha_monomial_counts"])
+    require(len(BL["classes"]) == 1264 and all(not k.startswith("FRAME") for r in BL["classes"] for key in ("th_factors", "tg_factors") for q, k in r.get(key, []))
+            and all(not k.startswith("FRAME") for r in BL["classes"] for n, q, k in r.get("lines", [])))
+    def _terms(e):
+        A, B, C, Dl = [tuple(x) for x in e["cand"][:4]]; f = e["frame"]
+        return (sum(1 for lab in (A, B, C) if lab[f] != 0), sum(1 for lab in (A, B, Dl) if lab[f] != 0))
+    recs = {json.dumps(e["cand"]): e for e in data["classes"] if "resolution" in e}
+    self_base = {json.dumps(r["cand"]) for r in BL["classes"] if any(k == "curve" for q, k in r.get("curves", []))}
+    require(len(self_base) == 18 and self_base == {c for c, e in recs.items() if _terms(e) == (3, 3)}
+            and all(r["status"] == "curves" for r in BL["classes"] if json.dumps(r["cand"]) in self_base)
+            and all(len(recs[c]["mechanism"]) == 1 and tuple(recs[c]["mechanism"][0]["deg"]) == (4, 4) and recs[c]["mechanism"][0]["genus"] in (7, 9) for c in self_base) and sorted(recs[c]["mechanism"][0]["genus"] for c in self_base) == [7] * 4 + [9] * 14,
+            "the self-base classes are the 18 (3,3) classes, each a single (4,4) component of genus 7 (4 classes) or 9 (14 classes)")
+    n = ctx.bound(full=40, fast=4)
+    picks = BL["classes"][:n - 3] + [next(r for r in BL["classes"] if any(k != "curve" for q, k in r.get("curves", []))), next(r for r in BL["classes"] if r.get("lines")),
+                                     next(r for r in BL["classes"] if r["status"] == "curves")]
+    for r in picks:
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
+        live = base_locus_points(cand, r["frame"])
+        require(live["status"] == r["status"], (cand, live["status"], r["status"]))
+        for key in ("curves", "lines", "th_factors", "tg_factors"):
+            require(sorted(map(tuple, live.get(key, []))) == sorted(map(tuple, r.get(key, []))), (cand, key))
+    if gp_available():
+        e = next(e for e in data["classes"] if "resolution" in e and isinstance(e["mechanism"], list) and any(tuple(c["deg"]) == (8, 8) for c in e["mechanism"]))
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+        curves, live = frame_factors(cand, e["frame"])
+        phi = [c[0] for c in curves if (c[1], c[2]) == (8, 8)][0]
+        rec = [c for c in e["resolution"]["frames"][str(e["frame"])]["components"] if tuple(c["deg"]) == (8, 8)][0]
+        g, det = exact_genus_checked2(phi, 8, 8)
+        require(g == rec["genus"] and det.get("consistent") is True and det["rh2"]["two_g"] == 2 * g, (cand, g, det.get("rh2")))
+        ctx.note("PARI: the field-free Riemann-Hurwitz check reproduces the (8,8) component's genus " + str(g) + " (2g = " + str(det["rh2"]["two_g"]) + ")")
+    else:
+        ctx.note("PARI/GP not found: the field-free cross-check not re-run")
+    ctx.note("base locus of the minor map: " + str(len(picks)) + " classes recomputed live; census " + str(BL["status_counts"]) + "; outside the 18 self-base classes no base point is an admissible frame pair")
+
+
 @check("a3.omega3_quotients", DOC)
 def _(ctx):
     """QUOTIENT KILLS (entry 105, attempt B step 1).  Every certified component

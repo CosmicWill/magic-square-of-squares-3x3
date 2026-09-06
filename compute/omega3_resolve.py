@@ -201,3 +201,61 @@ def exact_genus_checked(phi, dg, dh, degmax=400, timeout=900):
     else:
         det["consistent"] = None
     return g, det
+
+
+def exact_ramification(phi, dg, dh, singular, timeout=600):
+    """The exact ramification of the t-projection WITHOUT field initialization
+    (entry 110).  Over a branch value b (a root of an irreducible factor q of
+    Disc_x(phi) * lc_x(phi), of any degree), sum_{Q over b} (I_Q - 1) equals
+    deg P_b - deg sqf(P_b) (distinct roots over the closure) plus (I_inf - 1)
+    for a root at x = infinity (the degree drop), and only a gcd over
+    Q[a]/(q~) is needed; the singular points contribute (1 - r_Q) more each,
+    with r_Q the branch count of the resolution (the `singular` records:
+    conj * xdeg points per record).  The value b = infinity is the chart
+    t -> 1/t.  Returns (R, details) or (None, error)."""
+    s_ = _pari_poly(phi)
+    script = "x; t; a;\n" + PARI_FIELD + f"""
+phi = {s_}; dg = {dg}; dh = {dh};
+smoothram(P) = {{ my(dP, sq, c);
+  if(P == 0, return(-1));
+  dP = poldegree(P, x);
+  if(dP > 0, sq = P / gcd(P, deriv(P, x)); c = dP - poldegree(sq, x), c = 0);
+  if(dh - dP > 0, c += dh - dP - 1);
+  c }};
+{{
+R = 0; bad = 0;
+D = poldisc(phi, x); L = pollead(phi, x);
+F = factor(D * L);
+for(i = 1, #F~, q = F[i,1]; if(poldegree(q, t) <= 0, next);
+  qa = subst(q, t, a);
+  if(poldegree(qa, a) == 1, A = -polcoeff(qa, 0, a) / polcoeff(qa, 1, a), mf = monicfield(qa); A = Mod(a, mf[1]) / mf[2]);
+  c = smoothram(subst(phi, t, A)); if(c < 0, bad++; next);
+  R += poldegree(qa, a) * c);
+phi2 = numerator(subst(phi, t, 1/t) * t^dg);
+c = smoothram(subst(phi2, t, 0)); if(c < 0, bad++, R += c);
+print("RES ", R, " ", bad);
+}}
+"""
+    out, err = _gp(script, timeout)
+    m = re.search(r"RES\s+(-?\d+)\s+(\d+)", out)
+    if not m:
+        return None, {"error": (out[-300:] + " | " + err[-300:]).strip()}
+    R_smooth, bad = int(m.group(1)), int(m.group(2))
+    corr = sum(x["conj"] * x["xdeg"] * (1 - x["r"]) for x in singular)
+    return R_smooth + corr, {"R_smooth_formula": R_smooth, "branch_correction": corr, "fibers_vanishing": bad}
+
+
+def exact_genus_checked2(phi, dg, dh, timeout=600):
+    """Exact genus by resolution with the field-free Riemann-Hurwitz cross-check:
+    2g must equal 2 - 2 dh + R_exact.  Returns (g, details) with details['consistent']."""
+    g, det = exact_genus(phi, dg, dh, timeout=timeout)
+    if g is None:
+        return None, det
+    R, info = exact_ramification(phi, dg, dh, det["singular"], timeout=timeout)
+    det["rh2"] = info
+    if R is None or info.get("fibers_vanishing", 0):
+        det["consistent"] = None
+        return g, det
+    det["rh2"]["two_g"] = 2 - 2 * dh + R
+    det["consistent"] = (2 - 2 * dh + R == 2 * g)
+    return g, det

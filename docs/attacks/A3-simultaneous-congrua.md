@@ -2640,6 +2640,56 @@ of the base-locus theorem that R.10.O3 asks for.  The same proof applies to ever
 box in which the eliminated frame has exponent $1$ — in particular to $(2,1,1)$
 eliminating a first-power frame, and to every $(a,1,1)$.
 
+## 2.40 The base locus of the minor map (attempt C, third step) and the field-free cross-check
+
+*(2026-09-06; entry 110; check `a3.omega3_baselocus`.)*
+
+**The equations.**  In the torus coordinate $w_f$ each relation is, after the
+unit factors $(w+1)^k$, a quadratic $q_i=\alpha_iw_f^2+\beta_iw_f+\gamma_i$ whose
+coefficients are Laurent polynomials in $(w_g,w_h)$: $\alpha_i$ has one term per
+element of the relation with $l_e\ne0$ ($W_e$ or $\bar W_e$ by the sign of $l_e$),
+$\beta_i$ one per element with $l_e=0$ ($W_e-\bar W_e$), and $\gamma_i$ is $\bar\alpha_i$
+up to a monomial.  The base locus of the minor map — $q_1\propto q_2$ — is the
+common zero set of
+$$\alpha_1\gamma_2-\alpha_2\gamma_1=0,\qquad \alpha_1\beta_2-\alpha_2\beta_1=0,$$
+two Laurent polynomials with at most nine monomials.  When both $\alpha_i$ are
+single monomials (262 of the $1264$ certified pairs) the first equation is
+the torsion coset $W_1/W_2=\pm1$ and the second a one-variable Laurent equation
+of degree $\le4$ along it, which is why the coordinates of base points have
+degree $\le4$ over $\mathbb Q$; in general the torsion part of such a system is
+bounded uniformly (Conway–Jones).
+
+**The census (all $1264$ certified classes, exact).**  The affine base locus is
+the union of three kinds of pieces.  *Curves:* the common factor of the three
+minors — a same-prime coset $t_g=\pm t_h$ or $t_gt_h=\pm1$ ($w_g=\pm w_h^{\pm1}$: a
+point of it carries the frame of one prime twice), or, for the $18$ classes
+whose relations both involve the eliminated frame in all three elements (so
+$\beta_1=\beta_2=0$ and $\mathrm{Res}=(\alpha_1\gamma_2-\alpha_2\gamma_1)^2$), the
+quadruple curve itself, a bidegree-$(4,4)$ curve of genus $7$ or $9$ ($4$ and $14$ classes) along which the
+minors give no third frame ($w_f^2=-\gamma_1/\alpha_1$, two values over every
+point): equal frames (same prime) in 36 classes; perpendicular frames (same prime) in 36 classes; the quadruple curve itself in 18 classes; conjugate frames (same prime) in 6 classes; conjugate-perpendicular frames (same prime) in 6 classes.  *Lines:* full lines $t=c$ of the
+residual locus, on the box only degenerate or boundary lines: $t_h=\pm i$ in 68 classes; $t_h=0$ in 36 classes.
+*Isolated points* (after saturation by the line equations), whose coordinates,
+by irreducible factor, are degenerate values $0$, $\pm1$; $\pm i$; torsion
+points $\tan(k\pi/n)$ with $n\in\{3,6,8,12\}$; half-Pythagorean values ($t^2$
+rational, $\cos2\theta\in\{1/3, 1/4, 1/6, 1/8, 2/3, 3/4, 5/4, 5/6, 7/8, 7/9, -1/3, -1/4, -1/6, -1/8, -2/3, -3/4, -5/4, -5/6, -7/8, -7/9\}$, the value $\pm\tfrac54$ hyperbolic, $w=\pm2,\pm\tfrac12$);
+values with $\tan2\theta\in\{\pm\tfrac23,\pm\tfrac32\}$ (the non-even quadratics);
+and quartic values.  Counts: {'degenerate rational 0': 2384, '+-i': 2336, 'degenerate rational 1': 1184, 'degenerate rational -1': 1184, 'half-Pythagorean': 708, 'torsion n=6': 567, 'torsion n=3': 555, 'algebraic deg 4': 396, 'torsion n=8': 288, 'torsion n=12': 148, 'algebraic deg 2': 56}; status of the loci: {'points': 1058, 'lines + points': 104, 'curves + points': 84, 'curves': 18}.
+**No coordinate of an isolated point or a line is a frame ratio, and a point
+of a same-prime coset carries the frame of one prime twice: outside the $18$
+self-base classes no base point of the minor map is an admissible frame pair;
+on those $18$ the statement is the class's own (Faltings) finiteness
+certificate.**
+
+**The field-free cross-check (O1(a)).**  The exact ramification of the
+$t$-projection is $\sum_b\bigl[\deg P_b-\deg\mathrm{sqf}(P_b)+(I_\infty-1)^+\bigr]+\sum_{Q\ \mathrm{sing}}(1-r_Q)$:
+the first sum needs only a gcd over $\mathbb Q(b)$ (no field initialization,
+no factorization over the field), the second is the resolution's own branch
+count.  It reproduces the field-based check (2g = 42 on a certified $(8,8)$ in
+0.1 s instead of 14 s) and certifies the $(16,16)$ and $(12,8)$ components of the
+$(2,1,1)$ box; the rigorous pass over the $25{,}428$ provisional classes runs on
+it (entry 111 reports).
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
