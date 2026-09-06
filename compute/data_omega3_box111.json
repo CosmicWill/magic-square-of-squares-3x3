@@ -1,11 +1,11 @@
 {
- "entry": 112,
+ "entry": 115,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
  "tally": {
-  "dead": 1484,
-  "finite": 1460,
+  "dead": 1492,
+  "finite": 1452,
   "unknown": 0
  },
  "n_models": 13,
@@ -264486,18 +264486,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -264648,6 +264639,21 @@
       6
      ]
     }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
    ]
   },
   {
@@ -264677,18 +264683,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -264826,6 +264823,21 @@
       6
      ]
     }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
    ]
   },
   {
@@ -264855,18 +264867,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -264999,6 +265002,21 @@
       6
      ]
     }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
    ]
   },
   {
@@ -265028,18 +265046,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -265190,6 +265199,21 @@
       6
      ]
     }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
    ]
   },
   {
@@ -265219,18 +265243,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -265381,6 +265396,21 @@
       6
      ]
     }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
    ]
   },
   {
@@ -265410,18 +265440,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -265554,6 +265575,21 @@
       6
      ]
     }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
    ]
   },
   {
@@ -265583,18 +265619,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -265732,6 +265759,21 @@
       6
      ]
     }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
    ]
   },
   {
@@ -265761,18 +265803,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "genus-0 quotient kill (entry 115): the component's quotient by t -> -1/t is rational (parametrized in Sage); the component is the hyperelliptic curve y^2 = N^2 + 4M^2 (genus 5); its genus-2 quotient is C1 with the involution s -> 1/s, whose elliptic quotient (w+2)(w^3+6w^2-52w+136) = 11a3 has rank 0 and five torsion points; every lift is degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -265922,6 +265955,21 @@
       5,
       6
      ]
+    }
+   ],
+   "kill": {
+    "entry": 115,
+    "route": "genus-0 quotient (t -> -1/t) parametrized in Sage; hyperelliptic model y^2 = N^2 + 4M^2 (genus 5); rank-0 elliptic quotient 11a3; the finitely many lifts degenerate"
+   },
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
     }
    ]
   },
@@ -518720,6 +518768,2886 @@
     }
    },
    "correction": "entries 100/107 listed ten killing curves; the coordinate quotients of entry 105 also used 120b2 (16 kills) and the two-step route of entry 106 used 30a1, 240b1, 30a2, 240b2 (36 kills)."
+  },
+  "genus0": {
+   "note": "entry 115 (R.10 objective O2, first step, with Sage 10.7 in WSL): the 24 finite classes whose component (bidegree (6,8), (8,6) or (6,6), genus 5) has a genus-0 quotient W by t -> -1/t on one coordinate. Sage parametrizes every W over Q (u(t), v(t)); with u = N/M the points of the component over rational points of W are the rational points of the hyperelliptic curve H: y^2 = D(t) = N^2 + 4 M^2 (tg = (N +- y)/(2M), th = v(t)); H has genus 5, and its rational points off the exceptional set (t = infinity, M = 0, the rational singular points of W -- all degenerate) are exactly the rational points of the component. In 22 classes D is even in t, so s = t^2 gives a genus-2 quotient y^2 = Dt(s) = C_1(s) C_2(s), a product of two cubics; the other two have a Klein four-group of Mobius involutions and become even after tau = t/(t - p). Up to Q-isomorphism there are exactly two genus-2 curves: C1: y^2 = (s^3 - 5s^2 + 11s + 1)(s^3 + 11s^2 - 5s + 1) with the involution s -> 1/s (8 classes, after the rescalings s -> s/4, s -> s/78400 and the tau change), whose elliptic quotient E+ = Q(w)(w + 2), Q = w^3 + 6w^2 - 52w + 136, is 11a3 (rank 0, five torsion points, all listed): the rational points of C1 lie over s in {0, 1, -1, infinity}, the lifts are degenerate -- EIGHT CLASSES DEAD; and C2: y^2 = (25*s**3 - 61*s**2 + 43*s + 1)*(25*s**3 - 29*s**2 + 11*s + 1) (16 classes: Dt = mu C2(lambda s) or mu s^6 C2(lambda/s), mu a square, lambda in {1, 56644, 42025/1849}), discriminant 2^62 5^4 23 83, at least 14 rational points (s in {-3, 0, 1, 1/3, -1/5, 3/5} and two at infinity), no Mobius involution of its six roots, Frobenius polynomials irreducible over Q at 13, 17, 19, 29, 31, 41, 43, 47, 53 (a presumably simple Jacobian with End = Z): the known points lift to no rational point of any of the sixteen components, but C2(Q) is not known to be complete -- a RankBound / Chabauty computation in Magma (compute/magma/genus0_quotients_C2.m) is the missing step; with rank >= 2 and End = Z even quadratic Chabauty would not apply.",
+   "n_classes": 24,
+   "n_dead": 8,
+   "n_finite": 16,
+   "tally_before": {
+    "dead": 1484,
+    "finite": 1460
+   },
+   "tally_after": {
+    "dead": 1492,
+    "finite": 1452
+   },
+   "C1": "(s**3 - 5*s**2 + 11*s + 1)*(s**3 + 11*s**2 - 5*s + 1)",
+   "C1_elliptic_quotient": {
+    "Q": "w**3 + 6*w**2 - 52*w + 136",
+    "E+": "(w + 2)*Q(w)",
+    "label": "11a3",
+    "rank": 0,
+    "torsion": 5
+   },
+   "C2": "(25*s**3 - 61*s**2 + 43*s + 1)*(25*s**3 - 29*s**2 + 11*s + 1)",
+   "C2_known_points_s": [
+    "-3",
+    "0",
+    "1",
+    "1/3",
+    "-1/5",
+    "3/5",
+    "infinity (two)"
+   ],
+   "C2_discriminant": "2^62 * 5^4 * 23 * 83",
+   "C2_frobenius_irreducible_at": [
+    13,
+    17,
+    19,
+    29,
+    31,
+    41,
+    43,
+    47,
+    53
+   ],
+   "C2_frobenius_split_at": [
+    7,
+    11,
+    37,
+    59
+   ],
+   "magma_script": "compute/magma/genus0_quotients_C2.m",
+   "sage": "SageMath 10.7 (conda-forge) in WSL Ubuntu-22.04: Curve.rational_parameterization, absolute_igusa_invariants_wamelen, frobenius_polynomial",
+   "classes": [
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "3*v**6*u**2 - 16*v**6 + 2*v**5*u**3 + 52*v**5*u - v**4*u**4 - 18*v**4*u**2 + 44*v**4 + 2*v**3*u**3 - 16*v**3*u + 3*v**2*u**2 + 8*v**2 - 4*v*u - 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(-4543617368449600*t^6 + 170052765008*t^4 - 1076236*t^2 - 1)/(-7636331711680*t^5 + 107850176*t^3 + 476*t)",
+     "param_v": "(16042713680*t^4 - 226576*t^2 - 1)/(-26962544*t^3 + 1428*t)",
+     "param_field": "Rational Field",
+     "N": "4543617368449600*t**6 - 170052765008*t**4 + 1076236*t**2 + 1",
+     "M": "7636331711680*t**5 - 107850176*t**3 - 476*t",
+     "v": "(16042713680*t**4 - 226576*t**2 - 1)/(476*t*(3 - 56644*t**2))",
+     "D": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "D_squarefree": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
+     "Dt_factors": [
+      [
+       "4543617368449600*s**3 - 195721106896*s**2 + 2435692*s + 1",
+       1
+      ],
+      [
+       "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "4*v**6 - 4*v**5*u - 3*v**4*u**2 - 8*v**4 + 2*v**3*u**3 - 16*v**3*u + v**2*u**4 + 18*v**2*u**2 - 44*v**2 + 2*v*u**3 + 52*v*u - 3*u**2 + 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(25*t^6 - 53*t^4 + 19*t^2 + 1)/(10*t^5 - 8*t^3 - 2*t)",
+     "param_v": "(4*t^3 - 12*t)/(10*t^4 - 8*t^2 - 2)",
+     "param_field": "Rational Field",
+     "N": "25*t**6 - 53*t**4 + 19*t**2 + 1",
+     "M": "10*t**5 - 8*t**3 - 2*t",
+     "v": "2*t*(t**2 - 3)/(5*t**4 - 4*t**2 - 1)",
+     "D": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "D_squarefree": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
+     "Dt_factors": [
+      [
+       "25*s**3 - 61*s**2 + 43*s + 1",
+       1
+      ],
+      [
+       "25*s**3 - 29*s**2 + 11*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "4*v**6 - 4*v**5*u - 3*v**4*u**2 - 8*v**4 + 2*v**3*u**3 - 16*v**3*u + v**2*u**4 + 18*v**2*u**2 - 44*v**2 + 2*v*u**3 + 52*v*u - 3*u**2 + 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(25*t^6 - 53*t^4 + 19*t^2 + 1)/(10*t^5 - 8*t^3 - 2*t)",
+     "param_v": "(4*t^3 - 12*t)/(10*t^4 - 8*t^2 - 2)",
+     "param_field": "Rational Field",
+     "N": "25*t**6 - 53*t**4 + 19*t**2 + 1",
+     "M": "10*t**5 - 8*t**3 - 2*t",
+     "v": "2*t*(t**2 - 3)/(5*t**4 - 4*t**2 - 1)",
+     "D": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "D_squarefree": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
+     "Dt_factors": [
+      [
+       "25*s**3 - 61*s**2 + 43*s + 1",
+       1
+      ],
+      [
+       "25*s**3 - 29*s**2 + 11*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "3*v**6*u**2 - 16*v**6 + 2*v**5*u**3 + 52*v**5*u - v**4*u**4 - 18*v**4*u**2 + 44*v**4 + 2*v**3*u**3 - 16*v**3*u + 3*v**2*u**2 + 8*v**2 - 4*v*u - 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(-4543617368449600*t^6 + 170052765008*t^4 - 1076236*t^2 - 1)/(-7636331711680*t^5 + 107850176*t^3 + 476*t)",
+     "param_v": "(16042713680*t^4 - 226576*t^2 - 1)/(-26962544*t^3 + 1428*t)",
+     "param_field": "Rational Field",
+     "N": "4543617368449600*t**6 - 170052765008*t**4 + 1076236*t**2 + 1",
+     "M": "7636331711680*t**5 - 107850176*t**3 - 476*t",
+     "v": "(16042713680*t**4 - 226576*t**2 - 1)/(476*t*(3 - 56644*t**2))",
+     "D": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "D_squarefree": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
+     "Dt_factors": [
+      [
+       "4543617368449600*s**3 - 195721106896*s**2 + 2435692*s + 1",
+       1
+      ],
+      [
+       "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "4*v**6 - 4*v**5*u - 3*v**4*u**2 - 8*v**4 + 2*v**3*u**3 - 16*v**3*u + v**2*u**4 + 18*v**2*u**2 - 44*v**2 + 2*v*u**3 + 52*v*u - 3*u**2 + 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(25*t^6 - 53*t^4 + 19*t^2 + 1)/(10*t^5 - 8*t^3 - 2*t)",
+     "param_v": "(4*t^3 - 12*t)/(10*t^4 - 8*t^2 - 2)",
+     "param_field": "Rational Field",
+     "N": "25*t**6 - 53*t**4 + 19*t**2 + 1",
+     "M": "10*t**5 - 8*t**3 - 2*t",
+     "v": "2*t*(t**2 - 3)/(5*t**4 - 4*t**2 - 1)",
+     "D": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "D_squarefree": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
+     "Dt_factors": [
+      [
+       "25*s**3 - 61*s**2 + 43*s + 1",
+       1
+      ],
+      [
+       "25*s**3 - 29*s**2 + 11*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "3*v**6*u**2 - 16*v**6 + 2*v**5*u**3 + 52*v**5*u - v**4*u**4 - 18*v**4*u**2 + 44*v**4 + 2*v**3*u**3 - 16*v**3*u + 3*v**2*u**2 + 8*v**2 - 4*v*u - 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(-4543617368449600*t^6 + 170052765008*t^4 - 1076236*t^2 - 1)/(-7636331711680*t^5 + 107850176*t^3 + 476*t)",
+     "param_v": "(16042713680*t^4 - 226576*t^2 - 1)/(-26962544*t^3 + 1428*t)",
+     "param_field": "Rational Field",
+     "N": "4543617368449600*t**6 - 170052765008*t**4 + 1076236*t**2 + 1",
+     "M": "7636331711680*t**5 - 107850176*t**3 - 476*t",
+     "v": "(16042713680*t**4 - 226576*t**2 - 1)/(476*t*(3 - 56644*t**2))",
+     "D": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "D_squarefree": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
+     "Dt_factors": [
+      [
+       "4543617368449600*s**3 - 195721106896*s**2 + 2435692*s + 1",
+       1
+      ],
+      [
+       "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "3*v**6*u**2 - 16*v**6 + 2*v**5*u**3 + 52*v**5*u - v**4*u**4 - 18*v**4*u**2 + 44*v**4 + 2*v**3*u**3 - 16*v**3*u + 3*v**2*u**2 + 8*v**2 - 4*v*u - 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(-4543617368449600*t^6 + 170052765008*t^4 - 1076236*t^2 - 1)/(-7636331711680*t^5 + 107850176*t^3 + 476*t)",
+     "param_v": "(16042713680*t^4 - 226576*t^2 - 1)/(-26962544*t^3 + 1428*t)",
+     "param_field": "Rational Field",
+     "N": "4543617368449600*t**6 - 170052765008*t**4 + 1076236*t**2 + 1",
+     "M": "7636331711680*t**5 - 107850176*t**3 - 476*t",
+     "v": "(16042713680*t**4 - 226576*t**2 - 1)/(476*t*(3 - 56644*t**2))",
+     "D": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "D_squarefree": "20644458790876868161507740160000*t**12 - 1312055145243215969589504000*t**10 + 32109314298374962605824*t**8 - 339499089770554112*t**6 + 1228871867888*t**4 + 3058776*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
+     "Dt_factors": [
+      [
+       "4543617368449600*s**3 - 195721106896*s**2 + 2435692*s + 1",
+       1
+      ],
+      [
+       "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "4*v**6 - 4*v**5*u - 3*v**4*u**2 - 8*v**4 + 2*v**3*u**3 - 16*v**3*u + v**2*u**4 + 18*v**2*u**2 - 44*v**2 + 2*v*u**3 + 52*v*u - 3*u**2 + 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(25*t^6 - 53*t^4 + 19*t^2 + 1)/(10*t^5 - 8*t^3 - 2*t)",
+     "param_v": "(4*t^3 - 12*t)/(10*t^4 - 8*t^2 - 2)",
+     "param_field": "Rational Field",
+     "N": "25*t**6 - 53*t**4 + 19*t**2 + 1",
+     "M": "10*t**5 - 8*t**3 - 2*t",
+     "v": "2*t*(t**2 - 3)/(5*t**4 - 4*t**2 - 1)",
+     "D": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "D_squarefree": "625*t**12 - 2250*t**10 + 3119*t**8 - 1868*t**6 + 383*t**4 + 54*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
+     "Dt_factors": [
+      [
+       "25*s**3 - 61*s**2 + 43*s + 1",
+       1
+      ],
+      [
+       "25*s**3 - 29*s**2 + 11*s + 1",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "3*v**6*u**2 - 16*v**6 - 2*v**5*u**3 + 40*v**5*u - 27*v**4*u**2 + 32*v**4 + 4*v**3*u**3 - 48*v**3*u + 17*v**2*u**2 - 16*v**2 - 2*v*u**3 + 8*v*u - u**2",
+     "W_bidegree": [
+      3,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [
+      [
+       "0",
+       "-1"
+      ],
+      [
+       "0",
+       "0"
+      ],
+      [
+       "0",
+       "1"
+      ]
+     ],
+     "param_u": "(50941350975134004080000495800147653074825358411929065831442021089280*t^6 + 1536878132041226695303677323525576129020530729202352652288*t^5 + 11627069868111766923238792595452980815303823360*t^4 + 30592184145551123488437896921006080*t^3 - 69285978162916416358080*t^2 - 697365082752*t - 1)/(-6574881193707998065073815577561654479760788925097768708993768751104*t^6 + 175696762001839226939358838611453525262520572830477778944*t^5 + 946288702328425912531402822219015867717779456*t^4 - 26700673259052947000632280750721024*t^3 - 189808139254632204334080*t^2 - 326614814448*t)",
+     "param_v": "(-2143046706741138657764404687573772995356794880*t^3 - 12398830036674368488612152120557568*t^2 - 53338618508450734772352*t)/(-2524413813313255330596522041758217465945063424*t^3 - 12895217606744470208955527775433728*t^2 + 113884883552779322600448*t + 326614814448)",
+     "param_field": "Rational Field",
+     "N": "-50941350975134004080000495800147653074825358411929065831442021089280*t**6 - 1536878132041226695303677323525576129020530729202352652288*t**5 - 11627069868111766923238792595452980815303823360*t**4 - 30592184145551123488437896921006080*t**3 + 69285978162916416358080*t**2 + 697365082752*t + 1",
+     "M": "6574881193707998065073815577561654479760788925097768708993768751104*t**6 - 175696762001839226939358838611453525262520572830477778944*t**5 - 946288702328425912531402822219015867717779456*t**4 + 26700673259052947000632280750721024*t**3 + 189808139254632204334080*t**2 + 326614814448*t",
+     "v": "163307407224*t*(-40178144216494917605440*t**2 - 232455027584*t - 1)/(-7729024225614740418727970906329088*t**3 - 39481422875867451500736*t**2 + 348682541376*t + 1)",
+     "D": "2767937490017286586667671233174004389377131487075875257345073407635910132200302380189899105001176639461515584550938277978467493335793664*t**12 + 147339813970390678533119861778956330729590122551304640247162300416022795983978061624001684709529221129086162304135656344911872*t**11 + 3620295209043966983713030348061678092788698145525214664974498818997334254354706054067230607720146710856695541661696*t**10 + 41590102142448316224044345330568603748340112283184427064749022917362660133785158810209544193328378019840*t**9 + 198198430979923070333577110145632054357795141989684583211276060165317813836731861030389415936*t**8 - 24364861848058479156222621480998556471153293365623199553429151712369836426264576*t**7 - 1965000975486740779256863108157318555364801786735639870032406452895744*t**6 + 14541865442882452792343919900758209486205460801738233610240*t**5 + 152753767423676666069850220411169806320361598976*t**4 + 531404076966143435830033782307962880*t**3 + 1051598963035142518788480*t**2 + 1394730165504*t + 1",
+     "D_squarefree": "2767937490017286586667671233174004389377131487075875257345073407635910132200302380189899105001176639461515584550938277978467493335793664*t**12 + 147339813970390678533119861778956330729590122551304640247162300416022795983978061624001684709529221129086162304135656344911872*t**11 + 3620295209043966983713030348061678092788698145525214664974498818997334254354706054067230607720146710856695541661696*t**10 + 41590102142448316224044345330568603748340112283184427064749022917362660133785158810209544193328378019840*t**9 + 198198430979923070333577110145632054357795141989684583211276060165317813836731861030389415936*t**8 - 24364861848058479156222621480998556471153293365623199553429151712369836426264576*t**7 - 1965000975486740779256863108157318555364801786735639870032406452895744*t**6 + 14541865442882452792343919900758209486205460801738233610240*t**5 + 152753767423676666069850220411169806320361598976*t**4 + 531404076966143435830033782307962880*t**3 + 1051598963035142518788480*t**2 + 1394730165504*t + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": false,
+     "points_to_2000": 2,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "non-even model with a Klein four-group of Mobius involutions; tau = t/(t - p) makes it even; then as the symmetric route (11a3)",
+     "involution2": "t -> -a t/(t + a), a = 1/232455027584",
+     "p": "-1/116227513792",
+     "Dt_factors": [
+      [
+       "11055968286867489016457316801*s**3 - 28000959738339689347328896320*s**2 + 312033",
+       1
+      ],
+      [
+       "11055968286867489016457316801*s**3 + 61602111424347316564123571904*s**2 - 141833",
+       1
+      ]
+     ],
+     "c": "1273337257259831296/4962850462774851201",
+     "twist_lead": "122234434760219639905563390442696029031608654288476873601",
+     "Q": "w**3 + 6*w**2 - 52*w + 136",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "176895492589879824263317068816"
+        ],
+        [
+         "2",
+         "-176895492589879824263317068816"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "122234434760219639905563390442696029031608654288476873601*(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "353790985179759648526634137632"
+        ],
+        [
+         "6",
+         "-353790985179759648526634137632"
+        ],
+        [
+         "22/9",
+         "56781269226381178158595602336"
+        ],
+        [
+         "22/9",
+         "-56781269226381178158595602336"
+        ],
+        [
+         "42/13",
+         "16628176303448703480751804468704/169"
+        ],
+        [
+         "42/13",
+         "-16628176303448703480751804468704/169"
+        ],
+        [
+         "-278/23",
+         "245177152729573436428957457378976/529"
+        ],
+        [
+         "-278/23",
+         "-245177152729573436428957457378976/529"
+        ],
+        [
+         "357/94",
+         "1170373746879505519793155099237059/8836"
+        ],
+        [
+         "357/94",
+         "-1170373746879505519793155099237059/8836"
+        ],
+        [
+         "22726/10305",
+         "51395011130936481071050798558930656/1311025"
+        ],
+        [
+         "22726/10305",
+         "-51395011130936481071050798558930656/1311025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "122234434760219639905563390442696029031608654288476873601*(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "tau_values": [
+      "0",
+      "33592/47199",
+      "oo",
+      "-33592/47199"
+     ],
+     "t_values": [
+      "0",
+      "1/47079893432",
+      "-1/116227513792",
+      "-1/279534921016"
+     ],
+     "candidates": [
+      {
+       "source": "t = 0: M = 0",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = 1/47079893432: M = 0",
+       "tg": "oo",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "t = -1/116227513792: M = 0",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = -1/279534921016: M = 0",
+       "tg": "oo",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "-1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '0']",
+       "tg": "1",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '0']",
+       "tg": "-1",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "1",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "-1",
+       "th": "1",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "v**6 - 2*v**5*u**3 - 4*v**5*u + v**4*u**4 - 6*v**4*u**2 - 5*v**4 + 4*v**3*u**3 - 8*v**3*u + 6*v**2*u**2 - 5*v**2 + 4*v*u + 1",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(512*t^6 - 640*t^4 - 160*t^2 + 8)/(512*t^5 - 256*t^3 + 32*t)",
+     "param_v": "(16*t^4 - 8*t^2 + 1)/(32*t^3)",
+     "param_field": "Rational Field",
+     "N": "64*t**6 - 80*t**4 - 20*t**2 + 1",
+     "M": "64*t**5 - 32*t**3 + 4*t",
+     "v": "(16*t**4 - 8*t**2 + 1)/(32*t**3)",
+     "D": "4096*t**12 + 6144*t**10 - 12544*t**8 + 9472*t**6 - 784*t**4 + 24*t**2 + 1",
+     "D_squarefree": "4096*t**12 + 6144*t**10 - 12544*t**8 + 9472*t**6 - 784*t**4 + 24*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) with the reciprocal symmetry s -> c/s; elliptic quotient E+ = Q(w)(w + 2) of rank 0 (11a3, torsion 5, points complete); lifts degenerate",
+     "Dt": "4096*s**6 + 6144*s**5 - 12544*s**4 + 9472*s**3 - 784*s**2 + 24*s + 1",
+     "c": "1/16",
+     "rescale_sqrt_c": "1/4",
+     "Q_rescaled": "4096*w**3 + 24576*w**2 - 212992*w + 557056",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "1024"
+        ],
+        [
+         "2",
+         "-1024"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "4096*(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "2048"
+        ],
+        [
+         "6",
+         "-2048"
+        ],
+        [
+         "22/9",
+         "26624/81"
+        ],
+        [
+         "22/9",
+         "-26624/81"
+        ],
+        [
+         "42/13",
+         "96256/169"
+        ],
+        [
+         "42/13",
+         "-96256/169"
+        ],
+        [
+         "-278/23",
+         "1419264/529"
+        ],
+        [
+         "-278/23",
+         "-1419264/529"
+        ],
+        [
+         "357/94",
+         "1693744/2209"
+        ],
+        [
+         "357/94",
+         "-1693744/2209"
+        ],
+        [
+         "22726/10305",
+         "24098453504/106193025"
+        ],
+        [
+         "22726/10305",
+         "-24098453504/106193025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "4096*(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "s_values": [
+      "0",
+      "-1/4",
+      "1/4",
+      "oo"
+     ],
+     "t_values": [
+      "0",
+      "oo",
+      "1/2",
+      "-1/2"
+     ],
+     "candidates": [
+      {
+       "source": "t = -1/2: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = 0: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = 1/2: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = oo: u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "oo",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "v**6 - 4*v**5*u + 6*v**4*u**2 - 5*v**4 - 4*v**3*u**3 + 8*v**3*u + v**2*u**4 - 6*v**2*u**2 - 5*v**2 + 2*v*u**3 + 4*v*u + 1",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(t^6 - 5*t^4 - 5*t^2 + 1)/(-2*t^5 + 4*t^3 - 2*t)",
+     "param_v": "(-8*t^3)/(-2*t^4 + 4*t^2 - 2)",
+     "param_field": "Rational Field",
+     "N": "-t**6 + 5*t**4 + 5*t**2 - 1",
+     "M": "2*t**5 - 4*t**3 + 2*t",
+     "v": "-4*t**3/(-t**4 + 2*t**2 - 1)",
+     "D": "t**12 + 6*t**10 - 49*t**8 + 148*t**6 - 49*t**4 + 6*t**2 + 1",
+     "D_squarefree": "t**12 + 6*t**10 - 49*t**8 + 148*t**6 - 49*t**4 + 6*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) with the reciprocal symmetry s -> c/s; elliptic quotient E+ = Q(w)(w + 2) of rank 0 (11a3, torsion 5, points complete); lifts degenerate",
+     "Dt": "s**6 + 6*s**5 - 49*s**4 + 148*s**3 - 49*s**2 + 6*s + 1",
+     "c": "1",
+     "rescale_sqrt_c": "1",
+     "Q_rescaled": "w**3 + 6*w**2 - 52*w + 136",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "16"
+        ],
+        [
+         "2",
+         "-16"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "32"
+        ],
+        [
+         "6",
+         "-32"
+        ],
+        [
+         "22/9",
+         "416/81"
+        ],
+        [
+         "22/9",
+         "-416/81"
+        ],
+        [
+         "42/13",
+         "1504/169"
+        ],
+        [
+         "42/13",
+         "-1504/169"
+        ],
+        [
+         "-278/23",
+         "22176/529"
+        ],
+        [
+         "-278/23",
+         "-22176/529"
+        ],
+        [
+         "357/94",
+         "105859/8836"
+        ],
+        [
+         "357/94",
+         "-105859/8836"
+        ],
+        [
+         "22726/10305",
+         "376538336/106193025"
+        ],
+        [
+         "22726/10305",
+         "-376538336/106193025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "s_values": [
+      "0",
+      "1",
+      "oo",
+      "-1"
+     ],
+     "t_values": [
+      "0",
+      "1",
+      "oo",
+      "-1"
+     ],
+     "candidates": [
+      {
+       "source": "t = -1: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = 0: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = 1: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = oo: u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "v**6*u**2 - 2*v**5*u**3 + 8*v**5*u - 17*v**4*u**2 + 16*v**4 + 4*v**3*u**3 - 48*v**3*u + 27*v**2*u**2 - 32*v**2 - 2*v*u**3 + 40*v*u - 3*u**2 + 16",
+     "W_bidegree": [
+      3,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [
+      [
+       "0",
+       "-1"
+      ],
+      [
+       "0",
+       "1"
+      ]
+     ],
+     "param_u": "(t^6 - 392000*t^4 - 30732800000*t^2 + 481890304000000)/(560*t^5 - 87808000*t^3 + 3442073600000*t)",
+     "param_v": "(-470400*t^2 + 12293120000)/(560*t^3 + 43904000*t)",
+     "param_field": "Rational Field",
+     "N": "t**6 - 392000*t**4 - 30732800000*t**2 + 481890304000000",
+     "M": "560*t**5 - 87808000*t**3 + 3442073600000*t",
+     "v": "280*(78400 - 3*t**2)/(t*(t**2 + 78400))",
+     "D": "t**12 + 470400*t**10 - 301181440000*t**8 + 71319764992000000*t**6 - 1851229791846400000000*t**4 + 17771806001725440000000000*t**2 + 232218265089212416000000000000",
+     "D_squarefree": "t**12 + 470400*t**10 - 301181440000*t**8 + 71319764992000000*t**6 - 1851229791846400000000*t**4 + 17771806001725440000000000*t**2 + 232218265089212416000000000000",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) with the reciprocal symmetry s -> c/s; elliptic quotient E+ = Q(w)(w + 2) of rank 0 (11a3, torsion 5, points complete); lifts degenerate",
+     "Dt": "s**6 + 470400*s**5 - 301181440000*s**4 + 71319764992000000*s**3 - 1851229791846400000000*s**2 + 17771806001725440000000000*s + 232218265089212416000000000000",
+     "c": "6146560000",
+     "rescale_sqrt_c": "78400",
+     "Q_rescaled": "w**3 + 6*w**2 - 52*w + 136",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "16"
+        ],
+        [
+         "2",
+         "-16"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "32"
+        ],
+        [
+         "6",
+         "-32"
+        ],
+        [
+         "22/9",
+         "416/81"
+        ],
+        [
+         "22/9",
+         "-416/81"
+        ],
+        [
+         "42/13",
+         "1504/169"
+        ],
+        [
+         "42/13",
+         "-1504/169"
+        ],
+        [
+         "-278/23",
+         "22176/529"
+        ],
+        [
+         "-278/23",
+         "-22176/529"
+        ],
+        [
+         "357/94",
+         "105859/8836"
+        ],
+        [
+         "357/94",
+         "-105859/8836"
+        ],
+        [
+         "22726/10305",
+         "376538336/106193025"
+        ],
+        [
+         "22726/10305",
+         "-376538336/106193025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "s_values": [
+      "0",
+      "78400",
+      "oo",
+      "-78400"
+     ],
+     "t_values": [
+      "0",
+      "280",
+      "oo",
+      "-280"
+     ],
+     "candidates": [
+      {
+       "source": "t = -280: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "t = 0: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = 280: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "t = oo: u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "-1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "1",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "-1",
+       "th": "1",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "v**6*u**2 - 2*v**5*u**3 + 8*v**5*u - 17*v**4*u**2 + 16*v**4 + 4*v**3*u**3 - 48*v**3*u + 27*v**2*u**2 - 32*v**2 - 2*v*u**3 + 40*v*u - 3*u**2 + 16",
+     "W_bidegree": [
+      3,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [
+      [
+       "0",
+       "-1"
+      ],
+      [
+       "0",
+       "1"
+      ]
+     ],
+     "param_u": "(t^6 - 392000*t^4 - 30732800000*t^2 + 481890304000000)/(560*t^5 - 87808000*t^3 + 3442073600000*t)",
+     "param_v": "(-470400*t^2 + 12293120000)/(560*t^3 + 43904000*t)",
+     "param_field": "Rational Field",
+     "N": "t**6 - 392000*t**4 - 30732800000*t**2 + 481890304000000",
+     "M": "560*t**5 - 87808000*t**3 + 3442073600000*t",
+     "v": "280*(78400 - 3*t**2)/(t*(t**2 + 78400))",
+     "D": "t**12 + 470400*t**10 - 301181440000*t**8 + 71319764992000000*t**6 - 1851229791846400000000*t**4 + 17771806001725440000000000*t**2 + 232218265089212416000000000000",
+     "D_squarefree": "t**12 + 470400*t**10 - 301181440000*t**8 + 71319764992000000*t**6 - 1851229791846400000000*t**4 + 17771806001725440000000000*t**2 + 232218265089212416000000000000",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) with the reciprocal symmetry s -> c/s; elliptic quotient E+ = Q(w)(w + 2) of rank 0 (11a3, torsion 5, points complete); lifts degenerate",
+     "Dt": "s**6 + 470400*s**5 - 301181440000*s**4 + 71319764992000000*s**3 - 1851229791846400000000*s**2 + 17771806001725440000000000*s + 232218265089212416000000000000",
+     "c": "6146560000",
+     "rescale_sqrt_c": "78400",
+     "Q_rescaled": "w**3 + 6*w**2 - 52*w + 136",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "16"
+        ],
+        [
+         "2",
+         "-16"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "32"
+        ],
+        [
+         "6",
+         "-32"
+        ],
+        [
+         "22/9",
+         "416/81"
+        ],
+        [
+         "22/9",
+         "-416/81"
+        ],
+        [
+         "42/13",
+         "1504/169"
+        ],
+        [
+         "42/13",
+         "-1504/169"
+        ],
+        [
+         "-278/23",
+         "22176/529"
+        ],
+        [
+         "-278/23",
+         "-22176/529"
+        ],
+        [
+         "357/94",
+         "105859/8836"
+        ],
+        [
+         "357/94",
+         "-105859/8836"
+        ],
+        [
+         "22726/10305",
+         "376538336/106193025"
+        ],
+        [
+         "22726/10305",
+         "-376538336/106193025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "s_values": [
+      "0",
+      "78400",
+      "oo",
+      "-78400"
+     ],
+     "t_values": [
+      "0",
+      "280",
+      "oo",
+      "-280"
+     ],
+     "candidates": [
+      {
+       "source": "t = -280: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "t = 0: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = 280: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "t = oo: u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "-1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "1",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "-1",
+       "th": "1",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "v**6 - 4*v**5*u + 6*v**4*u**2 - 5*v**4 - 4*v**3*u**3 + 8*v**3*u + v**2*u**4 - 6*v**2*u**2 - 5*v**2 + 2*v*u**3 + 4*v*u + 1",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(t^6 - 5*t^4 - 5*t^2 + 1)/(-2*t^5 + 4*t^3 - 2*t)",
+     "param_v": "(-8*t^3)/(-2*t^4 + 4*t^2 - 2)",
+     "param_field": "Rational Field",
+     "N": "-t**6 + 5*t**4 + 5*t**2 - 1",
+     "M": "2*t**5 - 4*t**3 + 2*t",
+     "v": "-4*t**3/(-t**4 + 2*t**2 - 1)",
+     "D": "t**12 + 6*t**10 - 49*t**8 + 148*t**6 - 49*t**4 + 6*t**2 + 1",
+     "D_squarefree": "t**12 + 6*t**10 - 49*t**8 + 148*t**6 - 49*t**4 + 6*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) with the reciprocal symmetry s -> c/s; elliptic quotient E+ = Q(w)(w + 2) of rank 0 (11a3, torsion 5, points complete); lifts degenerate",
+     "Dt": "s**6 + 6*s**5 - 49*s**4 + 148*s**3 - 49*s**2 + 6*s + 1",
+     "c": "1",
+     "rescale_sqrt_c": "1",
+     "Q_rescaled": "w**3 + 6*w**2 - 52*w + 136",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "16"
+        ],
+        [
+         "2",
+         "-16"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "32"
+        ],
+        [
+         "6",
+         "-32"
+        ],
+        [
+         "22/9",
+         "416/81"
+        ],
+        [
+         "22/9",
+         "-416/81"
+        ],
+        [
+         "42/13",
+         "1504/169"
+        ],
+        [
+         "42/13",
+         "-1504/169"
+        ],
+        [
+         "-278/23",
+         "22176/529"
+        ],
+        [
+         "-278/23",
+         "-22176/529"
+        ],
+        [
+         "357/94",
+         "105859/8836"
+        ],
+        [
+         "357/94",
+         "-105859/8836"
+        ],
+        [
+         "22726/10305",
+         "376538336/106193025"
+        ],
+        [
+         "22726/10305",
+         "-376538336/106193025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "s_values": [
+      "0",
+      "1",
+      "oo",
+      "-1"
+     ],
+     "t_values": [
+      "0",
+      "1",
+      "oo",
+      "-1"
+     ],
+     "candidates": [
+      {
+       "source": "t = -1: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = 0: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = 1: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = oo: u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      8,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "v**6 - 2*v**5*u**3 - 4*v**5*u + v**4*u**4 - 6*v**4*u**2 - 5*v**4 + 4*v**3*u**3 - 8*v**3*u + 6*v**2*u**2 - 5*v**2 + 4*v*u + 1",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(512*t^6 - 640*t^4 - 160*t^2 + 8)/(512*t^5 - 256*t^3 + 32*t)",
+     "param_v": "(16*t^4 - 8*t^2 + 1)/(32*t^3)",
+     "param_field": "Rational Field",
+     "N": "64*t**6 - 80*t**4 - 20*t**2 + 1",
+     "M": "64*t**5 - 32*t**3 + 4*t",
+     "v": "(16*t**4 - 8*t**2 + 1)/(32*t**3)",
+     "D": "4096*t**12 + 6144*t**10 - 12544*t**8 + 9472*t**6 - 784*t**4 + 24*t**2 + 1",
+     "D_squarefree": "4096*t**12 + 6144*t**10 - 12544*t**8 + 9472*t**6 - 784*t**4 + 24*t**2 + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) with the reciprocal symmetry s -> c/s; elliptic quotient E+ = Q(w)(w + 2) of rank 0 (11a3, torsion 5, points complete); lifts degenerate",
+     "Dt": "4096*s**6 + 6144*s**5 - 12544*s**4 + 9472*s**3 - 784*s**2 + 24*s + 1",
+     "c": "1/16",
+     "rescale_sqrt_c": "1/4",
+     "Q_rescaled": "4096*w**3 + 24576*w**2 - 212992*w + 557056",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "1024"
+        ],
+        [
+         "2",
+         "-1024"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "4096*(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "2048"
+        ],
+        [
+         "6",
+         "-2048"
+        ],
+        [
+         "22/9",
+         "26624/81"
+        ],
+        [
+         "22/9",
+         "-26624/81"
+        ],
+        [
+         "42/13",
+         "96256/169"
+        ],
+        [
+         "42/13",
+         "-96256/169"
+        ],
+        [
+         "-278/23",
+         "1419264/529"
+        ],
+        [
+         "-278/23",
+         "-1419264/529"
+        ],
+        [
+         "357/94",
+         "1693744/2209"
+        ],
+        [
+         "357/94",
+         "-1693744/2209"
+        ],
+        [
+         "22726/10305",
+         "24098453504/106193025"
+        ],
+        [
+         "22726/10305",
+         "-24098453504/106193025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "4096*(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "s_values": [
+      "0",
+      "-1/4",
+      "1/4",
+      "oo"
+     ],
+     "t_values": [
+      "0",
+      "oo",
+      "1/2",
+      "-1/2"
+     ],
+     "candidates": [
+      {
+       "source": "t = -1/2: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = 0: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = 1/2: M = 0, u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = oo: u = oo, tg degenerate",
+       "tg": "oo",
+       "th": "oo",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      6
+     ],
+     "genus": 5,
+     "which": "g",
+     "involution": "t_g -> -1/t_g",
+     "W": "3*v**6*u**2 - 16*v**6 - 2*v**5*u**3 + 40*v**5*u - 27*v**4*u**2 + 32*v**4 + 4*v**3*u**3 - 48*v**3*u + 17*v**2*u**2 - 16*v**2 - 2*v*u**3 + 8*v*u - u**2",
+     "W_bidegree": [
+      3,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [
+      [
+       "0",
+       "-1"
+      ],
+      [
+       "0",
+       "0"
+      ],
+      [
+       "0",
+       "1"
+      ]
+     ],
+     "param_u": "(50941350975134004080000495800147653074825358411929065831442021089280*t^6 + 1536878132041226695303677323525576129020530729202352652288*t^5 + 11627069868111766923238792595452980815303823360*t^4 + 30592184145551123488437896921006080*t^3 - 69285978162916416358080*t^2 - 697365082752*t - 1)/(-6574881193707998065073815577561654479760788925097768708993768751104*t^6 + 175696762001839226939358838611453525262520572830477778944*t^5 + 946288702328425912531402822219015867717779456*t^4 - 26700673259052947000632280750721024*t^3 - 189808139254632204334080*t^2 - 326614814448*t)",
+     "param_v": "(-2143046706741138657764404687573772995356794880*t^3 - 12398830036674368488612152120557568*t^2 - 53338618508450734772352*t)/(-2524413813313255330596522041758217465945063424*t^3 - 12895217606744470208955527775433728*t^2 + 113884883552779322600448*t + 326614814448)",
+     "param_field": "Rational Field",
+     "N": "-50941350975134004080000495800147653074825358411929065831442021089280*t**6 - 1536878132041226695303677323525576129020530729202352652288*t**5 - 11627069868111766923238792595452980815303823360*t**4 - 30592184145551123488437896921006080*t**3 + 69285978162916416358080*t**2 + 697365082752*t + 1",
+     "M": "6574881193707998065073815577561654479760788925097768708993768751104*t**6 - 175696762001839226939358838611453525262520572830477778944*t**5 - 946288702328425912531402822219015867717779456*t**4 + 26700673259052947000632280750721024*t**3 + 189808139254632204334080*t**2 + 326614814448*t",
+     "v": "163307407224*t*(-40178144216494917605440*t**2 - 232455027584*t - 1)/(-7729024225614740418727970906329088*t**3 - 39481422875867451500736*t**2 + 348682541376*t + 1)",
+     "D": "2767937490017286586667671233174004389377131487075875257345073407635910132200302380189899105001176639461515584550938277978467493335793664*t**12 + 147339813970390678533119861778956330729590122551304640247162300416022795983978061624001684709529221129086162304135656344911872*t**11 + 3620295209043966983713030348061678092788698145525214664974498818997334254354706054067230607720146710856695541661696*t**10 + 41590102142448316224044345330568603748340112283184427064749022917362660133785158810209544193328378019840*t**9 + 198198430979923070333577110145632054357795141989684583211276060165317813836731861030389415936*t**8 - 24364861848058479156222621480998556471153293365623199553429151712369836426264576*t**7 - 1965000975486740779256863108157318555364801786735639870032406452895744*t**6 + 14541865442882452792343919900758209486205460801738233610240*t**5 + 152753767423676666069850220411169806320361598976*t**4 + 531404076966143435830033782307962880*t**3 + 1051598963035142518788480*t**2 + 1394730165504*t + 1",
+     "D_squarefree": "2767937490017286586667671233174004389377131487075875257345073407635910132200302380189899105001176639461515584550938277978467493335793664*t**12 + 147339813970390678533119861778956330729590122551304640247162300416022795983978061624001684709529221129086162304135656344911872*t**11 + 3620295209043966983713030348061678092788698145525214664974498818997334254354706054067230607720146710856695541661696*t**10 + 41590102142448316224044345330568603748340112283184427064749022917362660133785158810209544193328378019840*t**9 + 198198430979923070333577110145632054357795141989684583211276060165317813836731861030389415936*t**8 - 24364861848058479156222621480998556471153293365623199553429151712369836426264576*t**7 - 1965000975486740779256863108157318555364801786735639870032406452895744*t**6 + 14541865442882452792343919900758209486205460801738233610240*t**5 + 152753767423676666069850220411169806320361598976*t**4 + 531404076966143435830033782307962880*t**3 + 1051598963035142518788480*t**2 + 1394730165504*t + 1",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": false,
+     "points_to_2000": 2,
+     "admissible_points_to_2000": 0,
+     "verdict": "dead",
+     "route": "non-even model with a Klein four-group of Mobius involutions; tau = t/(t - p) makes it even; then as the symmetric route (11a3)",
+     "involution2": "t -> -a t/(t + a), a = 1/232455027584",
+     "p": "-1/116227513792",
+     "Dt_factors": [
+      [
+       "11055968286867489016457316801*s**3 - 28000959738339689347328896320*s**2 + 312033",
+       1
+      ],
+      [
+       "11055968286867489016457316801*s**3 + 61602111424347316564123571904*s**2 - 141833",
+       1
+      ]
+     ],
+     "c": "1273337257259831296/4962850462774851201",
+     "twist_lead": "122234434760219639905563390442696029031608654288476873601",
+     "Q": "w**3 + 6*w**2 - 52*w + 136",
+     "chosen": "E+",
+     "quotients": {
+      "E+": {
+       "rank_lower": 0,
+       "rank_upper": 0,
+       "torsion": 5,
+       "label": "11a3",
+       "affine_points": [
+        [
+         "-2",
+         "0"
+        ],
+        [
+         "2",
+         "176895492589879824263317068816"
+        ],
+        [
+         "2",
+         "-176895492589879824263317068816"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "122234434760219639905563390442696029031608654288476873601*(w + 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      },
+      "E-": {
+       "rank_lower": 1,
+       "rank_upper": 1,
+       "torsion": 1,
+       "label": "176c1",
+       "affine_points": [
+        [
+         "2",
+         "0"
+        ],
+        [
+         "6",
+         "353790985179759648526634137632"
+        ],
+        [
+         "6",
+         "-353790985179759648526634137632"
+        ],
+        [
+         "22/9",
+         "56781269226381178158595602336"
+        ],
+        [
+         "22/9",
+         "-56781269226381178158595602336"
+        ],
+        [
+         "42/13",
+         "16628176303448703480751804468704/169"
+        ],
+        [
+         "42/13",
+         "-16628176303448703480751804468704/169"
+        ],
+        [
+         "-278/23",
+         "245177152729573436428957457378976/529"
+        ],
+        [
+         "-278/23",
+         "-245177152729573436428957457378976/529"
+        ],
+        [
+         "357/94",
+         "1170373746879505519793155099237059/8836"
+        ],
+        [
+         "357/94",
+         "-1170373746879505519793155099237059/8836"
+        ],
+        [
+         "22726/10305",
+         "51395011130936481071050798558930656/1311025"
+        ],
+        [
+         "22726/10305",
+         "-51395011130936481071050798558930656/1311025"
+        ]
+       ],
+       "n_infinity": 2,
+       "curve": "122234434760219639905563390442696029031608654288476873601*(w - 2)*(w**3 + 6*w**2 - 52*w + 136)"
+      }
+     },
+     "w_values": [
+      "-2",
+      "2",
+      "oo"
+     ],
+     "tau_values": [
+      "0",
+      "33592/47199",
+      "oo",
+      "-33592/47199"
+     ],
+     "t_values": [
+      "0",
+      "1/47079893432",
+      "-1/116227513792",
+      "-1/279534921016"
+     ],
+     "candidates": [
+      {
+       "source": "t = 0: M = 0",
+       "tg": "oo",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "t = 1/47079893432: M = 0",
+       "tg": "oo",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "t = -1/116227513792: M = 0",
+       "tg": "oo",
+       "th": "zoo",
+       "admissible": false
+      },
+      {
+       "source": "t = -1/279534921016: M = 0",
+       "tg": "oo",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '-1']",
+       "tg": "-1",
+       "th": "-1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '0']",
+       "tg": "1",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '0']",
+       "tg": "-1",
+       "th": "0",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "1",
+       "th": "1",
+       "admissible": false
+      },
+      {
+       "source": "singular point of W ['0', '1']",
+       "tg": "-1",
+       "th": "1",
+       "admissible": false
+      }
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "16*v**6 - 40*v**5*u + 33*v**4*u**2 - 44*v**4 - 10*v**3*u**3 + 56*v**3*u + v**2*u**4 - 18*v**2*u**2 - 8*v**2 + 2*v*u**3 + 16*v*u - 3*u**2 + 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(t^6 + 19*t^4 - 53*t^2 + 25)/(-2*t^5 - 8*t^3 + 10*t)",
+     "param_v": "(4*t^3 - 12*t)/(-2*t^4 - 8*t^2 + 10)",
+     "param_field": "Rational Field",
+     "N": "-t**6 - 19*t**4 + 53*t**2 - 25",
+     "M": "2*t**5 + 8*t**3 - 10*t",
+     "v": "2*t*(t**2 - 3)/(-t**4 - 4*t**2 + 5)",
+     "D": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "D_squarefree": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
+     "Dt_factors": [
+      [
+       "s**3 + 11*s**2 - 29*s + 25",
+       1
+      ],
+      [
+       "s**3 + 43*s**2 - 61*s + 25",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "3*v**6*u**2 - 4*v**6 + 2*v**5*u**3 + 16*v**5*u - v**4*u**4 + 18*v**4*u**2 + 8*v**4 - 10*v**3*u**3 + 56*v**3*u - 33*v**2*u**2 + 44*v**2 - 40*v*u - 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(1855509469140625*t^6 - 173072562948125*t^4 + 2729827128475*t^2 + 6321363049)/(155681770093750*t^5 - 5479701947000*t^3 - 60273461630*t)",
+     "param_v": "(8830503125*t^4 - 310816900*t^2 - 3418801)/(2222702250*t^3 - 32597870*t)",
+     "param_field": "Rational Field",
+     "N": "1855509469140625*t**6 - 173072562948125*t**4 + 2729827128475*t**2 + 6321363049",
+     "M": "155681770093750*t**5 - 5479701947000*t**3 - 60273461630*t",
+     "v": "(8830503125*t**4 - 310816900*t**2 - 3418801)/(17630*t*(126075*t**2 - 1849))",
+     "D": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "D_squarefree": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
+     "Dt_factors": [
+      [
+       "1855509469140625*s**3 - 199196723393125*s**2 + 6178029817075*s + 6321363049",
+       1
+      ],
+      [
+       "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "3*v**6*u**2 - 4*v**6 + 2*v**5*u**3 + 16*v**5*u - v**4*u**4 + 18*v**4*u**2 + 8*v**4 - 10*v**3*u**3 + 56*v**3*u - 33*v**2*u**2 + 44*v**2 - 40*v*u - 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(1855509469140625*t^6 - 173072562948125*t^4 + 2729827128475*t^2 + 6321363049)/(155681770093750*t^5 - 5479701947000*t^3 - 60273461630*t)",
+     "param_v": "(8830503125*t^4 - 310816900*t^2 - 3418801)/(2222702250*t^3 - 32597870*t)",
+     "param_field": "Rational Field",
+     "N": "1855509469140625*t**6 - 173072562948125*t**4 + 2729827128475*t**2 + 6321363049",
+     "M": "155681770093750*t**5 - 5479701947000*t**3 - 60273461630*t",
+     "v": "(8830503125*t**4 - 310816900*t**2 - 3418801)/(17630*t*(126075*t**2 - 1849))",
+     "D": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "D_squarefree": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
+     "Dt_factors": [
+      [
+       "1855509469140625*s**3 - 199196723393125*s**2 + 6178029817075*s + 6321363049",
+       1
+      ],
+      [
+       "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "16*v**6 - 40*v**5*u + 33*v**4*u**2 - 44*v**4 - 10*v**3*u**3 + 56*v**3*u + v**2*u**4 - 18*v**2*u**2 - 8*v**2 + 2*v*u**3 + 16*v*u - 3*u**2 + 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(t^6 + 19*t^4 - 53*t^2 + 25)/(-2*t^5 - 8*t^3 + 10*t)",
+     "param_v": "(4*t^3 - 12*t)/(-2*t^4 - 8*t^2 + 10)",
+     "param_field": "Rational Field",
+     "N": "-t**6 - 19*t**4 + 53*t**2 - 25",
+     "M": "2*t**5 + 8*t**3 - 10*t",
+     "v": "2*t*(t**2 - 3)/(-t**4 - 4*t**2 + 5)",
+     "D": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "D_squarefree": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
+     "Dt_factors": [
+      [
+       "s**3 + 11*s**2 - 29*s + 25",
+       1
+      ],
+      [
+       "s**3 + 43*s**2 - 61*s + 25",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "3*v**6*u**2 - 4*v**6 + 2*v**5*u**3 + 16*v**5*u - v**4*u**4 + 18*v**4*u**2 + 8*v**4 - 10*v**3*u**3 + 56*v**3*u - 33*v**2*u**2 + 44*v**2 - 40*v*u - 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(1855509469140625*t^6 - 173072562948125*t^4 + 2729827128475*t^2 + 6321363049)/(155681770093750*t^5 - 5479701947000*t^3 - 60273461630*t)",
+     "param_v": "(8830503125*t^4 - 310816900*t^2 - 3418801)/(2222702250*t^3 - 32597870*t)",
+     "param_field": "Rational Field",
+     "N": "1855509469140625*t**6 - 173072562948125*t**4 + 2729827128475*t**2 + 6321363049",
+     "M": "155681770093750*t**5 - 5479701947000*t**3 - 60273461630*t",
+     "v": "(8830503125*t**4 - 310816900*t**2 - 3418801)/(17630*t*(126075*t**2 - 1849))",
+     "D": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "D_squarefree": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
+     "Dt_factors": [
+      [
+       "1855509469140625*s**3 - 199196723393125*s**2 + 6178029817075*s + 6321363049",
+       1
+      ],
+      [
+       "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "16*v**6 - 40*v**5*u + 33*v**4*u**2 - 44*v**4 - 10*v**3*u**3 + 56*v**3*u + v**2*u**4 - 18*v**2*u**2 - 8*v**2 + 2*v*u**3 + 16*v*u - 3*u**2 + 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(t^6 + 19*t^4 - 53*t^2 + 25)/(-2*t^5 - 8*t^3 + 10*t)",
+     "param_v": "(4*t^3 - 12*t)/(-2*t^4 - 8*t^2 + 10)",
+     "param_field": "Rational Field",
+     "N": "-t**6 - 19*t**4 + 53*t**2 - 25",
+     "M": "2*t**5 + 8*t**3 - 10*t",
+     "v": "2*t*(t**2 - 3)/(-t**4 - 4*t**2 + 5)",
+     "D": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "D_squarefree": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
+     "Dt_factors": [
+      [
+       "s**3 + 11*s**2 - 29*s + 25",
+       1
+      ],
+      [
+       "s**3 + 43*s**2 - 61*s + 25",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "16*v**6 - 40*v**5*u + 33*v**4*u**2 - 44*v**4 - 10*v**3*u**3 + 56*v**3*u + v**2*u**4 - 18*v**2*u**2 - 8*v**2 + 2*v*u**3 + 16*v*u - 3*u**2 + 4",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(t^6 + 19*t^4 - 53*t^2 + 25)/(-2*t^5 - 8*t^3 + 10*t)",
+     "param_v": "(4*t^3 - 12*t)/(-2*t^4 - 8*t^2 + 10)",
+     "param_field": "Rational Field",
+     "N": "-t**6 - 19*t**4 + 53*t**2 - 25",
+     "M": "2*t**5 + 8*t**3 - 10*t",
+     "v": "2*t*(t**2 - 3)/(-t**4 - 4*t**2 + 5)",
+     "D": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "D_squarefree": "t**12 + 54*t**10 + 383*t**8 - 1868*t**6 + 3119*t**4 - 2250*t**2 + 625",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
+     "Dt_factors": [
+      [
+       "s**3 + 11*s**2 - 29*s + 25",
+       1
+      ],
+      [
+       "s**3 + 43*s**2 - 61*s + 25",
+       1
+      ]
+     ]
+    },
+    {
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "frame": 0,
+     "deg": [
+      6,
+      8
+     ],
+     "genus": 5,
+     "which": "h",
+     "involution": "t_h -> -1/t_h",
+     "W": "3*v**6*u**2 - 4*v**6 + 2*v**5*u**3 + 16*v**5*u - v**4*u**4 + 18*v**4*u**2 + 8*v**4 - 10*v**3*u**3 + 56*v**3*u - 33*v**2*u**2 + 44*v**2 - 40*v*u - 16",
+     "W_bidegree": [
+      4,
+      6
+     ],
+     "W_genus": 0,
+     "W_rational_singular_points": [],
+     "param_u": "(1855509469140625*t^6 - 173072562948125*t^4 + 2729827128475*t^2 + 6321363049)/(155681770093750*t^5 - 5479701947000*t^3 - 60273461630*t)",
+     "param_v": "(8830503125*t^4 - 310816900*t^2 - 3418801)/(2222702250*t^3 - 32597870*t)",
+     "param_field": "Rational Field",
+     "N": "1855509469140625*t**6 - 173072562948125*t**4 + 2729827128475*t**2 + 6321363049",
+     "M": "155681770093750*t**5 - 5479701947000*t**3 - 60273461630*t",
+     "v": "(8830503125*t**4 - 310816900*t**2 - 3418801)/(17630*t*(126075*t**2 - 1849))",
+     "D": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "D_squarefree": "3442915390070523999176025390625*t**12 - 545328304639272717385253906250*t**10 + 33259834627876312550624609375*t**8 - 876416956928453806737687500*t**6 + 7906091983296782747039375*t**4 + 49044017387651610468150*t**2 + 39959630797262576401",
+     "square_factor": "1",
+     "genus_H": 5,
+     "D_even": true,
+     "points_to_2000": 6,
+     "admissible_points_to_2000": 0,
+     "verdict": "finite",
+     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
+     "Dt_factors": [
+      [
+       "1855509469140625*s**3 - 199196723393125*s**2 + 6178029817075*s + 6321363049",
+       1
+      ],
+      [
+       "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
+       1
+      ]
+     ]
+    }
+   ]
   }
  },
  "base_locus_minor_map": {

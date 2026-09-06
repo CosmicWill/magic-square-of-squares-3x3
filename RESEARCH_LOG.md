@@ -5655,3 +5655,67 @@ elliptic-curve work; NOT Chabauty above genus 2.
 
 Doc 2.43 addendum + 2.44; ROADMAP M14-Q and the O5 note; memory
 (index corrected; standing plan). Suite 197.
+
+## 2026-09-06 — Entry 115: O2 with Sage — the 24 genus-0-quotient classes: eight dead through 11a3, sixteen on one genus-2 curve; Sage installed; Magma unavailable; the prioritized plan R.11
+
+SAGE. SageMath 10.7 (conda-forge, env `sage`) in WSL Ubuntu-22.04,
+smoke-tested (genus, conics, elliptic ranks, genus-2 Jacobians, PARI).
+MAGMA: commercial (Computational Algebra Group, Sydney), licensed per
+machine, no installer to fetch -- not installed; no copy on this machine
+or in WSL. The scripts it would run are in compute/magma/ (the online
+calculator's 120 s suffices for RankBound).
+
+THE ROUTE (doc 2.45; a3.omega3_genus0). The 24 finite classes whose
+component (bidegree (6,8), (8,6), (6,6); genus 5) has a genus-0
+quotient W by t -> -1/t on one coordinate (entry 106's blocker).
+Sage's Curve.rational_parameterization gives (u(t), v(t)) over Q for
+all 24 (no pointless conic: no free kill). With u = N/M, the component's
+rational points over W's rational points are those of the hyperelliptic
+curve H: y^2 = N^2 + 4M^2 (t_g = (N +- y)/(2M), t_h = v(t)), genus 5;
+the exceptional set (t = oo, M = 0, W's rational singular points) is
+degenerate. In 22 classes D is even (s = t^2: a genus-2 quotient y^2 =
+C_1(s) C_2(s), two cubics); the other two carry a Klein four-group of
+Mobius involutions (found numerically, verified exactly) and become
+even after tau = t/(t - p).
+
+TWO CURVES (Igusa invariants in Sage, then explicit rescalings). C_1:
+y^2 = (s^3 - 5s^2 + 11s + 1)(s^3 + 11s^2 - 5s + 1), with s -> 1/s: 8
+classes (after s -> s/4, s -> s/78400, and the tau change). Its
+elliptic quotients Y^2 = Q(w)(w +- 2), Q = w^3 + 6w^2 - 52w + 136: E+
+is 11a3, RANK 0, FIVE TORSION POINTS, all listed; so C_1's rational
+points lie over s in {1, -1, 0, oo}, and every lift (t^2 = s, the
+parametrization, both t_g) is degenerate: EIGHT CLASSES DEAD -- the
+first kills at genus 5, each a chain genus 5 -> 2 -> 1 -> rank 0. (A
+first script used the wrong quotient Y^2 = Q(w), rank 1; the correct
+quotients are Y^2 = Q(w)(w +- 2 sqrt c).) C_2: y^2 = (25s^3 - 61s^2 +
+43s + 1)(25s^3 - 29s^2 + 11s + 1), discriminant 2^62 5^4 23 83, >= 14
+rational points, no Mobius involution of its roots, Frobenius
+polynomials irreducible over Q at 13, 17, 19, 29, 31, 41, 43, 47, 53
+(a presumably simple Jacobian, End = Z): 16 classes reduce to it
+(Dt = mu C_2(lambda s) or mu s^6 C_2(lambda/s), mu square, lambda in
+{1, 56644, 42025/1849}). The known points lift to no rational point
+of any of the sixteen components; C_2(Q) is not known complete; with
+14 points the rank is presumably >= 2, beyond Chabauty-Coleman, and
+End = Z puts quadratic Chabauty out of reach. Magma's RankBound is the
+missing datum (compute/magma/genus0_quotients_C2.m). PARI's lfungenus2
+cannot even fix the conductor at 2 (v_2(disc) = 62).
+
+TALLY of the (1,1,1) box: dead 1492, finite 1452 (the eight classes'
+verdicts and kill records in the data; the tally pins of the checks
+updated; a3.omega3_genus0 recomputes the route from the recorded
+parametrizations with sympy and PARI, no Sage needed).
+
+THE PRIORITIZED PLAN (ROADMAP R.11). The genus census over both boxes
+(every finite component has genus >= 3, never 2; the deficit from
+(a-1)(b-1) comes from the base points) and O2's lesson (a finite class
+dies through its quotient tower; the tower can stop at a generic
+genus-2 curve) shape the plan: P-A the uniform omega = 3 finiteness
+theorem (a genus formula from the labels via the dichotomy theorem and
+the base-point classification; the low-genus patterns killed
+uniformly); P-B the killers as a theorem (label pattern -> curve); P-C
+O2 continued (involution groups and quotient towers of all 1452 finite
+classes; elliptic quotients -> PARI; genus-2 endpoints -> Magma);
+P-D the (3,1,1) box as data; P-E parked (R_J, goal G's free-frame
+lemma). Decisions pending: Magma access; the (3,1,1) sweep.
+
+Doc 2.45; ROADMAP M14-R and R.11; memory. Suite 198.

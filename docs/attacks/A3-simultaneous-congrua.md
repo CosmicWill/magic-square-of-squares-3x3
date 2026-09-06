@@ -2884,6 +2884,52 @@ rigidity lemma" alive as the ω ≤ 2 program's core.  That one-equation lemma
 was superseded by the concentration theorem (entry 83) and Theorem A3.10
 (entry 84); the pointer is corrected, and R.10's O5 now names R_J.
 
+## 2.45 O2 with Sage: the genus-0 quotients — eight classes dead through 11a3, sixteen on one genus-2 curve (entry 115)
+
+*(2026-09-06; entry 115; check `a3.omega3_genus0`; Magma script `compute/magma/genus0_quotients_C2.m`.)*
+
+**The route.**  Twenty-four finite classes of the $(1,1,1)$ box have a component
+(bidegree $(6,8)$, $(8,6)$ or $(6,6)$, genus $5$) with a genus-$0$ quotient $W$ by
+$t\mapsto-1/t$ on one coordinate (2.36).  Sage parametrizes every $W$ over
+$\mathbb Q$, $(u,v)=(u(t),v(t))$; writing $u=N/M$, the component's rational points
+over the rational points of $W$ are the rational points of the hyperelliptic
+curve
+$$H:\ y^2=D(t)=N(t)^2+4M(t)^2,\qquad t_g=\frac{N\pm y}{2M},\ t_h=v(t),$$
+of genus $5$; the exceptional set ($t=\infty$, $M=0$, the rational singular
+points of $W$) is degenerate.  In $22$ classes $D$ is even, so $s=t^2$ gives a
+genus-$2$ quotient $y^2=D_t(s)=C_1(s)C_2(s)$, a product of two cubics; the other
+two carry a Klein four-group of Möbius involutions and become even after
+$\tau=t/(t-p)$.
+
+**Two curves.**  Up to $\mathbb Q$-isomorphism (Igusa invariants, then explicit
+rescalings) the genus-$2$ quotients are exactly two curves.
+*$\mathcal C_1$:* $y^2=(s^3-5s^2+11s+1)(s^3+11s^2-5s+1)$, with the involution
+$s\mapsto1/s$ ($8$ classes, after $s\mapsto s/4$, $s\mapsto s/78400$ and the
+$\tau$-change).  Writing $D_t=s^3Q(w)$, $w=s+1/s$, $Q=w^3+6w^2-52w+136$, its two
+elliptic quotients are $Y^2=Q(w)(w\pm2)$, and $E_+$ is **11a3, rank $0$, five
+torsion points**, all listed (three affine, two at infinity).  So the rational
+points of $\mathcal C_1$ lie over $w\in\{2,-2,\infty\}$, i.e. $s\in\{1,-1,0,\infty\}$,
+and the lifts through $t^2=s$, the parametrization and the two values of $t_g$
+are all degenerate: **eight classes dead** (the first kills at genus $5$).
+*$\mathcal C_2$:* $y^2=(25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1)$, discriminant
+$2^{62}5^423\cdot83$, at least $14$ rational points ($s\in\{-3,0,1,\tfrac13,-\tfrac15,\tfrac35\}$
+and two at infinity), no Möbius involution of its six roots, Frobenius
+polynomials irreducible over $\mathbb Q$ at $13,17,19,29,31,41,43,47,53$: a
+presumably simple Jacobian with $\mathrm{End}=\mathbb Z$.  Sixteen classes reduce
+to it ($D_t=\mu\,\mathcal C_2(\lambda s)$ or $\mu s^6\mathcal C_2(\lambda/s)$, $\mu$ a square,
+$\lambda\in\{1,56644,\tfrac{42025}{1849}\}$).  The known points lift to no rational
+point of any of the sixteen components, but $\mathcal C_2(\mathbb Q)$ is not known to
+be complete.  With $14$ points the rank is presumably $\ge2$: Chabauty–Coleman
+would need rank $\le1$, and quadratic Chabauty needs more endomorphisms than
+$\mathbb Z$.  `RankBound` in Magma is the missing datum; the script is ready.
+
+**What this shows for O2.**  The exclusion of a finite class goes through its
+quotient tower: an involution with a genus-$0$ quotient turns the component
+into a hyperelliptic curve, further involutions cut it to genus $2$, and a
+last one to genus $1$, where rank $0$ finishes.  Where the tower stops at genus
+$2$ without extra involutions, the problem is a genuine genus-$2$ rational-point
+problem and the tools end.  Tally of the box: dead $1492$, finite $1452$.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])      # entry 106 (two-step quotient kills)
+    require(data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0}, data["tally"])      # entry 106 (two-step quotient kills): 1484/1460; entry 115 (genus-0 quotients): +8 dead
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,7 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1484)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1492)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106) + 8 genus-0-quotient kills (entry 115)
     require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
@@ -3901,7 +3901,7 @@ def _(ctx):
         elif e["verdict"] == "dead":
             require(e.get("verdict_before_quotients") == "finite", ("a bound-certified class dead only by a quotient kill", e["cand"]))
             n_dead_q = locals().get("n_dead_q", 0) + 1
-    require((n_fin, n_unk) == (1156, 0), (n_fin, n_unk))      # 1264 bound-certified classes, 72 + 36 of them dead by quotients (entries 105-106)
+    require((n_fin, n_unk) == (1148, 0), (n_fin, n_unk))      # 1264 bound-certified classes, 72 + 36 of them dead by quotients (entries 105-106), 8 more by the genus-0 quotient kill (entry 115)
     require(all("corrected" in e["genus"] for e in data["classes"] if "genus" in e), "every bound record is the corrected one")
     if gp_available():
         # (i) the genus-1 control: the (2,2) component tg^2 th + 2 tg th^2 - 2 tg + th of the class below
@@ -3969,7 +3969,7 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] >= 106 and data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])
+    require(data["entry"] >= 106 and data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0}, data["tally"])   # entry 115: 8 more dead
     Rs = data["resolution"]
     require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
     require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
@@ -4077,7 +4077,7 @@ def _(ctx):
     from compute.omega3_finiteness import base_locus, frame_ratio_prime
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["tally"] == {"dead": 1484, "finite": 1460, "unknown": 0}, data["tally"])
+    require(data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0}, data["tally"])   # entry 115: 8 more dead
     BL = data["base_locus"]
     require(BL["n_finite"] == 1568 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)
     require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 544}, BL["status_counts"])
@@ -4094,7 +4094,7 @@ def _(ctx):
             require(e["verdict"] == "dead", (e["cand"], e["verdict"]))
             if e.get("verdict_before_quotients") == "finite":
                 require(e["base_locus"]["admissible"] == [], ("quotient-killed class keeps its base-locus record", e["cand"]))
-    require(len(fin) == 1460)      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106
+    require(len(fin) == 1452)      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106 and the 8 genus-0-quotient kills of entry 115
     # (i) the prime from the ratio: 5 = 2^2 + 1^2 gives 4/3 (and -4/3, 3/4), 13 gives 12/5, 17 gives 8/15; 1 and 2/3 are not frames
     require([frame_ratio_prime(sp.Rational(*x)) for x in ((4, 3), (-4, 3), (3, 4), (12, 5), (8, 15), (1, 1), (2, 3))] == [5, 5, 5, 13, 17, None, None])
     # (ii) live recomputation of the base locus
@@ -4701,6 +4701,105 @@ def _(ctx):
     ctx.note("R_J: no concentration route -- the trinomial is irreducible over Q(i) and the cyclotomic fields up to Q(zeta_24) for J != 1 mod 3; the 'P1 rigidity lemma' pointer is withdrawn (superseded since entry 84)")
 
 
+@check("a3.omega3_genus0", DOC)
+def _(ctx):
+    """O2 WITH SAGE: THE 24 GENUS-0-QUOTIENT CLASSES (entry 115, doc 2.45).  A
+    component (genus 5) with a genus-0 quotient W by t -> -1/t is, over the
+    rational points of W (parametrized in Sage: u(t), v(t)), the hyperelliptic
+    curve H: y^2 = N^2 + 4 M^2 (u = N/M), and in every class H has a genus-2
+    quotient (s = t^2, after tau = t/(t - p) in two classes) which is
+    Q-isomorphic to one of two curves: C1, with an involution s -> 1/s whose
+    elliptic quotient (w + 2)(w^3 + 6w^2 - 52w + 136) is 11a3 of rank 0 --
+    EIGHT CLASSES DEAD (the lifts of its five torsion points are degenerate);
+    and C2 = (25s^3 - 61s^2 + 43s + 1)(25s^3 - 29s^2 + 11s + 1), sixteen
+    classes, with at least 14 rational points and a presumably simple
+    Jacobian: Magma-pending.  Tally of the (1,1,1) box: dead 1492, finite
+    1452.  Verifies (sympy + PARI, no Sage needed): the recorded
+    parametrization satisfies W (W recomputed from the engine for a sample),
+    the hyperelliptic model, the quotient structure, 11a3's rank and complete
+    point list, the lifts' degeneracy for every dead class, and the relation
+    of every finite class's sextic to C2 with the known points lifting to
+    nothing."""
+    import json, re, subprocess
+    import sympy as sp
+    from compute.omega3 import frame_factors, is_frame_ratio, degenerate
+    from compute.omega3_quotients import coordinate_quotient, U
+    from compute.pari_genus1 import gp_available, GP as GP_PATH
+    t, s_, w, u_, v_ = sp.symbols("t s w u v")
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        data = json.load(fh)
+    G = data["quotients"]["genus0"]
+    require(G["n_classes"] == 24 and G["n_dead"] == 8 and G["n_finite"] == 16 and G["tally_before"] == {"dead": 1484, "finite": 1460} and G["tally_after"] == {"dead": 1492, "finite": 1452})
+    require(data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0} and sum(1 for e in data["classes"] if e.get("kill", {}).get("entry") == 115) == 8)
+    recs = {json.dumps(e["cand"]): e for e in data["classes"]}
+    require(all(recs[json.dumps(r["cand"])]["verdict"] == r["verdict"] for r in G["classes"]), "verdicts recorded on the classes")
+    C2 = sp.sympify(G["C2"].replace("s", "s_")) if False else sp.sympify(G["C2"], locals={"s": s_})
+    base_pts = [sp.Rational(x) for x in ("-3", "0", "1", "1/3", "-1/5", "3/5")]
+    def relate(Dt):
+        P = sp.Poly(Dt, s_); a = P.all_coeffs()[::-1]; b = sp.Poly(C2, s_).all_coeffs()[::-1]
+        for kind in ("scale", "inv"):
+            bb = b if kind == "scale" else b[::-1]
+            mu = sp.Rational(a[0], bb[0]); lam = sp.Rational(a[1], mu * bb[1])
+            if all(a[i] == mu * bb[i] * lam ** i for i in range(7)):
+                return kind, lam, mu
+        return None
+    def adm(a, b):
+        return (not degenerate(a)) and (not degenerate(b)) and is_frame_ratio(a) and is_frame_ratio(b)
+    n_live = ctx.bound(full=24, fast=3)
+    dead_seen = 0; fin_seen = 0
+    for i, r in enumerate(G["classes"]):
+        N, M, vv, D = (sp.sympify(r[k], locals={"t": t}) for k in ("N", "M", "v", "D"))
+        require(sp.expand(D - (N ** 2 + 4 * M ** 2)) == 0, (r["cand"], "D = N^2 + 4M^2"))
+        # the parametrization satisfies W
+        Wpoly = sp.sympify(r["W"], locals={"u": u_, "v": v_})
+        uu = sp.sympify(r["param_u"].replace("^", "**"), locals={"t": t}); vv2 = sp.sympify(r["param_v"].replace("^", "**"), locals={"t": t})
+        require(sp.simplify(sp.together(Wpoly.subs({u_: uu, v_: vv2}))) == 0 and sp.simplify(uu - N / M) == 0 and sp.simplify(vv2 - vv) == 0, (r["cand"], "parametrization on W"))
+        if i < n_live:
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
+            curves, live = frame_factors(cand, r["frame"])
+            phi = [c[0] for c in curves if (c[1], c[2]) == tuple(r["deg"])][0]
+            Wl, other, u_expr, rel = coordinate_quotient(phi, r["which"], "negrec")
+            Wl = sp.expand(Wl.subs({U: u_, other: v_}))
+            require(sp.simplify(sp.cancel(Wl / Wpoly)).is_number, (r["cand"], "W from the engine"))
+        if r["verdict"] == "dead":
+            dead_seen += 1
+            Dt = sp.sympify(r.get("Dt", "0"), locals={"s": s_}) if "Dt" in r else None
+            if Dt is not None:
+                require(sp.expand(sp.sympify(r["D_squarefree"], locals={"t": t}).subs(t, sp.sqrt(s_)) - Dt) == 0 or sp.expand(D.subs(t, sp.sqrt(s_)) - Dt) == 0, (r["cand"], "Dt"))
+            q = r["quotients"][r["chosen"]]
+            require(q["label"] == "11a3" and q["rank_upper"] == 0 and q["torsion"] == 5 and len(q["affine_points"]) + q["n_infinity"] == 5, (r["cand"], "11a3 complete"))
+            require(all(not c.get("admissible") for c in r["candidates"]) and len(r["candidates"]) >= 4, (r["cand"], "candidates"))
+            for c in r["candidates"]:
+                if "tg" in c and c["tg"] not in ("oo", "zoo") and c["th"] not in ("oo", "zoo"):
+                    require(adm(sp.Rational(c["tg"]), sp.Rational(c["th"])) == bool(c["admissible"]), (r["cand"], c))
+        else:
+            fin_seen += 1
+            Dt = sp.sympify(r["Dt"], locals={"s": s_})
+            rel = relate(Dt)
+            require(rel is not None and sp.sqrt(rel[2]).is_Rational, (r["cand"], "relation to C2"))
+            kind, lam, mu = rel
+            for sb in base_pts:
+                sv = sb / lam if kind == "scale" else (lam / sb if sb != 0 else sp.oo)
+                if sv == sp.oo or sv < 0 or not sp.sqrt(sv).is_Rational:
+                    continue
+                for tv in (sp.sqrt(sv), -sp.sqrt(sv)):
+                    Nv, Mv, Dv = N.subs(t, tv), M.subs(t, tv), D.subs(t, tv)
+                    if Mv == 0 or Dv < 0 or not sp.sqrt(Dv).is_Rational:
+                        continue
+                    for sg in (1, -1):
+                        tg = (Nv + sg * sp.sqrt(Dv)) / (2 * Mv); a, b = (tg, vv.subs(t, tv)) if r["which"] == "g" else (vv.subs(t, tv), tg)
+                        require(not adm(a, b), (r["cand"], "a known point of C2 lifts to an admissible pair"))
+    require(dead_seen == 8 and fin_seen == 16)
+    if gp_available():
+        out = subprocess.run([GP_PATH, "-q"], input="f = (w + 2) * (w^3 + 6*w^2 - 52*w + 136); E = ellinit(ellfromeqn(y^2 - f)); r = ellrank(E); print(\"RES \", r[2], \" \", elltors(E)[1], \" \", ellidentify(E)[1][1], \" \", #hyperellratpoints(f, 1000));\nquit\n", capture_output=True, text=True, timeout=300).stdout
+        m = re.search(r"RES (\d+) (\d+) (\S+) (\d+)", out)
+        require(m and m.group(1) == "0" and m.group(2) == "5" and m.group(3) == "11a3" and int(m.group(4)) + 2 == 5, out[-200:])
+        ctx.note("PARI: E+ = (w+2)(w^3+6w^2-52w+136) is 11a3, rank 0, torsion 5, its five points listed")
+    else:
+        ctx.note("PARI/GP not found: 11a3's rank not re-verified live")
+    ctx.note("genus-0 quotients: 24 classes, 8 dead through C1 -> 11a3, 16 over C2 (Magma-pending); " + str(n_live) + " quotient curves recomputed from the engine; tally " + str(data["tally"]))
+
+
 @check("a3.omega3_killers", DOC)
 def _(ctx):
     """THE KILLERS ARE FIFTEEN CURVES, ELEVEN OF THEM LEGENDRE (entry 112, doc
@@ -4805,6 +4904,9 @@ def _(ctx):
                 ks = [q for q in e["quotients"] if q.get("verdict") == "dead"]
                 require(ks and all(q["rank"] == [0, 0] and q["admissible"] == [] and q["genus"] == 1 for q in ks), (e["cand"], ks))
                 killed.append(e)
+            elif str(e["mechanism"]).startswith("genus-0 quotient kill"):
+                require(e.get("kill", {}).get("entry") == 115, e["cand"])      # entry 115: verified by a3.omega3_genus0
+                continue
             else:
                 require(str(e["mechanism"]).startswith("two-step quotient kill"), e["cand"])
                 ks = [x for x in e["two_step"] if x.get("verdict") == "dead"]
@@ -4835,4 +4937,4 @@ def _(ctx):
         ctx.note("PARI: " + str(n2) + " two-step kills re-run live (joint quotient of genus 1, a second involution, W of genus 0 or 1, rank 0, exact lift)")
     else:
         ctx.note("PARI/GP not found: quotient kills not re-run (data-file consistency verified)")
-    ctx.note("quotient kills: 72 classes dead through rank-0 genus-1 quotients and 36 more through the two-step route; box tally dead 1484, finite 1460, unknown 0")
+    ctx.note("quotient kills: 72 classes dead through rank-0 genus-1 quotients and 36 more through the two-step route; box tally (entry 106) dead 1484, finite 1460 (entry 115: 1492 / 1452), unknown 0")
