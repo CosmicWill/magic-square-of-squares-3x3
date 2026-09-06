@@ -4334,7 +4334,7 @@ def _(ctx):
     require(all(c["f"] is not None for c in data["classes"] if c["v"] in ("dead", "finite", "finite*")), "a deciding frame for every decided class")
     require(all(all(x.split(":")[1] in ("dead", "finite") for x in c["c"] if ":" in x) for c in data["classes"] if c["v"] in ("finite", "finite*")),
             "a finite frame has only dead or finite components")
-    require(all(all(x.split(":")[1] == "dead" for x in c["c"] if ":" in x) for c in data["classes"] if c["v"] == "dead"), "a dead frame has only dead components")
+    require(all(all(x.split(":")[1] == "dead" for x in c["c"] if ":" in x) for c in data["classes"] if c["v"] == "dead" and "k" not in c), "a dead frame has only dead components (classes killed by the free-frame reduction, entry 116, keep their component records)")
     # the killers: 29 models, ten curves
     require(len(data["rank0_models"]) == 29, len(data["rank0_models"]))
     require(set(data["monomial_relations"]) <= {str(k) for k in [(a, b) for a in range(1, 6) for b in range(-6, 7) if b]}, "monomial exponents")
@@ -4616,16 +4616,16 @@ def _(ctx):
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         data = json.load(fh)
     RP = data["rigorous_pass"]; FN = data["finiteness"]
-    require(data["entry"] >= 114 and data["tally"] == {'dead': 12132, 'finite': 67236} and RP["tally_after"] == data["tally"], data["tally"])
+    require(data["entry"] >= 116 and data["tally"] == {'dead': 16032, 'finite': 63336} and RP["tally_after"] == {"dead": 12132, "finite": 67236} and data["free_frame"]["tally_after"] == data["tally"], data["tally"])   # entry 116: the free-frame reduction killed 3900 finite classes
     require(RP["n_provisional_before"] == 25428 and RP["n_upgraded"] == 25428 and RP["n_still_provisional"] == 0 and RP["entry114_bound_certified"]["n"] == 50, (RP["n_upgraded"], RP["n_still_provisional"]))
     require(RP["component_genera"] == {'14': 1008, '29': 624, '11': 1340, '13': 3176, '28': 848, '10': 1176, '19': 1976, '23': 1008, '15': 1196, '9': 784, '17': 1230, '7': 72, '30': 192, '16': 1456, '20': 560, '26': 848, '18': 488, '34': 640, '25': 944, '44': 160, '31': 1148, '37': 720, '27': 304, '35': 232, '21': 944, '24': 312, '42': 96, '32': 504, '39': 272, '45': 180, '33': 286, '41': 84, '12': 208, '22': 24, '52': 32, '53': 8, '47': 48, '40': 48, '46': 64, '51': 56, '43': 8, '49': 28, '38': 48, '50': 48} and RP["consistent"] == {'True': 25428}, (RP["component_genera"], RP["consistent"]))
-    require(FN["n_finite"] == sum(v for k, v in data["tally"].items() if k.startswith("finite")) and FN["n_missing"] == 0 and FN["n_admissible"] == 0 and FN["admissible"] == [])
+    require(FN["n_finite"] == 67236 and FN["n_missing"] == 0 and FN["n_admissible"] == 0 and FN["admissible"] == [])
     require(FN["status_counts"] == {'empty (Groebner basis 1)': 18088, 'zero-dimensional': 49148} and FN["points_by_value"] == {"('0', '0')": 1408, "('0', '1')": 119, "('0', '-1')": 119, "('-1', '1')": 72, "('1', '-1')": 72, "('1', '1')": 68, "('-1', '-1')": 68, "('1', '0')": 28, "('-1', '0')": 28} and FN["lines_by_value"] == {}, (FN["status_counts"], FN["points_by_value"], FN["lines_by_value"]))
     require(FN["prediction_counts"] == {'empty': 26390, 'trinomial': 22474, 'torsion': 18372} and FN["theorem_test"]["n_violations"] == 0 and FN["theorem_test"]["n_missing"] == 0, FN["prediction_counts"])
     require(all(k.startswith(("('empty', ", "('torsion', ", "('trinomial', ")) and k.endswith(", True)") for k in FN["theorem_test"]["agreement"]), FN["theorem_test"]["agreement"])
     require(all(v in ("('0', '0')", "('1', '0')", "('-1', '0')", "('0', '1')", "('0', '-1')", "('1', '1')", "('1', '-1')", "('-1', '1')", "('-1', '-1')") for v in FN["points_by_value"]), "every rational base point degenerate")
-    fin = [c for c in data["classes"] if c["v"].startswith("finite")]
-    require(all(c["v"] == "finite" for c in fin), "no provisional class left")
+    fin = [c for c in data["classes"] if c["v"].startswith("finite") or c.get("k")]   # the 67,236 finite classes of entry 113; entry 116 killed some of them
+    require(all(c["v"] in ("finite", "dead") for c in fin) and not any(c["v"] == "finite*" for c in data["classes"]), "no provisional class left")
     O.set_box((2, 1, 1))
     from collections import Counter
     pred = Counter(elimination_type(tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"]), int(c["f"])) for c in fin)
@@ -4798,6 +4798,71 @@ def _(ctx):
     else:
         ctx.note("PARI/GP not found: 11a3's rank not re-verified live")
     ctx.note("genus-0 quotients: 24 classes, 8 dead through C1 -> 11a3, 16 over C2 (Magma-pending); " + str(n_live) + " quotient curves recomputed from the engine; tally " + str(data["tally"]))
+
+
+@check("a3.omega3_freeframe", DOC)
+def _(ctx):
+    """THE FREE-FRAME REDUCTION (entry 116, doc 2.46): omega = 3 -> omega = 2,
+    the first instance of goal G.  A class in which a frame appears in exactly
+    one label L: if L is C or D, the relation not containing e(L) is a signed
+    three-term relation of the two-frame box, and the ladder theorem for that
+    shape (A3.7 for (1,1), A3.8 for (2,1)) kills the class -- no computation;
+    if L is A or B, the weighted relation's factors die by a torsion coset
+    (Lemma B), by degeneracy, or by a rank-0 elliptic frame-condition curve
+    y^2 = P^2 + Q^2 (the killers of entry 112) whose torsion points lift to no
+    admissible free frame.  (2,1,1): 3900 of the 8130 finite free-frame
+    classes dead (3576 by theorem), tally now {'dead': 16032, 'finite': 63336}; (1,1,1): all 444
+    free-frame classes were dead already, 354 re-derived.  Verifies the data,
+    the ladder-theorem logic live (the relation is free of the free frame and
+    has three elements of the two-frame box), and a bounded live sample of
+    every kill kind through compute.omega3_freeframe.decide (PARI for E)."""
+    import gzip, json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3_freeframe import decide, free_frame, two_frame_shape, LADDER
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d1 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        d2 = json.load(fh)
+    F1, F2 = d1["free_frame"], d2["free_frame"]
+    require(F1["n_classes"] == 444 and F1["kill_counts"] == {'T': 228, 'E': 108, 'None': 90, 'Z': 18} and F1["theorems"] == {'A3.7': 228}, (F1["kill_counts"], F1["theorems"]))
+    require(F2["n_free_frame_classes"] == 11912 and F2["n_finite_before"] == 8130 and F2["kills_among_finite"] == {'E': 204, 'T': 3576, 'BE': 120} and F2["theorems_among_finite"] == {'A3.8': 3576} and F2["n_upgraded_to_dead"] == 3900, (F2["kills_among_finite"], F2["theorems_among_finite"]))
+    require(F2["tally_before"] == {"dead": 12132, "finite": 67236} and F2["tally_after"] == {'dead': 16032, 'finite': 63336} and d2["tally"] == {'dead': 16032, 'finite': 63336} and F2["elliptic_curves_among_finite"] == {'48a3': 324}, (F2["tally_after"], F2["elliptic_curves_among_finite"]))
+    v1 = {json.dumps(e["cand"]): e["verdict"] for e in d1["classes"]}
+    require(all(v1[json.dumps(r["cand"])] == "dead" for r in F1["classes"]), "(1,1,1): every free-frame class dead")
+    v2 = {json.dumps(c["cand"]): c for c in d2["classes"]}
+    require(sum(1 for c in d2["classes"] if c.get("k")) == 3900 and all(v2[json.dumps(r["cand"])]["v"] == "dead" for r in F2["classes"] if r["status"] == "DEAD"), "the kills are recorded on the classes")
+    # the ladder-theorem logic, live on every T-kill of the (2,1,1) box: the relation without the free element has no free-frame symbol and three elements
+    O.set_box((2, 1, 1))
+    n_t = 0
+    for r in F2["classes"]:
+        if r.get("kill") != "T":
+            continue
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
+        ff = free_frame(cand); require(ff is not None, cand)
+        f, w = ff; require(w in (2, 3) and "ABCD"[w] == r["label"], (cand, w))
+        shape, (g, h) = two_frame_shape(cand, f)
+        require(LADDER.get(shape) == r["theorem"], (cand, shape, r["theorem"]))
+        others = [lab for i, lab in enumerate(cand[:4]) if i != w]
+        require(all(lab[f] == 0 for lab in others) and all(any(lab[j] != 0 for j in (g, h)) for lab in others), (cand, "three elements of the two-frame box"))
+        n_t += 1
+    require(n_t == sum(1 for r in F2["classes"] if r.get("kill") == "T") and sum(1 for r in F2["classes"] if r.get("kill") == "T" and v2[json.dumps(r["cand"])].get("k")) == 3576, (n_t, "theorem kills: all free-frame records, 3576 among the finite ones"))
+    # live samples of every kill kind
+    n = ctx.bound(full=6, fast=1)
+    for kind in ("T", "E", "B", "Z"):
+        picks = [r for r in F2["classes"] if r.get("kill") == kind][:n]
+        if kind == "E" and not gp_available():
+            continue
+        for r in picks:
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
+            live = decide(cand, (2, 1, 1))
+            require(live["status"] == "DEAD" and live.get("kill") == kind, (cand, kind, live.get("status"), live.get("kill")))
+    O.set_box((1, 1, 1))
+    for r in [r for r in F1["classes"] if r.get("kill") == "T"][:n]:
+        cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
+        live = decide(cand, (1, 1, 1)); require(live["status"] == "DEAD" and live.get("theorem") == "A3.7", cand)
+    ctx.note("free-frame reduction: (2,1,1) " + str(F2["n_upgraded_to_dead"]) + " finite classes dead (" + str(F2["theorems_among_finite"]) + " by theorem, " + str(F2["kills_among_finite"]) + "), tally " + str(d2["tally"]) + "; (1,1,1) 444 free-frame classes all dead, " + str(sum(F1["kill_counts"].get(k, 0) for k in ("T", "E", "B", "Z"))) + " re-derived; live samples of every kill kind agree")
 
 
 @check("a3.omega3_killers", DOC)

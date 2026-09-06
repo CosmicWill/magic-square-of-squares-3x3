@@ -5719,3 +5719,56 @@ P-D the (3,1,1) box as data; P-E parked (R_J, goal G's free-frame
 lemma). Decisions pending: Magma access; the (3,1,1) sweep.
 
 Doc 2.45; ROADMAP M14-R and R.11; memory. Suite 198.
+
+## 2026-09-06 — Entry 116: THE FREE-FRAME REDUCTION — omega = 3 reduced to the omega = 2 theorems for a quarter of the box (goal G, first instance): 3900 finite (2,1,1) classes dead, 3576 of them by Theorem A3.8 alone
+
+THE OBSERVATION (doc 2.46; compute/omega3_freeframe.py). A class in
+which some frame f appears in exactly ONE label L carries e(L) in both
+relations. If L is C (resp. D), the relation R2 (resp. R1) does not
+contain e(L) at all: it is a signed three-term additive relation among
+elements of the two-frame box of the remaining frames -- and the
+ladder theorems (A3.7 for shape (1,1), A3.8 for (2,1), A3.9 for (3,1),
+A3.10 for (2,2): no signed three-term relation, repetitions allowed,
+in frames of two distinct split primes) say it has no solution. Such a
+class is DEAD BY THEOREM, before any sweep, in every box whose
+two-frame shapes are proven. If L is A or B, eliminating e(L) leaves
+the WEIGHTED relation 2 e(B) -+ e(C) +- e(D) = 0 (a doubled element:
+four terms, outside the ladder's literal scope); with the third frame
+reduced to its norm it is a polynomial relation G(t_g, t_h) = 0 whose
+factors die by (B) a torsion coset w_g^a w_h^b = zeta (Lemma B, entry
+111), (Z) degeneracy, or (E) -- when G is linear in one ratio, t_g =
+P(t_h)/Q(t_h) -- the FRAME-CONDITION CURVE y^2 = P^2 + Q^2, which must
+have a rational point for t_g to be a frame ratio: THE KILLERS OF
+ENTRY 112 ARE EXACTLY THESE CURVES (here 48a1 and 48a3; e.g. the class
+((0,1,-1),(2,-1,-1),(0,0,1),(0,1,1)) gives t_2 = 3(T^2 - 1)/(2T), T =
+tan 2 theta_3, and 9T^4 - 14T^2 + 9 = 48a3). At rank 0 the torsion
+points are listed (PARI: ellrank upper bound 0, elltors, the affine
+points to 10^5 plus the points at infinity, complete iff their number
+is the torsion order), each gives a pair (t_g, t_h), and an admissible
+pair must still lift to the free frame (e(L) is then determined; its
+ratio must be a rational frame-ratio root): none does.
+
+THE RUNS. (1,1,1): 444 free-frame classes (plus 28 with a frame in no
+label), all already dead by the engine; the reduction re-derives
+354 uniformly (E: 108, T: 228, Z: 18; A3.7 for the C/D cases) -- a
+consistency check, no conflict. (2,1,1): 11,912 free-frame classes,
+8130 of them Faltings-finite after entry 113: 3900 NOW DEAD -- 3576 by
+Theorem A3.8 alone (free label C or D, two-frame shape (2,1)), the
+rest by the weighted mechanisms (BE: 120, E: 204, T: 3576; curves {'48a3': 324}); 4230 weighted cases remain ({'not linear in either frame': 3930, 'B': 240, 'genus 2 frame condition': 240, 'genus 3 frame condition': 60}). The sweep of entry 107 never saw these
+kills: it took quotients of the deciding frame's curve only. Tally of
+the 79,368 new classes: {'dead': 16032, 'finite': 63336} (the killed classes keep
+their component records under the key k; the sweep's and the
+finiteness checks re-pinned accordingly).
+
+WHY THIS MATTERS. It is the first reduction of omega = 3 to omega = 2
+in the program (goal G of R.9): a positive fraction of every
+three-frame box dies by the two-frame theorems, uniformly and before
+computation, and the weighted remainder is a four-term relation with
+a doubled element -- the natural next target for the ladder machinery
+(a content-2 extension of A3.7/A3.8 would kill every free-frame class
+of every box by theorem). The (3,1,1) box's free-frame classes with
+the free label C or D die today by A3.9 and A3.7, before any sweep.
+
+a3.omega3_freeframe (the data, the ladder-theorem logic live on every
+T-kill, live samples of every kill kind through decide()). Doc 2.46;
+ROADMAP M14-S and the R.11 amendment (P-E promoted); memory. Suite 199.

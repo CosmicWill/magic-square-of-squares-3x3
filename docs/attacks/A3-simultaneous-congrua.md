@@ -2930,6 +2930,50 @@ last one to genus $1$, where rank $0$ finishes.  Where the tower stops at genus
 $2$ without extra involutions, the problem is a genuine genus-$2$ rational-point
 problem and the tools end.  Tally of the box: dead $1492$, finite $1452$.
 
+## 2.46 The free-frame reduction: ω = 3 reduced to the ω = 2 theorems for a quarter of the box (goal G, first instance; entry 116)
+
+*(2026-09-06; entry 116; `compute/omega3_freeframe.py`; check `a3.omega3_freeframe`.)*
+
+**The observation.**  Call a class *free-frame* if some frame $f$ appears in
+exactly one of its four labels, $L$.  Then $e(L)$ is the only element through
+which $f$ enters the two relations
+$$R_1=\varepsilon_Ae(A)+\varepsilon_Be(B)-\varepsilon_Ce(C),\qquad R_2=\varepsilon_Ae(A)-\varepsilon_Be(B)-\varepsilon_De(D).$$
+*If $L=C$ or $D$*, the other relation does not contain $e(L)$ at all: it is a
+signed three-term additive relation among elements of the two-frame box of
+the remaining frames, exactly the relations the ladder theorems exclude —
+A3.7 for shape $(1,1)$, A3.8 for $(2,1)$, A3.9 for $(3,1)$, A3.10 for $(2,2)$ (all
+signed patterns, repetitions allowed, in frames of two distinct split primes).
+**So every such class is dead by theorem, in every box whose two-frame shapes
+are proven, before any sweep.**  *If $L=A$ or $B$*, eliminating $e(L)$ leaves the
+weighted relation $2\varepsilon_Be(B)-\varepsilon_Ce(C)+\varepsilon_De(D)=0$ (a doubled
+element: four terms, outside the ladder's literal scope); with the third
+frame reduced to its norm it is a polynomial relation $G(t_g,t_h)=0$, and its
+factors die by three mechanisms: a torsion coset $w_g^aw_h^b=\zeta$ (Lemma B of
+2.41), a degenerate-only factor, or — when $G$ is linear in one ratio,
+$t_g=P(t_h)/Q(t_h)$ — the **frame-condition curve** $y^2=P^2+Q^2$, which must
+have a rational point for $t_g$ to be a frame ratio.  Those curves are the
+killers of 2.42 (here `48a1`, `48a3`: $9T^4-14T^2+9$ for the class with
+$t_2=3(T^2-1)/(2T)$, $T=\tan2\theta_3$); at rank $0$ their torsion points are
+listed, each gives a pair $(t_g,t_h)$, and an admissible pair must still lift
+to the free frame ($e(L)$ is then determined; its ratio must be a rational
+frame-ratio root), which none does.
+
+**On the two boxes.**  $(1,1,1)$: $444$ free-frame classes (and $28$ with a frame
+in no label), all already dead by the engine; the reduction re-derives
+354 of them uniformly (E: 108, T: 228, Z: 18; A3.7 for the C/D cases).
+$(2,1,1)$: $11{,}912$ free-frame classes, 8130 of them Faltings-finite after entry 113;
+**3900 of those are now dead** — 3576 by Theorem A3.8 alone (free label $C$ or $D$,
+two-frame shape $(2,1)$), the rest by the weighted mechanisms (BE: 120, E: 204, T: 3576; curves {'48a3': 324}); 4230 weighted cases remain (frame
+conditions of genus $\ge2$, or relations not linear in either ratio).  Tally of
+the $79{,}368$ new classes: {'dead': 16032, 'finite': 63336}.
+
+**Why this matters.**  It is the first reduction of ω = 3 to ω = 2 in the
+program (goal G of R.9): a positive fraction of every three-frame box dies by
+the two-frame theorems, uniformly and before computation, and the weighted
+remainder is a *four-term* relation with a doubled element — the natural next
+target for the ladder machinery (a "content-2" extension of A3.7/A3.8 would
+kill the rest of the free-frame classes in every box at once).
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
