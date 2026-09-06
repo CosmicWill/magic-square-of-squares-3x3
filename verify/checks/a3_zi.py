@@ -4599,8 +4599,9 @@ def _(ctx):
     """THE FINITENESS STATEMENT FOR SHAPE (2,1,1) (entry 113, doc 2.43).  Two
     passes over the (2,1,1) box: (a) the rigorous pass -- every provisional
     component of the deciding frame re-resolved with the field-free
-    Riemann-Hurwitz cross-check (entry 110), upgrading 25378 of the 25,428
-    provisional classes (50 left provisional), the tally now {'dead': 12132, 'finite': 67186, 'finite*': 50};
+    Riemann-Hurwitz cross-check (entry 110), upgrading all 25,428
+    provisional classes (the last 50, provisional only through a non-deciding
+    frame, re-resolved in entry 114), the tally now {'dead': 12132, 'finite': 67236};
     (b) the elimination base locus of every finite class (with lines reported):
     no admissible base point or line.  The elimination base-locus theorem
     (entry 111) predicts from the labels {'empty': 26390, 'trinomial': 22474, 'torsion': 18372}, and the pass agrees: predicted
@@ -4615,16 +4616,16 @@ def _(ctx):
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         data = json.load(fh)
     RP = data["rigorous_pass"]; FN = data["finiteness"]
-    require(data["entry"] >= 113 and data["tally"] == {'dead': 12132, 'finite': 67186, 'finite*': 50} and RP["tally_after"] == data["tally"], data["tally"])
-    require(RP["n_provisional_before"] == 25428 and RP["n_upgraded"] == 25378 and RP["n_still_provisional"] == 50, (RP["n_upgraded"], RP["n_still_provisional"]))
-    require(RP["component_genera"] == {'14': 1008, '29': 624, '11': 1324, '13': 3160, '28': 848, '10': 1176, '19': 1976, '23': 1006, '15': 1180, '9': 784, '17': 1230, '7': 72, '30': 192, '16': 1456, '20': 560, '26': 848, '18': 488, '34': 640, '25': 944, '44': 160, '31': 1148, '37': 720, '27': 304, '35': 232, '21': 944, '24': 312, '42': 96, '32': 504, '39': 272, '45': 180, '33': 286, '41': 84, '12': 208, '22': 24, '52': 32, '53': 8, '47': 48, '40': 48, '46': 64, '51': 56, '43': 8, '49': 28, '38': 48, '50': 48} and RP["consistent"] == {'True': 25378}, (RP["component_genera"], RP["consistent"]))
+    require(data["entry"] >= 114 and data["tally"] == {'dead': 12132, 'finite': 67236} and RP["tally_after"] == data["tally"], data["tally"])
+    require(RP["n_provisional_before"] == 25428 and RP["n_upgraded"] == 25428 and RP["n_still_provisional"] == 0 and RP["entry114_bound_certified"]["n"] == 50, (RP["n_upgraded"], RP["n_still_provisional"]))
+    require(RP["component_genera"] == {'14': 1008, '29': 624, '11': 1340, '13': 3176, '28': 848, '10': 1176, '19': 1976, '23': 1008, '15': 1196, '9': 784, '17': 1230, '7': 72, '30': 192, '16': 1456, '20': 560, '26': 848, '18': 488, '34': 640, '25': 944, '44': 160, '31': 1148, '37': 720, '27': 304, '35': 232, '21': 944, '24': 312, '42': 96, '32': 504, '39': 272, '45': 180, '33': 286, '41': 84, '12': 208, '22': 24, '52': 32, '53': 8, '47': 48, '40': 48, '46': 64, '51': 56, '43': 8, '49': 28, '38': 48, '50': 48} and RP["consistent"] == {'True': 25428}, (RP["component_genera"], RP["consistent"]))
     require(FN["n_finite"] == sum(v for k, v in data["tally"].items() if k.startswith("finite")) and FN["n_missing"] == 0 and FN["n_admissible"] == 0 and FN["admissible"] == [])
     require(FN["status_counts"] == {'empty (Groebner basis 1)': 18088, 'zero-dimensional': 49148} and FN["points_by_value"] == {"('0', '0')": 1408, "('0', '1')": 119, "('0', '-1')": 119, "('-1', '1')": 72, "('1', '-1')": 72, "('1', '1')": 68, "('-1', '-1')": 68, "('1', '0')": 28, "('-1', '0')": 28} and FN["lines_by_value"] == {}, (FN["status_counts"], FN["points_by_value"], FN["lines_by_value"]))
     require(FN["prediction_counts"] == {'empty': 26390, 'trinomial': 22474, 'torsion': 18372} and FN["theorem_test"]["n_violations"] == 0 and FN["theorem_test"]["n_missing"] == 0, FN["prediction_counts"])
     require(all(k.startswith(("('empty', ", "('torsion', ", "('trinomial', ")) and k.endswith(", True)") for k in FN["theorem_test"]["agreement"]), FN["theorem_test"]["agreement"])
     require(all(v in ("('0', '0')", "('1', '0')", "('-1', '0')", "('0', '1')", "('0', '-1')", "('1', '1')", "('1', '-1')", "('-1', '1')", "('-1', '-1')") for v in FN["points_by_value"]), "every rational base point degenerate")
     fin = [c for c in data["classes"] if c["v"].startswith("finite")]
-    require(all(c["v"] == "finite" for c in fin) if 50 == 0 else True, "no provisional class left")
+    require(all(c["v"] == "finite" for c in fin), "no provisional class left")
     O.set_box((2, 1, 1))
     from collections import Counter
     pred = Counter(elimination_type(tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"]), int(c["f"])) for c in fin)
@@ -4652,6 +4653,52 @@ def _(ctx):
     else:
         ctx.note("PARI/GP not found: the live re-resolution not run")
     ctx.note("shape (2,1,1): tally " + str(data["tally"]) + "; elimination base loci of " + str(FN["n_finite"]) + " finite classes, no admissible point; prediction " + str(FN["prediction_counts"]) + "; " + str(len(picks)) + " base loci recomputed live")
+
+
+@check("a3.rj_trinomial", DOC)
+def _(ctx):
+    """CONJECTURE R_J: NO CONCENTRATION ROUTE (entry 114, doc 2.44).  The
+    frontier of the uniform omega <= 2 program is R_J (2.23/2.27): for the
+    (J,1) boxes, J >= 5, the equation 3 rho^4 = conj(l)^{2J} + 2 C_1 l^{2J-1}
+    in Gaussian primes, i.e. a Q(i)-point of 3X^4 = y^{2J} + y^{2J-1} + 1.
+    Every kill of the ladder that closed a box (entries 83-91) factored the
+    residual into coprime pieces and concentrated the prime power in one of
+    them.  That route is closed for R_J: for J not congruent to 1 mod 3 the
+    trinomial y^{2J} + y^{2J-1} + 1 is irreducible over Q, Q(i), Q(sqrt 3),
+    Q(sqrt -3), Q(zeta_8), Q(zeta_12) and Q(zeta_24) (J = 5..12), and for
+    J = 1 mod 3 only the cyclotomic factor y^2 + y + 1 splits off (into two
+    linear factors over the fields containing sqrt -3), which entry 96 showed
+    is cancelled by the machine's gcd stage.  Also pinned: the P1 "rigidity
+    lemma" is NOT the core of the program (superseded since entry 84; the
+    stale memory pointer that led to it is corrected).  Verifies the table
+    live in PARI for a bounded set of (J, field) pairs."""
+    import re, subprocess
+    from compute.pari_genus1 import gp_available, GP as GP_PATH
+    table = {5: {'Q': [10], 'Q(i)': [10], 'Q(sqrt3)': [10], 'Q(sqrt-3)': [10], 'Q(zeta8)': [10], 'Q(zeta12)': [10], 'Q(zeta24)': [10]}, 6: {'Q': [12], 'Q(i)': [12], 'Q(sqrt3)': [12], 'Q(sqrt-3)': [12], 'Q(zeta8)': [12], 'Q(zeta12)': [12], 'Q(zeta24)': [12]}, 7: {'Q': [2, 12], 'Q(i)': [2, 12], 'Q(sqrt3)': [2, 12], 'Q(sqrt-3)': [1, 1, 12], 'Q(zeta8)': [2, 12], 'Q(zeta12)': [1, 1, 12], 'Q(zeta24)': [1, 1, 12]}, 8: {'Q': [16], 'Q(i)': [16], 'Q(sqrt3)': [16], 'Q(sqrt-3)': [16], 'Q(zeta8)': [16], 'Q(zeta12)': [16], 'Q(zeta24)': [16]}, 9: {'Q': [18], 'Q(i)': [18], 'Q(sqrt3)': [18], 'Q(sqrt-3)': [18], 'Q(zeta8)': [18], 'Q(zeta12)': [18], 'Q(zeta24)': [18]}, 10: {'Q': [2, 18], 'Q(i)': [2, 18], 'Q(sqrt3)': [2, 18], 'Q(sqrt-3)': [1, 1, 18], 'Q(zeta8)': [2, 18], 'Q(zeta12)': [1, 1, 18], 'Q(zeta24)': [1, 1, 18]}, 11: {'Q': [22], 'Q(i)': [22], 'Q(sqrt3)': [22], 'Q(sqrt-3)': [22], 'Q(zeta8)': [22], 'Q(zeta12)': [22], 'Q(zeta24)': [22]}, 12: {'Q': [24], 'Q(i)': [24], 'Q(sqrt3)': [24], 'Q(sqrt-3)': [24], 'Q(zeta8)': [24], 'Q(zeta12)': [24], 'Q(zeta24)': [24]}}
+    for J, v in table.items():
+        exp = [2, 2 * J - 2] if J % 3 == 1 else [2 * J]
+        for fld, degs in v.items():
+            require(degs == ([1, 1, 2 * J - 2] if (J % 3 == 1 and fld in ("Q(sqrt-3)", "Q(zeta12)", "Q(zeta24)")) else exp), (J, fld, degs))
+    if gp_available():
+        Js = [5, 6, 8][:ctx.bound(full=3, fast=2)]
+        fields = [("Q(i)", "y^2 + 1"), ("Q(zeta8)", "polcyclo(8, y)"), ("Q(zeta12)", "polcyclo(12, y)"), ("Q(zeta24)", "polcyclo(24, y)")][:ctx.bound(full=4, fast=2)]
+        script = "{"
+        for J in Js:
+            for name, poly in fields:
+                script += "nf = nfinit(" + poly + "); F = nffactor(nf, x^" + str(2 * J) + " + x^" + str(2 * J - 1) + " + 1); print(\"RES " + str(J) + " " + name + " \", vecsort(vector(#F~, i, poldegree(F[i,1], x))));"
+        script += "}\nquit\n"
+        out = subprocess.run([GP_PATH, "-q"], input=script, capture_output=True, text=True, timeout=600).stdout
+        seen = 0
+        for line in out.splitlines():
+            m = re.match(r"RES (\d+) (\S+) \[([\d, ]*)\]", line.strip())
+            if m:
+                J = int(m.group(1)); degs = [int(x) for x in m.group(3).split(",")]
+                require(degs == table[J][m.group(2)], (J, m.group(2), degs)); seen += 1
+        require(seen == len(Js) * len(fields), (seen, out[-300:]))
+        ctx.note("PARI: " + str(seen) + " (J, field) factorizations of y^{2J} + y^{2J-1} + 1 recomputed live; irreducible for J != 1 mod 3")
+    else:
+        ctx.note("PARI/GP not found: the live factorizations not run")
+    ctx.note("R_J: no concentration route -- the trinomial is irreducible over Q(i) and the cyclotomic fields up to Q(zeta_24) for J != 1 mod 3; the 'P1 rigidity lemma' pointer is withdrawn (superseded since entry 84)")
 
 
 @check("a3.omega3_killers", DOC)

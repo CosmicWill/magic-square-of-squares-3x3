@@ -5606,3 +5606,52 @@ a3.omega3_box211_finiteness; a3.omega3_box211_sweep relaxed to entry
 >= 108 with entry 108's tally pinned through rigorous_pass.tally_before.
 Doc 2.43; ROADMAP M14-P and the R.10 status; memory (the two long jobs
 retired). Suite 196.
+
+## 2026-09-06 — Entry 114: no provisional class left in the (2,1,1) box; Conjecture R_J has no concentration route; the "P1 rigidity" pointer withdrawn
+
+THE LAST 50. Entry 113 left 50 classes finite*: the sweep's provisional
+flag (entry 107) looked at every frame, and these carried a provisional
+genus only in a NON-deciding frame; their deciding frames rest on
+rigorous genus bounds ('boun'). Re-resolving the deciding finite
+components ((8,8), (8,4)) exactly with the field-free cross-check:
+all 50 rigorous (genera 11 (16), 13 (16), 15 (16), 23 (2); consistent {True: 50}). Tally
+of the 79,368 new classes: {'dead': 12132, 'finite': 67236}; no provisional class
+remains, and the finiteness statement for shape (2,1,1) (doc 2.43)
+stands on exact genera throughout (rigorous_pass.entry114_bound_certified;
+a3.omega3_box211_finiteness re-pinned).
+
+A WRONG POINTER, WITHDRAWN. Asked how we track toward an overall proof,
+I recommended "attack the P1 rigidity lemma by hand" — from a stale
+line of my memory index. The one-equation lemma was superseded by the
+concentration theorem (entry 83) and Theorem A3.10 (entry 84); the
+uniform omega <= 2 program's real frontier is Conjecture R_J (doc
+2.23/2.27): for the (J,1) boxes, J >= 5, 3 rho^4 = conj(l)^{2J} + 2 C_1
+l^{2J-1} in Gaussian primes (rho^4 = +-G_J for J = 1 mod 3). The index
+line is corrected (memory), and R.10's O5 now names R_J.
+
+R_J BY HAND, THIS SESSION (doc 2.44). Two equivalent forms kept: 3 rho^4
+= 2 C_{2J} + p^2 l^{2J-2}, and the Q(i)-point 3X^4 = y^{2J} + y^{2J-1} + 1
+(y = l / conj(l), X = rho / conj(pi)^J) on a superelliptic curve of genus
+J - 1. The first yields two sliver identities (pi^{4J-2} | 3 rho^4 -
+conj(l)^{2J} with cofactor 2 C_1; conj(pi)^2 | 3 rho^4 - l^{2J} with
+cofactor 2 C_{2J-1}); norms, the discriminant of the quadratic in rho^4,
+and primitive divisors of U_{2J-2} and V_{2J} all reduce to the norm
+identity 9 q^4 - p^{4J} = 8 C_1 C_{2J-1} C_{2J}: no lever. THE NEGATIVE
+RESULT: every ladder kill concentrated a prime power in one coprime
+factor of the residual; for J != 1 mod 3 the trinomial y^{2J} + y^{2J-1}
++ 1 is IRREDUCIBLE over Q, Q(i), Q(sqrt 3), Q(sqrt -3), Q(zeta_8),
+Q(zeta_12), Q(zeta_24) (PARI nffactor, J = 5..12; for J = 1 mod 3 only
+y^2 + y + 1 splits off, cancelled by the machine per entry 96). No
+factorization, no concentration: R_J needs a global method. The
+effective one is Chabauty / Mordell-Weil sieve on w^2 = 3(y^{2J} +
+y^{2J-1} + 1) over Q(i), genus J - 1 >= 4 -- Magma territory (Sage
+handles genus <= 2) -- and per J; uniformity in J is the open research
+question. a3.rj_trinomial pins the table and recomputes part of it live.
+
+SAGE. Installing into WSL (conda-forge `sage`, env `sage`, ~/miniconda3);
+its uses here: rational parametrization of the genus-0 quotients (the 24
+classes of entry 106), function-field genera as a second opinion, and
+elliptic-curve work; NOT Chabauty above genus 2.
+
+Doc 2.43 addendum + 2.44; ROADMAP M14-Q and the O5 note; memory
+(index corrected; standing plan). Suite 197.

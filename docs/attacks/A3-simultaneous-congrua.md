@@ -2844,6 +2844,46 @@ by 2.41; the trinomial-type third — the deciding frame at one absolute exponen
 in all four labels — was a finite exact computation, and on this box too its
 base points are all degenerate.
 
+**Addendum (entry 114).**  The $50$ classes left "finite*" above were
+provisional only through a component of a *non-deciding* frame; their deciding
+frames rest on rigorous genus bounds.  Their deciding components ($(8,8)$ and
+$(8,4)$) were re-resolved exactly with the field-free cross-check — genera
+11 (16), 13 (16), 15 (16), 23 (2), all consistent — so **no provisional class remains**: the
+tally of the $79{,}368$ new classes is {'dead': 12132, 'finite': 67236}.
+
+## 2.44 Conjecture R_J: no concentration route, and a withdrawn pointer (entry 114)
+
+*(2026-09-06; entry 114; check `a3.rj_trinomial`.)*
+
+**The frontier, restated.**  The uniform $\omega\le2$ program (attempt E of
+R.9) is blocked at Conjecture R_J (2.23, 2.27): for the $(J,1)$ boxes with
+$J\ge5$, the equation $3\rho^4=\bar\ell^{2J}+2C_1\ell^{2J-1}$ in Gaussian primes
+($\rho^4=\pm G_J$ for $J\equiv1\pmod3$).  Two equivalent forms worth keeping:
+$$3\rho^4=2C_{2J}+p^2\ell^{2J-2},\qquad 3X^4=y^{2J}+y^{2J-1}+1\ (y=\ell/\bar\ell,\ X=\rho/\bar\pi^J),$$
+the second a $\mathbb Q(i)$-point of a superelliptic curve of genus $J-1$.  The
+first gives two "sliver" identities, $\pi^{4J-2}\mid3\rho^4-\bar\ell^{2J}$ with
+cofactor $2C_1$ and $\bar\pi^2\mid3\rho^4-\ell^{2J}$ with cofactor $2C_{2J-1}$;
+every consequence extracted from them (norms, the discriminant of the
+quadratic in $\rho^4$, primitive divisors of $U_{2J-2}$ and $V_{2J}$) is a
+tautology of the norm identity $9q^4-p^{4J}=8C_1C_{2J-1}C_{2J}$.
+
+**No concentration route.**  Every box closed by the ladder (entries 83–91)
+factored its residual into coprime pieces and concentrated the prime power in
+one.  For $J\not\equiv1\pmod3$ the trinomial $y^{2J}+y^{2J-1}+1$ is irreducible
+over $\mathbb Q$, $\mathbb Q(i)$, $\mathbb Q(\sqrt3)$, $\mathbb Q(\sqrt{-3})$,
+$\mathbb Q(\zeta_8)$, $\mathbb Q(\zeta_{12})$ and $\mathbb Q(\zeta_{24})$ (PARI,
+$J=5,\dots,12$); for $J\equiv1\pmod3$ only $y^2+y+1$ splits off, and 2.27 showed
+the machine cancels it.  So there is no factorization to concentrate on: R_J
+needs a global method.  The effective one is Chabauty / the Mordell–Weil sieve
+on the twist $w^2=3(y^{2J}+y^{2J-1}+1)$ over $\mathbb Q(i)$, genus $J-1\ge4$ —
+Magma territory (Sage handles genus $\le2$), and per $J$; uniformity in $J$ is
+the open research question.
+
+**A withdrawn pointer.**  A memory index line had kept "attack the P1
+rigidity lemma" alive as the ω ≤ 2 program's core.  That one-equation lemma
+was superseded by the concentration theorem (entry 83) and Theorem A3.10
+(entry 84); the pointer is corrected, and R.10's O5 now names R_J.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
