@@ -5225,3 +5225,71 @@ the certified curves.
 Suite 191 (a3.omega3_box211_sweep: the census, the codes, the
 re-decision transitions, the killer identification, live re-decisions).
 Doc 2.37; ROADMAP R.8 phase 1 done, R.9 attempt C note, M14-J; memory.
+
+## 2026-09-05 — Entry 108: the (2,1,1) box has no unknown class — the 188 unknowns die or are finite (the conjugate-components kill: 156; the two-step trick one level up; the pullback at cap 12); the six degenerate classes die by one-frame factors. Box (2,1,1): dead 12132, finite 41808 + 25428 provisional, unknown 0
+
+THE ASK. Try the two-step trick on the 188 unknown classes of entry 107.
+
+WHAT THE UNKNOWNS WERE. A census (omega3_unknown_census): components of
+EXACT GENUS 1 at bidegree (4,4), (8,4), (4,8), (4,12), (12,4), (12,8),
+(8,12), most carrying t -> -1/t on a frame or the joint reciprocity;
+genus-0 components at (5,2) (quadratic in a variable) and (3,5)/(5,3);
+72 components with a rigorous genus bound >= 2 whose
+absolute-irreducibility certificate had merely failed.
+
+THE ROUTES (compute/omega3_unknowns.py; a3.omega3_unknowns). (1) The
+two-step trick ONE LEVEL UP: for a genus-1 component Phi, the quotient
+W by an involution has genus 0 or 1; W of genus 0 and quadratic in a
+variable is parametrized (the conic route) and Phi is the double cover
+y^2 = Delta(lambda), Delta the discriminant of Phi's coordinate over W
+(u^2 + 4 for t -> -1/t, u^2 - 4 for t -> 1/t, u for t -> -t, x itself
+for the joint quotient) -- Phi's OWN genus-1 quartic or cubic model:
+PARI's rank with a complete enumeration, the exact lift, no admissible
+frame pair -> dead; W of genus 1 and quadratic: rank 0 -> the finitely
+many preimages on Phi; the joint quotient of genus 1: the two-step
+route of entry 106. (2) The PULLBACK at cap 12 for genus-0 components
+quadratic in a variable (the (5,2) ones): the monomial lemma and the
+third-frame lift of entry 98, which the cap 6 had excluded. (3) In the
+engine: a failed absolute-irreducibility certificate no longer blocks
+FINITENESS -- the component is irreducible over Q; if absolutely
+irreducible its genus is >= 2 (Faltings), if not every rational point
+lies on all its conjugate components at once, a finite intersection;
+the certificate only says which case (exact_genus_verdict records the
+dichotomy). (4) One-frame common factors: the six 'degenerate' classes
+had the common factor c_1 +- s_1, i.e. t_1 = +-1, a degenerate frame
+value; classify_common_factor now decides univariate factors by their
+rational roots (dead unless a root is a non-degenerate frame ratio).
+
+THE FIRST PASS: dead 40, finite 24, unknown 124 -- and a signal: 320
+quotients of "genus -1", impossible for an absolutely irreducible
+curve. THE CONJUGATE-COMPONENTS KILL (conjugate_kill): those genus-1
+components are irreducible over Q but split over a quadratic field
+(Q(sqrt 3) in every case met: e.g. a (4,4) component = two conjugate
+(2,2)-curves), so every rational point lies on both conjugate pieces,
+i.e. on A = P1 + conj(P1) and B = (P1 - conj(P1))/sqrt d, two
+polynomials over Q with a finite common zero set (the resultant, the
+rational roots, the gcd of the fibers); if no common rational zero is
+an admissible frame pair the component is DEAD. sympy's factor with an
+algebraic extension finds the splitting field among |d| <= 105
+squarefree in under a second per field. SECOND PASS: {"('unknown', 'dead')": 164, "('unknown', 'finite')": 24, "('degenerate', 'dead')": 6}
+-- routes {"('conjugate', 'd=3')": 156, "('pullback (cap 12)', '')": 8}; no class blocked. The 'genus 1' of these
+components was the resolution's p_a - sum delta for a reducible curve
+(two conjugate genus-1 pieces, or two conjugate rational pieces meeting
+twice); their failed certificates were the same phenomenon. The
+positive-rank quotients and the non-quadratic quotients of the first
+pass never had to be faced.
+
+THE BOX (compute/data_omega3_box211.json.gz; a3.omega3_box211_sweep):
+dead 12132 (15.3%), finite 41808 (52.7%), finite* 25428 (32.0%),
+unknown 0, degenerate 0. Every one of the 79,368 new classes of the
+(2,1,1) box is dead for every triple of distinct primes or on an
+explicit curve with finitely many rational points -- with a provisional
+third whose exact genus lacks its cross-check. The finiteness statement
+for shape (2,1,1) needs (a) the rigorous pass on the provisional third
+(a Riemann-Hurwitz cross-check that avoids initializing the large
+branch-value fields, or Sage) and (b) the base-locus check of entry 104
+over the finite classes; both are mechanical.
+
+Suite 192 (a3.omega3_unknowns: the census, live re-kills of the
+conjugate and own-model routes; a3.omega3_box211_sweep updated). Doc
+2.38; ROADMAP R.8, M14-K; memory.

@@ -197,6 +197,16 @@ def classify_common_factor(fac):
         if sp.expand(fe - (cf ** 2 + sf ** 2)) == 0 or sp.expand(fe + (cf ** 2 + sf ** 2)) == 0:
             return "dead", "norm", None, None
     frames = [i for i, (cf, sf) in enumerate(FR) if {cf, sf} & fe.free_symbols]
+    if len(frames) == 1:                        # a ONE-frame factor: a condition on one ratio (entry 108: c +- s, i.e. t = +-1)
+        cf, sf = FR[frames[0]]
+        q = sp.expand(fe.subs({sf: tg * cf}, simultaneous=True).subs(cf, 1))
+        if not (q.free_symbols & {tg}):
+            return "dead", "one-frame (c-power)", tuple(frames), q
+        roots = [r for r in sp.Poly(q, tg).ground_roots() if r.is_rational]
+        live = [r for r in roots if not degenerate(r) and is_frame_ratio(r)]
+        if live:
+            return "candidate", "one-frame root " + str(live), tuple(frames), q
+        return "dead", "one-frame " + str(q), tuple(frames), q
     if len(frames) == 2:
         g, h = frames
         phi = _ratio_form(fe, g, h)
@@ -775,7 +785,13 @@ def exact_genus_verdict(phi, dg, dh):
         pr = absolutely_irreducible(phi)
         inf["abs_irred_p"] = pr
         inf["route"] = certified_by
-        v = "finite" if pr is not None else "unknown"
+        # the certificate is not needed for FINITENESS (entry 108): the component is irreducible over Q
+        # (a factor of the resultant); if it is absolutely irreducible its genus is >= 2 (finitely many
+        # points, Faltings), and if it is reducible over the closure every rational point lies on all its
+        # conjugate components at once -- a finite intersection.  The certificate only says which case.
+        v = "finite"
+        if pr is None:
+            inf["note"] = "certificate failed: finite by the dichotomy (genus >= 2, or the intersection of conjugates)"
     else:
         v = "unknown"
     _GENUS_CACHE[key] = (v, inf)

@@ -4319,17 +4319,19 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] == 107 and data["n_new_three_frame"] == 79368 == len(data["classes"]) and data["n_classes"] == 89732)
-    require(data["tally"] == {'dead': 11962, 'finite': 41784, 'finite*': 25428, 'unknown': 188, 'degenerate': 6}, data["tally"])
+    require(data["entry"] == 108 and data["n_new_three_frame"] == 79368 == len(data["classes"]) and data["n_classes"] == 89732)
+    require(data["tally"] == {'dead': 12132, 'finite': 41808, 'finite*': 25428}, data["tally"])
     require(sum(data["tally"].values()) == 79368)
     require(data["genus_routes"] == {'bound': 24292, 'resolution-provisional': 25502, 'resolution': 284}, data["genus_routes"])
     require(data["redecided"] == {"('degenerate', 'dead')": 24, "('unknown', 'unknown')": 188, "('degenerate', 'degenerate')": 6, "('infinite', 'finite')": 24, "('infinite', 'dead')": 32}, data["redecided"])
     codes = {"dead", "finite", "finite*", "unknown", "degenerate", "infinite"}
+    UA = data["unknowns_attacked"]
+    require(UA["tally_before"] == {'dead': 11962, 'finite': 41784, 'finite*': 25428, 'unknown': 188, 'degenerate': 6} and sum(UA["transitions"].values()) == 194, UA["transitions"])
     require(all(c["v"] in codes for c in data["classes"]))
     require(all(c["f"] is not None for c in data["classes"] if c["v"] in ("dead", "finite", "finite*")), "a deciding frame for every decided class")
-    require(all(all(x.split(":")[1] in ("dead", "finite") for x in c["c"]) for c in data["classes"] if c["v"] in ("finite", "finite*")),
+    require(all(all(x.split(":")[1] in ("dead", "finite") for x in c["c"] if ":" in x) for c in data["classes"] if c["v"] in ("finite", "finite*")),
             "a finite frame has only dead or finite components")
-    require(all(all(x.split(":")[1] == "dead" for x in c["c"]) for c in data["classes"] if c["v"] == "dead"), "a dead frame has only dead components")
+    require(all(all(x.split(":")[1] == "dead" for x in c["c"] if ":" in x) for c in data["classes"] if c["v"] == "dead"), "a dead frame has only dead components")
     # the killers: 29 models, ten curves
     require(len(data["rank0_models"]) == 29, len(data["rank0_models"]))
     require(set(data["monomial_relations"]) <= {str(k) for k in [(a, b) for a in range(1, 6) for b in range(-6, 7) if b]}, "monomial exponents")
@@ -4358,6 +4360,76 @@ def _(ctx):
     else:
         ctx.note("PARI/GP not found: live re-decisions and killer identification not run (data-file consistency verified)")
     ctx.note("(2,1,1) sweep: " + str(data["tally"]) + "; " + str(data["seconds"]["cpu_hours"]) + " CPU-hours; killers = ten curves up to isomorphism")
+
+
+@check("a3.omega3_unknowns", DOC)
+def _(ctx):
+    """THE UNKNOWNS OF THE (2,1,1) SWEEP ATTACKED (entry 108).  The 188 unknown
+    classes had components of exact genus 0 or 1 at high bidegree.  Routes
+    (compute/omega3_unknowns.py): (1) the CONJUGATE-COMPONENTS kill -- a
+    component irreducible over Q that splits over Q(sqrt d) has its rational
+    points on the intersection of the two conjugate pieces, the common zeros
+    of A = P1 + conj P1 and B = (P1 - conj P1)/sqrt d, a finite set over Q;
+    (2) the two-step trick one level up -- a genus-1 component's quotient by
+    an involution of genus 0 (parametrized) gives the component's OWN quartic
+    model y^2 = Delta(lambda), rank 0, the exact lift; or of genus 1, rank 0,
+    the preimages; the joint quotient likewise; (3) the pullback route at cap
+    12 for genus-0 components quadratic in a variable; (4) in the engine, a
+    failed absolute-irreducibility certificate no longer blocks finiteness
+    (the dichotomy), and one-frame common factors t = +-1 kill the six
+    'degenerate' classes.  RESULT: transitions {"('unknown', 'dead')": 164, "('unknown', 'finite')": 24, "('degenerate', 'dead')": 6};
+    box tally {'dead': 12132, 'finite': 41808, 'finite*': 25428}.  Verifies the census and re-runs a bounded number of the
+    conjugate and own-model kills live."""
+    import gzip
+    import json
+    from compute import omega3 as O
+    from compute.omega3_unknowns import conjugate_kill, attack_component
+    from compute.pari_genus1 import gp_available
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        data = json.load(fh)
+    UA = data["unknowns_attacked"]
+    require(data["entry"] == 108 and data["tally"] == {'dead': 12132, 'finite': 41808, 'finite*': 25428}, data["tally"])
+    require(UA["transitions"] == {"('unknown', 'dead')": 164, "('unknown', 'finite')": 24, "('degenerate', 'dead')": 6}, UA["transitions"])
+    require(UA["kill_routes"] == {"('conjugate', 'd=3')": 156, "('pullback (cap 12)', '')": 8}, UA["kill_routes"])
+    att = [c for c in data["classes"] if c.get("attacked")]
+    require(len(att) == 188 and all(c["v"] in ("dead", "finite", "finite*", "unknown") for c in att))
+    require(sum(1 for c in data["classes"] if c["v"] == "degenerate") == 0, "no degenerate class remains")
+    if gp_available():
+        n = ctx.bound(full=6, fast=2)
+        O.set_box((2, 1, 1))
+        saved = (O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT, O.PROVISIONAL_FINITE)
+        try:
+            O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT, O.PROVISIONAL_FINITE = 10, 20, 120, True
+            done = 0
+            for c in att:
+                if c["v"] != "dead" or done >= n:
+                    continue
+                cand = tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"])
+                curves, live = O.frame_factors(cand, int(c["f"]))
+                killed_any = False
+                for comp in c["c"]:
+                    parts = comp.split(":")
+                    if len(parts) < 3:
+                        continue
+                    deg = tuple(int(x) for x in parts[0].split(","))
+                    phi = [x[0] for x in curves if (x[1], x[2]) == deg][0]
+                    if parts[2] == "conjugate":
+                        v, info = conjugate_kill(phi, deg[0], deg[1])
+                        require(v == "dead", (cand, deg, v, info.get("note")))
+                        killed_any = True
+                    else:
+                        v, recs = attack_component(phi, deg[0], deg[1], 1, cand, int(c["f"]))
+                        require(v == "dead", (cand, deg, v))
+                        killed_any = True
+                if killed_any:
+                    done += 1
+            ctx.note("PARI: " + str(done) + " attacked classes re-killed live (conjugate-components and own-model routes)")
+        finally:
+            O.set_box((1, 1, 1))
+            O.NF_SECONDS, O.BOUND_DEGMAX, O.RESOLVE_TIMEOUT, O.PROVISIONAL_FINITE = saved
+    else:
+        ctx.note("PARI/GP not found: live re-kills not run (data-file consistency verified)")
+    ctx.note("unknowns attacked: " + str(UA["transitions"]) + "; routes " + str(UA["kill_routes"]) + "; box tally " + str(data["tally"]))
 
 
 @check("a3.omega3_quotients", DOC)

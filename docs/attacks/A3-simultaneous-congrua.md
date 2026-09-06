@@ -2561,6 +2561,31 @@ $1$ at high bidegree (the elliptic and parametrization routes are not yet
 available there), the provisional third (a cross-check that avoids field
 initialization, or Sage), and then the finiteness statement for the shape.
 
+## 2.38 The unknowns of the (2,1,1) box: the conjugate-components kill; no unknown class remains
+
+*(2026-09-05; entry 108; check `a3.omega3_unknowns`; code `compute/omega3_unknowns.py`.)*
+
+The $188$ unknown classes had components of exact genus $0$ or $1$ at high
+bidegree.  Three routes decide them all.  The two-step trick one level up:
+a genus-$1$ component's quotient by an involution of genus $0$, parametrized,
+makes the component its own double cover $y^2=\Delta(\lambda)$, a quartic
+model with a rank; of genus $1$ and rank $0$, the finitely many preimages.
+The pullback at cap $12$ for genus-$0$ components quadratic in a variable.
+And the decisive one, the **conjugate-components kill**: $320$ quotients came
+out with "genus $-1$", impossible for an absolutely irreducible curve, and
+indeed those components are irreducible over $\mathbb Q$ but split over
+$\mathbb Q(\sqrt3)$ into two conjugate pieces; every rational point lies on
+both, i.e. on $A=P_1+\bar P_1$ and $B=(P_1-\bar P_1)/\sqrt3$, two polynomials
+over $\mathbb Q$ with a finite common zero set, and no common rational zero
+is an admissible frame pair.  Result: of the $188$, $164$ dead ($156$ by
+conjugate components, $8$ by the pullback) and $24$ finite; the six
+"degenerate" classes die by their one-frame common factor $t_1=\pm1$; a
+failed absolute-irreducibility certificate no longer blocks finiteness (the
+dichotomy: genus $\ge2$ if absolutely irreducible, a finite intersection of
+conjugates if not).  **Box $(2,1,1)$: dead $12132$, finite $41808$, finite with a
+provisional genus $25428$, unknown $0$.**  The finiteness statement for the shape
+waits for the rigorous pass on the provisional third and the base-locus check.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
