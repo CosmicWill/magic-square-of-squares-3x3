@@ -109,10 +109,10 @@ def research_inventory(ctx):
     stored = json.loads(gzip.decompress(ARTIFACT.read_bytes()))
     require(stored == data, "survivor artifact is stale")
     require(REPORT.read_text(encoding="utf-8") == render(data), "research report is stale")
-    require(Counter(r["shape"] for r in stored["classes"]) == {"111": 214, "211": 1960})
-    require(len({r["id"] for r in stored["classes"]}) == 2174)
+    require(Counter(r["shape"] for r in stored["classes"]) == {"111": 170, "211": 1388})
+    require(len({r["id"] for r in stored["classes"]}) == 1558)
     require(Counter(tuple(r["binomial_height_recession_direction"] or []) for r in stored["classes"]) ==
-            {(1, 1, 1): 2014, (1, 1, 2): 112, (1, 2, 1): 40, (1, 2, 2): 8})      # entry 123: the inventory rebased on the height system's survivors
+            {(1, 1, 1): 1478, (1, 1, 2): 64, (1, 2, 1): 16})      # entries 123-124: the inventory rebased on the height system's survivors
     require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 16)
     for shape, source in SOURCES.items():
         ledger = load_source(ROOT / source)

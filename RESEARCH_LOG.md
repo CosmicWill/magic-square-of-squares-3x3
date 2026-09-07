@@ -6256,3 +6256,51 @@ lemma and the height system applied before any curve.
 
 Doc 2.50 (Theorem A3.HS); A11; A10 section 8; ROADMAP M14-X and the
 R.12 table; PROGRESS; memory. Suite 206.
+
+## 2026-09-07 — Entry 124: THE REALITY SHARPENING (T′) — the trinomial congruence is the shadow of an exact identity; 44 + 572 further classes impossible for all primes
+
+THE IDENTITY. For a circuit among maximal labels (all four circuits
+of a four-maxima column; the circuit avoiding the deficient label of a
+deficient column) the CP.3 expansions sum EXACTLY to
+    sum_X c_X pi^{2M} s(Z_X) = -pibar^{2M} W + pi^{4M} pibar^{-2M} Wbar,
+W = sum c_X sigma_X U_X, because the error terms are sigma_X pi^{4M}
+pibar^{-2M} U_X^{-1} and U_X^{-1} = Ubar_X (|U_X| = 1); verified on
+genuine frames by circuit_identity_tests (138 decompositions), as is
+S = G W with G = prod pi_k^{-2 fmin_k} pibar_k^{2 fmax_k}. A solution
+therefore has pibar^{4M} W = pi^{4M} Wbar, and with S = pi^{4M} S_1:
+S_1 Gbar = Sbar_1 G, i.e. S_1 Gbar IS REAL. Writing G = G+/G- with
+integral G+-, the rational integer R = S_1 Gbar+ G- is divisible by
+Gbar+ G- and by its conjugate, hence by prod p_k^{max(u_k, v_k)} with
+u_k, v_k the exponents of pi_k, pibar_k in Gbar+ G-; since u_k - v_k =
+2(fmax_k + fmin_k), |S_1| >= prod p_k^{|fmax_k + fmin_k|}, and the
+trinomial inequality becomes
+    p_j^{2M} <= K prod_{k != j} p_k^{2 min(fmax_k, -fmin_k)}       (T')
+in place of the spread fmax_k - fmin_k: often exponent 0, and negative
+when the three exponents share a sign (then p_k moves to the left).
+Entry 123 had used only |S_1| >= 1.
+
+THE RESULT. Version 2 of compute/height_system.py (the version is
+recorded with every certificate; the entry-123 certificates remain
+valid for version 1) re-decides the 214 + 1,960 classes left
+unbounded: (1,1,1): 44 infeasible, 170 unbounded; (2,1,1): 572
+infeasible, 1,388 unbounded; no cap. All 616 certificates verified
+exactly. Tallies: (1,1,1) dead 2774 / finite 170; (2,1,1) dead 77,980
+/ finite 1,388. The inventory regenerated on the 170 + 1,388
+survivors.
+
+WHAT THE LOCAL METHOD HAS LEFT. The binomial rows are exhausted at
+first order (the analogous exact identity for a binomial circuit
+involves the deficient term and gives a residue condition, not a size
+one: shown in the working notes). The survivors are the classes whose
+sharpened inequalities still admit a recession direction -- typically
+several four-maxima or C/D-deficit columns (|lambda| = 2 rows, K = 4
+trinomials). Their exact divisibilities are congruences between the
+primes: at a deficient column p_j^{2g} divides an explicit integer in
+the other two primes, at a four-maxima column pi_j^{4M} divides an
+explicit Gaussian integer in the other two; so a pair (p_k, p_l)
+determines finitely many candidates for p_j. Next: the pair search
+(entry 125).
+
+A11 section 2 (T'); doc 2.50 addendum; ROADMAP M14-Y and the R.12
+table; PROGRESS; a3.height_system extended (versions, the circuit
+identities); memory. Suite 206.

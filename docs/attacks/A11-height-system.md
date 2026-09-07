@@ -37,6 +37,10 @@ $$p_j^{2M}\le|S|\le KQ. \textbf{ (T)}$$
 
 Every condition is $\prod_jp_j^{a_j}\le K$ with integers $a_j$ and a rational $K$: a linear inequality in $x_j=\log p_j$. The system is invariant under the frame group (the inequalities depend only on $|d|$, $r$, $K$), so the canonical representative decides its whole orbit.
 
+**The reality sharpening (T′), entry 124.**  For a circuit among maximal labels the congruence is the shadow of an exact identity: summing the CP.3 expansions gives $\sum_Xc_X\pi^{2M}s(Z_X)=-\bar\pi^{2M}W+\pi^{4M}\bar\pi^{-2M}\bar W$ with $W=\sum_Xc_X\sigma_XU_X$ (exact, since the error terms are $\sigma_X\pi^{4M}\bar\pi^{-2M}U_X^{-1}$ and $U_X^{-1}=\bar U_X$; `circuit_identity_tests`), so a solution has $\bar\pi^{4M}W=\pi^{4M}\bar W$.  With $S=GW$, $G=\prod_{k\ne j}\pi_k^{-2f_{\min,k}}\bar\pi_k^{2f_{\max,k}}$, and $S=\pi^{4M}S_1$ this says $S_1\bar G=\bar S_1G$: **$S_1\bar G$ is real.**  Writing $G=G_+/G_-$ with integral $G_\pm$, the rational integer $R=S_1\bar G_+G_-$ is divisible by $\bar G_+G_-$ and by its conjugate, hence by $\prod_kp_k^{\max(u_k,v_k)}$ where $u_k,v_k$ are the exponents of $\pi_k,\bar\pi_k$ in $\bar G_+G_-$; as $u_k-v_k=2(f_{\max,k}+f_{\min,k})$,
+$$|S_1|\ \ge\ \prod_{k\ne j}p_k^{|f_{\max,k}+f_{\min,k}|},\qquad\text{hence}\qquad p_j^{2M}\le K\prod_{k\ne j}p_k^{\,2\min(f_{\max,k},-f_{\min,k})}. \textbf{ (T′)}$$
+The exponent $2\min(f_{\max},-f_{\min})$ is at most the spread $r_k$ of (T), often $0$, and negative when the three exponents share a sign.  In the worked case of §4 the $G$-trinomial of column $2$ improves to $p_2^2\le3p_1^2$.  Re-deciding the $214+1{,}960$ classes left unbounded by (T) with (T′) in place of (T): **$44+572$ more infeasible**, none capped, $170+1{,}388$ unbounded (§4).  The version of the system is recorded with every certificate; the entry-123 certificates remain valid for version 1.
+
 ## 3. The decision and its certificates
 
 For each class the linear programme in $x$ is solved (HiGHS through scipy) and every verdict is certified in exact rational arithmetic:
@@ -51,6 +55,8 @@ For each class the linear programme in $x$ is solved (HiGHS through scipy) and e
 |---|---:|---:|---:|---:|
 | (1,1,1) | 488 | 274 | 0 | 214 |
 | additional (2,1,1) | 4,744 | 2,732 | 52 | 1,960 |
+
+**Version 2 (entry 124, the reality sharpening):** of the $214+1{,}960$ unbounded classes, $44+572$ become infeasible; open $170$ and $1{,}388$; tallies $(1,1,1)$ dead $2774$ / finite $170$, $(2,1,1)$ dead $77{,}980$ / finite $1{,}388$.
 
 Caps of the 52: all three primes at most $6561$, median $108$; the searches examined at most $887{,}124$ admissible triples per class, at most $1{,}001$ passed the inequalities, none passed the divisibilities. Tallies after the fold: (1,1,1) dead $2730$ / finite $214$; (2,1,1) dead $77{,}408$ / finite $1{,}960$. Every certificate was re-verified exactly from the class alone (`verify_certificate`).
 

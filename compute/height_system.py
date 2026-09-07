@@ -54,8 +54,9 @@ def sgn(x):
     return (x > 0) - (x < 0)
 
 
-def column(cand, j):
-    """The relations of column j: the binomials and trinomials with their exact data."""
+def column(cand, j, version=2):
+    """The relations of column j: the binomials and trinomials with their exact data.
+    version 1 = entry 123 (trinomial bound |S_1| >= 1); version 2 = entry 124 (the reality sharpening (T'))."""
     labels, eps = [tuple(int(x) for x in lab) for lab in cand[:4]], [int(x) for x in cand[4:]]
     col = [lab[j] for lab in labels]
     M = max(abs(e) for e in col)
@@ -104,20 +105,27 @@ def column(cand, j):
             for X, Y in combinations(trip, 2):
                 if all(f[X][k] == f[Y][k] for k in others):
                     raise ValueError("two maximal labels equal up to sign")
-            r = {k: max(f[X][k] for X in trip) - min(f[X][k] for X in trip) for k in others}
+            fmax = {k: max(f[X][k] for X in trip) for k in others}
+            fmin = {k: min(f[X][k] for X in trip) for k in others}
+            r = {k: fmax[k] - fmin[k] for k in others}
             K = sum(abs(v) for v in a.values())
-            coeff = {j: 2 * M, **{k: -r[k] for k in others}}
-            rels.append(dict(kind="trinomial", circuit=name, labels=trip, coeffs=a, r=r, modulus=4 * M, K=Fraction(K), coeff=coeff))
+            if version >= 2:
+                # (T'): S = pi^{4M} S_1 with S_1 Gbar real (the exact identity pibar^{4M} W = pi^{4M} Wbar), so
+                # |S_1| >= prod p_k^{|fmax_k + fmin_k|} and p_j^{2M} <= K prod p_k^{2 min(fmax_k, -fmin_k)}
+                coeff = {j: 2 * M, **{k: -2 * min(fmax[k], -fmin[k]) for k in others}}
+            else:
+                coeff = {j: 2 * M, **{k: -r[k] for k in others}}
+            rels.append(dict(kind="trinomial", circuit=name, labels=trip, coeffs=a, r=r, fmax=fmax, fmin=fmin, modulus=4 * M, K=Fraction(K), coeff=coeff))
     return dict(j=j, M=M, g=g, role=role, deficient=deficient, maximal=maximal, s=s, sigma=sigma, f=f, relations=rels)
 
 
-def system(cand):
+def system(cand, version=2):
     """All inequalities of a class: [(coeff dict, K, name)] meaning prod p_j^{coeff_j} <= K, and the
-    CP.2 lower bounds per prime."""
+    CP.2 lower bounds per prime.  version 1 reproduces entry 123, version 2 adds the reality sharpening."""
     if column_certificate(cand[:4]) is not None:
         raise ValueError("the class fails the prime-column lemma")
     n = len(cand[0])
-    cols = [column(cand, j) for j in range(n)]
+    cols = [column(cand, j, version) for j in range(n)]
     ineqs = []
     groups = {}
     for c in cols:
@@ -160,19 +168,19 @@ def _exact_product(rows, y):
     return D, val
 
 
-def analyse(cand):
+def analyse(cand, version=2):
     """The linear programme of a class: per prime, 'infeasible' (with an exact certificate that no
     primes satisfy the system: the class is impossible), 'capped' (exact certificate + bound) or
-    'unbounded' (an exact positive recession direction)."""
+    'unbounded' (an exact positive recession direction).  The result records the system version."""
     import numpy as np
     from scipy.optimize import linprog
-    cols, ineqs, lower = system(cand)
+    cols, ineqs, lower = system(cand, version)
     n = len(lower)
     rows = _rows(n, ineqs, lower)
     A = np.array([a for a, K, name in rows], dtype=float)
     b = np.array([math.log(K) for a, K, name in rows], dtype=float)
     m = len(rows)
-    out = {"n_inequalities": len(ineqs), "lower": lower, "roles": "".join(c["role"] for c in cols), "per_prime": {}}
+    out = {"version": version, "n_inequalities": len(ineqs), "lower": lower, "roles": "".join(c["role"] for c in cols), "per_prime": {}}
     feas = linprog(np.zeros(n), A_ub=A, b_ub=b, bounds=[(None, None)] * n, method="highs")
     if feas.status == 2:
         # Farkas: y >= 0, y^T A = 0, y^T b < 0  <=>  prod K_i^{y_i} < 1
@@ -209,8 +217,8 @@ def analyse(cand):
 
 
 def verify_certificate(cand, result):
-    """Re-verify a recorded analysis in exact arithmetic from the class alone."""
-    cols, ineqs, lower = system(cand)
+    """Re-verify a recorded analysis in exact arithmetic from the class alone (the recorded system version)."""
+    cols, ineqs, lower = system(cand, int(result.get("version", 1)))
     n = len(lower)
     rows = _rows(n, ineqs, lower)
     byname = {name: (a, K) for a, K, name in rows}

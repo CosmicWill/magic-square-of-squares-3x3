@@ -8,8 +8,8 @@ Every open record retains its canonical candidate, source index and hash, signed
 
 | Campaign scope | Ledger classes | Dead | Open finite | Pass A3.PC but already dead |
 |---|---:|---:|---:|---:|
-| 111 (full box) | 2,944 | 2,730 | 214 | 564 |
-| 211 (additional three-frame classes only) | 79,368 | 77,408 | 1,960 | 3,478 |
+| 111 (full box) | 2,944 | 2,774 | 170 | 608 |
+| 211 (additional three-frame classes only) | 79,368 | 77,980 | 1,388 | 4,050 |
 
 The second row is an incremental campaign, not the full (2,1,1) box. Counts describe canonical classes, not distinct curves or magic squares.
 All sixteen C2 classes closed in entry 118 remain outside this open inventory. Every free-frame class is excluded by A3.PC.
@@ -24,8 +24,8 @@ For arithmetic geometry, the evidence retains the existing towers and quotient m
 | Campaign | Recorded arithmetic route | Open classes |
 |---|---|---:|
 | 111 | hyperelliptic tower | 32 |
-| 111 | resolved curve and quotients | 182 |
-| 211 | compact campaign certificate | 1,960 |
+| 111 | resolved curve and quotients | 138 |
+| 211 | compact campaign certificate | 1,388 |
 
 ## Representatives for independent attacks
 
@@ -34,34 +34,34 @@ One representative per role multiset and campaign is listed below. Use all membe
 | Roles | 111 count / representative | Additional 211 count / representative |
 |---|---|---|
 | `***` | 4 / `111:2918` | 12 / `211:70082` |
-| `**A` | 24 / `111:1632` | 120 / `211:19280` |
+| `**A` | 24 / `111:1632` | 48 / `211:19280` |
 | `**B` | — | 48 / `211:68308` |
-| `**C` | 18 / `111:2791` | 106 / `211:68842` |
-| `**D` | 18 / `111:2884` | 106 / `211:69946` |
-| `*AA` | — | 48 / `211:51448` |
-| `*AB` | — | 24 / `211:35893` |
-| `*AC` | 16 / `111:1554` | 96 / `211:19130` |
-| `*AD` | 16 / `111:1624` | 96 / `211:19272` |
-| `*BC` | — | 84 / `211:66641` |
-| `*BD` | — | 84 / `211:68518` |
-| `*CC` | 8 / `111:2841` | 64 / `211:68928` |
-| `*CD` | 32 / `111:2763` | 288 / `211:68810` |
-| `*DD` | 8 / `111:2892` | 64 / `211:69954` |
+| `**C` | 14 / `111:2803` | 70 / `211:68854` |
+| `**D` | 14 / `111:2900` | 70 / `211:69962` |
+| `*AA` | — | 12 / `211:51451` |
+| `*AB` | — | 20 / `211:36514` |
+| `*AC` | 8 / `111:1736` | 56 / `211:19492` |
+| `*AD` | 8 / `111:1624` | 56 / `211:19272` |
+| `*BC` | — | 42 / `211:67249` |
+| `*BD` | — | 42 / `211:68550` |
+| `*CC` | 8 / `111:2841` | 60 / `211:68928` |
+| `*CD` | 16 / `111:2795` | 136 / `211:68846` |
+| `*DD` | 8 / `111:2892` | 60 / `211:69954` |
 | `AAC` | — | 8 / `211:60360` |
 | `AAD` | — | 8 / `211:59632` |
 | `ABC` | — | 35 / `211:36062` |
 | `ABD` | — | 35 / `211:36498` |
 | `ACC` | 12 / `111:1660` | 28 / `211:19344` |
-| `ACD` | 28 / `111:1512` | 104 / `211:19088` |
+| `ACD` | 24 / `111:1528` | 80 / `211:19104` |
 | `ADD` | 12 / `111:1600` | 28 / `211:19248` |
 | `BBC` | — | 2 / `211:70881` |
 | `BBD` | — | 2 / `211:71714` |
 | `BCC` | — | 64 / `211:72176` |
-| `BCD` | — | 160 / `211:72016` |
+| `BCD` | — | 144 / `211:72016` |
 | `BDD` | — | 64 / `211:73912` |
 | `CCC` | — | 10 / `211:69388` |
-| `CCD` | 9 / `111:2730` | 81 / `211:68708` |
-| `CDD` | 9 / `111:2771` | 81 / `211:68822` |
+| `CCD` | 9 / `111:2730` | 69 / `211:68708` |
+| `CDD` | 9 / `111:2771` | 69 / `211:68822` |
 | `DDD` | — | 10 / `211:70002` |
 
 ## Leading-square residue controls
@@ -86,10 +86,9 @@ Each record includes CP.4's explicit unit binomials and necessary norm bounds. A
 
 | Direction for the three log-primes | Open records |
 |---|---:|
-| `(1, 1, 1)` | 2,014 |
-| `(1, 1, 2)` | 112 |
-| `(1, 2, 1)` | 40 |
-| `(1, 2, 2)` | 8 |
+| `(1, 1, 1)` | 1,478 |
+| `(1, 1, 2)` | 64 |
+| `(1, 2, 1)` | 16 |
 
 ## Evidence and next questions
 

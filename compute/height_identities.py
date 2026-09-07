@@ -200,3 +200,66 @@ def residue_facts():
         sq = {x * x % p for x in range(1, p)}
         out[p] = {"four_maxima_t": [t for t in range(2, p - 1) if t in sq and (1 + t) % p in sq and (1 - t) % p in sq], "two_square": 2 in sq}
     return out
+
+
+def circuit_identity_tests(trials=30, seed=2):
+    """The exact decomposition behind the reality sharpening (T'), on random classes at genuine frames:
+    for every circuit among maximal labels,  sum_X c_X pi^{2M} s(Z_X) = -pibar^{2M} W + pi^{4M} pibar^{-2M} Wbar
+    with W = sum_X c_X sigma_X U_X, and S = sum a_X T_X equals G W with G = prod pi_k^{-2 fmin_k} pibar_k^{2 fmax_k}.
+    (A solution has the left side 0, hence pibar^{4M} W = pi^{4M} Wbar and S_1 Gbar real.)"""
+    from compute.height_system import CIRCUITS
+    rng = random.Random(seed)
+    n_tests = 0
+    for _ in range(trials):
+        box = rng.choice([(1, 1, 1), (2, 1, 1), (2, 2, 1)])
+        ps = rng.sample(sorted(PRIMES), 3)
+        pis = [PRIMES[p] for p in ps]
+        rho = [pi / pi.conj() for pi in pis]
+        while True:
+            labels = [tuple(rng.randint(-a, a) for a in box) for _ in range(4)]
+            eps = [rng.choice((1, -1)) for _ in range(4)]
+            cand = [list(l) for l in labels] + eps
+            try:
+                cols = [column(cand, j) for j in range(3)]
+            except ValueError:
+                continue
+            break
+        Z = [Gi(1) for _ in range(4)]
+        for X in range(4):
+            for j in range(3):
+                Z[X] = Z[X] * rho[j] ** (2 * eps[X] * labels[X][j])
+        for j in range(3):
+            c = cols[j]
+            pi, M = pis[j], c["M"]
+            U = {}
+            for X in c["maximal"]:
+                U[X] = Gi(1)
+                for k, fk in c["f"][X].items():
+                    U[X] = U[X] * rho[k] ** (2 * fk)
+            for r in c["relations"]:
+                if r["kind"] != "trinomial":
+                    continue
+                cc = CIRCUITS[r["circuit"]]
+                lhs = Gi(0)
+                for X in range(4):
+                    if cc[X]:
+                        lhs = lhs + cc[X] * (pi ** (2 * M)) * s_of(Z[X])
+                W = Gi(0)
+                for X in r["labels"]:
+                    W = W + (cc[X] * c["sigma"][X]) * U[X]
+                rhs = (-1) * (pi.conj() ** (2 * M)) * W + (pi ** (4 * M)) * (pi.conj() ** (-2 * M)) * W.conj()
+                d = lhs - rhs
+                assert d.a == 0 and d.b == 0, ("circuit decomposition", r["circuit"])
+                G = Gi(1)
+                for k in r["fmax"]:
+                    G = G * pis[k] ** (-2 * r["fmin"][k]) * pis[k].conj() ** (2 * r["fmax"][k])
+                S = Gi(0)
+                for X in r["labels"]:
+                    T = Gi(1)
+                    for k in r["fmax"]:
+                        T = T * pis[k] ** (2 * (c["f"][X][k] - r["fmin"][k])) * pis[k].conj() ** (2 * (r["fmax"][k] - c["f"][X][k]))
+                    S = S + r["coeffs"][X] * T
+                d = S - G * W
+                assert d.a == 0 and d.b == 0, ("S = G W", r["circuit"])
+                n_tests += 1
+    return n_tests

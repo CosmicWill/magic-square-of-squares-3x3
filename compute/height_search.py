@@ -63,10 +63,10 @@ def divisible_by_pi_power(S, pi, p, n):
     return t[0] % q == 0 and t[1] % q == 0
 
 
-def class_conditions(cand):
+def class_conditions(cand, version=2):
     """The exact conditions of a class: rows (inequalities), per-prime residue roles, and the
     divisibility descriptors (binomials and trinomials with their exact data)."""
-    cols, ineqs, lower = system(cand)
+    cols, ineqs, lower = system(cand, version)
     n = len(lower)
     rows = _rows(n, ineqs, lower)
     return cols, rows, [c["role"] for c in cols]
@@ -136,11 +136,11 @@ def relations_vanish(cand, pis):
     return eA * e["A"] + eB * e["B"] - eC * e["C"] == 0 and eA * e["A"] - eB * e["B"] - eD * e["D"] == 0
 
 
-def search(cand, caps, box):
-    """Enumerate the prime triples inside the caps; returns the report."""
+def search(cand, caps, box, version=2):
+    """Enumerate the prime triples inside the caps; returns the report (the system version recorded)."""
     from compute import omega3 as O
     O.set_box(tuple(box))
-    cols, rows, roles = class_conditions(cand)
+    cols, rows, roles = class_conditions(cand, version)
     n = len(caps)
     bound = int(max(caps)) + 1
     primes = split_primes(bound)
@@ -176,5 +176,5 @@ def search(cand, caps, box):
                 n_div += 1
                 if relations_vanish(cand, pis):
                     survivors.append({"primes": list(ps), "pattern": list(pattern)})
-    return {"caps": caps, "n_candidate_primes": [len(c) for c in cand_primes], "n_triples": n_triples,
+    return {"version": version, "caps": caps, "n_candidate_primes": [len(c) for c in cand_primes], "n_triples": n_triples,
             "n_pass_inequalities": n_ineq, "n_pass_divisibility": n_div, "survivors": survivors}

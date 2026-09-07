@@ -1,11 +1,11 @@
 {
- "entry": 123,
+ "entry": 124,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
  "tally": {
-  "dead": 2730,
-  "finite": 214,
+  "dead": 2774,
+  "finite": 170,
   "unknown": 0
  },
  "n_models": 13,
@@ -200481,18 +200481,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F-G\": \"1\", \"1:G\": \"1/2\", \"2:F\": \"1/2\", \"lower:0\": \"1\"} give prod K_i^{y_i} = 1/25 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -200609,25 +200600,33 @@
     }
    ],
    "two_step": [],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      4,
+      4
      ],
-     "1": [
-      "0",
-      "1",
-      "1"
-     ],
-     "2": [
-      "0",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 3
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F-G": "1",
+      "1:G": "1/2",
+      "2:F": "1/2",
+      "lower:0": "1"
+     },
+     "D": 2,
+     "product": "1/25",
+     "verified": true
+    },
+    "roles": "ADC"
    }
   },
   {
@@ -201042,18 +201041,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F-G\": \"1\", \"1:G\": \"1/2\", \"2:F\": \"1/2\", \"lower:0\": \"1\"} give prod K_i^{y_i} = 1/25 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -201170,25 +201160,33 @@
     }
    ],
    "two_step": [],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      4,
+      4
      ],
-     "1": [
-      "0",
-      "1",
-      "1"
-     ],
-     "2": [
-      "0",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 3
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F-G": "1",
+      "1:G": "1/2",
+      "2:F": "1/2",
+      "lower:0": "1"
+     },
+     "D": 2,
+     "product": "1/25",
+     "verified": true
+    },
+    "roles": "ADC"
    }
   },
   {
@@ -201218,18 +201216,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F-G\": \"1/2\", \"lower:0\": \"1\"} give prod K_i^{y_i} = 4/25 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -201346,25 +201335,31 @@
     }
    ],
    "two_step": [],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      4,
+      4
      ],
-     "1": [
-      "0",
-      "1",
-      "1"
-     ],
-     "2": [
-      "0",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 3
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F-G": "1/2",
+      "lower:0": "1"
+     },
+     "D": 2,
+     "product": "4/25",
+     "verified": true
+    },
+    "roles": "ADC"
    }
   },
   {
@@ -201779,18 +201774,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 3
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F-G\": \"1/2\", \"lower:0\": \"1\"} give prod K_i^{y_i} = 4/25 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -201907,25 +201893,31 @@
     }
    ],
    "two_step": [],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      4,
+      4
      ],
-     "1": [
-      "0",
-      "1",
-      "1"
-     ],
-     "2": [
-      "0",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 3
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F-G": "1/2",
+      "lower:0": "1"
+     },
+     "D": 2,
+     "product": "4/25",
+     "verified": true
+    },
+    "roles": "ADC"
    }
   },
   {
@@ -203659,6 +203651,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -203884,6 +203877,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -204104,6 +204098,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -204324,6 +204319,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -204544,6 +204540,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -204764,6 +204761,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -204989,6 +204987,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -205209,6 +205208,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -208782,18 +208782,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"1:F-G\": \"3/4\", \"2:F\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -209008,25 +208999,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "1:F-G": "3/4",
+      "2:F": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "A*C"
    }
   },
   {
@@ -209056,18 +209055,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"1:F-G\": \"3/4\", \"2:F\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -209264,25 +209254,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "1:F-G": "3/4",
+      "2:F": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "A*C"
    }
   },
   {
@@ -209312,18 +209310,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"1:F-G\": \"3/4\", \"2:F\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -209520,25 +209509,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "1:F-G": "3/4",
+      "2:F": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "A*C"
    }
   },
   {
@@ -209568,18 +209565,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"1:F-G\": \"3/4\", \"2:F\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -209794,25 +209782,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "1:F-G": "3/4",
+      "2:F": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "A*C"
    }
   },
   {
@@ -218427,6 +218423,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -218625,6 +218622,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -218827,6 +218825,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -219029,6 +219028,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -219231,6 +219231,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -219433,6 +219434,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -219631,6 +219633,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -219824,6 +219827,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -223092,6 +223096,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -223099,9 +223104,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -223335,6 +223340,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -223342,9 +223348,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -223609,6 +223615,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -223616,9 +223623,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -223883,6 +223890,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -223890,9 +223898,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -224157,6 +224165,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -224164,9 +224173,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -224431,6 +224440,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -224438,9 +224448,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -224674,6 +224684,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -224681,9 +224692,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -224912,6 +224923,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -224919,9 +224931,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1",
@@ -225222,6 +225234,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -225229,13 +225242,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -225392,6 +225405,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -225399,13 +225413,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -225702,6 +225716,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -225709,13 +225724,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -225872,6 +225887,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -225879,13 +225895,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -226042,6 +226058,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -226049,13 +226066,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -226352,6 +226369,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -226359,13 +226377,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -226522,6 +226540,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -226529,13 +226548,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -226832,6 +226851,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -226839,13 +226859,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -230556,6 +230576,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -230754,6 +230775,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -230956,6 +230978,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -231149,6 +231172,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -231342,6 +231366,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -231544,6 +231569,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -231742,6 +231768,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -231944,6 +231971,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -233912,6 +233940,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -234145,6 +234174,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -234439,6 +234469,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -234668,6 +234699,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -239648,6 +239680,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -239873,6 +239906,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -240093,6 +240127,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -240313,6 +240348,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -240533,6 +240569,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -240753,6 +240790,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -240978,6 +241016,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -241198,6 +241237,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1/2",
@@ -246261,6 +246301,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -246273,8 +246314,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -246495,6 +246536,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -246507,8 +246549,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -246760,6 +246802,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -246772,8 +246815,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -246989,6 +247032,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -247001,8 +247045,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -247218,6 +247262,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -247230,8 +247275,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -247483,6 +247528,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -247495,8 +247541,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -247717,6 +247763,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -247729,8 +247776,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -247982,6 +248029,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -247994,8 +248042,8 @@
       "1/2"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -248184,6 +248232,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -248391,6 +248440,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -248593,6 +248643,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -248795,6 +248846,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -248997,6 +249049,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -249199,6 +249252,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -249406,6 +249460,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -249608,6 +249663,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -249654,18 +249710,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:F\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -249871,25 +249918,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:F": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "AC*"
    }
   },
   {
@@ -250428,18 +250483,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:F\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -250627,25 +250673,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:F": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "AC*"
    }
   },
   {
@@ -250675,18 +250729,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:F\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -250874,25 +250919,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:F": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "AC*"
    }
   },
   {
@@ -251431,18 +251484,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:F\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -251648,25 +251692,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:F": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "AC*"
    }
   },
   {
@@ -254588,18 +254640,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"1:F-G\": \"3/4\", \"2:G\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -254796,25 +254839,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "1:F-G": "3/4",
+      "2:G": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "A*D"
    }
   },
   {
@@ -255101,18 +255152,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"1:F-G\": \"3/4\", \"2:G\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -255327,25 +255369,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "1:F-G": "3/4",
+      "2:G": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "A*D"
    }
   },
   {
@@ -255915,18 +255965,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"1:F-G\": \"3/4\", \"2:G\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -256141,25 +256182,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "1:F-G": "3/4",
+      "2:G": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "A*D"
    }
   },
   {
@@ -256446,18 +256495,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"1:F-G\": \"3/4\", \"2:G\": \"1/2\", \"lower:1\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -256654,25 +256694,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "3/4",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1/2",
-      "3/4",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "1:F-G": "3/4",
+      "2:G": "1/2",
+      "lower:1": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "A*D"
    }
   },
   {
@@ -256826,6 +256874,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -256838,8 +256887,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -256996,6 +257045,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -257008,8 +257058,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -257306,6 +257356,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -257318,8 +257369,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -257616,6 +257667,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -257628,8 +257680,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -257926,6 +257978,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -257938,8 +257991,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -258236,6 +258289,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -258248,8 +258302,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -258406,6 +258460,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -258418,8 +258473,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -258576,6 +258631,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -258588,8 +258644,8 @@
       "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -258805,6 +258861,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -259038,6 +259095,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -259332,6 +259390,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -259626,6 +259685,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -259672,18 +259732,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:G\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -259871,25 +259922,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:G": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "AD*"
    }
   },
   {
@@ -260428,18 +260487,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:G\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 4/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -260645,25 +260695,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:G": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "4/841",
+     "verified": true
+    },
+    "roles": "AD*"
    }
   },
   {
@@ -260693,18 +260751,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:G\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -260910,25 +260959,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 23
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:G": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "AD*"
    }
   },
   {
@@ -261467,18 +261524,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F+G\": \"1\", \"1:G\": \"1/2\", \"2:F-G\": \"3/4\", \"lower:2\": \"1/2\"} give prod K_i^{y_i} = 64/841 < 1 (D = 4); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -261666,25 +261714,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1/2",
-      "1",
-      "3/4"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1/2",
-      "1",
-      "3/4"
-     ],
-     "2": [
-      "1/2",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F+G": "1",
+      "1:G": "1/2",
+      "2:F-G": "3/4",
+      "lower:2": "1/2"
+     },
+     "D": 4,
+     "product": "64/841",
+     "verified": true
+    },
+    "roles": "AD*"
    }
   },
   {
@@ -358839,6 +358895,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -358846,13 +358903,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -359009,6 +359066,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -359016,13 +359074,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -359179,6 +359237,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -359186,13 +359245,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -359426,6 +359485,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -359433,13 +359493,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -359673,6 +359733,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -359680,13 +359741,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -359843,6 +359904,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -359850,13 +359912,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -360013,6 +360075,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -360020,13 +360083,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -360260,6 +360323,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -360267,13 +360331,13 @@
       "1"
      ],
      "1": [
-      "2/3",
+      "0",
       "1",
-      "2/3"
+      "1"
      ],
      "2": [
-      "2/3",
-      "2/3",
+      "0",
+      "1",
       "1"
      ]
     }
@@ -399651,6 +399715,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -404337,18 +404402,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F-G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -404500,25 +404556,31 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 11
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F-G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -404548,18 +404610,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F-G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -404711,25 +404764,31 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 11
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F-G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -404759,18 +404818,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F-G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -404922,25 +404972,31 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 11
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F-G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -404970,18 +405026,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F-G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -405133,25 +405180,31 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 11
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F-G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -405181,512 +405234,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 - 3",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 2
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 - 3",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 2
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
-    -1,
-    1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "tx",
-          "tfactor": "3*t^2 - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 2
-         },
-         {
-          "chart": "tx",
-          "tfactor": "3*t^2 - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
-    1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1\", \"2:F+G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -405874,25 +405424,31 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 11
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1",
+      "2:F+G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -405919,21 +405475,12 @@
     ],
     1,
     1,
-    1,
+    -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1\", \"2:F+G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -406121,1434 +405668,1927 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "2/3",
-      "2/3",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    -1,
-    -1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    -1,
-    -1,
-    1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    -1,
-    1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    -1,
-    1,
-    1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    1,
-    -1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    1,
-    -1,
-    1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    1,
-    1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     0
-    ],
-    1,
-    1,
-    1,
-    1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      1,
-      3
-     ],
-     "verdict": "dead"
-    },
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 4,
-          "R_lb": 16,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         1,
-         3
-        ],
-        "verdict_engine": "dead",
-        "verdict": "dead"
-       },
-       {
-        "deg": [
-         4,
-         4
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 9,
-        "sum_delta": 4,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 2
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      3,
-      4
-     ]
-    }
-   ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "0",
-      "1"
-     ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "0",
-      "1"
-     ]
-    }
-   }
-  },
-  {
-   "cand": [
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     0,
-     1
-    ],
-    1,
-    -1,
-    -1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
     {
      "deg": [
       6,
       8
      ],
      "verdict": "finite",
-     "genus": 19
+     "genus": 11
     }
    ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1",
+      "2:F+G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    1,
+    -1
+   ],
+   "verdict": "dead",
+   "frame": 0,
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1\", \"2:F+G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 - 3",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 2
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 - 3",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 2
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ],
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1",
+      "2:F+G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    1,
+    1
+   ],
+   "verdict": "dead",
+   "frame": 0,
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1\", \"2:F+G\": \"1\"} give prod K_i^{y_i} = 1/2 < 1 (D = 1); the class is impossible for every choice of split primes",
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "tx",
+          "tfactor": "3*t^2 - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 2
+         },
+         {
+          "chart": "tx",
+          "tfactor": "3*t^2 - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ],
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1",
+      "2:F+G": "1"
+     },
+     "D": 1,
+     "product": "1/2",
+     "verified": true
+    },
+    "roles": "CD*"
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    -1,
+    -1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    -1,
+    -1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    -1,
+    1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    1,
+    1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    1,
+    1,
+    1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      1,
+      3
+     ],
+     "verdict": "dead"
+    },
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 4,
+          "R_lb": 16,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         1,
+         3
+        ],
+        "verdict_engine": "dead",
+        "verdict": "dead"
+       },
+       {
+        "deg": [
+         4,
+         4
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 9,
+        "sum_delta": 4,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 2
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      3,
+      4
+     ]
+    }
+   ],
+   "height": {
+    "status": "unbounded",
+    "version": 2,
+    "directions": {
+     "0": [
+      "1",
+      "0",
+      "1"
+     ],
+     "1": [
+      "1",
+      "1",
+      "1"
+     ],
+     "2": [
+      "1",
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    1,
+    -1,
+    -1,
+    -1
+   ],
+   "verdict": "dead",
+   "frame": 0,
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1/2\", \"2:F-G\": \"1\", \"lower:0\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -407709,25 +407749,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1/2",
+      "2:F-G": "1",
+      "lower:0": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -407757,18 +407805,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 19
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1/2\", \"2:F-G\": \"1\", \"lower:0\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -407929,25 +407968,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1/2",
+      "2:F-G": "1",
+      "lower:0": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -407977,18 +408024,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 19
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1/2\", \"2:F-G\": \"1\", \"lower:0\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -408149,25 +408187,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1/2",
+      "2:F-G": "1",
+      "lower:0": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -408197,18 +408243,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 19
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1/2\", \"2:F-G\": \"1\", \"lower:0\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -408369,25 +408406,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1/2",
+      "2:F-G": "1",
+      "lower:0": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -408417,18 +408462,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 19
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -408607,25 +408643,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -408655,18 +408699,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 19
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -408845,25 +408880,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -408893,18 +408936,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 19
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -409083,25 +409117,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -409131,18 +409173,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 19
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"1:G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 2/243049 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -409321,25 +409354,33 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 19
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "1:G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "2/243049",
+     "verified": true
+    },
+    "roles": "CD*"
    }
   },
   {
@@ -410233,18 +410274,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -410459,25 +410491,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "C**"
    }
   },
   {
@@ -410507,18 +410548,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -410625,25 +410657,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      6
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 9
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "C**"
    }
   },
   {
@@ -410673,18 +410714,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -410899,25 +410931,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "C**"
    }
   },
   {
@@ -410947,18 +410988,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:F\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -411065,25 +411097,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      6
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 9
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:F": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "C**"
    }
   },
   {
@@ -411323,6 +411364,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -411579,6 +411621,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -411835,6 +411878,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -412091,6 +412135,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -412347,6 +412392,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -412603,6 +412649,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -412859,6 +412906,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -413115,6 +413163,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -413389,10 +413438,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -413636,10 +413686,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -413910,10 +413961,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -414157,10 +414209,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -414431,10 +414484,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -414678,10 +414732,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -414952,10 +415007,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -415199,10 +415255,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -418231,6 +418288,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -418443,6 +418501,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -418655,6 +418714,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -418867,6 +418927,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -419079,6 +419140,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -419291,6 +419353,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -419503,6 +419566,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -419715,6 +419779,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -420835,6 +420900,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -420842,9 +420908,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -421118,6 +421184,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -421125,9 +421192,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -421226,6 +421293,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -421233,9 +421301,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -421509,6 +421577,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -421516,9 +421585,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -421617,6 +421686,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -421624,9 +421694,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -421900,6 +421970,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -421907,9 +421978,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -422008,6 +422079,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -422015,9 +422087,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -422291,6 +422363,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -422298,9 +422371,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -424878,15 +424951,16 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
-      "1",
+      "1/2",
       "1/2",
       "1"
      ],
      "1": [
       "1/2",
-      "1",
+      "1/2",
       "1"
      ],
      "2": [
@@ -425035,15 +425109,16 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
-      "1",
+      "1/2",
       "1/2",
       "1"
      ],
      "1": [
       "1/2",
-      "1",
+      "1/2",
       "1"
      ],
      "2": [
@@ -426350,18 +426425,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -426576,25 +426642,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "D**"
    }
   },
   {
@@ -426624,18 +426699,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 17
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -426850,25 +426916,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      8,
+      8
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 17
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "D**"
    }
   },
   {
@@ -426898,18 +426973,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -427016,25 +427082,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      6
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 9
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "D**"
    }
   },
   {
@@ -427064,18 +427139,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "height system infeasible, version 2 (entry 124): with the reality sharpening of the trinomial rows (Theorem A3.HS (T'): S = pi^{4M} S_1 with S_1 Gbar real, so |S_1| >= prod p_k^{|fmax_k + fmin_k|}) the necessary prime inequalities admit no solution -- Farkas multipliers {\"0:G\": \"1\", \"2:F+G\": \"1/2\", \"2:F-G\": \"1\", \"lower:1\": \"1\", \"lower:2\": \"1\"} give prod K_i^{y_i} = 64/707281 < 1 (D = 2); the class is impossible for every choice of split primes",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -427182,25 +427248,34 @@
      ]
     }
    ],
-   "height": {
-    "status": "unbounded",
-    "directions": {
-     "0": [
-      "1",
-      "1/2",
-      "1"
+   "verdict_before_height": "finite",
+   "mechanism_before_height": [
+    {
+     "deg": [
+      6,
+      6
      ],
-     "1": [
-      "1",
-      "1",
-      "1"
-     ],
-     "2": [
-      "1",
-      "1/2",
-      "1"
-     ]
+     "verdict": "finite",
+     "genus": 9
     }
+   ],
+   "kill": {
+    "entry": 124,
+    "mechanism": "height system infeasible (version 2)",
+    "version": 2,
+    "certificate": {
+     "multipliers": {
+      "0:G": "1",
+      "2:F+G": "1/2",
+      "2:F-G": "1",
+      "lower:1": "1",
+      "lower:2": "1"
+     },
+     "D": 2,
+     "product": "64/707281",
+     "verified": true
+    },
+    "roles": "D**"
    }
   },
   {
@@ -428156,6 +428231,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -428163,9 +428239,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -428264,6 +428340,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -428271,9 +428348,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -428547,6 +428624,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -428554,9 +428632,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -428830,6 +428908,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -428837,9 +428916,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -428938,6 +429017,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -428945,9 +429025,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -429046,6 +429126,7 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -429053,9 +429134,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -429329,6 +429410,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -429336,9 +429418,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -429612,6 +429694,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -429619,9 +429702,9 @@
       "1"
      ],
      "1": [
-      "2/3",
       "1",
-      "2/3"
+      "1",
+      "1"
      ],
      "2": [
       "1/2",
@@ -429859,10 +429942,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -430106,10 +430190,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -430380,10 +430465,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -430654,10 +430740,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -430928,10 +431015,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -431202,10 +431290,11 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -431449,10 +431538,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -431696,10 +431786,11 @@
    },
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
-      "1/2",
+      "1",
       "1"
      ],
      "1": [
@@ -432037,15 +432128,16 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
-      "1",
+      "1/2",
       "1/2",
       "1"
      ],
      "1": [
       "1/2",
-      "1",
+      "1/2",
       "1"
      ],
      "2": [
@@ -432194,15 +432286,16 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
-      "1",
+      "1/2",
       "1/2",
       "1"
      ],
      "1": [
       "1/2",
-      "1",
+      "1/2",
       "1"
      ],
      "2": [
@@ -432341,6 +432434,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -432353,8 +432447,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -432488,6 +432582,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -432500,8 +432595,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -432635,6 +432730,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -432647,8 +432743,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -432782,6 +432878,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -432794,8 +432891,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -432938,6 +433035,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -433094,6 +433192,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -433250,6 +433349,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -433406,6 +433506,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -433689,6 +433790,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -434095,6 +434197,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -434351,6 +434454,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -434607,6 +434711,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -434863,6 +434968,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -435119,6 +435225,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -435375,6 +435482,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -435631,6 +435739,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -435887,6 +435996,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -437475,6 +437585,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -437487,8 +437598,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -437622,6 +437733,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -437634,8 +437746,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -437769,6 +437881,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -437781,8 +437894,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -437916,6 +438029,7 @@
    ],
    "height": {
     "status": "unbounded",
+    "version": 2,
     "directions": {
      "0": [
       "1",
@@ -437928,8 +438042,8 @@
       "0"
      ],
      "2": [
-      "1/2",
-      "1/2",
+      "1",
+      "1",
       "1"
      ]
     }
@@ -748093,6 +748207,51 @@
   "tally_after": {
    "dead": 2730,
    "finite": 214
+  },
+  "version2": {
+   "entry": 124,
+   "n_open_before": 214,
+   "infeasible": 44,
+   "unbounded": 170,
+   "by_role": {
+    "***:unbounded": 4,
+    "**C:unbounded": 6,
+    "**D:unbounded": 6,
+    "A**:unbounded": 24,
+    "A*C:infeasible": 4,
+    "A*D:infeasible": 4,
+    "A*D:unbounded": 8,
+    "AC*:infeasible": 4,
+    "AC*:unbounded": 8,
+    "ACC:unbounded": 12,
+    "ACD:unbounded": 16,
+    "AD*:infeasible": 4,
+    "ADC:infeasible": 4,
+    "ADC:unbounded": 8,
+    "ADD:unbounded": 12,
+    "C**:infeasible": 4,
+    "C**:unbounded": 8,
+    "C*C:unbounded": 8,
+    "C*D:unbounded": 8,
+    "CCD:unbounded": 1,
+    "CD*:infeasible": 16,
+    "CDC:unbounded": 8,
+    "CDD:unbounded": 8,
+    "D**:infeasible": 4,
+    "D**:unbounded": 8,
+    "D*C:unbounded": 8,
+    "D*D:unbounded": 8,
+    "DDC:unbounded": 1
+   },
+   "tally_before": {
+    "dead": 2730,
+    "finite": 214
+   },
+   "tally_after": {
+    "dead": 2774,
+    "finite": 170
+   },
+   "statement": "(T'): for every trinomial circuit S = pi_j^{4M} S_1 with S_1 Gbar real, hence |S_1| >= prod_{k != j} p_k^{|fmax_k + fmin_k|} and p_j^{2M} <= K prod p_k^{2 min(fmax_k, -fmin_k)}"
   }
  }
 }
