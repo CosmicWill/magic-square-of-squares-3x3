@@ -1,0 +1,59 @@
+delta 1 p 13 n 25 N 4 | E1 gen (15 : 40 : 1) index 1 | E2 gen (3 : -8 : 1) index 1
+Number of elements in Omega = 30
+QC done in 8s; Omega size 30; rational per class [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; extra per class [8, 4, 4, 16, 16, 0, 20, 20, 8, 16, 4, 12, 16, 4, 8, 16, 20, 4, 12, 4, 16, 8, 20, 16, 4, 16, 8, 12, 20, 16]
+rational points' coefficients: [('(0 : -1 : 1)', ['2 + O(13^4)', 'O(13^4)']), ('(0 : 1 : 0)', ['1 + O(13^4)', '11 + 12*13 + 12*13^2 + 12*13^3 + O(13^4)'])]
+class  0: extra   8, with integral coefficients   8 
+class  1: extra   4, with integral coefficients   4 
+class  2: extra   4, with integral coefficients   4 
+class  3: extra  16, with integral coefficients  16 
+class  4: extra  16, with integral coefficients  16 
+class  5: extra   0, with integral coefficients   0 
+class  6: extra  20, with integral coefficients  20 
+class  7: extra  20, with integral coefficients  20 
+class  8: extra   8, with integral coefficients   8 
+class  9: extra  16, with integral coefficients  16 
+class 10: extra   4, with integral coefficients   4 
+class 11: extra  12, with integral coefficients  12 
+class 12: extra  16, with integral coefficients  16 
+class 13: extra   4, with integral coefficients   4 
+class 14: extra   8, with integral coefficients   8 
+class 15: extra  16, with integral coefficients  16 
+class 16: extra  20, with integral coefficients  20 
+class 17: extra   4, with integral coefficients   4 
+class 18: extra  12, with integral coefficients  12 
+class 19: extra   4, with integral coefficients   4 
+class 20: extra  16, with integral coefficients  16 
+class 21: extra   8, with integral coefficients   8 
+class 22: extra  20, with integral coefficients  20 
+class 23: extra  16, with integral coefficients  16 
+class 24: extra   4, with integral coefficients   4 
+class 25: extra  16, with integral coefficients  16 
+class 26: extra   8, with integral coefficients   8 
+class 27: extra  12, with integral coefficients  12 
+class 28: extra  20, with integral coefficients  20 
+class 29: extra  16, with integral coefficients  16 
+Traceback (most recent call last):
+  File "/home/will/qc_runs/qc_coeff.sage.py", line 57, in <module>
+    json.dump(summary, open("/home/will/qc_runs/coeff_d%d_p%d.json" % (int(d), int(p)), "w"), indent=_sage_const_1 )
+  File "/home/will/miniconda3/envs/sage/lib/python3.11/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/home/will/miniconda3/envs/sage/lib/python3.11/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/will/miniconda3/envs/sage/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/will/miniconda3/envs/sage/lib/python3.11/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/home/will/miniconda3/envs/sage/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/will/miniconda3/envs/sage/lib/python3.11/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/will/miniconda3/envs/sage/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Integer is not JSON serializable
+Exception raised by child process with pid=575:
+Traceback (most recent call last):
+  File "sage/interfaces/sagespawn.pyx", line 272, in sage.interfaces.sagespawn.SagePtyProcess.terminate_async (build/cythonized/sage/interfaces/sagespawn.c:6414)
+    sleep(interval)
+  File "cysignals/signals.pyx", line 355, in cysignals.signals.python_check_interrupt
+SystemExit

@@ -1,0 +1,41 @@
+delta 2 | E1 7360 G1 (50 : 200 : 1) | E2 1472 G2 (2 : 8 : 1) | P0 (1 : 4 : 1) | pi(P0) (50 : 200 : 1) (2 : 8 : 1)
+gcd of #J(F_l): 1
+Number of elements in Omega = 28
+p = 11 QC + coefficients in 4s; Omega 28; candidates per class [8, 16, 8, 8, 8, 0, 8, 16, 0, 12, 8, 8, 8, 8, 0, 8, 0, 16, 8, 8, 16, 0, 8, 8, 0, 8, 8, 0]
+Number of elements in Omega = 28
+p = 13 QC + coefficients in 5s; Omega 28; candidates per class [0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+recovered rational points and their (m1, m2): [('(-1 : -4 : 1)', -2, 0), ('(-1 : 4 : 1)', 0, -2), ('(1 : -4 : 1)', -2, -2), ('(1 : 4 : 1)', 0, 0)]
+auxiliary primes with leverage: [(17, 22, 22, 25), (19, 11, 7, 12), (31, 13, 29, 14), (43, 3, 13, 4), (47, 39, 49, 40), (59, 10, 26, 8), (61, 32, 13, 16), (73, 73, 77, 76), (79, 33, 37, 28), (101, 4, 22, 4), (103, 104, 88, 88), (109, 53, 55, 44), (113, 130, 126, 141), (127, 121, 45, 42), (131, 117, 135, 120), (139, 131, 121, 112), (149, 82, 39, 44), (157, 77, 79, 80), (163, 187, 33, 28), (197, 223, 65, 64), (233, 259, 231, 256), (239, 77, 221, 70), (313, 153, 33, 34), (331, 351, 111, 120), (359, 195, 183, 204), (379, 66, 182, 48)]
+control (-1 : -4 : 1) (-2, 0) OK
+control (-1 : 4 : 1) (0, -2) OK
+control (1 : -4 : 1) (-2, -2) OK
+control (1 : 4 : 1) (0, 0) OK
+class  0:  8 x  0 =   0 candidate pairs, survivors 0
+class  1: 16 x  0 =   0 candidate pairs, survivors 0
+class  2:  8 x  0 =   0 candidate pairs, survivors 0
+class  3:  8 x  0 =   0 candidate pairs, survivors 0
+class  4:  8 x  0 =   0 candidate pairs, survivors 0
+class  5:  0 x  0 =   0 candidate pairs, survivors 0
+class  6:  8 x  0 =   0 candidate pairs, survivors 0
+class  7: 16 x  0 =   0 candidate pairs, survivors 0
+class  8:  0 x  0 =   0 candidate pairs, survivors 0
+class  9: 12 x  4 =  48 candidate pairs, survivors 0
+class 10:  8 x  0 =   0 candidate pairs, survivors 0
+class 11:  8 x  0 =   0 candidate pairs, survivors 0
+class 12:  8 x  0 =   0 candidate pairs, survivors 0
+class 13:  8 x  0 =   0 candidate pairs, survivors 0
+class 14:  0 x  0 =   0 candidate pairs, survivors 0
+class 15:  8 x  0 =   0 candidate pairs, survivors 0
+class 16:  0 x  8 =   0 candidate pairs, survivors 0
+class 17: 16 x  0 =   0 candidate pairs, survivors 0
+class 18:  8 x  0 =   0 candidate pairs, survivors 0
+class 19:  8 x  0 =   0 candidate pairs, survivors 0
+class 20: 16 x  0 =   0 candidate pairs, survivors 0
+class 21:  0 x  0 =   0 candidate pairs, survivors 0
+class 22:  8 x  0 =   0 candidate pairs, survivors 0
+class 23:  8 x  0 =   0 candidate pairs, survivors 0
+class 24:  0 x  0 =   0 candidate pairs, survivors 0
+class 25:  8 x  0 =   0 candidate pairs, survivors 0
+class 26:  8 x  0 =   0 candidate pairs, survivors 0
+class 27:  0 x  0 =   0 candidate pairs, survivors 0
+DONE delta 2 | total surviving candidate pairs: 0 | if 0: G_delta(Q) is exactly the recovered rational points

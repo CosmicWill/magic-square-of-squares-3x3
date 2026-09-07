@@ -1,0 +1,49 @@
+delta 1 | E1 1840 G1 (15 : 40 : 1) | E2 184 G2 (3 : -8 : 1) | P0 (0 : 1 : 1) | pi(P0) (0 : 25 : 1) (0 : 1 : 0)
+gcd of #J(F_l): 1
+Number of elements in Omega = 30
+p = 11 QC + coefficients in 9s; Omega 30; candidates per class [12, 8, 16, 4, 12, 16, 16, 12, 24, 8, 24, 16, 4, 20, 12, 16, 12, 20, 16, 24, 12, 8, 16, 4, 12, 4, 12, 16, 16, 20]
+Number of elements in Omega = 30
+p = 13 QC + coefficients in 6s; Omega 30; candidates per class [8, 4, 4, 16, 16, 0, 20, 20, 8, 16, 4, 12, 16, 4, 8, 16, 20, 4, 12, 4, 16, 8, 20, 16, 4, 16, 8, 12, 20, 16]
+recovered rational points and their (m1, m2): [('(0 : -1 : 1)', 4, 0), ('(0 : 1 : 1)', 0, 0), ('inf+', 2, 4), ('inf-', 2, -4)]
+auxiliary primes with leverage: [(17, 11, 22, 16), (19, 18, 13, 16), (29, 33, 25, 28), (31, 39, 29, 36), (47, 39, 49, 40), (67, 22, 66, 24), (73, 73, 77, 76), (103, 52, 88, 48), (109, 114, 55, 48), (113, 130, 14, 13), (127, 11, 135, 16), (227, 224, 220, 216), (233, 259, 231, 256), (239, 231, 221, 212), (251, 26, 252, 28), (313, 51, 165, 56), (337, 66, 183, 48), (347, 20, 11, 4), (349, 333, 13, 12), (359, 130, 183, 76), (379, 91, 33, 16)]
+control (0 : -1 : 1) (4, 0) OK
+control (0 : 1 : 1) (0, 0) OK
+control inf+ (2, 4) OK
+control inf- (2, -4) OK
+class  0: 12 x  8 =  96 candidate pairs, survivors 0
+class  1:  8 x  4 =  32 candidate pairs, survivors 0
+class  2: 16 x  4 =  64 candidate pairs, survivors 0
+class  3:  4 x 16 =  64 candidate pairs, survivors 0
+class  4: 12 x 16 = 192 candidate pairs, survivors 0
+class  5: 16 x  0 =   0 candidate pairs, survivors 0
+class  6: 16 x 20 = 320 candidate pairs, survivors 0
+class  7: 12 x 20 = 240 candidate pairs, survivors 0
+class  8: 24 x  8 = 192 candidate pairs, survivors 0
+class  9:  8 x 16 = 128 candidate pairs, survivors 0
+class 10: 24 x  4 =  96 candidate pairs, survivors 0
+class 11: 16 x 12 = 192 candidate pairs, survivors 0
+class 12:  4 x 16 =  64 candidate pairs, survivors 0
+class 13: 20 x  4 =  80 candidate pairs, survivors 0
+class 14: 12 x  8 =  96 candidate pairs, survivors 0
+class 15: 16 x 16 = 256 candidate pairs, survivors 0
+class 16: 12 x 20 = 240 candidate pairs, survivors 0
+class 17: 20 x  4 =  80 candidate pairs, survivors 0
+class 18: 16 x 12 = 192 candidate pairs, survivors 0
+class 19: 24 x  4 =  96 candidate pairs, survivors 0
+class 20: 12 x 16 = 192 candidate pairs, survivors 0
+class 21:  8 x  8 =  64 candidate pairs, survivors 0
+class 22: 16 x 20 = 320 candidate pairs, survivors 0
+class 23:  4 x 16 =  64 candidate pairs, survivors 0
+class 24: 12 x  4 =  48 candidate pairs, survivors 0
+class 25:  4 x 16 =  64 candidate pairs, survivors 0
+class 26: 12 x  8 =  96 candidate pairs, survivors 0
+class 27: 16 x 12 = 192 candidate pairs, survivors 0
+class 28: 16 x 20 = 320 candidate pairs, survivors 0
+class 29: 20 x 16 = 320 candidate pairs, survivors 0
+DONE delta 1 | total surviving candidate pairs: 0 | if 0: G_delta(Q) is exactly the recovered rational points
+Exception raised by child process with pid=295:
+Traceback (most recent call last):
+  File "sage/interfaces/sagespawn.pyx", line 272, in sage.interfaces.sagespawn.SagePtyProcess.terminate_async (build/cythonized/sage/interfaces/sagespawn.c:6414)
+    sleep(interval)
+  File "cysignals/signals.pyx", line 355, in cysignals.signals.python_check_interrupt
+SystemExit

@@ -20,7 +20,10 @@ Accepted and done: PARI/GP is discovered through `MSS3_GP`, then `PATH`, then th
 
 (a) Conjecture A3.C (no additive triple) *implies* nonexistence, so it is stronger, not weaker; corrected in A3 §2.  (b) R.11's "base-locus half done" now states the exception (both relations trinomial-type).  (c) The superelliptic curve of Conjecture R_J has genus 3J − 2 (J odd) / 3J − 3 (J even); J − 1 is its quadratic quotient, and the squareclass condition for the lift is retained; corrected in §2.44.  (d) Full 2-torsion gives a Legendre curve only up to a quadratic twist; corrected in §2.42.  (e) PROGRESS.md and README refreshed.
 
-## The bielliptic descent for 𝒞₂: ACCEPTED as the route for the sixteen classes
+## The bielliptic descent for 𝒞₂: ACCEPTED — and EXECUTED (entry 118)
+
+*Update, entry 118.*  Run with the authors' `QC_bielliptic` code at p = 11, 13 and a Mordell–Weil sieve on E₁ × E₂ written for the purpose: G₁(ℚ) = {(0, ±1), ∞±}, G₂(ℚ) = {(±1, ±4)}, every candidate eliminated, the known points surviving as controls; the sixteen classes are dead (doc 2.47, `compute/qc/`).  The acceptance criterion below is met, with the stated conditions.
+
 
 Reproduced: gcd(F, G) ∈ {1, 8, 25, 200} on all coprime pairs to 80, both forms positive, so a square coordinate on 𝒞₂ forces a rational point on one of the two genus-2 bielliptic curves G_δ: z² = δ(25t⁶ − 29t⁴ + 11t² + 1), δ ∈ {1, 2}, whose elliptic quotients are 1840d1, 184b1, 7360r1, 1472a1, all of rank 1 (PARI, twist constants kept).  Bounded searches: G₁ has (0, ±1) and two points at infinity, G₂ has (±1, ±4).  This replaces the generic genus-2 curve of 2.45 by two curves in the setting of bielliptic quadratic Chabauty (Bianchi–Padurariu), with Sage code available — a concrete next computation for objective P-C, still needing a good prime, generators, local heights and a completeness argument.  The acceptance criterion in the review is adopted verbatim.
 

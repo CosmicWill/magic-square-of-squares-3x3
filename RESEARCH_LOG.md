@@ -5837,3 +5837,62 @@ the concrete next computation for the sixteen classes of entry 115.
 a3.omega3_twist; the tally pins of the affected checks re-pinned.
 Doc: the response file; ROADMAP M14-T; memory (a pitfall memory:
 keep every twist constant). Suite 200.
+
+## 2026-09-06 — Entry 118: THE BIELLIPTIC DESCENT COMPLETED — bielliptic quadratic Chabauty and a Mordell–Weil sieve on E₁ × E₂ determine G₁(ℚ) and G₂(ℚ); the sixteen classes of entry 115 are dead
+
+THE ROUTE (the review's proposal, verified and executed; doc 2.47).
+A rational point of C2 = A(s)B(s) with a square coordinate s = t^2,
+t = a/b: F = b^6 A(a^2/b^2), G = b^6 B(a^2/b^2) are positive (A(s) =
+s(5s-7)^2 + (3s-1)^2, B(s) = s(5s-3)^2 + (s+1)^2), F - G = -32 a^2 b^2
+(a^2 - b^2), and gcd(F, G) in {1, 8, 25, 200} (v_2 in {0, 3}: both odd
+gives F = G = 8 mod 16; v_5 in {0, 2}: 5 | b gives F/25, G/25 = a^4
+(a^2 -+ k^2) mod 5, not both zero) -- checked symbolically and over
+residues (a3.omega3_bielliptic). FG a square forces one squareclass
+delta in {1, 2}: (t, z) lies on G_delta: z^2 = delta (25 t^6 - 29 t^4
++ 11 t^2 + 1), bielliptic of genus 2 with elliptic quotients of rank 1
+and trivial torsion (1840d1, 184b1; 7360r1, 1472a1); J(Q) torsion-free
+(gcd of #J(F_l) = 1).
+
+QUADRATIC CHABAUTY. QC_bielliptic (Bianchi-Padurariu, commit 209117b)
+under SageMath 10.7 in WSL, at the good ordinary primes p = 11, 13
+(7 is not ordinary for E_1; 3 needs another repository), precision
+25: the known points are recovered (G_1: (0, +-1) and inf+-; G_2:
+(+-1, +-4)); extra p-adic points remain in most Omega-classes (30 and
+28 classes; at p = 13 on G_2 only classes 9 and 16, and 16 is empty at
+p = 11); the larger primes 17-37 only add extra points. Their
+coefficients modulo p^4 with respect to B_1 = pi_1^* G_1, B_2 = pi_2^*
+G_2 (pushforwards [2G_1, O], [O, 2G_2]; a basis of a subgroup of index
+dividing 4, harmless for p-adic integrality at odd p) are all
+integral: the integrality filter prunes nothing.
+
+THE SIEVE, on E_1 x E_2 (compute/qc/qc_sieve.sage). Pushing the
+coefficient relation forward: pi_1(P) = pi_1(P_0) + 2A G_1 and pi_2(P)
+= pi_2(P_0) + 2B G_2 exactly, so (m_1, m_2) = (2A, 2B) are integers
+known modulo 11^4 13^4 per Omega-class (CRT; the classes are compatible
+across primes, as the recovered points confirm). At each auxiliary
+prime l of good reduction with 11 or 13 dividing the order of a reduced
+generator, (m_1, m_2) must reduce into the image of H(F_l), the two
+points at infinity included (pi_1 = O, pi_2 = (0, +-a_0 sqrt(a_6))):
+elliptic-curve arithmetic over F_l only -- Sage's genus-2 Jacobian
+arithmetic (no order method, ambiguous points at infinity) is avoided.
+Every candidate pair is eliminated on both curves (19 auxiliary primes
+for G_1, more for G_2); the known rational points survive every prime
+(the controls). Hence G_1(Q) = {(0, +-1), inf+, inf-}, G_2(Q) = {(+-1,
++-4)}, t in {0, +-1, inf}, s in {0, 1, inf} on C2, and the lifts to the
+sixteen components are degenerate (entry 115): SIXTEEN CLASSES DEAD.
+Tally of the (1,1,1) box: dead 1500, finite 1444. The genus-0-quotient
+route of entry 106 is closed end to end (24 of 24).
+
+CONDITIONS AND ARTIFACTS. The result rests on the QC code's correctness
+([BP22], published and used on the LMFDB curves) and on the sieve
+script written here; a3.omega3_bielliptic verifies the descent's
+algebra exactly, the recorded sieve reports, the elliptic quotients'
+ranks (PARI) and the degeneracy of the lifts, but cannot re-run the
+Sage computations (WSL only); the scripts, the fourteen QC logs, the
+coefficient logs and the two sieve reports are in compute/qc/. Three
+runner mistakes on the way (an empty prime argument, a Python int
+where Sage wanted an Integer, rational coefficients in finite-field
+formulas) are in the logs.
+
+Doc 2.47; ROADMAP M14-U; the response document's descent section
+updated; memory. Suite 201.

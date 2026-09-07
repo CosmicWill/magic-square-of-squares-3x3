@@ -2985,6 +2985,47 @@ remainder is a *four-term* relation with a doubled element — the natural next
 target for the ladder machinery (a "content-2" extension of A3.7/A3.8 would
 kill the rest of the free-frame classes in every box at once).
 
+## 2.47 The bielliptic descent completed: the sixteen classes of 2.45 are dead (entry 118)
+
+*(2026-09-06; entry 118; `compute/qc/` (scripts, logs, sieve reports); check `a3.omega3_bielliptic`.)*
+
+**The descent (from the review, verified).**  A rational point of
+$\mathcal C_2:\ y^2=A(s)B(s)$ with a square coordinate $s=t^2$, $t=a/b$ in lowest
+terms, gives $F=b^6A(a^2/b^2)$ and $G=b^6B(a^2/b^2)$, both positive since
+$A(s)=s(5s-7)^2+(3s-1)^2$ and $B(s)=s(5s-3)^2+(s+1)^2$, with
+$F-G=-32a^2b^2(a^2-b^2)$; so $\gcd(F,G)$ has $v_2\in\{0,3\}$ (both odd: $F\equiv G\equiv8
+\pmod{16}$) and $v_5\in\{0,2\}$ ($5\mid b$: $F/25\equiv a^4(a^2-k^2)$, $G/25\equiv a^4(a^2+k^2)$
+mod $5$ cannot both vanish), i.e. $\gcd\in\{1,8,25,200\}$, and $FG=\square$ forces $F$
+and $G$ into one squareclass $\delta\in\{1,2\}$: $(t,z)$ with $z^2=\delta B(t^2)$ is a
+rational point of the bielliptic genus-$2$ curve
+$$G_\delta:\ z^2=\delta\,(25t^6-29t^4+11t^2+1).$$
+Its elliptic quotients $E_1$, $E_2$ (the code's models) have rank $1$ and trivial
+torsion ($\delta=1$: `1840d1`, `184b1`; $\delta=2$: `7360r1`, `1472a1`), and $J(\mathbb Q)$ is
+torsion-free.
+
+**Quadratic Chabauty.**  Bianchi–Padurariu's `QC_bielliptic` (commit `209117b`,
+SageMath 10.7 in WSL) at the good ordinary primes $p=11,13$, precision $25$,
+recovers exactly the known points and leaves extra $p$-adic points in most of
+the $\Omega$-classes ($30$ for $G_1$, $28$ for $G_2$); their coefficients modulo $p^4$
+with respect to $B_1=\pi_1^*G_1$, $B_2=\pi_2^*G_2$ are all integral, so the
+integrality filter alone prunes nothing.
+
+**The sieve on $E_1\times E_2$.**  Pushing the coefficient relation forward gives,
+for a rational point $P$, $\pi_1(P)=\pi_1(P_0)+2A\,G_1$ and $\pi_2(P)=\pi_2(P_0)+2B\,G_2$
+exactly, so the integers $(m_1,m_2)=(2A,2B)$ are known modulo $11^4\cdot13^4$ per
+$\Omega$-class (the classes are compatible across primes; the recovered points
+sit in the same class at both).  At an auxiliary prime $\ell$ of good reduction
+whose reduced generators have orders divisible by $11$ or $13$, $(m_1,m_2)$ must
+reduce into the image of $H(\mathbb F_\ell)$ (with $\pi_1(\infty_\pm)=O$,
+$\pi_2(\infty_\pm)=(0,\pm a_0\sqrt{a_6})$) — elliptic-curve arithmetic only, no
+genus-$2$ Jacobian arithmetic.  Every candidate pair dies on both curves ($19$
+auxiliary primes for $G_1$, more for $G_2$) while every known point survives every
+prime.  **Hence $G_1(\mathbb Q)=\{(0,\pm1),\infty_\pm\}$ and $G_2(\mathbb Q)=\{(\pm1,\pm4)\}$**,
+so $t\in\{0,\pm1,\infty\}$, $s\in\{0,1,\infty\}$ on $\mathcal C_2$, and the lifts of these to
+the sixteen components are degenerate (2.45): **sixteen classes dead**.  Tally of
+the $(1,1,1)$ box: dead $1500$, finite $1444$.  Conditional on the correctness of
+the published QC code and of `compute/qc/qc_sieve.sage`.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

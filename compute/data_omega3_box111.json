@@ -1,11 +1,11 @@
 {
- "entry": 117,
+ "entry": 118,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
  "tally": {
-  "dead": 1484,
-  "finite": 1460,
+  "dead": 1500,
+  "finite": 1444,
   "unknown": 0
  },
  "n_models": 13,
@@ -180801,18 +180801,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -180950,7 +180941,22 @@
       6
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -181206,18 +181212,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -181350,7 +181347,22 @@
       6
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -181379,18 +181391,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -181523,7 +181526,22 @@
       6
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -181779,18 +181797,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      6
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -181928,7 +181937,22 @@
       6
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      8,
+      6
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -190788,18 +190812,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -190932,38 +190947,9 @@
       8
      ]
     }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    -1,
-    -1,
-    1
    ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
     {
      "deg": [
       6,
@@ -190973,144 +190959,10 @@
      "genus": 5
     }
    ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 24,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 20,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 30,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 4,
-          "delta": 8,
-          "r": 4,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 4,
-          "delta": 8,
-          "r": 4,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "zero-dimensional",
-    "points": [
-     [
-      "0",
-      "0"
-     ]
-    ],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 0,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      4,
-      8
-     ]
-    }
-   ]
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -191136,929 +190988,12 @@
     ],
     1,
     -1,
-    1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    -1,
-    1,
-    1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
-    -1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
-    1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -192196,7 +191131,1114 @@
       8
      ]
     }
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
    ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    -1,
+    1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    1,
+    -1
+   ],
+   "verdict": "dead",
+   "frame": 0,
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 24,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 20,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 30,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 4,
+          "delta": 8,
+          "r": 4,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 4,
+          "delta": 8,
+          "r": 4,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [
+     [
+      "0",
+      "0"
+     ]
+    ],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 0,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      4,
+      8
+     ]
+    }
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -192225,18 +192267,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -192369,7 +192402,22 @@
       8
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -310916,18 +310964,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -311060,38 +311099,9 @@
       8
      ]
     }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    -1,
-    -1,
-    1
    ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
     {
      "deg": [
       6,
@@ -311101,144 +311111,10 @@
      "genus": 5
     }
    ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 5,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 24,
-          "g_lb": 5,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 20,
-          "g_lb": 5,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 5,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 30,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 4,
-          "delta": 8,
-          "r": 4,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 4,
-          "delta": 8,
-          "r": 4,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "zero-dimensional",
-    "points": [
-     [
-      "0",
-      "0"
-     ]
-    ],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 0,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 2,
-     "consistent": true,
-     "deg": [
-      4,
-      8
-     ]
-    }
-   ]
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -311264,929 +311140,12 @@
     ],
     1,
     -1,
-    1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    -1,
-    1,
-    1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
-    -1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 11
-    }
-   ],
-   "verdict_before_genus": "unknown",
-   "genus": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "g_lb": 11,
-        "abs_irred_p": 101,
-        "genus_info": {
-         "direct": {
-          "deg": 8,
-          "R_lb": 36,
-          "g_lb": 11,
-          "skipped_factors": 0
-         },
-         "swap": {
-          "deg": 6,
-          "R_lb": 32,
-          "g_lb": 11,
-          "skipped_factors": 0
-         }
-        },
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite",
-    "corrected": "entry 103 (monic-field factorization)"
-   },
-   "resolution": {
-    "frames": {
-     "0": {
-      "verdict": "finite",
-      "components": [
-       {
-        "deg": [
-         6,
-         8
-        ],
-        "verdict_engine": "unknown",
-        "genus": 11,
-        "consistent": true,
-        "p_a": 35,
-        "sum_delta": 24,
-        "singular": [
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t - 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 2,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t + 1",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tx",
-          "tfactor": "t^2 + 1",
-          "xdeg": 1,
-          "m": 3,
-          "delta": 6,
-          "r": 3,
-          "conj": 2
-         },
-         {
-          "chart": "Tx",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "tX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         },
-         {
-          "chart": "TX",
-          "tfactor": "t",
-          "xdeg": 1,
-          "m": 2,
-          "delta": 1,
-          "r": 2,
-          "conj": 1
-         }
-        ],
-        "abs_irred_p": 101,
-        "error": null,
-        "verdict": "finite"
-       }
-      ]
-     }
-    },
-    "verdict": "finite"
-   },
-   "verdict_before_resolution": "finite",
-   "base_locus": {
-    "status": "empty (Groebner basis 1)",
-    "points": [],
-    "admissible": []
-   },
-   "quotients": [
-    {
-     "by": "negrec_h",
-     "genus": 3,
-     "consistent": true,
-     "deg": [
-      4,
-      6
-     ]
-    },
-    {
-     "by": "joint_sign",
-     "genus": 4,
-     "consistent": true,
-     "deg": [
-      5,
-      8
-     ]
-    }
-   ]
-  },
-  {
-   "cand": [
-    [
-     0,
-     1,
-     -1
-    ],
-    [
-     1,
-     -1,
-     1
-    ],
-    [
-     1,
-     -1,
-     -1
-    ],
-    [
-     1,
-     0,
-     -1
-    ],
-    1,
-    1,
-    1,
-    -1
-   ],
-   "verdict": "finite",
-   "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -312324,7 +311283,1114 @@
       8
      ]
     }
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
    ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    -1,
+    1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "verdict": "finite",
+   "frame": 0,
+   "mechanism": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 11
+    }
+   ],
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 11,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 36,
+          "g_lb": 11,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 32,
+          "g_lb": 11,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 11,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 24,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t - 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 2,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t + 1",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "empty (Groebner basis 1)",
+    "points": [],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 3,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 4,
+     "consistent": true,
+     "deg": [
+      5,
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    1,
+    1,
+    1,
+    -1
+   ],
+   "verdict": "dead",
+   "frame": 0,
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
+   "verdict_before_genus": "unknown",
+   "genus": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "g_lb": 5,
+        "abs_irred_p": 101,
+        "genus_info": {
+         "direct": {
+          "deg": 8,
+          "R_lb": 24,
+          "g_lb": 5,
+          "skipped_factors": 0
+         },
+         "swap": {
+          "deg": 6,
+          "R_lb": 20,
+          "g_lb": 5,
+          "skipped_factors": 0
+         }
+        },
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite",
+    "corrected": "entry 103 (monic-field factorization)"
+   },
+   "resolution": {
+    "frames": {
+     "0": {
+      "verdict": "finite",
+      "components": [
+       {
+        "deg": [
+         6,
+         8
+        ],
+        "verdict_engine": "unknown",
+        "genus": 5,
+        "consistent": true,
+        "p_a": 35,
+        "sum_delta": 30,
+        "singular": [
+         {
+          "chart": "tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 4,
+          "delta": 8,
+          "r": 4,
+          "conj": 1
+         },
+         {
+          "chart": "tx",
+          "tfactor": "t^2 + 1",
+          "xdeg": 1,
+          "m": 3,
+          "delta": 6,
+          "r": 3,
+          "conj": 2
+         },
+         {
+          "chart": "Tx",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         },
+         {
+          "chart": "tX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 4,
+          "delta": 8,
+          "r": 4,
+          "conj": 1
+         },
+         {
+          "chart": "TX",
+          "tfactor": "t",
+          "xdeg": 1,
+          "m": 2,
+          "delta": 1,
+          "r": 2,
+          "conj": 1
+         }
+        ],
+        "abs_irred_p": 101,
+        "error": null,
+        "verdict": "finite"
+       }
+      ]
+     }
+    },
+    "verdict": "finite"
+   },
+   "verdict_before_resolution": "finite",
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [
+     [
+      "0",
+      "0"
+     ]
+    ],
+    "admissible": []
+   },
+   "quotients": [
+    {
+     "by": "negrec_h",
+     "genus": 0,
+     "consistent": true,
+     "deg": [
+      4,
+      6
+     ]
+    },
+    {
+     "by": "joint_sign",
+     "genus": 2,
+     "consistent": true,
+     "deg": [
+      4,
+      8
+     ]
+    }
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -312353,18 +312419,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -312497,7 +312554,22 @@
       8
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -335101,18 +335173,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -335250,7 +335313,22 @@
       8
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -335506,18 +335584,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -335650,7 +335719,22 @@
       8
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -335679,18 +335763,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -335823,7 +335898,22 @@
       8
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -336079,18 +336169,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      6,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 5
-    }
-   ],
+   "mechanism": "bielliptic descent kill (entry 118): the component's genus-2 quotient is Q-isomorphic to C2 = (25s^3-61s^2+43s+1)(25s^3-29s^2+11s+1) with a square coordinate s = t^2; the descent of the review (F, G > 0, gcd in {1, 8, 25, 200}) sends every such point to G_delta: z^2 = delta B(t^2), delta in {1, 2}; bielliptic quadratic Chabauty (Bianchi-Padurariu) at p = 11, 13 plus a Mordell-Weil sieve on E_1 x E_2 give G_1(Q) = {(0, +-1), inf+-}, G_2(Q) = {(+-1, +-4)}, so t in {0, +-1, inf}, s in {0, 1, inf} on C2, whose lifts to the component are degenerate",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -336228,7 +336309,22 @@
       8
      ]
     }
-   ]
+   ],
+   "verdict_before_quotients": "finite",
+   "mechanism_before_kill": [
+    {
+     "deg": [
+      6,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 5
+    }
+   ],
+   "kill": {
+    "entry": 118,
+    "route": "bielliptic descent -> G_delta(Q) complete -> degenerate lifts"
+   }
   },
   {
    "cand": [
@@ -518900,8 +518996,8 @@
   "genus0": {
    "note": "entry 115 (R.10 objective O2, first step, with Sage 10.7 in WSL): the 24 finite classes whose component (bidegree (6,8), (8,6) or (6,6), genus 5) has a genus-0 quotient W by t -> -1/t on one coordinate. Sage parametrizes every W over Q (u(t), v(t)); with u = N/M the points of the component over rational points of W are the rational points of the hyperelliptic curve H: y^2 = D(t) = N^2 + 4 M^2 (tg = (N +- y)/(2M), th = v(t)); H has genus 5, and its rational points off the exceptional set (t = infinity, M = 0, the rational singular points of W -- all degenerate) are exactly the rational points of the component. In 22 classes D is even in t, so s = t^2 gives a genus-2 quotient y^2 = Dt(s) = C_1(s) C_2(s), a product of two cubics; the other two have a Klein four-group of Mobius involutions and become even after tau = t/(t - p). Up to Q-isomorphism there are exactly two genus-2 curves: C1: y^2 = (s^3 - 5s^2 + 11s + 1)(s^3 + 11s^2 - 5s + 1) with the involution s -> 1/s (8 classes, after the rescalings s -> s/4, s -> s/78400 and the tau change), whose elliptic quotient E+ = Q(w)(w + 2), Q = w^3 + 6w^2 - 52w + 136, is 11a3 (rank 0, five torsion points, all listed): the rational points of C1 lie over s in {0, 1, -1, infinity}, the lifts are degenerate -- EIGHT CLASSES DEAD; and C2: y^2 = (25*s**3 - 61*s**2 + 43*s + 1)*(25*s**3 - 29*s**2 + 11*s + 1) (16 classes: Dt = mu C2(lambda s) or mu s^6 C2(lambda/s), mu a square, lambda in {1, 56644, 42025/1849}), discriminant 2^62 5^4 23 83, at least 14 rational points (s in {-3, 0, 1, 1/3, -1/5, 3/5} and two at infinity), no Mobius involution of its six roots, Frobenius polynomials irreducible over Q at 13, 17, 19, 29, 31, 41, 43, 47, 53 (a presumably simple Jacobian with End = Z): the known points lift to no rational point of any of the sixteen components, but C2(Q) is not known to be complete -- a RankBound / Chabauty computation in Magma (compute/magma/genus0_quotients_C2.m) is the missing step; with rank >= 2 and End = Z even quadratic Chabauty would not apply.",
    "n_classes": 24,
-   "n_dead": 8,
-   "n_finite": 16,
+   "n_dead": 24,
+   "n_finite": 0,
    "tally_before": {
     "dead": 1484,
     "finite": 1460
@@ -519004,8 +519100,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
      "Dt_factors": [
       [
@@ -519016,7 +519112,8 @@
        "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -519073,8 +519170,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
      "Dt_factors": [
       [
@@ -519085,7 +519182,8 @@
        "25*s**3 - 29*s**2 + 11*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -519142,8 +519240,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
      "Dt_factors": [
       [
@@ -519154,7 +519252,8 @@
        "25*s**3 - 29*s**2 + 11*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -519211,8 +519310,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
      "Dt_factors": [
       [
@@ -519223,7 +519322,8 @@
        "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -519280,8 +519380,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
      "Dt_factors": [
       [
@@ -519292,7 +519392,8 @@
        "25*s**3 - 29*s**2 + 11*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -519349,8 +519450,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
      "Dt_factors": [
       [
@@ -519361,7 +519462,8 @@
        "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -519418,8 +519520,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "20644458790876868161507740160000*s**6 - 1312055145243215969589504000*s**5 + 32109314298374962605824*s**4 - 339499089770554112*s**3 + 1228871867888*s**2 + 3058776*s + 1",
      "Dt_factors": [
       [
@@ -519430,7 +519532,8 @@
        "4543617368449600*s**3 - 93047739344*s**2 + 623084*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -519487,8 +519590,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "625*s**6 - 2250*s**5 + 3119*s**4 - 1868*s**3 + 383*s**2 + 54*s + 1",
      "Dt_factors": [
       [
@@ -519499,7 +519602,8 @@
        "25*s**3 - 29*s**2 + 11*s + 1",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521278,8 +521382,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
      "Dt_factors": [
       [
@@ -521290,7 +521394,8 @@
        "s**3 + 43*s**2 - 61*s + 25",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521347,8 +521452,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
      "Dt_factors": [
       [
@@ -521359,7 +521464,8 @@
        "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521416,8 +521522,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
      "Dt_factors": [
       [
@@ -521428,7 +521534,8 @@
        "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521485,8 +521592,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
      "Dt_factors": [
       [
@@ -521497,7 +521604,8 @@
        "s**3 + 43*s**2 - 61*s + 25",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521554,8 +521662,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
      "Dt_factors": [
       [
@@ -521566,7 +521674,8 @@
        "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521623,8 +521732,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
      "Dt_factors": [
       [
@@ -521635,7 +521744,8 @@
        "s**3 + 43*s**2 - 61*s + 25",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521692,8 +521802,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "s**6 + 54*s**5 + 383*s**4 - 1868*s**3 + 3119*s**2 - 2250*s + 625",
      "Dt_factors": [
       [
@@ -521704,7 +521814,8 @@
        "s**3 + 43*s**2 - 61*s + 25",
        1
       ]
-     ]
+     ],
+     "entry118": true
     },
     {
      "cand": [
@@ -521761,8 +521872,8 @@
      "D_even": true,
      "points_to_2000": 6,
      "admissible_points_to_2000": 0,
-     "verdict": "finite",
-     "route": "even model; genus-2 quotient y^2 = Dt(s) Q-isomorphic to C2 (no extra involution; Jacobian presumably simple with End = Z); Magma RankBound / Chabauty pending",
+     "verdict": "dead",
+     "route": "bielliptic descent (entry 118): C2 points with a square coordinate lie over G_1(Q) u G_2(Q) = {t = 0, +-1, inf}; lifts degenerate",
      "Dt": "3442915390070523999176025390625*s**6 - 545328304639272717385253906250*s**5 + 33259834627876312550624609375*s**4 - 876416956928453806737687500*s**3 + 7906091983296782747039375*s**2 + 49044017387651610468150*s + 39959630797262576401",
      "Dt_factors": [
       [
@@ -521773,9 +521884,12 @@
        "1855509469140625*s**3 - 94700081613125*s**2 + 1580426232275*s + 6321363049",
        1
       ]
-     ]
+     ],
+     "entry118": true
     }
-   ]
+   ],
+   "n_dead_entry115": 8,
+   "n_dead_entry118": 16
   }
  },
  "base_locus_minor_map": {
@@ -699723,6 +699837,402 @@
   "tally_after": {
    "dead": 1484,
    "finite": 1460
+  }
+ },
+ "bielliptic_descent": {
+  "note": "entry 118: the route proposed by the independent review (docs/REVIEW-2026-09-06.md), executed. A rational point of C2: y^2 = A(s) B(s) with a square coordinate s = t^2 (t = a/b in lowest terms) has F = b^6 A(a^2/b^2) and G = b^6 B(a^2/b^2) positive (A(s) = s(5s-7)^2 + (3s-1)^2, B(s) = s(5s-3)^2 + (s+1)^2) with F - G = -32 a^2 b^2 (a^2 - b^2), so gcd(F, G) has v_2 in {0, 3} (0 for opposite parity; both odd: F, G = 8 mod 16) and v_5 in {0, 2} (2 iff 5 | b; then F/25, G/25 = a^4(a^2 -+ k^2) mod 5 cannot both vanish), i.e. gcd in {1, 8, 25, 200}; F G a square forces F and G into the same squareclass delta in {1, 2} and (t, z) with z^2 = delta B(t^2) is a rational point of the bielliptic genus-2 curve G_delta. Its elliptic quotients E_1: y^2 = x^3 + a4 x^2 + a2 a6 x + a0 a6^2 and E_2: y^2 = x^3 + a2 x^2 + a0 a4 x + a0^2 a6 (the QC code's models) have rank 1 and trivial torsion (delta = 1: 1840d1, 184b1; delta = 2: 7360r1, 1472a1), J(Q) is torsion-free (gcd of #J(F_l) = 1). BIELLIPTIC QUADRATIC CHABAUTY (Bianchi-Padurariu, QC_bielliptic, commit 209117b, SageMath 10.7 in WSL) at the good ordinary primes p = 11 and 13 with precision 25 recovers exactly the known points and leaves extra p-adic points in most Omega-classes (30 classes for G_1, 28 for G_2); their coefficients modulo p^4 with respect to B_1 = pi_1^* G_1, B_2 = pi_2^* G_2 (pushforwards [2 G_1, O], [O, 2 G_2]; a basis of a subgroup of index dividing 4) are all integral. THE SIEVE, run on E_1 x E_2: for a rational point P, pi_1(P) = pi_1(P_0) + 2A G_1 and pi_2(P) = pi_2(P_0) + 2B G_2 exactly, so the integers (m_1, m_2) = (2A, 2B) are known modulo 11^4 * 13^4 per Omega-class (CRT of the 11-adic and 13-adic residues, classes compatible across primes); at every auxiliary prime l of good reduction with 11 or 13 dividing the order of a reduced generator, (m_1, m_2) must reduce into the image of H(F_l) (the two points at infinity included: pi_1 = O, pi_2 = (0, +-a0 sqrt(a6))). Every candidate pair is eliminated on both curves (19 auxiliary primes for G_1, more for G_2) while the known rational points survive every prime (controls). Hence G_1(Q) = {(0, +-1), inf+, inf-} and G_2(Q) = {(+-1, +-4)}, t in {0, +-1, inf}, s = t^2 in {0, 1, inf} on C2, and the sixteen classes' lifts of these points are degenerate (entry 115): SIXTEEN CLASSES DEAD. Conditional on the correctness of the QC_bielliptic code (published, [BP22]) and of compute/qc/qc_sieve.sage; the scripts, logs and sieve reports are in compute/qc/.",
+  "G": {
+   "1": {
+    "curve": "z^2 = 25 t^6 - 29 t^4 + 11 t^2 + 1",
+    "E1": "1840d1",
+    "E2": "184b1",
+    "omega": 30,
+    "rational_points": [
+     "(0, 1)",
+     "(0, -1)",
+     "inf+",
+     "inf-"
+    ],
+    "aux_primes": [
+     [
+      17,
+      11,
+      22,
+      16
+     ],
+     [
+      19,
+      18,
+      13,
+      16
+     ],
+     [
+      29,
+      33,
+      25,
+      28
+     ],
+     [
+      31,
+      39,
+      29,
+      36
+     ],
+     [
+      47,
+      39,
+      49,
+      40
+     ],
+     [
+      67,
+      22,
+      66,
+      24
+     ],
+     [
+      73,
+      73,
+      77,
+      76
+     ],
+     [
+      103,
+      52,
+      88,
+      48
+     ],
+     [
+      109,
+      114,
+      55,
+      48
+     ],
+     [
+      113,
+      130,
+      14,
+      13
+     ],
+     [
+      127,
+      11,
+      135,
+      16
+     ],
+     [
+      227,
+      224,
+      220,
+      216
+     ],
+     [
+      233,
+      259,
+      231,
+      256
+     ],
+     [
+      239,
+      231,
+      221,
+      212
+     ],
+     [
+      251,
+      26,
+      252,
+      28
+     ],
+     [
+      313,
+      51,
+      165,
+      56
+     ],
+     [
+      337,
+      66,
+      183,
+      48
+     ],
+     [
+      347,
+      20,
+      11,
+      4
+     ],
+     [
+      349,
+      333,
+      13,
+      12
+     ],
+     [
+      359,
+      130,
+      183,
+      76
+     ],
+     [
+      379,
+      91,
+      33,
+      16
+     ]
+    ],
+    "controls": [
+     [
+      "(0 : -1 : 1)",
+      4,
+      0,
+      "OK"
+     ],
+     [
+      "(0 : 1 : 1)",
+      0,
+      0,
+      "OK"
+     ],
+     [
+      "inf+",
+      2,
+      4,
+      "OK"
+     ],
+     [
+      "inf-",
+      2,
+      -4,
+      "OK"
+     ]
+    ],
+    "survivors": 0
+   },
+   "2": {
+    "curve": "z^2 = 2 (25 t^6 - 29 t^4 + 11 t^2 + 1)",
+    "E1": "7360r1",
+    "E2": "1472a1",
+    "omega": 28,
+    "rational_points": [
+     "(1, 4)",
+     "(1, -4)",
+     "(-1, 4)",
+     "(-1, -4)"
+    ],
+    "aux_primes": [
+     [
+      17,
+      22,
+      22,
+      25
+     ],
+     [
+      19,
+      11,
+      7,
+      12
+     ],
+     [
+      31,
+      13,
+      29,
+      14
+     ],
+     [
+      43,
+      3,
+      13,
+      4
+     ],
+     [
+      47,
+      39,
+      49,
+      40
+     ],
+     [
+      59,
+      10,
+      26,
+      8
+     ],
+     [
+      61,
+      32,
+      13,
+      16
+     ],
+     [
+      73,
+      73,
+      77,
+      76
+     ],
+     [
+      79,
+      33,
+      37,
+      28
+     ],
+     [
+      101,
+      4,
+      22,
+      4
+     ],
+     [
+      103,
+      104,
+      88,
+      88
+     ],
+     [
+      109,
+      53,
+      55,
+      44
+     ],
+     [
+      113,
+      130,
+      126,
+      141
+     ],
+     [
+      127,
+      121,
+      45,
+      42
+     ],
+     [
+      131,
+      117,
+      135,
+      120
+     ],
+     [
+      139,
+      131,
+      121,
+      112
+     ],
+     [
+      149,
+      82,
+      39,
+      44
+     ],
+     [
+      157,
+      77,
+      79,
+      80
+     ],
+     [
+      163,
+      187,
+      33,
+      28
+     ],
+     [
+      197,
+      223,
+      65,
+      64
+     ],
+     [
+      233,
+      259,
+      231,
+      256
+     ],
+     [
+      239,
+      77,
+      221,
+      70
+     ],
+     [
+      313,
+      153,
+      33,
+      34
+     ],
+     [
+      331,
+      351,
+      111,
+      120
+     ],
+     [
+      359,
+      195,
+      183,
+      204
+     ],
+     [
+      379,
+      66,
+      182,
+      48
+     ]
+    ],
+    "controls": [
+     [
+      "(-1 : -4 : 1)",
+      -2,
+      0,
+      "OK"
+     ],
+     [
+      "(-1 : 4 : 1)",
+      0,
+      -2,
+      "OK"
+     ],
+     [
+      "(1 : -4 : 1)",
+      -2,
+      -2,
+      "OK"
+     ],
+     [
+      "(1 : 4 : 1)",
+      0,
+      0,
+      "OK"
+     ]
+    ],
+    "survivors": 0
+   }
+  },
+  "primes": [
+   11,
+   13
+  ],
+  "precision": 25,
+  "N": 4,
+  "H_rational_points": [
+   "(0, +-1)",
+   "(+-1, +-8)",
+   "inf+-"
+  ],
+  "C2_square_coordinate_points": [
+   "s = 0",
+   "s = 1",
+   "s = inf (two)"
+  ],
+  "qc_code": "https://github.com/bianchifrancesca/QC_bielliptic commit 209117b1647f1114e10abb99c720bf911eb10e6f (2023-06-22)",
+  "artifacts": "compute/qc/",
+  "n_classes_killed": 16,
+  "tally_before": {
+   "dead": 1484,
+   "finite": 1460
+  },
+  "tally_after": {
+   "dead": 1500,
+   "finite": 1444
   }
  }
 }
