@@ -86,9 +86,12 @@ $\sim |D(m)|^2 \cdot (\text{chance a specific integer is in } D(m))$,
 never fires below $10^5$. **Conjecture A3.C (CONJECTURED):** additive
 triples do not exist for any $m$; equivalently, no 3×3 magic square has
 seven square entries in the three-full-AP configuration. A proof of
-A3.C would be a genuinely new partial impossibility theorem — note it is
-*implied by* Conjecture 0.3-adjacent heuristics but is strictly weaker
-than the full problem, hence a realistic intermediate target. (It does
+A3.C would be a genuinely new impossibility theorem — note the direction
+of the implication: no additive triple implies no additive quadruple,
+hence no magic square, so A3.C is *stronger* than the full problem, not
+weaker (corrected in entry 117; the two-frame theorems A3.7–A3.10 are
+cases of A3.C, and through the free-frame reduction of 2.46 they already
+feed the three-frame boxes). (It does
 not follow from Bremner's published classification as summarized to us;
 provenance caveats apply.)
 
@@ -2774,9 +2777,11 @@ models) killed through **four more**: `30a1`, `240b1`, `30a2`, `240b2`.  Fifteen
 curves across all routes.
 
 **Legendre form of the quotient-route killers.**  All eleven have full rational
-$2$-torsion (torsion subgroup of order $4$ or $8$), so each is
-$y^2=x(x-1)(x-\lambda)$; writing the $S_3$-orbit of $\lambda$ by its largest
-element, one value per curve:
+$2$-torsion (torsion subgroup of order $4$ or $8$), so each is a *quadratic
+twist* $dy^2=x(x-1)(x-\lambda)$ of a Legendre curve — $\lambda$ fixes the curve
+only over $\bar{\mathbb Q}$, and the table below contains twist pairs sharing
+$\lambda$ (`48a1`/`24a1`, `15a3`/`240d2`); writing the $S_3$-orbit of $\lambda$ by
+its largest element, one value per curve (corrected in entry 117):
 
 | curve | $\lambda$ | kills (both boxes) | models $y^2=q(x)$, coefficients of $q$ |
 |---|---|---|---|
@@ -2860,7 +2865,12 @@ R.9) is blocked at Conjecture R_J (2.23, 2.27): for the $(J,1)$ boxes with
 $J\ge5$, the equation $3\rho^4=\bar\ell^{2J}+2C_1\ell^{2J-1}$ in Gaussian primes
 ($\rho^4=\pm G_J$ for $J\equiv1\pmod3$).  Two equivalent forms worth keeping:
 $$3\rho^4=2C_{2J}+p^2\ell^{2J-2},\qquad 3X^4=y^{2J}+y^{2J-1}+1\ (y=\ell/\bar\ell,\ X=\rho/\bar\pi^J),$$
-the second a $\mathbb Q(i)$-point of a superelliptic curve of genus $J-1$.  The
+the second a $\mathbb Q(i)$-point of the superelliptic curve $3X^4=y^{2J}+y^{2J-1}+1$,
+of genus $3J-2$ for odd $J$ and $3J-3$ for even $J$ (a cyclic $4$-cover of the
+$y$-line totally ramified at the $2J$ roots; $13$ at $J=5$, as 2.23 says); its
+quadratic quotient $w^2=3(y^{2J}+y^{2J-1}+1)$, $w=3X^2$, has genus $J-1$ — the
+lift from the quotient needs $3w$ to be a square, a condition that must be
+retained (corrected in entry 117).  The
 first gives two "sliver" identities, $\pi^{4J-2}\mid3\rho^4-\bar\ell^{2J}$ with
 cofactor $2C_1$ and $\bar\pi^2\mid3\rho^4-\ell^{2J}$ with cofactor $2C_{2J-1}$;
 every consequence extracted from them (norms, the discriminant of the
@@ -2875,9 +2885,10 @@ $\mathbb Q(\zeta_8)$, $\mathbb Q(\zeta_{12})$ and $\mathbb Q(\zeta_{24})$ (PARI,
 $J=5,\dots,12$); for $J\equiv1\pmod3$ only $y^2+y+1$ splits off, and 2.27 showed
 the machine cancels it.  So there is no factorization to concentrate on: R_J
 needs a global method.  The effective one is Chabauty / the Mordell–Weil sieve
-on the twist $w^2=3(y^{2J}+y^{2J-1}+1)$ over $\mathbb Q(i)$, genus $J-1\ge4$ —
-Magma territory (Sage handles genus $\le2$), and per $J$; uniformity in $J$ is
-the open research question.
+on the quadratic quotient $w^2=3(y^{2J}+y^{2J-1}+1)$ over $\mathbb Q(i)$, genus
+$J-1\ge4$, keeping the squareclass condition $3w\in\mathbb Q(i)^{*2}$ for the
+lift — Magma territory (Sage handles genus $\le2$), and per $J$; uniformity in
+$J$ is the open research question.
 
 **A withdrawn pointer.**  A memory index line had kept "attack the P1
 rigidity lemma" alive as the ω ≤ 2 program's core.  That one-equation lemma

@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0}, data["tally"])      # entry 106 (two-step quotient kills): 1484/1460; entry 115 (genus-0 quotients): +8 dead
+    require(data["tally"] == {'dead': 1484, 'finite': 1460, 'unknown': 0}, data["tally"])      # entry 106: 1484/1460; entry 115: +8 dead; entry 117 (twist audit): 8 tower kills lost
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,7 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1492)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106) + 8 genus-0-quotient kills (entry 115)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 1484)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106) + 8 genus-0-quotient kills (entry 115)
     require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
@@ -3969,7 +3969,7 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] >= 106 and data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0}, data["tally"])   # entry 115: 8 more dead
+    require(data["entry"] >= 106 and data["tally"] == {'dead': 1484, 'finite': 1460, 'unknown': 0}, data["tally"])   # entries 115, 117
     Rs = data["resolution"]
     require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
     require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
@@ -4077,10 +4077,10 @@ def _(ctx):
     from compute.omega3_finiteness import base_locus, frame_ratio_prime
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0}, data["tally"])   # entry 115: 8 more dead
+    require(data["tally"] == {'dead': 1484, 'finite': 1460, 'unknown': 0}, data["tally"])   # entries 115, 117
     BL = data["base_locus"]
-    require(BL["n_finite"] == 1568 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)
-    require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 544}, BL["status_counts"])
+    require(BL["n_finite"] == 1576 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)   # 1568 at entry 104 + 8 classes reverted to finite by the twist audit (entry 117)
+    require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 552}, BL["status_counts"])
     require(set(BL["points_by_value"]) == {"('0', '0')", "('1', '0')", "('-1', '0')", "('1', '1')", "('-1', '-1')", "('-1', '1')", "('1', '-1')"},
             BL["points_by_value"])
     fin = []
@@ -4094,7 +4094,7 @@ def _(ctx):
             require(e["verdict"] == "dead", (e["cand"], e["verdict"]))
             if e.get("verdict_before_quotients") == "finite":
                 require(e["base_locus"]["admissible"] == [], ("quotient-killed class keeps its base-locus record", e["cand"]))
-    require(len(fin) == 1452)      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106 and the 8 genus-0-quotient kills of entry 115
+    require(len(fin) == 1460)      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106 and the 8 genus-0-quotient kills of entry 115
     # (i) the prime from the ratio: 5 = 2^2 + 1^2 gives 4/3 (and -4/3, 3/4), 13 gives 12/5, 17 gives 8/15; 1 and 2/3 are not frames
     require([frame_ratio_prime(sp.Rational(*x)) for x in ((4, 3), (-4, 3), (3, 4), (12, 5), (8, 15), (1, 1), (2, 3))] == [5, 5, 5, 13, 17, None, None])
     # (ii) live recomputation of the base locus
@@ -4616,7 +4616,7 @@ def _(ctx):
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         data = json.load(fh)
     RP = data["rigorous_pass"]; FN = data["finiteness"]
-    require(data["entry"] >= 116 and data["tally"] == {'dead': 16032, 'finite': 63336} and RP["tally_after"] == {"dead": 12132, "finite": 67236} and data["free_frame"]["tally_after"] == data["tally"], data["tally"])   # entry 116: the free-frame reduction killed 3900 finite classes
+    require(data["entry"] >= 117 and data["tally"] == {'dead': 16032, 'finite': 63336} and RP["tally_after"] == {"dead": 12132, "finite": 67236} and data["free_frame"]["tally_after"] == {"dead": 16032, "finite": 63336} and data["twist_audit"]["tally_after"] == data["tally"], data["tally"])   # entry 116: the free-frame reduction killed 3900 finite classes
     require(RP["n_provisional_before"] == 25428 and RP["n_upgraded"] == 25428 and RP["n_still_provisional"] == 0 and RP["entry114_bound_certified"]["n"] == 50, (RP["n_upgraded"], RP["n_still_provisional"]))
     require(RP["component_genera"] == {'14': 1008, '29': 624, '11': 1340, '13': 3176, '28': 848, '10': 1176, '19': 1976, '23': 1008, '15': 1196, '9': 784, '17': 1230, '7': 72, '30': 192, '16': 1456, '20': 560, '26': 848, '18': 488, '34': 640, '25': 944, '44': 160, '31': 1148, '37': 720, '27': 304, '35': 232, '21': 944, '24': 312, '42': 96, '32': 504, '39': 272, '45': 180, '33': 286, '41': 84, '12': 208, '22': 24, '52': 32, '53': 8, '47': 48, '40': 48, '46': 64, '51': 56, '43': 8, '49': 28, '38': 48, '50': 48} and RP["consistent"] == {'True': 25428}, (RP["component_genera"], RP["consistent"]))
     require(FN["n_finite"] == 67236 and FN["n_missing"] == 0 and FN["n_admissible"] == 0 and FN["admissible"] == [])
@@ -4730,7 +4730,7 @@ def _(ctx):
         data = json.load(fh)
     G = data["quotients"]["genus0"]
     require(G["n_classes"] == 24 and G["n_dead"] == 8 and G["n_finite"] == 16 and G["tally_before"] == {"dead": 1484, "finite": 1460} and G["tally_after"] == {"dead": 1492, "finite": 1452})
-    require(data["tally"] == {"dead": 1492, "finite": 1452, "unknown": 0} and sum(1 for e in data["classes"] if e.get("kill", {}).get("entry") == 115) == 8)
+    require(data["twist_audit"]["tally_after"] == data["tally"] or data["tally"] == {'dead': 1484, 'finite': 1460, 'unknown': 0} and sum(1 for e in data["classes"] if e.get("kill", {}).get("entry") == 115) == 8)
     recs = {json.dumps(e["cand"]): e for e in data["classes"]}
     require(all(recs[json.dumps(r["cand"])]["verdict"] == r["verdict"] for r in G["classes"]), "verdicts recorded on the classes")
     C2 = sp.sympify(G["C2"].replace("s", "s_")) if False else sp.sympify(G["C2"], locals={"s": s_})
@@ -4828,7 +4828,7 @@ def _(ctx):
     F1, F2 = d1["free_frame"], d2["free_frame"]
     require(F1["n_classes"] == 444 and F1["kill_counts"] == {'T': 228, 'E': 108, 'None': 90, 'Z': 18} and F1["theorems"] == {'A3.7': 228}, (F1["kill_counts"], F1["theorems"]))
     require(F2["n_free_frame_classes"] == 11912 and F2["n_finite_before"] == 8130 and F2["kills_among_finite"] == {'E': 204, 'T': 3576, 'BE': 120} and F2["theorems_among_finite"] == {'A3.8': 3576} and F2["n_upgraded_to_dead"] == 3900, (F2["kills_among_finite"], F2["theorems_among_finite"]))
-    require(F2["tally_before"] == {"dead": 12132, "finite": 67236} and F2["tally_after"] == {'dead': 16032, 'finite': 63336} and d2["tally"] == {'dead': 16032, 'finite': 63336} and F2["elliptic_curves_among_finite"] == {'48a3': 324}, (F2["tally_after"], F2["elliptic_curves_among_finite"]))
+    require(F2["tally_before"] == {"dead": 12132, "finite": 67236} and F2["tally_after"] == {"dead": 16032, "finite": 63336} and d2["tally"] == {'dead': 16032, 'finite': 63336} and F2["elliptic_curves_among_finite"] == {'48a3': 324}, (F2["tally_after"], F2["elliptic_curves_among_finite"]))
     v1 = {json.dumps(e["cand"]): e["verdict"] for e in d1["classes"]}
     require(all(v1[json.dumps(r["cand"])] == "dead" for r in F1["classes"]), "(1,1,1): every free-frame class dead")
     v2 = {json.dumps(c["cand"]): c for c in d2["classes"]}
@@ -4863,6 +4863,66 @@ def _(ctx):
         cand = tuple(tuple(x) if isinstance(x, list) else x for x in r["cand"])
         live = decide(cand, (1, 1, 1)); require(live["status"] == "DEAD" and live.get("theorem") == "A3.7", cand)
     ctx.note("free-frame reduction: (2,1,1) " + str(F2["n_upgraded_to_dead"]) + " finite classes dead (" + str(F2["theorems_among_finite"]) + " by theorem, " + str(F2["kills_among_finite"]) + "), tally " + str(d2["tally"]) + "; (1,1,1) 444 free-frame classes all dead, " + str(sum(F1["kill_counts"].get(k, 0) for k in ("T", "E", "B", "Z"))) + " re-derived; live samples of every kill kind agree")
+
+
+@check("a3.omega3_twist", DOC)
+def _(ctx):
+    """THE TWIST AUDIT (entry 117; the independent review of 2026-09-06, finding
+    1).  A genus-1 model y^2 = f is only the right curve if every constant
+    multiplying f keeps its squareclass: _disc_model had dropped the constant
+    of the discriminant's factorization, gp_model had divided the coefficients
+    by their gcd, and omega3_towers.int_coeffs had cleared denominators with
+    a non-square lcm -- each a quadratic twist.  The reviewer's control curve
+    8425 th^2 - 11664 (tg^4 + 1) has the admissible point (4/3, 12/5) and was
+    declared dead through the model y^2 = t^4 + 1; the correct model is
+    y^2 = 337 (t^4 + 1), rank 2.  Repair: squarefree_part / square_part_of_gcd.
+    Audit: every engine kill re-run with the routines instrumented; every
+    flagged kill, every tower, quotient and two-step kill re-decided with the
+    repaired code.  (1,1,1): 1376 engine kills audited, 206 flagged, all
+    206 survive; of the 296 tower kills 8 are void (4 rescued by the
+    free-frame reduction), the 72 + 36 quotient kills survive; tally {'dead': 1484, 'finite': 1460, 'unknown': 0}.
+    (2,1,1): 12132 engine kills audited, 4581 flagged, 0 lost; tally {'dead': 16032, 'finite': 63336}.
+    Verifies the control live, the repaired helpers, the recorded audit, and
+    re-decides a bounded sample of flagged classes."""
+    import gzip, json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.pari_genus1 import gp_available
+    require(O.squarefree_part(-4) == -1 and O.squarefree_part(sp.Rational(-12, 25)) == -3 and O.squarefree_part(36) == 1 and O.square_part_of_gcd([8425, 0, -11664]) == 1 and O.square_part_of_gcd([18, 0, -36]) == 9)
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d1 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        d2 = json.load(fh)
+    A1, A2 = d1["twist_audit"], d2["twist_audit"]
+    require(A1["n_engine_kills_audited"] == 1376 and A1["n_flagged"] == 206 and len(A1["lost_kills"]) == 8 and len(A1["rescued_by_free_frame"]) == 4 and {**A1["tally_after"], "unknown": 0} == d1["tally"] and d1["tally"] == {'dead': 1484, 'finite': 1460, 'unknown': 0}, A1["tally_after"])
+    require(A2["n_engine_kills_audited"] == 12132 and A2["n_flagged"] == 4581 and len(A2["lost_kills"]) == 0 and A2["tally_after"] == d2["tally"] and d2["tally"] == {'dead': 16032, 'finite': 63336}, A2["tally_after"])
+    for r in A1["lost_kills"]:
+        e = next(e for e in d1["classes"] if e["cand"] == r["cand"])
+        require(e["verdict"] == "finite" and e.get("verdict_before_twist_audit") == "dead", r["cand"])
+    for r in A2["lost_kills"]:
+        c = next(c for c in d2["classes"] if c["cand"] == r["cand"])
+        require(c["v"] != "dead" and "twist_audit" in c, r["cand"])
+    O.set_box((1, 1, 1))
+    # the reviewer's control, live: the curve with an admissible point must not be dead
+    phi = 8425 * O.th ** 2 - 11664 * (O.tg ** 4 + 1)
+    require(phi.subs({O.tg: sp.Rational(4, 3), O.th: sp.Rational(12, 5)}) == 0 and O.is_frame_ratio(sp.Rational(4, 3)) and O.is_frame_ratio(sp.Rational(12, 5)))
+    sqf, dfl, g = O._disc_model(phi, O.th, O.tg)
+    require(sp.expand(sqf - 337 * (O.tg ** 4 + 1)) == 0, ("the discriminant model keeps the squareclass 337", sqf))
+    if gp_available():
+        v, info = O.decide_component(phi, 4, 2)
+        require(v != "dead" and info["phi_model"]["model"] == (337, 0, 0, 0, 337), (v, info.get("phi_model")))
+        n = ctx.bound(full=6, fast=1)
+        picks = [e for e in d1["classes"] if e.get("verdict_before_twist_audit") == "dead"][:n]
+        for e in picks:
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in e["cand"])
+            from compute.omega3_towers import tower_frame
+            r = tower_frame(cand, e["frame"])
+            require(r.get("verdict") != "dead", (cand, r.get("verdict")))
+        ctx.note("PARI: the control curve is not dead (model y^2 = 337(t^4+1)); " + str(len(picks)) + " void tower kills confirmed void live")
+    else:
+        ctx.note("PARI/GP not found: the control's live decision not run")
+    ctx.note("twist audit: (1,1,1) " + str(A1["n_flagged"]) + " flagged engine kills all survive, " + str(len(A1["lost_kills"])) + " tower kills void; (2,1,1) " + str(A2["n_flagged"]) + " flagged, " + str(len(A2["lost_kills"])) + " lost; tallies " + str(d1["tally"]) + " / " + str(d2["tally"]))
+
 
 
 @check("a3.omega3_killers", DOC)

@@ -1,11 +1,11 @@
 {
- "entry": 116,
+ "entry": 117,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
  "tally": {
-  "dead": 1492,
-  "finite": 1452,
+  "dead": 1484,
+  "finite": 1460,
   "unknown": 0
  },
  "n_models": 13,
@@ -127485,6 +127485,12 @@
       ]
      }
     }
+   },
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "rescued_by": "free-frame reduction kill E",
+    "note": "the tower kill is void (twist), the class stays dead by entry 116's free-frame reduction"
    }
   },
   {
@@ -127815,6 +127821,12 @@
       ]
      }
     }
+   },
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "rescued_by": "free-frame reduction kill E",
+    "note": "the tower kill is void (twist), the class stays dead by entry 116's free-frame reduction"
    }
   },
   {
@@ -138933,6 +138945,12 @@
       ]
      }
     }
+   },
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "rescued_by": "free-frame reduction kill E",
+    "note": "the tower kill is void (twist), the class stays dead by entry 116's free-frame reduction"
    }
   },
   {
@@ -139217,6 +139235,12 @@
       ]
      }
     }
+   },
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "rescued_by": "free-frame reduction kill E",
+    "note": "the tower kill is void (twist), the class stays dead by entry 116's free-frame reduction"
    }
   },
   {
@@ -327468,7 +327492,7 @@
     -1,
     -1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -327798,6 +327822,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -327827,7 +327864,7 @@
     -1,
     1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -328157,6 +328194,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -328186,7 +328236,7 @@
     1,
     -1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -328516,6 +328566,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -328545,7 +328608,7 @@
     1,
     1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -328875,6 +328938,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -328904,7 +328980,7 @@
     -1,
     -1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -329234,6 +329310,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -329263,7 +329352,7 @@
     -1,
     1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -329593,6 +329682,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -329622,7 +329724,7 @@
     1,
     -1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -329952,6 +330054,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -329981,7 +330096,7 @@
     1,
     1
    ],
-   "verdict": "dead",
+   "verdict": "finite",
    "frame": 1,
    "mechanism": [
     {
@@ -330311,6 +330426,19 @@
       ]
      }
     }
+   },
+   "verdict_before_twist_audit": "dead",
+   "twist_audit": {
+    "entry": 117,
+    "lost_kill": "tower",
+    "new_verdict": "finite",
+    "note": "the kill rested on a genus-1 model whose non-square constant had been discarded (a quadratic twist); with the twist retained the model no longer kills"
+   },
+   "base_locus": {
+    "status": "zero-dimensional",
+    "points": [],
+    "admissible": [],
+    "entry": 117
    }
   },
   {
@@ -390826,11 +390954,11 @@
   ]
  },
  "base_locus": {
-  "note": "entry 104: the base locus of the elimination in the certifying frame of every finite class (compute/omega3_finiteness.py): the pairs (t_g, t_h) at which every coefficient of both relations (as polynomials in s_f) vanishes, so that the relations hold for every third frame. A zero-dimensional system per class, solved exactly (lex Groebner basis; rational roots). An ADMISSIBLE base point (both coordinates non-degenerate Pythagorean frame ratios) would give a square for every third prime; none exists. With every class dead or finite (entry 103) this gives the FINITENESS STATEMENT: up to the scaling by the inert cofactor, only finitely many 3x3 magic squares of squares have a center whose split part is a product of three distinct first-power primes -- ineffective (Faltings), resting on the engine's verdicts.",
-  "n_finite": 1568,
+  "note": "entry 104: the base locus of the elimination in the certifying frame of every finite class (compute/omega3_finiteness.py): the pairs (t_g, t_h) at which every coefficient of both relations (as polynomials in s_f) vanishes, so that the relations hold for every third frame. A zero-dimensional system per class, solved exactly (lex Groebner basis; rational roots). An ADMISSIBLE base point (both coordinates non-degenerate Pythagorean frame ratios) would give a square for every third prime; none exists. With every class dead or finite (entry 103) this gives the FINITENESS STATEMENT: up to the scaling by the inert cofactor, only finitely many 3x3 magic squares of squares have a center whose split part is a product of three distinct first-power primes -- ineffective (Faltings), resting on the engine's verdicts. Entry 117: 8 classes whose tower kill was void (the twist audit) reverted to finite and received their base-locus records (zero-dimensional, no rational point): the statement stands.",
+  "n_finite": 1576,
   "status_counts": {
    "empty (Groebner basis 1)": 1024,
-   "zero-dimensional": 544
+   "zero-dimensional": 552
   },
   "n_rational_points": 122,
   "points_by_value": {
@@ -699216,5 +699344,385 @@
     "curves": []
    }
   ]
+ },
+ "twist_audit": {
+  "note": "entry 117 (the review of 2026-09-06, finding 1): compute/omega3._disc_model dropped the constant of the discriminant's factorization and gp_model divided a model's coefficients by their gcd; a non-square constant is a quadratic twist, so a rank-0 / point-count verdict could belong to the wrong curve (the reviewer's control: the curve 8425 th^2 - 11664 (tg^4 + 1) has the admissible point (4/3, 12/5) and was declared dead). The same pattern was in compute/omega3_towers.int_coeffs (denominators cleared with the lcm, the gcd divided out). REPAIR: the squarefree part of every such constant, sign included, is kept (squarefree_part, square_part_of_gcd). AUDIT: every engine kill re-run with the routines instrumented to record every discarded non-square constant; every flagged kill, every tower kill (entry 100), every quotient kill (entry 105) and every two-step kill (entry 106) re-decided with the repaired code.",
+  "n_engine_kills_audited": 1376,
+  "n_flagged": 206,
+  "redecided": {
+   "('tower', 'dead')": 284,
+   "('engine', 'dead')": 206,
+   "('tower', 'finite')": 12,
+   "('two_step', 'dead')": 36,
+   "('quotient', 'dead')": 72
+  },
+  "lost_kills": [
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     -1,
+     -1,
+     -1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   },
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     -1,
+     -1,
+     1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   },
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     -1,
+     1,
+     -1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   },
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     -1,
+     1,
+     1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   },
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     1,
+     -1,
+     -1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   },
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     1,
+     -1,
+     1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   },
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     1,
+     1,
+     -1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   },
+   {
+    "cand": [
+     [
+      0,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     1,
+     1,
+     1
+    ],
+    "route": "tower",
+    "new_verdict": "finite"
+   }
+  ],
+  "rescued_by_free_frame": [
+   {
+    "cand": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     -1,
+     -1,
+     -1
+    ],
+    "kill": "E"
+   },
+   {
+    "cand": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     1,
+     -1,
+     1,
+     -1
+    ],
+    "kill": "E"
+   },
+   {
+    "cand": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     1,
+     -1,
+     1,
+     -1
+    ],
+    "kill": "E"
+   },
+   {
+    "cand": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      -1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     1,
+     -1,
+     1,
+     1
+    ],
+    "kill": "E"
+   }
+  ],
+  "tally_before": {
+   "dead": 1492,
+   "finite": 1452
+  },
+  "tally_after": {
+   "dead": 1484,
+   "finite": 1460
+  }
  }
 }

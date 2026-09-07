@@ -36,7 +36,7 @@ import subprocess
 import sympy as sp
 
 from compute.omega3 import (frame_factors, tg, th, ug, uh, lam, pyth, is_frame_ratio, degenerate,
-                            _disc_model, square_part_roots, sqrt_rational, conic_point, ORDER)
+                            _disc_model, square_part_roots, sqrt_rational, conic_point, ORDER, square_part_of_gcd)
 from compute.pari_genus1 import quartic_points, gp_available, GP
 
 u_, w_, v_, z_ = sp.symbols("u_ w_ v_ z_")
@@ -85,14 +85,15 @@ def search_points(coeffs, H=2000, timeout=300):
 
 
 def int_coeffs(poly, var):
+    """Integer coefficients of a model of y^2 = poly(var) with the SAME twist class (entry 117):
+    denominators are cleared with the square of their lcm, and only the largest square dividing
+    the gcd is divided out."""
     P = sp.Poly(poly, var)
     cs = [sp.Rational(c) for c in P.all_coeffs()]
     den = sp.ilcm(*[c.q for c in cs]) if cs else 1
-    cs = [int(c * den) for c in cs]
-    g = 0
-    for c in cs:
-        g = sp.igcd(g, c)
-    return [c // g for c in cs] if g else cs
+    cs = [int(c * den * den) for c in cs]
+    sq = square_part_of_gcd(cs)
+    return [c // sq for c in cs]
 
 
 def squarefree_split(poly, var):

@@ -5772,3 +5772,68 @@ the free label C or D die today by A3.9 and A3.7, before any sweep.
 a3.omega3_freeframe (the data, the ladder-theorem logic live on every
 T-kill, live samples of every kill kind through decide()). Doc 2.46;
 ROADMAP M14-S and the R.11 amendment (P-E promoted); memory. Suite 199.
+
+## 2026-09-06 — Entry 117: THE TWIST AUDIT — the independent review's finding 1 confirmed and repaired; every affected kill re-decided; 8 tower kills of (1,1,1) and 0 kills of (2,1,1) void; the review's other findings applied or scheduled
+
+THE REVIEW. docs/REVIEW-2026-09-06.md, by another agent, reviewed
+commit cfd4513; docs/REVIEW-2026-09-06-response.md records the
+verdicts. Its finding 1 is real and is the most important item of
+the day: compute/omega3._disc_model dropped the constant of the
+discriminant's factorization and gp_model divided a model's
+coefficients by their gcd -- a NON-SQUARE constant is a QUADRATIC
+TWIST, so a rank-0 / point-count verdict could belong to the wrong
+curve. The reviewer's control reproduces exactly: 8425 th^2 -
+11664 (tg^4 + 1) has the admissible point (4/3, 12/5) and was
+declared dead through y^2 = t^4 + 1 (the squareclass 337 dropped).
+The same pattern sat in compute/omega3_towers.int_coeffs (denominators
+cleared with the lcm, the gcd divided out).
+
+THE REPAIR. squarefree_part(c) (sign included) multiplies the
+discriminant model; square_part_of_gcd divides a model's coefficients
+only by the largest square dividing their gcd; int_coeffs clears
+denominators with the square of the lcm. The control now yields the
+model y^2 = 337 (t^4 + 1) of rank 2 and the verdict finite through the
+pullback route (a3.omega3_twist keeps it as a permanent negative
+control).
+
+THE AUDIT, complete rather than sampled. Every engine kill of both
+boxes re-run with the two routines instrumented to record every
+discarded non-square constant; every flagged kill, every tower kill
+(entry 100), every quotient kill (entry 105), every two-step kill
+(entry 106) and every entry-108 attack kill re-decided with the
+repaired code. (1,1,1): 206 of 1376 engine kills had discarded a non-square
+constant (typically -4: the twist by -1) and EVERY ONE SURVIVES with
+the correct twist; the 72 quotient and 36 two-step kills survive;
+8 of the 296 tower kills are VOID (4 of those classes stay dead by
+the free-frame reduction, kill E, whose frame-condition curve keeps
+its constant). Tally {'dead': 1492, 'finite': 1452} -> {'dead': 1484, 'finite': 1460}. (2,1,1): 4581 of 12132 engine kills flagged (the sweep's settings), 0 lost; tally {'dead': 16032, 'finite': 63336} -> {'dead': 16032, 'finite': 63336}. No
+finiteness statement changes -- a lost kill reverts a class to
+Faltings-finite; the dead counts do. The genus-0 quotient kills of
+entry 115 and the free-frame kills of entry 116 kept their constants
+(verified) and are unaffected.
+
+THE OTHER FINDINGS. (2) exact_genus_verdict's memo key now includes
+the decision policy and the settings (a provisional verdict cannot be
+served in strict mode; no recorded verdict depended on it). (3) PARI
+discovered through MSS3_GP, PATH, then the portable install; the
+certification-status separation, the pinned environment, the
+enumerator-equals-certificate requirement and the gauntlet coverage
+are accepted and scheduled in R.11. (4) A3.C is STRONGER than the full
+problem, not weaker (no triple => no quadruple => no square);
+R.11's "base-locus half done" now states the both-trinomial
+exception; the superelliptic curve of R_J has genus 3J - 2 / 3J - 3
+(J - 1 is its quadratic quotient; the squareclass condition of the
+lift retained); the Legendre form is only up to a quadratic twist;
+PROGRESS.md and README refreshed.
+
+THE BIELLIPTIC DESCENT. Reproduced and adopted: a square coordinate on
+C_2 forces a rational point on G_delta: z^2 = delta (25t^6 - 29t^4 +
+11t^2 + 1), delta in {1, 2} (gcd(F, G) in {1, 8, 25, 200}, both forms
+positive), bielliptic genus-2 curves whose elliptic quotients
+1840d1, 184b1, 7360r1, 1472a1 all have rank 1 -- the setting of
+bielliptic quadratic Chabauty (Bianchi-Padurariu; Sage code available):
+the concrete next computation for the sixteen classes of entry 115.
+
+a3.omega3_twist; the tally pins of the affected checks re-pinned.
+Doc: the response file; ROADMAP M14-T; memory (a pitfall memory:
+keep every twist constant). Suite 200.

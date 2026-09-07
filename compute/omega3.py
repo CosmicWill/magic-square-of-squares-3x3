@@ -401,13 +401,36 @@ def frame_factors(cand, f):
 _cache = {}
 
 
-def gp_model(poly, var):
-    P = sp.Poly(poly, var)
-    cs = [int(c) for c in P.all_coeffs()]
+def squarefree_part(c):
+    """The squarefree part of a nonzero rational, sign included: c = squarefree_part(c) * (square)."""
+    c = sp.Rational(c)
+    out = sp.Integer(-1) if c < 0 else sp.Integer(1)
+    for pr, e in sp.factorint(abs(c.p) * c.q).items():
+        if e % 2:
+            out *= pr
+    return out
+
+
+def square_part_of_gcd(cs):
+    """The largest square dividing gcd(cs) (1 if the gcd is 0)."""
     g = 0
     for c in cs:
         g = sp.igcd(g, c)
-    cs = [c // g for c in cs] if g else cs
+    if not g:
+        return 1
+    sq = 1
+    for pr, e in sp.factorint(int(g)).items():
+        sq *= pr ** (2 * (e // 2))
+    return sq
+
+
+def gp_model(poly, var):
+    """The PARI model of y^2 = poly(var): the coefficients are divided only by the largest SQUARE
+    dividing their gcd (entry 117: dividing by the whole gcd twisted the curve by a non-square)."""
+    P = sp.Poly(poly, var)
+    cs = [int(c) for c in P.all_coeffs()]
+    sq = square_part_of_gcd(cs)
+    cs = [c // sq for c in cs]
     key = tuple(cs)
     if key not in _cache:
         _cache[key] = quartic_points(cs) if len(cs) in (4, 5) else {"error": f"degree {len(cs)-1}"}
@@ -450,7 +473,9 @@ def _disc_model(poly, var, oth):
     if disc == 0:
         return None
     dfl = sp.factor_list(disc)
-    sqf = sp.expand(sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))
+    # entry 117: the constant's squareclass is part of the curve (disc = c * sqf * h^2, and a
+    # rational root needs c * sqf to be a square): keep the squarefree part of c, sign included
+    sqf = sp.expand(squarefree_part(dfl[0]) * sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))
     dd = sp.Poly(sqf, oth).degree() if sqf.free_symbols else 0
     return sqf, dfl, ((dd - 1) // 2 if dd >= 1 else 0)
 
@@ -744,8 +769,9 @@ def exact_genus_verdict(phi, dg, dh):
     the verdict stays 'unknown' (the sweep's census counts it; a rigorous pass
     can finish it).  'finite' also needs the absolute-irreducibility
     certificate.  Genus <= 1 components are left to the pullback machinery.
-    Memoized per polynomial."""
-    key = (str(phi), dg, dh)
+    Memoized per polynomial AND per decision policy / settings (entry 117: a cached
+    provisional verdict must not be returned in strict mode)."""
+    key = (str(phi), dg, dh, bool(PROVISIONAL_FINITE), int(BOUND_DEGMAX), int(NF_SECONDS), int(RESOLVE_TIMEOUT), str(HIGH_DEGREE_ROUTE))
     if key in _GENUS_CACHE:
         return _GENUS_CACHE[key]
     from compute.omega3_genus import genus_lower_bound, ramification_bound, absolutely_irreducible

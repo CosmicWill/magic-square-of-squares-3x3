@@ -7,7 +7,7 @@ refutation, the $H^{2,0}$ atlas, the fourth-sieve ladder
 A9.6–A9.12, the desert at $3\times10^4$ and the first golden centers,
 and the additive desert at $10^7$). Every claim below carries the
 repository's provenance tags and is enforced by the verification suite
-(`python3 -m verify`, currently 124 checks); the
+(`python3 -m verify`, currently 200 checks (entry 117)); the
 [README ledger](../README.md#claims-ledger) is the row-by-row record,
 and [ROADMAP.md](ROADMAP.md) is the standing battle plan.*
 
@@ -235,7 +235,7 @@ proof of nothing asymptotic.
 ## Reproducing the state
 
 ```sh
-python3 -m verify              # 124 checks, FULL bounds
+python3 -m verify              # 200 checks, FULL bounds (entry 117)
 python3 -m verify --only a8    # the surface front (incl. the atlas)
 python3 -m verify --only a9    # the sphere front (incl. the ladder)
 python3 -m verify --only c4    # Theorem A9.12 end-to-end
@@ -246,4 +246,4 @@ Attack documents: [A8](attacks/A8-descent-differentials.md) (surface),
 foundations F1–F6 linked from the [README](../README.md); the battle
 plan is [ROADMAP.md](ROADMAP.md).
 [RESEARCH_LOG.md](../RESEARCH_LOG.md) is the dated narrative,
-entries 1–44.
+entries 1–44; the log now reaches entry 117 (this memo is a 2026-08-24 snapshot — the ROADMAP's R.11 and the RESEARCH_LOG are the live record).

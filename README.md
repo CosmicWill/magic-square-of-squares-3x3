@@ -73,7 +73,7 @@ exploratory checks, which SKIP cleanly when the tools are absent.
 | `docs/protocol/` | Status taxonomy and the falsification gauntlet |
 | `docs/references.md` | Literature, with provenance flags |
 | `verify/` | The mechanical verification suite (`python3 -m verify`) |
-| `compute/` | Exploratory searches and data generation (not proof-critical) |
+| `compute/` | The engines behind the machine theorems and the data files the checks verify — proof-critical since the ω = 3 campaign (entries 97–116); the checks import it |
 | `RESEARCH_LOG.md` | Dated log of everything, including negative results |
 
 ## Headline results of this repository

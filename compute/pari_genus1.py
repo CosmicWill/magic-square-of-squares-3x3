@@ -16,7 +16,17 @@ import os
 import re
 import subprocess
 
-GP = r"C:\Users\Will\pari-2.17.4\gp.exe"
+def _find_gp():
+    """The PARI/GP executable: the environment variable MSS3_GP, then gp on PATH, then the
+    portable install this project was built with (entry 117: configurable discovery)."""
+    import shutil
+    for cand in (os.environ.get("MSS3_GP"), shutil.which("gp"), shutil.which("gp.exe"), r"C:\Users\Will\pari-2.17.4\gp.exe"):
+        if cand and os.path.isfile(cand):
+            return cand
+    return r"C:\Users\Will\pari-2.17.4\gp.exe"
+
+
+GP = _find_gp()
 
 
 def gp_available():
