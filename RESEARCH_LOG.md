@@ -5896,3 +5896,70 @@ formulas) are in the logs.
 
 Doc 2.47; ROADMAP M14-U; the response document's descent section
 updated; memory. Suite 201.
+
+## 2026-09-06 — Entry 119: THE TWIST AUDIT, CONTINUED — three more constant-dropping sites (the reviewer's follow-up) repaired; the 108 quotient/two-step kills re-decided with the correct models: all stand
+
+THE FINDING (docs/PROOF-DIRECTIONS-2026-09-06.md, section 1; confirmed
+live). Entry 117 repaired the three routines the review named and
+missed three further copies of the same step: the W-route sites of
+omega3_quotients.two_step_joint and omega3_quotients._w_route and
+omega3_unknowns._rank0_model_points build the squarefree model from
+factor_list(D)[1] alone, discarding factor_list(D)[0] -- a quadratic
+twist when it is not a square. Live control: _rank0_model_points(337
+(t^4 + 1)) returned (True, model (1,0,0,0,1), t-values [0]), missing t
+= 4/3 (y = 337/9). Also gp_model converted coefficients with int(),
+which silently truncates a rational coefficient (no call site passes
+one today; the guard is cheap).
+
+THE REPAIR. The three sites multiply by squarefree_part(dfl[0])
+exactly as _disc_model does (patch: 3 lines); gp_model clears
+denominators by the square of their lcm before the square-part
+reduction.
+
+THE RE-DECISION. Entry 117's re-run of the 72 + 36 quotient kills
+could not detect a constant dropped at these sites (gone before
+gp_model saw the model). With the repaired sites all 108 kills were
+re-decided (18 s, 3 workers), every constant the sites now keep
+recorded: ALL 108 STILL DEAD; 106 never depended on a non-square
+constant (the constants were 1); two two-step kills (the swap route,
+cands [[0,1,-1],[1,-1,-1],[1,-1,0],[1,0,-1]] with signs (1,-1,1,-1)
+and (1,1,-1,1)) had dropped the sign -1 in one branch and still die
+with the sign kept -- their records annotated. No verdict changes;
+tally dead 1500 / finite 1444. The (2,1,1) box has no kill through
+these sites: the unknowns attack of entry 108 killed by the conjugate
+route (156) and the pullback (8) only, and the sweep used the engine's
+routes repaired in entry 117.
+
+THE CHECK. a3.omega3_twist gains the sites_ii record, a source guard
+(no site builds a squarefree model without squarefree_part(dfl[0]);
+gp_model contains the L^2 clearing), and two live controls (gp_model
+on t^4/4 + 1 gives the model (1,0,0,0,4); _rank0_model_points on 337
+(t^4+1) must not claim a complete rank-0 model without t = 4/3).
+
+THE REVIEWER'S SECOND DOCUMENT, otherwise. Section 2 states a
+UNIVERSAL PRIME-COLUMN LEMMA: at every split prime p_j of the center
+root with some nonzero label, the maximum of |e_{X,j}| over the four
+labels occurs at least three times (additive half: among v_p(U),
+v_p(V), v_p(U+V), v_p(U-V) the minimum occurs at least three times for
+odd p; Gaussian half: v_{p_j}(d_X) = 2(a_j - |e_{X,j}|) exactly when
+e_{X,j} != 0, since Im of a product with exactly one of z, z-bar
+divisible by pi_j is a unit at pi_j). Both halves checked by hand
+here: the proof is correct and elementary. Its census, reproduced on
+the current data with the reviewer's read-only probe: it excludes 956
+of the finite (1,1,1) classes (488 survive after entry 118 -- the
+sixteen C2 classes all survive it, so the descent was needed) and
+58,592 of the 63,336 finite (2,1,1) classes (4,744 survive), every
+free-frame class among them (it subsumes the free-frame reduction of
+entry 116 and the pending content-2 extension). NOT folded into the
+ledger in this entry: a change of that size to the campaign verdicts
+(a new uniform mechanism, thousands of classes, the R.11 inventories)
+is the owner's decision; the lemma, its check and its fold are the
+obvious next entry if adopted. The probe's own assertion that the
+sixteen C2 classes are finite now fails (they are dead since entry
+118). Sections 3-5 (cancellation patterns / global descent, lift-
+preserving quotients, the slope-surface foliation) are programs, not
+results; comments in the response document.
+
+Doc 2.48; ROADMAP M14-V and the stale R.11 tally corrected; the
+response document extended; memory. The reviewer's two files added to
+the tree unmodified. Suite 201.

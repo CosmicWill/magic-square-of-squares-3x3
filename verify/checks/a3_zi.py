@@ -4973,6 +4973,11 @@ def _(ctx):
     repaired code.  (1,1,1): 1376 engine kills audited, 206 flagged, all
     206 survive; of the 296 tower kills 8 are void (4 rescued by the
     free-frame reduction), the 72 + 36 quotient kills survive; tally {'dead': 1500, 'finite': 1444, 'unknown': 0}.
+    ENTRY 119 (the reviewer's follow-up): three more sites dropped the constant
+    (omega3_quotients' two W-route sites, omega3_unknowns._rank0_model_points)
+    and gp_model truncated rational coefficients; repaired; the 108 quotient
+    and two-step kills re-decided with the correct models: all stand (two had
+    dropped the sign -1 in one branch).  Source guards and two live controls.
     (2,1,1): 12132 engine kills audited, 4581 flagged, 0 lost; tally {'dead': 16032, 'finite': 63336}.
     Verifies the control live, the repaired helpers, the recorded audit, and
     re-decides a bounded sample of flagged classes."""
@@ -4994,6 +4999,20 @@ def _(ctx):
     for r in A2["lost_kills"]:
         c = next(c for c in d2["classes"] if c["cand"] == r["cand"])
         require(c["v"] != "dead" and "twist_audit" in c, r["cand"])
+    # entry 119: the three further sites (the reviewer's follow-up), the 108 quotient/two-step kills re-decided, gp_model's denominators
+    S2 = A1["sites_ii"]
+    require(S2["entry"] == 119 and S2["n_redecided"] == 108 and S2["n_quotient"] == 72 and S2["n_two_step"] == 36 and S2["n_changed"] == 0
+            and len(S2["constant_dependent"]) == 2 and S2["tally_after"] == {"dead": 1500, "finite": 1444}, "sites_ii")
+    for r in S2["constant_dependent"]:
+        e = next(e for e in d1["classes"] if e["cand"] == r["cand"])
+        require(e["verdict"] == "dead" and e.get("twist_audit_ii", {}).get("verdict_now") == "dead" and r["constants"] == [-1, 1]
+                and str(e["mechanism"]).startswith("two-step quotient kill (entry 106)"), r["cand"])
+    import inspect
+    from compute import omega3_quotients as OQ, omega3_unknowns as OU
+    for mod, n_sites in ((OQ, 2), (OU, 1)):
+        src = inspect.getsource(mod)
+        require(src.count("squarefree_part(dfl[0])") >= n_sites and "sqf = sp.expand(sp.Mul(" not in src, (mod.__name__, "a site drops the constant"))
+    require("squarefree_part(dfl[0])" in inspect.getsource(O._disc_model) and "int(c * L * L)" in inspect.getsource(O.gp_model), "gp_model / _disc_model")
     O.set_box((1, 1, 1))
     # the reviewer's control, live: the curve with an admissible point must not be dead
     phi = 8425 * O.th ** 2 - 11664 * (O.tg ** 4 + 1)
@@ -5010,7 +5029,11 @@ def _(ctx):
             from compute.omega3_towers import tower_frame
             r = tower_frame(cand, e["frame"])
             require(r.get("verdict") != "dead", (cand, r.get("verdict")))
-        ctx.note("PARI: the control curve is not dead (model y^2 = 337(t^4+1)); " + str(len(picks)) + " void tower kills confirmed void live")
+        tt = sp.Symbol("t")
+        require(O.gp_model(tt ** 4 / 4 + 1, tt)[0] == (1, 0, 0, 0, 4), "gp_model clears denominators by the square of the lcm")
+        ok2, minfo2, vals2 = OU._rank0_model_points(337 * (tt ** 4 + 1), tt)
+        require((not ok2) or sp.Rational(4, 3) in vals2, ("the reviewer's second control 337(t^4+1): a complete rank-0 claim must list t = 4/3", ok2, minfo2, vals2))
+        ctx.note("PARI: the control curve is not dead (model y^2 = 337(t^4+1)); " + str(len(picks)) + " void tower kills confirmed void live; second control: " + ("not a rank-0 model" if not ok2 else "t = 4/3 listed"))
     else:
         ctx.note("PARI/GP not found: the control's live decision not run")
     ctx.note("twist audit: (1,1,1) " + str(A1["n_flagged"]) + " flagged engine kills all survive, " + str(len(A1["lost_kills"])) + " tower kills void; (2,1,1) " + str(A2["n_flagged"]) + " flagged, " + str(len(A2["lost_kills"])) + " lost; tallies " + str(d1["tally"]) + " / " + str(d2["tally"]))

@@ -3026,6 +3026,36 @@ the sixteen components are degenerate (2.45): **sixteen classes dead**.  Tally o
 the $(1,1,1)$ box: dead $1500$, finite $1444$.  Conditional on the correctness of
 the published QC code and of `compute/qc/qc_sieve.sage`.
 
+## 2.48 The twist audit, continued: three more sites (entry 119)
+
+*(2026-09-06; entry 119; the reviewer's follow-up `docs/PROOF-DIRECTIONS-2026-09-06.md` §1; check `a3.omega3_twist`.)*
+
+The entry-117 repair covered the three routines named by the review, not the
+three further copies of the same step: the W-route sites of
+`omega3_quotients.two_step_joint` and `omega3_quotients._w_route`, and
+`omega3_unknowns._rank0_model_points`, all build the squarefree model from
+`factor_list(D)[1]` alone and discard `factor_list(D)[0]`.  The reviewer's live
+control: `_rank0_model_points(337(t⁴+1))` returned a complete rank-$0$ model
+$t^4+1$ with $t$-values $\{0\}$, missing $t=4/3$ ($y=337/9$).  `gp_model` also
+converted coefficients with `int()`, which silently truncates a rational
+coefficient.  Repaired as in 2.46 (the squarefree part of the constant kept,
+sign included; denominators cleared by the *square* of their lcm).
+
+**Re-decision.**  The entry-117 re-run of the $72+36$ quotient kills could not
+detect a dropped constant at these sites (it was gone before `gp_model` saw
+the model).  With the repaired sites, all $108$ kills were re-decided and every
+constant the sites now keep was recorded: **all $108$ still die**; $106$ never
+depended on a non-square constant (the constants were $1$), and two two-step
+kills had dropped the sign $-1$ in one branch and still die with the sign
+kept.  No verdict changes.  The $(2,1,1)$ box has no kill through these sites
+(the unknowns attack of entry 108 killed by the conjugate route and the
+pullback only).  Tally unchanged: dead $1500$, finite $1444$.
+
+**Rule (added to the audit's lessons).**  Instrument or repair the step that
+discards the constant, not a routine downstream of it; a source guard in the
+check now asserts that no site builds a squarefree model without
+`squarefree_part(dfl[0])`.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

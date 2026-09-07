@@ -428,7 +428,11 @@ def gp_model(poly, var):
     """The PARI model of y^2 = poly(var): the coefficients are divided only by the largest SQUARE
     dividing their gcd (entry 117: dividing by the whole gcd twisted the curve by a non-square)."""
     P = sp.Poly(poly, var)
-    cs = [int(c) for c in P.all_coeffs()]
+    cs = [sp.Rational(c) for c in P.all_coeffs()]
+    L = 1
+    for c in cs:
+        L = sp.ilcm(L, c.q)
+    cs = [int(c * L * L) for c in cs]          # entry 119: denominators cleared by L^2 (a square, no twist); int() had truncated
     sq = square_part_of_gcd(cs)
     cs = [c // sq for c in cs]
     key = tuple(cs)

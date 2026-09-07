@@ -19,7 +19,7 @@ A GENUS-0 component quadratic in a variable goes to the pullback machinery of en
 from __future__ import annotations
 import sympy as sp
 
-from compute.omega3 import (tg, th, ug, uh, lam, is_frame_ratio, degenerate, _disc_model, square_part_roots, gp_model,
+from compute.omega3 import (squarefree_part, tg, th, ug, uh, lam, is_frame_ratio, degenerate, _disc_model, square_part_roots, gp_model,
                             parametrize, decide_component, frame_factors, ORDER)
 from compute.omega3_quotients import (U, XS, ZS, coordinate_quotient, joint_quotient_xz, quotient_genus, try_kill,
                                       two_step_joint, two_step_joint_more, _rational_roots, _lift_xz_to_curve)
@@ -44,7 +44,7 @@ def _rank0_model_points(D, var):
     rank 0 with a complete enumeration; values = the rational var-values of its points
     plus the square-part roots."""
     dfl = sp.factor_list(D)
-    sqf = sp.expand(sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))
+    sqf = sp.expand(squarefree_part(dfl[0]) * sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))      # entry 119: the constant kept (a twist otherwise)
     dd = sp.Poly(sqf, var).degree() if sqf.free_symbols else 0
     genus = (dd - 1) // 2 if dd >= 1 else 0
     if genus != 1 or dd not in (3, 4):

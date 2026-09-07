@@ -25,7 +25,7 @@ recorded (Chabauty territory).
 from __future__ import annotations
 import sympy as sp
 
-from compute.omega3 import tg, th, is_frame_ratio, degenerate, _disc_model, square_part_roots, gp_model
+from compute.omega3 import tg, th, is_frame_ratio, degenerate, _disc_model, square_part_roots, gp_model, squarefree_part
 
 U = sp.Symbol("u_q")
 
@@ -362,7 +362,7 @@ def two_step_joint(phi, sym):
                         Nv, Dv = sp.fraction(sp.together(v_l))
                         D = sp.expand(Nv ** 2 - 4 * Dv ** 2)          # y^2 = v^2 - 4 (times Dv^2)
                         dfl = sp.factor_list(D)
-                        sqf = sp.expand(sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))
+                        sqf = sp.expand(squarefree_part(dfl[0]) * sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))      # entry 119: the constant kept (a twist otherwise)
                         dd = sp.Poly(sqf, lam).degree() if sqf.free_symbols else 0
                         gE = (dd - 1) // 2 if dd >= 1 else 0
                         if gE != 1 or dd not in (3, 4):
@@ -467,7 +467,7 @@ def _w_route(W, phi, lift_points, which_label, disc_expr=None):
                     models.append({"branch": str(a_l)[:40], "note": "vanishing discriminant"})
                     break
                 dfl = sp.factor_list(D)
-                sqf = sp.expand(sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))
+                sqf = sp.expand(squarefree_part(dfl[0]) * sp.Mul(*[q for q, m2 in dfl[1] if m2 % 2 == 1]))      # entry 119: the constant kept (a twist otherwise)
                 dd = sp.Poly(sqf, lam).degree() if sqf.free_symbols else 0
                 gE = (dd - 1) // 2 if dd >= 1 else 0
                 if gE != 1 or dd not in (3, 4):
