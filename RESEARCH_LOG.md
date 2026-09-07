@@ -6355,3 +6355,40 @@ survive.
 
 A11 sections 2 (version 3) and 6; ROADMAP M14-Z; a3.height_pairs
 (suite 207); memory.
+
+## 2026-09-07 — Entry 126: THE (3,1,1) BOX with the lemma and the height system first — 290,064 new classes, 97% dead by the prime-column lemma, the height system takes most of the rest, the engine decides 2,222
+
+THE RUN. The box p^3 q r has 388,216 classes (omega3.all_candidates at
+box (3,1,1)); 290,064 are new three-frame classes (some label with
+|e_1| = 3, all three frames used -- the (2,1,1) convention). Stage A
+(44 s, 3 workers): the prime-column lemma (Theorem A3.PC) kills
+281,362 (97.0%) -- a column exponent 3 demands three labels at
+|e_1| = 3; the height system (Theorem A3.HS, version 3) on the 8,702
+survivors: 6,464 infeasible (exact certificates), 16 capped (primes
+<= 46, 140, 420) and searched to death, 2,222 unbounded. Stage B: the
+fast curve engine (entry 104, decision level, no towers; RESOLVE_TIMEOUT
+60, NF_SECONDS 5, BOUND_DEGMAX 20, PROVISIONAL_FINITE; the lemma
+filter off, stage A having applied it) on the 2,222 in
+7.53 CPU-hours (median 4.1 s, max 318.0 s): {"finite* (engine)": 1181, "finite (engine)": 1025, "dead (engine)": 16}.
+
+THE TALLY: dead 287,858 / finite 1,025 / finite* 1181 / undecided
+0 (unknown, infinite or degenerate at the engine's budget; the
+(2,1,1) residue was re-decided with a larger budget in entry 107 -- the
+same can be done here). Open classes by role word: {"CBD": 112, "DBC": 112, "D*C": 96, "CBC": 88, "DBD": 88, "A**": 72, "C**": 66, "D**": 66, "ADC": 64, "ACD": 64, "C*D": 64, "C*C": 64, "A*C": 62, "A*D": 60, "CB*": 60, "DB*": 60}.
+The same families survive as in the smaller boxes: C/D deficits and
+four-maxima columns; no class with two A/B deficits in different
+columns; the exponent-3 column changes nothing structurally.
+
+COST. The (2,1,1) campaign took 44.9 CPU-hours for 79,368 classes;
+this one 7.5 for 290,064, all of it in the engine's 2,222 classes
+(stage A: 44 seconds): the uniform exclusions did the work, as R.12
+P-C' predicted. Data: compute/data_omega3_box311.json.gz
+(records as in the (2,1,1) ledger: cand, v, f, c, s; pk for a lemma
+kill, hk for a height kill, hu = the exact recession directions and
+roles for an engine class). Check a3.omega3_box311 (suite 208): the
+enumeration (full profile), the lemma census from the labels, the
+height certificates (all in full), the capped searches re-run, the
+engine records' structure and tally, a live re-decision sample. The
+research inventory extended to the third campaign (the second agent's
+module: a source added; its check re-pinned). Doc 2.51; ROADMAP M15-A
+and the R.12 table; PROGRESS; memory.

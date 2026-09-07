@@ -5036,6 +5036,93 @@ def _(ctx):
     ctx.note("pair search: bound 500 over 1558 open classes, " + str(PS["totals"]["n_candidates"]) + " candidate third primes, " + str(PS["totals"]["n_pass_inequalities"]) + " passing the inequalities, none passing every divisibility; " + str(n_rerun) + " classes re-searched at bound 60; " + str(n_circ) + " circuit identities incl. the even-S fact; " + str(planted) + " third primes found by the candidate finder, all agreeing with trial division")
 
 
+@check("a3.omega3_box311", DOC)
+def _(ctx):
+    """THE (3,1,1) BOX (entry 126; doc 2.51): every new three-frame class (some
+    |e_1| = 3, all three frames used) through the prime-column lemma, then the
+    height system (version 3) with the finite search behind a cap, then the
+    fast curve engine on the unbounded residue.  Verifies the enumeration
+    count against the engine's own all_candidates (full profile) and the
+    "new" filter; recomputes the lemma census from the labels; re-verifies
+    the height certificates (all in full, a sample in fast) and re-runs the
+    capped searches; checks the engine records' structure and the tally; and
+    re-decides a bounded sample of engine classes live."""
+    import gzip, json
+    from collections import Counter
+    from compute.prime_column import column_certificate
+    from compute.height_system import verify_certificate, analyse
+    from compute.height_search import search
+    from compute import omega3 as O
+    with gzip.open(os.path.join(DATA, "data_omega3_box311.json.gz"), "rt", encoding="utf-8") as fh:
+        d = json.load(fh)
+    T, S = d["tally"], d["stages"]
+    cl = d["classes"]
+    require(d["entry"] == 126 and d["box"] == "(3,1,1)" and d["n_classes"] == 388216 and d["n_new_three_frame"] == 290064 and len(cl) == 290064, (d["n_classes"], len(cl)))
+    require(all(any(abs(int(l[0])) == 3 for l in c["cand"][:4]) and all(any(int(l[j]) != 0 for l in c["cand"][:4]) for j in range(3)) for c in cl), "every record is a new three-frame class")
+    require(len({json.dumps(c["cand"]) for c in cl}) == 290064, "distinct classes")
+    # the lemma census from the labels
+    t = Counter()
+    for c in cl:
+        cert = column_certificate(c["cand"][:4])
+        if cert is not None:
+            require(c["v"] == "dead" and c.get("pk") == [cert["column"], cert["abs_exponents"], cert["max"], cert["count"]], (c["cand"], "lemma certificate"))
+            t["lemma"] += 1
+        else:
+            require("pk" not in c, c["cand"]); t["pass"] += 1
+    require(t["lemma"] == S["A_lemma_dead"] == 281362 and t["pass"] == 290064 - 281362, dict(t))
+    # the height system on the lemma survivors
+    hk = [c for c in cl if "hk" in c]
+    require(len(hk) == S["A_height_infeasible"] + S["A_height_capped_searched_dead"] == 6464 + 16 and all(c["v"] == "dead" and "pk" not in c for c in hk))
+    require(Counter(c["hk"]["kind"] for c in hk) == {"infeasible": 6464, "capped+search": 16} and all(c["hk"]["version"] == 3 for c in hk))
+    n = ctx.bound(full=6480, fast=120)
+    step = max(1, len(hk) // n)
+    n_ver = 0
+    for c in hk[::step][:n]:
+        if c["hk"]["kind"] == "infeasible":
+            require(verify_certificate(c["cand"], {"status": "infeasible", "certificate": c["hk"]["cert"], "version": 3}), (c["cand"], "certificate"))
+        n_ver += 1
+    capped = [c for c in hk if c["hk"]["kind"] == "capped+search"]
+    for c in capped[:ctx.bound(full=16, fast=2)]:
+        sr = c["hk"]["search"]
+        require(sr["survivors"] == [] and sr["n_pass_divisibility"] == 0, (c["cand"], sr))
+        rep = search(c["cand"], sr["caps"], (3, 1, 1), version=3)
+        require(rep["survivors"] == [] and rep["n_triples"] == sr["n_triples"] and rep["n_pass_divisibility"] == 0, (c["cand"], rep))
+    # the engine residue: unbounded classes carry exact recession directions and an engine record
+    eng = [c for c in cl if "pk" not in c and "hk" not in c]
+    require(len(eng) == S["A_pending"] == 2222 and all("hu" in c and "roles" in c and c["f"] is not None or c["v"] in ("unknown", "infinite", "degenerate") for c in eng))
+    for c in eng[::max(1, len(eng) // ctx.bound(full=200, fast=20))]:
+        res = {"status": "feasible", "version": 3, "per_prime": {j: {"status": "unbounded", "direction": dirn} for j, dirn in c["hu"].items()}}
+        require(verify_certificate(c["cand"], res), (c["cand"], "recession direction"))
+    codes = Counter(c["v"] for c in cl)
+    require(codes["dead"] == T["dead"] and codes["finite"] == T["finite"] and codes["finite*"] == T["finite*"]
+            and sum(v for k, v in codes.items() if k not in ("dead", "finite", "finite*")) == T["unknown"], dict(codes))
+    require(all(all(x.split(":")[1] == "dead" for x in c["c"] if ":" in x) for c in eng if c["v"] == "dead"), "a dead engine frame has only dead components")
+    require(all(all(x.split(":")[1] in ("dead", "finite") for x in c["c"] if ":" in x) for c in eng if c["v"] in ("finite", "finite*")), "a finite frame has only dead or finite components")
+    # a bounded live re-decision of engine classes
+    O.set_box((3, 1, 1))
+    saved = (O.RESOLVE_TIMEOUT, O.NF_SECONDS, O.BOUND_DEGMAX, O.PROVISIONAL_FINITE)
+    O.RESOLVE_TIMEOUT, O.NF_SECONDS, O.BOUND_DEGMAX, O.PROVISIONAL_FINITE = 60, 5, 20, True
+    n_live = 0
+    try:
+        picks = [c for c in eng if c["v"] in ("dead", "finite")]
+        for c in picks[::max(1, len(picks) // ctx.bound(full=6, fast=2))][:ctx.bound(full=6, fast=2)]:
+            cand = tuple(tuple(x) if isinstance(x, list) else x for x in c["cand"])
+            best, frames = O.decide_class_fast(cand, prime_filter=False)
+            require(best == c["v"] or (best == "finite" and c["v"] == "finite*"), (cand, best, c["v"]))
+            n_live += 1
+    finally:
+        O.RESOLVE_TIMEOUT, O.NF_SECONDS, O.BOUND_DEGMAX, O.PROVISIONAL_FINITE = saved
+        O.set_box((1, 1, 1))
+    if ctx.bound(full=1, fast=0):
+        O.set_box((3, 1, 1))
+        try:
+            allc = O.all_candidates()
+            require(len(allc) == 388216 and sum(1 for c in allc if any(abs(l[0]) == 3 for l in c[:4]) and all(any(l[j] != 0 for l in c[:4]) for j in range(3))) == 290064, "the enumeration")
+        finally:
+            O.set_box((1, 1, 1))
+    ctx.note("(3,1,1): 290064 new classes -- lemma " + str(S["A_lemma_dead"]) + ", height infeasible " + str(S["A_height_infeasible"]) + " + capped/searched " + str(S["A_height_capped_searched_dead"]) + ", engine " + str(S["B_engine"]) + "; tally " + str(T) + "; " + str(n_ver) + " certificates re-verified, " + str(n_live) + " classes re-decided live")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

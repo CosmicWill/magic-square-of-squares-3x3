@@ -21,7 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 ARTIFACT = ROOT / "compute/data_research_survivors.json.gz"
 REPORT = ROOT / "docs/RESEARCH-INVENTORY.md"
 SOURCES = {"111": "compute/data_omega3_box111.json",
-           "211": "compute/data_omega3_box211.json.gz"}
+           "211": "compute/data_omega3_box211.json.gz",
+           "311": "compute/data_omega3_box311.json.gz"}      # entry 126: the (3,1,1) campaign (new three-frame classes)
 
 
 def encoded(value):
@@ -53,9 +54,9 @@ def build():
             if certificate is None:
                 passed[verdict] += 1
             if verdict != "finite":
-                if verdict != "dead":
+                if verdict not in ("dead", "finite*", "unknown", "infinite", "degenerate"):
                     raise ValueError(f"{shape}:{index}: unhandled verdict {verdict}")
-                continue
+                continue      # entry 126: the (3,1,1) engine residue (finite*, unknown, ...) is not yet an open finite record
             if certificate is not None:
                 raise ValueError(f"{shape}:{index}: an open class violates A3.PC")
             patterns = candidate_patterns(record["cand"])
