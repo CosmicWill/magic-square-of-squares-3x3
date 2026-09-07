@@ -4959,6 +4959,83 @@ def _(ctx):
     ctx.note("height system: " + str(n_id) + " exact identities and " + str(n_circ) + " circuit decompositions on genuine frames; " + str(sum(t1.values())) + " + " + str(n_ver) + " certificates re-verified (versions 1 and 2); " + str(len(sample)) + " live LPs; " + str(n_s) + " searches re-run; tallies " + str(d1["tally"]) + " / " + str(d2["tally"]))
 
 
+@check("a3.height_pairs", DOC)
+def _(ctx):
+    """THE PAIR SEARCH (entry 125; A11 section 6).  For an open class a pair of
+    primes determines the third through the column's divisibility (a binomial
+    p_j^{2g} | Im A / Re A / N(A - lambda Abar), or a trinomial pi_j^{4M} | S),
+    so enumerating every pair of split primes <= B in every column finds every
+    solution whose two smallest primes are <= B.  Recorded: B = 500 over all
+    170 + 1388 open classes, no candidate passing every divisibility, none
+    reaching the relations.  Version 3 of the system (S even for the 2, +-1,
+    +-1 circuits) leaves every open class unbounded.  Verifies the recorded
+    block, the even-S fact on genuine frames, re-runs the search at a small
+    bound on a sample, and checks the candidate finder against a planted
+    prime."""
+    import gzip, json
+    from compute.height_identities import circuit_identity_tests
+    from compute.height_pairs import pair_search, candidates, determining_relation, factor
+    from compute.height_system import system, analyse
+    from compute.height_search import two_squares, gconj
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d1 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        d2 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_height_system.json.gz"), "rt", encoding="utf-8") as fh:
+        H = json.load(fh)
+    PS = H["pair_search"]
+    require(PS["entry"] == 125 and PS["bound"] == 500 and PS["n_classes"] == 1558 and len(PS["classes"]) == 1558 and PS["totals"]["survivors"] == 0
+            and PS["totals"]["near_misses"] == 0 and PS["totals"]["degenerate"] == 0 and PS["totals"]["n_candidates"] > 100000, PS["totals"])
+    P1, P2 = d1["height_system"]["pair_search"], d2["height_system"]["pair_search"]
+    require(P1["classes"] == 170 and P2["classes"] == 1388 and P1["survivors"] == 0 and P2["survivors"] == 0 and P1["near_misses"] == 0 and P2["near_misses"] == 0)
+    opens1 = [(idx, e) for idx, e in enumerate(d1["classes"]) if e["verdict"] == "finite"]
+    opens2 = [(idx, c) for idx, c in enumerate(d2["classes"]) if c["v"] == "finite"]
+    require(len(opens1) == 170 and len(opens2) == 1388 and all(f"111:{i}" in PS["classes"] for i, _ in opens1) and all(f"211:{i}" in PS["classes"] for i, _ in opens2), "every open class searched")
+    require(all(not r["survivors"] and not r["near_misses"] and len(r["columns"]) == 3 for r in PS["classes"].values()), "no survivor or near miss in any class")
+    n_circ = circuit_identity_tests(trials=ctx.bound(full=30, fast=8), seed=11)      # includes the even-S fact of version 3
+    # the search re-run at a small bound on a sample of open classes: the relation used per column agrees, no survivor
+    n_rerun = 0
+    for idx, e in opens1[::max(1, 170 // ctx.bound(full=40, fast=4))]:
+        rep = pair_search(e["cand"], (1, 1, 1), 60)
+        rec = PS["classes"][f"111:{idx}"]
+        require(not rep["survivors"] and not rep["near_misses"] and rep["degenerate_relations"] == 0
+                and all(rep["columns"][j]["relation"] == rec["columns"][str(j)]["relation"] for j in range(3)), (e["cand"], "pair search re-run"))
+        n_rerun += 1
+    for idx, c in opens2[::max(1, 1388 // ctx.bound(full=40, fast=3))]:
+        rep = pair_search(c["cand"], (2, 1, 1), 60)
+        require(not rep["survivors"] and not rep["near_misses"], (c["cand"], "pair search re-run"))
+        n_rerun += 1
+    # the candidate finder against brute force: for the binomial relations of a few open classes and every pair of split
+    # primes <= 120 (two conjugate patterns), the primes p <= 20000 with p^{2g} | I found by factoring must agree with trial division
+    from itertools import product
+    from compute.height_pairs import binomial_integer
+    from compute.height_search import split_primes
+    small = split_primes(20000)
+    planted = 0
+    for idx, e in opens1[:ctx.bound(full=6, fast=2)]:
+        cols, ineqs, lower = system(e["cand"], 3)
+        for col in cols:
+            rel = determining_relation(col)
+            if rel["kind"] != "binomial":
+                continue
+            others = [k for k in range(3) if k != col["j"]]
+            for pk, pl in product(split_primes(120), repeat=2):
+                if pk == pl:
+                    continue
+                for pat in ((1, 1), (1, -1)):
+                    pis = {others[0]: two_squares(pk) if pat[0] == 1 else gconj(two_squares(pk)), others[1]: two_squares(pl) if pat[1] == 1 else gconj(two_squares(pl))}
+                    I = binomial_integer(rel, pis)
+                    got = sorted({p for p, pi in candidates(col, rel, pis, {others[0]: pk, others[1]: pl})})
+                    bf = sorted(p for p in small if I % p ** (2 * col["g"]) == 0 and p not in (pk, pl) and p >= lower[col["j"]] and (col["role"] not in "CD" or p % 8 == 1))
+                    require([p for p in got if p <= 20000] == bf, (e["cand"], col["j"], I, got, bf))
+                    planted += len(got)
+    require(planted >= 1, "the candidate finder found no third prime at all in the control")
+    # version 3 leaves every open class unbounded (a sample, live)
+    for idx, e in opens1[::max(1, 170 // ctx.bound(full=20, fast=4))]:
+        require(analyse(e["cand"], version=3)["status"] == "feasible", (e["cand"], "version 3"))
+    ctx.note("pair search: bound 500 over 1558 open classes, " + str(PS["totals"]["n_candidates"]) + " candidate third primes, " + str(PS["totals"]["n_pass_inequalities"]) + " passing the inequalities, none passing every divisibility; " + str(n_rerun) + " classes re-searched at bound 60; " + str(n_circ) + " circuit identities incl. the even-S fact; " + str(planted) + " third primes found by the candidate finder, all agreeing with trial division")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

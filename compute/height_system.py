@@ -54,9 +54,10 @@ def sgn(x):
     return (x > 0) - (x < 0)
 
 
-def column(cand, j, version=2):
+def column(cand, j, version=3):
     """The relations of column j: the binomials and trinomials with their exact data.
-    version 1 = entry 123 (trinomial bound |S_1| >= 1); version 2 = entry 124 (the reality sharpening (T'))."""
+    version 1 = entry 123 (trinomial bound |S_1| >= 1); version 2 = entry 124 (the reality sharpening (T'));
+    version 3 = entry 125 (S even for the 2, +-1, +-1 circuits: K = 4 becomes 2)."""
     labels, eps = [tuple(int(x) for x in lab) for lab in cand[:4]], [int(x) for x in cand[4:]]
     col = [lab[j] for lab in labels]
     M = max(abs(e) for e in col)
@@ -109,6 +110,10 @@ def column(cand, j, version=2):
             fmin = {k: min(f[X][k] for X in trip) for k in others}
             r = {k: fmax[k] - fmin[k] for k in others}
             K = sum(abs(v) for v in a.values())
+            if version >= 3 and K == 4:
+                # version 3: with coefficients 2, +-1, +-1 the Gaussian integer S = 2(+-1) +- 1 +- 1 mod 4 (every pi_k^2 is
+                # +-1 mod 4) is even, so S_1 = S / pi^{4M} is even: |S_1| >= 2 prod p_k^{|fmax + fmin|} and K drops to 2
+                K = 2
             if version >= 2:
                 # (T'): S = pi^{4M} S_1 with S_1 Gbar real (the exact identity pibar^{4M} W = pi^{4M} Wbar), so
                 # |S_1| >= prod p_k^{|fmax_k + fmin_k|} and p_j^{2M} <= K prod p_k^{2 min(fmax_k, -fmin_k)}
@@ -119,7 +124,7 @@ def column(cand, j, version=2):
     return dict(j=j, M=M, g=g, role=role, deficient=deficient, maximal=maximal, s=s, sigma=sigma, f=f, relations=rels)
 
 
-def system(cand, version=2):
+def system(cand, version=3):
     """All inequalities of a class: [(coeff dict, K, name)] meaning prod p_j^{coeff_j} <= K, and the
     CP.2 lower bounds per prime.  version 1 reproduces entry 123, version 2 adds the reality sharpening."""
     if column_certificate(cand[:4]) is not None:
@@ -168,7 +173,7 @@ def _exact_product(rows, y):
     return D, val
 
 
-def analyse(cand, version=2):
+def analyse(cand, version=3):
     """The linear programme of a class: per prime, 'infeasible' (with an exact certificate that no
     primes satisfy the system: the class is impossible), 'capped' (exact certificate + bound) or
     'unbounded' (an exact positive recession direction).  The result records the system version."""

@@ -63,7 +63,7 @@ def divisible_by_pi_power(S, pi, p, n):
     return t[0] % q == 0 and t[1] % q == 0
 
 
-def class_conditions(cand, version=2):
+def class_conditions(cand, version=3):
     """The exact conditions of a class: rows (inequalities), per-prime residue roles, and the
     divisibility descriptors (binomials and trinomials with their exact data)."""
     cols, ineqs, lower = system(cand, version)
@@ -136,7 +136,7 @@ def relations_vanish(cand, pis):
     return eA * e["A"] + eB * e["B"] - eC * e["C"] == 0 and eA * e["A"] - eB * e["B"] - eD * e["D"] == 0
 
 
-def search(cand, caps, box, version=2):
+def search(cand, caps, box, version=3):
     """Enumerate the prime triples inside the caps; returns the report (the system version recorded)."""
     from compute import omega3 as O
     O.set_box(tuple(box))

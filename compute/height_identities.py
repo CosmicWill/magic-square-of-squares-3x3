@@ -261,5 +261,8 @@ def circuit_identity_tests(trials=30, seed=2):
                     S = S + r["coeffs"][X] * T
                 d = S - G * W
                 assert d.a == 0 and d.b == 0, ("S = G W", r["circuit"])
+                if sum(abs(v) for v in r["coeffs"].values()) == 4:
+                    # version 3: with coefficients 2, +-1, +-1 the Gaussian integer S is even (every pi_k^2 is +-1 mod 4)
+                    assert S.a % 2 == 0 and S.b % 2 == 0, ("S even for a 2, +-1, +-1 circuit", r["circuit"], S)
                 n_tests += 1
     return n_tests

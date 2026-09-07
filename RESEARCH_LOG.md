@@ -6304,3 +6304,54 @@ determines finitely many candidates for p_j. Next: the pair search
 A11 section 2 (T'); doc 2.50 addendum; ROADMAP M14-Y and the R.12
 table; PROGRESS; a3.height_system extended (versions, the circuit
 identities); memory. Suite 206.
+
+## 2026-09-07 — Entry 125: THE PAIR SEARCH — no open class has a solution whose two smallest primes are at most 500; version 3; the local method exhausted for the 1,558 survivors
+
+THE IDEA. For an open class the height system's divisibilities are
+congruences between the primes: at a deficient column j a binomial
+says p_j^{2g} | I(pi_k, pi_l) with I = Im A, Re A or N(A - lambda
+Abar) an explicit integer in the other two frames; at a four-maxima
+column a trinomial says pi_j^{4M} | S(pi_k, pi_l). A pair (p_k, p_l)
+therefore determines finitely many candidates for p_j -- the prime-
+power divisors of I or of N(S) -- whatever the size of p_j.
+compute/height_pairs.py enumerates, for every column j, every ordered
+pair of admissible split primes <= B in the other two columns (both
+conjugate frames of each), determines the candidates from the
+column's cheapest relation (a |lambda| = 1 binomial if there is one,
+else any binomial, else the trinomial of least spread), and tests
+every candidate triple against every inequality, every residue
+condition, every divisibility under all conjugate-frame choices, and
+the relations R1 = R2 = 0. A solution whose two smallest primes are
+<= B is caught by the run in the column of its largest prime.
+
+THE RESULT (B = 500, 45 split primes, all 170 + 1,388 open classes, 3
+workers, ~50 min): candidate third primes examined, passing the
+inequalities, passing every divisibility: see the recorded totals --
+NONE passes every divisibility, so none reaches the relations and
+there is no near miss. Statement: no open class of either ledger has
+a solution whose two smallest primes are at most 500. Data, not a
+proof; also a consistency test of the pipeline (a planted-prime control
+in the check confirms the candidate finder), and evidence that the
+divisibilities are already very restrictive at these sizes.
+
+VERSION 3. For a 2, +-1, +-1 circuit S = +-2 +- 1 +- 1 mod 4 is even
+(every pi_k^2 is +-1 mod 4; verified on genuine frames), so S_1 is
+even and K = 4 becomes 2. No verdict changes: unboundedness is a
+property of the homogeneous rows, every one of the 1,558 open classes
+stays unbounded. The binomial rows admit no reality sharpening (the
+exact identity of a binomial circuit involves the deficient term and
+yields a residue condition, not a size condition). THE LOCAL METHOD IS
+EXHAUSTED AT FIRST ORDER FOR THE SURVIVORS.
+
+WHAT THE SURVIVORS ARE. Their sharpened inequalities admit a positive
+recession direction: primes growing together satisfy every first-order
+condition; what remains is the curve -- the exact identities are the
+ledger's relations, and their content beyond the first order is the
+elimination curve in two frames. The next attacks are therefore global:
+the survivors' curves (towers, bielliptic models, the entry-118
+pipeline), the (3,1,1) box with the lemma and the height system
+applied before any curve, and the theory of why these role words
+survive.
+
+A11 sections 2 (version 3) and 6; ROADMAP M14-Z; a3.height_pairs
+(suite 207); memory.
