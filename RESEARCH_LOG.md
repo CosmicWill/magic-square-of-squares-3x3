@@ -6180,3 +6180,79 @@ ledger's variable-prime classes could never see it); CP.3-CP.4 are the
 right interface for a descent and the first experiment shows norms
 alone are not enough -- the next step must keep the residues of the
 binomials, or use the four-maximal trinomials. Suite 205.
+
+## 2026-09-07 — Entry 123: THE HEIGHT SYSTEM — CP.4 sharpened and completed (Theorem A3.HS): 274 of the 488 open (1,1,1) classes and 2,784 of the 4,744 open (2,1,1) classes are impossible for every choice of primes
+
+THE SHARPENING (A11 section 2). For a binomial with lambda = +-1 the
+denominator is the conjugate of the numerator, so A -+ Abar is 2i Im A
+or 2 Re A, a rational integer, and pi^{2g} | (A -+ Abar) becomes
+p^{2g} | Im A or Re A: p^{2g} <= |A| = prod p_k^{|d_k|} -- twice the
+exponent of A10's (H); A is +-1 mod 4 so 4 | Im A (8 when every d_k is
+even). For |lambda| = 2, p^{2g} | N(A - lambda Abar) = 5P^2 - 2 lambda
+Re(A^2), as before. Every circuit among three maximal labels (the
+circuit avoiding the deficient label; all four in a four-maxima
+column) gives a TRINOMIAL congruence sum a_X U_X = 0 mod pi^{4M};
+clearing denominators and the common Gaussian factor gives S = sum a_X
+T_X, a Gaussian integer with |T_X| = Q = prod p_k^{r_k} (r_k the spread
+of the exponents), and S != 0: for coefficients +-1, +-1, +-1 a
+vanishing sum of three numbers of equal modulus is an equilateral
+triangle (a ratio e^{+-i pi/3} outside Q(i)); for 2, +-1, +-1 it
+forces the two unit-coefficient monomials equal, i.e. two labels equal
+up to sign. Hence p^{2M} <= K Q, K = sum |a| in {3, 4}. Binomials of
+different columns constraining the same integer multiply. CP.2 gives
+p >= 5, >= 17 for a C/D deficit (p = 1 mod 8), >= 29 for four maxima
+(5, 13, 17 admit no t with t, 1+-t nonzero squares). All of this is
+invariant under the frame group, so the canonical class decides its
+orbit.
+
+THE DECISION (compute/height_system.py). Every condition is prod
+p_j^{a_j} <= K: linear in log p. The linear programme (HiGHS) decides
+each class and every verdict is certified in exact rational arithmetic
+-- infeasible: Farkas multipliers with sum y_i a_i = 0 and prod
+K_i^{D y_i} < 1 (no primes at all satisfy the necessary conditions);
+capped: multipliers with sum y_i a_i = e_j, p_j^D <= prod K_i^{D y_i};
+unbounded: a positive recession direction. THE SEARCH
+(compute/height_search.py): for a class with all three primes capped,
+every split-prime triple inside the caps is tested against every
+inequality exactly, the residue conditions, every exact divisibility
+under each of the eight conjugate-frame choices, and the relations R1
+= R2 = 0 themselves.
+
+THE RESULTS. (1,1,1): of 488 open classes 274 INFEASIBLE, 214
+unbounded; (2,1,1): of 4,744 open classes 2,732 INFEASIBLE, 52 CAPPED
+(all three primes <= 6561, median 108) and searched to death (at most
+887,124 admissible triples per class, at most 1,001 passing the
+inequalities, none passing the divisibilities), 1,960 unbounded.
+Tallies: (1,1,1) dead 2730 / finite 214; (2,1,1) dead 77,408 / finite
+1,960. Worked case (roles AA*): p_0^2 p_1^2 | Re(pi_2^4) from two
+columns, so p_0 p_1 <= p_2, and the four-maxima G-trinomial gives
+p_2^2 <= 3 p_0 p_1^2: p_0 <= 3. The first height experiment's negative
+answer (entry 121) was an artefact of the weaker bounds; the sharpened
+system is the lead attack's first success. These are the first kills
+in the record that are unconditional for all primes and need no curve
+beyond the prime-column lemma.
+
+VERIFICATION. compute/height_identities.py checks the algebra on
+genuine Gaussian primes in exact arithmetic: the dictionary m^2
+s(Z_X)/(2i) = eps_X elem_box(X) (so F, G are the ledger's R1, R2), the
+CP.3 congruences at valuations >= 4M / >= 2g, U_Y/U_X = A/Abar, |A|,
+A neither real nor imaginary, the 2-adic facts, the trinomial
+construction (S a nonzero Gaussian integer equal to a unit at pi times
+sum a U): 1120 identities over 40 random classes of four boxes. The
+check a3.height_system (suite 206) re-runs these, the residue facts,
+re-verifies every certificate exactly from the class alone (all 274 +
+214 of (1,1,1), a sample of the 2,784 in the fast profile), reproduces
+the LP verdicts live on a sample, and re-runs the finite search. All
+3,006 + 156 certificates verified. The second agent's inventory was
+regenerated on the survivors (214 + 1,960; its check re-pinned).
+
+WHAT IS LEFT. The 2,174 unbounded classes: their inequalities admit a
+recession direction (large exponent spreads in four-maxima trinomials,
+|d_k| = 2 binomials). Next: the exact divisibilities as congruences
+between the primes (a bounded search per class), the next-order value
+of each binomial (the deficient label's leading unit, not yet used),
+the 2-adic structure of the trinomials, and the (3,1,1) box with the
+lemma and the height system applied before any curve.
+
+Doc 2.50 (Theorem A3.HS); A11; A10 section 8; ROADMAP M14-X and the
+R.12 table; PROGRESS; memory. Suite 206.

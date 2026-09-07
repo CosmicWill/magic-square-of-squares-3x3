@@ -172,3 +172,7 @@ A failed inequality, a counterexample to a proposed family rule, or a proof that
 `compute/cancellation_patterns.py` records all five role templates, exact Laurent additive witnesses, signed exponent ratios, congruence depths, finite-field square controls, exact binomial exponents, and the height-direction experiment. `a3.cancellation_patterns` checks the identities and finite instances independently of the curve engine. `a3.prime_column_engine` verifies that excluded classes bypass curve computation and survivors reach it. `a3.research_inventory` checks completeness, provenance, binomial exponents, every positive height direction, and freshness of the generated inventory.
 
 The proofs above supply the universal claims; the finite checks validate their implementation. No new magic-square nonexistence slice beyond A3.PC is claimed by these computations.
+
+## 8. Sequel: the height system (entry 123)
+
+[A11](A11-height-system.md) sharpens CP.4 (for λ = ±1 the binomial is read on the rational integer A ∓ Ā, doubling the exponent), adds the trinomial congruences of every circuit (nonvanishing by the equilateral-triangle argument), couples binomials that constrain the same integer, and decides each class by linear programming with exact certificates: 274 of the 488 open (1,1,1) classes and 2,732 + 52 of the 4,744 open (2,1,1) classes are impossible for every choice of primes. The first height experiment's negative answer was an artefact of the weaker bounds.

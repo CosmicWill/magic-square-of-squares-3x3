@@ -1,10 +1,10 @@
 # The state of the program
 
-*Current checkpoint: 2026-09-06. The verification registry contains 205 checks; this is not a claim that each proof has a complete automated certificate replay. The [README ledger](../README.md#claims-ledger), [research log](../RESEARCH_LOG.md), and [current roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) give the detailed record.*
+*Current checkpoint: 2026-09-06. The verification registry contains 206 checks; this is not a claim that each proof has a complete automated certificate replay. The [README ledger](../README.md#claims-ledger), [research log](../RESEARCH_LOG.md), and [current roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) give the detailed record.*
 
 ## Current arithmetic checkpoint
 
-The magic-square existence question remains open. The prime-column lemma A3.PC is a uniform necessary condition for every exponent shape and every number of split primes. It eliminates every free-frame class. After the completed C2 bielliptic descent and the lemma's fold, the working ledgers contain 2,456 dead / 488 open finite classes for the full (1,1,1) box, and 74,624 dead / 4,744 open finite classes for the additional (2,1,1) campaign. These are finiteness results, not complete exclusions of those shapes.
+The magic-square existence question remains open. The prime-column lemma A3.PC is a uniform necessary condition for every exponent shape and every number of split primes. It eliminates every free-frame class. After the completed C2 bielliptic descent, the lemma's fold and the height system of entry 123 (Theorem A3.HS: the unit congruences as prime inequalities, decided by linear programming with exact certificates), the working ledgers contain 2,730 dead / 214 open finite classes for the full (1,1,1) box, and 77,408 dead / 1,960 open finite classes for the additional (2,1,1) campaign. The open classes carry finiteness certificates only; the height-system kills are unconditional for every choice of primes.
 
 The [research inventory](RESEARCH-INVENTORY.md) is generated from the ledgers with exact candidate and source provenance. The engine applies A3.PC before curve decisions. [A10](attacks/A10-cancellation-descent.md) proves that the relaxed Laurent system has no further valuation-support obstruction, and derives leading-square restrictions and unit congruences. A global descent from those congruences is still an open investigation.
 

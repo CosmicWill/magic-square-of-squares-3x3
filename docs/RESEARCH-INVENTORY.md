@@ -8,8 +8,8 @@ Every open record retains its canonical candidate, source index and hash, signed
 
 | Campaign scope | Ledger classes | Dead | Open finite | Pass A3.PC but already dead |
 |---|---:|---:|---:|---:|
-| 111 (full box) | 2,944 | 2,456 | 488 | 290 |
-| 211 (additional three-frame classes only) | 79,368 | 74,624 | 4,744 | 694 |
+| 111 (full box) | 2,944 | 2,730 | 214 | 564 |
+| 211 (additional three-frame classes only) | 79,368 | 77,408 | 1,960 | 3,478 |
 
 The second row is an incremental campaign, not the full (2,1,1) box. Counts describe canonical classes, not distinct curves or magic squares.
 All sixteen C2 classes closed in entry 118 remain outside this open inventory. Every free-frame class is excluded by A3.PC.
@@ -23,9 +23,9 @@ For arithmetic geometry, the evidence retains the existing towers and quotient m
 
 | Campaign | Recorded arithmetic route | Open classes |
 |---|---|---:|
-| 111 | hyperelliptic tower | 88 |
-| 111 | resolved curve and quotients | 400 |
-| 211 | compact campaign certificate | 4,744 |
+| 111 | hyperelliptic tower | 32 |
+| 111 | resolved curve and quotients | 182 |
+| 211 | compact campaign certificate | 1,960 |
 
 ## Representatives for independent attacks
 
@@ -34,39 +34,35 @@ One representative per role multiset and campaign is listed below. Use all membe
 | Roles | 111 count / representative | Additional 211 count / representative |
 |---|---|---|
 | `***` | 4 / `111:2918` | 12 / `211:70082` |
-| `**A` | 36 / `111:1616` | 132 / `211:19264` |
-| `**B` | — | 72 / `211:67686` |
-| `**C` | 22 / `111:2787` | 118 / `211:68838` |
-| `**D` | 22 / `111:2884` | 118 / `211:69946` |
-| `*AA` | 12 / `111:886` | 120 / `211:8214` |
-| `*AB` | 24 / `111:2074` | 296 / `211:21512` |
-| `*AC` | 80 / `111:1504` | 280 / `211:19080` |
-| `*AD` | 80 / `111:1584` | 280 / `211:19232` |
-| `*BB` | — | 12 / `211:71500` |
-| `*BC` | — | 352 / `211:65829` |
-| `*BD` | — | 352 / `211:67566` |
-| `*CC` | 10 / `111:2726` | 82 / `211:68696` |
-| `*CD` | 32 / `111:2763` | 312 / `211:68810` |
-| `*DD` | 10 / `111:2880` | 82 / `211:69938` |
-| `AAA` | — | 24 / `211:63400` |
-| `AAB` | 2 / `111:1216` | 124 / `211:10188` |
-| `AAC` | 10 / `111:1004` | 116 / `211:8948` |
-| `AAD` | 10 / `111:893` | 116 / `211:8222` |
-| `ABB` | — | 54 / `211:24768` |
-| `ABC` | 16 / `111:2192` | 240 / `211:22120` |
-| `ABD` | 16 / `111:2050` | 240 / `211:21536` |
-| `ACC` | 12 / `111:1660` | 52 / `211:19344` |
-| `ACD` | 60 / `111:1512` | 192 / `211:19088` |
-| `ADD` | 12 / `111:1600` | 52 / `211:19248` |
-| `BBC` | — | 46 / `211:70376` |
-| `BBD` | — | 46 / `211:71380` |
-| `BCC` | — | 112 / `211:66741` |
-| `BCD` | — | 384 / `211:65836` |
-| `BDD` | — | 112 / `211:67614` |
-| `CCC` | — | 12 / `211:69388` |
-| `CCD` | 9 / `111:2730` | 95 / `211:68704` |
-| `CDD` | 9 / `111:2771` | 95 / `211:68822` |
-| `DDD` | — | 12 / `211:70002` |
+| `**A` | 24 / `111:1632` | 120 / `211:19280` |
+| `**B` | — | 48 / `211:68308` |
+| `**C` | 18 / `111:2791` | 106 / `211:68842` |
+| `**D` | 18 / `111:2884` | 106 / `211:69946` |
+| `*AA` | — | 48 / `211:51448` |
+| `*AB` | — | 24 / `211:35893` |
+| `*AC` | 16 / `111:1554` | 96 / `211:19130` |
+| `*AD` | 16 / `111:1624` | 96 / `211:19272` |
+| `*BC` | — | 84 / `211:66641` |
+| `*BD` | — | 84 / `211:68518` |
+| `*CC` | 8 / `111:2841` | 64 / `211:68928` |
+| `*CD` | 32 / `111:2763` | 288 / `211:68810` |
+| `*DD` | 8 / `111:2892` | 64 / `211:69954` |
+| `AAC` | — | 8 / `211:60360` |
+| `AAD` | — | 8 / `211:59632` |
+| `ABC` | — | 35 / `211:36062` |
+| `ABD` | — | 35 / `211:36498` |
+| `ACC` | 12 / `111:1660` | 28 / `211:19344` |
+| `ACD` | 28 / `111:1512` | 104 / `211:19088` |
+| `ADD` | 12 / `111:1600` | 28 / `211:19248` |
+| `BBC` | — | 2 / `211:70881` |
+| `BBD` | — | 2 / `211:71714` |
+| `BCC` | — | 64 / `211:72176` |
+| `BCD` | — | 160 / `211:72016` |
+| `BDD` | — | 64 / `211:73912` |
+| `CCC` | — | 10 / `211:69388` |
+| `CCD` | 9 / `111:2730` | 81 / `211:68708` |
+| `CDD` | 9 / `111:2771` | 81 / `211:68822` |
+| `DDD` | — | 10 / `211:70002` |
 
 ## Leading-square residue controls
 
@@ -90,10 +86,10 @@ Each record includes CP.4's explicit unit binomials and necessary norm bounds. A
 
 | Direction for the three log-primes | Open records |
 |---|---:|
-| `(1, 1, 1)` | 4,672 |
-| `(1, 1, 2)` | 448 |
-| `(1, 2, 1)` | 56 |
-| `(1, 2, 2)` | 56 |
+| `(1, 1, 1)` | 2,014 |
+| `(1, 1, 2)` | 112 |
+| `(1, 2, 1)` | 40 |
+| `(1, 2, 2)` | 8 |
 
 ## Evidence and next questions
 

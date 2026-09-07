@@ -3117,6 +3117,17 @@ unit congruences and binomial norm bounds, and records a positive unbounded
 height direction for every open class. The individual norm bounds therefore
 cannot finish the descent; compatibility across primes remains the target.
 
+## 2.50 The height system (Theorem A3.HS): the unit congruences as prime inequalities (entry 123)
+
+*(2026-09-07; entry 123; full statement, proofs and results in [A11](A11-height-system.md); `compute/height_system.py`, `compute/height_search.py`; check `a3.height_system`.)*
+
+**Theorem A3.HS.**  *Let a class (labels $A,B,C,D$, signs) admit a solution with split primes $p_j=\pi_j\bar\pi_j$.  At every column $j$ (maximum $M$, deficit $g$ if a label is deficient), every circuit $F,G,F\pm G$ of the two additive relations gives, among the maximal labels, either a binomial $U_Y/U_X\equiv\lambda$ mod $\pi_j^{2g}$ ($\lambda\in\{\pm1,\pm2\}$) or a trinomial $\sum a_XU_X\equiv0$ mod $\pi_j^{4M}$, and these imply the exact divisibilities and inequalities*
+$$p_j^{2g}\mid\operatorname{Im}A\ (\lambda=1),\quad p_j^{2g}\mid\operatorname{Re}A\ (\lambda=-1),\quad p_j^{2g}\mid N(A-\lambda\bar A)\ (|\lambda|=2),\quad \pi_j^{4M}\mid S,$$
+$$2^tp_j^{2g}\le\prod_{k\ne j}p_k^{|d_k|},\qquad p_j^{g}\le3\prod_{k\ne j}p_k^{|d_k|},\qquad p_j^{2M}\le K\prod_{k\ne j}p_k^{r_k}\ (K\in\{3,4\}),$$
+*with $A$ the Gaussian monomial of the exponent difference $d=f_Y-f_X$ (neither real nor imaginary), $S$ the nonzero Gaussian integer of the trinomial, binomials of different columns on the same integer multiplying, and $p_j\ge5$, $\ge17$ (C/D deficit), $\ge29$ (four maxima).*  The proofs are in A11 §2: the binomial half is $A/\bar A\equiv\lambda$ read on the rational integer $A\mp\bar A$; the trinomial half is the equilateral-triangle / collinearity argument; the lower bounds are CP.2.
+
+**Decision.**  The inequalities are linear in $\log p_j$.  A class whose system is infeasible (an exact Farkas certificate) is impossible for every choice of primes; a class whose system caps all three primes is decided by the finite search inside the caps (A11 §3).  **Results:** $(1,1,1)$: $274$ of the $488$ open classes infeasible, $214$ unbounded; $(2,1,1)$: $2{,}732$ infeasible, $52$ capped and searched to death (caps $\le6561$), $1{,}960$ unbounded.  Tallies: $(1,1,1)$ dead $2730$ / finite $214$; $(2,1,1)$ dead $77{,}408$ / finite $1{,}960$.  These are the first kills in the record that are unconditional for all primes and independent of any curve computation beyond the prime-column lemma.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
