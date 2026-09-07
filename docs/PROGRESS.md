@@ -1,15 +1,14 @@
 # The state of the program
 
-*A standing honest assessment: what has genuinely been achieved, what it
-means, and what it does not mean. Updated at milestones (last:
-2026-08-28, after the M12 wave: the literature sweep and Hill
-refutation, the $H^{2,0}$ atlas, the fourth-sieve ladder
-A9.6–A9.12, the desert at $3\times10^4$ and the first golden centers,
-and the additive desert at $10^7$). Every claim below carries the
-repository's provenance tags and is enforced by the verification suite
-(`python3 -m verify`, currently 200 checks (entry 117)); the
-[README ledger](../README.md#claims-ledger) is the row-by-row record,
-and [ROADMAP.md](ROADMAP.md) is the standing battle plan.*
+*Current checkpoint: 2026-09-06. The verification registry contains 205 checks; this is not a claim that each proof has a complete automated certificate replay. The [README ledger](../README.md#claims-ledger), [research log](../RESEARCH_LOG.md), and [current roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) give the detailed record.*
+
+## Current arithmetic checkpoint
+
+The magic-square existence question remains open. The prime-column lemma A3.PC is a uniform necessary condition for every exponent shape and every number of split primes. It eliminates every free-frame class. After the completed C2 bielliptic descent and the lemma's fold, the working ledgers contain 2,456 dead / 488 open finite classes for the full (1,1,1) box, and 74,624 dead / 4,744 open finite classes for the additional (2,1,1) campaign. These are finiteness results, not complete exclusions of those shapes.
+
+The [research inventory](RESEARCH-INVENTORY.md) is generated from the ledgers with exact candidate and source provenance. The engine applies A3.PC before curve decisions. [A10](attacks/A10-cancellation-descent.md) proves that the relaxed Laurent system has no further valuation-support obstruction, and derives leading-square restrictions and unit congruences. A global descent from those congruences is still an open investigation.
+
+Cancellation descent is the current lead within a flexible portfolio that also includes lift-preserving arithmetic, the differential foliation, global obstructions, sphere/counting identities, and construction experiments. The older assessment below preserves the geometric and sphere-front context of 2026-08-28; its priorities and present-tense status statements should be read with that date.
 
 ## The one-sentence truth
 

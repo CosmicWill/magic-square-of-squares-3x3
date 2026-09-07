@@ -108,10 +108,10 @@ def main():
     with (base / "data_omega3_box111.json").open(encoding="utf-8") as handle:
         data = json.load(handle)
     result["111"] = census(data)
-    # The C2 descent remains relevant: its sixteen classes pass the new filter.
-    c2 = [r for r in data["quotients"]["genus0"]["classes"] if r["verdict"] == "finite"]
-    assert len(c2) == 16 and all(not column_failure(r["cand"][:4]) for r in c2)
-    result["C2_classes_surviving"] = len(c2)
+    # Entry 118 closed these independently; their labels still pass A3.PC.
+    c2 = [r for r in data["quotients"]["genus0"]["classes"] if r.get("entry118")]
+    assert len(c2) == 16 and all(r["verdict"] == "dead" and not column_failure(r["cand"][:4]) for r in c2)
+    result["C2_closed_classes_passing_column_rule"] = len(c2)
     with gzip.open(base / "data_omega3_box211.json.gz", "rt", encoding="utf-8") as handle:
         result["211_incremental"] = census(json.load(handle))
     print(json.dumps(result, indent=2))

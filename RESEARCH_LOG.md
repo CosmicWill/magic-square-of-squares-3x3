@@ -5963,3 +5963,220 @@ results; comments in the response document.
 Doc 2.48; ROADMAP M14-V and the stale R.11 tally corrected; the
 response document extended; memory. The reviewer's two files added to
 the tree unmodified. Suite 201.
+
+## 2026-09-06 — Entry 120: THE PRIME-COLUMN LEMMA FOLDED INTO THE LEDGER — Theorem A3.PC kills 956 finite classes of the (1,1,1) box and 58,592 of the (2,1,1) box from the labels alone; every free-frame class among them
+
+THE THEOREM (A3.PC, doc 2.49; proposed by the independent review in
+docs/PROOF-DIRECTIONS-2026-09-06.md section 2, re-derived here; the
+owner adopted it, a second agent having recommended the same). In
+every prime column j of the four labels with a nonzero entry, the
+maximum of |e_{A,j}|, |e_{B,j}|, |e_{C,j}|, |e_{D,j}| is attained by at
+least three labels. Proof: (additive half) for odd p the minimum of
+v_p over U, V, U+V, U-V is attained at least three times -- if v(U) <
+v(V) both U+-V have valuation v(U), and if v(U) = v(V) = k the units
+u, v have u+v, u-v not both divisible by p since their sum 2u is a
+unit; (Gaussian half) for z = prod l_k^{2 e_{X,k}} with e_{X,j} != 0
+exactly one of z, z-bar is divisible by pi_j, so z - z-bar is a unit
+at pi_j and Im z = (z - z-bar)/2i is a rational integer prime to p_j;
+hence v_{p_j}(d_X) = 2(a_j - |e_{X,j}|) exactly when e_{X,j} != 0 and
+>= 2 a_j otherwise, the minimal valuation among the four offsets is
+attained exactly by the labels of maximal |e|, and there are at least
+three of them. Uniform in the primes and the exponents. Corollaries: a
+free frame is impossible outright (entry 116 and its pending content-2
+extension subsumed); for a primitive square at most one label has a
+deficit at each split prime; the lemma is necessary, not sufficient
+(the sixteen C2 classes pass it -- entry 118 was needed).
+
+THE FOLD (compute/prime_column.py: column_certificate, excluded,
+zero_columns, offset_valuations; fold script in the scratchpad). Every
+finite class whose labels fail the lemma is dead with a certificate
+(the failing column, the four absolute exponents, the maximum and its
+multiplicity); dead classes that fail it are annotated as a second,
+uniform reason; survivors untouched. (1,1,1): of 1444 finite classes
+956 dead, 1210 of the 1500 dead classes also fail, survivors 290 dead
++ 488 finite: TALLY dead 2456 / finite 488. (2,1,1): of 63,336 finite
+classes 58,592 dead, 15,338 of 16,032 dead classes also fail,
+survivors 694 + 4,744: TALLY dead 74,624 / finite 4,744 (records: v =
+dead, vb = finite, pk = [column, exponents, max, count]). All 444 +
+11,912 free-frame classes fail (the 4,230 undecided ones now dead).
+The 28 classes leaving one prime out of every label (scaled omega = 2
+configurations) were dead already. The reviewer's counts (956 / 504 at
+d5dbf48, i.e. 488 now; 58,592 / 4,744) reproduced exactly.
+
+THE CHECK (a3.prime_column, suite 202): the additive half exhaustively
+for p in {3,5,7,11,13} and U, V to 120 (400 in full); the Gaussian
+half on the ENGINE'S OWN elements -- elem_box evaluated at genuine
+frames pi^2 of 5, 13, 17, 29, 37, 41 for every label of the (1,1,1)
+and (2,1,1) boxes (and (2,2,1) in full), the valuations matching the
+prediction exactly; the census recomputed from the labels and compared
+record by record with every certificate; free-frame classes fail, the
+C2 classes pass, the zero-column classes accounted for. Fourteen pins
+re-set (tallies, the finiteness counts, the mechanism chain).
+
+WHY IT WAS MISSED. The engine works with frame ratios as rational
+parameters, where the residue at a particular prime is invisible; the
+monomial lemma (entry 98) and the free-frame reduction (entry 116)
+were special cases seen through curves. A p-adic filter on the labels
+costs nothing and should precede every curve computation: R.12
+reorders the plan accordingly (the leading-unit step as the theory
+front; the 488 survivors' towers and bielliptic models; the (3,1,1)
+box with the lemma first; P-E retired).
+
+Doc 2.49; ROADMAP M14-W, the record paragraph, R.12; the response
+document (section 2: incorporated); memory. Suite 202.
+
+## 2026-09-06 — Entry 121: survivor inventory, cancellation structure, and a flexible research portfolio
+
+Built on the existing uncommitted entry-120 lemma and ledger fold. Added the
+prime-column gate to both `omega3.decide_class` and `decide_class_fast`, before
+any curve computation. It returns an explicit class-level certificate in the
+existing frame-record interface. `prime_filter=False` retains an explicit
+historical geometric replay path; the sweep-engine comparison uses that path
+to continue testing the geometric mechanism. Candidate enumeration is unchanged.
+The old valuation probe now recognizes the sixteen C2 cases as closed by entry
+118, while checking that their labels pass A3.PC.
+
+RESEARCH INVENTORY. `python -m compute.research_inventory` produces a deterministic
+compressed JSON artifact and `docs/RESEARCH-INVENTORY.md`; `--check` detects stale
+outputs. All 488 + 4,744 open canonical records appear exactly once, with their
+candidate, source index/hash, signed column patterns, gaps, deciding frame,
+recorded tower/quotient evidence, and exact unit-binomial data. The second
+campaign is explicitly incremental. The first box splits into 88 retained
+hyperelliptic-tower records and 400 resolved-curve/quotient records. Role
+multisets are an organizational view, not a claim of arithmetic equivalence.
+No authoritative verdict was changed in this entry.
+
+THEORY (written proofs in `docs/attacks/A10-cancellation-descent.md`). CP.1:
+the three-maxima rule is exactly the rational valuation support of the relaxed
+Laurent system over the algebraic closure of Q((t)). Construct additive Laurent
+y-values with the required valuations, then choose roots of z^2-y*z-1 for each
+coordinate. Hence the full ideal adds no further restrictions on valuation
+signs; the Gaussian rationality, norm, square, and shared-support conditions
+remain essential. CP.2: the five leading-square roles; a C/D deficit forces
+p=1 mod 8, and four maxima require t,1+t,1-t all nonzero squares mod p.
+CP.3: exact Gaussian unit congruences modulo pi^(2g) for a deficit of size g,
+or pi^(4M) for four maxima, with signs and the coefficient 2 retained.
+CP.4: each three-maximum binomial is nonzero by distinct-prime factorization
+(coefficient +/-1) or complex absolute value (coefficient +/-2). Clearing
+denominators gives p_j^g <= (1+abs(lambda))*prod_(k!=j) p_k^abs(d_k).
+Novelty relative to the literature is not asserted.
+
+FIRST HEIGHT EXPERIMENT. Every one of the 5,232 open records has an exact
+positive recession direction for all these binomial norm inequalities:
+(1,1,1): 4672; (1,1,2): 448; (1,2,1): 56; (1,2,2): 56. Sixteen records have
+four maxima everywhere and no binomial bounds, so their witnesses are vacuous
+for this experiment. The full collection of individual bounds cannot give a
+height cap on any open record. This is a statement about real log-prime
+variables, not constructed primes or local/global solutions. The next descent
+attempt must use compatibility lost by taking norms, common binomial factors,
+or the four-maximal trinomial equations. No strict descent is claimed.
+
+STRATEGY. R.12 is now the current roadmap, placed first and explicitly
+superseding older task ordering. At the user's request, it is a flexible
+portfolio: cancellation descent leads, while lift-preserving curve arithmetic,
+the differential foliation, global descent/Brauer/Picard invariants, uniform
+two-prime/genus mechanisms, sphere/counting identities, and construction
+experiments remain independent attacks. Each has a concrete experiment and
+criteria for changing direction. Negative results and new connections count as
+conceptual progress. The current progress memo and historical review point to
+this portfolio and the generated inventory.
+
+VALIDATION. The registry has 205 checks. Full targeted prime-column checks
+pass (including 170 engine labels and all ledger certificates); the new full
+cancellation check passes 881 signed Laurent weight controls, exact unit/error
+identities and role syzygies, and 1,896 finite-field square vectors. The
+inventory check replays membership, source hashes, binomial exponents/signs,
+every height witness, and generated report freshness. The independent probe
+passes 522 Gaussian valuations and 24,750 additive controls. Targeted fast
+twist, bielliptic, engine, sweep-engine, and finiteness checks pass (nine
+distinct targeted checks altogether). These checks do not
+constitute a complete replay of the entire 205-check suite or the external QC
+computation.
+
+## 2026-09-07 — Entry 122: review of entry 121 (the other agent's cancellation-descent work) — correct; two housekeeping fixes; the combined tree gated and committed
+
+WHAT WAS REVIEWED. Entry 121 (uncommitted, written by a second agent
+on top of the uncommitted entry 120): the prime-column gate wired into
+omega3.decide_class / decide_class_fast (prime_filter=True by default,
+an explicit replay path prime_filter=False used by the sweep-engine
+check); the generated survivor inventory (compute/research_inventory.py
+-> compute/data_research_survivors.json.gz + docs/RESEARCH-INVENTORY.md:
+488 + 4,744 records with source hashes, role words, binomial data);
+the note docs/attacks/A10-cancellation-descent.md (CP.1-CP.4) with
+compute/cancellation_patterns.py and the three checks of
+verify/checks/a3_cancellation.py; ROADMAP R.12 (the portfolio) placed
+first; PROGRESS.md's header.
+
+THE MATHEMATICS, RE-DERIVED BY HAND. (0) The dictionary of A10 section 1
+agrees with the ledger's elem_box: with rho_j = pi_j / pi_j-bar and
+Z_X = prod rho_j^{2 eps_X e_{X,j}}, m^2 Im(Z_X) = prod p_j^{2(a_j-|e_j|)}
+Im(prod l_j^{2 e_j}) up to the sign absorbed in eps, since rho^{2e} =
+pi^{4e} / p^{2e}. (1) CP.1 is the tropical variety of the ideal (F, G)
+in four torus variables over an algebraically closed valued field of
+residue characteristic 0: necessity is the additive minimum rule on
+y_X = s(Z_X) (v(y_X) = -|w_X| when w_X != 0, >= 0 otherwise);
+sufficiency by the displayed Laurent table (each row checked: e.g. C
+exceptional, y = (a, b-a, b, 2a-b)) and the independent quadratics
+Z^2 - yZ - 1 = 0 whose roots have valuations -+m (product -1) or are
+units. So the relaxed system's valuation support is exactly the
+three-maxima rule: the reviewer's proposed initial-ideal experiment is
+settled negatively in one page. Correct, with the relaxation stated
+(rationality, norm 1, squares, shared support all dropped). (2) CP.2:
+dividing the nine entries by p^{2(a-M)} leaves integer squares with the
+center = 0 mod p, so the leading vector of the offsets is a nonzero-
+square vector satisfying the additive relations with the deficient
+slot 0: (0,1,1,-1), (1,0,1,1), (1,-1,0,2), (1,1,2,0) or (1,t,1+t,1-t).
+Hence a prime with a C or D deficit is 1 mod 8, and a four-maxima prime
+needs t, 1+t, 1-t all nonzero squares -- impossible at 5, 13 (checked
+by hand) and 17. THIS IS THE FIRST PRIME-SPECIFIC NECESSARY CONDITION
+IN THE RECORD; e.g. none of 5, 13, 17 can be a prime of a '***' class.
+(3) CP.3: pi^{2M} s(Z_X) = q_X + O(pi^{4M}) for a maximal label with
+q_X = -sgn(b) h^{-sgn(b)} (both signs checked), the deficient label
+contributes O(pi^{2g}); the four rows of the congruence table follow
+by eliminating the deficient coordinate. Correct; 2 stays a unit.
+(4) CP.4: W = prod_{k != j} rho_k^{2 d_k} = lambda mod pi_j^{2g} with
+|lambda| in {1, 2}; W = +-2 is impossible (|W| = 1), W = +-1 forces
+all d_k = 0 by unique factorization in Z[i] and then X = +-Y as labels;
+A - lambda B is a nonzero Gaussian integer divisible by pi_j^{2g}, so
+p_j^g <= |A - lambda B| <= (1 + |lambda|) prod p_k^{|d_k|}. Correct.
+The height experiment (a positive recession direction for the
+homogeneous parts of all (H) in every open record, dropping the
+constants only loosens the bounds) is a valid negative result: these
+norm inequalities alone cannot cap the primes. The entry says so.
+
+MACHINE CONFIRMATION. Their three checks pass here (a3.prime_column_
+engine; a3.cancellation_patterns: 337 weight controls at the fast
+bound, the unit identities and syzygies, 1896 finite-field vectors;
+a3.research_inventory: 5,232 records, hashes, every height direction);
+python -m compute.research_inventory --check reports the artifact
+fresh; the role-multiset counts of the report sum to 488; the sixteen
+'***' records (4 + 12) are exactly the ones without binomial bounds.
+
+ISSUES FOUND AND FIXED OR RECORDED. (a) Two sections were numbered
+R.12 (their portfolio at the top, entry 120's reordering at the end):
+entry 120's renamed R.12-0, absorbed into the portfolio. (b) The
+combined tree had never been gated as a whole: entry 121 ran nine
+targeted checks, and this session's entry-120 gate was invalidated by
+the concurrent edits (a3_zi.py and omega3.py changed while it ran; the
+process was stopped so that it could not auto-commit) -- the full fast
+gate is run on the combined tree before this commit. (c) The engine's
+early return for a lemma-excluded class has no 'components' key in its
+frame records (route = 'prime_column'): every consumer of decide_class
+/ decide_class_fast frames must handle it; the (3,1,1) driver will.
+(d) a3.research_inventory couples the suite to a generated artifact:
+after ANY change to either ledger, run python -m compute.research_
+inventory and commit the two generated files, else the check fails as
+'stale' (recorded in the verify-suite discipline). (e) A10's text
+writes sigma_X = sgn(e_{X,j}) where the code uses sgn(eps_X e_{X,j});
+the text says the implementation retains the sign, and it does (the
+inventory check replays lambda's sign against the leading rows).
+Nothing in entry 121 changes a verdict; its counts are projections of
+the entry-120 ledgers.
+
+ASSESSMENT. Sound and honest. CP.1 removes a whole proposed line of
+computation; CP.2 is the most useful new fact (it is what a
+constructed solution would have to satisfy prime by prime, and the
+ledger's variable-prime classes could never see it); CP.3-CP.4 are the
+right interface for a descent and the first experiment shows norms
+alone are not enough -- the next step must keep the residues of the
+binomials, or use the four-maximal trinomials. Suite 205.

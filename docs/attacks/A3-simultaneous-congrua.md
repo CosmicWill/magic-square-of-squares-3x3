@@ -3056,6 +3056,67 @@ discards the constant, not a routine downstream of it; a source guard in the
 check now asserts that no site builds a squarefree model without
 `squarefree_part(dfl[0])`.
 
+## 2.49 The prime-column lemma (Theorem A3.PC): a uniform exclusion from the valuations alone (entry 120)
+
+*(2026-09-06; entry 120; proposed by the independent review, `docs/PROOF-DIRECTIONS-2026-09-06.md` §2, and re-derived here; `compute/prime_column.py`; check `a3.prime_column`.)*
+
+**Setting.**  A class of the box $p_1^{a_1}p_2^{a_2}p_3^{a_3}$ is four labels
+$A,B,C,D$, each a vector $(e_1,e_2,e_3)$ with $|e_j|\le a_j$, and four signs; the
+offsets of the additive quadruple are $d_X=\varepsilon_X\,e(X)$ with
+$d_C=d_A+d_B$, $d_D=d_A-d_B$ (the relations $R_1,R_2$), where
+$$e(X)=\prod_j p_j^{\,2(a_j-|e_{X,j}|)}\cdot\operatorname{Im}\Big(\prod_j \ell_j^{\,2e_{X,j}}\Big),\qquad \ell_j=\pi_j^2,$$
+a negative exponent meaning the conjugate power (`elem_box`).  The non-split
+part of the center is a common factor of all four offsets and a unit at every
+$p_j$.
+
+**Theorem A3.PC.**  *In every prime column $j$ in which some label is nonzero,
+the maximum of $|e_{A,j}|,|e_{B,j}|,|e_{C,j}|,|e_{D,j}|$ is attained by at least
+three of the four labels.*
+
+*Proof.*  (Additive half.)  For an odd prime $p$ and nonzero $U,V,U+V,U-V$, the
+minimum of their $p$-adic valuations is attained at least three times: if
+$v(U)<v(V)$ then $v(U\pm V)=v(U)$, symmetrically if $v(U)>v(V)$; if
+$v(U)=v(V)=k$ write $U=p^ku$, $V=p^kv$ with units $u,v$ — $u+v$ and $u-v$ cannot both
+be divisible by $p$ (their sum $2u$ is a unit), so one of $U\pm V$ has valuation
+$k$.  (Gaussian half.)  Put $z=\prod_k\ell_k^{2e_{X,k}}$.  If $e_{X,j}\neq0$, exactly one
+of $z,\bar z$ is divisible by $\pi_j$ (the other frames are units at $\pi_j$, and
+$\pi_j\nmid\bar\pi_j$), so $z-\bar z$ is a unit at $\pi_j$; $2i$ is a unit as well, hence
+$\operatorname{Im}z=(z-\bar z)/2i$ is a unit at $\pi_j$ and, being a rational integer,
+prime to $p_j$.  Therefore
+$$v_{p_j}(d_X)=2(a_j-|e_{X,j}|)\ \text{ exactly when } e_{X,j}\neq0,\qquad v_{p_j}(d_X)\ge2a_j\ \text{ when } e_{X,j}=0 .$$
+With $M_j=\max_X|e_{X,j}|>0$ the minimal valuation among the four offsets is
+$2(a_j-M_j)$, attained exactly by the labels with $|e_{X,j}|=M_j$; the additive
+half says there are at least three of them. $\square$
+
+**Corollaries.**  (i) A frame appearing in exactly one label is impossible
+outright: the free-frame reduction (2.46, entry 116) and its pending content-$2$
+extension are subsumed — every free-frame class of both boxes fails the lemma.
+(ii) For a primitive square $M_j=a_j$ at every split prime of the center (else
+every entry is divisible by $p_j^2$), so at least three labels carry the full
+exponent and at most one has a deficit.  (iii) The lemma is necessary, not
+sufficient: it says nothing about the leading units, and the sixteen classes of
+2.45 pass it (the bielliptic descent of 2.47 was needed).
+
+**The census (both ledgers, from the labels alone).**  $(1,1,1)$: of the $1444$
+finite classes $956$ fail and are dead; $1210$ of the $1500$ dead classes fail
+as well; survivors $290$ dead $+\ 488$ finite.  $(2,1,1)$: of the $63{,}336$ finite
+classes $58{,}592$ fail; $15{,}338$ of the $16{,}032$ dead classes fail; survivors
+$694+4{,}744$.  The $28$ classes leaving one prime out of every label (scaled
+$\omega=2$ configurations) were dead already.  Tallies: $(1,1,1)$ dead $2456$ /
+finite $488$; $(2,1,1)$ dead $74{,}624$ / finite $4{,}744$.  The engine had never
+carried this elementary filter: it works with the frame ratios as rational
+parameters, where the residue at a particular prime is invisible.  For every
+future box the lemma is applied first (`compute/prime_column.excluded`),
+before any curve is built.
+
+**Follow-through (entry 121).** Both class-decision entry points now apply the
+lemma before geometry. The [survivor inventory](../RESEARCH-INVENTORY.md) is
+generated from the authoritative class records. [A10](A10-cancellation-descent.md)
+classifies the valuation support of the relaxed Laurent system, derives exact
+unit congruences and binomial norm bounds, and records a positive unbounded
+height direction for every open class. The individual norm bounds therefore
+cannot finish the descent; compatibility across primes remains the target.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

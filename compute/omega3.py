@@ -16,6 +16,10 @@ pattern, NOT on the primes.  A frame is a point with t = 2 tau/(1 - tau^2),
 tau = b/a rational (pi = a + bi), of three DISTINCT primes.
 
 THE DECISION (sound kills only):
+  * The prime-column lemma rejects any nonzero column whose largest absolute
+    label occurs fewer than three times, before elimination (Theorem A3.PC).
+    This uses distinct prime norms. An explicit prime_filter=False allows
+    historical geometric replays on arbitrary Pythagorean frame ratios.
   * Res = 0 is necessary, so some irreducible factor vanishes at the frame.
     Monomials never (c, s != 0); a univariate factor only at a rational root
     that is a frame ratio (|t| = n/m, m^2 + n^2 a square); the four factors
@@ -54,6 +58,7 @@ import itertools
 import sympy as sp
 
 from compute.pari_genus1 import quartic_points, gp_available
+from compute.prime_column import column_certificate
 
 c1, s1, c2, s2, c3, s3 = sp.symbols("c1 s1 c2 s2 c3 s3", real=True)
 FR = [(c1, s1), (c2, s2), (c3, s3)]
@@ -925,21 +930,42 @@ def decide_frame(cand, f):
     return {"verdict": worst, "components": details, "live_univariate": live_uni}
 
 
-def decide_class(cand):
-    """Best frame verdict for a candidate class, with the per-frame records."""
+def _prime_column_decision(cand):
+    """A class-level exclusion, recorded separately from geometric components."""
+    cert = column_certificate(cand[:4])
+    if cert is None:
+        return None
+    return "dead", {f: {"verdict": "dead", "route": "prime_column",
+                        "prime_column": dict(cert)} for f in range(3)}
+
+
+def decide_class(cand, *, prime_filter=True):
+    """Best class verdict, applying the prime-column lemma before geometry.
+
+    prime_filter=False is for replaying historical geometric certificates
+    on arbitrary Pythagorean frames; it does not assert distinct prime norms.
+    """
+    if prime_filter:
+        decision = _prime_column_decision(cand)
+        if decision is not None:
+            return decision
     frames = {f: decide_frame(cand, f) for f in range(3)}
     vs = [fr["verdict"] for fr in frames.values() if fr["verdict"] != "degenerate"]
     best = min(vs, key=lambda v: ORDER[v]) if vs else "degenerate"
     return best, frames
 
 
-def decide_class_fast(cand):
+def decide_class_fast(cand, *, prime_filter=True):
     """The sweep's decision (entry 104): pass 1 decides every frame with the
     high-degree components skipped (cheap: resultants, models, pullbacks) --
     a dead frame ends it; pass 2 certifies the high-degree components by
     genus, frame by frame in order of the largest bidegree met, stopping at
     the first frame that is finite or dead.  Same verdicts as decide_class
     on every class where a dead frame exists or one certified frame suffices."""
+    if prime_filter:
+        decision = _prime_column_decision(cand)
+        if decision is not None:
+            return decision
     global HIGH_DEGREE_ROUTE
     saved = HIGH_DEGREE_ROUTE
     HIGH_DEGREE_ROUTE = "skip"

@@ -1,5 +1,7 @@
 # Proof directions after the twist audit
 
+**Historical review, with follow-through now recorded.** Entries 118–120 repaired the remaining twist sites, closed the sixteen C2 cases, and folded the prime-column lemma into the ledgers. The open counts are now 488 and 4,744. The engine filter and [reproducible inventory](RESEARCH-INVENTORY.md) are implemented. [A10](attacks/A10-cancellation-descent.md) settles the first valuation-support experiment and derives the leading-unit congruences. The [current roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) keeps cancellation descent as the lead within a diverse, revisable portfolio. The review and counts below describe the earlier commit and are preserved as history.
+
 Written against `d5dbf48`, 2026-09-06. The main purpose is to propose proof mechanisms that can extend across exponent shapes and numbers of primes. Section 2 contains a complete elementary lemma; its novelty relative to the literature is not asserted. The subsequent research programs are proposals, not claimed solutions of the magic-square problem.
 
 ## 1. Light review of the repairs
