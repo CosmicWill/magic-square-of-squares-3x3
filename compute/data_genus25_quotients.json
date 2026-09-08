@@ -1,0 +1,402 @@
+{
+  "schema": 1,
+  "date": "2026-09-08",
+  "is_exclusion": false,
+  "scope": "affine quotient identities; exceptional fibers and complete lifts pending",
+  "models": {
+    "plus": {
+      "polynomial": "12*z**6 - 44*z**4 + 40*z**2 + 1",
+      "even_coefficients_descending": [
+        12,
+        -44,
+        40,
+        1
+      ],
+      "genus": 2,
+      "elliptic_weierstrass": [
+        [
+          0,
+          -44,
+          0,
+          480,
+          144
+        ],
+        [
+          0,
+          40,
+          0,
+          -44,
+          12
+        ]
+      ],
+      "elliptic_arithmetic": [
+        {
+          "label": "123a1",
+          "rank_bounds": [
+            1,
+            1
+          ],
+          "torsion_order": 5
+        },
+        {
+          "label": "1968c1",
+          "rank_bounds": [
+            1,
+            1
+          ],
+          "torsion_order": 1
+        }
+      ]
+    },
+    "minus": {
+      "polynomial": "-12*z**6 + 28*z**4 - 8*z**2 + 1",
+      "even_coefficients_descending": [
+        -12,
+        28,
+        -8,
+        1
+      ],
+      "genus": 2,
+      "elliptic_weierstrass": [
+        [
+          0,
+          28,
+          0,
+          96,
+          144
+        ],
+        [
+          0,
+          -8,
+          0,
+          28,
+          -12
+        ]
+      ],
+      "elliptic_arithmetic": [
+        {
+          "label": "123a1",
+          "rank_bounds": [
+            1,
+            1
+          ],
+          "torsion_order": 5
+        },
+        {
+          "label": "984d1",
+          "rank_bounds": [
+            1,
+            1
+          ],
+          "torsion_order": 1
+        }
+      ]
+    }
+  },
+  "classes": [
+    {
+      "id": "111:2841",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        1,
+        -1,
+        -1,
+        -1
+      ],
+      "frame": 1,
+      "source_record_sha256": "848471485d9865304db3a7346a75ccc23af2a5623e03884f390838977eea0ecb",
+      "phi": "3*tg**3*th**3 - tg**3*th - 17*tg**2*th**2 + 3*tg**2 + 3*tg*th**3 - 17*tg*th - th**2 + 3",
+      "invert_second_ratio": false,
+      "quadratic_quotient": "-x**2*y + 3*x**2 + 3*x*y**3 - 17*x*y**2 - 17*x*y + 3*x + 3*y**3 - y**2",
+      "discriminant": "9*y**6 - 102*y**5 + 199*y**4 + 556*y**3 + 199*y**2 - 102*y + 9",
+      "model": "plus",
+      "reciprocal_even_model": false,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8"
+    },
+    {
+      "id": "111:2843",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        1,
+        -1,
+        1,
+        -1
+      ],
+      "frame": 1,
+      "source_record_sha256": "b8b7d33ad5bd63c494494ab74cfb721e3e281087d17ae07c65504e2b5ca1c287",
+      "phi": "tg**3*th**2 - 3*tg**3 + 3*tg**2*th**3 - 17*tg**2*th + 17*tg*th**2 - 3*tg + 3*th**3 - th",
+      "invert_second_ratio": true,
+      "quadratic_quotient": "x**2*y + 3*x**2 - 3*x*y**3 - 17*x*y**2 + 17*x*y + 3*x - 3*y**3 - y**2",
+      "discriminant": "9*y**6 + 102*y**5 + 199*y**4 - 556*y**3 + 199*y**2 + 102*y + 9",
+      "model": "plus",
+      "reciprocal_even_model": true,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8; then (z,v) -> (1/z,v/z^3)"
+    },
+    {
+      "id": "111:2845",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "frame": 1,
+      "source_record_sha256": "d8762268962684ee54410f8556db327a9a1b3becee0e2a704d040e55eb4bfddf",
+      "phi": "3*tg**3*th**3 - 9*tg**3*th - tg**2*th**2 - 5*tg**2 - 5*tg*th**3 - tg*th - 9*th**2 + 3",
+      "invert_second_ratio": false,
+      "quadratic_quotient": "-9*x**2*y - 5*x**2 + 3*x*y**3 - x*y**2 - x*y + 3*x - 5*y**3 - 9*y**2",
+      "discriminant": "9*y**6 - 6*y**5 - 185*y**4 - 404*y**3 - 185*y**2 - 6*y + 9",
+      "model": "minus",
+      "reciprocal_even_model": false,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8"
+    },
+    {
+      "id": "111:2847",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        1,
+        1,
+        1,
+        -1
+      ],
+      "frame": 1,
+      "source_record_sha256": "7f5b41c892024bf9098e28c90c304014ea9758c54eb0dfed23e39e35b53ccf75",
+      "phi": "9*tg**3*th**2 - 3*tg**3 - 5*tg**2*th**3 - tg**2*th + tg*th**2 + 5*tg + 3*th**3 - 9*th",
+      "invert_second_ratio": true,
+      "quadratic_quotient": "9*x**2*y - 5*x**2 - 3*x*y**3 - x*y**2 + x*y + 3*x + 5*y**3 - 9*y**2",
+      "discriminant": "9*y**6 + 6*y**5 - 185*y**4 + 404*y**3 - 185*y**2 + 6*y + 9",
+      "model": "minus",
+      "reciprocal_even_model": true,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8; then (z,v) -> (1/z,v/z^3)"
+    },
+    {
+      "id": "111:2892",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        1,
+        -1,
+        -1,
+        -1
+      ],
+      "frame": 1,
+      "source_record_sha256": "54a72ad119ad6d2df63de346eb1e05c99e7e16deabd5726233b658687e94f672",
+      "phi": "3*tg**3*th**3 - 9*tg**3*th - tg**2*th**2 - 5*tg**2 - 5*tg*th**3 - tg*th - 9*th**2 + 3",
+      "invert_second_ratio": false,
+      "quadratic_quotient": "-9*x**2*y - 5*x**2 + 3*x*y**3 - x*y**2 - x*y + 3*x - 5*y**3 - 9*y**2",
+      "discriminant": "9*y**6 - 6*y**5 - 185*y**4 - 404*y**3 - 185*y**2 - 6*y + 9",
+      "model": "minus",
+      "reciprocal_even_model": false,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8"
+    },
+    {
+      "id": "111:2893",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "frame": 1,
+      "source_record_sha256": "8248696dfb350b2e7afd6b3d9678da1b8e46b1fc95cbf70e51d68739755acb95",
+      "phi": "9*tg**3*th**2 - 3*tg**3 - 5*tg**2*th**3 - tg**2*th + tg*th**2 + 5*tg + 3*th**3 - 9*th",
+      "invert_second_ratio": true,
+      "quadratic_quotient": "9*x**2*y - 5*x**2 - 3*x*y**3 - x*y**2 + x*y + 3*x + 5*y**3 - 9*y**2",
+      "discriminant": "9*y**6 + 6*y**5 - 185*y**4 + 404*y**3 - 185*y**2 + 6*y + 9",
+      "model": "minus",
+      "reciprocal_even_model": true,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8; then (z,v) -> (1/z,v/z^3)"
+    },
+    {
+      "id": "111:2896",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "frame": 1,
+      "source_record_sha256": "23e282ac3ba9274c13cba2c48ea30f9e2a2b7a8953b418be5979921286e91213",
+      "phi": "3*tg**3*th**3 - tg**3*th - 17*tg**2*th**2 + 3*tg**2 + 3*tg*th**3 - 17*tg*th - th**2 + 3",
+      "invert_second_ratio": false,
+      "quadratic_quotient": "-x**2*y + 3*x**2 + 3*x*y**3 - 17*x*y**2 - 17*x*y + 3*x + 3*y**3 - y**2",
+      "discriminant": "9*y**6 - 102*y**5 + 199*y**4 + 556*y**3 + 199*y**2 - 102*y + 9",
+      "model": "plus",
+      "reciprocal_even_model": false,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8"
+    },
+    {
+      "id": "111:2897",
+      "candidate": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        1,
+        1,
+        -1,
+        1
+      ],
+      "frame": 1,
+      "source_record_sha256": "9c419d5950369430b5548064f47d5f8992c72d27e24132095663e56d7d2d897d",
+      "phi": "tg**3*th**2 - 3*tg**3 + 3*tg**2*th**3 - 17*tg**2*th + 17*tg*th**2 - 3*tg + 3*th**3 - th",
+      "invert_second_ratio": true,
+      "quadratic_quotient": "x**2*y + 3*x**2 - 3*x*y**3 - 17*x*y**2 + 17*x*y + 3*x - 3*y**3 - y**2",
+      "discriminant": "9*y**6 + 102*y**5 + 199*y**4 - 556*y**3 + 199*y**2 + 102*y + 9",
+      "model": "plus",
+      "reciprocal_even_model": true,
+      "map": "x=g^2, y=g*h_prime, W=2*a(y)*x+b(y), z=(y+1)/(y-1), v=(z-1)^3*W/8; then (z,v) -> (1/z,v/z^3)"
+    }
+  ]
+}

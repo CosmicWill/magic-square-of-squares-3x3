@@ -9,6 +9,54 @@ and every ambition is labeled as such. Companion documents:
 [PROGRESS.md](PROGRESS.md) (what is true now),
 [RESEARCH_LOG.md](../RESEARCH_LOG.md) (how we got here).*
 
+## R.14 Current plan after the recent campaigns (2026-09-08)
+
+**Current authority for priorities and counts:** the [comprehensive review
+and proof plan](REVIEW-AND-PLAN-2026-09-08.md). R.12, R.13 and the older
+task tables below retain historical ideas and results; their pending
+queues, counts, sequencing and claims about the only possible endgame
+are superseded by this section.
+
+*(Counts as of entry 132, when this section was written.)* The full (1,1,1)
+ledger was **2,798 dead / 146 certified finite and open**, including
+eight tower records and 138 other records; the incremental (2,1,1)
+campaign had 1,388 open finite records; (3,1,1) 1,025 certified finite
+and 1,181 provisional; the four- and five-prime all-one height campaigns
+3,152 and 28,910 undecided classes. **After entry 134 (Theorem A3.SQ, the
+binomial square root): (1,1,1) 2,916 dead / 28 open; (2,1,1) 79,072 /
+296; (3,1,1) 264 open (1,181 provisional); four primes 5,956 / 1,131;
+five primes 26,444 / 18,438.** The generated finite-record inventory (588
+records) is one view of this frontier, not its complete membership.
+
+**New opening from the review:** exact joint-sign quotients of the original
+(3,3) components map all eight remaining tower records to two bielliptic
+genus-2 curves, H+ and H−. Both have elliptic factors of rank (1,1) and
+share 123a1 with rational 5-torsion. The existing QC wrapper assumes
+trivial torsion; complete point arithmetic and exceptional-fiber/lift
+checks remain pending. See the [reproducible probe](../compute/genus25_quotient_probe.py).
+There are no additional class exclusions from this review. *(Entry 134
+killed the eight records by A3.SQ; the technique applies to the 28
+surviving (1,1,1) classes, whose joint-sign quotients have genus 10 and
+4 — entry 135.)*
+
+| Active question | Next concrete deliverable | Ambitious target |
+|---|---|---|
+| **Cancellation-pattern descent — principal investigation** | Retain exact cancellation cofactors in a specified survivor family; prove a new gcd/squareclass restriction or identify why a proposed decrease fails to preserve the equations. | Descent, an effective bound, or a compatibility obstruction uniform in prime support. |
+| **Group primes by column type — theory feeding the lead** | Prove the 24-type all-one grouping and the 56-type general decomposition with shared supports retained; derive a restriction between the resulting Gaussian products. | Replace support-size sweeps by a theorem about recurring arithmetic structures. |
+| **Quotient arithmetic — concrete opening** | Torsion-aware QC/sieve or isogeny descent for H+ and H−, then complete lifts; audit the other 138 records for missed quotients. | A reusable explanation of the recurring elliptic factors and a complete first shape. |
+| **Differential web — independent** | A specified first-integral calculation with singularities and removed divisors handled. | Explain or classify the surviving geometric families. |
+| **Global compatibility — independent** | One well-defined cover/Brauer/descent class, with ramification and nontrivial evaluation checked. | An obstruction retaining arithmetic lost by separate local conditions. |
+| **Construction and exact counting — continuous challenge** | Matched near-miss controls across survivor types; a precise sphere composition/counting identity. | Falsify weak conjectures, reveal a missing coupling, or construct a solution. |
+
+First secure the certificate-to-search-bound link and extend the inventory
+to provisional and height-only records without upgrading their status.
+The review independently checked all 204 bounds behind the 68 capped
+searches, but the reusable verifier needs stronger rejection checks.
+Keep the new quotient calculation and a uniform cofactor question active;
+maintain an independent geometric/global experiment. Reorder after a
+conceptual result or a failed mechanism. A larger box is justified only
+by a question it can answer. No single endgame is prescribed.
+
 ## R.12 Current research portfolio (2026-09-06)
 
 **A flexible portfolio, with cancellation-pattern descent as the current lead.** The purpose is a proof and a deeper explanation of the problem's structure. Keep several independent attacks in play; an unexpected theorem, a counterexample to a proposed mechanism, or a new connection can change the ordering. The lead is a working hypothesis about where to learn next, not a commitment to one eventual proof architecture.

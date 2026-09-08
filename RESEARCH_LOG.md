@@ -6681,6 +6681,73 @@ or a hyperelliptic model for the (6,6) curves is needed. Doc 2.55;
 ROADMAP M15-E and the R.13 path-2 row; PROGRESS; memory.
 
 
+## 2026-09-08 — Entry 133: REVIEW AND NEW QUOTIENT TARGETS — the eight remaining tower records map to two rank-(1,1) bielliptic genus-2 curves; no new exclusions
+
+The comprehensive review through entry 132 is in
+[REVIEW-AND-PLAN-2026-09-08](docs/REVIEW-AND-PLAN-2026-09-08.md).
+The (1,1,1) tally remains 2,798 dead / 146 finite: eight tower records
+and 138 other open records. The current roadmap is R.14, with
+cancellation-pattern descent as the principal ambitious investigation
+and independent quotient, differential, global-obstruction and
+construction/counting routes retained.
+
+NEW NECESSARY-CONDITION MAPS. The eight records
+2841, 2843, 2845, 2847, 2892, 2893, 2896, 2897 have (3,3) elimination
+components in frame 1. Taking the joint-sign quotient before the
+Pythagorean pullback gives a quadratic in x=g^2 with y=g*h. For four
+records first invert h; a Mobius change of y and, where needed, a
+reciprocal change of the even sextic give just
+H+: v^2 = 12z^6 - 44z^4 + 40z^2 + 1 and
+H-: v^2 = -12z^6 + 28z^4 - 8z^2 + 1.
+compute/genus25_quotient_probe.py verifies all eight affine substitution
+identities, the discriminants with their square constants retained,
+squarefreeness, and the elliptic quotient maps. PARI gives rank bounds
+[1,1] for all four elliptic quotients: 123a1 with 1968c1 for H+, and
+123a1 with 984d1 for H-. The common factor has rational 5-torsion;
+the existing QC wrapper assumes trivial torsion and requires an actual
+extension, including the sieve's torsion cosets. Complete rational-point
+sets and exceptional-fiber/frame lifts are pending. No verdict changes.
+The artifact is compute/data_genus25_quotients.json; replay with
+python -m compute.genus25_quotient_probe --ranks --check.
+
+POSTSCRIPT (2026-09-08, after entry 134). Theorem A3.SQ killed all
+eight tower records above (and 110 more open (1,1,1) classes), so the
+H+/H- point computations are no longer needed for them; the tallies in
+this entry, in R.14 and in the review document are those of entry 132.
+The quotient technique itself (the joint sign change (g,h) -> (-g,-h)
+taken before the Pythagorean pullback) applies to every one of the 28
+surviving (1,1,1) classes -- entry 135 records their quotients (genus
+10 for the sixteen (8,8) components, genus 4 for the twelve (4,4)
+ones). The probe's assertion that the eight classes are still open was
+relaxed and its artifact regenerated (--ranks --write); the maps and
+the elliptic data (123a1 rank 1 with 5-torsion, 1968c1, 984d1 rank 1)
+were re-verified independently in entry 135.
+
+REVIEW. Ten focused FAST checks passed, including the recent height,
+orientation, higher-box, tower and inventory checks; no complete
+214-check or external Magma/Sage replay was performed. The height
+certificate verifier accepts altered bound fields and an empty
+per_prime dictionary. Independently recomputing all 204 bounds behind
+the 52 (2,1,1) and 16 (3,1,1) capped searches confirmed coverage by every
+recorded search range. This is a verifier gap, not a failed bound;
+repair and negative tests are proposed in the plan. Recession directions
+and exact affine feasibility must also be distinguished.
+
+INVENTORY. Corrected the three-campaign scope, compact (3,1,1) route
+label, representative table, stale tower count and verification note;
+regenerated the same 2,559 certified finite records. Its omissions
+(1,181 provisional records and 32,062 higher-prime height-only survivors)
+are now explicit. The review gives the whole recorded frontier.
+
+THEORY PLAN. Group same-column Gaussian prime contributions: 24 sign
+types in the all-one case, with a proposed general organization into
+16 pure three-entry, 8 pure four-entry and 32 mixed types. Mixed types
+retain two linked products with shared support. Use this organization
+to seek new exact cofactor compatibility, a closed descent, or an
+effective bound for an infinite family. This is a proposed program,
+not a finiteness reduction to a bounded search or a proof of absence.
+
+
 ## 2026-09-08 — Entry 134: THE BINOMIAL SQUARE ROOT (Theorem A3.SQ) — the height system's binomial rows double their exponent; 118/146 + 1092/1388 + 761/1025 + 2021/3152 + 10472/28910 open classes dead (R.13 path 3, from the hierarchical classes)
 
 HOW IT WAS FOUND (path 3). The plan was to start the descent in the
