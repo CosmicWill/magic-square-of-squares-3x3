@@ -3136,6 +3136,14 @@ The box $p^3qr$ has $388{,}216$ classes, $290{,}064$ of them new three-frame cla
 
 The open classes' role words: `CBD` 112, `DBC` 112, `D*C` 96, `CBC` 88, `DBD` 88, `A**` 72, `C**` 66, `D**` 66, `ADC` 64, `ACD` 64, `C*D` 64, `C*C` 64.  The same families survive as in the two smaller boxes (C/D deficits and four-maxima columns; no class with two A/B deficits in different columns), and the exponent-$3$ column changes nothing structurally: the survivors are the classes whose labels have no zero entries where they would give strong binomials.  The $(2,1,1)$ campaign cost $44.9$ CPU-hours for $79{,}368$ classes; this one cost $7.5$ CPU-hours for $290{,}064$, all of it in the engine's $2{,}222$ classes — the uniform exclusions did the work in $44$ seconds.
 
+## 2.52 The (1,1,1,1) box: the local method weakens with the number of primes (entry 127)
+
+*(2026-09-07; entry 127; `compute/omega_boxes.py`, `compute/data_omega4_box1111.json.gz`; check `a3.omega4_box1111`.)*
+
+Four split primes, every exponent $1$.  Labels are the $40$ nonzero vectors of $\{-1,0,1\}^4$ up to sign; classes are taken up to $S_4\times$ conjugations ($384$ elements), the global sign and the $A\leftrightarrow B$ swap, the same canonical form as `omega3.canon_cand` (the module reproduces the $(1,1,1)$ ledger exactly).  Only classes using all four frames.  There are $48,854$ such classes; the prime-column lemma leaves $7{,}087$, and the height system (version 3) kills $3{,}935$ of them ($55.5\%$), caps none, and leaves $3{,}152$ open.
+
+The comparison with three frames decides path 5 of R.13.  The $(1,1,1)$ box's $2{,}916$ three-frame classes leave $750$ lemma survivors, of which the height system kills $576$ ($76.8\%$).  At four frames the kill rate drops to $55.5\%$, and the three-frame regularity "no two A/B deficits in different columns" fails: $801$ open classes have two A/B deficits, $94$ three, $1$ four.  The reason is structural: a binomial bound $p_j^{2g}\le\prod_{k\ne j}p_k^{|d_k|}$ has one more factor on the right for each extra prime, so a recession direction is easier to find.  **The local method weakens with $\omega$.**  Consequences: a uniform proof cannot come from the height system alone for large $\omega$; the role-word theorem (path 1) must be sought in a different form (what the survivors *share* as $\omega$ grows, rather than an exclusion by counting deficits); and $\omega\ge4$ is where the analytic dimension of the solution set grows ($\omega-2$), so it is also where a solution could hide from every curve method.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

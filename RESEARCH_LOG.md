@@ -6392,3 +6392,45 @@ engine records' structure and tally, a live re-decision sample. The
 research inventory extended to the third campaign (the second agent's
 module: a source added; its check re-pinned). Doc 2.51; ROADMAP M15-A
 and the R.12 table; PROGRESS; memory.
+
+## 2026-09-07 — Entry 127: R.13 recorded; THE (1,1,1,1) BOX — the local method weakens with the number of primes
+
+R.13 (ROADMAP): the paths to a proof — the role-word theorem, closing
+one shape, descent on the number of primes, the surface geometry,
+higher omega with the local method, a structured search — with their
+mechanisms, evidence, next experiments and sequencing.
+
+THE BOX. Four split primes, every exponent 1. compute/omega_boxes.py
+enumerates the classes of the box (1, ..., 1) with N frames: 40 labels
+(the nonzero vectors of {-1,0,1}^4 up to sign), the frame group S_4 x
+conjugations tabulated on the labels (384 elements), the global sign
+and the A<->B swap, A fixed to one of four orbit representatives, the
+lemma applied before canonicalisation (it is invariant). At N = 3 the
+module reproduces the (1,1,1) ledger exactly (2916 three-frame
+classes, 750 lemma survivors, as identical sets). At N = 4: 48,854
+four-frame classes; the prime-column lemma leaves 7,087; the height
+system (version 3) on them: 3,935 infeasible (exact certificates), no
+cap, 3,152 open (49 s with 3 workers). No curve engine exists beyond
+three frames: the open classes are undecided, not finite.
+
+THE FINDING. The (1,1,1) box's 2,916 three-frame classes leave 750
+lemma survivors of which the height system kills 576 (76.8%); at four
+frames it kills 55.5%. The regularity of all three three-frame boxes
+-- no open class with two A/B deficits in different columns -- fails:
+801 open classes have two, 94 three, 1 four; open classes exist with
+four zero entries among the labels (674) and with four four-maxima
+columns (43). The reason is structural: each binomial bound p_j^{2g}
+<= prod_{k != j} p_k^{|d_k|} gains a factor on the right per extra
+prime, so recession directions are easier to find. THE LOCAL METHOD
+WEAKENS WITH THE NUMBER OF PRIMES. R.13 path 5 is answered: a uniform
+proof cannot come from the height system alone for large omega; the
+role-word theorem must be sought as a description of what survivors
+share, not as an exclusion by counting deficits; and omega >= 4, where
+the solution set's analytic dimension grows, is where a solution could
+hide from every curve method.
+
+Data compute/data_omega4_box1111.json.gz (the 7,087 lemma survivors
+with certificates or directions); check a3.omega4_box1111 (suite 209:
+the N = 3 reproduction in every profile, the N = 4 counts in full,
+certificates, the live three-frame comparison). Doc 2.52; ROADMAP
+M15-B and R.13's path-5 row; PROGRESS; memory.

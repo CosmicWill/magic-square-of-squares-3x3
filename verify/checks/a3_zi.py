@@ -5123,6 +5123,71 @@ def _(ctx):
     ctx.note("(3,1,1): 290064 new classes -- lemma " + str(S["A_lemma_dead"]) + ", height infeasible " + str(S["A_height_infeasible"]) + " + capped/searched " + str(S["A_height_capped_searched_dead"]) + ", engine " + str(S["B_engine"]) + "; tally " + str(T) + "; " + str(n_ver) + " certificates re-verified, " + str(n_live) + " classes re-decided live")
 
 
+@check("a3.omega4_box1111", DOC)
+def _(ctx):
+    """THE (1,1,1,1) BOX (entry 127; doc 2.52): four split primes, every exponent
+    1, through the prime-column lemma and the height system only.  The
+    enumeration module (compute/omega_boxes.py) reproduces the (1,1,1) ledger
+    exactly (750 three-frame lemma survivors of 2916 classes) -- verified
+    here at N = 3 in every profile, and the N = 4 counts (48854 four-frame
+    classes, 7087 lemma survivors) in the full profile.  Every recorded class
+    passes the lemma and is canonical; the height certificates are
+    re-verified (all in full, a sample in fast); no class is capped; the
+    three-frame comparison figures are recomputed live.  The finding: the
+    local method weakens with the number of primes (55.5% killed at four
+    frames against 76.8% at three; two A/B deficits no longer exclude)."""
+    import gzip, json
+    from collections import Counter
+    from compute.omega_boxes import enumerate_classes, group_table, canon, lemma_fails
+    from compute.prime_column import excluded
+    from compute.height_system import analyse, verify_certificate
+    with gzip.open(os.path.join(DATA, "data_omega4_box1111.json.gz"), "rt", encoding="utf-8") as fh:
+        d = json.load(fh)
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d1 = json.load(fh)
+    cl = d["classes"]
+    require(d["entry"] == 127 and d["n_frames"] == 4 and d["n_four_frame_classes"] == 48854 and d["n_lemma_survivors"] == 7087 == len(cl)
+            and d["tally"] == {"dead": 3935, "open": 3152, "capped": 0}, (d["tally"], len(cl)))
+    # N = 3: the module reproduces the ledger
+    tab3 = group_table(3)
+    cl3, c3 = enumerate_classes(3, lemma_filter=True, table=tab3)
+    three = [e for e in d1["classes"] if all(any(l[j] != 0 for l in e["cand"][:4]) for j in range(3))]
+    surv = {json.dumps([list(x) for x in e["cand"][:4]] + list(e["cand"][4:])) for e in three if not excluded(e["cand"][:4])}
+    require(len(three) == 2916 and len(surv) == 750 and {json.dumps([list(x) for x in c[:4]] + list(c[4:])) for c in cl3} == surv, "N = 3 reproduces the (1,1,1) ledger")
+    # N = 4: every record passes the lemma and is canonical (a sample), the records are distinct
+    tab4 = group_table(4)
+    require(len({json.dumps(c["cand"]) for c in cl}) == 7087)
+    for c in cl[::max(1, 7087 // ctx.bound(full=7087, fast=300))]:
+        labs = [tuple(x) for x in c["cand"][:4]]
+        require(not lemma_fails(labs) and all(any(l[j] != 0 for l in labs) for j in range(4)), (c["cand"], "lemma / four frames"))
+        key = canon(tuple(labs) + tuple(c["cand"][4:]), tab4)
+        require([list(x) for x in key[:4]] + list(key[4:]) == c["cand"], (c["cand"], "canonical form"))
+    if ctx.bound(full=1, fast=0):
+        cl4, c4 = enumerate_classes(4, lemma_filter=True, table=tab4)
+        require(len(cl4) == 7087 and {json.dumps([list(x) for x in c[:4]] + list(c[4:])) for c in cl4} == {json.dumps(c["cand"]) for c in cl}, "the N = 4 enumeration")
+        # (the count of ALL four-frame classes, 48854, was obtained by the same enumeration without the lemma filter: ~30 minutes single-threaded, not re-run here)
+    # the height verdicts
+    dead = [c for c in cl if c["v"] == "dead"]; opn = [c for c in cl if c["v"] == "open"]
+    require(len(dead) == 3935 and len(opn) == 3152 and all(c["hk"]["kind"] == "infeasible" and c["hk"]["version"] == 3 for c in dead) and all(c.get("n_capped") == 0 for c in opn))
+    n_ver = 0
+    for c in dead[::max(1, 3935 // ctx.bound(full=3935, fast=120))]:
+        require(verify_certificate(c["cand"], {"status": "infeasible", "certificate": c["hk"]["cert"], "version": 3}), (c["cand"], "certificate")); n_ver += 1
+    for c in opn[::max(1, 3152 // ctx.bound(full=3152, fast=100))]:
+        res = {"status": "feasible", "version": 3, "per_prime": {j: {"status": "unbounded", "direction": dirn} for j, dirn in c["hu"].items()}}
+        require(verify_certificate(c["cand"], res), (c["cand"], "direction")); n_ver += 1
+    for c in cl[::max(1, 7087 // ctx.bound(full=60, fast=6))]:
+        require(analyse(c["cand"], version=3)["status"] == ("infeasible" if c["v"] == "dead" else "feasible"), (c["cand"], "live LP"))
+    ab = Counter(sum(1 for ch in c["roles"] if ch in "AB") for c in opn)
+    require(ab[2] == 801 and ab[3] == 94 and ab[4] == 1 and d["open_by_AB_deficits"] == {str(k): v for k, v in sorted(ab.items())}, dict(ab))
+    # the three-frame comparison, live
+    t = Counter()
+    for e in three:
+        if json.dumps([list(x) for x in e["cand"][:4]] + list(e["cand"][4:])) in surv:
+            t[analyse(e["cand"], version=3)["status"]] += 1
+    require(t["infeasible"] == 576 and t["feasible"] == 174, dict(t))
+    ctx.note("(1,1,1,1): 48854 four-frame classes, 7087 lemma survivors, height system 3935 dead / 3152 open (no cap); " + str(n_ver) + " certificates re-verified; N = 3 reproduces the ledger (750 / 2916; height 576 / 174 live)")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the
