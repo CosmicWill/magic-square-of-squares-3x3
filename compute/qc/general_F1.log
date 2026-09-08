@@ -1,0 +1,23 @@
+f = x^6 + 11*x^4 - 5*x^2 + 1 | E1 352c1 rank 1 tors 1 | E2 352b1 rank 1 tors 1
+base point (0 : 1 : 1) | pi(P0) (0 : 1 : 1) (0 : 1 : 0) | G1 (-1 : 4 : 1) | G2 (3 : -4 : 1)
+gcd of #J(F_l): 1
+Number of elements in Omega = 3
+p = 13 QC + coefficients in 2s; Omega 3; rational per class [3, 0, 0]; candidates per class [12, 4, 8]
+Number of elements in Omega = 3
+p = 19 QC + coefficients in 1s; Omega 3; rational per class [3, 0, 0]; candidates per class [16, 16, 16]
+recovered rational points and their (m1, m2): [('(0 : -1 : 1)', 4, 0), ('inf+', 2, 2), ('inf-', 2, -2), ('(0 : 1 : 1)', 0, 0)]
+auxiliary primes with leverage: [(17, 18, 26, 25), (23, 33, 19, 28), (29, 13, 13, 8), (43, 19, 5, 4), (59, 11, 57, 12), (67, 55, 57, 44), (89, 103, 95, 108), (97, 117, 85, 104), (101, 114, 106, 117), (127, 130, 126, 128), (181, 171, 25, 16), (211, 100, 13, 12), (227, 252, 228, 252), (239, 111, 117, 108), (293, 304, 272, 281), (307, 274, 286, 252), (347, 338, 318, 308), (349, 38, 350, 37), (353, 117, 351, 128), (359, 338, 366, 344), (373, 38, 382, 29)]
+control (0 : -1 : 1) (4, 0) OK
+control inf+ (2, 2) OK
+control inf- (2, -2) OK
+control (0 : 1 : 1) (0, 0) OK
+class  0: 12 x 16 = 192 candidate pairs, survivors 0
+class  1:  4 x 16 =  64 candidate pairs, survivors 0
+class  2:  8 x 16 = 128 candidate pairs, survivors 0
+DONE f = x^6 + 11*x^4 - 5*x^2 + 1 | total surviving candidate pairs: 0 | if 0: H(Q) is exactly the recovered rational points
+Exception raised by child process with pid=220:
+Traceback (most recent call last):
+  File "sage/interfaces/sagespawn.pyx", line 272, in sage.interfaces.sagespawn.SagePtyProcess.terminate_async (build/cythonized/sage/interfaces/sagespawn.c:6414)
+    sleep(interval)
+  File "cysignals/signals.pyx", line 355, in cysignals.signals.python_check_interrupt
+SystemExit

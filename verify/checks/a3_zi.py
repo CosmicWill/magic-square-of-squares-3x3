@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {'dead': 2774, 'finite': 170, 'unknown': 0}, data["tally"])      # entry 120 (prime-column lemma): 956 finite classes dead; entry 106: 1484/1460; entry 115: +8 dead; entry 117 (twist audit): 8 tower kills lost
+    require(data["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, data["tally"])      # entry 120 (prime-column lemma): 956 finite classes dead; entry 106: 1484/1460; entry 115: +8 dead; entry 117 (twist audit): 8 tower kills lost
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,7 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 2774)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106) + 8 genus-0-quotient kills (entry 115)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 2786)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106) + 8 genus-0-quotient kills (entry 115)
     require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
@@ -3899,7 +3899,7 @@ def _(ctx):
         elif e["verdict"] == "unknown":
             n_unk += 1
         elif e["verdict"] == "dead":
-            require(e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite", ("a bound-certified class dead only by a quotient kill, the prime-column lemma or the height system", e["cand"]))
+            require(e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite" or e.get("verdict_before_towers_bielliptic") == "finite", ("a bound-certified class dead only by a quotient kill, the prime-column lemma, the height system or a tower bielliptic kill", e["cand"]))
             n_dead_q = locals().get("n_dead_q", 0) + 1
     require((n_fin, n_unk) == (138, 0), (n_fin, n_unk))      # 1264 bound-certified classes, 72 + 36 of them dead by quotients (entries 105-106), 8 more by the genus-0 quotient kill (entry 115)
     require(all("corrected" in e["genus"] for e in data["classes"] if "genus" in e), "every bound record is the corrected one")
@@ -3969,7 +3969,7 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] >= 106 and data["tally"] == {'dead': 2774, 'finite': 170, 'unknown': 0}, data["tally"])   # entries 115, 117
+    require(data["entry"] >= 106 and data["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, data["tally"])   # entries 115, 117
     Rs = data["resolution"]
     require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
     require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
@@ -3982,7 +3982,7 @@ def _(ctx):
     for e in data["classes"]:
         if "resolution" in e:
             n_res += 1
-            require(e["verdict"] == "finite" or (e["verdict"] == "dead" and (e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite")), ("resolution class verdict", e["cand"]))
+            require(e["verdict"] == "finite" or (e["verdict"] == "dead" and (e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite" or e.get("verdict_before_towers_bielliptic") == "finite")), ("resolution class verdict", e["cand"]))
             fr = e["resolution"]["frames"][str(e["frame"])]
             require(fr["verdict"] == "finite" and fr["components"], ("certifying frame", e["cand"]))
             for c in fr["components"]:
@@ -4077,7 +4077,7 @@ def _(ctx):
     from compute.omega3_finiteness import base_locus, frame_ratio_prime
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["tally"] == {'dead': 2774, 'finite': 170, 'unknown': 0}, data["tally"])   # entries 115, 117, 120
+    require(data["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, data["tally"])   # entries 115, 117, 120
     BL = data["base_locus"]
     require(BL["n_finite"] == 1576 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)   # 1568 at entry 104 + 8 classes reverted to finite by the twist audit (entry 117)
     require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 552}, BL["status_counts"])
@@ -4094,7 +4094,7 @@ def _(ctx):
             require(e["verdict"] == "dead", (e["cand"], e["verdict"]))
             if e.get("verdict_before_quotients") == "finite":
                 require(e["base_locus"]["admissible"] == [], ("quotient-killed class keeps its base-locus record", e["cand"]))
-    require(len(fin) == 170)      # entry 123: 274 more dead by the height system;      # entry 120: 956 more dead by the prime-column lemma;      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106 and the 8 genus-0-quotient kills of entry 115
+    require(len(fin) == 158)      # entry 123: 274 more dead by the height system;      # entry 120: 956 more dead by the prime-column lemma;      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106 and the 8 genus-0-quotient kills of entry 115
     # (i) the prime from the ratio: 5 = 2^2 + 1^2 gives 4/3 (and -4/3, 3/4), 13 gives 12/5, 17 gives 8/15; 1 and 2/3 are not frames
     require([frame_ratio_prime(sp.Rational(*x)) for x in ((4, 3), (-4, 3), (3, 4), (12, 5), (8, 15), (1, 1), (2, 3))] == [5, 5, 5, 13, 17, None, None])
     # (ii) live recomputation of the base locus
@@ -4483,7 +4483,7 @@ def _(ctx):
         A, B, C, Dl = [tuple(x) for x in e["cand"][:4]]; f = e["frame"]
         return (sum(1 for lab in (A, B, C) if lab[f] != 0), sum(1 for lab in (A, B, Dl) if lab[f] != 0))
     recs = {json.dumps(e["cand"]): e for e in data["classes"] if "resolution" in e}
-    _mech = lambda e: e.get("mechanism_before_height", e.get("mechanism_before_prime_column", e["mechanism"]))      # entry 120: the geometric mechanism of a lemma-killed class
+    _mech = lambda e: e.get("mechanism_before_towers_bielliptic", e.get("mechanism_before_height", e.get("mechanism_before_prime_column", e["mechanism"])))      # entry 120: the geometric mechanism of a lemma-killed class
     self_base = {json.dumps(r["cand"]) for r in BL["classes"] if any(k == "curve" for q, k in r.get("curves", []))}
     require(len(self_base) == 18 and self_base == {c for c, e in recs.items() if _terms(e) == (3, 3)}
             and all(r["status"] == "curves" for r in BL["classes"] if json.dumps(r["cand"]) in self_base)
@@ -4903,7 +4903,7 @@ def _(ctx):
         d2 = json.load(fh)
     HS1, HS2 = d1["height_system"], d2["height_system"]
     require(HS1["entry"] == 123 and HS1["infeasible"] == 274 and HS1["capped_searched"] == 0 and HS1["unbounded"] == 214 and HS1["tally_before"] == {"dead": 2456, "finite": 488}
-            and HS1["tally_after"] == {"dead": 2730, "finite": 214} and d1["tally"] == {"dead": 2774, "finite": 170, "unknown": 0}, HS1["tally_after"])
+            and HS1["tally_after"] == {"dead": 2730, "finite": 214} and d1["tally"] == {"dead": 2786, "finite": 158, "unknown": 0}, HS1["tally_after"])
     require(HS2["entry"] == 123 and HS2["infeasible"] == 2732 and HS2["capped_searched"] == 52 and HS2["unbounded"] == 1960 and HS2["tally_before"] == {"dead": 74624, "finite": 4744}
             and HS2["tally_after"] == {"dead": 77408, "finite": 1960} and d2["tally"] == {"dead": 77980, "finite": 1388}, HS2["tally_after"])
     # version 2 (entry 124): the reality sharpening -- the exact circuit decomposition behind it, on genuine frames
@@ -4912,7 +4912,7 @@ def _(ctx):
     HS1v2, HS2v2 = HS1["version2"], HS2["version2"]
     require(HS1v2["entry"] == 124 and HS1v2["n_open_before"] == 214 and HS1v2["infeasible"] == 44 and HS1v2["unbounded"] == 170 and HS1v2["tally_after"] == {"dead": 2774, "finite": 170}
             and HS2v2["entry"] == 124 and HS2v2["n_open_before"] == 1960 and HS2v2["infeasible"] == 572 and HS2v2["unbounded"] == 1388 and HS2v2["tally_after"] == {"dead": 77980, "finite": 1388}
-            and d1["tally"] == {"dead": 2774, "finite": 170, "unknown": 0} and d2["tally"] == {"dead": 77980, "finite": 1388}, "version 2 (entry 124)")
+            and d1["tally"] == {"dead": 2786, "finite": 158, "unknown": 0} and d2["tally"] == {"dead": 77980, "finite": 1388}, "version 2 (entry 124)")
     t1 = Counter()
     for e in d1["classes"]:
         k = e.get("kill", {}).get("entry")
@@ -4926,7 +4926,7 @@ def _(ctx):
             res = {"status": "feasible", "version": 2, "per_prime": {j: {"status": "unbounded", "direction": dirn} for j, dirn in e["height"]["directions"].items()}}
             require(verify_certificate(e["cand"], res), (e["cand"], "recession direction"))
             t1["unbounded"] += 1
-    require(dict(t1) == {"infeasible v1": 274, "infeasible v2": 44, "unbounded": 170}, dict(t1))
+    require(dict(t1) == {"infeasible v1": 274, "infeasible v2": 44, "unbounded": 158}, dict(t1))      # entry 130: 12 open classes dead by the towers
     killed2 = [c for c in d2["classes"] if "hk" in c]
     require(len(killed2) == 3356 and all(c["v"] == "dead" and c.get("hb") == "finite" for c in killed2)
             and Counter((c["hk"]["kind"], c["hk"].get("version", 1)) for c in killed2) == {("infeasible", 1): 2732, ("capped+search", 1): 52, ("infeasible", 2): 572}
@@ -4966,7 +4966,8 @@ def _(ctx):
     p_j^{2g} | Im A / Re A / N(A - lambda Abar), or a trinomial pi_j^{4M} | S),
     so enumerating every pair of split primes <= B in every column finds every
     solution whose two smallest primes are <= B.  Recorded: B = 500 over all
-    170 + 1388 open classes, no candidate passing every divisibility, none
+    170 + 1388 open classes (the (1,1,1) count later reduced by the tower kills of
+    entries 130-131, so the live open set is a subset), no candidate passing every divisibility, none
     reaching the relations.  Version 3 of the system (S even for the 2, +-1,
     +-1 circuits) leaves every open class unbounded.  Verifies the recorded
     block, the even-S fact on genuine frames, re-runs the search at a small
@@ -4990,7 +4991,7 @@ def _(ctx):
     require(P1["classes"] == 170 and P2["classes"] == 1388 and P1["survivors"] == 0 and P2["survivors"] == 0 and P1["near_misses"] == 0 and P2["near_misses"] == 0)
     opens1 = [(idx, e) for idx, e in enumerate(d1["classes"]) if e["verdict"] == "finite"]
     opens2 = [(idx, c) for idx, c in enumerate(d2["classes"]) if c["v"] == "finite"]
-    require(len(opens1) == 170 and len(opens2) == 1388 and all(f"111:{i}" in PS["classes"] for i, _ in opens1) and all(f"211:{i}" in PS["classes"] for i, _ in opens2), "every open class searched")
+    require(len(opens1) <= 170 and len(opens2) == 1388 and all(f"111:{i}" in PS["classes"] for i, _ in opens1) and all(f"211:{i}" in PS["classes"] for i, _ in opens2), "every open class searched")
     require(all(not r["survivors"] and not r["near_misses"] and len(r["columns"]) == 3 for r in PS["classes"].values()), "no survivor or near miss in any class")
     n_circ = circuit_identity_tests(trials=ctx.bound(full=30, fast=8), seed=11)      # includes the even-S fact of version 3
     # the search re-run at a small bound on a sample of open classes: the relation used per column agrees, no survivor
@@ -5336,6 +5337,72 @@ def _(ctx):
     ctx.note("orientation: the reading reproduces the height system on " + str(n_read) + " classes; T1 kills " + str(S["3"]["T1_dead"]) + " / " + str(S["4"]["T1_dead"]) + " / " + str(S["5"]["T1_dead"]) + " of the 3 / 4 / 5-frame local kills and no open class anywhere; " + str(n_sp) + " forced spreads recomputed")
 
 
+@check("a3.towers_bielliptic", DOC)
+def _(ctx):
+    """THE TOWERS' BIELLIPTIC MODELS (entry 130; doc 2.55; R.13 path 2).  Of the
+    32 open (1,1,1) classes with tower records, 12 have a frame whose
+    component (quadratic in one ratio) has the level-0 hyperelliptic model
+    y^2 = D(t) with D exactly G_1 = 25t^6 - 29t^4 + 11t^2 + 1 (8 classes) or
+    F_1 = t^6 + 11t^4 - 5t^2 + 1 (4 classes), or the reciprocal, constant 1.
+    G_1(Q) = {(0, +-1), inf+-} (entry 118); F_1(Q) by the same method here
+    (QC_bielliptic at two good ordinary primes, the Mordell-Weil sieve on
+    E1 x E2 with quotients 352b1, 352c1 of rank 1, every candidate
+    eliminated, controls OK).  Every rational point has ratio t in {0, inf},
+    degenerate: the component has no admissible point, the frame is dead,
+    the class is dead.  Verifies the model identification exactly from the
+    components, the recorded QC report, the degeneracy of the points, the
+    frame-death logic, and the ranks of F_1's quotients (PARI)."""
+    import json, re, subprocess
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import _disc_model, frame_factors, degenerate, is_frame_ratio
+    from compute.pari_genus1 import gp_available, GP as GP_PATH
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d = json.load(fh)
+    with open(os.path.join(DATA, "qc", "general_F1.json"), encoding="utf-8") as fh:
+        rep = json.load(fh)
+    TB = d["towers_bielliptic"]
+    require(TB["entry"] == 130 and TB["n_killed"] == 12 and TB["by_curve"] == {"G1": 8, "F1": 4} and TB["tally_after"] == {"dead": 2786, "finite": 158}
+            and d["tally"] == {"dead": 2786, "finite": 158, "unknown": 0}, TB["by_curve"])
+    require(rep["f"] == [1, 11, -5, 1] and rep["total_survivors"] == 0 and all(c[-1] == "OK" for c in rep["controls"]) and len(rep["primes"]) == 2 and rep["N"] == 4
+            and all(len(a) == 4 and (a[1] % rep["primes"][0] == 0 or a[1] % rep["primes"][1] == 0 or a[2] % rep["primes"][0] == 0 or a[2] % rep["primes"][1] == 0) for a in rep["aux"]) and len(rep["aux"]) >= 8, "the F_1 report")
+    pts = sorted({P for L in rep["rational_points"] for P in L})
+    for P in pts:
+        if "inf" in P:
+            continue
+        x = sp.Rational(P.strip("()").split(":")[0].split(",")[0])
+        require(degenerate(x) or not is_frame_ratio(x), (P, "an admissible F_1 point"))
+    require(TB["curves"]["F1"]["rational_points"] == pts and TB["curves"]["G1"]["rational_points"] == ["(0, 1)", "(0, -1)", "inf+", "inf-"])
+    BD = d["bielliptic_descent"]
+    require(BD["G"]["1"]["curve"] == "z^2 = 25 t^6 - 29 t^4 + 11 t^2 + 1" and BD["G"]["1"]["rational_points"] == ["(0, 1)", "(0, -1)", "inf+", "inf-"] and BD["G"]["1"]["survivors"] == 0, "entry 118's G_1")
+    O.set_box((1, 1, 1))
+    t = sp.Symbol("t")
+    CURVES = {"G1": 25 * t ** 6 - 29 * t ** 4 + 11 * t ** 2 + 1, "F1": t ** 6 + 11 * t ** 4 - 5 * t ** 2 + 1}
+    killed = [e for e in d["classes"] if e.get("kill", {}).get("entry") == 130]
+    require(len(killed) == 12 and all(e["verdict"] == "dead" and e.get("verdict_before_towers_bielliptic") == "finite" and str(e["mechanism"]).startswith("tower bielliptic kill") for e in killed))
+    n_ver = 0
+    for e in killed[::max(1, 12 // ctx.bound(full=12, fast=4))]:
+        k = e["kill"]
+        cand = tuple(tuple(x) for x in e["cand"][:4]) + tuple(e["cand"][4:])
+        curves, live = frame_factors(cand, k["frame"])
+        phi, dg, dh = next(c for c in curves if (c[1], c[2]) == tuple(k["component"]))
+        var, oth = (O.th, O.tg) if k["model_var"] == "tg" else (O.tg, O.th)
+        sqf, dfl, genus = _disc_model(phi, var, oth)
+        ref = CURVES[k["curve"]]
+        if k["reciprocal"]:
+            ref = sp.expand(t ** 6 * ref.subs(t, 1 / t))
+        require(genus == 2 and sp.expand(sqf.subs(oth, t) - sp.Rational(k["constant"]) * ref) == 0 and sp.sqrt(sp.Rational(k["constant"])).is_Rational, (e["cand"], "model"))
+        comps = e["towers"]["frames"][str(k["frame"])]["components"]
+        require(len(comps) == 1 or all(c.get("verdict") == "dead" for c in comps if c.get("deg") != k["component"]), (e["cand"], "the other components of the dead frame"))
+        n_ver += 1
+    if gp_available():
+        out = subprocess.run([GP_PATH, "-q"], input="E1=ellinit([0,11,0,-5,1]); E2=ellinit([0,-5,0,11,1]); print(\"RES \", ellrank(E1)[2], \" \", elltors(E1)[1], \" \", ellidentify(E1)[1][1], \" \", ellrank(E2)[2], \" \", elltors(E2)[1], \" \", ellidentify(E2)[1][1]);\nquit\n", capture_output=True, text=True, timeout=600).stdout
+        got = re.findall(r"RES (\d) (\d) (\S+) (\d) (\d) (\S+)", out)
+        require(got and got[0][0] == "1" and got[0][1] == "1" and got[0][3] == "1" and got[0][4] == "1" and {got[0][2], got[0][5]} == {"352b1", "352c1"}, got)
+        ctx.note("PARI: F_1's elliptic quotients have rank bound 1 and trivial torsion (352b1, 352c1)")
+    ctx.note("towers: 12 classes dead through G_1 (8, entry 118) and F_1 (4, this entry: primes " + str(rep["primes"]) + ", " + str(len(rep["aux"])) + " auxiliary primes, no survivor); " + str(n_ver) + " models re-identified exactly")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the
@@ -5377,7 +5444,7 @@ def _(ctx):
         d2 = json.load(fh)
     PC1, PC2 = d1["prime_column_lemma"], d2["prime_column_lemma"]
     require(PC1["entry"] == 120 and PC1["n_finite_killed"] == 956 and PC1["n_dead_also_excluded"] == 1210 and PC1["survivors_tally"] == {"dead": 290, "finite": 488}
-            and PC1["tally_before"] == {"dead": 1500, "finite": 1444} and PC1["tally_after"] == {"dead": 2456, "finite": 488} and d1["tally"] == {"dead": 2774, "finite": 170, "unknown": 0}, PC1["tally_after"])
+            and PC1["tally_before"] == {"dead": 1500, "finite": 1444} and PC1["tally_after"] == {"dead": 2456, "finite": 488} and d1["tally"] == {"dead": 2786, "finite": 158, "unknown": 0}, PC1["tally_after"])
     require(PC2["entry"] == 120 and PC2["n_finite_killed"] == 58592 and PC2["n_dead_also_excluded"] == 15338 and PC2["survivors_tally"] == {"dead": 694, "finite": 4744}
             and PC2["tally_before"] == {"dead": 16032, "finite": 63336} and PC2["tally_after"] == {"dead": 74624, "finite": 4744} and d2["tally"] == {"dead": 77980, "finite": 1388}, PC2["tally_after"])
     t1 = Counter(); n_cert = 0
@@ -5395,7 +5462,7 @@ def _(ctx):
             n_cert += 1; t1[("finite", "excluded")] += 1
         else:
             require(e.get("verdict_before_prime_column") is None, e["cand"]); t1[("dead", "excluded")] += 1
-    require(n_cert == 956 and dict(t1) == {("dead", "survives"): 608, ("dead", "excluded"): 1210, ("finite", "excluded"): 956, ("finite", "survives"): 170}, dict(t1))      # entry 123: 274 survivors of the lemma dead by the height system
+    require(n_cert == 956 and dict(t1) == {("dead", "survives"): 620, ("dead", "excluded"): 1210, ("finite", "excluded"): 956, ("finite", "survives"): 158}, dict(t1))      # entry 123: 274 survivors of the lemma dead by the height system
     t2 = Counter()
     for c in d2["classes"]:
         cert = column_certificate(c["cand"][:4])
@@ -5538,11 +5605,11 @@ def _(ctx):
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         d2 = json.load(fh)
     A1, A2 = d1["twist_audit"], d2["twist_audit"]
-    require(A1["n_engine_kills_audited"] == 1376 and A1["n_flagged"] == 206 and len(A1["lost_kills"]) == 8 and len(A1["rescued_by_free_frame"]) == 4 and A1["tally_after"] == {"dead": 1484, "finite": 1460} and d1["tally"] == {'dead': 2774, 'finite': 170, 'unknown': 0}, A1["tally_after"])
+    require(A1["n_engine_kills_audited"] == 1376 and A1["n_flagged"] == 206 and len(A1["lost_kills"]) == 8 and len(A1["rescued_by_free_frame"]) == 4 and A1["tally_after"] == {"dead": 1484, "finite": 1460} and d1["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, A1["tally_after"])
     require(A2["n_engine_kills_audited"] == 12132 and A2["n_flagged"] == 4581 and len(A2["lost_kills"]) == 0 and A2["tally_after"] == {'dead': 16032, 'finite': 63336} and d2["tally"] == {'dead': 77980, 'finite': 1388}, A2["tally_after"])
     for r in A1["lost_kills"]:
         e = next(e for e in d1["classes"] if e["cand"] == r["cand"])
-        require((e["verdict"] == "finite" or e.get("kill", {}).get("entry") in (120, 123, 124)) and e.get("verdict_before_twist_audit") == "dead", r["cand"])
+        require((e["verdict"] == "finite" or e.get("kill", {}).get("entry") in (120, 123, 124, 130)) and e.get("verdict_before_twist_audit") == "dead", r["cand"])
     for r in A2["lost_kills"]:
         c = next(c for c in d2["classes"] if c["cand"] == r["cand"])
         require(c["v"] != "dead" and "twist_audit" in c, r["cand"])
@@ -5691,6 +5758,9 @@ def _(ctx):
                 ks = [q for q in e["quotients"] if q.get("verdict") == "dead"]
                 require(ks and all(q["rank"] == [0, 0] and q["admissible"] == [] and q["genus"] == 1 for q in ks), (e["cand"], ks))
                 killed.append(e)
+            elif str(e["mechanism"]).startswith("tower bielliptic kill"):
+                require(e.get("kill", {}).get("entry") == 130 and e.get("verdict_before_towers_bielliptic") == "finite", e["cand"])      # entry 130: verified by a3.towers_bielliptic
+                continue
             elif str(e["mechanism"]).startswith(("height system infeasible", "height cap + exhaustive search")):
                 require(e.get("kill", {}).get("entry") in (123, 124) and e.get("verdict_before_height") == "finite", e["cand"])      # entries 123-124: verified by a3.height_system
                 continue

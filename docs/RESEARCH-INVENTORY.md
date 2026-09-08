@@ -8,7 +8,7 @@ Every open record retains its canonical candidate, source index and hash, signed
 
 | Campaign scope | Ledger classes | Dead | Open finite | Pass A3.PC but already dead |
 |---|---:|---:|---:|---:|
-| 111 (full box) | 2,944 | 2,774 | 170 | 608 |
+| 111 (full box) | 2,944 | 2,786 | 158 | 620 |
 | 211 (additional three-frame classes only) | 79,368 | 77,980 | 1,388 | 4,050 |
 | 311 (additional three-frame classes only) | 290,064 | 287,858 | 1,025 | 6,496 |
 
@@ -24,7 +24,7 @@ For arithmetic geometry, the evidence retains the existing towers and quotient m
 
 | Campaign | Recorded arithmetic route | Open classes |
 |---|---|---:|
-| 111 | hyperelliptic tower | 32 |
+| 111 | hyperelliptic tower | 20 |
 | 111 | resolved curve and quotients | 138 |
 | 211 | compact campaign certificate | 1,388 |
 | 311 | resolved curve and quotients | 1,025 |
@@ -36,10 +36,10 @@ One representative per role multiset and campaign is listed below. Use all membe
 | Roles | 111 count / representative | Additional 211 count / representative |
 |---|---|---|
 | `***` | 4 / `111:2918` | 12 / `211:70082` | 12 / `311:270338` |
-| `**A` | 24 / `111:1632` | 48 / `211:19280` | 64 / `311:50780` |
+| `**A` | 20 / `111:1632` | 48 / `211:19280` | 64 / `311:50780` |
 | `**B` | — | 48 / `211:68308` | 48 / `311:266716` |
-| `**C` | 14 / `111:2803` | 70 / `211:68854` | 76 / `311:267520` |
-| `**D` | 14 / `111:2900` | 70 / `211:69962` | 76 / `311:270146` |
+| `**C` | 10 / `111:2803` | 70 / `211:68854` | 76 / `311:267520` |
+| `**D` | 10 / `111:2902` | 70 / `211:69962` | 76 / `311:270146` |
 | `*AA` | — | 12 / `211:51451` | 8 / `311:230850` |
 | `*AB` | — | 20 / `211:36514` | 20 / `311:99913` |
 | `*AC` | 8 / `111:1736` | 56 / `211:19492` | 14 / `311:51100` |
@@ -89,7 +89,7 @@ Each record includes CP.4's explicit unit binomials and necessary norm bounds. A
 
 | Direction for the three log-primes | Open records |
 |---|---:|
-| `(1, 1, 1)` | 2,211 |
+| `(1, 1, 1)` | 2,199 |
 | `(1, 1, 2)` | 212 |
 | `(1, 1, 3)` | 32 |
 | `(1, 2, 1)` | 80 |

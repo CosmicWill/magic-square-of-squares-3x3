@@ -3166,6 +3166,14 @@ For an all-ones box the height system's rows depend on the class only through th
 
 **What the open classes share:** orientation genericity — every circuit flips relative to every prime, every pair flips or is compensated by one-zero columns (classes in which every pair flips are open $99\%$ of the time), and the flip pattern admits a feasible hierarchy of prime sizes: about a third of the open classes allow all primes comparable, the rest force a spread, $2499$ five-frame classes forcing a ratio $\ge125$ and some above $10^9$.  Nothing else is visible at first order; the residual local information is the exact value of the congruences, which is prime-specific.  R.13 path 1 is answered in this form.
 
+## 2.55 The towers' bielliptic models: twelve more classes dead (entry 130; R.13 path 2)
+
+*(2026-09-07; entry 130; `compute/qc/qc_general.sage`, `compute/qc/general_F1.{json,log}`; check `a3.towers_bielliptic`.)*
+
+Of the $170$ open $(1,1,1)$ classes, $32$ carry tower records: a frame whose component is quadratic in one ratio has the level-0 hyperelliptic model $y^2=D(t)$ in the other ratio.  Recomputing $D$ exactly: **eight** classes have $D=G_1=25t^6-29t^4+11t^2+1$ (or $t^6G_1(1/t)$), the curve of 2.47, whose rational points are $(0,\pm1)$ and $\infty_\pm$; **four** have $D=F_1=t^6+11t^4-5t^2+1$ (or its reciprocal), a bielliptic genus-$2$ curve with elliptic quotients `352b1`, `352c1`, both of rank $1$ and trivial torsion.  For $F_1$ the method of 2.47 was rerun (Bianchi–Padurariu's `QC_bielliptic` at the two smallest good ordinary primes, then the Mordell–Weil sieve on $E_1\times E_2$): every candidate eliminated, the known points surviving as controls, so $F_1(\mathbb Q)=\{(0 : -1 : 1), (0 : 1 : 0), (0 : 1 : 1)\}$.  Every rational point of either curve has ratio $t\in\{0,\infty\}$, degenerate; the component has no admissible point, the frame is dead, and a dead frame kills the class.  Tally: dead $2786$ / finite $158$.
+
+The tower route of entry 100 had stopped at these curves because their elliptic quotients have positive rank; the bielliptic descent of 2.47 is what decides them.  The remaining $20$ tower classes have genus-$3$ models ($y^2=$ an even octic) whose genus-$2$ quotient is not bielliptic by the tower's test, and $8$ have a $(6,6)$ component with no hyperelliptic model: these need a rank bound on a genus-$2$ Jacobian (Magma) or a new idea.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

@@ -6515,3 +6515,42 @@ through the divisibilities.
 
 Data compute/data_orientation.json; check a3.orientation (suite 211);
 doc 2.54; A12; ROADMAP M15-D and the R.13 path-1 row; PROGRESS; memory.
+
+## 2026-09-07 — Entry 130: THE TOWERS' BIELLIPTIC MODELS — twelve open (1,1,1) classes dead (R.13 path 2): eight through G_1 of entry 118, four through F_1 = t^6 + 11t^4 - 5t^2 + 1
+
+THE FINDING. Of the 170 open (1,1,1) classes, 32 carry tower records
+(entry 100): a frame whose component is quadratic in one ratio has the
+level-0 hyperelliptic model y^2 = D(t) in the other ratio. Recomputing
+D exactly from the components (omega3._disc_model, the constant kept):
+8 classes have D = G_1 = 25t^6 - 29t^4 + 11t^2 + 1 or t^6 G_1(1/t),
+constant 1 -- the very curve of the bielliptic descent of entry 118,
+whose rational points are (0, +-1) and inf+- -- and 4 classes have
+D = F_1 = t^6 + 11t^4 - 5t^2 + 1 or its reciprocal, constant 1, in both
+frames: a bielliptic genus-2 curve with elliptic quotients 352b1 and
+352c1, both of rank 1 with trivial torsion. The tower route had stopped
+there (positive-rank quotients); the descent of entry 118 decides them.
+
+F_1(Q). compute/qc/qc_general.sage generalises the entry-118 scripts to
+any even sextic: QC_bielliptic (Bianchi-Padurariu) at the two smallest
+good ordinary primes [13, 19], precision 25, then the Mordell-Weil
+sieve on E1 x E2 (coefficients modulo p^4, CRT, 21 auxiliary primes
+with leverage, the points at infinity included): every candidate pair
+eliminated, the known points surviving as controls. F_1(Q) = (0 : -1 : 1), (0 : 1 : 0), (0 : 1 : 1).
+Conditional on the QC code and the sieve script, as in entry 118.
+
+THE KILLS. Every rational point of G_1 and F_1 has ratio t in {0, inf},
+degenerate; the component has no admissible point, the frame is dead,
+and a dead frame kills the class (the elimination of a frame is a
+necessary condition on the other two ratios). Twelve classes dead:
+tally (1,1,1) dead 2786 / finite 158. Check a3.towers_bielliptic
+(suite 212): the models re-identified exactly from the components, the
+QC report, the degeneracy of the points, the frame-death logic, the
+quotients' ranks (PARI). The inventory regenerated (158 + 1,388 + 1,025
+open records).
+
+WHAT REMAINS OF THE TOWERS. 20 classes have genus-3 models (y^2 = an
+even octic) whose genus-2 'odd' quotient is not bielliptic by the
+tower's test (no x -> kappa/x involution), and 8 have a (6,6) component
+with no hyperelliptic model: a rank bound on a genus-2 Jacobian (Magma)
+or a hyperelliptic model for the (6,6) curves is needed. Doc 2.55;
+ROADMAP M15-E and the R.13 path-2 row; PROGRESS; memory.
