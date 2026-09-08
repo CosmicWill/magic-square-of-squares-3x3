@@ -1,0 +1,80 @@
+[
+ {
+  "f": [
+   25,
+   -36,
+   -18,
+   44,
+   1,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 0,
+  "involutions": []
+ },
+ {
+  "f": [
+   25,
+   -4,
+   -18,
+   12,
+   1,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 0,
+  "involutions": []
+ },
+ {
+  "f": [
+   1,
+   44,
+   -18,
+   -36,
+   25,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 0,
+  "involutions": []
+ },
+ {
+  "f": [
+   1,
+   12,
+   -18,
+   -4,
+   25,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 0,
+  "involutions": []
+ },
+ {
+  "f": [
+   1,
+   -4,
+   6,
+   12,
+   1,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 0,
+  "involutions": []
+ },
+ {
+  "f": [
+   1,
+   12,
+   6,
+   -4,
+   1,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 0,
+  "involutions": []
+ }
+]

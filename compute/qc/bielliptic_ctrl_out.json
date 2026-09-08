@@ -1,0 +1,337 @@
+[
+ {
+  "f": [
+   1,
+   0,
+   11,
+   0,
+   -5,
+   0,
+   1
+  ],
+  "degree": 6,
+  "n_involutions": 1,
+  "involutions": [
+   {
+    "rational": true,
+    "matrix": [
+     "1",
+     "0",
+     "0",
+     "-1"
+    ],
+    "fixed_points_rational": true,
+    "fixed_points": [
+     "0",
+     "inf"
+    ],
+    "even_model": [
+     "1",
+     "11",
+     "-5",
+     "1"
+    ],
+    "even": true,
+    "even_integral": [
+     1,
+     11,
+     -5,
+     1
+    ],
+    "E1": {
+     "label": "352c1",
+     "conductor": 352,
+     "rank": 1,
+     "torsion": 1
+    },
+    "E2": {
+     "label": "352b1",
+     "conductor": 352,
+     "rank": 1,
+     "torsion": 1
+    },
+    "small_points": [
+     "(0 : -1 : 1)",
+     "(0 : 1 : 0)",
+     "(0 : 1 : 1)"
+    ]
+   }
+  ]
+ },
+ {
+  "f": [
+   25,
+   0,
+   -29,
+   0,
+   11,
+   0,
+   1
+  ],
+  "degree": 6,
+  "n_involutions": 1,
+  "involutions": [
+   {
+    "rational": true,
+    "matrix": [
+     "1",
+     "0",
+     "0",
+     "-1"
+    ],
+    "fixed_points_rational": true,
+    "fixed_points": [
+     "0",
+     "inf"
+    ],
+    "even_model": [
+     "25",
+     "-29",
+     "11",
+     "1"
+    ],
+    "even": true,
+    "even_integral": [
+     25,
+     -29,
+     11,
+     1
+    ],
+    "E1": {
+     "label": "1840d1",
+     "conductor": 1840,
+     "rank": 1,
+     "torsion": 1
+    },
+    "E2": {
+     "label": "184b1",
+     "conductor": 184,
+     "rank": 1,
+     "torsion": 1
+    },
+    "small_points": [
+     "(0 : -1 : 1)",
+     "(0 : 1 : 0)",
+     "(0 : 1 : 1)"
+    ]
+   }
+  ]
+ },
+ {
+  "f": [
+   1,
+   0,
+   0,
+   0,
+   1,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 6,
+  "involutions": [
+   {
+    "rational": false,
+    "matrix": [
+     "1",
+     "0.7071067811865475? + 0.7071067811865475?*I",
+     "0.7071067811865475? - 0.7071067811865475?*I",
+     "-1"
+    ]
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "1",
+     "0.7071067811865475? - 0.7071067811865475?*I",
+     "0.7071067811865475? + 0.7071067811865475?*I",
+     "-1"
+    ]
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "1",
+     "-0.7071067811865475? + 0.7071067811865475?*I",
+     "-0.7071067811865475? - 0.7071067811865475?*I",
+     "-1"
+    ]
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "1",
+     "-0.7071067811865475? - 0.7071067811865475?*I",
+     "-0.7071067811865475? + 0.7071067811865475?*I",
+     "-1"
+    ]
+   },
+   {
+    "rational": true,
+    "matrix": [
+     "0",
+     "1",
+     "1",
+     "0"
+    ],
+    "fixed_points_rational": true,
+    "fixed_points": [
+     "1",
+     "-1"
+    ],
+    "even_model": [
+     "-2",
+     "-10",
+     "10",
+     "2"
+    ],
+    "even": true,
+    "even_integral": [
+     -2,
+     -10,
+     10,
+     2
+    ],
+    "E1": {
+     "label": "256d1",
+     "conductor": 256,
+     "rank": 0,
+     "torsion": 2
+    },
+    "E2": {
+     "label": "256a1",
+     "conductor": 256,
+     "rank": 1,
+     "torsion": 2
+    },
+    "small_points": [
+     "(-1 : 0 : 1)",
+     "(0 : 1 : 0)",
+     "(1 : 0 : 1)"
+    ]
+   },
+   {
+    "rational": true,
+    "matrix": [
+     "0",
+     "1",
+     "-1",
+     "0"
+    ],
+    "fixed_points_rational": false
+   }
+  ]
+ },
+ {
+  "f": [
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   8
+  ],
+  "degree": 6,
+  "n_involutions": 3,
+  "involutions": [
+   {
+    "rational": true,
+    "matrix": [
+     "0",
+     "1",
+     "1/2",
+     "0"
+    ],
+    "fixed_points_rational": false
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "0",
+     "1",
+     "-0.25000000000000? - 0.43301270189222?*I",
+     "0"
+    ]
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "0",
+     "1",
+     "-0.25000000000? + 0.43301270189?*I",
+     "0"
+    ]
+   }
+  ]
+ },
+ {
+  "f": [
+   1,
+   0,
+   0,
+   0,
+   -1,
+   0
+  ],
+  "degree": 5,
+  "n_involutions": 6,
+  "involutions": [
+   {
+    "rational": true,
+    "matrix": [
+     "1",
+     "1",
+     "1",
+     "-1"
+    ],
+    "fixed_points_rational": false
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "1",
+     "1*I",
+     "-1*I",
+     "-1"
+    ]
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "1",
+     "-1*I",
+     "1*I",
+     "-1"
+    ]
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "0",
+     "1",
+     "-1*I",
+     "0"
+    ]
+   },
+   {
+    "rational": false,
+    "matrix": [
+     "0",
+     "1",
+     "1*I",
+     "0"
+    ]
+   },
+   {
+    "rational": true,
+    "matrix": [
+     "1",
+     "-1",
+     "-1",
+     "-1"
+    ],
+    "fixed_points_rational": false
+   }
+  ]
+ }
+]

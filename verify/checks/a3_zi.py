@@ -3601,7 +3601,7 @@ def _(ctx):
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
     require(data["n_classes"] == 2944 == len(data["classes"]), data["n_classes"])
-    require(data["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, data["tally"])      # entry 120 (prime-column lemma): 956 finite classes dead; entry 106: 1484/1460; entry 115: +8 dead; entry 117 (twist audit): 8 tower kills lost
+    require(data["tally"] == {'dead': 2790, 'finite': 154, 'unknown': 0}, data["tally"])      # entry 120 (prime-column lemma): 956 finite classes dead; entry 106: 1484/1460; entry 115: +8 dead; entry 117 (twist audit): 8 tower kills lost
     require("infinite" not in data["tally"] and "candidate" not in data["tally"], "every rational family resolved")
     require(set(data["monomial_relations"]) == {"1,2", "1,-2", "2,1", "2,-1", "1,3", "2,3"}, data["monomial_relations"])
     keys = set()
@@ -3611,7 +3611,7 @@ def _(ctx):
         require(k == (tuple(A), tuple(B), tuple(C), tuple(D), eA, eB, eC, eD), ("canonical", e["cand"]))
         keys.add(k)
     require(len(keys) == 2944, "distinct classes")
-    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 2786)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106) + 8 genus-0-quotient kills (entry 115)
+    require(sum(1 for e in data["classes"] if e["verdict"] == "dead") == 2790)      # 1373 + 3 common-factor + 72 quotient + 36 two-step kills (entry 106) + 8 genus-0-quotient kills (entry 115)
     require(sum(1 for e in data["classes"] if e.get("verdict_before_towers") == "finite") == 600)
     # (ii') the monomial lemma: angle doubling tau_g = 2 lam/(1 - lam^2), tau_h = lam is w_g = w_h^2;
     # tripling is w_g = w_h^3; a generic Moebius pair (tau_g = lam, tau_h = (lam + 1)/(2 - lam)) is NOT monomial
@@ -3899,7 +3899,7 @@ def _(ctx):
         elif e["verdict"] == "unknown":
             n_unk += 1
         elif e["verdict"] == "dead":
-            require(e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite" or e.get("verdict_before_towers_bielliptic") == "finite", ("a bound-certified class dead only by a quotient kill, the prime-column lemma, the height system or a tower bielliptic kill", e["cand"]))
+            require(e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite" or e.get("verdict_before_towers_bielliptic") == "finite" or e.get("verdict_before_towers_genus2") == "finite", ("a bound-certified class dead only by a quotient kill, the prime-column lemma, the height system or a tower kill (entries 130-131)", e["cand"]))
             n_dead_q = locals().get("n_dead_q", 0) + 1
     require((n_fin, n_unk) == (138, 0), (n_fin, n_unk))      # 1264 bound-certified classes, 72 + 36 of them dead by quotients (entries 105-106), 8 more by the genus-0 quotient kill (entry 115)
     require(all("corrected" in e["genus"] for e in data["classes"] if "genus" in e), "every bound record is the corrected one")
@@ -3969,7 +3969,7 @@ def _(ctx):
     from compute.pari_genus1 import gp_available
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["entry"] >= 106 and data["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, data["tally"])   # entries 115, 117
+    require(data["entry"] >= 106 and data["tally"] == {'dead': 2790, 'finite': 154, 'unknown': 0}, data["tally"])   # entries 115, 117
     Rs = data["resolution"]
     require(Rs["n_classes"] == 1267 and Rs["n_certified_finite"] == 1264 and Rs["n_not_certified"] == 3, Rs)
     require(Rs["inconsistent"] == 0 and Rs["errors"] == 0 and "EXACT BELOW BOUND" not in Rs["exact_vs_corrected_bound"], Rs)
@@ -3982,7 +3982,7 @@ def _(ctx):
     for e in data["classes"]:
         if "resolution" in e:
             n_res += 1
-            require(e["verdict"] == "finite" or (e["verdict"] == "dead" and (e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite" or e.get("verdict_before_towers_bielliptic") == "finite")), ("resolution class verdict", e["cand"]))
+            require(e["verdict"] == "finite" or (e["verdict"] == "dead" and (e.get("verdict_before_quotients") == "finite" or e.get("verdict_before_prime_column") == "finite" or e.get("verdict_before_height") == "finite" or e.get("verdict_before_towers_bielliptic") == "finite" or e.get("verdict_before_towers_genus2") == "finite")), ("resolution class verdict", e["cand"]))
             fr = e["resolution"]["frames"][str(e["frame"])]
             require(fr["verdict"] == "finite" and fr["components"], ("certifying frame", e["cand"]))
             for c in fr["components"]:
@@ -4077,7 +4077,7 @@ def _(ctx):
     from compute.omega3_finiteness import base_locus, frame_ratio_prime
     with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
         data = json.load(fh)
-    require(data["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, data["tally"])   # entries 115, 117, 120
+    require(data["tally"] == {'dead': 2790, 'finite': 154, 'unknown': 0}, data["tally"])   # entries 115, 117, 120
     BL = data["base_locus"]
     require(BL["n_finite"] == 1576 and BL["n_admissible"] == 0 and BL["n_rational_points"] == 122, BL)   # 1568 at entry 104 + 8 classes reverted to finite by the twist audit (entry 117)
     require(BL["status_counts"] == {"empty (Groebner basis 1)": 1024, "zero-dimensional": 552}, BL["status_counts"])
@@ -4094,7 +4094,7 @@ def _(ctx):
             require(e["verdict"] == "dead", (e["cand"], e["verdict"]))
             if e.get("verdict_before_quotients") == "finite":
                 require(e["base_locus"]["admissible"] == [], ("quotient-killed class keeps its base-locus record", e["cand"]))
-    require(len(fin) == 158)      # entry 123: 274 more dead by the height system;      # entry 120: 956 more dead by the prime-column lemma;      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106 and the 8 genus-0-quotient kills of entry 115
+    require(len(fin) == 154)      # entry 123: 274 more dead by the height system;      # entry 120: 956 more dead by the prime-column lemma;      # 1568 finite classes before the 72 + 36 quotient kills of entries 105-106 and the 8 genus-0-quotient kills of entry 115
     # (i) the prime from the ratio: 5 = 2^2 + 1^2 gives 4/3 (and -4/3, 3/4), 13 gives 12/5, 17 gives 8/15; 1 and 2/3 are not frames
     require([frame_ratio_prime(sp.Rational(*x)) for x in ((4, 3), (-4, 3), (3, 4), (12, 5), (8, 15), (1, 1), (2, 3))] == [5, 5, 5, 13, 17, None, None])
     # (ii) live recomputation of the base locus
@@ -4483,7 +4483,7 @@ def _(ctx):
         A, B, C, Dl = [tuple(x) for x in e["cand"][:4]]; f = e["frame"]
         return (sum(1 for lab in (A, B, C) if lab[f] != 0), sum(1 for lab in (A, B, Dl) if lab[f] != 0))
     recs = {json.dumps(e["cand"]): e for e in data["classes"] if "resolution" in e}
-    _mech = lambda e: e.get("mechanism_before_towers_bielliptic", e.get("mechanism_before_height", e.get("mechanism_before_prime_column", e["mechanism"])))      # entry 120: the geometric mechanism of a lemma-killed class
+    _mech = lambda e: e.get("mechanism_before_towers_genus2", e.get("mechanism_before_towers_bielliptic", e.get("mechanism_before_height", e.get("mechanism_before_prime_column", e["mechanism"]))))      # entry 120: the geometric mechanism of a lemma-killed class
     self_base = {json.dumps(r["cand"]) for r in BL["classes"] if any(k == "curve" for q, k in r.get("curves", []))}
     require(len(self_base) == 18 and self_base == {c for c, e in recs.items() if _terms(e) == (3, 3)}
             and all(r["status"] == "curves" for r in BL["classes"] if json.dumps(r["cand"]) in self_base)
@@ -4903,7 +4903,7 @@ def _(ctx):
         d2 = json.load(fh)
     HS1, HS2 = d1["height_system"], d2["height_system"]
     require(HS1["entry"] == 123 and HS1["infeasible"] == 274 and HS1["capped_searched"] == 0 and HS1["unbounded"] == 214 and HS1["tally_before"] == {"dead": 2456, "finite": 488}
-            and HS1["tally_after"] == {"dead": 2730, "finite": 214} and d1["tally"] == {"dead": 2786, "finite": 158, "unknown": 0}, HS1["tally_after"])
+            and HS1["tally_after"] == {"dead": 2730, "finite": 214} and d1["tally"] == {"dead": 2790, "finite": 154, "unknown": 0}, HS1["tally_after"])
     require(HS2["entry"] == 123 and HS2["infeasible"] == 2732 and HS2["capped_searched"] == 52 and HS2["unbounded"] == 1960 and HS2["tally_before"] == {"dead": 74624, "finite": 4744}
             and HS2["tally_after"] == {"dead": 77408, "finite": 1960} and d2["tally"] == {"dead": 77980, "finite": 1388}, HS2["tally_after"])
     # version 2 (entry 124): the reality sharpening -- the exact circuit decomposition behind it, on genuine frames
@@ -4912,7 +4912,7 @@ def _(ctx):
     HS1v2, HS2v2 = HS1["version2"], HS2["version2"]
     require(HS1v2["entry"] == 124 and HS1v2["n_open_before"] == 214 and HS1v2["infeasible"] == 44 and HS1v2["unbounded"] == 170 and HS1v2["tally_after"] == {"dead": 2774, "finite": 170}
             and HS2v2["entry"] == 124 and HS2v2["n_open_before"] == 1960 and HS2v2["infeasible"] == 572 and HS2v2["unbounded"] == 1388 and HS2v2["tally_after"] == {"dead": 77980, "finite": 1388}
-            and d1["tally"] == {"dead": 2786, "finite": 158, "unknown": 0} and d2["tally"] == {"dead": 77980, "finite": 1388}, "version 2 (entry 124)")
+            and d1["tally"] == {"dead": 2790, "finite": 154, "unknown": 0} and d2["tally"] == {"dead": 77980, "finite": 1388}, "version 2 (entry 124)")
     t1 = Counter()
     for e in d1["classes"]:
         k = e.get("kill", {}).get("entry")
@@ -4926,7 +4926,7 @@ def _(ctx):
             res = {"status": "feasible", "version": 2, "per_prime": {j: {"status": "unbounded", "direction": dirn} for j, dirn in e["height"]["directions"].items()}}
             require(verify_certificate(e["cand"], res), (e["cand"], "recession direction"))
             t1["unbounded"] += 1
-    require(dict(t1) == {"infeasible v1": 274, "infeasible v2": 44, "unbounded": 158}, dict(t1))      # entry 130: 12 open classes dead by the towers
+    require(dict(t1) == {"infeasible v1": 274, "infeasible v2": 44, "unbounded": 154}, dict(t1))      # entries 130-131: 12 + 4 open classes dead by the towers
     killed2 = [c for c in d2["classes"] if "hk" in c]
     require(len(killed2) == 3356 and all(c["v"] == "dead" and c.get("hb") == "finite" for c in killed2)
             and Counter((c["hk"]["kind"], c["hk"].get("version", 1)) for c in killed2) == {("infeasible", 1): 2732, ("capped+search", 1): 52, ("infeasible", 2): 572}
@@ -5363,7 +5363,7 @@ def _(ctx):
         rep = json.load(fh)
     TB = d["towers_bielliptic"]
     require(TB["entry"] == 130 and TB["n_killed"] == 12 and TB["by_curve"] == {"G1": 8, "F1": 4} and TB["tally_after"] == {"dead": 2786, "finite": 158}
-            and d["tally"] == {"dead": 2786, "finite": 158, "unknown": 0}, TB["by_curve"])
+            and d["tally"] == {"dead": 2790, "finite": 154, "unknown": 0}, TB["by_curve"])
     require(rep["f"] == [1, 11, -5, 1] and rep["total_survivors"] == 0 and all(c[-1] == "OK" for c in rep["controls"]) and len(rep["primes"]) == 2 and rep["N"] == 4
             and all(len(a) == 4 and (a[1] % rep["primes"][0] == 0 or a[1] % rep["primes"][1] == 0 or a[2] % rep["primes"][0] == 0 or a[2] % rep["primes"][1] == 0) for a in rep["aux"]) and len(rep["aux"]) >= 8, "the F_1 report")
     pts = sorted({P for L in rep["rational_points"] for P in L})
@@ -5401,6 +5401,157 @@ def _(ctx):
         require(got and got[0][0] == "1" and got[0][1] == "1" and got[0][3] == "1" and got[0][4] == "1" and {got[0][2], got[0][5]} == {"352b1", "352c1"}, got)
         ctx.note("PARI: F_1's elliptic quotients have rank bound 1 and trivial torsion (352b1, 352c1)")
     ctx.note("towers: 12 classes dead through G_1 (8, entry 118) and F_1 (4, this entry: primes " + str(rep["primes"]) + ", " + str(len(rep["aux"])) + " auxiliary primes, no survivor); " + str(n_ver) + " models re-identified exactly")
+
+
+@check("a3.towers_genus2", DOC)
+def _(ctx):
+    """THE GENERAL BIELLIPTIC TEST AND THE GENUS-2 CURVES OF THE OCTIC TOWERS
+    (entry 131; doc 2.56; R.13 path 2).  The twelve open tower classes with
+    genus-3 models y^2 = Q(t^2) have the odd quotients w^2 = u Q(u): three
+    genus-2 curves up to u -> 1/u (C_a, C_b in the frames of classes 0-7;
+    C_c in both frames of four classes).  None is bielliptic: a Moebius
+    involution permuting the six branch points fixes none of them, so it
+    comes from one of the 15 perfect matchings, and no matching admits one
+    (exactly in Sage; here numerically, with the controls).  C_c is
+    Q-isomorphic to the LMFDB curve 1408.b.180224.2 whose Jacobian has rank
+    0 (2-descent, mw_rank_proved), torsion Z/2 x Z/8; the gcd of #J(F_p) is
+    16, the known points generate 16 classes, and the enumeration of the 16
+    (Sage) gives C_c(Q) = {inf, (0,0), (-1,0), (1,+-4)}, every u degenerate:
+    the frame is dead, four classes dead.  Verifies the quintics recomputed
+    exactly from the components, the identification, the isomorphism to the
+    LMFDB model (exact), the record, the five points and their degeneracy,
+    the torsion bound from point counts over small fields, the numerical
+    non-biellipticity and the controls, the frame-death logic, the tally."""
+    import json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import _disc_model, frame_factors
+    from compute.omega3_towers import even_part
+    from compute.bielliptic import scan, even_form
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d = json.load(fh)
+    with open(os.path.join(DATA, "qc", "lmfdb_1408b180224_2.json"), encoding="utf-8") as fh:
+        L = json.load(fh)["data"][0]
+    with open(os.path.join(DATA, "qc", "bielliptic_test_out.json"), encoding="utf-8") as fh:
+        BT = json.load(fh)
+    with open(os.path.join(DATA, "qc", "bielliptic_ctrl_out.json"), encoding="utf-8") as fh:
+        CT = json.load(fh)
+    TG = d["towers_genus2"]
+    require(TG["entry"] == 131 and TG["n_killed"] == 4 and TG["n_octic_classes"] == 12 and TG["tally_after"] == {"dead": 2790, "finite": 154}
+            and d["tally"] == {"dead": 2790, "finite": 154, "unknown": 0} and d["towers_bielliptic"]["tally_after"] == {"dead": 2786, "finite": 158}, "the block")
+    require(TG["frames_by_curve"] == {"C_a": 4, "C_a(1/u)": 4, "C_b": 4, "C_b(1/u)": 4, "C_c": 4, "C_c(1/u)": 4}, TG["frames_by_curve"])
+    # the LMFDB record
+    require(L["label"] == "1408.b.180224.2" and L["mw_rank"] == 0 and L["mw_rank_proved"] is True and L["two_selmer_rank"] == 2 and L["torsion_subgroup"] == "[2,8]"
+            and L["torsion_order"] == 16 and L["num_rat_pts"] == 5 and L["num_rat_wpts"] == 3 and L["cond"] == 1408 and L["abs_disc"] == 180224 and L["is_simple_geom"] is True
+            and L["eqn"] == "[[1,2,-1,-4,0,2],[]]", "the LMFDB record")
+    z, X, Z = sp.symbols("z X Z")
+    CC = z ** 5 - 4 * z ** 4 + 6 * z ** 3 + 12 * z ** 2 + z
+    CA = 25 * z ** 5 - 36 * z ** 4 - 18 * z ** 3 + 44 * z ** 2 + z
+    CB = 25 * z ** 5 - 4 * z ** 4 - 18 * z ** 3 + 12 * z ** 2 + z
+    NAMES = {"C_a": CA, "C_b": CB, "C_c": CC}
+    # the Q-isomorphism C_c -> the LMFDB model: F_B(M(X, Z)) = 4 F_A(X, Z)
+    FA = sum(c * X ** k * Z ** (6 - k) for k, c in enumerate([0, 1, 12, 6, -4, 1]))
+    FB = sum(c * X ** k * Z ** (6 - k) for k, c in enumerate([1, 2, -1, -4, 0, 2]))
+    G = sp.expand(FB.subs({X: X - Z, Z: -X - Z}, simultaneous=True))
+    require(sp.expand(G - 4 * FA) == 0, "the isomorphism to 1408.b.180224.2")
+    # the five points, on the curve, degenerate; no other point of small height
+    PTS = TG["curves"]["C_c"]["rational_points"]
+    require(PTS == ["inf", "(0, 0)", "(-1, 0)", "(1, 4)", "(1, -4)"])
+    for P in PTS[1:]:
+        x0, y0 = [sp.Rational(v) for v in P.strip("()").split(",")]
+        require(y0 ** 2 == CC.subs(z, x0) and x0 in (0, 1, -1), P)
+    from math import gcd as _g
+    from fractions import Fraction
+    B = ctx.bound(full=120, fast=40)
+    found = set()
+    for n in range(-B, B + 1):
+        for m in range(1, B + 1):
+            if _g(abs(n), m) != 1:
+                continue
+            u = Fraction(n, m)
+            v = u ** 5 - 4 * u ** 4 + 6 * u ** 3 + 12 * u ** 2 + u
+            if v >= 0 and v.numerator == int(v.numerator ** 0.5 + 0.5) ** 2 and v.denominator == int(v.denominator ** 0.5 + 0.5) ** 2:
+                found.add(u)
+    require(found == {Fraction(0), Fraction(-1), Fraction(1)}, ("small points", found))
+    # the torsion bound from point counts: #J(F_p) = (N1^2 + N2)/2 - p with N1 = #C(F_p), N2 = #C(F_{p^2})
+    def count(p, e):
+        # F_{p^2} = F_p[s]/(s^2 - nr), nr a non-residue; elements (a, b) = a + b s; the curve y^2 = f(u), plus one point at infinity (odd degree)
+        if e == 1:
+            N = 1
+            sq = {(x * x) % p for x in range(p)}
+            for u in range(p):
+                v = (u ** 5 - 4 * u ** 4 + 6 * u ** 3 + 12 * u ** 2 + u) % p
+                N += 0 if v not in sq else (1 if v == 0 else 2)
+            return N
+        nr = next(n for n in range(2, p) if pow(n, (p - 1) // 2, p) == p - 1)
+        def mul(x, y):
+            return ((x[0] * y[0] + nr * x[1] * y[1]) % p, (x[0] * y[1] + x[1] * y[0]) % p)
+        def add(x, y):
+            return ((x[0] + y[0]) % p, (x[1] + y[1]) % p)
+        def sc(c, x):
+            return ((c * x[0]) % p, (c * x[1]) % p)
+        def powq(x, n):
+            r = (1, 0)
+            while n:
+                if n & 1:
+                    r = mul(r, x)
+                x = mul(x, x); n >>= 1
+            return r
+        N = 1
+        q = p * p
+        for a in range(p):
+            for b in range(p):
+                u = (a, b)
+                u2 = mul(u, u); u3 = mul(u2, u); u4 = mul(u3, u); u5 = mul(u4, u)
+                v = add(add(add(add(u5, sc(p - 4, u4)), sc(6, u3)), sc(12, u2)), u)
+                if v == (0, 0):
+                    N += 1
+                elif powq(v, (q - 1) // 2) == (1, 0):
+                    N += 2
+        return N
+    tb = 0
+    for p in (3, 5, 7, 13):
+        N1, N2 = count(p, 1), count(p, 2)
+        J = (N1 * N1 + N2) // 2 - p
+        tb = _g(tb, J)
+    require(tb == 16 and TG["curves"]["C_c"]["torsion"]["bound_gcd_JFp"] == 16, ("torsion bound", tb))
+    # the numerical bielliptic test: the six quintics fail every matching, the controls pass as recorded
+    require(len(BT) == 6 and all(r["n_involutions"] == 0 for r in BT) and [r["n_involutions"] for r in CT] == [1, 1, 6, 3, 6], "the Sage results")
+    worst = None
+    for r in BT[: ctx.bound(full=6, fast=3)]:
+        n_pass, best = scan(r["f"])
+        require(n_pass == 0 and best is not None and best > 1e-6, (r["f"], n_pass, best))
+        worst = best if worst is None else min(worst, best)
+    for r, expect in zip(CT[: ctx.bound(full=5, fast=2)], (1, 1, 6, 3, 6)):
+        n_pass, best = scan(r["f"])
+        require(n_pass == expect, (r["f"], n_pass, expect))
+    require(even_form([1, 0, 0, 0, 1, 0], 0, 1, 1) == [-2, -10, 10, 2], "the even form of y^2 = x^5 + x under x -> 1/x")
+    require(CT[0]["involutions"][0]["even_integral"] == [1, 11, -5, 1] and CT[0]["involutions"][0]["E1"]["label"] == "352c1" and CT[0]["involutions"][0]["E2"]["label"] == "352b1", "F_1 control")
+    # the kills: recomputed exactly from the components
+    O.set_box((1, 1, 1))
+    t = sp.Symbol("t")
+    killed = [e for e in d["classes"] if e.get("kill", {}).get("entry") == 131]
+    require(len(killed) == 4 and all(e["verdict"] == "dead" and e.get("verdict_before_towers_genus2") == "finite" and str(e["mechanism"]).startswith("tower genus-2 kill") and e["kill"]["curve"] == "C_c" for e in killed))
+    n_ver = 0
+    for e in killed[: ctx.bound(full=4, fast=2)]:
+        k = e["kill"]
+        cand = tuple(tuple(x) for x in e["cand"][:4]) + tuple(e["cand"][4:])
+        curves, live = frame_factors(cand, k["frame"])
+        phi, dg, dh = next(c for c in curves if (c[1], c[2]) == tuple(k["component"]))
+        var, oth = (O.th, O.tg) if k["model_var"] == "tg" else (O.tg, O.th)
+        sqf, dfl, genus = _disc_model(phi, var, oth)
+        Qt = even_part(sp.expand(sqf.subs(oth, t)), t, z)
+        require(genus == 3 and Qt is not None, (e["cand"], "an even octic"))
+        odd = sp.expand(z * Qt)
+        ref = CC if not k["reciprocal"] else sp.expand(z ** 6 * CC.subs(z, 1 / z))
+        require(sp.expand(odd - sp.Rational(k["constant"]) * ref) == 0 and sp.sqrt(sp.Rational(k["constant"])).is_Rational, (e["cand"], "the odd quintic"))
+        comps = e["towers"]["frames"][str(k["frame"])]["components"]
+        require(len(comps) == 1 or all(c.get("verdict") == "dead" for c in comps if c.get("deg") != k["component"]), (e["cand"], "the other components"))
+        n_ver += 1
+    # the census: every octic class's frames identified; the killed ones are exactly those with C_c
+    require(all(any(fr["curve"] == "C_c" for fr in c["frames"]) == (d["classes"][c["index"]].get("kill", {}).get("entry") == 131) for c in TG["census"]), "the census vs the kills")
+    ctx.note("towers: the 12 octic classes' odd quotients are C_a, C_b, C_c (4 frames each, 4 reciprocal); none bielliptic (numerically, best residual " + ("%.1e" % worst if worst is not None else "-") +
+             "); C_c = LMFDB 1408.b.180224.2 of rank 0, five rational points, all degenerate: 4 classes dead (" + str(n_ver) + " re-verified); C_a, C_b rank >= 1, Magma needed")
 
 
 @check("a3.prime_column", DOC)
@@ -5444,7 +5595,7 @@ def _(ctx):
         d2 = json.load(fh)
     PC1, PC2 = d1["prime_column_lemma"], d2["prime_column_lemma"]
     require(PC1["entry"] == 120 and PC1["n_finite_killed"] == 956 and PC1["n_dead_also_excluded"] == 1210 and PC1["survivors_tally"] == {"dead": 290, "finite": 488}
-            and PC1["tally_before"] == {"dead": 1500, "finite": 1444} and PC1["tally_after"] == {"dead": 2456, "finite": 488} and d1["tally"] == {"dead": 2786, "finite": 158, "unknown": 0}, PC1["tally_after"])
+            and PC1["tally_before"] == {"dead": 1500, "finite": 1444} and PC1["tally_after"] == {"dead": 2456, "finite": 488} and d1["tally"] == {"dead": 2790, "finite": 154, "unknown": 0}, PC1["tally_after"])
     require(PC2["entry"] == 120 and PC2["n_finite_killed"] == 58592 and PC2["n_dead_also_excluded"] == 15338 and PC2["survivors_tally"] == {"dead": 694, "finite": 4744}
             and PC2["tally_before"] == {"dead": 16032, "finite": 63336} and PC2["tally_after"] == {"dead": 74624, "finite": 4744} and d2["tally"] == {"dead": 77980, "finite": 1388}, PC2["tally_after"])
     t1 = Counter(); n_cert = 0
@@ -5462,7 +5613,7 @@ def _(ctx):
             n_cert += 1; t1[("finite", "excluded")] += 1
         else:
             require(e.get("verdict_before_prime_column") is None, e["cand"]); t1[("dead", "excluded")] += 1
-    require(n_cert == 956 and dict(t1) == {("dead", "survives"): 620, ("dead", "excluded"): 1210, ("finite", "excluded"): 956, ("finite", "survives"): 158}, dict(t1))      # entry 123: 274 survivors of the lemma dead by the height system
+    require(n_cert == 956 and dict(t1) == {("dead", "survives"): 624, ("dead", "excluded"): 1210, ("finite", "excluded"): 956, ("finite", "survives"): 154}, dict(t1))      # entry 123: 274 survivors of the lemma dead by the height system; entries 130-131: 12 + 4 by the towers
     t2 = Counter()
     for c in d2["classes"]:
         cert = column_certificate(c["cand"][:4])
@@ -5605,7 +5756,7 @@ def _(ctx):
     with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
         d2 = json.load(fh)
     A1, A2 = d1["twist_audit"], d2["twist_audit"]
-    require(A1["n_engine_kills_audited"] == 1376 and A1["n_flagged"] == 206 and len(A1["lost_kills"]) == 8 and len(A1["rescued_by_free_frame"]) == 4 and A1["tally_after"] == {"dead": 1484, "finite": 1460} and d1["tally"] == {'dead': 2786, 'finite': 158, 'unknown': 0}, A1["tally_after"])
+    require(A1["n_engine_kills_audited"] == 1376 and A1["n_flagged"] == 206 and len(A1["lost_kills"]) == 8 and len(A1["rescued_by_free_frame"]) == 4 and A1["tally_after"] == {"dead": 1484, "finite": 1460} and d1["tally"] == {'dead': 2790, 'finite': 154, 'unknown': 0}, A1["tally_after"])
     require(A2["n_engine_kills_audited"] == 12132 and A2["n_flagged"] == 4581 and len(A2["lost_kills"]) == 0 and A2["tally_after"] == {'dead': 16032, 'finite': 63336} and d2["tally"] == {'dead': 77980, 'finite': 1388}, A2["tally_after"])
     for r in A1["lost_kills"]:
         e = next(e for e in d1["classes"] if e["cand"] == r["cand"])
@@ -5760,6 +5911,9 @@ def _(ctx):
                 killed.append(e)
             elif str(e["mechanism"]).startswith("tower bielliptic kill"):
                 require(e.get("kill", {}).get("entry") == 130 and e.get("verdict_before_towers_bielliptic") == "finite", e["cand"])      # entry 130: verified by a3.towers_bielliptic
+                continue
+            elif str(e["mechanism"]).startswith("tower genus-2 kill"):
+                require(e.get("kill", {}).get("entry") == 131 and e.get("verdict_before_towers_genus2") == "finite", e["cand"])      # entry 131: verified by a3.towers_genus2
                 continue
             elif str(e["mechanism"]).startswith(("height system infeasible", "height cap + exhaustive search")):
                 require(e.get("kill", {}).get("entry") in (123, 124) and e.get("verdict_before_height") == "finite", e["cand"])      # entries 123-124: verified by a3.height_system
