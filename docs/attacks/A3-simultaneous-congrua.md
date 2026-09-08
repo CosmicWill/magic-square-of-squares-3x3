@@ -3144,6 +3144,20 @@ Four split primes, every exponent $1$.  Labels are the $40$ nonzero vectors of $
 
 The comparison with three frames decides path 5 of R.13.  The $(1,1,1)$ box's $2{,}916$ three-frame classes leave $750$ lemma survivors, of which the height system kills $576$ ($76.8\%$).  At four frames the kill rate drops to $55.5\%$, and the three-frame regularity "no two A/B deficits in different columns" fails: $801$ open classes have two A/B deficits, $94$ three, $1$ four.  The reason is structural: a binomial bound $p_j^{2g}\le\prod_{k\ne j}p_k^{|d_k|}$ has one more factor on the right for each extra prime, so a recession direction is easier to find.  **The local method weakens with $\omega$.**  Consequences: a uniform proof cannot come from the height system alone for large $\omega$; the role-word theorem (path 1) must be sought in a different form (what the survivors *share* as $\omega$ grows, rather than an exclusion by counting deficits); and $\omega\ge4$ is where the analytic dimension of the solution set grows ($\omega-2$), so it is also where a solution could hide from every curve method.
 
+## 2.53 The (1,1,1,1,1) box and the trend: the local method decays with the number of primes (entry 128)
+
+*(2026-09-07; entry 128; `compute/omega_boxes.py` (the column canonical form), `compute/data_omega5_box11111.json.gz`; check `a3.omega5_box11111`.)*
+
+A class of the all-ones box with $N$ frames is the $4\times N$ matrix of signed exponent vectors $w_X=\varepsilon_Xe_X$ (the relations depend only on $Z_X=\prod_j\rho_j^{2w_{X,j}}$); the frame group permutes and sign-flips its columns, so the canonical form is the sorted tuple of sign-normalised columns, minimised over the global sign and the $A\leftrightarrow B$ swap — linear in $N$, and it reproduces the $(1,1,1)$ and $(1,1,1,1)$ ledgers as identical key sets.  Five frames: $497,166$ five-frame classes; the lemma leaves $44{,}882$ (it is very selective at five columns: $1$ raw quadruple in $13$); the height system (version 3) kills $15{,}972$ of them, caps none, leaves $28{,}910$ open.
+
+| frames | classes | lemma survivors | killed by the height system | open | kill rate |
+|---:|---:|---:|---:|---:|---:|
+| 3 | 2,916 | 750 | 576 | 174 | 76.8% |
+| 4 | 48,854 | 7,087 | 3,935 | 3,152 | 55.5% |
+| 5 | 497,166 | 44,882 | 15,972 | 28,910 | 35.6% |
+
+Open classes at five frames carry up to five A/B deficits ($668$ with four, $10$ with five) and up to five four-maxima columns ($168$ with all five).  **The local method decays with $\omega$**, as the structure predicts: each binomial bound $p_j^{2g}\le\prod_{k\ne j}p_k^{|d_k|}$ gains a factor per extra prime.  For the plan (R.13) this settles path 5: no uniform proof can come from the height system as $\omega$ grows, so the theory must find what the open classes have in common that the local method does not see — or a descent that reduces $\omega$.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

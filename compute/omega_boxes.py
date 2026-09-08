@@ -80,3 +80,65 @@ def enumerate_classes(N, lemma_filter=True, table=None):
                 for eB, eC, eD in product((1, -1), repeat=3):
                     out.add(canon((A, B, C, D, 1, eB, eC, eD), table))
     return sorted(out), {"raw": n_raw, "n_frame": n_frame, "lemma_pass_raw": n_pass}
+
+
+# ---------------- the column form: a canonical form linear in N (entry 128) ----------------
+def signed_matrix(cand):
+    """The four signed exponent vectors w_X = eps_X e_X (the class depends only on them: Z_X = prod rho_j^{2 w_{X,j}})."""
+    A, B, C, D, eA, eB, eC, eD = cand
+    return tuple(tuple(e * x for x in lab) for lab, e in ((A, eA), (B, eB), (C, eC), (D, eD)))
+
+
+def _col_canon(col):
+    """A column up to sign (a conjugation of that frame flips it): the lexicographically smaller of col, -col."""
+    neg = tuple(-x for x in col)
+    return col if col <= neg else neg
+
+
+def column_key(W):
+    """The canonical form of a class under the frame group (column permutations and column sign flips),
+    the global sign (W -> -W) and the A<->B swap (rows A, B exchanged, row D negated): the minimum over the
+    four row operations of the sorted tuple of sign-normalised columns."""
+    best = None
+    for swap in (False, True):
+        rows = (W[1], W[0], W[2], tuple(-x for x in W[3])) if swap else W
+        for gs in (1, -1):
+            R = tuple(tuple(gs * x for x in r) for r in rows)
+            key = tuple(sorted(_col_canon(tuple(R[X][j] for X in range(4))) for j in range(len(R[0]))))
+            if best is None or key < best:
+                best = key
+    return best
+
+
+def key_to_cand(key):
+    """A representative (labels + signs, the ledger's convention) of a column key."""
+    W = [tuple(col[X] for col in key) for X in range(4)]
+    cand = []
+    for w in W:
+        fn = next(x for x in w if x != 0)
+        cand.append(tuple(fn * x for x in w))
+    return tuple(cand) + tuple((next(x for x in w if x != 0)) for w in W)
+
+
+def enumerate_signed(N, lemma_filter=True):
+    """The canonical N-frame classes (all frames used) by the column form; returns (keys, counts)."""
+    labs = labels_of(N)
+    reps = [tuple([1] * k + [0] * (N - k)) for k in range(1, N + 1)]
+    keys = set(); n_raw = n_frame = n_pass = 0
+    for A in reps:
+        for B in labs:
+            if B == A:
+                continue
+            rest = [x for x in labs if x not in (A, B)]
+            for C, D in permutations(rest, 2):
+                labels = (A, B, C, D)
+                n_raw += 8
+                if not all(any(lab[j] != 0 for lab in labels) for j in range(N)):
+                    continue
+                n_frame += 8
+                if lemma_filter and lemma_fails(labels):
+                    continue
+                n_pass += 8
+                for eB, eC, eD in product((1, -1), repeat=3):
+                    keys.add(column_key(signed_matrix((A, B, C, D, 1, eB, eC, eD))))
+    return keys, {"raw": n_raw, "n_frame": n_frame, "lemma_pass_raw": n_pass}

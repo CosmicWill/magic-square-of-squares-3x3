@@ -6434,3 +6434,37 @@ with certificates or directions); check a3.omega4_box1111 (suite 209:
 the N = 3 reproduction in every profile, the N = 4 counts in full,
 certificates, the live three-frame comparison). Doc 2.52; ROADMAP
 M15-B and R.13's path-5 row; PROGRESS; memory.
+
+## 2026-09-07 — Entry 128: THE (1,1,1,1,1) BOX — the trend: the local method decays with the number of primes
+
+THE COLUMN FORM. A class of the all-ones box with N frames is the
+4 x N matrix of signed exponent vectors w_X = eps_X e_X (the relations
+depend only on Z_X = prod rho_j^{2 w_{X,j}}); the frame group permutes
+and sign-flips its columns, so the canonical form is the sorted tuple
+of sign-normalised columns, minimised over the global sign and the
+A<->B swap (compute/omega_boxes.column_key): linear in N where the
+table form of entry 127 grew with |S_N x conjugations|. It reproduces
+the (1,1,1) ledger (2916 / 750) and the (1,1,1,1) ledger (7087) as
+identical key sets.
+
+THE BOX. Five frames, every exponent 1: 497,166 five-frame classes
+(67.4 million raw quadruples with A fixed to a representative); the
+prime-column lemma leaves 44,882 (1 raw quadruple in 13 passes: the
+lemma is very selective at five columns); the height system (version
+3) on them: 15,972 infeasible (exact certificates), no cap, 28,910
+open (6 minutes, 3 workers). Open classes by A/B deficits: {"0": 4952, "1": 10166, "2": 9120, "3": 3994, "4": 668, "5": 10};
+by four-maxima columns: {"0": 4060, "1": 9114, "2": 9248, "3": 4898, "4": 1422, "5": 168}.
+
+THE TREND. Kill rates of the height system on the lemma survivors:
+76.8% (3 frames), 55.5% (4), 35.6% (5). The local method decays with
+omega, as the structure predicts (each binomial bound gains a factor
+per extra prime), and the survivors' shapes broaden (up to five A/B
+deficits, up to five four-maxima columns). R.13 path 5 is settled:
+no uniform proof can come from the height system as omega grows;
+the theory must find what the open classes share that the local
+method does not see, or a descent that reduces omega.
+
+Data compute/data_omega5_box11111.json.gz; check a3.omega5_box11111
+(suite 210: the column form against both smaller ledgers, the records'
+canonicity, certificates, the pinned trend). Doc 2.53; ROADMAP M15-C
+and the R.13 path-5 row; PROGRESS; memory.

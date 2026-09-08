@@ -5188,6 +5188,69 @@ def _(ctx):
     ctx.note("(1,1,1,1): 48854 four-frame classes, 7087 lemma survivors, height system 3935 dead / 3152 open (no cap); " + str(n_ver) + " certificates re-verified; N = 3 reproduces the ledger (750 / 2916; height 576 / 174 live)")
 
 
+@check("a3.omega5_box11111", DOC)
+def _(ctx):
+    """THE (1,1,1,1,1) BOX (entry 128; doc 2.53) and the trend of the local
+    method with the number of primes.  The column canonical form of
+    compute/omega_boxes (the signed exponent matrix, columns sorted up to
+    sign, minimised over the global sign and the A<->B swap) is verified to
+    reproduce the (1,1,1) ledger (2916 three-frame classes, 750 lemma
+    survivors) and the (1,1,1,1) ledger's 7087 lemma survivors as identical
+    key sets; the five-frame records are canonical, distinct, pass the
+    lemma; the height certificates are re-verified (all in full, a sample in
+    fast); the trend figures are pinned: kill rates 76.8% / 55.5% / 35.6%."""
+    import gzip, json
+    from collections import Counter
+    from compute.omega_boxes import enumerate_signed, column_key, signed_matrix, key_to_cand, lemma_fails
+    from compute.prime_column import excluded
+    from compute.height_system import verify_certificate, analyse
+    with gzip.open(os.path.join(DATA, "data_omega5_box11111.json.gz"), "rt", encoding="utf-8") as fh:
+        d = json.load(fh)
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d1 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega4_box1111.json.gz"), "rt", encoding="utf-8") as fh:
+        d4 = json.load(fh)
+    cl = d["classes"]
+    require(d["entry"] == 128 and d["n_frames"] == 5 and d["n_five_frame_classes"] == 497166 and d["n_lemma_survivors"] == 44882 == len(cl)
+            and d["tally"] == {"dead": 15972, "open": 28910, "capped": 0}, (d["tally"], len(cl)))
+    def key_of(cand):
+        return column_key(signed_matrix(tuple(tuple(x) for x in cand[:4]) + tuple(cand[4:])))
+    # the column form against the (1,1,1) ledger and the (1,1,1,1) ledger
+    k3, c3 = enumerate_signed(3, lemma_filter=True)
+    k3a, _ = enumerate_signed(3, lemma_filter=False)
+    three = [e for e in d1["classes"] if all(any(l[j] != 0 for l in e["cand"][:4]) for j in range(3))]
+    require(len(k3) == 750 and len(k3a) == 2916 and k3a == {key_of(e["cand"]) for e in three} and k3 == {key_of(e["cand"]) for e in three if not excluded(e["cand"][:4])}, "N = 3")
+    if ctx.bound(full=1, fast=0):
+        k4, c4 = enumerate_signed(4, lemma_filter=True)
+        require(len(k4) == 7087 and k4 == {key_of(c["cand"]) for c in d4["classes"]}, "N = 4")
+    else:
+        require(len({key_of(c["cand"]) for c in d4["classes"]}) == 7087, "N = 4 keys distinct")
+    # the five-frame records: distinct, canonical (a sample), passing the lemma, using all frames
+    require(len({json.dumps(c["cand"]) for c in cl}) == 44882)
+    for c in cl[::max(1, 44882 // ctx.bound(full=44882, fast=400))]:
+        labs = [tuple(x) for x in c["cand"][:4]]
+        require(not lemma_fails(labs) and all(any(l[j] != 0 for l in labs) for j in range(5)), (c["cand"], "lemma / five frames"))
+        rep = key_to_cand(key_of(c["cand"]))
+        require([list(x) for x in rep[:4]] + list(rep[4:]) == c["cand"], (c["cand"], "canonical representative"))
+    dead = [c for c in cl if c["v"] == "dead"]; opn = [c for c in cl if c["v"] == "open"]
+    require(len(dead) == 15972 and len(opn) == 28910 and all(c["hk"]["kind"] == "infeasible" and c["hk"]["version"] == 3 for c in dead) and all(c.get("n_capped") == 0 for c in opn))
+    n_ver = 0
+    for c in dead[::max(1, 15972 // ctx.bound(full=15972, fast=120))]:
+        require(verify_certificate(c["cand"], {"status": "infeasible", "certificate": c["hk"]["cert"], "version": 3}), (c["cand"], "certificate")); n_ver += 1
+    for c in opn[::max(1, 28910 // ctx.bound(full=28910, fast=100))]:
+        res = {"status": "feasible", "version": 3, "per_prime": {j: {"status": "unbounded", "direction": dirn} for j, dirn in c["hu"].items()}}
+        require(verify_certificate(c["cand"], res), (c["cand"], "direction")); n_ver += 1
+    for c in cl[::max(1, 44882 // ctx.bound(full=60, fast=6))]:
+        require(analyse(c["cand"], version=3)["status"] == ("infeasible" if c["v"] == "dead" else "feasible"), (c["cand"], "live LP"))
+    ab = Counter(sum(1 for ch in c["roles"] if ch in "AB") for c in opn)
+    require(d["open_by_AB_deficits"] == {str(k): v for k, v in sorted(ab.items())} and ab[5] == 10 and ab[4] == 668, dict(ab))
+    T = d["trend"]
+    require(T["3"] == {"classes": 2916, "lemma_survivors": 750, "height_dead": 576, "open": 174, "kill_rate": 0.768}
+            and T["4"] == {"classes": 48854, "lemma_survivors": 7087, "height_dead": 3935, "open": 3152, "kill_rate": 0.555}
+            and T["5"]["lemma_survivors"] == 44882 and T["5"]["height_dead"] == 15972 and T["5"]["open"] == 28910 and abs(T["5"]["kill_rate"] - 15972 / 44882) < 1e-3, T)
+    ctx.note("(1,1,1,1,1): 497166 five-frame classes, 44882 lemma survivors, height system 15972 dead / 28910 open (no cap); " + str(n_ver) + " certificates re-verified; the column form reproduces the (1,1,1) ledger; kill rates 76.8% / 55.5% / 35.6% at 3 / 4 / 5 frames")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the
