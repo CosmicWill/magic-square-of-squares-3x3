@@ -1,0 +1,2060 @@
+{
+ "entry": 136,
+ "classes": [
+  {
+   "index": 1632,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    -1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-3*u^4*v^2 - 2*u^3*v^3 + u^2*v^4 + 4*u^4 + 8*u^3*v + 36*u^2*v^2 - 16*u*v^3 - 128*u*v + 64*v^2",
+   "full_quotient": "-3*X^2*Y^2 - 2*X*Y^3 + Y^4 + 4*X^3 + 8*X^2*Y + 36*X*Y^2 - 16*Y^3 - 128*X*Y + 64*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 1634,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "u^4*v^2 - 2*u^3*v^3 - 4*u^3*v + 9*u^2*v^2 + 2*u*v^3 + v^4 + 4*u^2 - 8*u*v - 12*v^2",
+   "full_quotient": "X^3*Y^2 - 2*X^2*Y^3 - 4*X^3*Y + 9*X^2*Y^2 + 2*X*Y^3 + Y^4 + 4*X^3 - 8*X^2*Y - 12*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 1637,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "u^4*v^2 - 2*u^3*v^3 - 4*u^3*v + 9*u^2*v^2 + 2*u*v^3 + v^4 + 4*u^2 - 8*u*v - 12*v^2",
+   "full_quotient": "X^3*Y^2 - 2*X^2*Y^3 - 4*X^3*Y + 9*X^2*Y^2 + 2*X*Y^3 + Y^4 + 4*X^3 - 8*X^2*Y - 12*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 1639,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    1,
+    1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-3*u^4*v^2 - 2*u^3*v^3 + u^2*v^4 + 4*u^4 + 8*u^3*v + 36*u^2*v^2 - 16*u*v^3 - 128*u*v + 64*v^2",
+   "full_quotient": "-3*X^2*Y^2 - 2*X*Y^3 + Y^4 + 4*X^3 + 8*X^2*Y + 36*X*Y^2 - 16*Y^3 - 128*X*Y + 64*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 1782,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "u^4*v^2 - 2*u^3*v^3 - 4*u^3*v + 9*u^2*v^2 + 2*u*v^3 + v^4 + 4*u^2 - 8*u*v - 12*v^2",
+   "full_quotient": "X^3*Y^2 - 2*X^2*Y^3 - 4*X^3*Y + 9*X^2*Y^2 + 2*X*Y^3 + Y^4 + 4*X^3 - 8*X^2*Y - 12*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 1783,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    1,
+    -1,
+    1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-3*u^4*v^2 - 2*u^3*v^3 + u^2*v^4 + 4*u^4 + 8*u^3*v + 36*u^2*v^2 - 16*u*v^3 - 128*u*v + 64*v^2",
+   "full_quotient": "-3*X^2*Y^2 - 2*X*Y^3 + Y^4 + 4*X^3 + 8*X^2*Y + 36*X*Y^2 - 16*Y^3 - 128*X*Y + 64*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 1784,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-3*u^4*v^2 - 2*u^3*v^3 + u^2*v^4 + 4*u^4 + 8*u^3*v + 36*u^2*v^2 - 16*u*v^3 - 128*u*v + 64*v^2",
+   "full_quotient": "-3*X^2*Y^2 - 2*X*Y^3 + Y^4 + 4*X^3 + 8*X^2*Y + 36*X*Y^2 - 16*Y^3 - 128*X*Y + 64*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 1785,
+   "cand": [
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "u^4*v^2 - 2*u^3*v^3 - 4*u^3*v + 9*u^2*v^2 + 2*u*v^3 + v^4 + 4*u^2 - 8*u*v - 12*v^2",
+   "full_quotient": "X^3*Y^2 - 2*X^2*Y^3 - 4*X^3*Y + 9*X^2*Y^2 + 2*X*Y^3 + Y^4 + 4*X^3 - 8*X^2*Y - 12*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2803,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    -1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-27*u^4*v^2 - 18*u^3*v^3 + 9*u^2*v^4 + 4*u^4 + 152*u^3*v - 24*u^2*v^2 - 40*u*v^3 + 4*v^4 - 240*u^2 + 224*u*v - 48*v^2",
+   "full_quotient": "-27*X^3*Y^2 - 18*X^2*Y^3 + 9*X*Y^4 + 4*X^4 + 152*X^3*Y - 24*X^2*Y^2 - 40*X*Y^3 + 4*Y^4 - 240*X^3 + 224*X^2*Y - 48*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2805,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-27*u^4*v^2 - 18*u^3*v^3 + 9*u^2*v^4 + 4*u^4 + 152*u^3*v - 24*u^2*v^2 - 40*u*v^3 + 4*v^4 - 240*u^2 + 224*u*v - 48*v^2",
+   "full_quotient": "-27*X^3*Y^2 - 18*X^2*Y^3 + 9*X*Y^4 + 4*X^4 + 152*X^3*Y - 24*X^2*Y^2 - 40*X*Y^3 + 4*Y^4 - 240*X^3 + 224*X^2*Y - 48*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2807,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "3*u^4*v^2 - 14*u^3*v^3 + 15*u^2*v^4 - 4*u^4 + 40*u^3*v + 24*u^2*v^2 - 152*u*v^3 - 4*v^4 - 144*u^2 + 288*u*v + 432*v^2",
+   "full_quotient": "3*X^3*Y^2 - 14*X^2*Y^3 + 15*X*Y^4 - 4*X^4 + 40*X^3*Y + 24*X^2*Y^2 - 152*X*Y^3 - 4*Y^4 - 144*X^3 + 288*X^2*Y + 432*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2809,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "3*u^4*v^2 - 14*u^3*v^3 + 15*u^2*v^4 - 4*u^4 + 40*u^3*v + 24*u^2*v^2 - 152*u*v^3 - 4*v^4 - 144*u^2 + 288*u*v + 432*v^2",
+   "full_quotient": "3*X^3*Y^2 - 14*X^2*Y^3 + 15*X*Y^4 - 4*X^4 + 40*X^3*Y + 24*X^2*Y^2 - 152*X*Y^3 - 4*Y^4 - 144*X^3 + 288*X^2*Y + 432*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2902,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "3*u^4*v^2 + 14*u^3*v^3 + 15*u^2*v^4 - 4*u^4 - 40*u^3*v + 24*u^2*v^2 + 152*u*v^3 - 4*v^4 - 144*u^2 - 288*u*v + 432*v^2",
+   "full_quotient": "3*X^3*Y^2 + 14*X^2*Y^3 + 15*X*Y^4 - 4*X^4 - 40*X^3*Y + 24*X^2*Y^2 + 152*X*Y^3 - 4*Y^4 - 144*X^3 - 288*X^2*Y + 432*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2903,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    1,
+    -1,
+    1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "3*u^4*v^2 + 14*u^3*v^3 + 15*u^2*v^4 - 4*u^4 - 40*u^3*v + 24*u^2*v^2 + 152*u*v^3 - 4*v^4 - 144*u^2 - 288*u*v + 432*v^2",
+   "full_quotient": "3*X^3*Y^2 + 14*X^2*Y^3 + 15*X*Y^4 - 4*X^4 - 40*X^3*Y + 24*X^2*Y^2 + 152*X*Y^3 - 4*Y^4 - 144*X^3 - 288*X^2*Y + 432*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2904,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-27*u^4*v^2 + 18*u^3*v^3 + 9*u^2*v^4 + 4*u^4 - 152*u^3*v - 24*u^2*v^2 + 40*u*v^3 + 4*v^4 - 240*u^2 - 224*u*v - 48*v^2",
+   "full_quotient": "-27*X^3*Y^2 + 18*X^2*Y^3 + 9*X*Y^4 + 4*X^4 - 152*X^3*Y - 24*X^2*Y^2 + 40*X*Y^3 + 4*Y^4 - 240*X^3 - 224*X^2*Y - 48*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2905,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    8,
+    8
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> = E3 (genus 3, bidegree (4,4)) -> /(u,v) -> (-u,-v) = 666d1 (rank 1)",
+   "E3": "-27*u^4*v^2 + 18*u^3*v^3 + 9*u^2*v^4 + 4*u^4 - 152*u^3*v - 24*u^2*v^2 + 40*u*v^3 + 4*v^4 - 240*u^2 - 224*u*v - 48*v^2",
+   "full_quotient": "-27*X^3*Y^2 + 18*X^2*Y^3 + 9*X*Y^4 + 4*X^4 - 152*X^3*Y - 24*X^2*Y^2 + 40*X*Y^3 + 4*Y^4 - 240*X^3 - 224*X^2*Y - 48*X*Y^2",
+   "elliptic": {
+    "label": "666d1",
+    "rank": 1,
+    "torsion": 1
+   },
+   "verdict": "finite (open): the elliptic endpoint has rank 1; E3 pending (compute/qc/magma_tower136.m)"
+  },
+  {
+   "index": 2914,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    1,
+    -1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "-4*h**4*u + 3*h**3*u**2 + 12*h**3 + 8*h**2*u - 9*h*u**2 - 4*h - 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  },
+  {
+   "index": 2915,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "4*h**4*u + h**3*u**2 + 36*h**3 - 8*h**2*u - 3*h*u**2 - 12*h + 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  },
+  {
+   "index": 2916,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "4*h**4*u + 7*h**3*u**2 + 12*h**3 + 16*h**2*u - 5*h*u**2 - 4*h - 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  },
+  {
+   "index": 2917,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "-4*h**4*u + 5*h**3*u**2 + 4*h**3 + 16*h**2*u - 7*h*u**2 - 12*h + 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  },
+  {
+   "index": 2918,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    -1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+   "quotient": "5*u**2*v - 2*u*v**2 - 8*u + 4*v",
+   "quartic": "25*u**4 - 24*u**2 + 16",
+   "elliptic": {
+    "label": "80a1",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 0)",
+    "(oo, 0)",
+    "(0, oo)",
+    "(oo, oo)"
+   ],
+   "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+   "verdict": "dead"
+  },
+  {
+   "index": 2919,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+   "quotient": "u**2*v + 2*u*v**2 - 8*u + 4*v",
+   "quartic": "u**4 + 72*u**2 + 16",
+   "elliptic": {
+    "label": "80a1",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 0)",
+    "(oo, 0)",
+    "(0, oo)",
+    "(oo, oo)"
+   ],
+   "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+   "verdict": "dead"
+  },
+  {
+   "index": 2920,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+   "quotient": "u**2*v - 2*u*v**2 + 8*u + 4*v",
+   "quartic": "u**4 + 72*u**2 + 16",
+   "elliptic": {
+    "label": "80a1",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 0)",
+    "(oo, 0)",
+    "(0, oo)",
+    "(oo, oo)"
+   ],
+   "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+   "verdict": "dead"
+  },
+  {
+   "index": 2921,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 8,
+   "symmetries": [
+    [
+     "-1/g",
+     "-1/h"
+    ],
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "-g",
+     "1/h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "1/h"
+    ],
+    [
+     "g",
+     "-1/h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+   "quotient": "5*u**2*v + 2*u*v**2 + 8*u + 4*v",
+   "quartic": "25*u**4 - 24*u**2 + 16",
+   "elliptic": {
+    "label": "80a1",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 0)",
+    "(oo, 0)",
+    "(0, oo)",
+    "(oo, oo)"
+   ],
+   "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+   "verdict": "dead"
+  },
+  {
+   "index": 2940,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    1,
+    -1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "4*h**4*u + 7*h**3*u**2 + 12*h**3 + 16*h**2*u - 5*h*u**2 - 4*h - 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  },
+  {
+   "index": 2941,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "-4*h**4*u + 5*h**3*u**2 + 4*h**3 + 16*h**2*u - 7*h*u**2 - 12*h + 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  },
+  {
+   "index": 2942,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "-4*h**4*u + 3*h**3*u**2 + 12*h**3 + 8*h**2*u - 9*h*u**2 - 4*h - 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  },
+  {
+   "index": 2943,
+   "cand": [
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    1,
+    1,
+    -1,
+    1
+   ],
+   "frame": 0,
+   "deg": [
+    4,
+    4
+   ],
+   "group_order": 4,
+   "symmetries": [
+    [
+     "-1/g",
+     "h"
+    ],
+    [
+     "-g",
+     "-h"
+    ],
+    [
+     "1/g",
+     "-h"
+    ]
+   ],
+   "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+   "quotient": "4*h**4*u + h**3*u**2 + 36*h**3 - 8*h**2*u - 3*h*u**2 - 12*h + 4*u",
+   "octic": "16*(h**8 - 13*h**6 + 36*h**4 - 13*h**2 + 1)",
+   "quartic": "w**4 - 17*w**2 + 64",
+   "elliptic": {
+    "label": "528j2",
+    "rank": 0,
+    "torsion": 4
+   },
+   "rational_points": [
+    "(0, 8)",
+    "(0, -8)",
+    "oo+",
+    "oo-"
+   ],
+   "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+   "verdict": "dead"
+  }
+ ],
+ "elliptic_curves": {
+  "80a1": {
+   "rank": 0,
+   "torsion": 4
+  },
+  "528j2": {
+   "rank": 0,
+   "torsion": 4
+  },
+  "666d1": {
+   "rank": 1,
+   "torsion": 1
+  },
+  "99a2": {
+   "rank": 1,
+   "torsion": 2
+  }
+ },
+ "note": "entry 136: every surviving component is invariant under a group of sign-and-inversion maps (g, h) -> (+-g^{+-1}, +-h^{+-1}) of order 8 (the sixteen (8,8) components and classes 2918-2921) or 4 (the other eight); quotients by subgroups reach elliptic curves: 80a1 (rank 0) for 2918-2921 and 528j2 (rank 0) for the eight order-4 classes -- every rational point of those quotients has a degenerate frame ratio, so twelve classes die; the sixteen (8,8) classes reach 666d1 (rank 1) through a genus-3 curve E3 and stay open.  Ranks by PARI's 2-descent (ellrank bounds [0, 0]); the identities exact (sympy)."
+}

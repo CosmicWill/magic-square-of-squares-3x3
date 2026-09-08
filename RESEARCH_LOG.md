@@ -6887,3 +6887,52 @@ quotient endpoints are finitely many and shape-independent, which would
 turn "every shape" into finitely many curves; (4) the twisted-
 configuration descent, recorded and low-probability. Suite 217; docs
 2.56, 2.59, A11 section 8; ROADMAP R.15 and M15-I; PROGRESS; memory.
+
+
+## 2026-09-08 — Entry 136: THE SYMMETRY TOWER KILLS — twelve of the 28 surviving (1,1,1) classes dead through rank-0 elliptic quotients of their components' sign-and-inversion symmetry groups (80a1, 528j2); sixteen remain over 666d1
+
+THE SYMMETRY GROUPS. Every surviving component Phi(g, h) of the three
+campaigns is invariant under the joint sign change (entry 135); the
+census over all 16 sign-and-inversion maps (g, h) -> (+-g^{+-1}, +-h^{+-1})
+finds groups of order 8 = <s, r_g, r_h> (s = (-g,-h), r_g = (-1/g, h),
+r_h = (g, -1/h)) for the sixteen (8,8) components and for classes
+2918-2921, and of order 4 = <s, r_g> for the other eight (4,4) classes;
+no swap symmetry. Across the (2,1,1) and (3,1,1) survivors the orders
+are 2, 4 and 8 in every bidegree family (compute/data_symmetry_tower.json
+records the (1,1,1) tower; the shape census is in the log below).
+
+THE QUOTIENTS AND THE KILLS. Classes 2918-2921: C/<r_g, r_h> in
+u = g - 1/g, v = h - 1/h is a (2,2) curve of genus 1 whose Jacobian is
+80a1 (rank 0, torsion Z/4; PARI 2-descent); its four rational points
+are (0,0), (oo,0), (0,oo), (oo,oo), and u in {0, oo} forces g in
+{+-1, 0, oo}: no admissible lift, the frame (whose only component this
+is) is dead. Classes 2914-2917 and 2940-2943: C/<r_g> is quadratic in
+u with discriminant 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1), one shared
+hyperelliptic curve of genus 3; its quotient by h -> 1/h (w = h + 1/h)
+is Y^2 = w^4 - 17 w^2 + 64, the curve 528j2 (rank 0, torsion Z/4); the
+quartic model's four rational points are (0, +-8) and the two at
+infinity; w = 0 has no rational h and w = oo forces h in {0, oo}: every
+rational point of C/<r_g> has h degenerate, the frame is dead. Twelve
+classes dead; tally (1,1,1) dead 2928 / finite 16. The sixteen (8,8)
+classes: C/<r_g, r_h> is a genus-3 curve E3 of bidegree (4,4) whose
+quotient by (u,v) -> (-u,-v) is 666d1 (rank 1, trivial torsion) for all
+sixteen; the other order-4 quotients have genus 4 and the order-2
+quotients genus 9-11. They need E3's Jacobian (compute/qc/magma_tower136.m,
+block B: hyperellipticity and rank bounds) or a covering argument. The
+kills are unconditional (PARI's 2-descent rank bounds [0, 0]); the
+identities are re-derived exactly by check a3.symmetry_tower (suite 218).
+80a1 is one of the fifteen killers of entry 112; 528j2 and 666d1 are new
+to the atlas.
+
+THE ATLAS QUESTION, FIRST ANSWER. The joint-sign tower on the 296 open
+(2,1,1) classes: 36 reach an elliptic curve at the first quotient, 24 a
+genus-2 curve; after the double inversion 6 more reach genus 1 and 18
+genus 2; the (8,8) family repeats the (1,1,1) pattern (genus 10, then 4).
+The 264 open (3,1,1) classes: 36 reach an elliptic curve and 12 a
+genus-2 curve at the first quotient, 12 more reach genus 2 after the
+double inversion (twelve components of bidegree (22,7) and (24,8) were
+skipped).
+The same few curves and the same tower recur across shapes, as the
+minor formula predicts. Next: the elliptic and genus-2 endpoints of the
+(2,1,1) and (3,1,1) survivors with the same lift analysis (entry 137),
+and the E3 question for the last sixteen (1,1,1) classes.

@@ -1,11 +1,11 @@
 {
- "entry": 134,
+ "entry": 136,
  "box": "(1,1,1)",
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
  "tally": {
-  "dead": 2916,
-  "finite": 28,
+  "dead": 2928,
+  "finite": 16,
   "unknown": 0
  },
  "n_models": 13,
@@ -435888,18 +435888,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -436015,6 +436006,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   },
   {
@@ -436044,18 +436064,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -436171,6 +436182,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   },
   {
@@ -436200,18 +436240,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -436327,6 +436358,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   },
   {
@@ -436356,18 +436416,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -436483,6 +436534,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   },
   {
@@ -436512,18 +436592,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 8) -- C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1; the elliptic curve 80a1 has rank 0 (PARI 2-descent) and 4 rational points; u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -436648,6 +436719,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+    "elliptic": {
+     "label": "80a1",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 0)",
+     "(oo, 0)",
+     "(0, oo)",
+     "(oo, oo)"
+    ],
+    "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+    "group_order": 8
    }
   },
   {
@@ -436677,18 +436777,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 8) -- C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1; the elliptic curve 80a1 has rank 0 (PARI 2-descent) and 4 rational points; u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -436813,6 +436904,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+    "elliptic": {
+     "label": "80a1",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 0)",
+     "(oo, 0)",
+     "(0, oo)",
+     "(oo, oo)"
+    ],
+    "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+    "group_order": 8
    }
   },
   {
@@ -436842,18 +436962,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 8) -- C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1; the elliptic curve 80a1 has rank 0 (PARI 2-descent) and 4 rational points; u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -436978,6 +437089,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+    "elliptic": {
+     "label": "80a1",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 0)",
+     "(oo, 0)",
+     "(0, oo)",
+     "(oo, oo)"
+    ],
+    "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+    "group_order": 8
    }
   },
   {
@@ -437007,18 +437147,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 8) -- C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1; the elliptic curve 80a1 has rank 0 (PARI 2-descent) and 4 rational points; u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -437143,6 +437274,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g, h -> -1/h> (u = g - 1/g, v = h - 1/h): a (2,2) curve of genus 1",
+    "elliptic": {
+     "label": "80a1",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 0)",
+     "(oo, 0)",
+     "(0, oo)",
+     "(oo, oo)"
+    ],
+    "lift": "u in {0, oo} forces g in {1, -1} or {0, oo}: degenerate; the (2,2) curve has a rational point, so it has exactly #E(Q) = 4 rational points",
+    "group_order": 8
    }
   },
   {
@@ -441316,18 +441476,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -441443,6 +441594,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   },
   {
@@ -441472,18 +441652,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -441599,6 +441770,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   },
   {
@@ -441628,18 +441828,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -441755,6 +441946,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   },
   {
@@ -441784,18 +442004,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      4,
-      4
-     ],
-     "verdict": "finite",
-     "genus": 9
-    }
-   ],
+   "mechanism": "symmetry-tower kill (entry 136): frame 0's only component (bidegree (4, 4), symmetry group of order 4) -- C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64; the elliptic curve 528j2 has rank 0 (PARI 2-descent) and 4 rational points; the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate -- the frame is dead",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -441911,6 +442122,35 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower": "finite",
+   "mechanism_before_symmetry_tower": [
+    {
+     "deg": [
+      4,
+      4
+     ],
+     "verdict": "finite",
+     "genus": 9
+    }
+   ],
+   "kill": {
+    "entry": 136,
+    "mechanism": "symmetry tower",
+    "route": "C -> C/<g -> -1/g> (u = g - 1/g, h): quadratic in u, y^2 = 16 (h^8 - 13 h^6 + 36 h^4 - 13 h^2 + 1) (genus 3); -> quotient by h -> 1/h (w = h + 1/h): Y^2 = w^4 - 17 w^2 + 64",
+    "elliptic": {
+     "label": "528j2",
+     "rank": 0,
+     "torsion": 4
+    },
+    "rational_points": [
+     "(0, 8)",
+     "(0, -8)",
+     "oo+",
+     "oo-"
+    ],
+    "lift": "the quartic model has a rational point (0, 8), so exactly 4 rational points: w = 0 has no rational h (h^2 + 1 = 0), w = oo forces h in {0, oo}: every rational point of C/<g -> -1/g> has h in {0, oo}, degenerate",
+    "group_order": 4
    }
   }
  ],
@@ -753502,6 +753742,25 @@
   "tally_after": {
    "dead": 2916,
    "finite": 28
+  }
+ },
+ "symmetry_tower": {
+  "entry": 136,
+  "n_killed": 12,
+  "by_curve": {
+   "80a1": 4,
+   "528j2": 8
+  },
+  "open": 16,
+  "open_endpoint": "666d1 (rank 1) through the genus-3 curves E3",
+  "note": "entry 136: every surviving component is invariant under a group of sign-and-inversion maps (g, h) -> (+-g^{+-1}, +-h^{+-1}) of order 8 (the sixteen (8,8) components and classes 2918-2921) or 4 (the other eight); quotients by subgroups reach elliptic curves: 80a1 (rank 0) for 2918-2921 and 528j2 (rank 0) for the eight order-4 classes -- every rational point of those quotients has a degenerate frame ratio, so twelve classes die; the sixteen (8,8) classes reach 666d1 (rank 1) through a genus-3 curve E3 and stay open.  Ranks by PARI's 2-descent (ellrank bounds [0, 0]); the identities exact (sympy).",
+  "tally_before": {
+   "dead": 2916,
+   "finite": 28
+  },
+  "tally_after": {
+   "dead": 2928,
+   "finite": 16
   }
  }
 }
