@@ -6936,3 +6936,51 @@ The same few curves and the same tower recur across shapes, as the
 minor formula predicts. Next: the elliptic and genus-2 endpoints of the
 (2,1,1) and (3,1,1) survivors with the same lift analysis (entry 137),
 and the E3 question for the last sixteen (1,1,1) classes.
+
+
+## 2026-09-08 — Entry 137: THE SYMMETRY TOWER ON THE SHAPE SURVIVORS — 54 of 296 open (2,1,1) classes and 44 of 264 open (3,1,1) classes dead; the module compute/symmetry_tower.py; the atlas recurs
+
+THE MODULE. compute/symmetry_tower.py makes entries 135-136 systematic:
+the sign-and-inversion symmetry group of a class's elimination
+component Phi(g, h) among the sixteen maps (g, h) -> (+-g^(+-1), +-h^(+-1));
+quotient steps -- the joint sign change (x = g^2, y = g h), single and
+double inversions (u = a + s/a, the repeated factor of the resultant
+with a^2 - u a + s), monomial coordinate changes to a model quadratic
+in one variable (y^2 = D(o) with the square part of D removed, a square
+scaling of y, never a twist), and the even and reciprocal quotients of
+that model; elliptic endpoints decided by PARI (2-descent rank bounds,
+torsion, the points up to height 3000, and completeness: rank 0 with as
+many points as the torsion order); genus-2 endpoints matched, up to
+o -> lam x or lam/x and a square scaling of y, to the curves whose
+rational points are known (G_1, F_1: entries 118/130; C_a, C_b: entry
+132; C_c: entry 131); and every endpoint point lifted back through the
+steps to (g, h) exactly (each relation solved one unknown at a time;
+points at infinity of any level force a frame ratio in {0, oo}). A
+class dies when its frame's other components are dead, there is no live
+univariate factor, and some endpoint is complete with no admissible
+lift. On the 28 (1,1,1) survivors of entry 135 the module reproduces
+exactly the twelve kills of entry 136 and kills none of the sixteen
+(8,8) classes.
+
+THE HARVEST. (2,1,1): 54 of 296 dead, 242 open -- by endpoint: inversion g (s=-1) -> reciprocal: rank-0 elliptic, torsion 4 (28); inversion g (s=-1): G1 (8); inversion g (s=-1) -> joint: C_a (4); inversion g (s=-1): F1 (4); joint: C_a (4); joint: C_b (4); inversion g (s=-1) -> joint: C_c (2).
+(3,1,1): 44 of 264 dead, 220 open -- by endpoint: inversion g (s=-1) -> reciprocal: rank-0 elliptic, torsion 4 (28); double inversion (-1,-1) -> even: rank-0 elliptic, torsion 6 (8); joint: C_a (4); joint: C_b (4).
+Tallies: (2,1,1) dead 79,126 / finite 242; (3,1,1) dead 288,663 /
+finite 220 (1,181 provisional). Every kill carries its route, endpoint,
+elliptic data or known curve, and the (empty) list of admissible lifts;
+check a3.symmetry_tower_shapes re-derives a sample with the module and
+confirms that survivors are not killed (suite 219).
+
+THE ATLAS. The endpoints of the shape survivors are the curves already
+met: G_1 and F_1 (the bielliptic curves of entries 118/130), C_a, C_b,
+C_c (entries 131-132), the rank-0 reciprocal quotients of the shared
+octic (528j2-type, entry 136), and the rank-1 elliptic curves 88a1,
+92b1, 664a1, 352b1, 352c1, 184b1, 1840d1, 2656d1, 13280a1. The same
+curves decide classes of every shape, as the minor formula predicts:
+the quotient constructions see the class's combinatorics, not the
+exponents. What remains open across the three campaigns sits over
+rank-1 or rank-2 elliptic curves, or over genus-2 and genus-3 curves
+not yet identified (palindromic sextics with a reciprocal involution:
+the general bielliptic test and the LMFDB are the next tools), or has
+components too large for the present quotient search. The classical
+towers (compute.omega3_towers.tower_frame) were also run on the shape
+survivors; their kills, if any, are folded separately.

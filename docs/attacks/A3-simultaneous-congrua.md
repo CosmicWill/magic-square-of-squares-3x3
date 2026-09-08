@@ -3245,6 +3245,19 @@ Every surviving component is invariant under a group of sign-and-inversion maps 
 
 Twelve classes dead; the $(1,1,1)$ tally is dead $2928$ / finite $16$.  The sixteen $(8,8)$ classes reach **666d1** (rank $1$) through a genus-$3$ curve $E_3$ of bidegree $(4,4)$; their other order-$4$ quotients have genus $4$.  $E_3$'s Jacobian (hyperellipticity, rank) is the question left to the Magma calculator (`magma_tower136.m`, block B).  The ranks are PARI $2$-descents; the identities are re-derived exactly by the check.  80a1 is one of the fifteen killers of entry 112.
 
+## 2.61 The symmetry tower on the shape survivors (entry 137; `compute/symmetry_tower.py`)
+
+*(2026-09-08; entry 137; `compute/data_symmetry_tower_shapes.json`; check `a3.symmetry_tower_shapes`.)*
+
+The module makes 2.59–2.60 systematic.  For a class's elimination component $\Phi(g,h)$: the symmetry group among the sixteen maps $(g,h)\mapsto(\pm g^{\pm1},\pm h^{\pm1})$; the quotient steps — the joint sign change ($x=g^2$, $y=gh$), single and double inversions ($u=a+s/a$, the repeated factor of the resultant with $a^2-ua+s$, of multiplicity equal to the fibre), monomial coordinate changes to a model quadratic in one variable ($y^2=D(o)$, the square part of $D$ absorbed into $y$, never a twist), and the even and reciprocal quotients of that model; elliptic endpoints decided by PARI (rank bounds, torsion, the points, completeness); genus-2 endpoints matched to $G_1,F_1,C_a,C_b,C_c$ up to $o\mapsto\lambda x^{\pm1}$ and a square scaling; every endpoint point lifted back to $(g,h)$ exactly.  A class dies when the frame's other components are dead, no univariate factor is live, and an endpoint is complete with no admissible lift.
+
+| Campaign | Open before | Dead | Open after | Endpoints of the kills |
+|---|---:|---:|---:|---|
+| $(2,1,1)$ | 296 | 54 | 242 | inversion g (s=-1) -> reciprocal: rank-0 elliptic, torsion 4 (28); inversion g (s=-1): G1 (8); inversion g (s=-1) -> joint: C_a (4); inversion g (s=-1): F1 (4); joint: C_a (4); joint: C_b (4); inversion g (s=-1) -> joint: C_c (2) |
+| $(3,1,1)$ | 264 | 44 | 220 | inversion g (s=-1) -> reciprocal: rank-0 elliptic, torsion 4 (28); double inversion (-1,-1) -> even: rank-0 elliptic, torsion 6 (8); joint: C_a (4); joint: C_b (4) |
+
+The endpoints are the curves of the $(1,1,1)$ box again — $G_1$, $F_1$, $C_a$, $C_b$, $C_c$, the 528j2-type reciprocal quotients — and the rank-$1$ curves 88a1, 92b1, 664a1, 352b1/c1, 184b1, 1840d1, 2656d1, 13280a1: the atlas recurs across shapes.  The open classes sit over positive-rank elliptic curves or over unidentified genus-$2$ and genus-$3$ curves (palindromic sextics with a reciprocal involution, for the general bielliptic test and the LMFDB), or have components too large for the quotient search.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

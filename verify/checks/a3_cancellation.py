@@ -109,11 +109,11 @@ def research_inventory(ctx):
     stored = json.loads(gzip.decompress(ARTIFACT.read_bytes()))
     require(stored == data, "survivor artifact is stale")
     require(REPORT.read_text(encoding="utf-8") == render(data), "research report is stale")
-    require(Counter(r["shape"] for r in stored["classes"]) == {"111": 16, "211": 296, "311": 264})
-    require(len({r["id"] for r in stored["classes"]}) == 576)
+    require(Counter(r["shape"] for r in stored["classes"]) == {"111": 16, "211": 242, "311": 220})
+    require(len({r["id"] for r in stored["classes"]}) == 478)
     require(Counter(tuple(r["binomial_height_recession_direction"] or []) for r in stored["classes"]) ==
-            {(1, 1, 1): 536, (1, 1, 2): 24, (1, 2, 2): 16})      # entries 123-136: the inventory rebased on the survivors of the three campaigns (entry 136: the symmetry tower leaves 16 + 296 + 264)
-    require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 24)      # entry 136: four of the twelve killed classes had no binomial row
+            {(1, 1, 1): 438, (1, 1, 2): 24, (1, 2, 2): 16})      # entries 123-137: the inventory rebased on the survivors of the three campaigns (entry 137: the symmetry tower leaves 16 + 242 + 220)
+    require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 0)      # entry 137: every no-binomial class is dead
     for shape, source in SOURCES.items():
         ledger = load_source(ROOT / source)
         expected = {i for i, r in enumerate(ledger["classes"]) if r.get("verdict", r.get("v")) == "finite"}
