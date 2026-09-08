@@ -5769,6 +5769,154 @@ def _(ctx):
              + str(n_ver) + " certificates re-verified (version 4) and shown new (version 3 feasible); survivors with two four-maxima columns: 28/28, " + ", ".join("%d/%d" % two_star[b] for b in ("211", "311", "1111", "11111")))
 
 
+@check("a3.height_verifier", "docs/attacks/A11-height-system.md")
+def _(ctx):
+    """THE CERTIFICATE VERIFIER, CLOSED (entry 135; the independent review's
+    finding).  verify_certificate checked a capped coordinate's multiplier
+    identity but not its recorded bound fields, and accepted an empty
+    per-prime record for a feasible verdict, so a capped certificate was not
+    tied to the range the exhaustive search covered.  Now: D and the exact
+    product are recomputed from the multipliers and must equal the record,
+    the cap must be product^{1/D}, a feasible verdict must carry every prime,
+    and exact_cap gives the integer bound.  Verifies (a) negative tests:
+    altered caps, altered products, an empty per-prime record and a missing
+    prime are rejected, a tampered multiplier is rejected; (b) the 52 (2,1,1)
+    capped certificates re-verify and their exact bounds are covered by the
+    recorded search caps; (c) the 16 (3,1,1) capped searches, whose exact
+    bounds are recomputed live (version 3), are covered by their recorded
+    search caps -- the reviewer's 204-bound audit inside the suite."""
+    import copy, gzip, json
+    from fractions import Fraction
+    from compute.height_system import analyse, verify_certificate, exact_cap
+    with gzip.open(os.path.join(DATA, "data_height_system.json.gz"), "rt", encoding="utf-8") as fh:
+        H = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        d2 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega3_box311.json.gz"), "rt", encoding="utf-8") as fh:
+        d3 = json.load(fh)
+    capped = [(k, v) for k, v in H["classes"].items() if any(p.get("status") == "capped" for p in v.get("per_prime", {}).values())]
+    require(len(capped) == 52 and all(k.startswith("211:") for k, v in capped), len(capped))
+    # (a) negative tests on the first capped record
+    k, v = capped[0]
+    cand = d2["classes"][int(k.split(":")[1])]["cand"]
+    cand = json.loads(cand) if isinstance(cand, str) else cand
+    cand = tuple(tuple(x) for x in cand[:4]) + tuple(cand[4:])
+    res = {"status": "feasible", "version": v.get("version", 1), "per_prime": v["per_prime"]}
+    require(verify_certificate(cand, res), "the genuine certificate")
+    bad = copy.deepcopy(res); bad["per_prime"]["0"]["cap"] = 1.0
+    require(not verify_certificate(cand, bad), "an altered cap must be rejected")
+    bad = copy.deepcopy(res); bad["per_prime"]["0"]["product"] = "1"
+    require(not verify_certificate(cand, bad), "an altered product must be rejected")
+    bad = copy.deepcopy(res); bad["per_prime"]["0"]["D"] = int(bad["per_prime"]["0"]["D"]) + 1
+    require(not verify_certificate(cand, bad), "an altered denominator must be rejected")
+    require(not verify_certificate(cand, {"status": "feasible", "version": res["version"], "per_prime": {}}), "an empty per-prime record must be rejected")
+    bad = copy.deepcopy(res); del bad["per_prime"]["1"]
+    require(not verify_certificate(cand, bad), "a missing prime must be rejected")
+    bad = copy.deepcopy(res)
+    nm = next(iter(bad["per_prime"]["0"]["certificate"]))
+    bad["per_prime"]["0"]["certificate"][nm] = str(Fraction(bad["per_prime"]["0"]["certificate"][nm]) + 1)
+    require(not verify_certificate(cand, bad), "a tampered multiplier must be rejected")
+    # (b) the 52 capped certificates and their search caps
+    n_b = 0
+    for k, v in capped[: ctx.bound(full=52, fast=12)]:
+        idx = int(k.split(":")[1])
+        c = d2["classes"][idx]
+        cand = json.loads(c["cand"]) if isinstance(c["cand"], str) else c["cand"]
+        cand = tuple(tuple(x) for x in cand[:4]) + tuple(cand[4:])
+        res = {"status": "feasible", "version": v.get("version", 1), "per_prime": v["per_prime"]}
+        require(verify_certificate(cand, res), (k, "certificate"))
+        caps = c["hk"]["search"]["caps"]
+        for j in range(3):
+            e = exact_cap(cand, res, j)
+            require(e is not None and caps[j] >= e, (k, j, "search cap", caps[j], "exact bound", e))
+        n_b += 1
+    # (c) the 16 (3,1,1) capped searches: exact bounds recomputed live
+    cs = [c for c in d3["classes"] if c.get("hk", {}).get("kind") == "capped+search"]
+    require(len(cs) == 16, len(cs))
+    n_c = 0
+    for c in cs[: ctx.bound(full=16, fast=5)]:
+        cand = json.loads(c["cand"]) if isinstance(c["cand"], str) else c["cand"]
+        cand = tuple(tuple(x) for x in cand[:4]) + tuple(cand[4:])
+        res = analyse(cand, 3)
+        require(res["status"] == "feasible" and all(p["status"] == "capped" for p in res["per_prime"].values()) and verify_certificate(cand, res), (c["cand"], "live capped analysis"))
+        caps = c["hk"]["search"]["caps"]
+        for j in range(3):
+            e = exact_cap(cand, res, j)
+            require(caps[j] >= e, (c["cand"], j, "search cap", caps[j], "exact bound", e))
+        n_c += 1
+    ctx.note("verifier: six tampered certificates rejected; " + str(n_b) + " (2,1,1) and " + str(n_c) + " (3,1,1) capped searches have search caps covering the exact bounds")
+
+
+@check("a3.joint_quotients", DOC)
+def _(ctx):
+    """THE SYMMETRY TOWER OF THE 28 SURVIVORS (entry 135; doc 2.59; the review's
+    technique carried to the survivors).  Every surviving (1,1,1) class has one
+    undecided component Phi(g, h) of bidegree (8,8) (sixteen classes) or (4,4)
+    (twelve), and every Phi is invariant under the joint sign change
+    (g, h) -> (-g, -h): as a polynomial for the (8,8) ones, up to sign for the
+    (4,4) ones.  The quotient curve Q(x, y) = 0 with x = g^2, y = g h
+    (Q(g^2, g h) = g^{2s} Phi, or g^{2s+1} Phi) has genus 10, resp. 4 (Sage).
+    Twenty of the Q are invariant under the double inversion (x, y) ->
+    (1/x, 1/y) (from (g, h) -> (1/g, 1/h)); the second quotient, the repeated
+    factor of the resultant eliminating x, y from Q, x^2 - u x + 1, y^2 - v y + 1,
+    has genus 4 (the sixteen (8,8) classes) or 2 (classes 2918-2921).  Rational
+    points and lifts are pending (compute/qc/magma_tower135.m).  Verifies the
+    invariances and the quotient identities exactly from the components, the
+    double-inversion invariance of the recorded Q, the repeated factor of a
+    sample of the resultants, the recorded genera and the Magma script."""
+    import json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import frame_factors
+    with open(os.path.join(DATA, "data_joint_quotients.json"), encoding="utf-8") as fh:
+        J = json.load(fh)
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d = json.load(fh)
+    require(J["entry"] == 135 and len(J["classes"]) == 28 and J["genus_by_bidegree"] == {"(8,8)": {"joint": 10, "second": 4}, "(4,4)": {"joint": 4, "second": 2}})
+    opn = {i for i, e in enumerate(d["classes"]) if e["verdict"] == "finite"}
+    require({c["index"] for c in J["classes"]} == opn, "the 28 open classes")
+    x, y, u, v = sp.symbols("x y u v")
+    O.set_box((1, 1, 1))
+    n_id = n_inv = n_res = 0
+    for c in J["classes"][::max(1, 28 // ctx.bound(full=28, fast=8))]:
+        e = d["classes"][c["index"]]
+        cand = tuple(tuple(t) for t in e["cand"][:4]) + tuple(e["cand"][4:])
+        curves, live = frame_factors(cand, e["frame"])
+        phi = next(cv[0] for cv in curves if (cv[1], cv[2]) == tuple(c["deg"]))
+        require(sp.expand(phi - sp.sympify(c["phi"], locals={"tg": O.tg, "th": O.th})) == 0, (c["index"], "component"))
+        P = sp.Poly(phi, O.tg, O.th)
+        par = {(a + b) % 2 for (a, b), cf in P.terms()}
+        require(par == ({1} if c["odd"] else {0}), (c["index"], "joint-sign invariance"))
+        Q = sp.sympify(c["Q"], locals={"x": x, "y": y})
+        # Q(g^2, g h) is a power of g times Phi (times g if odd)
+        diff = sp.expand(Q.subs({x: O.tg ** 2, y: O.tg * O.th}))
+        target = sp.expand(phi * (O.tg if c["odd"] else 1))
+        qq, rem = sp.div(sp.Poly(diff, O.tg, O.th), sp.Poly(target, O.tg, O.th))
+        require(rem.is_zero and qq.is_monomial, (c["index"], "the quotient identity"))
+        n_id += 1
+        # the double inversion
+        T = sp.together(Q.subs({x: 1 / x, y: 1 / y}, simultaneous=True))
+        num = sp.expand(sp.fraction(T)[0])
+        q2, r2 = sp.div(sp.Poly(num, x, y), sp.Poly(Q, x, y))
+        inv = r2.is_zero and q2.is_monomial
+        require(inv == c["double_inversion_invariant"] and (c["second_quotient"] is not None) == inv, (c["index"], "double inversion"))
+        n_inv += 1
+        require(c["joint_genus"] == (10 if c["deg"] == [8, 8] else 4) and (c["second_quotient"] is None or c["second_quotient"]["genus"] == (4 if c["deg"] == [8, 8] else 2)), (c["index"], "genera"))
+    # the resultant's repeated factor, on a sample of the (4,4) classes (cheap) and one (8,8) class
+    picks = [c for c in J["classes"] if c["second_quotient"] and c["deg"] == [4, 4]][: ctx.bound(full=4, fast=2)] + [c for c in J["classes"] if c["second_quotient"] and c["deg"] == [8, 8]][: ctx.bound(full=2, fast=0)]
+    for c in picks:
+        Q = sp.sympify(c["Q"], locals={"x": x, "y": y})
+        rx = sp.resultant(Q, x ** 2 - u * x + 1, x)
+        r = sp.expand(sp.resultant(rx, y ** 2 - v * y + 1, y))
+        R1 = sp.sympify(c["second_quotient"]["factor"].replace("uu", "u").replace("vv", "v"), locals={"u": u, "v": v})
+        q3, r3 = sp.div(sp.Poly(r, u, v), sp.Poly(sp.expand(R1 ** 2), u, v))
+        require(r3.is_zero and not q3.is_zero, (c["index"], "the repeated factor of the resultant"))
+        n_res += 1
+    require(os.path.exists(os.path.join(DATA, "qc", "magma_tower135.m")), "the Magma script")
+    require(sum(1 for c in J["classes"] if c["second_quotient"] and c["second_quotient"]["genus"] == 2) == 4 and sum(1 for c in J["classes"] if c["second_quotient"]) == 20)
+    ctx.note("symmetry tower: 28 joint-sign quotients (genus 10 x 16, genus 4 x 12), 20 double-inversion quotients (genus 4 x 16, genus 2 x 4); " + str(n_id) + " identities, " + str(n_inv) + " invariances, " + str(n_res) + " resultants re-verified")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

@@ -1,6 +1,6 @@
 # The state of the program
 
-*Current checkpoint: 2026-09-08, reviewed through entry 132. The verification registry contains 214 checks; this is not a claim that each proof has a complete automated certificate replay. See the [comprehensive review](REVIEW-AND-PLAN-2026-09-08.md), [research log](../RESEARCH_LOG.md), and [current roadmap](ROADMAP.md#r14-current-plan-after-the-recent-campaigns-2026-09-08).*
+*Current checkpoint: 2026-09-08, reviewed through entry 132. The verification registry contains 217 checks; this is not a claim that each proof has a complete automated certificate replay. See the [comprehensive review](REVIEW-AND-PLAN-2026-09-08.md), [research log](../RESEARCH_LOG.md), and [current roadmap](ROADMAP.md#r14-current-plan-after-the-recent-campaigns-2026-09-08).*
 
 ## Current arithmetic checkpoint
 

@@ -6823,3 +6823,67 @@ survivors' feasibility and structure, the tallies. Pins moved across
 the suite; the inventory regenerated (588 open records). Docs 2.58,
 A11 §7, A12 §6; ROADMAP M15-H and the R.13 path-3 row; PROGRESS;
 memory.
+
+
+## 2026-09-08 — Entry 135: THE REVIEW INTEGRATED, THE VERIFIER CLOSED, THE SYMMETRY TOWER OF THE 28 SURVIVORS, AND THE STATE OF THE PROGRAM (R.15)
+
+THE REVIEW (entry 133) INTEGRATED. The independent review's findings
+were verified: the eight quotient maps and the elliptic data (123a1
+rank 1 with 5-torsion, 1968c1, 984d1 rank 1; PARI), the certificate-
+verifier gap (confirmed: altered cap fields and an empty per-prime
+record were accepted), and the correction that a failed bielliptic
+test with irreducible Frobenius polynomials proves a Jacobian simple
+over Q, not absolutely simple (doc 2.56 reworded). Its eight target
+records are dead by A3.SQ (entry 134); its technique is what this
+entry carries forward.
+
+THE VERIFIER CLOSED. height_system.verify_certificate now recomputes
+the common denominator D and the exact product of a capped coordinate
+from its multipliers and rejects a record whose D, product or cap
+disagree, rejects a feasible verdict that does not carry every prime,
+and exact_cap returns the integer bound floor(product^{1/D}). Check
+a3.height_verifier: six tampered certificates rejected (altered cap,
+product, denominator, an empty record, a missing prime, a tampered
+multiplier); the 52 (2,1,1) capped certificates re-verify and their
+exact bounds are covered by the recorded search caps; the 16 (3,1,1)
+capped searches' bounds, recomputed live, are covered by theirs -- the
+reviewer's 204-bound audit now runs inside the suite.
+
+THE SYMMETRY TOWER (doc 2.59; compute/data_joint_quotients.json;
+check a3.joint_quotients). Every one of the 28 surviving (1,1,1)
+classes has one undecided component Phi(g, h), of bidegree (8,8)
+(sixteen classes) or (4,4) (twelve), and every Phi is invariant under
+the joint sign change (g, h) -> (-g, -h) -- the review's move. The
+quotient Q(x, y) = 0 with x = g^2, y = g h has genus 10 for the (8,8)
+components and genus 4 for the (4,4) ones (Sage). Twenty of the Q are
+also invariant under the double inversion (x, y) -> (1/x, 1/y); the
+second quotient (u, v) = (x + 1/x, y + 1/y), the repeated factor of the
+resultant, has genus 4 for the sixteen (8,8) classes and GENUS 2 for
+classes 2918-2921. So the (1,1,1) box's survivors now sit on four
+genus-2 curves, sixteen genus-4 curves with a known involution
+structure, and eight genus-4 curves without one. Sage cannot produce
+the hyperelliptic models (no canonical divisor over Q for plane
+curves); compute/qc/magma_tower135.m asks the online calculator for
+them, with rank bounds, torsion and Chabauty for the four genus-2
+curves, and automorphism groups and hyperellipticity for the twenty-
+four genus-4 curves. A rational point counts only if it lifts: u^2 - 4
+and v^2 - 4 rational squares, then x a rational square, then g, h
+admissible (not 0, +-1, oo) -- the lift check is done in Python from
+the point lists. No verdict changes in this entry.
+
+THE STATE OF THE PROGRAM is written up as ROADMAP R.15: the arc in five
+movements, the theorems that are uniform in the number of primes, the
+lessons of the evolution, and the ranked paths. Its conclusions in one
+paragraph: every uniform theorem of the last month came from keeping
+exact structure the previous method discarded (valuations, then units,
+then sizes, then the cofactor's factorisation), and each killed most of
+what was open; the local method decays with the number of primes, so
+boxes cannot finish the problem; curve arithmetic is reusable through
+symmetry, and the same few curves recur across shapes. The highest-
+value paths now are (1) the trinomial cofactor, the sibling of A3.SQ
+and the only row type the survivors have; (2) the symmetry tower, which
+can close the first shape; (3) the atlas question -- whether the
+quotient endpoints are finitely many and shape-independent, which would
+turn "every shape" into finitely many curves; (4) the twisted-
+configuration descent, recorded and low-probability. Suite 217; docs
+2.56, 2.59, A11 section 8; ROADMAP R.15 and M15-I; PROGRESS; memory.

@@ -266,6 +266,39 @@ def verify_certificate(cand, result):
             y = {name: Fraction(v) for name, v in r["certificate"].items()}
             if any(v < 0 for v in y.values()) or any(sum(y[nm] * byname[nm][0][k] for nm in y) != (1 if k == j else 0) for k in range(n)):
                 return False
+            # entry 135 (the review's finding): the recorded bound fields must be the exact ones -- D the common denominator
+            # of the multipliers, product = prod K_i^{D y_i} exactly (when recorded in full), cap = product^{1/D}
+            D, val = _exact_product([(byname[nm][0], byname[nm][1], nm) for nm in y], [y[nm] for nm in y])
+            if int(r.get("D", D)) != D:
+                return False
+            prod = str(r.get("product", ""))
+            if prod and prod != "(large)" and Fraction(prod) != val:
+                return False
+            if "cap" in r and not (abs(float(r["cap"]) - float(val) ** (1.0 / D)) <= 1e-6 * max(1.0, float(r["cap"]))):
+                return False
         else:
             return False
+    if result["status"] == "feasible" and set(int(j) for j in result["per_prime"]) != set(range(n)):
+        return False          # entry 135: a feasible verdict must carry a certificate for every prime
     return True
+
+
+def exact_cap(cand, result, j):
+    """The exact integer bound p_j <= floor(product^{1/D}) of a recorded capped certificate (entry 135); None if not capped."""
+    cols, ineqs, lower = system(cand, int(result.get("version", 1)))
+    n = len(lower)
+    rows = _rows(n, ineqs, lower)
+    byname = {name: (a, K) for a, K, name in rows}
+    r = result["per_prime"][str(j)] if str(j) in result["per_prime"] else result["per_prime"][j]
+    if r["status"] != "capped":
+        return None
+    y = {name: Fraction(v) for name, v in r["certificate"].items()}
+    D, val = _exact_product([(byname[nm][0], byname[nm][1], nm) for nm in y], [y[nm] for nm in y])
+    # floor of the D-th root of the rational val: the largest integer c with c^D <= val
+    num, den = val.numerator, val.denominator
+    c = int(round(float(val) ** (1.0 / D))) + 1
+    while c ** D * den > num:
+        c -= 1
+    while (c + 1) ** D * den <= num:
+        c += 1
+    return c
