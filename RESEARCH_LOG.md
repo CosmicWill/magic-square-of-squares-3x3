@@ -6516,6 +6516,50 @@ through the divisibilities.
 Data compute/data_orientation.json; check a3.orientation (suite 211);
 doc 2.54; A12; ROADMAP M15-D and the R.13 path-1 row; PROGRESS; memory.
 
+## 2026-09-07 — Entry 132: THE OCTIC TOWERS CLOSED BY MAGMA — C_a and C_b have rank 1 and exactly seven rational points each (Chabauty + the Mordell-Weil sieve, the online calculator); eight more (1,1,1) classes dead (R.13 path 2)
+
+THE RUN. The user pasted compute/qc/magma_towers131.m into the Magma
+online calculator (after a fix: MordellWeilGroupGenus2 returns the
+group and the map as separate values). Output, verbatim, in
+compute/qc/magma_towers131.out.txt. For each of the two genus-2 curves
+of entry 131 -- C_a: w^2 = 25u^5 - 36u^4 - 18u^3 + 44u^2 + u and
+C_b: w^2 = 25u^5 - 4u^4 - 18u^3 + 12u^2 + u --
+  rank bounds 1, 1 (the lower bound from the points, the upper from
+  the 2-descent; 2-Selmer rank 3 for C_a);
+  torsion Z/2 x Z/4 (its order 8 divides the gcd of #J(F_p) recomputed
+  here by pure-Python point counts over F_p and F_{p^2}: 8 for C_a, 16
+  for C_b over the primes below 20, 8 over the primes below 60);
+  Mordell-Weil group Z/2 + Z/4 + Z, rank proved, group proved (the
+  listed generators generate all of J(Q)); free generator [(1,-4) - inf];
+  Chabauty + the Mordell-Weil sieve: C(Q) = exactly the seven known
+  points inf, (0,0), (-1,0), (1,+-4), (-1/5, +-32/25) [C_a] resp.
+  (-1/5, +-16/25) [C_b]; the completeness condition is that the index of
+  <P> + torsion in J(Q) be coprime to {3, 23} resp. {7, 17}, which holds
+  with index 1 because the group is proved.
+
+THE KILLS. A rational point of the frame's genus-3 curve y^2 = Q(t^2)
+maps to (u, w) = (t^2, ty) on the odd quotient, so its t is a square
+root of one of the seven u-values: u = 0, +-1, inf give the degenerate
+ratios t = 0, +-1, inf, and u = -1/5 is not a square. No admissible
+point; the frame is dead. Every one of the eight open octic classes has
+C_a (or its reciprocal) in one frame and C_b in the other, so both
+frames are dead and the eight classes die. Tally (1,1,1): dead 2798 /
+finite 146. Conditional on Magma (the 2-descent, the Mordell-Weil group,
+Chabauty with the sieve), like entries 118/130 on the QC code; the
+parse of the output, the points on the curves, the u-values, the
+torsion bound, the models recomputed exactly from both frames' components
+and the frame-death logic are verified by the check a3.towers_magma
+(suite 214).
+
+WHERE THE TOWERS STAND. Of the 32 open classes with tower records at
+entry 130, 24 are now dead (12 + 4 + 8: entries 130-132); the 8 left are
+the (3,3) self-base classes whose pullback is a (6,6) curve of genus 25,
+with no hyperelliptic model and no quotient -- beyond every curve method
+here. The remaining 146 open (1,1,1) classes are those 8 and the 138
+classes without a tower record (the height-system survivors whose
+components are not quadratic in any ratio). Doc 2.57; ROADMAP M15-G and
+the P-B' note; PROGRESS; memory.
+
 ## 2026-09-07 — Entry 131: THE GENERAL BIELLIPTIC TEST and the genus-2 curves of the octic towers — four more (1,1,1) classes dead through the LMFDB curve 1408.b.180224.2 (R.13 path 2)
 
 THE QUESTION. Entry 130 left 20 open classes with tower records: 12

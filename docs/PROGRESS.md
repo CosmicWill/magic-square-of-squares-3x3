@@ -1,6 +1,6 @@
 # The state of the program
 
-*Current checkpoint: 2026-09-07. The verification registry contains 213 checks; this is not a claim that each proof has a complete automated certificate replay. The [README ledger](../README.md#claims-ledger), [research log](../RESEARCH_LOG.md), and [current roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) give the detailed record.*
+*Current checkpoint: 2026-09-07. The verification registry contains 214 checks; this is not a claim that each proof has a complete automated certificate replay. The [README ledger](../README.md#claims-ledger), [research log](../RESEARCH_LOG.md), and [current roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) give the detailed record.*
 
 ## Current arithmetic checkpoint
 

@@ -1,0 +1,57 @@
+// Output of compute/qc/magma_towers131.m in the Magma online calculator (http://magma.maths.usyd.edu.au/calc/), 2026-09-07,
+// pasted verbatim by the user (entry 132).  Two genus-2 curves C_a, C_b: rank 1 (2-descent), Mordell-Weil group Z/2 + Z/4 + Z
+// proved, Chabauty + the Mordell-Weil sieve: exactly seven rational points each.
+curve 25*x^5 - 36*x^4 - 18*x^3 + 44*x^2 + x
+  points of height <= 10^4: {@ (1 : 0 : 0), (-1 : 0 : 1), (0 : 0 : 1), (1 : -4 :
+1), (1 : 4 : 1), (-1 : -160 : 5), (-1 : 160 : 5) @}
+  rank bounds (lower from points, upper from 2-descent): 1 1
+  torsion:
+Abelian Group isomorphic to Z/2 + Z/4
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    4*P[2] = 0
+Mapping from: Abelian Group isomorphic to Z/2 + Z/4
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    4*P[2] = 0 to JacHyp: J given by a rule [no inverse]
+  MW group:
+Abelian Group isomorphic to Z/2 + Z/4 + Z
+Defined on 3 generators
+Relations:
+    2*G.1 = 0
+    4*G.2 = 0
+  rank proved: true  group proved: true
+  generator of the free part: (x - 1, -4, 1)
+  Chabauty + Mordell-Weil sieve: C(Q) = { (-1 : -160 : 5), (0 : 0 : 1), (1 : -4
+: 1), (-1 : 0 : 1), (1 : 4 : 1), (1 : 0 : 0), (-1 : 160 : 5) }
+  index condition: complete if the index of <Pt> + torsion in J(Q) is coprime to
+{ 3, 23 }
+curve 25*x^5 - 4*x^4 - 18*x^3 + 12*x^2 + x
+  points of height <= 10^4: {@ (1 : 0 : 0), (-1 : 0 : 1), (0 : 0 : 1), (1 : -4 :
+1), (1 : 4 : 1), (-1 : -80 : 5), (-1 : 80 : 5) @}
+  rank bounds (lower from points, upper from 2-descent): 1 1
+  torsion:
+Abelian Group isomorphic to Z/2 + Z/4
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    4*P[2] = 0
+Mapping from: Abelian Group isomorphic to Z/2 + Z/4
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    4*P[2] = 0 to JacHyp: J given by a rule [no inverse]
+  MW group:
+Abelian Group isomorphic to Z/2 + Z/4 + Z
+Defined on 3 generators
+Relations:
+    2*G.1 = 0
+    4*G.2 = 0
+  rank proved: true  group proved: true
+  generator of the free part: (x - 1, -4, 1)
+  Chabauty + Mordell-Weil sieve: C(Q) = { (-1 : -80 : 5), (0 : 0 : 1), (1 : -4 :
+1), (-1 : 0 : 1), (1 : 4 : 1), (1 : 0 : 0), (-1 : 80 : 5) }
+  index condition: complete if the index of <Pt> + torsion in J(Q) is coprime to
+{ 7, 17 }

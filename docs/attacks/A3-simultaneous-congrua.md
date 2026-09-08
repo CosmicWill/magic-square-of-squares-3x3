@@ -3186,6 +3186,14 @@ The tower route of entry 100 had stopped at these curves because their elliptic 
 
 **$C_a$, $C_b$.**  The classes of $(1,4)$ and $(-1/5,\cdot)$ have infinite order (their orders in $J(\mathbb F_p)$ vary with $p$), so both Jacobians have rank $\ge1$; neither curve is in the LMFDB.  A $2$-descent rank bound and, for rank $1$, Chabauty with the Mordell–Weil sieve are Magma computations: `compute/qc/magma_towers131.m` is the paste-ready script.  The eight remaining tower classes have $(6,6)$ pullbacks of genus $25$, beyond every curve method here.
 
+## 2.57 The octic towers closed by Magma: $C_a$, $C_b$ have rank $1$ and seven rational points (entry 132; R.13 path 2)
+
+*(2026-09-07; entry 132; `compute/qc/magma_towers131.m`, `compute/qc/magma_towers131.out.txt`, `compute/genus2_counts.py`; check `a3.towers_magma`.)*
+
+The user ran the script of 2.56 in the Magma online calculator.  For both curves, $C_a\colon w^2=25u^5-36u^4-18u^3+44u^2+u$ and $C_b\colon w^2=25u^5-4u^4-18u^3+12u^2+u$: rank bounds $1,1$ (points below, $2$-descent above), torsion $\mathbb Z/2\times\mathbb Z/4$ (matching $\gcd_p\#J(\mathbb F_p)=8$, recomputed here from point counts over $\mathbb F_p$ and $\mathbb F_{p^2}$), Mordell–Weil group $\mathbb Z/2\times\mathbb Z/4\times\mathbb Z$ **proved**, free generator $[(1,-4)-\infty]$, and Chabauty with the Mordell–Weil sieve returns exactly the seven known points $\infty,(0,0),(-1,0),(1,\pm4),(-1/5,\pm32/25)$ resp. $(-1/5,\pm16/25)$; the completeness condition (the index of $\langle P\rangle+\text{torsion}$ in $J(\mathbb Q)$ coprime to $\{3,23\}$ resp. $\{7,17\}$) holds with index $1$ because the group is proved.
+
+A rational point $(t,y)$ of the frame's genus-$3$ curve $y^2=Q(t^2)$ maps to $(u,w)=(t^2,ty)$ on the odd quotient, so $t$ is a square root of one of the seven $u$-values: $u\in\{0,\pm1,\infty\}$ gives a degenerate ratio and $u=-1/5$ is not a square.  Both frames of each of the eight open octic classes carry one of the two curves, so both frames are dead and the classes die: tally $(1,1,1)$ dead $2798$, finite $146$.  Conditional on Magma, as 2.47/2.55 are on the QC code; everything else is re-verified exactly.  The towers are now closed except for the eight genus-$25$ $(6,6)$ classes; the other $138$ open classes have no component quadratic in a ratio.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
