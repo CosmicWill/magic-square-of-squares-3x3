@@ -5251,6 +5251,91 @@ def _(ctx):
     ctx.note("(1,1,1,1,1): 497166 five-frame classes, 44882 lemma survivors, height system 15972 dead / 28910 open (no cap); " + str(n_ver) + " certificates re-verified; the column form reproduces the (1,1,1) ledger; kill rates 76.8% / 55.5% / 35.6% at 3 / 4 / 5 frames")
 
 
+@check("a3.orientation", DOC)
+def _(ctx):
+    """THE ORIENTATION READING (entry 129; docs/attacks/A12-orientation.md; R.13
+    path 1).  For an all-ones box the height system's rows depend only on the
+    flip pattern of the signed exponent vectors: a binomial exponent is 2 at a
+    flip, 1 at a one-zero column, 0 otherwise; a trinomial coefficient is +2
+    (left) where the three labels keep their mutual orientations, -2 (right)
+    where two of them flip, 0 otherwise.  THEOREM T1: three labels of a circuit,
+    nonzero at j, with no flip column, kill the class (p_j^2 prod p_k^2 <= K <= 4).
+    Verifies the reading against the height system on the lemma survivors of
+    the three all-ones boxes (all in full, a sample in fast), T1's coverage and
+    that it never fires on an open class of any campaign, the corollary that
+    no pair flipping implies T1, and the recorded forced-spread statistics on
+    a sample of open classes."""
+    import gzip, json, math
+    from collections import Counter
+    import numpy as np
+    from scipy.optimize import linprog
+    from compute.orientation import check_reading, t1, no_pair_flips, flips
+    from compute.prime_column import excluded
+    from compute.height_system import system, analyse, _rows
+    with open(os.path.join(DATA, "data_orientation.json"), encoding="utf-8") as fh:
+        D = json.load(fh)
+    with open(os.path.join(DATA, "data_omega3_box111.json"), encoding="utf-8") as fh:
+        d1 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega4_box1111.json.gz"), "rt", encoding="utf-8") as fh:
+        d4 = json.load(fh)
+    with gzip.open(os.path.join(DATA, "data_omega5_box11111.json.gz"), "rt", encoding="utf-8") as fh:
+        d5 = json.load(fh)
+    S = D["all_ones_boxes"]
+    require(D["entry"] == 129 and S["3"]["dead"] == 576 and S["3"]["open"] == 174 and S["3"]["T1_dead"] == 212 and S["4"]["T1_dead"] == 1340 and S["5"]["T1_dead"] == 5022
+            and all(S[N]["T1_open"] == 0 and S[N]["no_pair_flips_open"] == 0 and S[N]["reading_mismatches"] == 0 for N in ("3", "4", "5"))
+            and S["3"]["no_pair_flips_dead"] == 16 and S["4"]["no_pair_flips_dead"] == 68 and S["5"]["no_pair_flips_dead"] == 180
+            and D["general_shapes"]["211"]["T1_open"] == 0 and D["general_shapes"]["311"]["T1_open"] == 0 and D["general_shapes"]["211"]["T1_height_dead"] == 1000, "recorded statistics")
+    three = [(e["cand"], "dead" if analyse(e["cand"], version=3)["status"] == "infeasible" else "open") for e in d1["classes"]
+             if all(any(l[j] != 0 for l in e["cand"][:4]) for j in range(3)) and not excluded(e["cand"][:4])]
+    sets = {"3": three, "4": [(c["cand"], c["v"]) for c in d4["classes"]], "5": [(c["cand"], c["v"]) for c in d5["classes"]]}
+    n_read = 0
+    for N, recs in sets.items():
+        step = max(1, len(recs) // ctx.bound(full=len(recs), fast=300))
+        for c, v in recs[::step]:
+            require(check_reading(c), (c, "the orientation reading disagrees with the height system"))
+            require(not (v == "open" and t1(c)), (c, "T1 on an open class"))
+            require(not no_pair_flips(c) or t1(c), (c, "no pair flips but T1 fails"))
+            n_read += 1
+        t1d = sum(1 for c, v in recs if v == "dead" and t1(c)) if ctx.bound(full=1, fast=0) else None
+        if t1d is not None:
+            require(t1d == S[N]["T1_dead"], (N, t1d))
+    # T1 on the open classes of every campaign (cheap: the trinomial rows only)
+    for c, v in three:
+        require(not (v == "open" and t1(c)))
+    for c in d4["classes"][::max(1, 3152 // ctx.bound(full=7087, fast=400))]:
+        require(not (c["v"] == "open" and t1(c["cand"])))
+    for c in d5["classes"][::max(1, 44882 // ctx.bound(full=44882, fast=400))]:
+        require(not (c["v"] == "open" and t1(c["cand"])))
+    # the forced spread on a sample of open classes against the recorded histogram buckets
+    def min_spread(cand):
+        cols, ineqs, lower = system(cand, 3)
+        n = len(lower)
+        rows = _rows(n, ineqs, lower)
+        A = []; b = []
+        for a, K, name in rows:
+            A.append(list(a) + [0]); b.append(math.log(K))
+        for j in range(n):
+            for k in range(n):
+                if j != k:
+                    row = [0] * (n + 1); row[j] = 1; row[k] = -1; row[n] = -1
+                    A.append(row); b.append(0)
+        res = linprog([0] * n + [1], A_ub=np.array(A, dtype=float), b_ub=np.array(b, dtype=float), bounds=[(None, None)] * n + [(0, None)], method="highs")
+        return res.fun if res.status == 0 else None
+    def bucket(r):
+        return "1 (balanced)" if r < 1.0001 else ("<2" if r < 2 else ("<5" if r < 5 else ("<25" if r < 25 else ("<125" if r < 125 else ">=125"))))
+    n_sp = 0
+    for N, recs in sets.items():
+        opn = [c for c, v in recs if v == "open"]
+        for c in opn[::max(1, len(opn) // ctx.bound(full=200, fast=20))]:
+            s_ = min_spread(c)
+            require(s_ is not None and bucket(math.exp(s_)) in S[N]["forced_ratio_histogram"], (c, "spread"))
+            n_sp += 1
+        for ex in S[N]["largest_forced_ratios"][:1]:
+            s_ = min_spread(ex["cand"])
+            require(s_ is not None and abs(math.exp(s_) - ex["ratio"]) <= 0.01 * ex["ratio"] + 0.2, (ex, s_))
+    ctx.note("orientation: the reading reproduces the height system on " + str(n_read) + " classes; T1 kills " + str(S["3"]["T1_dead"]) + " / " + str(S["4"]["T1_dead"]) + " / " + str(S["5"]["T1_dead"]) + " of the 3 / 4 / 5-frame local kills and no open class anywhere; " + str(n_sp) + " forced spreads recomputed")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

@@ -6468,3 +6468,50 @@ Data compute/data_omega5_box11111.json.gz; check a3.omega5_box11111
 (suite 210: the column form against both smaller ledgers, the records'
 canonicity, certificates, the pinned trend). Doc 2.53; ROADMAP M15-C
 and the R.13 path-5 row; PROGRESS; memory.
+
+## 2026-09-07 — Entry 129: ORIENTATION — what the open classes share (R.13 path 1): Theorem A3.OR, Theorem T1, orientation genericity
+
+THE READING (A12, compute/orientation.py). For an all-ones box write
+w_X = eps_X e_X in {-1,0,1}^N: w_{X,j} = 0 means p_j^2 | d_X, and
+w_{X,j} = +-1 is the offset's ORIENTATION at p_j (which of pi_j,
+pibar_j its Gaussian factor carries); w_{X,j} w_{Y,j} is the pair's
+relative orientation, invariant under every symmetry of the class; a
+pair FLIPS between p_j and p_k when the relative orientations differ.
+Theorem A3.OR: the height system's rows are functions of the flip and
+zero patterns alone -- binomial exponent 2 at a flip, 1 at a one-zero
+column, 0 at agreement (2^t p_j^2 <= prod_flip p_k^2 prod_onezero p_k);
+trinomial: p_k^2 on the LEFT where the three labels keep their mutual
+orientations, on the right where two flip (p_j^2 prod_agree p_k^2 <= K
+prod_flip p_k^2). Verified against every row of the height system on
+all 750 + 7,087 + 44,882 lemma survivors: no mismatch.
+
+THEOREM T1 (three never-disagreeing offsets). Three labels of a
+circuit, all nonzero at p_j, with no other prime at which two of them
+flip relative to each other: the class is impossible (the trinomial
+row has no right-hand term: p_j^2 prod p_k^2 <= K <= 4 < 25). Uniform
+in the number of primes and, with f-signs for orientations, in the
+shape. Corollary: no pair ever flips => dead. Coverage: 212/576,
+1340/3935, 5022/15972 of the local kills at 3/4/5 frames,
+1000/3304 of the (2,1,1) height kills; it fires on none of the
+174 + 3,152 + 28,910 + 1,388 + 2,206 open classes of the five
+campaigns. The rest of the kills are cycles of rows across columns
+(about a ninth need the constants).
+
+WHAT THE OPEN CLASSES SHARE. Orientation genericity: every circuit
+flips relative to every prime; every pair flips or is compensated by
+one-zero columns (every-pair-flips classes are open 4/4,
+404/415, 6598/6656, the exceptions dying by the
+constants); and the flip pattern admits a feasible prime hierarchy:
+the forced minimal ratio max p / min p over the open classes --
+3 frames {"1 (balanced)": 56, "<25": 18, "<5": 100}; 4 frames {"1 (balanced)": 1137, "<125": 224, "<2": 62, "<25": 860, "<5": 809, ">=125": 60};
+5 frames {"1 (balanced)": 9799, "<125": 2221, "<2": 1486, "<25": 6217, "<5": 6688, ">=125": 2499} (largest forced ratios 20.0, 9956.8, 4.31e+09).
+Nothing else is visible at first order: the residual local
+information is the exact value of the congruences, prime-specific.
+This answers R.13 path 1 in the form the data allows, explains the
+decay of entry 128 (each extra prime is another column at which a pair
+may flip), and points the descent (path 3) at the hierarchical open
+classes, which force a huge prime that the smaller ones must generate
+through the divisibilities.
+
+Data compute/data_orientation.json; check a3.orientation (suite 211);
+doc 2.54; A12; ROADMAP M15-D and the R.13 path-1 row; PROGRESS; memory.

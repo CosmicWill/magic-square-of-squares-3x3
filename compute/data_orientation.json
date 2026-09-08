@@ -1,0 +1,380 @@
+{
+ "entry": 129,
+ "note": "entry 129: the orientation reading of the height system (docs/attacks/A12-orientation.md; compute/orientation.py). For the all-ones boxes the rows depend only on the flip pattern (relative orientations of label pairs across columns) and the zero pattern; the prediction reproduces every row of the height system on every lemma survivor. Theorem T1 (three never-disagreeing offsets): a trinomial row without a flip column kills the class -- uniform in the number of primes and the shape; it explains about a third of the local kills and never fires on an open class of any campaign. forced_ratio_histogram: for every open class the minimal ratio max p / min p that the inequalities force (the LP minimising the spread); '1 (balanced)' = all primes may be comparable.",
+ "all_ones_boxes": {
+  "3": {
+   "lemma_survivors": 750,
+   "dead": 576,
+   "open": 174,
+   "reading_mismatches": 0,
+   "T1_dead": 212,
+   "T1_open": 0,
+   "no_pair_flips_dead": 16,
+   "no_pair_flips_open": 0,
+   "every_pair_flips_open": 4,
+   "every_pair_flips_dead": 0,
+   "forced_ratio_histogram": {
+    "1 (balanced)": 56,
+    "<25": 18,
+    "<5": 100
+   },
+   "largest_forced_ratios": [
+    {
+     "ratio": 20.0,
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ]
+    },
+    {
+     "ratio": 20.0,
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ]
+    },
+    {
+     "ratio": 20.0,
+     "cand": [
+      [
+       0,
+       1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       0
+      ],
+      [
+       1,
+       0,
+       1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ]
+    }
+   ]
+  },
+  "4": {
+   "lemma_survivors": 7087,
+   "dead": 3935,
+   "open": 3152,
+   "reading_mismatches": 0,
+   "T1_dead": 1340,
+   "T1_open": 0,
+   "no_pair_flips_dead": 68,
+   "no_pair_flips_open": 0,
+   "every_pair_flips_open": 404,
+   "every_pair_flips_dead": 11,
+   "forced_ratio_histogram": {
+    "1 (balanced)": 1137,
+    "<125": 224,
+    "<2": 62,
+    "<25": 860,
+    "<5": 809,
+    ">=125": 60
+   },
+   "largest_forced_ratios": [
+    {
+     "ratio": 9956.8,
+     "cand": [
+      [
+       1,
+       -1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ]
+    },
+    {
+     "ratio": 9956.8,
+     "cand": [
+      [
+       1,
+       -1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ]
+    },
+    {
+     "ratio": 9956.8,
+     "cand": [
+      [
+       1,
+       -1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1,
+       0
+      ],
+      [
+       1,
+       -1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      -1
+     ]
+    }
+   ]
+  },
+  "5": {
+   "lemma_survivors": 44882,
+   "dead": 15972,
+   "open": 28910,
+   "reading_mismatches": 0,
+   "T1_dead": 5022,
+   "T1_open": 0,
+   "no_pair_flips_dead": 180,
+   "no_pair_flips_open": 0,
+   "every_pair_flips_open": 6598,
+   "every_pair_flips_dead": 58,
+   "forced_ratio_histogram": {
+    "1 (balanced)": 9799,
+    "<125": 2221,
+    "<2": 1486,
+    "<25": 6217,
+    "<5": 6688,
+    ">=125": 2499
+   },
+   "largest_forced_ratios": [
+    {
+     "ratio": 4312469077.3,
+     "cand": [
+      [
+       1,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       1,
+       1,
+       -1,
+       1
+      ],
+      [
+       0,
+       1,
+       1,
+       1,
+       1
+      ],
+      [
+       1,
+       -1,
+       -1,
+       -1,
+       -1
+      ],
+      -1,
+      -1,
+      1,
+      -1
+     ]
+    },
+    {
+     "ratio": 4312469077.3,
+     "cand": [
+      [
+       1,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       1,
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       0,
+       1,
+       1
+      ],
+      [
+       1,
+       1,
+       -1,
+       1,
+       1
+      ],
+      -1,
+      -1,
+      -1,
+      -1
+     ]
+    },
+    {
+     "ratio": 4312469077.3,
+     "cand": [
+      [
+       1,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       -1,
+       -1,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       1,
+       1,
+       0,
+       -1
+      ],
+      -1,
+      -1,
+      -1,
+      -1
+     ]
+    }
+   ]
+  }
+ },
+ "general_shapes": {
+  "211": {
+   "open": 1388,
+   "T1_open": 0,
+   "height_dead": 3304,
+   "T1_height_dead": 1000
+  },
+  "311": {
+   "open": 2206,
+   "T1_open": 0,
+   "height_dead": 6464,
+   "T1_height_dead": 1780
+  }
+ }
+}

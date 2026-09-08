@@ -3158,6 +3158,14 @@ A class of the all-ones box with $N$ frames is the $4\times N$ matrix of signed 
 
 Open classes at five frames carry up to five A/B deficits ($668$ with four, $10$ with five) and up to five four-maxima columns ($168$ with all five).  **The local method decays with $\omega$**, as the structure predicts: each binomial bound $p_j^{2g}\le\prod_{k\ne j}p_k^{|d_k|}$ gains a factor per extra prime.  For the plan (R.13) this settles path 5: no uniform proof can come from the height system as $\omega$ grows, so the theory must find what the open classes have in common that the local method does not see — or a descent that reduces $\omega$.
 
+## 2.54 Orientation: what the open classes share (entry 129; Theorem A3.OR and Theorem T1)
+
+*(2026-09-07; entry 129; [A12](A12-orientation.md); `compute/orientation.py`, `compute/data_orientation.json`; check `a3.orientation`.)*
+
+For an all-ones box the height system's rows depend on the class only through the **flip pattern** of the signed exponent vectors $w_X=\varepsilon_Xe_X$: for two labels nonzero at $p_j$, the exponent of $p_k$ in the binomial row is $2$ where the pair's relative orientation at $p_k$ differs from that at $p_j$, $1$ where exactly one of them vanishes at $p_k$, $0$ where they agree; for three labels of a circuit the trinomial row puts $p_k^2$ on the *left* where the three keep their mutual orientations, on the right where two flip (Theorem A3.OR, verified against every row on all $52{,}719$ lemma survivors of the three all-ones boxes).  **Theorem T1:** three labels of a circuit, nonzero at $p_j$ and never flipping relative to one another at any other prime, kill the class ($p_j^2\prod p_k^2\le K\le4$) — uniform in the number of primes and in the shape.  T1 explains $212/576$, $1340/3935$, $5022/15972$ of the local kills at $3/4/5$ frames and $1000/3304$ in the $(2,1,1)$ campaign, and fires on no open class of any campaign; its corollary (no pair of labels ever flips $\Rightarrow$ dead) is the reason the no-flip classes were always dead.
+
+**What the open classes share:** orientation genericity — every circuit flips relative to every prime, every pair flips or is compensated by one-zero columns (classes in which every pair flips are open $99\%$ of the time), and the flip pattern admits a feasible hierarchy of prime sizes: about a third of the open classes allow all primes comparable, the rest force a spread, $2499$ five-frame classes forcing a ratio $\ge125$ and some above $10^9$.  Nothing else is visible at first order; the residual local information is the exact value of the congruences, which is prime-specific.  R.13 path 1 is answered in this form.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
