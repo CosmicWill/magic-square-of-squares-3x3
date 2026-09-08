@@ -4,7 +4,7 @@ ratios.  A class dies when a route ends on a curve whose rational points are com
 with its torsion points, or one of the genus-2 curves decided in entries 118-132) and none of those points lifts to an
 admissible pair (g, h).
 
-Steps (each records how to lift a rational point back one level):
+Steps (each records its forward map; an endpoint's points are pulled back as fibers of the composed map, entry 138):
   joint(a, b)            X = a^2, Y = a b            when Phi is invariant up to sign under (a, b) -> (-a, -b)
   inversion(a; s)        U = a + s/a                 when Phi is invariant under a -> s/a (s = +-1)
   double_inversion       U = a + s1/a, V = b + s2/b  when Phi is invariant under (a, b) -> (s1/a, s2/b) (fiber 2) or under
@@ -25,13 +25,16 @@ g, h = sp.symbols("g h")
 yy = sp.Symbol("yy")
 
 # the genus-2 curves whose rational points are known (entries 118, 130, 131, 132): coefficients highest degree first,
-# and the complete list of affine rational points (points at infinity lift only to degenerate ratios)
+# and the complete list of affine rational points (the points at infinity are always among the fiber values)
 KNOWN_GENUS2 = {
     "G1": ([25, 0, -29, 0, 11, 0, 1], [(0, 1), (0, -1)], "entry 118 (bielliptic QC + the E1 x E2 sieve)"),
     "F1": ([1, 0, 11, 0, -5, 0, 1], [(0, 1), (0, -1)], "entry 130 (bielliptic QC + the E1 x E2 sieve)"),
     "C_a": ([25, -36, -18, 44, 1, 0], [(0, 0), (-1, 0), (1, 4), (1, -4), (Fraction(-1, 5), Fraction(32, 25)), (Fraction(-1, 5), Fraction(-32, 25))], "entry 132 (Magma: rank 1, Chabauty + the Mordell-Weil sieve)"),
     "C_b": ([25, -4, -18, 12, 1, 0], [(0, 0), (-1, 0), (1, 4), (1, -4), (Fraction(-1, 5), Fraction(16, 25)), (Fraction(-1, 5), Fraction(-16, 25))], "entry 132 (Magma)"),
     "C_c": ([1, -4, 6, 12, 1, 0], [(0, 0), (-1, 0), (1, 4), (1, -4)], "entry 131 (LMFDB 1408.b.180224.2, rank 0)"),
+    # K: the odd companion of the frame-1/2 quotients of the last sixteen (1,1,1) classes (entry 138); J(K)(Q) = Z/2 + Z proved,
+    # Chabauty on the generator: K(Q) = {(0, 0), oo} (Magma, compute/qc/magma_tower138.out.txt)
+    "K": ([1, 80, 126, -16, 1, 0], [(0, 0)], "entry 138 (Magma: rank 1, the Mordell-Weil group proved, Chabauty)"),
 }
 LAMBDAS = [sp.Rational(n, d) * s for n in (1, 2, 4, 5, 10, 20, 25, 50, 100) for d in (1, 2, 4, 5, 10, 20, 25, 50, 100) for s in (1, -1)]
 
@@ -130,7 +133,7 @@ def step_double_inversion(F, a, b, s1, s2, U, V):
     Q = repeated_factor(res, U, V, 4 if both else 2)
     if Q is None:
         return None
-    return Q, {"kind": "double_inversion", "old": (a, b), "new": (U, V), "relations": [a ** 2 - U * a + s1, b ** 2 - V * b + s2], "fiber": 4 if both else 2}
+    return Q, {"kind": "double_inversion", "old": (a, b), "new": (U, V), "relations": [a ** 2 - U * a + s1, b ** 2 - V * b + s2], "fiber": 4 if both else 2, "s1": s1, "s2": s2}
 
 
 CHANGES = [("a", "b"), ("1/a", "b"), ("a", "1/b"), ("1/a", "1/b"), ("a", "b/a"), ("1/a", "b/a"), ("a", "a*b"), ("b", "a/b"), ("1/b", "a/b")]
@@ -194,6 +197,9 @@ def classical_quotients(core, o):
     if all(k % 2 == 0 for (k,), c in P.terms()):
         Qz = sp.expand(sum(c * z ** (k // 2) for (k,), c in P.terms()))
         out.append(("even", Qz, z, {"kind": "even", "old": (o, yy), "new": (z, yy), "relations": [o ** 2 - z]}))
+        # the odd companion: w^2 = z Qz(z) with w = o y (entry 138)
+        W2 = sp.Symbol("W2")
+        out.append(("odd", sp.expand(z * Qz), z, {"kind": "odd", "old": (o, yy), "new": (z, W2), "relations": [o ** 2 - z, o * yy - W2]}))
     d = P.degree()
     if d % 4 == 0:
         for kappa in twisted_kappas(core, o):
@@ -258,79 +264,78 @@ def match_known_genus2(core, o):
 
 # ------------------------------------------------------------------ lifting
 
-def lift_point(steps, curves, point):
-    """Lift a rational point of the last curve back through the steps (last to first) to pairs (g, h).
-    curves[i] is the curve before steps[i] (a polynomial in that level's variables; hyperelliptic levels are yy^2 - core);
-    point is a dict {variable: rational value} on the last curve.  Each step's relations are solved one unknown at a time
-    (linear or quadratic in that unknown, exactly); an old variable left free by the relations is taken from the rational
-    roots of the curve before the step.  Only finite values are lifted: a point at infinity of any level forces a frame
-    ratio in {0, oo}."""
-    frontier = [dict(point)]
-    for step, F_before in zip(reversed(steps), reversed(curves[:len(steps)])):
-        nxt = []
-        old = list(step["old"])
-        for pt in frontier:
-            if step["kind"] == "change":
-                a, b = old
-                vals = {step["new"][0]: pt[step["new"][0]], step["new"][1]: pt[step["new"][1]]}
-                try:
-                    cand = {a: sp.Rational(sp.simplify(step["sol"][a].subs(vals))), b: sp.Rational(sp.simplify(step["sol"][b].subs(vals)))}
-                except Exception:
-                    continue
-                if yy in pt:
-                    cand[yy] = pt[yy]
-                nxt.append(cand)
-                continue
-            partials = [dict((k, v) for k, v in pt.items() if k not in old)]
-            rels = list(step.get("relations", []))
-            progress = True
-            while rels and progress:
-                progress = False
-                for r in list(rels):
-                    new_partials = []
-                    handled = False
-                    for sd in partials:
-                        r_sub = sp.expand(r.subs(sd))
-                        unknowns = [v for v in old if r_sub.has(v)]
-                        if len(unknowns) == 0:
-                            if r_sub == 0:
-                                new_partials.append(sd)
-                            handled = True
-                        elif len(unknowns) == 1:
-                            var = unknowns[0]
-                            for rv in rational_roots(r_sub, var):
-                                new_partials.append({**sd, var: rv})
-                            handled = True
-                        else:
-                            new_partials.append(sd)
-                    if handled:
-                        partials = new_partials
-                        rels.remove(r)
-                        progress = True
-            for sd in partials:
-                free = [v for v in old if v not in sd]
-                if len(free) == 1 and F_before is not None:
-                    v = free[0]
-                    Fv = sp.expand(F_before.subs({k: val for k, val in sd.items() if k != yy or True}))
-                    for rv in rational_roots(Fv, v) if Fv.has(v) else []:
-                        nxt.append({**sd, v: rv})
-                elif not free:
-                    nxt.append(sd)
-        # keep only the points on the curve before the step
-        kept = []
-        for p_ in nxt:
-            if F_before is None:
-                kept.append(p_)
-            else:
-                val = sp.expand(F_before.subs({k: v for k, v in p_.items()}))
-                if val == 0 or (val.free_symbols and all(str(sym) == "yy" for sym in val.free_symbols)):
-                    kept.append(p_)
-        frontier = kept
-    out = []
-    for p_ in frontier:
-        if g in p_ and h in p_:
-            out.append((p_[g], p_[h]))
-    return out
+def forward_map(step):
+    """The new variables of a step as rational functions of its old variables."""
+    k = step["kind"]
+    a, b = step["old"]
+    if k == "joint":
+        X, Y = step["new"]
+        return {X: a ** 2, Y: a * b}
+    if k == "inversion":
+        return {step["new"][0]: a + step["s"] / a}
+    if k == "double_inversion":
+        U, V = step["new"]
+        return {U: a + step["s1"] / a, V: b + step["s2"] / b}
+    if k == "change":
+        ex = {"a": a, "1/a": 1 / a, "b": b, "1/b": 1 / b, "b/a": b / a, "a/b": a / b, "a*b": a * b}
+        return {step["new"][0]: ex[step["a2"]], step["new"][1]: ex[step["b2"]]}
+    if k == "hyperelliptic":
+        return {step["new"][0]: step["new"][0]}          # o is a variable of the level itself; q is dropped
+    if k in ("even", "odd"):
+        return {step["new"][0]: a ** 2}                  # old = (o, yy): z = o^2
+    if k == "reciprocal":
+        return {step["new"][0]: a + step["kappa"] / a}   # w = o + kappa / o
+    raise ValueError(k)
+
+
+def endpoint_variable(steps, var):
+    """The endpoint variable as an explicit rational function of (g, h): the forward maps composed, last step first."""
+    e = var
+    for st in reversed(steps):
+        e = e.subs(forward_map(st), simultaneous=True)
+    return sp.cancel(sp.together(e))
+
+
+def curve_intersection(phi, F, a=g, b=h):
+    """The rational affine points of {phi = 0, F = 0} (exact: a resultant and rational roots); None when the two share a
+    component (the intersection is infinite and nothing is certified).  Points at infinity of the (a, b)-plane are not
+    listed: a frame ratio is finite by definition."""
+    F = sp.expand(F)
+    if F == 0:
+        return None
+    if not F.free_symbols:
+        return []
+    Pp, PF = sp.Poly(phi, a, b), sp.Poly(F, a, b)
+    if PF.degree(b) >= 1 and Pp.degree(b) >= 1:
+        R = sp.expand(sp.resultant(phi, F, b))
+        if R == 0:
+            return None
+        avals = rational_roots(R, a) if R.has(a) else []
+    elif PF.degree(b) == 0:
+        avals = rational_roots(F, a)
+    else:
+        # F in b only and phi in a only: the product set
+        return [(x, y) for x in rational_roots(phi, a) for y in rational_roots(F, b)]
+    pts = []
+    for a0 in avals:
+        pa = sp.expand(phi.subs(a, a0))
+        Fa = sp.expand(F.subs(a, a0))
+        if pa == 0:
+            return None
+        if not pa.has(b):
+            continue
+        for b0 in rational_roots(pa, b):
+            if sp.expand(Fa.subs(b, b0)) == 0:
+                pts.append((a0, b0))
+    return pts
+
+
+def fiber_points(phi, vexpr, v0):
+    """The rational points of the component phi = 0 over the endpoint value v0 (None = the point at infinity) of the
+    endpoint variable vexpr = N / D: {phi = 0, N - v0 D = 0}, or {phi = 0, D = 0} for infinity."""
+    N, D = sp.fraction(sp.cancel(sp.together(vexpr)))
+    F = D if v0 is None else N - v0 * D
+    return curve_intersection(phi, F)
 
 
 def admissible(gh):
@@ -365,6 +370,8 @@ def analyse(phi, want_all=False):
             else:
                 routes.append((label + " -> (" + chg["a2"] + ", " + chg["b2"] + ")", steps + [chg, st], curves + [G, after], hm))
             return
+    # R0: the direct model (a quadratic variable of phi itself; entry 138)
+    with_hyperelliptic([], [phi], g, h, "direct")
     # R1: joint
     j = step_joint(phi, g, h, X, Y)
     if j:
@@ -412,6 +419,7 @@ def analyse(phi, want_all=False):
         for elabel, esteps, ecurves, core, var, yvar in endpoints:
             deg = sp.Poly(core, var).degree()
             e = {"endpoint": elabel, "degree": deg}
+            values = None
             if deg in (3, 4):
                 coeffs = [int(c) for c in sp.Poly(core, var).all_coeffs()] if all(sp.Rational(c).is_integer for c in sp.Poly(core, var).all_coeffs()) else None
                 if coeffs is None:
@@ -420,26 +428,32 @@ def analyse(phi, want_all=False):
                 ed = elliptic_endpoint(coeffs)
                 e["elliptic"] = ed
                 if ed and ed.get("complete"):
-                    pts = [(sp.Rational(a), sp.Rational(b)) for a, b in ed["points"]]
-                    lifts = []
-                    for (ov, yv) in pts:
-                        lifts += lift_point(esteps, ecurves, {var: ov, yvar: yv})
-                    e["lifts"] = [(str(a), str(b)) for a, b in lifts]
-                    e["admissible"] = [(str(a), str(b)) for a, b in lifts if admissible((a, b))]
-                    if not e["admissible"]:
-                        kill = dict(rec, **e)
+                    values = [sp.Rational(a) for a, b in ed["points"]] + [None]
             elif deg in (5, 6):
                 km = match_known_genus2(core, var)
                 e["known"] = km
                 if km:
-                    pts = [(sp.Rational(a), sp.Rational(b)) for a, b in km["points"]]
-                    lifts = []
-                    for (ov, yv) in pts:
-                        lifts += lift_point(esteps, ecurves, {var: ov, yvar: yv})
-                    e["lifts"] = [(str(a), str(b)) for a, b in lifts]
-                    e["admissible"] = [(str(a), str(b)) for a, b in lifts if admissible((a, b))]
-                    if not e["admissible"]:
-                        kill = dict(rec, **e)
+                    # the x-values of the known points transported to the endpoint variable; the point at infinity always;
+                    # under o = lam / x the known curve's points at infinity land on x = 0
+                    values = [sp.Rational(a) for a, b in km["points"]] + [None] + ([sp.Integer(0)] if km["kind"] == "reciprocal" else [])
+            if values is not None:
+                vexpr = endpoint_variable(esteps, var)
+                e["variable"] = str(vexpr)
+                fib, lifts, ok = {}, [], True
+                for v0 in sorted(set(values), key=str):
+                    pts = fiber_points(phi, vexpr, v0)
+                    key = "oo" if v0 is None else str(v0)
+                    if pts is None:
+                        fib[key] = "infinite"
+                        ok = False
+                        break
+                    fib[key] = [(str(a), str(b)) for a, b in pts]
+                    lifts += pts
+                e["fibers"] = fib
+                e["lifts"] = [(str(a), str(b)) for a, b in lifts]
+                e["admissible"] = [(str(a), str(b)) for a, b in lifts if admissible((a, b))]
+                if ok and not e["admissible"]:
+                    kill = dict(rec, **e)
             rec.setdefault("endpoints", []).append({k: v for k, v in e.items()})
             if kill and not want_all:
                 break

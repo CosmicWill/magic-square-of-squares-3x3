@@ -100,7 +100,7 @@ def render(data):
              "|---|---:|---:|---:|---:|---:|"]
     for shape, summary in data["summary"].items():
         t = summary["ledger_tally"]
-        lines.append(f"| {shape} ({data['sources'][shape]['scope']}) | {summary['ledger_classes']:,} | {t['dead']:,} | {t['finite']:,} | {t.get('finite*', 0):,} | {summary['passes_column_rule'].get('dead', 0):,} |")
+        lines.append(f"| {shape} ({data['sources'][shape]['scope']}) | {summary['ledger_classes']:,} | {t.get('dead', 0):,} | {t.get('finite', 0):,} | {t.get('finite*', 0):,} | {summary['passes_column_rule'].get('dead', 0):,} |")      # entry 138: a shape may have no open class left
     lines += ["", "The (2,1,1) and (3,1,1) rows are incremental campaigns, not their full boxes. Counts describe canonical classes, not distinct curves or magic squares.",
               "All sixteen C2 classes closed in entry 118 remain outside this open inventory. Every free-frame class is excluded by A3.PC.", "",
               "## Two complementary ways to read the survivors", "",

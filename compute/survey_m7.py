@@ -43,6 +43,21 @@ def load():
 def _pid_alive(pid):
     if pid == os.getpid():
         return False
+    if pid < 0:
+        return False
+    if os.name == "nt":
+        # os.kill(pid, 0) on Windows is OpenProcess + TerminateProcess: it KILLS the process instead of probing it (and a
+        # stale lock's pid may by then belong to anything).  Probe with a query-only handle and the exit code (entry 138).
+        import ctypes
+        k32 = ctypes.windll.kernel32
+        PROCESS_QUERY_LIMITED_INFORMATION, STILL_ACTIVE = 0x1000, 259
+        handle = k32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, int(pid))
+        if not handle:
+            return False
+        code = ctypes.c_ulong()
+        ok = k32.GetExitCodeProcess(handle, ctypes.byref(code))
+        k32.CloseHandle(handle)
+        return bool(ok) and code.value == STILL_ACTIVE
     try:
         os.kill(pid, 0)
     except (OSError, ProcessLookupError, PermissionError) as exc:

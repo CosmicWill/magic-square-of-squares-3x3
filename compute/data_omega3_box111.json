@@ -4,8 +4,8 @@
  "note": "Quadruple candidate classes of the (1,1,1) box (labels in {-1,0,1}^3 mod sign; classes mod the frame group S3 x conjugations, the global sign and the A<->B swap) with the omega-3 engine's best-frame verdict (compute/omega3.py, entries 97-98). dead = no frame of three distinct primes can carry the class, uniformly in the primes (trivial factors; rank-0 elliptic curves with only degenerate points; the MONOMIAL LEMMA for genus-0 Pythagorean families: w_g^a = eps w_h^b is impossible for distinct primes; non-square constant discriminants); finite = a Faltings-finite curve remains; candidate = finitely many explicit rational points remain to be checked; infinite = an infinite family survives the lift; unknown = components of bidegree > 6 not pulled back, or degenerate. models = the rank-0 genus-1 quartic models (PARI ellrank, complete point enumeration) used in kills; monomial = the (a, b) relations found.",
  "n_classes": 2944,
  "tally": {
-  "dead": 2928,
-  "finite": 16,
+  "dead": 2944,
+  "finite": 0,
   "unknown": 0
  },
  "n_models": 13,
@@ -225551,18 +225551,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -225841,6 +225832,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -226093,18 +226171,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -226383,6 +226452,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -226858,18 +227014,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -227148,6 +227295,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -227400,18 +227634,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -227690,6 +227915,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -258890,18 +259202,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -259180,6 +259483,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -259209,18 +259599,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -259499,6 +259880,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -259528,18 +259996,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -259818,6 +260277,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -259847,18 +260393,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -260137,6 +260674,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -415853,18 +416477,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -416107,6 +416722,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -416406,18 +417108,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -416660,6 +417353,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -416959,18 +417739,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -417213,6 +417984,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -417512,18 +418370,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -417766,6 +418615,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -433668,18 +434604,9 @@
     1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -433922,6 +434849,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -433951,18 +434965,9 @@
     1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -434205,6 +435210,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -434234,18 +435326,9 @@
     -1,
     -1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -434488,6 +435571,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "scale",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -434517,18 +435687,9 @@
     -1,
     1
    ],
-   "verdict": "finite",
+   "verdict": "dead",
    "frame": 0,
-   "mechanism": [
-    {
-     "deg": [
-      8,
-      8
-     ],
-     "verdict": "finite",
-     "genus": 23
-    }
-   ],
+   "mechanism": "symmetry-tower kill (frame 1): inversion h (s=-1) -> K",
    "verdict_before_genus": "unknown",
    "genus": {
     "frames": {
@@ -434771,6 +435932,93 @@
       "2": "unbounded"
      }
     }
+   },
+   "verdict_before_symmetry_tower_frames": "finite",
+   "mechanism_before_symmetry_tower_frames": [
+    {
+     "deg": [
+      8,
+      8
+     ],
+     "verdict": "finite",
+     "genus": 23
+    }
+   ],
+   "kill": {
+    "entry": 138,
+    "frame": 1,
+    "engine_frame": 0,
+    "dead_frames": [
+     1,
+     2
+    ],
+    "mechanism": "symmetry-tower kill on frame 1: every component dead by the engine or killed by the tower, no live univariate factor",
+    "components": [
+     {
+      "deg": [
+       4,
+       4
+      ],
+      "engine": "finite",
+      "group_order": 4,
+      "kill": {
+       "route": "inversion h (s=-1)",
+       "endpoint": "inversion h (s=-1) -> odd",
+       "elliptic": null,
+       "known": "K",
+       "known_transform": {
+        "kind": "reciprocal",
+        "lambda": "1",
+        "c": "1"
+       },
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ]
+      }
+     }
+    ],
+    "route": "inversion h (s=-1)",
+    "endpoint": "inversion h (s=-1) -> odd",
+    "known": [
+     "K"
+    ],
+    "rational_points": {
+     "K": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    "lift": [
+     [
+      "0",
+      "-1"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1"
+     ]
+    ],
+    "admissible": [],
+    "group_order": [
+     4
+    ]
    }
   },
   {
@@ -753761,6 +755009,65 @@
   "tally_after": {
    "dead": 2928,
    "finite": 16
+  }
+ },
+ "symmetry_tower_frames": {
+  "entry": 138,
+  "module_sha256": "755c0c9dd545e666b25c101ccee72a22a9dcfe4eabfb36964966b2e376dc437e",
+  "n_open_before": 16,
+  "n_killed": 16,
+  "by_frame": {
+   "1": 16
+  },
+  "by_endpoint": {
+   "inversion h (s=-1) -> odd | K": 16
+  },
+  "K": {
+   "curve": "w^2 = z^5 + 80 z^4 + 126 z^3 - 16 z^2 + z",
+   "coefficients": [
+    1,
+    80,
+    126,
+    -16,
+    1,
+    0
+   ],
+   "points": [
+    [
+     0,
+     0
+    ]
+   ],
+   "points_at_infinity": 1,
+   "rank": 1,
+   "rank_bounds": [
+    1,
+    1
+   ],
+   "two_selmer": "Z/2 + Z/2",
+   "torsion": "Z/2",
+   "mordell_weil": "Z/2 + Z (rank proved, group proved)",
+   "chabauty": "K(Q) = {(0 : 0 : 1), (1 : 0 : 0)}; index primes {5} (the argument generates the proved group: index 1)",
+   "source": "Magma online calculator, compute/qc/magma_tower138.m, run by the user 2026-09-08; output compute/qc/magma_tower138.out.txt",
+   "pari": {
+    "conductor_odd_part": 999,
+    "minimal_discriminant": "-2^23 3^3 37",
+    "torsion_bound_from_point_counts": 2,
+    "small_points_height_1e5": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  "note": "entry 138: compute/symmetry_tower.py run on EVERY frame of every open class (the engine and entries 136-137 used one frame per class; each frame is a necessary condition, so a class dies when some frame has every component dead by the engine or killed by the tower and no live univariate factor).  The module now (i) pulls an endpoint's rational points back as the FIBERS of the composed quotient map -- the endpoint variable as an explicit rational function N(g,h)/D(g,h), the fibers {phi = 0, N - v D = 0} over each point and {phi = 0, D = 0} over infinity, by resultants and rational roots -- which closes the gap of the step solver (finite points only; a point at infinity of the endpoint was assumed to force a degenerate ratio, false after a coordinate change or a reciprocal quotient); every entry-136/137 kill re-derived under the fibers stands; (ii) has the direct model and the odd companion w^2 = z Q(z) of an even model as further endpoints; (iii) knows the curve K: w^2 = z^5 + 80 z^4 + 126 z^3 - 16 z^2 + z (Magma: J(K)(Q) = Z/2 + Z proved, Chabauty: K(Q) = {(0,0), oo}), the odd companion of the frame-1 and frame-2 quotients by h -> -1/h of all sixteen surviving (1,1,1) classes.",
+  "tally_before": {
+   "dead": 2928,
+   "finite": 16
+  },
+  "tally_after": {
+   "dead": 2944
   }
  }
 }

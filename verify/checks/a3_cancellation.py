@@ -17,7 +17,7 @@ def prime_column_engine(ctx):
     from compute.research_inventory import ROOT, SOURCES, load_source
     rows = load_source(ROOT / SOURCES["111"])["classes"]
     dead = next(r["cand"] for r in rows if column_certificate(r["cand"][:4]))
-    survivor = next(r["cand"] for r in rows if r["verdict"] == "finite")
+    survivor = next(r["cand"] for r in rows if r["verdict"] == "finite" or r.get("verdict_before_symmetry_tower_frames") == "finite")      # entry 138: the (1,1,1) box is dead; a class that survived the lemma
     saved = O.HIGH_DEGREE_ROUTE
     for decide in (O.decide_class, O.decide_class_fast):
         with patch.object(O, "decide_frame", side_effect=AssertionError("curve engine entered on excluded class")):
@@ -109,11 +109,11 @@ def research_inventory(ctx):
     stored = json.loads(gzip.decompress(ARTIFACT.read_bytes()))
     require(stored == data, "survivor artifact is stale")
     require(REPORT.read_text(encoding="utf-8") == render(data), "research report is stale")
-    require(Counter(r["shape"] for r in stored["classes"]) == {"111": 16, "211": 242, "311": 220})
-    require(len({r["id"] for r in stored["classes"]}) == 478)
+    require(Counter(r["shape"] for r in stored["classes"]) == {"211": 140, "311": 156})      # entry 138: the (1,1,1) box is dead
+    require(len({r["id"] for r in stored["classes"]}) == 296)
     require(Counter(tuple(r["binomial_height_recession_direction"] or []) for r in stored["classes"]) ==
-            {(1, 1, 1): 438, (1, 1, 2): 24, (1, 2, 2): 16})      # entries 123-137: the inventory rebased on the survivors of the three campaigns (entry 137: the symmetry tower leaves 16 + 242 + 220)
-    require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 0)      # entry 137: every no-binomial class is dead
+            {(1, 1, 1): 256, (1, 1, 2): 24, (1, 2, 2): 16})      # entries 123-138: the inventory rebased on the survivors of the three campaigns (entry 138: the (1,1,1) box dead; the frames sweep leaves 140 + 156)
+    require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 0)      # entries 137-138: every no-binomial class is dead
     for shape, source in SOURCES.items():
         ledger = load_source(ROOT / source)
         expected = {i for i, r in enumerate(ledger["classes"]) if r.get("verdict", r.get("v")) == "finite"}
