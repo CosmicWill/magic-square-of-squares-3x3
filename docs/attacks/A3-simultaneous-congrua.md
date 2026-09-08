@@ -3194,6 +3194,32 @@ The user ran the script of 2.56 in the Magma online calculator.  For both curves
 
 A rational point $(t,y)$ of the frame's genus-$3$ curve $y^2=Q(t^2)$ maps to $(u,w)=(t^2,ty)$ on the odd quotient, so $t$ is a square root of one of the seven $u$-values: $u\in\{0,\pm1,\infty\}$ gives a degenerate ratio and $u=-1/5$ is not a square.  Both frames of each of the eight open octic classes carry one of the two curves, so both frames are dead and the classes die: tally $(1,1,1)$ dead $2798$, finite $146$.  Conditional on Magma, as 2.47/2.55 are on the QC code; everything else is re-verified exactly.  The towers are now closed except for the eight genus-$25$ $(6,6)$ classes; the other $138$ open classes have no component quadratic in a ratio.
 
+## 2.58 The binomial square root (Theorem A3.SQ): the height system's binomial rows double their exponent (entry 134; R.13 path 3)
+
+*(2026-09-08; entry 134; `compute/height_system.py` version 4, `compute/hierarchy.py`, `compute/data_hierarchy.json.gz`; check `a3.square_root`.)*
+
+**Theorem A3.SQ.**  *At a deficient column $j$ (deficit $g$) let a binomial circuit with $|\lambda|=1$ give $p_j^{2g}\mid\operatorname{Im}A$ ($\lambda=1$) or $p_j^{2g}\mid\operatorname{Re}A$ ($\lambda=-1$), $A=\prod_{k\ne j}\pi_k^{2d_k}$ (conjugates for $d_k<0$), $P=|A|=\prod p_k^{|d_k|}$.  Then $p_j^{4g}<P$ ($\lambda=1$), $p_j^{4g}\le 2P$ ($\lambda=-1$), and $p_j^{8g}\le 4P$ when $\lambda=1$ and every $d_k$ is even.*
+
+*Proof.*  $A=B^2$ with $B=\prod\pi_k^{d_k}$.  $B$ is primitive: a rational prime dividing $B$ would be $2$ (but $B$ has odd norm), a prime $\equiv3\pmod4$ (a Gaussian prime not among the $\pi_k$), or $p_k=\pi_k\bar\pi_k$ (but only one of $\pi_k,\bar\pi_k$ divides $B$).  Hence $\gcd(\operatorname{Re}B,\operatorname{Im}B)=1$; both are nonzero, since $B$ real or imaginary forces $B/\bar B=\pm1$, i.e. every $d_k=0$ by unique factorisation; and $\operatorname{Re}B\ne\pm\operatorname{Im}B$, since $(1+i)\nmid B$.  Now $\operatorname{Im}A=2\operatorname{Re}B\operatorname{Im}B$ and $\operatorname{Re}A=(\operatorname{Re}B-\operatorname{Im}B)(\operatorname{Re}B+\operatorname{Im}B)$, the second pair with gcd dividing $2$; the odd prime power $p_j^{2g}$ divides exactly one factor, and $|\operatorname{Re}B|,|\operatorname{Im}B|<|B|=\sqrt P$, $|\operatorname{Re}B\pm\operatorname{Im}B|\le\sqrt2|B|$.  If every $d_k$ is even, $B=C^2$ with $C$ primitive, $\operatorname{Im}A=4(\operatorname{Re}C-\operatorname{Im}C)(\operatorname{Re}C+\operatorname{Im}C)\operatorname{Re}C\operatorname{Im}C$, four factors pairwise coprime up to $2$, each $\le\sqrt2|C|=\sqrt2P^{1/4}$. $\square$
+
+A11's (B1) was $2^tp_j^{2g}\le P$: the exponent of the deficient prime doubles.  The coupling rows (C), the trinomial rows (T′) and the $|\lambda|=2$ rows are unchanged.  **Version 4** of the height system carries the new rows (squared to keep the constants rational); the certificates of versions 1–3 remain valid, and `verify_certificate` honours the recorded version.
+
+**How it was found.**  Path 3 began with the hierarchical open classes.  `compute/hierarchy.py` computes the forced ratio and its binding rows, the *rigid* rows — those whose slack is bounded on the feasible region, so that the divisibility behind the row becomes an exact equation with finitely many constants — and the *frame divisibilities* (binomials whose $d$ is supported on one column $k$: $p_j^{2g}$ divides a component $c_k$, $s_k$, $c_k\pm s_k$ of the frame of $p_k$).  Rigid rows are common: $94/146$, $649/3152$, $2312/28910$ open classes have at least one at three, four, five frames (the first three-frame class examined had none, its recession cone being full-dimensional).  In the five-frame class with forced ratio $4.3\cdot10^9$ the rigid row $p_4^2\mid c_0^2-s_0^2$ with $p_0\le2p_4^2$ forces $c_0^2-s_0^2=\pm p_4^2$, so $(c_0-s_0,c_0+s_0)=(1,p_4^2)$ and $p_0=(p_4^4+1)/2>2p_4^2$: impossible.  The general statement is the theorem; rigidity was only the lens.
+
+**The harvest** (every open class of every campaign re-decided with version 4; exact certificates, each shown new by the feasibility of version 3):
+
+| Box | Open before | Infeasible (dead) | Open after |
+|---|---:|---:|---:|
+| $(1,1,1)$ | 146 | 118 | 28 |
+| $(2,1,1)$ | 1,388 | 1,092 | 296 |
+| $(3,1,1)$ | 1,025 | 761 | 264 |
+| $(1,1,1,1)$ | 3,152 | 2,021 | 1,131 |
+| $(1,1,1,1,1)$ | 28,910 | 10,472 | 18,438 |
+
+Tallies: $(1,1,1)$ dead $2916$ / finite $28$; $(2,1,1)$ dead $79{,}072$ / finite $296$; four frames dead $5,956$ / open $1,131$; five frames dead $26,444$ / open $18,438$.  In the $(1,1,1)$ box every survivor has two four-maxima columns (only trinomial rows there), and most survivors elsewhere do ($212/296$, $244/264$, $949/1131$ at $(2,1,1)$, $(3,1,1)$, four frames), so the next uniform lever is a trinomial sharpening.  The eight genus-$25$ tower classes are dead; the $28$ open $(1,1,1)$ classes have undecided components of bidegree $(8,8)$ (16) and $(4,4)$ (12).
+
+**The descent formulation (recorded).**  Peeling $p=p_j$ from $Y_c=\sum_Xc_Xz_X^2$: with $y_X=z_X^2/\pi^{4w_{X,j}}$ and $P_\pm,P_0$ the circuit sums over the labels of orientation $\pm1,0$ at $p_j$, $Y=\pi^4P_++\bar\pi^4P_-+p^2P_0$ and $Y-\bar Y=\pi^4W-\bar\pi^4\bar W+p^2(P_0-\bar P_0)$, $W=P_+-\bar P_-$ (identities, machine-checked on random frames).  For a solution at a four-maxima column $W=r\bar\pi^4$ with $r\in\mathbb Z\setminus\{0\}$: the configuration on the other $N-1$ primes, its negatively oriented labels conjugated and negated, has circuit sums $r_F\bar\pi^4$, $r_G\bar\pi^4$ — a *twisted* configuration, and eliminating $\pi$ gives $\operatorname{Im}(W_F\bar W_G)=0$ on the smaller frames.  At a deficient column, $\bar\pi^2\mid W$ and $\operatorname{Im}(\pi^2W_1)=-c_E\operatorname{Im}(y_E)$ exactly ($W_1=W/\bar\pi^2$), the second-order equation A11 §4 left unused.  Peeling a second prime re-inserts the first (the twist $\bar\pi^4=(\bar\pi^2)^2$ distributes over the labels by the second prime's orientations), so the naive descent in the number of primes stops after one step; what remains is the elimination — the class curve of the smaller frames, path 2.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

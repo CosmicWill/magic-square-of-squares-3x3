@@ -39,7 +39,7 @@ def load_source(path):
 
 
 def build():
-    result = {"schema": 1, "scope": "open finite classes in the two recorded campaigns; not all exponent shapes",
+    result = {"schema": 1, "scope": "certified finite classes in three recorded campaigns; excludes provisional classes and higher-omega height-only survivors",
               "meaning_of_finite": "finiteness certificate, not an enumerated rational-point set or an existence claim",
               "sources": {}, "summary": {}, "classes": []}
     for shape, relative in SOURCES.items():
@@ -64,7 +64,7 @@ def build():
             role_multiset = "".join(sorted(p["role"] for p in patterns))
             roles[role_word] += 1
             role_multisets[role_multiset] += 1
-            route = ("compact campaign certificate" if shape == "211" else
+            route = ("compact campaign certificate" if shape != "111" else
                      "hyperelliptic tower" if "towers" in record else "resolved curve and quotients")
             routes[route] += 1
             constraints = binomial_constraints(record["cand"])
@@ -95,12 +95,13 @@ def render(data):
              "The full machine inventory is [data_research_survivors.json.gz](../compute/data_research_survivors.json.gz).",
              "Every open record retains its canonical candidate, source index and hash, signed prime-column patterns, deciding frame, and recorded arithmetic evidence.", "",
              "`finite` means that a finiteness argument is recorded. It does not mean the rational points have been enumerated or that an admissible point exists.", "",
-             "| Campaign scope | Ledger classes | Dead | Open finite | Pass A3.PC but already dead |",
-             "|---|---:|---:|---:|---:|"]
+             "This artifact contains certified finite records only. Provisional (3,1,1) records and the undecided higher-prime campaigns remain research targets; see the [full frontier review](REVIEW-AND-PLAN-2026-09-08.md).", "",
+             "| Campaign scope | Ledger classes | Dead | Open finite | Provisional | Pass A3.PC but already dead |",
+             "|---|---:|---:|---:|---:|---:|"]
     for shape, summary in data["summary"].items():
         t = summary["ledger_tally"]
-        lines.append(f"| {shape} ({data['sources'][shape]['scope']}) | {summary['ledger_classes']:,} | {t['dead']:,} | {t['finite']:,} | {summary['passes_column_rule'].get('dead', 0):,} |")
-    lines += ["", "The second row is an incremental campaign, not the full (2,1,1) box. Counts describe canonical classes, not distinct curves or magic squares.",
+        lines.append(f"| {shape} ({data['sources'][shape]['scope']}) | {summary['ledger_classes']:,} | {t['dead']:,} | {t['finite']:,} | {t.get('finite*', 0):,} | {summary['passes_column_rule'].get('dead', 0):,} |")
+    lines += ["", "The (2,1,1) and (3,1,1) rows are incremental campaigns, not their full boxes. Counts describe canonical classes, not distinct curves or magic squares.",
               "All sixteen C2 classes closed in entry 118 remain outside this open inventory. Every free-frame class is excluded by A3.PC.", "",
               "## Two complementary ways to read the survivors", "",
               "For cancellation descent, A/B/C/D names the sole label below the column maximum; `*` means four maxima.",
@@ -112,7 +113,8 @@ def render(data):
             lines.append(f"| {shape} | {route} | {count:,} |")
     lines += ["", "## Representatives for independent attacks", "",
               "One representative per role multiset and campaign is listed below. Use all members before claiming a family theorem; this table is a starting set, not a sufficient test suite.", "",
-              "| Roles | 111 count / representative | Additional 211 count / representative |", "|---|---|---|"]
+              "| Roles | " + " | ".join(f"{shape} count / representative" for shape in SOURCES) + " |",
+              "|---|" + "---|" * len(SOURCES)]
     multisets = sorted(set().union(*(s["open_role_multisets"] for s in data["summary"].values())))
     representatives = {}
     for record in data["classes"]:
@@ -137,10 +139,10 @@ def render(data):
         lines.append(f"| `{direction}` | {count:,} |" if direction else f"| No witness found in the bounded search | {count:,} |")
     lines += ["", "## Evidence and next questions", "",
               "- [Cancellation descent](attacks/A10-cancellation-descent.md): the valuation support is now classified for the relaxed Laurent system; couple the exact unit congruences across primes.",
-              "- Lift-preserving curve descent: the 88 surviving (1,1,1) tower records are the first arithmetic set; inspect their retained square conditions and elliptic ranks before choosing a point algorithm.",
+              f"- Lift-preserving curve descent: the {data['summary']['111']['open_arithmetic_routes'].get('hyperelliptic tower', 0)} surviving (1,1,1) tower records are the first arithmetic set; the [review](REVIEW-AND-PLAN-2026-09-08.md) supplies two new genus-2 quotient targets, with complete lifts still pending.",
               "- Geometry and global obstructions: use the same candidate IDs to connect quotients, the differential web, and proposed descent invariants. Missing geometry in the compact second campaign is a data gap, not an absence theorem.",
               "- Counterexample tests: include four-maximum and mixed-deficit patterns, the completed C2 family as a retrospective control, and applicable local/near-miss anchors. Record which hypotheses each control satisfies.", "",
-              "The [flexible roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) maintains several independent attacks. Inventory size is not the measure of conceptual progress.", ""]
+              "The [flexible roadmap](ROADMAP.md#r14-current-plan-after-the-recent-campaigns-2026-09-08) maintains several independent attacks. Inventory size is not the measure of conceptual progress.", ""]
     return "\n".join(lines)
 
 

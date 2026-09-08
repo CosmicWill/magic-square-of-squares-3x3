@@ -109,10 +109,10 @@ def research_inventory(ctx):
     stored = json.loads(gzip.decompress(ARTIFACT.read_bytes()))
     require(stored == data, "survivor artifact is stale")
     require(REPORT.read_text(encoding="utf-8") == render(data), "research report is stale")
-    require(Counter(r["shape"] for r in stored["classes"]) == {"111": 146, "211": 1388, "311": 1025})
-    require(len({r["id"] for r in stored["classes"]}) == 2559)
+    require(Counter(r["shape"] for r in stored["classes"]) == {"111": 28, "211": 296, "311": 264})
+    require(len({r["id"] for r in stored["classes"]}) == 588)
     require(Counter(tuple(r["binomial_height_recession_direction"] or []) for r in stored["classes"]) ==
-            {(1, 1, 1): 2187, (1, 1, 2): 212, (1, 1, 3): 32, (1, 2, 1): 80, (1, 2, 2): 32, (1, 3, 2): 16})      # entries 123-132: the inventory rebased on the survivors of the three campaigns (entries 131-132: 4 + 8 more (1,1,1) tower kills)
+            {(1, 1, 1): 548, (1, 1, 2): 24, (1, 2, 2): 16})      # entries 123-134: the inventory rebased on the survivors of the three campaigns (entry 134: the square-root lemma leaves 28 + 296 + 264)
     require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 28)
     for shape, source in SOURCES.items():
         ledger = load_source(ROOT / source)
@@ -143,4 +143,4 @@ def research_inventory(ctx):
                 # after removing the two signed monomial prefactors.
                 row = next(row for row in LEADING_ROWS[constraint["role"]] if row[i] and row[other])
                 require(row[i]*signs[i]*sx*constraint["lambda"] + row[other]*signs[other]*sy == 0)
-    ctx.note("all 5,232 open records included exactly once with source hashes; unit binomials and every unbounded height direction verified; generated report replayed")
+    ctx.note(f"all {len(stored['classes']):,} certified finite records included exactly once with source hashes; unit binomials and every recorded recession direction verified; generated report replayed")

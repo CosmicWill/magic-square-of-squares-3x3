@@ -6,13 +6,15 @@ Every open record retains its canonical candidate, source index and hash, signed
 
 `finite` means that a finiteness argument is recorded. It does not mean the rational points have been enumerated or that an admissible point exists.
 
-| Campaign scope | Ledger classes | Dead | Open finite | Pass A3.PC but already dead |
-|---|---:|---:|---:|---:|
-| 111 (full box) | 2,944 | 2,798 | 146 | 632 |
-| 211 (additional three-frame classes only) | 79,368 | 77,980 | 1,388 | 4,050 |
-| 311 (additional three-frame classes only) | 290,064 | 287,858 | 1,025 | 6,496 |
+This artifact contains certified finite records only. Provisional (3,1,1) records and the undecided higher-prime campaigns remain research targets; see the [full frontier review](REVIEW-AND-PLAN-2026-09-08.md).
 
-The second row is an incremental campaign, not the full (2,1,1) box. Counts describe canonical classes, not distinct curves or magic squares.
+| Campaign scope | Ledger classes | Dead | Open finite | Provisional | Pass A3.PC but already dead |
+|---|---:|---:|---:|---:|---:|
+| 111 (full box) | 2,944 | 2,916 | 28 | 0 | 750 |
+| 211 (additional three-frame classes only) | 79,368 | 79,072 | 296 | 0 | 5,142 |
+| 311 (additional three-frame classes only) | 290,064 | 288,619 | 264 | 1,181 | 7,257 |
+
+The (2,1,1) and (3,1,1) rows are incremental campaigns, not their full boxes. Counts describe canonical classes, not distinct curves or magic squares.
 All sixteen C2 classes closed in entry 118 remain outside this open inventory. Every free-frame class is excluded by A3.PC.
 
 ## Two complementary ways to read the survivors
@@ -24,48 +26,28 @@ For arithmetic geometry, the evidence retains the existing towers and quotient m
 
 | Campaign | Recorded arithmetic route | Open classes |
 |---|---|---:|
-| 111 | hyperelliptic tower | 8 |
-| 111 | resolved curve and quotients | 138 |
-| 211 | compact campaign certificate | 1,388 |
-| 311 | resolved curve and quotients | 1,025 |
+| 111 | resolved curve and quotients | 28 |
+| 211 | compact campaign certificate | 296 |
+| 311 | compact campaign certificate | 264 |
 
 ## Representatives for independent attacks
 
 One representative per role multiset and campaign is listed below. Use all members before claiming a family theorem; this table is a starting set, not a sufficient test suite.
 
-| Roles | 111 count / representative | Additional 211 count / representative |
-|---|---|---|
+| Roles | 111 count / representative | 211 count / representative | 311 count / representative |
+|---|---|---|---|
 | `***` | 4 / `111:2918` | 12 / `211:70082` | 12 / `311:270338` |
 | `**A` | 8 / `111:1632` | 48 / `211:19280` | 64 / `311:50780` |
 | `**B` | — | 48 / `211:68308` | 48 / `311:266716` |
-| `**C` | 10 / `111:2803` | 70 / `211:68854` | 76 / `311:267520` |
-| `**D` | 10 / `111:2902` | 70 / `211:69962` | 76 / `311:270146` |
-| `*AA` | — | 12 / `211:51451` | 8 / `311:230850` |
-| `*AB` | — | 20 / `211:36514` | 20 / `311:99913` |
-| `*AC` | 8 / `111:1736` | 56 / `211:19492` | 14 / `311:51100` |
-| `*AD` | 8 / `111:1624` | 56 / `211:19272` | 14 / `311:50772` |
-| `*BC` | — | 42 / `211:67249` | 32 / `311:265148` |
-| `*BD` | — | 42 / `211:68550` | 32 / `311:267100` |
-| `*CC` | 8 / `111:2841` | 60 / `211:68928` | 24 / `311:267630` |
-| `*CD` | 16 / `111:2795` | 136 / `211:68846` | 112 / `311:267516` |
-| `*DD` | 8 / `111:2892` | 60 / `211:69954` | 24 / `311:270138` |
-| `AAC` | — | 8 / `211:60360` | — |
-| `AAD` | — | 8 / `211:59632` | — |
-| `ABB` | — | — | 4 / `311:210326` |
-| `ABC` | — | 35 / `211:36062` | 16 / `311:283232` |
-| `ABD` | — | 35 / `211:36498` | 16 / `311:285412` |
-| `ACC` | 12 / `111:1660` | 28 / `211:19344` | 40 / `311:50880` |
-| `ACD` | 24 / `111:1528` | 80 / `211:19104` | 64 / `311:105470` |
-| `ADD` | 12 / `111:1600` | 28 / `211:19248` | 39 / `311:50748` |
-| `BBC` | — | 2 / `211:70881` | 4 / `311:272609` |
-| `BBD` | — | 2 / `211:71714` | 4 / `311:273878` |
-| `BCC` | — | 64 / `211:72176` | 32 / `311:274556` |
-| `BCD` | — | 144 / `211:72016` | 46 / `311:274324` |
-| `BDD` | — | 64 / `211:73912` | 32 / `311:279100` |
-| `CCC` | — | 10 / `211:69388` | 8 / `311:269320` |
-| `CCD` | 9 / `111:2730` | 69 / `211:68708` | 78 / `311:267302` |
-| `CDD` | 9 / `111:2771` | 69 / `211:68822` | 78 / `311:267488` |
-| `DDD` | — | 10 / `211:70002` | 8 / `311:270258` |
+| `**C` | 8 / `111:2803` | 52 / `211:68854` | 60 / `311:267520` |
+| `**D` | 8 / `111:2902` | 52 / `211:69962` | 60 / `311:270146` |
+| `*BC` | — | 20 / `211:72808` | — |
+| `*BD` | — | 20 / `211:74400` | — |
+| `*CC` | — | 8 / `211:69318` | — |
+| `*CD` | — | 24 / `211:69540` | 8 / `311:281378` |
+| `*DD` | — | 8 / `211:70010` | — |
+| `CCD` | — | 2 / `211:75618` | 6 / `311:269206` |
+| `CDD` | — | 2 / `211:75300` | 6 / `311:270412` |
 
 ## Leading-square residue controls
 
@@ -89,18 +71,15 @@ Each record includes CP.4's explicit unit binomials and necessary norm bounds. A
 
 | Direction for the three log-primes | Open records |
 |---|---:|
-| `(1, 1, 1)` | 2,187 |
-| `(1, 1, 2)` | 212 |
-| `(1, 1, 3)` | 32 |
-| `(1, 2, 1)` | 80 |
-| `(1, 2, 2)` | 32 |
-| `(1, 3, 2)` | 16 |
+| `(1, 1, 1)` | 548 |
+| `(1, 1, 2)` | 24 |
+| `(1, 2, 2)` | 16 |
 
 ## Evidence and next questions
 
 - [Cancellation descent](attacks/A10-cancellation-descent.md): the valuation support is now classified for the relaxed Laurent system; couple the exact unit congruences across primes.
-- Lift-preserving curve descent: the 88 surviving (1,1,1) tower records are the first arithmetic set; inspect their retained square conditions and elliptic ranks before choosing a point algorithm.
+- Lift-preserving curve descent: the 0 surviving (1,1,1) tower records are the first arithmetic set; the [review](REVIEW-AND-PLAN-2026-09-08.md) supplies two new genus-2 quotient targets, with complete lifts still pending.
 - Geometry and global obstructions: use the same candidate IDs to connect quotients, the differential web, and proposed descent invariants. Missing geometry in the compact second campaign is a data gap, not an absence theorem.
 - Counterexample tests: include four-maximum and mixed-deficit patterns, the completed C2 family as a retrospective control, and applicable local/near-miss anchors. Record which hypotheses each control satisfies.
 
-The [flexible roadmap](ROADMAP.md#r12-current-research-portfolio-2026-09-06) maintains several independent attacks. Inventory size is not the measure of conceptual progress.
+The [flexible roadmap](ROADMAP.md#r14-current-plan-after-the-recent-campaigns-2026-09-08) maintains several independent attacks. Inventory size is not the measure of conceptual progress.

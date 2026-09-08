@@ -6679,3 +6679,80 @@ tower's test (no x -> kappa/x involution), and 8 have a (6,6) component
 with no hyperelliptic model: a rank bound on a genus-2 Jacobian (Magma)
 or a hyperelliptic model for the (6,6) curves is needed. Doc 2.55;
 ROADMAP M15-E and the R.13 path-2 row; PROGRESS; memory.
+
+
+## 2026-09-08 — Entry 134: THE BINOMIAL SQUARE ROOT (Theorem A3.SQ) — the height system's binomial rows double their exponent; 118/146 + 1092/1388 + 761/1025 + 2021/3152 + 10472/28910 open classes dead (R.13 path 3, from the hierarchical classes)
+
+HOW IT WAS FOUND (path 3). The plan was to start the descent in the
+number of primes from the hierarchical open classes -- those whose
+inequalities force one prime far above another. compute/hierarchy.py
+computes, for an open class, the forced ratio and its binding rows,
+the RIGID rows (rows whose slack log K - a.x is bounded on the
+feasible region, so that the underlying divisibility becomes an exact
+equation with finitely many constants), and the frame divisibilities
+(binomials whose d-vector is supported on a single other column k:
+p_j^{2g} divides a component of the frame of p_k). Rigid rows are common
+(census: 94 / 649 / 2312 open classes with at least one at 3 / 4 / 5
+frames; the first three-frame class examined had none, its recession
+cone being full-dimensional). Working the five-frame class with forced ratio
+4.3e9 by hand: its rigid row p_4^2 | Re(pi_0^2) = c_0^2 - s_0^2 with
+p_0 <= 2 p_4^2 forces c_0^2 - s_0^2 = +-p_4^2, hence (c_0 - s_0, c_0 + s_0)
+= (1, p_4^2) and p_0 = (p_4^4 + 1)/2 -- far above 2 p_4^2: the class
+is impossible. The mechanism is general and has nothing to do with
+rigidity.
+
+THE THEOREM (A3.SQ, doc 2.58; A11 version 4). At a deficient column j
+(deficit g) a binomial with |lambda| = 1 gives p_j^{2g} | Im A
+(lambda = 1) or Re A (lambda = -1), A = prod pi_k^{2 d_k}. But
+A = B^2 with B = prod pi_k^{d_k} PRIMITIVE (each p_k enters through one
+of pi_k, pibar_k only), so Re B and Im B are coprime and nonzero, and
+  Im A = 2 Re(B) Im(B),   Re A = (Re B - Im B)(Re B + Im B),
+products of factors coprime up to 2 (and 1 + i does not divide B, so
+Re B != +-Im B). The odd prime power p_j^{2g} divides ONE factor, of
+size <= |B| = sqrt(P) (Im) or <= sqrt(2)|B| (Re); if every d_k is even,
+B = C^2 and Im A = 4 (Re C - Im C)(Re C + Im C) Re(C) Im(C) has a factor
+<= sqrt(2) P^(1/4). Rows: p_j^{4g} <= P, p_j^{4g} <= 2P, p_j^{8g} <= 4P,
+against A11's 2^t p_j^{2g} <= P: the exponent of the deficient prime
+doubles (quadruples). Uniform in the number of primes and the shape.
+The lemma's ingredients are checked on thousands of random primitive
+B; every kill carries an exact Farkas certificate, re-verified, and
+version 3 is feasible for every killed class (the kills are new).
+
+THE HARVEST (compute/height_system.py version 4; the sweep over every
+open class of every campaign):
+  (1,1,1): 118 of 146 dead, 28 open -- tally 2916 / 28;
+  (2,1,1): 1092 of 1388 dead, 296 open -- tally 79072 / 296;
+  (3,1,1): 761 of 1025 dead, 264 open;
+  (1,1,1,1): 2021 of 3152 dead, 1131 open -- tally 5956 / 1131;
+  (1,1,1,1,1): 10472 of 28910 dead, 18438 open -- tally 26444 / 18438.
+In the (1,1,1) box every survivor has two four-maxima columns (the
+lemma sharpens binomials; a four-maxima column has only trinomials);
+elsewhere most do (212/296, 244/264, 949/1131 at (2,1,1), (3,1,1), four
+frames). The eight genus-25 tower classes of entry 132 are among the dead; the
+remaining 28 (1,1,1) classes have undecided components of bidegree
+(8,8) (16) and (4,4) (12).
+
+THE DESCENT FORMULATION (recorded, not a proof). Peeling a prime:
+with y_X = z_X^2 / pi^{4 w_X} and P_+, P_-, P_0 the circuit sums of the
+labels of orientation +1, -1, 0 at p_j, Y = pi^4 P_+ + pibar^4 P_- +
+p^2 P_0 and Y - conj(Y) = pi^4 W - pibar^4 conj(W) + p^2 (P_0 - conj(P_0))
+with W = P_+ - conj(P_-) (an identity for all frames, machine-checked).
+For a solution at a four-maxima column, W = r pibar^4 with r a nonzero
+integer: the configuration with p_j removed -- its labels of negative
+orientation conjugated and negated -- has circuit sums r_F pibar^4,
+r_G pibar^4 (a twisted configuration on N - 1 primes; eliminating
+pi: Im(W_F conj(W_G)) = 0). At a deficient column, pibar^2 | W and
+Im(pi^2 W_1) = -c_E Im(y_E) exactly, the second-order equation A11 left
+unused. Peeling a second prime re-inserts the first (the twist is a
+square distributed by the second prime's orientations), so the naive
+descent stops after one step; what remains is the elimination, i.e.
+the class curve of the smaller frames. The hierarchical classes'
+census (compute/data_hierarchy.json.gz): forced ratios up to 4.3e9,
+chains of frame divisibilities, and the rigid rows that led to A3.SQ.
+
+Check a3.square_root (suite 215): the ingredients, the row doubling,
+the certificates and their novelty on samples of every ledger, the
+survivors' feasibility and structure, the tallies. Pins moved across
+the suite; the inventory regenerated (588 open records). Docs 2.58,
+A11 §7, A12 §6; ROADMAP M15-H and the R.13 path-3 row; PROGRESS;
+memory.

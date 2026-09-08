@@ -46,3 +46,8 @@ Nothing else is visible at first order: the height system depends on the class o
 - Path 1 is answered in the form the data allows: the uniform structure of the survivors is orientation genericity plus a feasible hierarchy, and T1 is the sharpest single-row uniform exclusion; further uniform exclusions of the same kind are cycle conditions, i.e. the LP itself.
 - The decay of the kill rate with $\omega$ (entry 128) is explained: each extra prime adds a column at which a pair may flip, so flips become generic.
 - A proof cannot come from orientations and sizes alone. The levers left are global: the class curves for fixed shapes (path 2), the exact congruences as a rigidity (the pair search), and a descent in the number of primes (path 3) — for which the hierarchical classes are the natural first targets, since they force a huge prime that the others must generate through the divisibilities.
+
+
+## 6. Addendum (entry 134): the hierarchy census and Theorem A3.SQ
+
+`compute/hierarchy.py` records, for every open all-ones class, the forced ratio with its binding rows, the rigid rows (bounded slack) and the frame divisibilities with their chains (`compute/data_hierarchy.json.gz`): 94 / 649 / 2312 open classes with a rigid row at three / four / five frames.  The rigid single-frame binomial of the most hierarchical five-frame class led to the binomial square root ([A3 2.58](A3-simultaneous-congrua.md#258-the-binomial-square-root-theorem-a3sq-the-height-systems-binomial-rows-double-their-exponent-entry-133-r13-path-3)), which kills 10,472 of the 28,910 open five-frame classes and leaves mostly classes with at least two four-maxima columns.

@@ -57,7 +57,8 @@ def sgn(x):
 def column(cand, j, version=3):
     """The relations of column j: the binomials and trinomials with their exact data.
     version 1 = entry 123 (trinomial bound |S_1| >= 1); version 2 = entry 124 (the reality sharpening (T'));
-    version 3 = entry 125 (S even for the 2, +-1, +-1 circuits: K = 4 becomes 2)."""
+    version 3 = entry 125 (S even for the 2, +-1, +-1 circuits: K = 4 becomes 2);
+    version 4 = entry 134 (Theorem A3.SQ: the binomial integer is a product of coprime factors of size sqrt(P))."""
     labels, eps = [tuple(int(x) for x in lab) for lab in cand[:4]], [int(x) for x in cand[4:]]
     col = [lab[j] for lab in labels]
     M = max(abs(e) for e in col)
@@ -92,8 +93,25 @@ def column(cand, j, version=3):
             if abs(lam) == 1:
                 integer = "Im" if lam == 1 else "Re"
                 two_adic = 0 if lam == -1 else (3 if all(v % 2 == 0 for v in d.values()) else 2)
-                coeff = {j: 2 * g, **{k: -absd[k] for k in others}}
-                K = Fraction(1, 2 ** two_adic)
+                if version >= 4:
+                    # version 4 (entry 134, Theorem A3.SQ, the binomial square root): A = B^2 with B = prod pi_k^{d_k}
+                    # (conjugates for d_k < 0) primitive, |B| = sqrt(P), Re B and Im B coprime and nonzero, so
+                    # Im A = 2 Re(B) Im(B) and Re A = (Re B - Im B)(Re B + Im B) are products of factors coprime up to 2;
+                    # the odd prime power p_j^{2g} divides ONE factor, of size <= |B| (Im) or <= sqrt(2)|B| (Re).  If every
+                    # d_k is even, B = C^2 and Im A = 4 (Re C - Im C)(Re C + Im C) Re(C) Im(C): a factor <= sqrt(2) P^{1/4}.
+                    # Rows squared (fourth-powered) to keep K rational: p_j^{4g} <= P, p_j^{8g} <= 4P, p_j^{4g} <= 2P.
+                    if lam == 1 and all(v % 2 == 0 for v in d.values()):
+                        coeff = {j: 8 * g, **{k: -absd[k] for k in others}}
+                        K = Fraction(4)
+                    elif lam == 1:
+                        coeff = {j: 4 * g, **{k: -absd[k] for k in others}}
+                        K = Fraction(1)
+                    else:
+                        coeff = {j: 4 * g, **{k: -absd[k] for k in others}}
+                        K = Fraction(2)
+                else:
+                    coeff = {j: 2 * g, **{k: -absd[k] for k in others}}
+                    K = Fraction(1, 2 ** two_adic)
             else:
                 integer, two_adic = "N2", 0
                 coeff = {j: 2 * g, **{k: -2 * absd[k] for k in others}}
