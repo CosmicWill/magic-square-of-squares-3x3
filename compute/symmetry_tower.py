@@ -11,6 +11,8 @@ Steps (each records its forward map; an endpoint's points are pulled back as fib
                                                      both single inversions (fiber 4)
   hyperelliptic(a, b)    a curve quadratic in one variable q: y^2 = D(o) = S(o)^2 core(o), core squarefree
   even(o)                z = o^2 for an even core;  reciprocal(o; kappa)  w = o + kappa/o for a (twisted) reciprocal core
+  twists (entry 140)     y^2 = core(o) f(o) for the square classes f(o) that rational points (the fiber discriminants of the
+                         quotient steps) or admissible points (g^2 + 1, h^2 + 1) must make squares; their classical quotients
 The quotient polynomials are the repeated factors of resultants; every identity is exact (sympy); the elliptic data is
 PARI's (compute.pari_genus1.quartic_points: 2-descent rank bounds, torsion, points, completeness)."""
 import itertools
@@ -216,7 +218,79 @@ def classical_quotients(core, o):
             if Pw is not None:
                 # core(o) = o^{d/2} Pw(w): y = o^{d/4} Y
                 Y2 = sp.Symbol("Y2")
-                out.append(("reciprocal", Pw, w, {"kind": "reciprocal", "old": (o, yy), "new": (w, Y2), "relations": [o ** 2 - w * o + kappa, yy - o ** (d // 4) * Y2], "kappa": kappa}))
+                strec = {"kind": "reciprocal", "old": (o, yy), "new": (w, Y2), "relations": [o ** 2 - w * o + kappa, yy - o ** (d // 4) * Y2], "kappa": kappa}
+                out.append(("reciprocal", Pw, w, strec))
+                # the rationality twist of the reciprocal quotient: o rational forces w^2 - 4 kappa = (o - kappa/o)^2 a square (entry 140)
+                Ptw = twisted_core(Pw, w ** 2 - 4 * kappa, w)
+                if Ptw is not None:
+                    out.append(("reciprocal twist[w^2-4k]", Ptw, w, dict(strec, twist="w^2-4k")))
+    return out
+
+
+def twisted_core(core, fac, o):
+    """The squarefree part of core(o) * fac(o): the model y^2 = core twisted by the square class of fac (entry 140); None when
+    the product is constant."""
+    P = sp.Poly(sp.expand(core * fac), o)
+    if P.degree() <= 0:
+        return None
+    fl = sp.factor_list(P.as_expr())
+    c = sp.Rational(fl[0])
+    cc = c.p * c.q                      # the same square class as c, an integer (a rational content is not truncated)
+    sq = 1
+    for p_, e_ in sp.factorint(abs(cc)).items():
+        sq *= p_ ** (2 * (e_ // 2))
+    out = sp.Integer(cc // sq) if cc > 0 else -sp.Integer((-cc) // sq)
+    for f, m in fl[1]:
+        out *= f.as_expr() ** (m % 2)
+    out = sp.expand(out)
+    if not out.has(o):
+        return None
+    return out
+
+
+def twist_root_values(fac, o):
+    """The rational roots of a twist factor: at such an o-value the reduction of core * fac may have removed a double root, so the
+    fibers over these values are added to every twisted endpoint's lift set (the audit of entry 140)."""
+    return rational_roots(sp.expand(fac), o)
+
+
+def twist_factors(steps, hm):
+    """The square-class conditions on the model variable o (entry 140): kind "rational" -- the discriminant of a quotient step's
+    fiber, which is a square at the image of every rational point (joint: X; inversion: U^2 - 4s; double inversion: U^2 - 4s1,
+    V^2 - 4s2), carried through later coordinate changes and kept when it is a function of o alone; kind "admissible" -- g^2 + 1
+    or h^2 + 1, which is a square at every admissible point, when o is g, 1/g, h, 1/h, g^2, h^2, 1/g^2 or 1/h^2.  Each factor is
+    a polynomial in o, its square class the condition."""
+    o = hm["o"]
+    conds = []          # (name, expression in the step's new variables, index of the step)
+    for i, st in enumerate(steps):
+        k = st["kind"]
+        if k == "joint":
+            conds.append(("X", st["new"][0], i))
+        elif k == "inversion":
+            conds.append(("U^2-4s", st["new"][0] ** 2 - 4 * st["s"], i))
+        elif k == "double_inversion":
+            U, V = st["new"]
+            conds.append(("U^2-4s1", U ** 2 - 4 * st["s1"], i))
+            conds.append(("V^2-4s2", V ** 2 - 4 * st["s2"], i))
+    out = []
+    for name, expr, i in conds:
+        e = expr
+        for st in steps[i + 1:]:
+            if st["kind"] == "change":
+                e = e.subs(st["sol"], simultaneous=True)      # the old variables in terms of the new ones
+        e = sp.cancel(sp.together(e))
+        if e.free_symbols and e.free_symbols <= {o}:
+            N, D = sp.fraction(e)
+            fac = sp.expand(N * D)                              # N/D and N*D have the same square class
+            if fac.has(o):
+                out.append((name, fac, "rational"))
+    v = endpoint_variable(steps, o)
+    for expr, name, fac in ((g, "g", o ** 2 + 1), (1 / g, "1/g", o ** 2 + 1), (h, "h", o ** 2 + 1), (1 / h, "1/h", o ** 2 + 1),
+                            (g ** 2, "g^2", o + 1), (h ** 2, "h^2", o + 1), (1 / g ** 2, "1/g^2", o * (o + 1)), (1 / h ** 2, "1/h^2", o * (o + 1))):
+        for sign in (1, -1):        # o = -g etc. carry the same square class (o^2 + 1 is even; o + 1 -> 1 - o for o = -g^2)
+            if sp.simplify(v - sign * expr) == 0:
+                out.append(("adm " + ("-" if sign < 0 else "") + name, sp.expand(fac.subs(o, sign * o)), "admissible"))
+                break
     return out
 
 
@@ -420,14 +494,46 @@ def analyse(phi, want_all=False):
     kill = None
     for label, steps, curves, hm in routes:
         rec = {"route": label, "model_degree": hm["degree"], "genus": genus_of_model(hm["degree"]), "core": str(hm["core"])}
-        endpoints = [(label, steps, curves, hm["core"], hm["o"], yy)]
+        endpoints = [(label, steps, curves, hm["core"], hm["o"], yy, None)]
         # the classical quotients of the model (one level) as further endpoints
         for name, Pq, var, stc in classical_quotients(hm["core"], hm["o"]):
             yvar = stc["new"][1]
-            endpoints.append((label + " -> " + name, steps + [stc], curves + [yvar ** 2 - Pq], Pq, var, yvar))
-        for elabel, esteps, ecurves, core, var, yvar in endpoints:
+            tw0 = None
+            if name == "odd":               # the odd companion is the even quotient's rationality twist by z: its root z = 0 is o = 0
+                tw0 = {"factors": ["z"], "kinds": ["rational"], "roots": [sp.Integer(0)], "omap": endpoint_variable(steps, hm["o"])}
+            elif stc.get("twist"):          # the reciprocal twist by w^2 - 4 kappa: its rational roots pull back to o-values
+                tw0 = {"factors": [stc["twist"]], "kinds": ["rational"], "omap": endpoint_variable(steps, hm["o"]),
+                       "roots": [o0 for w0 in rational_roots(sp.expand(var ** 2 - 4 * stc["kappa"]), var) for o0 in rational_roots(sp.expand(hm["o"] ** 2 - w0 * hm["o"] + stc["kappa"]), hm["o"])]}
+            endpoints.append((label + " -> " + name, steps + [stc], curves + [yvar ** 2 - Pq], Pq, var, yvar, tw0))
+        # the twisted models (entry 140): every nonempty subset of the square-class conditions, with their classical quotients
+        tf = twist_factors(steps, hm)
+        for r_ in range(1, len(tf) + 1):
+            for sub in itertools.combinations(tf, r_):
+                fac = sp.Integer(1)
+                for _, fexpr, _ in sub:
+                    fac *= fexpr
+                tcore = twisted_core(hm["core"], fac, hm["o"])
+                if tcore is None:
+                    continue
+                # the factor's rational roots: there the reduction may have removed a double root, so their fibers (through the
+                # model variable's own map) join every twisted endpoint's lift set (the audit of entry 140)
+                tw = {"factors": [n for n, _, _ in sub], "kinds": sorted({k for _, _, k in sub}), "roots": twist_root_values(fac, hm["o"]), "omap": endpoint_variable(steps, hm["o"])}
+                tlabel = label + " twist[" + ",".join(tw["factors"]) + "]"
+                endpoints.append((tlabel, steps, curves, tcore, hm["o"], yy, tw))
+                for name, Pq, var, stc in classical_quotients(tcore, hm["o"]):
+                    yvar = stc["new"][1]
+                    tw2 = dict(tw, factors=tw["factors"] + ([stc["twist"]] if stc.get("twist") else []))
+                    if stc.get("twist"):        # the reciprocal twist's factor w^2 - 4 kappa: its rational roots w0 = o + kappa/o pull back to o-values
+                        w_ = var
+                        tw2["roots"] = list(tw["roots"]) + [o0 for w0 in rational_roots(sp.expand(w_ ** 2 - 4 * stc["kappa"]), w_) for o0 in rational_roots(sp.expand(hm["o"] ** 2 - w0 * hm["o"] + stc["kappa"]), hm["o"])]
+                    endpoints.append((tlabel + " -> " + name, steps + [stc], curves + [yvar ** 2 - Pq], Pq, var, yvar, tw2))
+        for elabel, esteps, ecurves, core, var, yvar, tw in endpoints:
             deg = sp.Poly(core, var).degree()
             e = {"endpoint": elabel, "degree": deg}
+            if tw:
+                e["twist"] = {"factors": tw["factors"], "kinds": tw["kinds"], "roots": [str(r) for r in tw.get("roots", [])]}
+            if deg <= 6:
+                e["core"] = str(sp.Poly(core, var).as_expr())      # the endpoint's model, for the atlas (entry 140)
             values = None
             if deg in (3, 4):
                 coeffs = [int(c) for c in sp.Poly(core, var).all_coeffs()] if all(sp.Rational(c).is_integer for c in sp.Poly(core, var).all_coeffs()) else None
@@ -458,7 +564,20 @@ def analyse(phi, want_all=False):
                         break
                     fib[key] = [(str(a), str(b)) for a, b in pts]
                     lifts += pts
+                # a twisted endpoint: the fibers over the twist factor's rational roots, through the model variable's own map
+                # (the squarefree reduction may have removed a double root there; the audit of entry 140)
+                if ok and tw and tw.get("roots"):
+                    for o0 in sorted(set(tw["roots"]), key=str):
+                        pts = fiber_points(phi, tw["omap"], o0)
+                        key = "root " + str(o0)
+                        if pts is None:
+                            fib[key] = "infinite"
+                            ok = False
+                            break
+                        fib[key] = [(str(a), str(b)) for a, b in pts]
+                        lifts += pts
                 e["fibers"] = fib
+                lifts = list(dict.fromkeys(lifts))          # the root fibers may repeat a value fiber: one entry per point
                 e["lifts"] = [(str(a), str(b)) for a, b in lifts]
                 e["admissible"] = [(str(a), str(b)) for a, b in lifts if admissible((a, b))]
                 if ok and not e["admissible"]:

@@ -109,11 +109,11 @@ def research_inventory(ctx):
     stored = json.loads(gzip.decompress(ARTIFACT.read_bytes()))
     require(stored == data, "survivor artifact is stale")
     require(REPORT.read_text(encoding="utf-8") == render(data), "research report is stale")
-    require(Counter(r["shape"] for r in stored["classes"]) == {"211": 132, "311": 140})      # entry 138: the (1,1,1) box is dead; entry 139: four more curves
-    require(len({r["id"] for r in stored["classes"]}) == 272)
+    require(Counter(r["shape"] for r in stored["classes"]) == {"211": 132, "311": 132})      # entry 138: the (1,1,1) box is dead; entries 139-140: more curves, the twisted endpoints
+    require(len({r["id"] for r in stored["classes"]}) == 264)
     require(Counter(tuple(r["binomial_height_recession_direction"] or []) for r in stored["classes"]) ==
-            {(1, 1, 1): 232, (1, 1, 2): 24, (1, 2, 2): 16})      # entries 123-139: the inventory rebased on the survivors of the three campaigns (entry 139: the re-sweep leaves 132 + 140)
-    require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 0)      # entries 137-139: every no-binomial class is dead
+            {(1, 1, 1): 224, (1, 1, 2): 24, (1, 2, 2): 16})      # entries 123-140: the inventory rebased on the survivors of the three campaigns (entry 140: the twisted endpoints leave 132 + 132)
+    require(sum(not r["binomial_constraints"] for r in stored["classes"]) == 0)      # entries 137-140: every no-binomial class is dead
     for shape, source in SOURCES.items():
         ledger = load_source(ROOT / source)
         expected = {i for i, r in enumerate(ledger["classes"]) if r.get("verdict", r.get("v")) == "finite"}

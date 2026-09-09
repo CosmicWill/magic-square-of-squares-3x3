@@ -7148,3 +7148,79 @@ module. Open after this entry: (2,1,1) 132, (3,1,1) 140, all over
 positive-rank endpoints or the five undecided curves; the next levers are
 the rank-2/3 curves (a Mordell-Weil sieve, or a different quotient) and
 the (2,2,1) box swept over all frames from the start.
+
+## 2026-09-08 — Entry 140: THE TWISTED ENDPOINTS — the admissibility condition and the fiber discriminants as quadratic twists of the tower's models; 0 of 132 open (2,1,1) and 8 of 140 open (3,1,1) classes dead; the atlas recurs through the twists
+
+THE IDEA, AND WHY THE PRODUCT SIEVE IS NOT IT. Most survivors of entry
+139 sit over elliptic endpoints of rank 1. A Mordell-Weil sieve on a
+product of such endpoints cannot certify anything by itself: the
+degenerate points of the component (g or h in {0, +-1}) map to rational
+points of the endpoints, so their residue classes always survive, and a
+non-degenerate point in the same class is never excluded. What the sieve
+would use is better used as TWISTS. Two facts: (i) a rational point of
+the component maps to each quotient step with the fiber's discriminant a
+rational square -- the joint step X = a^2 (X itself), the inversion
+U = a + s/a (U^2 - 4s = (a - s/a)^2), the double inversion (U^2 - 4s1,
+V^2 - 4s2), the even quotient z = o^2 (z: its twist is the odd companion
+of entry 138) and the reciprocal quotient w = o + kappa/o (w^2 - 4 kappa
+= (o - kappa/o)^2); (ii) an ADMISSIBLE point has g^2 + 1 and h^2 + 1
+rational squares, because a frame ratio m/n has m^2 + n^2 a square. Every
+such condition that is a polynomial f(o) in the model variable twists the
+model: y'^2 = squarefree(core(o) f(o)), y' = y sqrt(f) rational at the
+points concerned -- a new hyperelliptic curve with its own even, odd and
+reciprocal quotients, decided like the others (PARI: rank 0 with the
+torsion points; the known genus-2 curves) and pulled back by the same
+fibers. A kill through a rational twist excludes every rational point of
+the component, through an admissible twist every admissible one; the
+kill condition (no admissible fiber point) is unchanged. The
+admissibility factors are o^2 + 1 for o = +-g^{+-1}, +-h^{+-1}, o + 1 or
+1 - o for o = +-g^2, +-h^2, o(o +- 1) for o = +-1/g^2, +-1/h^2; a
+rational factor is carried through later coordinate changes and kept
+when it is a function of o alone; every nonempty subset of the factors
+is a twist.
+
+THE AUDIT. An independent review of the code (a read-only agent) found
+the construction sound and two corners: the squarefree reduction of
+core * f drops a double root where core and f vanish together, so a
+rational point of the twisted curve at such an o-value (reachable only
+on the double-inversion route with s2 = +1, o = V and gh = +-1) could
+escape the fibers -- fixed by adding, to every twisted endpoint, the
+fibers over the rational roots of its factor through the model
+variable's own map (and the roots of w^2 - 4 kappa pulled back to o);
+and a rational content of the twisted polynomial was truncated to an
+integer -- fixed by keeping its square class (p q for p/q). Both are
+exercised by check a3.symmetry_tower_frames_140 on synthetic models.
+
+THE HARVEST. compute/symmetry_tower.py on all three frames of every open
+class of the two campaigns, in twelve parallel slices, every kill
+re-derived with the installed (audited) module before entering the
+ledger: (2,1,1) 0 of 132 dead (none) -- by curve: none; tally dead 79236 /
+finite 132. (3,1,1) 8 of 140 dead (frame 0: 8) -- by curve: C_a (8); tally dead 288751 /
+finite 132 (1,181 provisional). By endpoint: (2,1,1) none; (3,1,1) direct twist[adm h] -> odd | C_a (4); direct twist[adm g] -> odd | C_a (4).
+The first twisted kills are instructive: on a (2,3) component of the
+(3,1,1) box (phi = 7 g^2 h^2 - 5 g^2 + 2 g h^3 - 6 g h - 7 h^2 + 5) the
+direct model y^2 = h^6 + 43 h^4 - 61 h^2 + 25 has an elliptic even
+quotient of rank 2, but its twist by h^2 + 1, y^2 = (h^6 + 43 h^4 -
+61 h^2 + 25)(h^2 + 1), has the odd companion w^2 = z^5 + 44 z^4 - 18 z^3
+- 36 z^2 + 25 z, which is the reciprocal model of C_a (entry 132, Magma):
+its points have z = h^2 in {-5, -1, 0, 1, oo}, and the fibers over them
+are the degenerate pairs (+-1, 0). The atlas recurs through the twists.
+
+THE TWISTED ATLAS. 6 distinct genus-2 endpoint curves (twisted or not, reciprocals merged) among the survivors; the 6 most frequent, met by 16/8/8/8/8/8 classes, are the blocks of compute/qc/magma_tower140.m; 88 survivors have no hyperelliptic route at all. Three of the six
+are the rank-2/3 curves A, D and I of entry 139 (E and F no longer
+occur among the survivors' endpoints); the other three are new, reached
+only through twists (each by eight classes, sixteen twisted occurrences):
+y^2 = 25 x^5 - 656 x^4 + 3808 x^3 + 11008 x^2 + 256 x, y^2 = 25 x^5 -
+556 x^4 + 1184 x^3 + 26240 x^2 + 44288 x + 1024 and its odd companion
+y^2 = x (25 x^5 - 556 x^4 + 1184 x^3 + 26240 x^2 + 44288 x + 1024) --
+the next Magma run decides them. The other survivors sit over elliptic
+endpoints of rank 1 (16 endpoints) or rank 2 (32), untwisted; every
+twisted elliptic endpoint met so far has positive rank.
+
+Data: compute/data_symmetry_tower_frames_140.json (every class's three
+frames with components, engine verdicts, kills with their twist records
+and fiber points, and every endpoint of degree <= 6 with its model);
+the ledgers carry the kills as stf records with entry 140 and the block
+symmetry_tower_frames_140; module sha256 ba32165037dc698e. Check
+a3.symmetry_tower_frames_140 (suite 222). Open after this entry:
+(2,1,1) 132, (3,1,1) 132.

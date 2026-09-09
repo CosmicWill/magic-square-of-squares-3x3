@@ -3303,6 +3303,21 @@ Five curves have rank $2$ or $3$ and stay open.  With the five in `KNOWN_GENUS2`
 
 Every fiber point of the new endpoints has a coordinate in $\{0,\pm1\}$.  What remains sits over positive-rank elliptic endpoints or the five undecided genus-$2$ curves: the rank-$2$/$3$ curves need a Mordell–Weil sieve or a different quotient.
 
+## 2.64 The twisted endpoints: the admissibility condition and the fiber discriminants as twists of the tower's models (entry 140)
+
+*(2026-09-08; entry 140; `compute/symmetry_tower.py` (`twist_factors`, `twisted_core`); `compute/data_symmetry_tower_frames_140.json`; check `a3.symmetry_tower_frames_140`.)*
+
+**Two square-class conditions.**  A rational point of a component $\Phi(g,h)=0$ maps to each quotient step of 2.61 with the fiber's discriminant a rational square: $X=a^2$ for the joint step, $U^2-4s=(a-s/a)^2$ for the inversion $U=a+s/a$, likewise for the double inversion, $z=o^2$ for the even quotient (its twist is the odd companion of 2.62) and $w^2-4\kappa=(o-\kappa/o)^2$ for the reciprocal quotient.  An admissible point has $g^2+1$ and $h^2+1$ rational squares, since a frame ratio $m/n$ has $m^2+n^2$ a square.  Whenever such a condition is a polynomial $f(o)$ in the model variable, the model $y^2=D(o)$ twists to $y'^2=\operatorname{sqf}(D(o)f(o))$ with $y'=y\sqrt f$ rational at the points concerned: a new hyperelliptic curve with its own even, odd and reciprocal quotients, decided as before and pulled back by the same fibers.  A kill through a rational twist excludes every rational point of the component, through an admissible twist every admissible one.  Two corners found by an independent audit are closed: the fibers over the rational roots of $f$ (where the squarefree reduction may remove a double root) are added to every twisted endpoint, and a rational content keeps its square class.
+
+**The harvest.**  Every frame of every open class of the two campaigns re-swept with the twisted module, each kill re-derived with the installed module before entering the ledger:
+
+| Campaign | Open before | Dead | Open after | Killing curves |
+|---|---:|---:|---:|---|
+| $(2,1,1)$ | 132 | 0 | 132 | none |
+| $(3,1,1)$ | 140 | 8 | 132 | C_a (8) |
+
+On a $(2,3)$ component of the $(3,1,1)$ box the direct model $y^2=h^6+43h^4-61h^2+25$ has an even quotient of rank $2$, but its twist by $h^2+1$ has the odd companion $w^2=z^5+44z^4-18z^3-36z^2+25z$, the reciprocal model of $C_a$ (2.57): the atlas recurs through the twists.  6 distinct genus-2 endpoint curves (twisted or not, reciprocals merged) among the survivors; the 6 most frequent, met by 16/8/8/8/8/8 classes, are the blocks of compute/qc/magma_tower140.m; 88 survivors have no hyperelliptic route at all.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$

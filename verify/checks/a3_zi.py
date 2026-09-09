@@ -6369,6 +6369,125 @@ def _(ctx):
              + str(T["boxes"]["311"]["n_killed"]) + "/156 more dead; " + str(n_ver) + " kills re-derived with the module")
 
 
+@check("a3.symmetry_tower_frames_140", DOC)
+def _(ctx):
+    """THE TWISTED ENDPOINTS (entry 140; doc 2.64; compute/symmetry_tower.py;
+    compute/data_symmetry_tower_frames_140.json).  A rational point of a
+    component maps to every quotient step with the fiber discriminant a
+    rational square (joint: X = a^2; inversion: U^2 - 4s = (a - s/a)^2;
+    double inversion: U^2 - 4s1, V^2 - 4s2; the even quotient's twist is the
+    odd companion; the reciprocal's is w^2 - 4 kappa = (o - kappa/o)^2), and
+    an admissible point has g^2 + 1 and h^2 + 1 rational squares (a frame
+    ratio m/n has m^2 + n^2 a square).  Every such condition that is a
+    polynomial f(o) in the model variable twists the model, y^2 =
+    squarefree(core f), a new hyperelliptic curve with its own classical
+    quotients, decided like the others and pulled back by the same fibers: a
+    kill through a rational twist excludes every rational point of the
+    component, through an admissible twist every admissible one.  The module
+    swept every frame of every open class of the (2,1,1) and (3,1,1)
+    campaigns: 0 of 132 and 8 of 140 dead; every kill was
+    re-derived with the installed module before entering the ledger.
+    Verifies the twist algebra on toy models (the discriminant identities,
+    the admissibility square classes, the squarefree reduction), the blocks,
+    tallies and ledger flags, that every recorded dead frame has only dead
+    or killed components with complete endpoints and no admissible lift;
+    re-derives a sample of kills with the module; and confirms a sample of
+    survivors is killed on no frame."""
+    import gzip, json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import frame_factors
+    from compute import symmetry_tower as ST
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_symmetry_tower_frames_140.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    require(T["entry"] == 140 and set(T["boxes"]) == {"211", "311"})
+    # the twist algebra: the discriminant identities behind the rational twists, the admissibility square classes, the reduction
+    a, s_, o = sp.symbols("a s_ o")
+    require(sp.expand((a + s_ / a) ** 2 - 4 * s_ - (a - s_ / a) ** 2) == 0, "U^2 - 4s = (a - s/a)^2")
+    kap = sp.Symbol("kap")
+    require(sp.expand((o + kap / o) ** 2 - 4 * kap - (o - kap / o) ** 2) == 0, "w^2 - 4 kappa = (o - kappa/o)^2")
+    gg = sp.Rational(4, 3)
+    require(O.is_frame_ratio(gg) and sp.sqrt(gg ** 2 + 1).is_rational and not O.is_frame_ratio(sp.Rational(2, 3)) and not sp.sqrt(sp.Rational(2, 3) ** 2 + 1).is_rational,
+            "a frame ratio m/n has m^2 + n^2 a square, i.e. g^2 + 1 a rational square")
+    for v in (sp.Rational(3, 4), sp.Rational(-12, 5), sp.Rational(8, 15), sp.Rational(1, 2), sp.Rational(5, 1)):
+        require(O.is_frame_ratio(v) == sp.sqrt(v ** 2 + 1).is_rational, (v, "the admissibility square class"))
+    require(ST.twisted_core(o ** 4 - 1, o ** 2 + 1, o) == sp.expand(o ** 2 - 1) and ST.twisted_core(o ** 2 - 1, o ** 2 - 1, o) is None
+            and ST.twisted_core(4 * o ** 3 + 4, o, o) == sp.expand(o ** 4 + o), "the squarefree reduction")
+    # the audit's two corners: a rational content keeps its square class; a double root removed by the reduction is recovered by
+    # the fibers over the twist factor's rational roots
+    require(ST.twisted_core(sp.Rational(3, 2) * (o ** 2 + 2) * (o ** 2 - 4) ** 2, 1, o) == sp.expand(6 * o ** 2 + 12), "a rational content")
+    require(ST.twisted_core((o - 2) * (o ** 3 + o + 3), o ** 2 - 4, o) == sp.expand(o ** 4 + 2 * o ** 3 + o ** 2 + 5 * o + 6) and ST.twist_root_values(o ** 2 - 4, o) == [-2, 2],
+            "the removed double root and the root values")
+    # a toy model: the inversion route's factor is U^2 - 4s with the sign carried; the admissibility factor when o = g
+    hm = {"o": ST.g}
+    tf = ST.twist_factors([{"kind": "hyperelliptic", "old": (ST.h, ST.g), "new": (ST.g, ST.yy)}], hm)
+    require([(n, k) for n, f, k in tf] == [("adm g", "admissible")] and sp.expand(tf[0][1] - (ST.g ** 2 + 1)) == 0, "the admissibility factor for o = g")
+    U = sp.Symbol("U")
+    tf = ST.twist_factors([{"kind": "inversion", "old": (ST.g, ST.h), "new": (U, ST.h), "s": -1, "relations": []}, {"kind": "hyperelliptic", "old": (ST.h, U), "new": (U, ST.yy)}], {"o": U})
+    require([(n, k) for n, f, k in tf] == [("U^2-4s", "rational")] and sp.expand(tf[0][1] - (U ** 2 + 4)) == 0, "the inversion's rational factor")
+    # the boxes
+    n_ver = 0
+    pins = {"211": (132, 0), "311": (140, 8)}
+    for box, path, BOX in (("211", "data_omega3_box211.json.gz", (2, 1, 1)), ("311", "data_omega3_box311.json.gz", (3, 1, 1))):
+        with gzip.open(os.path.join(DATA, path), "rt", encoding="utf-8") as fh:
+            d = json.load(fh)
+        B = T["boxes"][box]
+        S = d["symmetry_tower_frames_140"]
+        require(S["entry"] == 140 and S["module_sha256"] == T["module_sha256"] and S["n_killed"] == B["n_killed"] and S["n_open_before"] == B["n_open_before"] and S["n_rejected"] == len(B["rejected"])
+                and S["tally_after"] == B["tally_after"] and S["by_frame"] == B["by_frame"] and d["tally"]["dead"] >= B["tally_after"]["dead"]
+                and d["tally"].get("finite", 0) <= B["tally_after"].get("finite", 0), (box, "the block"))
+        require(len(B["classes"]) == B["n_open_before"] and sum(1 for r in B["classes"] if r["dead_frame"] is not None) == B["n_killed"], (box, "the records"))
+        killed = [c for c in d["classes"] if c.get("stf", {}).get("kind") == "symmetry tower frames" and c["stf"].get("entry") == 140]
+        require(len(killed) == B["n_killed"] and all(c["v"] == "dead" and c.get("stfb") == "finite" and c["stf"].get("rederived") for c in killed), (box, "the kills"))
+        require((B["n_open_before"], B["n_killed"]) == pins[box], (box, B["n_open_before"], B["n_killed"]))
+        for r in B["classes"]:
+            if r["dead_frame"] is None:
+                continue
+            fr = r["frames"][str(r["dead_frame"])]
+            require(fr["status"] == "dead" and not fr["live"] and all(cc["engine"] == "dead" or (cc["engine"] == "finite" and cc.get("kill")) for cc in fr["components"]), (box, r["index"], "the dead frame"))
+            for cc in fr["components"]:
+                if cc.get("kill"):
+                    k = cc["kill"]
+                    require((k["known"] in ST.KNOWN_GENUS2) or (k["elliptic"] and k["elliptic"]["rank_hi"] == 0 and k["elliptic"]["complete"]), (box, r["index"], "a complete endpoint"))
+                    require(k["lifts"] is not None and all(not ST.admissible((sp.Rational(a_), sp.Rational(b_))) for a_, b_ in k["lifts"]), (box, r["index"], "no admissible lift"))
+        O.set_box(BOX)
+        recs = [r for r in B["classes"] if r["dead_frame"] is not None]
+        k_n = ctx.bound(full=len(recs), fast=2)
+        for r in recs[::max(1, len(recs) // max(k_n, 1))][:k_n]:
+            cand = tuple(tuple(v) for v in r["cand"][:4]) + tuple(r["cand"][4:])
+            f = r["dead_frame"]
+            fr = r["frames"][str(f)]
+            curves, live = frame_factors(cand, f)
+            require(not live and sorted([dg, dh] for _, dg, dh in curves) == sorted(cc["deg"] for cc in fr["components"]), (box, r["index"], "the frame's components"))
+            for phi, dg, dh in curves:
+                cc = next(c for c in fr["components"] if c["deg"] == [dg, dh])
+                v, info = O.decide_component(phi, dg, dh, cand, f)
+                require(v == cc["engine"], (box, r["index"], f, "the engine verdict"))
+                if v == "finite" and gp_available():
+                    s = ST.analyse(phi.subs({O.tg: ST.g, O.th: ST.h}), want_all=True)
+                    ks = [ep for r_ in s["routes"] for ep in r_.get("endpoints", []) if ep.get("admissible") == [] and ep.get("fibers") and "infinite" not in ep["fibers"].values()]
+                    k = next((ep for ep in ks if ep["endpoint"] == cc["kill"]["endpoint"]), None)
+                    require(s["kill"] is not None and k is not None, (box, r["index"], f, "the kill re-derived"))
+                    require(sorted(map(tuple, k["lifts"])) == sorted(map(tuple, cc["kill"]["lifts"])), (box, r["index"], f, "the fiber points"))
+                    n_ver += 1
+        surv = [r for r in B["classes"] if r["dead_frame"] is None and d["classes"][r["index"]]["v"] == "finite"]
+        s_n = ctx.bound(full=3, fast=1)
+        for r in surv[::max(1, len(surv) // max(s_n, 1))][:s_n]:
+            cand = tuple(tuple(v) for v in r["cand"][:4]) + tuple(r["cand"][4:])
+            for f in range(3):
+                fr = r["frames"][str(f)]
+                require(fr["status"] == "open", (box, r["index"], f, "a survivor's frames are open"))
+                if gp_available() and not fr["live"]:
+                    curves, live = frame_factors(cand, f)
+                    for phi, dg, dh in curves:
+                        cc = next(c for c in fr["components"] if c["deg"] == [dg, dh])
+                        if cc["engine"] == "finite":
+                            require(ST.analyse(phi.subs({O.tg: ST.g, O.th: ST.h}))["kill"] is None, (box, r["index"], f, "a survivor must not be killed"))
+    ctx.note("entry 140: the twisted endpoints; every frame re-swept: (2,1,1) " + str(T["boxes"]["211"]["n_killed"]) + "/132, (3,1,1) "
+             + str(T["boxes"]["311"]["n_killed"]) + "/140 more dead; " + str(n_ver) + " kills re-derived with the module")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the
