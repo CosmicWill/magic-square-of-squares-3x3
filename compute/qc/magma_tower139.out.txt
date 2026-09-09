@@ -1,0 +1,172 @@
+Magma online calculator output for compute/qc/magma_tower139.m (run by the user, 2026-09-08), verbatim, one block at a time.
+Blocks: A y^2 = x^6 - 90x^5 + 4367x^4 - 940x^3 - 1009x^2 + 294x + 1; B y^2 = -16384x^6 + 2560x^4 - 100x^2 + 1;
+C y^2 = -1024x^6 + 512x^4 - 48x^2 + 1; D y^2 = x^6 - 184x^5 + 17904x^4 - 8448x^3 - 57600x^2 + 51200x + 4096;
+E y^2 = x^6 - 76x^5 + 1200x^4 - 4224x^3 + 19200x^2 - 19456x + 4096; F y^2 = x^6 - 42x^5 + 335x^4 - 268x^3 + 335x^2 - 42x + 1;
+G y^2 = x^6 - 52x^4 + 128x^2 + 3072; H y^2 = x^6 - 36x^4 + 176x^2 + 320;
+I y^2 = x^6 + 200x^5 - 3600x^4 - 8448x^3 + 286464x^2 - 47104x + 4096; J y^2 = x^5 + 688x^4 + 3808x^3 - 10496x^2 + 6400x.
+
+block A: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (-1 : -64 : 1),
+(-1 : 64 : 1), (0 : -1 : 1), (0 : 1 : 1), (1 : -64 : 3), (1 : 64 : 3) @}
+rank bounds: 3 3
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+
+block B: points of height <= 10^4: {@ (0 : -1 : 1), (0 : 1 : 1), (-1 : 0 : 8),
+(1 : 0 : 8) @}
+rank bounds: 0 1
+torsion:
+Abelian Group isomorphic to Z/2 + Z/2
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    2*P[2] = 0
+Mapping from: Abelian Group isomorphic to Z/2 + Z/2
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    2*P[2] = 0 to JacHyp: J given by a rule [no inverse]
+MW group:
+Abelian Group isomorphic to Z/2 + Z/2 + Z
+Defined on 3 generators
+Relations:
+    2*G.1 = 0
+    2*G.2 = 0
+rank proved: true group proved: true
+Chabauty: C(Q) = { (0 : -1 : 1), (0 : 1 : 1), (1 : 0 : 8), (-1 : 0 : 8) }
+index primes: { 13, 19 }
+
+block C: points of height <= 10^4: {@ (0 : -1 : 1), (0 : 1 : 1) @}
+rank bounds: 0 1
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+MW group:
+Abelian Group isomorphic to Z
+Defined on 1 generator (free)
+rank proved: true group proved: true
+Chabauty: C(Q) = { (0 : -1 : 1), (0 : 1 : 1) }
+index primes: { 5, 11 }
+
+
+block D: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (0 : -64 : 1),
+(0 : 64 : 1), (-4 : -2048 : 1), (-4 : 2048 : 1), (4 : -2048 : 3), (4 : 2048 :
+3), (8 : -7744 : 1), (8 : 7744 : 1), (12 : -63488 : 5), (12 : 63488 : 5), (20 :
+-16369664 : 51), (20 : 16369664 : 51), (-268 : -274548736 : 27), (-268 :
+274548736 : 27) @}
+rank bounds: 3 3
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+block E: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (0 : -64 : 1),
+(0 : 64 : 1), (-4 : -1024 : 1), (-4 : 1024 : 1), (4 : -2048 : 3), (4 : 2048 :
+3), (12 : -2048 : 1), (12 : 2048 : 1) @}
+rank bounds: 2 2
+torsion:
+Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0
+Mapping from: Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0 to JacHyp: J given by a rule [no inverse]
+
+block F: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (-1 : -32 : 1),
+(-1 : 32 : 1), (0 : -1 : 1), (0 : 1 : 1), (39 : -22112 : 1), (39 : 22112 : 1),
+(1 : -22112 : 39), (1 : 22112 : 39) @}
+rank bounds: 2 2
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+block G: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0) @}
+rank bounds: 1 1
+torsion:
+Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0
+Mapping from: Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0 to JacHyp: J given by a rule [no inverse]
+MW group:
+Abelian Group isomorphic to Z/2 + Z
+Defined on 2 generators
+Relations:
+    2*G.1 = 0
+rank proved: true group proved: true
+Chabauty: C(Q) = { (1 : -1 : 0), (1 : 1 : 0) }
+index primes: { 5, 13 }
+
+block H: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0) @}
+rank bounds: 1 1
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+MW group:
+Abelian Group isomorphic to Z
+Defined on 1 generator (free)
+rank proved: true group proved: true
+Chabauty: C(Q) = { (1 : -1 : 0), (1 : 1 : 0) }
+index primes: { 3, 13 }
+
+
+block I: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (0 : -64 : 1),
+(0 : 64 : 1), (2 : -968 : 1), (2 : 968 : 1), (-4 : -2048 : 1), (-4 : 2048 : 1),
+(12 : -2048 : 1), (12 : 2048 : 1), (20 : -63488 : 3), (20 : 63488 : 3), (-108 :
+-274548736 : 67), (-108 : 274548736 : 67), (204 : -16369664 : 5), (204 :
+16369664 : 5) @}
+rank bounds: 2 3
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+
+block J: points of height <= 10^4: {@ (1 : 0 : 0), (0 : 0 : 1) @}
+rank bounds: 0 1
+torsion:
+Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0
+Mapping from: Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0 to JacHyp: J given by a rule [no inverse]
+MW group:
+Abelian Group isomorphic to Z/2 + Z
+Defined on 2 generators
+Relations:
+    2*G.1 = 0
+rank proved: true group proved: false
+Chabauty: C(Q) = { (0 : 0 : 1), (1 : 0 : 0) }
+index primes: { 3 }
+
+Reading (entry 139).  Decided, unconditionally (the Mordell-Weil group proved, so the argument of Chabauty generates the free
+part and the index conditions are void): B, C(Q) = {(0, +-1), (+-1/8, 0)} (no rational point at infinity: the leading
+coefficient -16384 is negative); C, C(Q) = {(0, +-1)} (leading coefficient -1024); G and H, C(Q) = the two points at infinity
+only.  Not decided: A, D, E, F, I (rank 2 or 3).  Conditional: J -- the point set {(0,0), oo} holds provided 3 does not divide
+the index of the subgroup generated by the found generator (the group is not proved); a 3-divisibility test of the generator
+(and of the generator plus the 2-torsion point) certifies it.
+
+----- compute/qc/magma_tower139b.m (block J, the 3-divisibility test; run by the user, 2026-09-08), verbatim -----
+MW group:
+Abelian Group isomorphic to Z/2 + Z
+Defined on 2 generators
+Relations:
+    2*G.1 = 0
+rank proved: true group proved: false
+generator Q: (x^2 - 24*x + 16, 704*x - 512, 2)
+Q divisible by 3? false
+torsion point T: (x, 0, 1)
+Q + T divisible by 3? false
+
+Reading.  J(Q) = Z/2 + Z with the rank proved and the torsion exact (Z/2, T = [(0,0) - oo]); the found subgroup H = <Q> + <T> has
+finite index n.  If 3 | n there is R with 3R = kQ + eT and R not in H; 3 does not divide k (else 3(R - (k/3)Q) = eT forces
+R - (k/3)Q into the 2-torsion, so R in H), and with kk' = 1 mod 3 the point Q + e'T = 3(k'R - mQ) is divisible by 3.  Both
+Q and Q + T are not divisible by 3, so 3 does not divide n, and Chabauty's point set {(0,0), oo} (index primes {3}) is
+unconditional: J139 is decided.

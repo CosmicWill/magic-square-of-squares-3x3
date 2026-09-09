@@ -11,8 +11,8 @@ This artifact contains certified finite records only. Provisional (3,1,1) record
 | Campaign scope | Ledger classes | Dead | Open finite | Provisional | Pass A3.PC but already dead |
 |---|---:|---:|---:|---:|---:|
 | 111 (full box) | 2,944 | 2,944 | 0 | 0 | 778 |
-| 211 (additional three-frame classes only) | 79,368 | 79,228 | 140 | 0 | 5,298 |
-| 311 (additional three-frame classes only) | 290,064 | 288,727 | 156 | 1,181 | 7,365 |
+| 211 (additional three-frame classes only) | 79,368 | 79,236 | 132 | 0 | 5,306 |
+| 311 (additional three-frame classes only) | 290,064 | 288,743 | 140 | 1,181 | 7,381 |
 
 The (2,1,1) and (3,1,1) rows are incremental campaigns, not their full boxes. Counts describe canonical classes, not distinct curves or magic squares.
 All sixteen C2 classes closed in entry 118 remain outside this open inventory. Every free-frame class is excluded by A3.PC.
@@ -26,8 +26,8 @@ For arithmetic geometry, the evidence retains the existing towers and quotient m
 
 | Campaign | Recorded arithmetic route | Open classes |
 |---|---|---:|
-| 211 | compact campaign certificate | 140 |
-| 311 | compact campaign certificate | 156 |
+| 211 | compact campaign certificate | 132 |
+| 311 | compact campaign certificate | 140 |
 
 ## Representatives for independent attacks
 
@@ -35,9 +35,9 @@ One representative per role multiset and campaign is listed below. Use all membe
 
 | Roles | 111 count / representative | 211 count / representative | 311 count / representative |
 |---|---|---|---|
-| `**A` | — | 24 / `211:39554` | 64 / `311:50780` |
-| `**C` | — | 16 / `211:69544` | 36 / `311:267520` |
-| `**D` | — | 16 / `211:70034` | 36 / `311:270146` |
+| `**A` | — | 16 / `211:39554` | 52 / `311:50780` |
+| `**C` | — | 16 / `211:69544` | 34 / `311:267520` |
+| `**D` | — | 16 / `211:70034` | 34 / `311:270146` |
 | `*BC` | — | 20 / `211:72808` | — |
 | `*BD` | — | 20 / `211:74400` | — |
 | `*CC` | — | 8 / `211:69318` | — |
@@ -68,7 +68,7 @@ Each record includes CP.4's explicit unit binomials and necessary norm bounds. A
 
 | Direction for the three log-primes | Open records |
 |---|---:|
-| `(1, 1, 1)` | 256 |
+| `(1, 1, 1)` | 232 |
 | `(1, 1, 2)` | 24 |
 | `(1, 2, 2)` | 16 |
 

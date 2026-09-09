@@ -7094,3 +7094,57 @@ before the extraction; the most frequent met by sixteen classes; two with
 |disc| <= 10^6 have same-discriminant LMFDB candidates, isomorphism
 unchecked); each block decides its curve as K was decided, and a decided
 curve joins KNOWN_GENUS2 and kills through the fibers.
+
+## 2026-09-08 — Entry 139: FIVE MORE CURVES DECIDED BY MAGMA (B139, C139, G139, H139, J139) AND THE SHAPES RE-SWEPT — 8 of 140 open (2,1,1) and 16 of 156 open (3,1,1) classes dead
+
+THE MAGMA RUN. The ten blocks of compute/qc/magma_tower139.m (prepared
+in entry 138: the genus-2 endpoint curves that the open shape classes
+share across their frames, most frequent first) were run by the user in
+the Magma calculator; the output is recorded verbatim in
+compute/qc/magma_tower139.out.txt. Four curves are decided outright, each
+with rank bounds <= 1, MordellWeilGroupGenus2 "rank proved: true, group
+proved: true" and Chabauty on the free generator (the index conditions
+are void for a generator of the proved group):
+  B139: y^2 = -16384 x^6 + 2560 x^4 - 100 x^2 + 1, MW group Z/2 + Z/2 + Z,
+        C(Q) = {(0, +-1), (+-1/8, 0)} -- no point at infinity (the leading
+        coefficient is negative);
+  C139: y^2 = -1024 x^6 + 512 x^4 - 48 x^2 + 1, MW group Z, C(Q) = {(0, +-1)};
+  G139: y^2 = x^6 - 52 x^4 + 128 x^2 + 3072, MW group Z/2 + Z, C(Q) = the two
+        points at infinity only;
+  H139: y^2 = x^6 - 36 x^4 + 176 x^2 + 320, MW group Z, C(Q) = the two
+        points at infinity only.
+Block J (y^2 = x^5 + 688 x^4 + 3808 x^3 - 10496 x^2 + 6400 x, rank 1,
+torsion Z/2) returned Chabauty's point set {(0,0), oo} with "group
+proved: false" and index primes {3}: the point set is unconditional once
+the index of the found subgroup H = <Q> + <T> is prime to 3, and that
+holds iff neither Q nor Q + T is divisible by 3 in J(Q) (if 3 divides
+[J(Q):H], some R has 3R = kQ + eT with 3 not dividing k -- else R - (k/3)Q
+would be 2-torsion and R in H -- and then Q + e'T = 3(k'R - mQ) is
+divisible by 3). compute/qc/magma_tower139b.m asked Magma exactly that
+(IsDivisibleBy on the generator Q = (x^2 - 24x + 16, 704x - 512, 2) and on
+Q + T with T = (x, 0, 1)): both false. So J139 is decided: C(Q) =
+{(0,0), oo}. Five curves have rank 2 or 3 (A: 3, D: 3, E: 2, F: 2 -- the
+palindromic sextic --, I: 2 or 3) and stay open.
+
+THE RE-SWEEP. The five curves joined KNOWN_GENUS2 (their affine points;
+the points at infinity are fiber values in every case) and the module was
+run again on all three frames of every open class of the two campaigns,
+with the engine's verdict for every component (the sweep of entry 138,
+in ten parallel slices). (2,1,1): 8 of 140 dead (frame 1: 8) -- by curve: H139 (8);
+by endpoint: inversion h (s=-1) -> reciprocal | H139 (8); tally dead 79236 / finite 132. (3,1,1): 16 of 156 dead (frame 1: 16)
+-- by curve: J139 (8), G139 (8); by endpoint: double inversion (-1,-1) -> odd | J139 (8); double inversion (-1,-1) -> reciprocal | G139 (8); tally dead 288743 / finite 140 (1,181
+provisional). The fibers of the new endpoints contain only points with a
+coordinate in {0, +-1}: no admissible pair. The classes that meet B139
+also meet G139 on the same frame, and those meeting C139 also meet H139:
+each pair decides the same classes.
+
+Data: compute/data_symmetry_tower_frames_139.json (the Magma decisions,
+every class's three frames with components, engine verdicts, kills,
+endpoints and fiber points; module sha256 e16c4fde50ea3151); the ledgers carry the
+kills as stf records with entry 139 and the block
+symmetry_tower_frames_139. Check a3.symmetry_tower_frames_139 (suite
+221); entry 138's check counts its own kills and accepts the enlarged
+module. Open after this entry: (2,1,1) 132, (3,1,1) 140, all over
+positive-rank endpoints or the five undecided curves; the next levers are
+the rank-2/3 curves (a Mordell-Weil sieve, or a different quotient) and
+the (2,2,1) box swept over all frames from the start.

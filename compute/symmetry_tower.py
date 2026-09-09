@@ -35,6 +35,15 @@ KNOWN_GENUS2 = {
     # K: the odd companion of the frame-1/2 quotients of the last sixteen (1,1,1) classes (entry 138); J(K)(Q) = Z/2 + Z proved,
     # Chabauty on the generator: K(Q) = {(0, 0), oo} (Magma, compute/qc/magma_tower138.out.txt)
     "K": ([1, 80, 126, -16, 1, 0], [(0, 0)], "entry 138 (Magma: rank 1, the Mordell-Weil group proved, Chabauty)"),
+    # the genus-2 endpoints of the open shape classes decided by Magma in entry 139 (compute/qc/magma_tower139.m, .out.txt):
+    # blocks B, C, G, H -- rank <= 1, the Mordell-Weil group proved, Chabauty; G and H have only their two points at infinity
+    "B139": ([-16384, 0, 2560, 0, -100, 0, 1], [(0, 1), (0, -1), (Fraction(1, 8), 0), (Fraction(-1, 8), 0)], "entry 139 (Magma block B: rank 1, MW group Z/2 + Z/2 + Z proved, Chabauty)"),
+    "C139": ([-1024, 0, 512, 0, -48, 0, 1], [(0, 1), (0, -1)], "entry 139 (Magma block C: rank 1, MW group Z proved, Chabauty)"),
+    "G139": ([1, 0, -52, 0, 128, 0, 3072], [], "entry 139 (Magma block G: rank 1, MW group Z/2 + Z proved, Chabauty: the two points at infinity only)"),
+    "H139": ([1, 0, -36, 0, 176, 0, 320], [], "entry 139 (Magma block H: rank 1, MW group Z proved, Chabauty: the two points at infinity only)"),
+    # block J: rank 1, torsion Z/2, the group found up to an index prime to 3 (IsDivisibleBy on the generator and on generator + torsion,
+    # magma_tower139b.m); Chabauty with index primes {3}: C(Q) = {(0, 0), oo} unconditionally
+    "J139": ([1, 688, 3808, -10496, 6400, 0], [(0, 0)], "entry 139 (Magma block J: rank 1, the index prime to 3 certified, Chabauty)"),
 }
 LAMBDAS = [sp.Rational(n, d) * s for n in (1, 2, 4, 5, 10, 20, 25, 50, 100) for d in (1, 2, 4, 5, 10, 20, 25, 50, 100) for s in (1, -1)]
 

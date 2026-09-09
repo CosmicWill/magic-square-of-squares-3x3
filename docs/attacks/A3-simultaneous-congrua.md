@@ -3280,6 +3280,29 @@ $$K:\quad w^2 = z^5 + 80z^4 + 126z^3 - 16z^2 + z$$
 
 The open shape classes sit, on every frame, over positive-rank elliptic endpoints or unidentified genus-$2$ curves ((2,1,1): degree 8 / rank n/a / unidentified: 120, degree 16 / rank n/a / unidentified: 80, degree 9 / rank n/a / unidentified: 80, degree 6 / rank n/a / unidentified: 80, degree 12 / rank n/a / unidentified: 48, degree 7 / rank n/a / unidentified: 48; (3,1,1): degree 12 / rank n/a / unidentified: 328, degree 10 / rank n/a / unidentified: 152, degree 6 / rank n/a / unidentified: 144, degree 24 / rank n/a / unidentified: 136, degree 13 / rank n/a / unidentified: 136, degree 8 / rank n/a / unidentified: 128, degree 11 / rank n/a / unidentified: 92, degree 20 / rank n/a / unidentified: 72): the atlas question of 2.61, now with $K$ in the atlas, and Chabauty through Magma on the recurring genus-$2$ endpoints are the next steps, together with the $(2,2,1)$ and $(2,2,2)$ boxes swept over all frames from the start.
 
+## 2.63 Five more curves decided by Magma and the shapes re-swept (entry 139)
+
+*(2026-09-08; entry 139; `compute/data_symmetry_tower_frames_139.json`; `compute/qc/magma_tower139.m`, `magma_tower139b.m` and their output; check `a3.symmetry_tower_frames_139`.)*
+
+The ten genus-$2$ endpoint curves shared by the open $(2,1,1)$ and $(3,1,1)$ classes across their frames (prepared in entry 138) were run by the user in the Magma calculator.  Five are decided — rank bounds $\le 1$, the Mordell–Weil group proved (for $J_{139}$: found up to an index certified prime to the Chabauty prime $3$ by a divisibility test of the generator and of generator plus torsion) and Chabauty on the generator:
+
+| Curve | Model | $J(\mathbb Q)$ | $C(\mathbb Q)$ |
+|---|---|---|---|
+| $B_{139}$ | $y^2=-16384x^6+2560x^4-100x^2+1$ | $\mathbb Z/2\oplus\mathbb Z/2\oplus\mathbb Z$ | $(0,\pm1)$, $(\pm\tfrac18,0)$; none at infinity |
+| $C_{139}$ | $y^2=-1024x^6+512x^4-48x^2+1$ | $\mathbb Z$ | $(0,\pm1)$; none at infinity |
+| $G_{139}$ | $y^2=x^6-52x^4+128x^2+3072$ | $\mathbb Z/2\oplus\mathbb Z$ | the two points at infinity |
+| $H_{139}$ | $y^2=x^6-36x^4+176x^2+320$ | $\mathbb Z$ | the two points at infinity |
+| $J_{139}$ | $y^2=x^5+688x^4+3808x^3-10496x^2+6400x$ | $\mathbb Z/2\oplus\mathbb Z$ (index prime to $3$) | $(0,0)$ and the point at infinity |
+
+Five curves have rank $2$ or $3$ and stay open.  With the five in `KNOWN_GENUS2` the module re-swept every frame of every open class:
+
+| Campaign | Open before | Dead | Open after | Killing curves |
+|---|---:|---:|---:|---|
+| $(2,1,1)$ | 140 | 8 | 132 | H139 (8) |
+| $(3,1,1)$ | 156 | 16 | 140 | J139 (8), G139 (8) |
+
+Every fiber point of the new endpoints has a coordinate in $\{0,\pm1\}$.  What remains sits over positive-rank elliptic endpoints or the five undecided genus-$2$ curves: the rank-$2$/$3$ curves need a Mordell–Weil sieve or a different quotient.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
