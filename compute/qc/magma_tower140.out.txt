@@ -1,0 +1,145 @@
+Magma online calculator output for compute/qc/magma_tower140.m (run by the user, 2026-09-09), verbatim, one block at a time.
+Blocks: A y^2 = x^6 - 90x^5 + 4367x^4 - 940x^3 - 1009x^2 + 294x + 1 (the A of entry 139); B y^2 = x^6 - 184x^5 + 17904x^4 - 8448x^3
+- 57600x^2 + 51200x + 4096 (the D of entry 139); C y^2 = x^6 + 200x^5 - 3600x^4 - 8448x^3 + 286464x^2 - 47104x + 4096 (the I of
+entry 139); D y^2 = 25x^5 - 656x^4 + 3808x^3 + 11008x^2 + 256x; E y^2 = 25x^5 - 556x^4 + 1184x^3 + 26240x^2 + 44288x + 1024;
+F y^2 = 25x^6 - 556x^5 + 1184x^4 + 26240x^3 + 44288x^2 + 1024x.  With Q(x) = 25x^4 - 656x^3 + 3808x^2 + 11008x + 256:
+D = x Q(x), E = (x + 4) Q(x), F = x (x + 4) Q(x) -- the three new twisted endpoint curves share one quartic.
+
+block A: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (-1 : -64 : 1),
+(-1 : 64 : 1), (0 : -1 : 1), (0 : 1 : 1), (1 : -64 : 3), (1 : 64 : 3) @}
+rank bounds: 3 3
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+block B: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (0 : -64 : 1),
+(0 : 64 : 1), (-4 : -2048 : 1), (-4 : 2048 : 1), (4 : -2048 : 3), (4 : 2048 :
+3), (8 : -7744 : 1), (8 : 7744 : 1), (12 : -63488 : 5), (12 : 63488 : 5), (20 :
+-16369664 : 51), (20 : 16369664 : 51), (-268 : -274548736 : 27), (-268 :
+274548736 : 27) @}
+rank bounds: 3 3
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+block C: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (0 : -64 : 1),
+(0 : 64 : 1), (2 : -968 : 1), (2 : 968 : 1), (-4 : -2048 : 1), (-4 : 2048 : 1),
+(12 : -2048 : 1), (12 : 2048 : 1), (20 : -63488 : 3), (20 : 63488 : 3), (-108 :
+-274548736 : 67), (-108 : 274548736 : 67), (204 : -16369664 : 5), (204 :
+16369664 : 5) @}
+rank bounds: 2 3
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+block D: points of height <= 10^4: {@ (1 : 0 : 0), (0 : 0 : 1) @}
+rank bounds: 0 1
+torsion:
+Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0
+Mapping from: Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0 to JacHyp: J given by a rule [no inverse]
+MW group:
+Abelian Group isomorphic to Z/2 + Z
+Defined on 2 generators
+Relations:
+    2*G.1 = 0
+rank proved: true group proved: false
+Chabauty: C(Q) = { (0 : 0 : 1), (1 : 0 : 0) }
+index primes: { 3 }
+block E: points of height <= 10^4: {@ (1 : 0 : 0), (0 : -32 : 1), (0 : 32 : 1),
+(-4 : 0 : 1), (12 : -1024 : 1), (12 : 1024 : 1) @}
+rank bounds: 1 2
+torsion:
+Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0
+Mapping from: Abelian Group isomorphic to Z/2
+Defined on 1 generator
+Relations:
+    2*P[1] = 0 to JacHyp: J given by a rule [no inverse]
+block F: points of height <= 10^4: {@ (1 : -5 : 0), (1 : 5 : 0), (0 : 0 : 1),
+(-4 : 0 : 1), (4 : -10240 : 3), (4 : 10240 : 3) @}
+rank bounds: 1 2
+torsion:
+Abelian Group isomorphic to Z/4
+Defined on 1 generator
+Relations:
+    4*P[1] = 0
+Mapping from: Abelian Group isomorphic to Z/4
+Defined on 1 generator
+Relations:
+    4*P[1] = 0 to JacHyp: J given by a rule [no inverse]
+
+Reading (entry 141, pending).  A, B, C: rank 2 or 3, undecided as in entry 139.  D: rank 1, torsion Z/2, Chabauty's point set
+{(0,0), oo} with the group not proved and index prime 3 -- exactly the situation of J139: unconditional once neither the
+generator Q nor Q + T is divisible by 3 in J(Q) (compute/qc/magma_tower140b.m, block D2).  E and F: rank bounds 1 2 (torsion
+Z/2 and Z/4), so the calculator's descent leaves the rank open; ranks are isogeny invariants, so block E2/F2 of the follow-up
+asks for Richelot-isogenous surfaces and their rank bounds (a product of elliptic curves would settle the rank exactly).
+
+----- compute/qc/magma_tower140b.m (blocks D2, E2, F2; run by the user, 2026-09-09), verbatim -----
+MW group:
+Abelian Group isomorphic to Z/2 + Z
+Defined on 2 generators
+Relations:
+    2*G.1 = 0
+rank proved: true group proved: false
+generator Q: (x^2 - 296/5*x + 16/5, 8832/5*x - 512/5, 2)
+Q divisible by 3? false
+torsion point T: (x, 0, 1)
+Q + T divisible by 3? false
+E: rank bounds: 1 2
+E: 2-Selmer:
+Abelian Group isomorphic to Z/2 + Z/2 + Z/2
+Defined on 3 generators in supergroup:
+    $.1 = $.5
+    $.2 = $.2 + $.3 + $.4 + $.6 + $.8
+    $.3 = $.10
+Relations:
+    2*$.1 = 0
+    2*$.2 = 0
+    2*$.3 = 0
+Mapping from: Abelian Group isomorphic to Z/2 + Z/2 + Z/2
+Defined on 3 generators in supergroup:
+    $.1 = $.5
+    $.2 = $.2 + $.3 + $.4 + $.6 + $.8
+    $.3 = $.10
+Relations:
+    2*$.1 = 0
+    2*$.2 = 0
+    2*$.3 = 0 to Univariate Quotient Polynomial Algebra in $.1 over Rational
+Field
+with modulus $.1^5 - 556*$.1^4 + 29600*$.1^3 + 16400000*$.1^2 + 692000000*$.1 +
+    400000000 given by a rule
+E: Richelot-isogenous surfaces: 0
+F: rank bounds: 1 2
+F: 2-Selmer:
+Abelian Group isomorphic to Z/2 + Z/2 + Z/2
+Defined on 3 generators in supergroup:
+    $.1 = $.3 + $.5 + $.7
+    $.2 = $.4 + $.7
+    $.3 = $.6
+Relations:
+    2*$.1 = 0
+    2*$.2 = 0
+    2*$.3 = 0
+Mapping from: Abelian Group isomorphic to Z/2 + Z/2 + Z/2
+Defined on 3 generators in supergroup:
+    $.1 = $.3 + $.5 + $.7
+    $.2 = $.4 + $.7
+    $.3 = $.6
+Relations:
+    2*$.1 = 0
+    2*$.2 = 0
+    2*$.3 = 0 to Univariate Quotient Polynomial Algebra in $.1 over Rational
+Field
+with modulus $.1^6 - 556*$.1^5 + 29600*$.1^4 + 16400000*$.1^3 + 692000000*$.1^2
+    + 400000000*$.1 given by a rule
+F: Richelot-isogenous surfaces: 0
+
+Reading (entry 141).  D: J(D)(Q) = Z/2 + Z with the rank proved and the torsion exact (T = [(0,0) - oo]); the subgroup <Q> + <T>
+has finite index n, and 3 | n would make Q or Q + T divisible by 3 (as for J139); both tests are false, so n is prime to 3 and
+Chabauty's point set {(0,0), oo} (index primes {3}) is unconditional: D140 is decided.  E and F: 2-Selmer rank 3 with one
+2-torsion generator, rank bounds 1 2, and no rational quadratic splitting (no Richelot-isogenous surface): undecided.

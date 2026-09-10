@@ -46,6 +46,9 @@ KNOWN_GENUS2 = {
     # block J: rank 1, torsion Z/2, the group found up to an index prime to 3 (IsDivisibleBy on the generator and on generator + torsion,
     # magma_tower139b.m); Chabauty with index primes {3}: C(Q) = {(0, 0), oo} unconditionally
     "J139": ([1, 688, 3808, -10496, 6400, 0], [(0, 0)], "entry 139 (Magma block J: rank 1, the index prime to 3 certified, Chabauty)"),
+    # block D of magma_tower140.m (entry 141): y^2 = x Q(x), Q = 25x^4 - 656x^3 + 3808x^2 + 11008x + 256; rank 1, torsion Z/2, the index prime to 3
+    # certified by IsDivisibleBy (magma_tower140b.m), Chabauty: C(Q) = {(0, 0), oo}
+    "D140": ([25, -656, 3808, 11008, 256, 0], [(0, 0)], "entry 141 (Magma block D of 140: rank 1, the index prime to 3 certified, Chabauty)"),
 }
 LAMBDAS = [sp.Rational(n, d) * s for n in (1, 2, 4, 5, 10, 20, 25, 50, 100) for d in (1, 2, 4, 5, 10, 20, 25, 50, 100) for s in (1, -1)]
 

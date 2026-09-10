@@ -1,0 +1,2130 @@
+{
+ "entry": 141,
+ "note": "entry 141: block D of magma_tower140.m (the twisted endpoint y^2 = x Q(x), Q = 25x^4 - 656x^3 + 3808x^2 + 11008x + 256, met by eight (3,1,1) classes through 'double inversion (-1,-1) -> odd' and '-> joint twist[X]') is decided: rank 1, torsion Z/2, Chabauty {(0,0), oo}, the index of the found subgroup certified prime to 3 (magma_tower140b.m, IsDivisibleBy on the generator and on generator + torsion).  D140 joined KNOWN_GENUS2 and the eight classes were re-run on all their frames (the entry-140 sweep recorded every degree <= 6 endpoint of every open class on every frame, so no other class meets D); every kill re-derived with the installed module.  E = (x + 4) Q and F = x (x + 4) Q (rank bounds 1 2, no Richelot splitting) and the rank-2/3 curves A, B, C stay open.",
+ "module_sha256": "c8bae6dbdfbb1bb75749b25445639571faed4bf919aaebd9cff029a1f8f3b0ba",
+ "known_curves": [
+  "G1",
+  "F1",
+  "C_a",
+  "C_b",
+  "C_c",
+  "K",
+  "B139",
+  "C139",
+  "G139",
+  "H139",
+  "J139",
+  "D140"
+ ],
+ "magma": {
+  "script": "compute/qc/magma_tower140.m",
+  "follow_up": "compute/qc/magma_tower140b.m",
+  "output": "compute/qc/magma_tower140.out.txt",
+  "run_by": "the user, 2026-09-09, the Magma online calculator",
+  "decided": {
+   "D140": {
+    "block": "D",
+    "curve": "y^2 = 25 x^5 - 656 x^4 + 3808 x^3 + 11008 x^2 + 256 x = x Q(x), Q = 25x^4 - 656x^3 + 3808x^2 + 11008x + 256",
+    "coefficients": [
+     25,
+     -656,
+     3808,
+     11008,
+     256,
+     0
+    ],
+    "rank_bounds": [
+     0,
+     1
+    ],
+    "torsion": "Z/2",
+    "mordell_weil": "Z/2 + Z (rank proved; the group found up to a finite index)",
+    "chabauty": "C(Q) = {(0,0), oo}; index primes {3}; certified: neither the generator Q = (x^2 - 296/5 x + 16/5, 8832/5 x - 512/5, 2) nor Q + T (T = [(0,0) - oo]) is divisible by 3 in J(Q)",
+    "points": [
+     [
+      0,
+      0
+     ]
+    ],
+    "points_at_infinity": 1
+   }
+  },
+  "undecided": {
+   "A": "rank bounds 3 3",
+   "B (= D of entry 139)": "rank bounds 3 3",
+   "C (= I of entry 139)": "rank bounds 2 3",
+   "E": "y^2 = (x + 4) Q(x): rank bounds 1 2, 2-Selmer (Z/2)^3, torsion Z/2, no Richelot-isogenous surface",
+   "F": "y^2 = x (x + 4) Q(x): rank bounds 1 2, 2-Selmer (Z/2)^3, torsion Z/4, no Richelot-isogenous surface"
+  }
+ },
+ "subset": {
+  "311": [
+   106407,
+   106413,
+   106849,
+   106852,
+   268535,
+   268541,
+   270219,
+   270225
+  ],
+  "211": []
+ },
+ "boxes": {
+  "211": {
+   "n_open_before": 132,
+   "subset": [],
+   "n_rerun": 0,
+   "n_killed": 0,
+   "rejected": [],
+   "by_frame": {},
+   "by_endpoint": {},
+   "by_curve": {},
+   "tally_after": {
+    "dead": 79236,
+    "finite": 132
+   },
+   "classes": []
+  },
+  "311": {
+   "n_open_before": 132,
+   "subset": [
+    106407,
+    106413,
+    106849,
+    106852,
+    268535,
+    268541,
+    270219,
+    270225
+   ],
+   "n_rerun": 8,
+   "n_killed": 8,
+   "rejected": [],
+   "by_frame": {
+    "1": 8
+   },
+   "by_endpoint": {
+    "double inversion (-1,-1) -> odd | D140": 8
+   },
+   "by_curve": {
+    "D140 (twisted)": 8
+   },
+   "tally_after": {
+    "dead": 288759,
+    "finite*": 1181,
+    "finite": 124
+   },
+   "classes": [
+    {
+     "index": 106407,
+     "cand": [
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       3,
+       1,
+       -1
+      ],
+      [
+       3,
+       1,
+       1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "index": 106413,
+     "cand": [
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       3,
+       1,
+       -1
+      ],
+      [
+       3,
+       1,
+       1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "index": 106849,
+     "cand": [
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       3,
+       1,
+       1
+      ],
+      [
+       3,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "index": 106852,
+     "cand": [
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       3,
+       1,
+       1
+      ],
+      [
+       3,
+       1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "index": 268535,
+     "cand": [
+      [
+       3,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      [
+       3,
+       1,
+       1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "index": 268541,
+     "cand": [
+      [
+       3,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      [
+       3,
+       1,
+       1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "index": 270219,
+     "cand": [
+      [
+       3,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       3,
+       1,
+       -1
+      ],
+      [
+       1,
+       1,
+       1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "index": 270225,
+     "cand": [
+      [
+       3,
+       -1,
+       -1
+      ],
+      [
+       3,
+       -1,
+       1
+      ],
+      [
+       3,
+       1,
+       -1
+      ],
+      [
+       1,
+       1,
+       1
+      ],
+      1,
+      1,
+      1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          12
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "endpoints": []
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          12,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 8,
+         "kill": {
+          "route": "double inversion (-1,-1)",
+          "endpoint": "double inversion (-1,-1) -> odd",
+          "elliptic": null,
+          "known": "D140",
+          "twist": {
+           "factors": [
+            "z"
+           ],
+           "kinds": [
+            "rational"
+           ],
+           "roots": [
+            "0"
+           ]
+          },
+          "lifts": [
+           [
+            "-1",
+            "-1"
+           ],
+           [
+            "-1",
+            "0"
+           ],
+           [
+            "-1",
+            "1"
+           ],
+           [
+            "1",
+            "-1"
+           ],
+           [
+            "1",
+            "0"
+           ],
+           [
+            "1",
+            "1"
+           ],
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ]
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        12,
+        4
+       ],
+       "endpoint": "double inversion (-1,-1) -> odd",
+       "lifts": [
+        [
+         "-1",
+         "-1"
+        ],
+        [
+         "-1",
+         "0"
+        ],
+        [
+         "-1",
+         "1"
+        ],
+        [
+         "1",
+         "-1"
+        ],
+        [
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "twist": {
+        "factors": [
+         "z"
+        ],
+        "kinds": [
+         "rational"
+        ],
+        "roots": [
+         "0"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

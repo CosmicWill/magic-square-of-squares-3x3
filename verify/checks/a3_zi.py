@@ -6488,6 +6488,128 @@ def _(ctx):
              + str(T["boxes"]["311"]["n_killed"]) + "/140 more dead; " + str(n_ver) + " kills re-derived with the module")
 
 
+@check("a3.symmetry_tower_frames_141", DOC)
+def _(ctx):
+    """THE CURVE D140 DECIDED AND THE CLASSES THAT MEET IT RE-RUN (entry 141;
+    doc 2.65; compute/symmetry_tower.py;
+    compute/data_symmetry_tower_frames_141.json).  Block D of
+    compute/qc/magma_tower140.m -- y^2 = x Q(x), Q = 25x^4 - 656x^3 + 3808x^2
+    + 11008x + 256, a twisted endpoint met by eight (3,1,1) classes -- has rank
+    1, torsion Z/2 and Chabauty's point set {(0,0), oo} with the group found
+    up to an index; magma_tower140b.m certified the index prime to the
+    Chabauty prime 3 (neither the generator nor generator + torsion is
+    divisible by 3), so the point set is unconditional.  The entry-140 sweep
+    recorded every endpoint of degree <= 6 of every open class on every
+    frame, so the classes meeting D are known exactly; they were re-run on
+    all their frames with D140 in KNOWN_GENUS2: 8 of 8 dead.  E
+    = (x + 4) Q and F = x (x + 4) Q (rank bounds 1 2, no Richelot splitting)
+    and the rank-2/3 curves stay open.  Verifies the Magma transcripts, the
+    curve's data, that the re-run subset is exactly the set of open classes
+    whose recorded endpoints (entry 140) meet D, the block, tallies and
+    ledger flags, every kill's dead frame, and re-derives every kill with
+    the module."""
+    import gzip, json
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import frame_factors
+    from compute import symmetry_tower as ST
+    from compute.pari_genus1 import gp_available
+    with open(os.path.join(DATA, "data_symmetry_tower_frames_141.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    require(T["entry"] == 141 and set(T["boxes"]) == {"211", "311"} and set(T["magma"]["decided"]) == {"D140"})
+    with open(os.path.join(DATA, "qc", "magma_tower140.out.txt"), encoding="utf-8") as fh:
+        mo = fh.read()
+    require("generator Q: (x^2 - 296/5*x + 16/5, 8832/5*x - 512/5, 2)" in mo and "Q divisible by 3? false" in mo and "Q + T divisible by 3? false" in mo
+            and "torsion point T: (x, 0, 1)" in mo and mo.count("Chabauty: C(Q) = { (0 : 0 : 1), (1 : 0 : 0) }") == 1 and "E: Richelot-isogenous surfaces: 0" in mo
+            and "F: Richelot-isogenous surfaces: 0" in mo and mo.count("rank bounds: 1 2") >= 2, "the Magma transcripts")
+    x = sp.Symbol("x")
+    cs = T["magma"]["decided"]["D140"]["coefficients"]
+    Q = 25 * x ** 4 - 656 * x ** 3 + 3808 * x ** 2 + 11008 * x + 256
+    f = sum(c * x ** (len(cs) - 1 - i) for i, c in enumerate(cs))
+    require(cs == [25, -656, 3808, 11008, 256, 0] and sp.expand(f - x * Q) == 0 and len(sp.factor_list(Q)[1]) == 1 and sp.Poly(f, x).discriminant() != 0, "D = x Q with Q irreducible, squarefree")
+    require("D140" in ST.KNOWN_GENUS2 and list(ST.KNOWN_GENUS2["D140"][0]) == cs and [[str(a), str(b)] for a, b in ST.KNOWN_GENUS2["D140"][1]] == [["0", "0"]], "the known curve")
+    # the subset: exactly the open classes whose entry-140 records meet D (or its reciprocal model) on some frame
+    with open(os.path.join(DATA, "data_symmetry_tower_frames_140.json"), encoding="utf-8") as fh:
+        T140 = json.load(fh)
+
+    def normal(core_str):
+        expr = sp.sympify(core_str)
+        var = next(iter(expr.free_symbols))
+        P = sp.Poly(expr, var)
+        c0 = [sp.Rational(c) for c in P.all_coeffs()]
+        den = 1
+        for c in c0:
+            den = sp.ilcm(den, c.q)
+        c0 = [sp.Integer(c * den ** 2) for c in c0]
+        g_ = 0
+        for c in c0:
+            g_ = sp.igcd(g_, int(c))
+        sq = 1
+        for p_, e_ in sp.factorint(g_).items():
+            sq *= p_ ** (2 * (e_ // 2))
+        return [int(c // sq) for c in c0]
+
+    def rev(c0):
+        cs7 = [0] * (7 - len(c0)) + list(c0)
+        rc = cs7[::-1]
+        while len(rc) > 1 and rc[0] == 0:
+            rc.pop(0)
+        return rc
+    meet = {"211": set(), "311": set()}
+    for box in ("211", "311"):
+        for r in T140["boxes"][box]["classes"]:
+            if r["dead_frame"] is not None:
+                continue
+            for fr in r["frames"].values():
+                for cc in fr["components"]:
+                    for ep in cc.get("endpoints", []) or []:
+                        if ep.get("degree") in (5, 6) and ep.get("core") and not ep.get("known"):
+                            n = normal(ep["core"])
+                            if n == cs or n == rev(cs):
+                                meet[box].add(r["index"])
+    require({b: sorted(v) for b, v in meet.items()} == {b: sorted(v) for b, v in T["subset"].items()}, ("the subset is the set of classes meeting D", {b: sorted(v) for b, v in meet.items()}))
+    n_ver = 0
+    pins = {"211": (0, 0), "311": (8, 8)}
+    for box, path, BOX in (("211", "data_omega3_box211.json.gz", (2, 1, 1)), ("311", "data_omega3_box311.json.gz", (3, 1, 1))):
+        with gzip.open(os.path.join(DATA, path), "rt", encoding="utf-8") as fh:
+            d = json.load(fh)
+        B = T["boxes"][box]
+        S = d["symmetry_tower_frames_141"]
+        require(S["entry"] == 141 and S["module_sha256"] == T["module_sha256"] and S["n_killed"] == B["n_killed"] and S["n_rerun"] == B["n_rerun"] == len(B["subset"]) and S["n_rejected"] == len(B["rejected"])
+                and S["tally_after"] == B["tally_after"] and d["tally"]["dead"] >= B["tally_after"]["dead"] and d["tally"].get("finite", 0) <= B["tally_after"].get("finite", 0), (box, "the block"))
+        require((B["n_rerun"], B["n_killed"]) == pins[box] and len(B["classes"]) == B["n_rerun"], (box, B["n_rerun"], B["n_killed"]))
+        killed = [c for c in d["classes"] if c.get("stf", {}).get("kind") == "symmetry tower frames" and c["stf"].get("entry") == 141]
+        require(len(killed) == B["n_killed"] and all(c["v"] == "dead" and c.get("stfb") == "finite" and c["stf"].get("rederived") for c in killed), (box, "the kills"))
+        require(all(k.startswith("D140") for k in B["by_curve"]), (box, "every kill through D140"))
+        O.set_box(BOX)
+        for r in B["classes"]:
+            if r["dead_frame"] is None:
+                continue
+            f = r["dead_frame"]
+            fr = r["frames"][str(f)]
+            require(fr["status"] == "dead" and not fr["live"] and all(cc["engine"] == "dead" or (cc["engine"] == "finite" and cc.get("kill")) for cc in fr["components"]), (box, r["index"], "the dead frame"))
+            for cc in fr["components"]:
+                if cc.get("kill"):
+                    k = cc["kill"]
+                    require(k["known"] == "D140" and k["lifts"] is not None and all(not ST.admissible((sp.Rational(a_), sp.Rational(b_))) for a_, b_ in k["lifts"]), (box, r["index"], "D140, no admissible lift"))
+            if ctx.bound(full=1, fast=0) or n_ver < ctx.bound(full=8, fast=2):
+                cand = tuple(tuple(v) for v in r["cand"][:4]) + tuple(r["cand"][4:])
+                curves, live = frame_factors(cand, f)
+                require(not live and sorted([dg, dh] for _, dg, dh in curves) == sorted(cc["deg"] for cc in fr["components"]), (box, r["index"], "the frame's components"))
+                for phi, dg, dh in curves:
+                    cc = next(c for c in fr["components"] if c["deg"] == [dg, dh])
+                    v, info = O.decide_component(phi, dg, dh, cand, f)
+                    require(v == cc["engine"], (box, r["index"], f, "the engine verdict"))
+                    if v == "finite" and gp_available():
+                        s = ST.analyse(phi.subs({O.tg: ST.g, O.th: ST.h}), want_all=True)
+                        ks = [ep for r_ in s["routes"] for ep in r_.get("endpoints", []) if ep.get("admissible") == [] and ep.get("fibers") and "infinite" not in ep["fibers"].values()]
+                        k = next((ep for ep in ks if ep["endpoint"] == cc["kill"]["endpoint"]), None)
+                        require(s["kill"] is not None and k is not None and sorted(map(tuple, k["lifts"])) == sorted(map(tuple, cc["kill"]["lifts"])), (box, r["index"], f, "the kill re-derived"))
+                        n_ver += 1
+    ctx.note("entry 141: D140 decided (Magma; the index prime to 3 certified); the " + str(T["boxes"]["311"]["n_rerun"]) + " classes meeting it re-run: "
+             + str(T["boxes"]["311"]["n_killed"]) + " dead; " + str(n_ver) + " kills re-derived with the module")
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

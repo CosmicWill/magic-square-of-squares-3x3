@@ -7224,3 +7224,43 @@ the ledgers carry the kills as stf records with entry 140 and the block
 symmetry_tower_frames_140; module sha256 ba32165037dc698e. Check
 a3.symmetry_tower_frames_140 (suite 222). Open after this entry:
 (2,1,1) 132, (3,1,1) 132.
+
+## 2026-09-09 — Entry 141: THE CURVE D140 DECIDED (Magma, the index certified) — 8 of the 8 (3,1,1) classes that meet it dead; E and F stay open (rank 1 or 2, no Richelot splitting)
+
+THE MAGMA RUN. The six blocks of compute/qc/magma_tower140.m (the genus-2
+endpoints, twisted and untwisted, of the survivors of entry 140) and the
+follow-up magma_tower140b.m were run by the user; both outputs are
+recorded verbatim in compute/qc/magma_tower140.out.txt. Blocks A, B, C
+are the rank-2/3 curves A, D, I of entry 139 and stay undecided. The
+three new curves share one quartic Q(x) = 25 x^4 - 656 x^3 + 3808 x^2 +
+11008 x + 256 (irreducible, discriminant -2^58 11 47): D: y^2 = x Q(x),
+E: y^2 = (x + 4) Q(x), F: y^2 = x (x + 4) Q(x) -- they are the twists of
+one model by its rationality factor x and its admissibility factor x + 4.
+D: rank bounds 0 1, torsion Z/2, MordellWeilGroupGenus2 Z/2 + Z with the
+group not proved, Chabauty {(0,0), oo} with index primes {3}; block D2:
+the generator Q = (x^2 - 296/5 x + 16/5, 8832/5 x - 512/5, 2) and Q + T
+(T = [(0,0) - oo]) are both not divisible by 3, so (as for J139 in entry
+139) the index of the found subgroup is prime to 3 and the point set is
+unconditional: D140 is decided, C(Q) = {(0,0), oo}. E and F: rank bounds
+1 2, 2-Selmer group (Z/2)^3, torsion Z/2 and Z/4, and no rational
+quadratic splitting (RichelotIsogenousSurfaces returns none), so the
+calculator's descent cannot sharpen the rank; they stay open.
+
+THE FOLD. The entry-140 sweep recorded every endpoint of degree <= 6 of
+every open class on every frame, so the classes meeting D on some frame
+are known exactly: 8 (3,1,1) classes, none of the (2,1,1) box, through
+'double inversion (-1,-1) -> odd' and '-> joint twist[X]'. With D140 in
+KNOWN_GENUS2 those classes were re-run on all their frames and every kill
+re-derived with the installed module: 8 of 8 dead (frame 1: 8) -- by endpoint:
+double inversion (-1,-1) -> odd | D140 (8). Tally (3,1,1) dead 288759 / finite 124 (1,181 provisional); (2,1,1)
+unchanged at 79236 / 132. Open after this entry: 132 + 124 = 256.
+
+Data: compute/data_symmetry_tower_frames_141.json (the Magma decisions,
+the subset and its records with fiber points); the ledger carries the
+kills as stf records with entry 141 and the block
+symmetry_tower_frames_141; module sha256 c8bae6dbdfbb1bb7. Check
+a3.symmetry_tower_frames_141 (suite 223) verifies, among the rest, that
+the re-run subset is exactly the set of open classes whose entry-140
+records meet D. The frontier is unchanged in kind: 88 classes with no
+hyperelliptic route, the rest over positive-rank elliptic endpoints or
+the five undecided genus-2 curves A, B, C, E, F.

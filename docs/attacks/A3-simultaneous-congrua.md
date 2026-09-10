@@ -3318,6 +3318,12 @@ Every fiber point of the new endpoints has a coordinate in $\{0,\pm1\}$.  What r
 
 On a $(2,3)$ component of the $(3,1,1)$ box the direct model $y^2=h^6+43h^4-61h^2+25$ has an even quotient of rank $2$, but its twist by $h^2+1$ has the odd companion $w^2=z^5+44z^4-18z^3-36z^2+25z$, the reciprocal model of $C_a$ (2.57): the atlas recurs through the twists.  6 distinct genus-2 endpoint curves (twisted or not, reciprocals merged) among the survivors; the 6 most frequent, met by 16/8/8/8/8/8 classes, are the blocks of compute/qc/magma_tower140.m; 88 survivors have no hyperelliptic route at all.
 
+## 2.65 The curve $D_{140}$ decided; $E$ and $F$ open (entry 141)
+
+*(2026-09-09; entry 141; `compute/data_symmetry_tower_frames_141.json`; `compute/qc/magma_tower140.m`, `magma_tower140b.m` and their output; check `a3.symmetry_tower_frames_141`.)*
+
+The three new twisted endpoint curves of 2.64 share one quartic $Q(x)=25x^4-656x^3+3808x^2+11008x+256$: $D: y^2=xQ$, $E: y^2=(x+4)Q$, $F: y^2=x(x+4)Q$ — the twists of one model by its rationality factor $x$ and its admissibility factor $x+4$.  Magma: $D$ has rank $1$, torsion $\mathbb Z/2$ and Chabauty's point set $\{(0,0),\infty\}$ with the group found up to an index; the generator and generator plus torsion are both not divisible by $3$, so the index is prime to the Chabauty prime and the point set is unconditional (the argument of 2.63).  $E$ and $F$ have rank bounds $1$–$2$, $2$-Selmer group $(\mathbb Z/2)^3$ and no rational Richelot splitting: open.  The entry-140 sweep recorded every endpoint of degree $\le 6$ of every open class on every frame, so the classes meeting $D$ are known exactly: 8 classes of the $(3,1,1)$ box; re-run with $D_{140}$ known, 8 are dead (every kill re-derived with the installed module).  Frontier: $(2,1,1)$ 132, $(3,1,1)$ 124 open.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
