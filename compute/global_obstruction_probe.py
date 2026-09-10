@@ -1,7 +1,8 @@
 """Exact, lightweight probes for the independent global-obstruction track.
 
-No MSS3 search, complete point determination, Brauer-group computation, or
-campaign exclusion is claimed. The optional AP search is explicitly bounded.
+No MSS3 search, Brauer-group computation, or campaign exclusion is claimed.
+The optional AP search is explicitly bounded. GB.8 determines the rational
+AP-u boundary using a cited theorem and the exact finite certificate here.
 The finite-Brauer limitation in the companion document uses cited theorems;
 these routines check its concrete surface geometry and local controls.
 
@@ -250,6 +251,67 @@ def ap_normalized_fp_fibers(p, axis, q=TRIANGLE_Q):
     return fibers
 
 
+def ternary_representatives(n, z_coefficient):
+    """All nonnegative (x,y,z) with 2*x^2+y^2+c*z^2=n, with sign weights.
+
+    The bounds are exhaustive consequences of positive definiteness, not
+    a height cutoff for rational points. Zero coordinates have one sign.
+    """
+    if n < 0 or z_coefficient <= 0:
+        raise ValueError("nonnegative n and positive coefficient required")
+    rows = []
+    for x in range(isqrt(n//2)+1):
+        for z in range(isqrt((n-2*x*x)//z_coefficient)+1):
+            y2 = n - 2*x*x - z_coefficient*z*z
+            y = isqrt(y2)
+            if y*y == y2:
+                triple = (x, y, z)
+                rows.append((triple, 2**sum(a != 0 for a in triple)))
+    return sorted(rows)
+
+
+def tunnell_odd_certificate(n):
+    """Unconditional *necessary* condition for positive odd squarefree n.
+
+    A mismatch certifies noncongruence by the CITED Tunnell theorem.
+    Equality is deliberately called inconclusive, never a positive verdict.
+    """
+    if n <= 0 or n % 2 == 0 or any(n % (p*p) == 0 for p in range(2, isqrt(n)+1)):
+        raise ValueError("positive odd squarefree integer required")
+    reps = {c: ternary_representatives(n, c) for c in (8, 32)}
+    counts = {c: sum(weight for _, weight in reps[c]) for c in reps}
+    mismatch = counts[8] != 2*counts[32]
+    return {"n": n, "representatives": reps, "counts": counts,
+            "coefficient": counts[32] - counts[8]//2,
+            "verdict": "noncongruent (CITED Tunnell)" if mismatch else "inconclusive"}
+
+
+def ap_quartic_to_triangle(t, y, n):
+    """A nonexceptional point y^2=n*(1-t^4) gives a rational triangle.
+
+    Used to reduce the AP-u boundary to noncongruence of 89. This map
+    retains its denominators; t=0 and y=0 require separate fiber analysis.
+    """
+    t, y, n = Q(t), Q(y), Q(n)
+    if n <= 0 or not t or not y or y*y != n*(1-t**4):
+        raise ValueError("nonexceptional rational point on the positive-n quartic required")
+    return (abs(y/t), abs(2*n*t/y), abs(n*(1+t**4)/(t*y)))
+
+
+def triangle_row_from_cover(z, q=TRIANGLE_Q):
+    """Inverse of the three root-sum equations, before the row constraint."""
+    if len(z) != 3 or len(q) != 3:
+        raise ValueError("three coordinates and twists required")
+    s1, s2, s3 = (Q(a)*Q(b)**2 for a, b in zip(q, z))
+    return (s1-s2+s3, s1+s2-s3, -s1+s2+s3)
+
+
+def triangle_row_quartic(z, q=TRIANGLE_Q):
+    """Zero iff the root-sum row has A^2+B^2+C^2=3 (not all MSS3 conditions)."""
+    s = tuple(Q(a)*Q(b)**2 for a, b in zip(q, z))
+    return 3*sum(a*a for a in s)-2*sum(a*b for a, b in combinations(s, 2))-3
+
+
 def cross_ratio(indices):
     """Projective determinant formula, including the direction at infinity."""
     pts = [(DIFFERENCES[i][2], -DIFFERENCES[i][1]) for i in indices]
@@ -284,6 +346,8 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--ap-bound", type=int, help="also search the AP boundary to this denominator")
+    parser.add_argument("--boundary-certificate", action="store_true",
+                        help="print the complete finite Tunnell certificate used in GB.8")
     args = parser.parse_args()
     print("Independent global-obstruction probe; no new MSS3 exclusions.")
     print("Smooth all-equal point: Jacobian rank", rank(boundary_jacobian(())))
@@ -299,6 +363,9 @@ def main():
     print("Exact checks: python -m verify --only gb.")
     if args.ap_bound is not None:
         print("AP boundary (bounded necessary conditions only):", ap_boundary_search(args.ap_bound))
+    if args.boundary_certificate:
+        print("AP-u exclusion certificate (see GB.8 for map and exceptional fibers):")
+        print(tunnell_odd_certificate(89))
 
 
 if __name__ == "__main__":

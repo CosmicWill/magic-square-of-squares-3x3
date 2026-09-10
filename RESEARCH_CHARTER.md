@@ -1,4 +1,4 @@
-# Independent proof research: setup and proposed strategy
+# Independent proof research: workspace and strategy
 
 Status: global cover-compatibility direction approved by the owner, 2026-09-09.
 First investigation: finite Brauer-obstruction limitations and boundary covers.
@@ -6,14 +6,17 @@ First investigation: finite Brauer-obstruction limitations and boundary covers.
 Checkpoint: [global-obstructions.md](docs/research/global-obstructions.md).
 It records the finite-Brauer barrier on the original open surface, failed
 entry-symbol and homogeneous-direction approaches, and a root-sum cover
-with twist (34,178,3026) that is locally soluble everywhere. Its all-equal
-rational fibers and v=0 AP boundary are excluded; the u=0 genus-three
-boundary remains open. No MSS3 or campaign classes were newly excluded.
+with twist (34,178,3026) that is locally soluble everywhere. GB.8 now
+excludes its u=0 genus-three boundary using Tunnell's theorem and an exact
+finite certificate. Together with GB.7 and the projective-image audit,
+this gives a smooth proper model with no rational boundary points.
+No MSS3 or campaign classes were newly excluded.
 
-Resume with the AP-u curve in GB.7, including projective fibers. A rational
-boundary point would bring back GB.3; a bounded search with no points is
-not a boundary exclusion. The full twist family, rather than this one
-test case, would have to be controlled for a universal impossibility proof.
+Resume with the explicit row quartic and its five additional square
+conditions at the end of GB.8. Seek a fibration or Brauer class and test
+its survival on the full cover. Its rational points remain unknown.
+The full twist family must be controlled for a universal impossibility
+proof. See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
 
 ## Workspace
 

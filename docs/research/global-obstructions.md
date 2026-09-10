@@ -1,6 +1,6 @@
-# Global-obstruction investigation: the first boundary audit
+# Global-obstruction investigation: finite-class barriers and boundary covers
 
-2026-09-09. Branch `research/proof-alternatives`, based on
+2026-09-09, updated 2026-09-10. Branch `research/proof-alternatives`, based on
 `a719b635e7ca969ef62a805d85c0a9d6b5fbc17e` (main through entry 140).
 
 This checkpoint finds limitations on a proof method, not new exclusions of
@@ -14,9 +14,11 @@ strategy, even if the classes ramify on the deleted locus.
 The next candidate is a cover defined by three sums of entry roots (GB.7).
 It retains component/sign information that the entry-line symbols discard.
 An explicit twist is locally soluble everywhere, avoids all signed all-equal
-rational fibers, and has no rational lift on one AP axis. Its other AP axis
-remains unresolved. No cover has yet been certified to give
-an obstruction, and no authoritative campaign verdict is changed.
+rational fibers, and now has both AP boundaries excluded. GB.8 settles
+the remaining genus-three curve using Tunnell's theorem and proves that
+a smooth proper model of this twist has no rational boundary points.
+Its admissible rational points remain unknown. No cover has yet been
+certified to give an obstruction, and no campaign verdict is changed.
 
 ## Model and scope
 
@@ -424,7 +426,8 @@ every rational parameter, including the branch points. The B=-1 case
 was excluded at the real place. This exclusion concerns the boundary
 of one twist; it is not an MSS3 exclusion.
 
-The u=0 case is still open. Its useful necessary identity is
+The u=0 case was left open at checkpoint 2c91f31. **GB.8 below settles it**
+using a genus-one quotient. Its useful necessary identity is
 
 \[
  {f_1f_3\over f_2}={1\over17^2(1+t^2)},
@@ -442,7 +445,7 @@ accepting zero coordinates in the singular affine equations is insufficient.
 row-condition search on the two axes found no rational lifts in 12,178
 axis/parameter cases. Positive twists force |t|<=1 over R. The omitted
 infinite parameter gives a negative pair sum and does not lift over Q.
-This bounded check does not settle the u=0 genus-three curve.
+This bounded check alone does not settle the u=0 genus-three curve.
 
 **CITED (boundary reduction using the classical four-square AP theorem).**
 Of the other six distinctness lines, u=+/-v makes the entries contain five
@@ -460,27 +463,209 @@ projective points handled, the remaining rational-boundary test.
 
 **CONJECTURED (research prospect only).** The root-sum family may contain
 twists where global arithmetic usefully constrains admissible lifts.
-For the selected twist, the unresolved AP-u boundary is the next precise
-test before attempting any finite Brauer obstruction on the surface.
+GB.8 closes the selected twist's rational-boundary test. This does not
+establish a finite Brauer obstruction on the covering surface.
 
-Next work, without launching a campaign yet:
+## GB.8. The remaining boundary has no rational points (2026-09-10)
 
-1. Decide the AP-u genus-three boundary curve for (34,178,3026), including
-   exceptional fibers and compactification. A smooth rational boundary
-   point anywhere would restore GB.3 for that twist.
-2. Verify the boundary reduction on the chosen smooth model and determine
-   which twist square classes can occur. Retain the all-prime local-solubility
-   certificate and geometric-integrality proof, instead of redoing scans.
-3. Only for a cover that escapes the preceding tests, construct and
-   certify a nontrivial class, its domain/ramification, and evaluations.
-   A result must identify a necessary condition for all points in its
-   stated scope, rather than merely eliminate an arbitrarily chosen twist.
+**CITED (deduction from Tunnell's unconditional necessary condition).**
+The smooth projective AP-u genus-three curve has no rational points.
+Consequently the selected cover has no rational point above u=0.
+The argument below is complete modulo the stated classical theorem;
+its finite arithmetic and rational maps are checked exactly. Neither BSD
+nor a conjectural converse to Tunnell's criterion is used.
+
+### The quotient that settles the curve
+
+The second AP-u equation alone gives, on putting y=89(1+t^2)z_2,
+
+\[
+                         H:\quad y^2=89(1-t^4).
+\]
+
+This is a genus-one quotient of the genus-three curve. For any positive
+rational n and a point y^2=n(1-t^4) with ty!=0, the rational numbers
+
+\[
+ \left|{y\over t}\right|,\qquad
+ \left|{2nt\over y}\right|,\qquad
+ \left|{n(1+t^4)\over ty}\right|
+\]
+
+are the sides of a nondegenerate right triangle of area n. To check this,
+clear denominators in the Pythagorean identity and use
+(1-t^4)^2+4t^4=(1+t^4)^2. The product of the two legs is 2n.
+Equivalently, the explicit map
+
+\[
+             (t,y)\longmapsto (x,Y)=(-nt^2,nty)
+\]
+
+lands on Y^2=x^3-n^2x with Y!=0. Thus a nonexceptional rational point
+on H would make 89 a congruent number.
+
+### Complete finite certificate for noncongruence of 89
+
+Let N_c(n) count **all signed integer triples** satisfying
+2x^2+y^2+c z^2=n. Tunnell's necessary condition for positive odd
+squarefree n is N_8(n)=2N_32(n) if n is congruent. In the notation of
+his paper, a(n)=N_32(n)-N_8(n)/2, and a(n)!=0 excludes n.
+See the theorem on printed p.323 and its ternary-form expression on
+p.325 of [Tunnell's original paper](https://sites.math.rutgers.edu/~zeilberg/EM22/JT1983.pdf).
+
+For n=89 the complete nonnegative representatives and their sign weights
+are as follows. Each nonzero coordinate contributes a factor of two.
+
+| c | (x,y,z) | Sign weight |
+|---|---|---:|
+| 8 | (0,9,1) | 4 |
+| 8 | (2,3,3) | 8 |
+| 8 | (2,7,2) | 8 |
+| 8 | (2,9,0) | 4 |
+| 8 | (4,5,2) | 8 |
+| 8 | (4,7,1) | 8 |
+| 8 | (6,3,1) | 8 |
+| 32 | (2,7,1) | 8 |
+| 32 | (2,9,0) | 4 |
+| 32 | (4,5,1) | 8 |
+
+The positive coefficients give the exhaustive bounds |x|<=6, |y|<=9,
+|z|<=3 for c=8 and |z|<=1 for c=32. Therefore
+
+\[
+             N_8(89)=48\ne40=2N_{32}(89),\qquad a(89)=-4.
+\]
+
+This is a complete finite theorem certificate, not a rational-point
+height search. `gb.tunnell_89_certificate` compares the nonnegative
+enumeration with an independently enumerated signed box. The known
+congruent numbers 5 and 15 are positive controls; equality is reported
+only as inconclusive.
+
+### Exceptional and projective fibers
+
+The preceding triangle map omits exactly ty=0. On H, t=0 would require
+y^2=89 and is impossible over Q. If y=0, then t=+/-1. These give the
+two rational points (1,0),(-1,0) on H. Its two geometric points at
+infinity have residue equation (y/t^2)^2=-89, so neither is rational.
+Thus this argument determines **all** rational points of the smooth
+projective H, including infinity.
+
+The function-field inclusion extends to a morphism from the smooth
+projective AP-u curve to H. Alternatively the valuation argument is
+direct: t is a rational value or infinity at a rational point; at finite
+rational t, 1+t^2!=0 and each z_i is integral because its square is
+regular. A rational point would therefore specialize every finite slot
+to a rational square. At t=1, f_3=1/1513 is nonsquare; at t=-1,
+f_1=1/17 is nonsquare. Neither rational point of H lifts. The nonrational
+parameters t=+/-i cannot be images of rational points. This deals with
+the normalization as well as the raw affine equations.
+
+As an independent diagnostic, PARI/GP 2.17.4 gives the following
+Jacobian data for the three single-character elliptic quotients:
+
+| Quotient | Weierstrass coefficients [a1,a2,a3,a4,a6] | ellrank | elltors order |
+|---|---|---|---:|
+| z_1 | [0,-34,0,578,0] | [1,1,0,[[49/9,1295/27]]] | 2 |
+| z_2 | [0,0,0,31684,0] | [0,0,0,[]] | 2 |
+| z_3 | [0,-3026,0,4578338,0] | [1,1,0,[[5329,299665]]] | 2 |
+
+The first and third models follow from x=q(1-t), Y=q^2(1+t^2)z_1,
+or x=q(1+t), Y=q^2(1+t^2)z_3 respectively, with q=17 or 1513.
+The middle Jacobian is returned by `ellfromeqn(y^2-89*(1-t^4))`.
+`compute/global_boundary_quotients.gp` reproduces these calculations;
+found point representatives may differ. These diagnostics are
+**VERIFIED(PARI/GP 2.17.4)** and are not dependencies of the Tunnell
+proof. The other four nontrivial characters have genus-zero quotients.
+
+### A smooth proper model has no rational boundary points
+
+**CITED (Tunnell, the four-square AP theorem, and surface resolution).**
+Let Y be the selected covering open over U. There exists a smooth proper
+compactification Ybar, isomorphic to Y over U, such that
+
+\[
+                         (\overline Y\setminus Y)(\mathbb Q)=\varnothing.
+\]
+
+Here is a model construction that also controls exceptional fibers.
+Let X be the projective closure of V in P^8 with homogeneous root
+coordinates [e:r_(a,b)]. Normalize X in the degree-eight function field
+of Y, then resolve the resulting projective surface, preserving its
+smooth open Y. Finiteness of normalization for varieties and resolution
+of surfaces over Q are the classical geometric inputs; see
+[Stacks, resolution of surfaces](https://stacks.math.columbia.edu/tag/0BGP).
+This supplies a morphism pi:Ybar->X. No explicit blowup sequence is needed
+for the rational-image exclusion, but one may be needed to compute classes.
+
+For any rational point of Ybar its image on X is rational. The image is
+accounted for by the following exhaustive alternatives:
+
+1. **e=0:** the opposite-root identities
+   r_(a,b)^2+r_(-a,-b)^2=2e^2 force all eight roots to vanish over R,
+   which is not a projective point.
+2. **A zero entry with e!=0:** clear rational root denominators and divide
+   their common gcd. The mod-4 proof of F4.1 uses no distinctness assumption
+   and forces all nine primitive roots odd. Thus no entry can be zero.
+3. **e!=0 and a distinctness line:** normalize e=1. Six lines are excluded
+   except at all-equal configurations by the four-square AP theorem, as
+   in GB.7. All signed all-equal fibers are excluded by the twist classes.
+   The v=0 axis is excluded in GB.7; GB.8 excludes the u=0 axis.
+4. **The image lies in U:** the cover is finite etale and smooth there.
+   Normalization and the chosen resolution preserve it, so the point
+   lies in Y, not in its boundary.
+
+In case 3 normalization cannot introduce a rational lift invisible to
+the affine root-sum equations. Each z_i satisfies the monic integral
+equation z_i^2=(r_j+r_k)/d_i over V, so is a regular function on the
+finite normalization above V and on its resolution. At a rational point
+its value is rational and must satisfy those same equations. This
+argument covers singular fibers and exceptional divisors over them.
+
+The selected Y is still everywhere locally soluble, with genuine adeles
+as in GB.7. Its absence of rational boundary points removes the specific
+rational-boundary explanation of GB.3 for this twist. It does **not**
+show Y(Q) is empty, nor that a finite Brauer obstruction exists.
+
+### Concrete starting model for the next investigation
+
+Put s_i=q_i z_i^2, q=(17,89,1513), and eliminate the three row roots:
+
+\[
+ A=s_1-s_2+s_3,\quad B=s_1+s_2-s_3,\quad C=-s_1+s_2+s_3.
+\]
+
+The row conditions become the explicit affine quartic surface
+
+\[
+              3(s_1^2+s_2^2+s_3^2)-2(s_1s_2+s_2s_3+s_3s_1)=3.
+\]
+
+Every point of Y maps to this surface, with u=A^2-1, v=B^2-1.
+To recover Y one must also retain five further square conditions:
+
+\[
+ 2-A^2,\quad 2-B^2,\quad 2-C^2,\quad
+ 1+A^2-B^2,\quad 1-A^2+B^2,
+\]
+
+and all nonzero/distinctness conditions. Dropping these square conditions
+only enlarges the target. A class found on the row quartic must be tested
+after their pullback; GB.1 warns that pullback can split a symbol.
+
+The next bounded task is to derive an explicit fibration or candidate
+Brauer class on this row model, then check nontriviality after restoring
+the five square roots, ramification on a specified smooth model, and
+local evaluations. Before any larger twist campaign, determine a
+necessary restriction on the full twist family. Neither this chosen
+twist nor q_3=q_1q_2 is known to be forced by an MSS3.
 
 ## Reproduction and evidence boundaries
 
 ```text
 python -m compute.global_obstruction_probe
 python -m compute.global_obstruction_probe --ap-bound 100
+python -m compute.global_obstruction_probe --boundary-certificate
 python -m verify --only gb.
 python -m verify --fast --only a5.
 python -m verify --fast --only f5.
@@ -490,14 +675,30 @@ python -m verify --only gauntlet
 The gb checks verify the explicit matrix algebra, radicand bookkeeping,
 Jacobian ranks, rational lift controls, 95-prime fourth-root controls,
 56 conic identities, 70 four-line subsets, triangle sign fibers, the
-all-prime square-character certificate, and the AP boundary reductions.
+all-prime square-character certificate, AP boundary reductions, complete
+Tunnell counts for 89, the quotient map and its exceptional fibers, and
+the projective-boundary bookkeeping.
 They do not implement a Brauer-group algorithm, prove the imported
-arithmetic theorems, solve any genus-one torsor, or establish an MSS3
+arithmetic theorems, compute the rational points on Y, or establish an MSS3
 impossibility claim. No new obstruction predicate is registered because
 this checkpoint asserts no obstruction to any anchor or MSS3.
 
 ## Sources and provenance
 
+- Tunnell, *A Classical Diophantine Problem and Modular Forms of Weight
+  3/2*, Invent. Math. 72 (1983), 323--334,
+  [original paper scan](https://sites.math.rutgers.edu/~zeilberg/EM22/JT1983.pdf).
+  **READ, relevant portions only, 2026-09-10:** printed pp.323--325
+  (PDF pages 2--4), visually inspected from the scan. The theorem on
+  p.323 is unconditional in the needed direction; p.325 gives the exact
+  ternary-form count. The modular-form proof is CITED, not reproduced.
+- PARI/GP [elliptic-curve manual](https://pari.math.u-bordeaux.fr/dochtml/ref-stable/Elliptic_curves.html),
+  `ellfromeqn`, `ellrank`, `elltors`: **READ relevant entries**. The
+  diagnostic run used installed version 2.17.4; GB.8 does not depend on it.
+- Stacks Project, [Theorem 54.14.5](https://stacks.math.columbia.edu/tag/0BGP)
+  and [introduction to surface resolution](https://stacks.math.columbia.edu/tag/0ADX):
+  **READ statements/context**. Existence of resolution is CITED; no
+  explicit surface resolution or Brauer-group calculation is claimed.
 - Colliot-Thelene and Skorobogatov, *The Brauer--Grothendieck Group*,
   [author manuscript](https://www.imo.universite-paris-saclay.fr/~jean-louis.colliot-thelene/BGgroup_book.pdf).
   **READ, relevant sections only:** 9.5.1 (local constancy), 12.6 (formal

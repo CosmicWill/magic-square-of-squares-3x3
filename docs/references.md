@@ -121,3 +121,16 @@ honestly:
 | Fermat: no congruum is a perfect square (right-triangle theorem). | Stated where used; classical |
 | H. Darmon, L. Merel, "Winding quotients and some variants of Fermat's Last Theorem" (1997): $x^n + y^n = 2z^n$ has no nontrivial solutions for $n \ge 3$. Kills the 4th-power analogue instantly; silent for squares. | SUMMARY-ONLY |
 | Mason–Stothers theorem (polynomial abc). | PROVEN from scratch in [attacks/A2-function-field.md](attacks/A2-function-field.md) |
+
+## Independent global-obstruction track (2026-09-10)
+
+These sources support explicitly CITED deductions in
+[GB.3--GB.8](research/global-obstructions.md), not a headline impossibility proof.
+
+| Ref | Provenance |
+|---|---|
+| J. B. Tunnell, "A Classical Diophantine Problem and Modular Forms of Weight 3/2," Invent. Math. 72 (1983), 323--334. [Original scan](https://sites.math.rutgers.edu/~zeilberg/EM22/JT1983.pdf). | **READ**, printed pp.323--325 visually inspected. The unconditional necessary condition and its ternary counts are used in GB.8; modular-form proof CITED. |
+| Stacks Project, [Theorem 54.14.5](https://stacks.math.columbia.edu/tag/0BGP), [surface-resolution introduction](https://stacks.math.columbia.edu/tag/0ADX). | **READ**, statements and context; resolution existence in GB.8 is CITED. No explicit blowup sequence computed. |
+| PARI/GP, [elliptic-curve manual](https://pari.math.u-bordeaux.fr/dochtml/ref-stable/Elliptic_curves.html), ellfromeqn, ellrank, elltors. | **READ**, relevant entries; version 2.17.4 run. Independent diagnostic in GB.8, not a dependency of the exclusion. |
+| J.-L. Colliot-Thelene, A. N. Skorobogatov, [The Brauer--Grothendieck Group, author manuscript](https://www.imo.universite-paris-saclay.fr/~jean-louis.colliot-thelene/BGgroup_book.pdf). | **READ**, relevant portions of sections 9.5.1, 12.6 and 1.5; formal lemma and local constancy CITED in GB.3. |
+| D. Harari, "Methode des fibrations et obstruction de Manin," Duke Math. J. 75 (1994), 221--260. [Author PDF](https://www.imo.universite-paris-saclay.fr/~david.harari/articles/duke.pdf). | **READ**, formal lemma 2.6.1 and local-density discussion. Original source behind GB.3. |

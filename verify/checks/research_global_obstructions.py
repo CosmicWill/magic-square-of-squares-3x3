@@ -203,4 +203,132 @@ def ap_boundary(ctx):
     if bound == 100:
         require(result["axis_parameters_tested"] == 12178)
     ctx.note("AP-v: exhaustive reduction at 3; normalization checked against an affine false positive and rational positive controls")
-    ctx.note(f"AP search: {result}; no claim beyond this denominator bound for AP-u")
+    ctx.note(f"AP search: {result}; this check is bounded; GB.8 separately settles AP-u")
+
+
+@check("gb.tunnell_89_certificate", DOC)
+def tunnell_89_certificate(ctx):
+    certificate = g.tunnell_odd_certificate(89)
+    require(certificate["counts"] == {8: 48, 32: 20})
+    require(certificate["coefficient"] == -4)
+    require(certificate["verdict"] == "noncongruent (CITED Tunnell)")
+    # Independent signed-box enumeration, rather than the production
+    # routine's nonnegative square-root enumeration with sign weights.
+    for c, z_bound in ((8, 3), (32, 1)):
+        signed = {(x,y,z) for x in range(-6,7) for y in range(-9,10)
+                  for z in range(-z_bound,z_bound+1) if 2*x*x+y*y+c*z*z == 89}
+        recovered = set()
+        for triple, weight in certificate["representatives"][c]:
+            orbit = {tuple(a*b for a,b in zip(triple, signs))
+                     for signs in product((-1,1), repeat=3)}
+            require(len(orbit) == weight)
+            recovered.update(orbit)
+        require(recovered == signed)
+        require(len(signed) == certificate["counts"][c])
+    # Known congruent positive controls must not be excluded. Equality is
+    # only a necessary condition; no BSD-dependent converse is used.
+    for n in (5, 15):
+        require(g.tunnell_odd_certificate(n)["verdict"] == "inconclusive")
+    for n in (-1, 0, 2, 9):
+        try:
+            g.tunnell_odd_certificate(n)
+        except ValueError:
+            pass
+        else:
+            require(False, "odd squarefree domain was not enforced")
+    ctx.note("complete positive-definite counts for 89: N8=48, N32=20, a(89)=-4; Tunnell remains CITED")
+
+
+@check("gb.ap_u_quotient_and_fibers", DOC)
+def ap_u_quotient_and_fibers(ctx):
+    # Polynomial coefficients of (1-t^4)^2 + 4*t^4 = (1+t^4)^2.
+    # This is the cleared-denominator Pythagorean identity, not a search.
+    def multiply(a, b):
+        out = [Q(0)]*(len(a)+len(b)-1)
+        for i, x in enumerate(a):
+            for j, y in enumerate(b):
+                out[i+j] += x*y
+        return out
+    left = multiply((1,0,0,0,-1), (1,0,0,0,-1))
+    left[4] += 4
+    require(left == multiply((1,0,0,0,1), (1,0,0,0,1)))
+    require(multiply((1,0,-1), (1,0,1)) == [1,0,0,0,-1])
+    # Degree <= 4 identity defining the quotient y=89*(1+t^2)*z2.
+    # Five evaluations certify the polynomial after clearing denominators.
+    for t in map(Q, range(-2,3)):
+        f1, f2, f3 = g.ap_triangle_slots(t, "u=0")
+        require(89**2*(1+t*t)**2*f2 == 89*(1-t**4))
+        for q, x, f in ((17,17*(1-t),f1), (1513,1513*(1+t),f3)):
+            require(q**4*(1+t*t)**2*f == x**3-2*q*x*x+2*q*q*x)
+    branches = ({"1","i","-i","inf"}, {"1","-1","i","-i"},
+                {"-1","i","-i","inf"})
+    branch_counts = []
+    for mask in range(1,8):
+        branch = set()
+        for i in range(3):
+            if mask >> i & 1:
+                branch ^= branches[i]
+        branch_counts.append(len(branch))
+    require(sorted(branch_counts) == [2,2,2,2,4,4,4])
+    for t, y, n in ((Q(1,3), Q(20,9), 5), (Q(-1,3), Q(-20,9), 5),
+                    (Q(1,2), Q(15,4), 15)):
+        a, b, c = g.ap_quartic_to_triangle(t,y,n)
+        require(a*a+b*b == c*c and a*b/2 == n)
+        x, yy = -n*t*t, n*t*y
+        require(yy*yy == x**3-n*n*x and yy != 0)
+    # All finite exceptional rational fibers: y=0 gives t=+/-1;
+    # t=0 would require y^2=89. At infinity the leading coefficient is -89.
+    require(not g.rational_square(89) and not g.rational_square(-89))
+    require(g.ap_triangle_slots(Q(1), "u=0")[2] == Q(1,1513))
+    require(g.ap_triangle_slots(Q(-1), "u=0")[0] == Q(1,17))
+    require(not g.rational_square(Q(1,1513)) and not g.rational_square(Q(1,17)))
+    for t,y in ((Q(0),Q(0)), (Q(1),Q(0)), (Q(1,2),Q(1))):
+        try:
+            g.ap_quartic_to_triangle(t,y,89)
+        except ValueError:
+            pass
+        else:
+            require(False, "exceptional/off-curve input passed the triangle map")
+    ctx.note("quartic quotient identity; exact triangle and elliptic maps; t=0,+/-1,infinity audited")
+
+
+@check("gb.projective_boundary_and_row_model", DOC)
+def projective_boundary_and_row_model(ctx):
+    mod4 = []
+    for c,u,v in product(range(4), repeat=3):
+        values = (c,) + tuple(c+a*u+b*v for a,b in g.ENTRY)
+        if all(value % 4 in (0,1) for value in values):
+            mod4.append((c,u,v))
+    require(mod4 == [(0,0,0), (1,0,0)])
+    # Opposite-square equations account for every projective root. At
+    # center zero these force every real homogeneous coordinate to zero.
+    pairs = {frozenset((ab,(-ab[0],-ab[1]))) for ab in g.ENTRY}
+    require(len(pairs) == 4 and set().union(*pairs) == set(g.ENTRY))
+    # Six other distinctness lines produce consecutive 5- or 7-term APs.
+    for name,a,b in g.DIFFERENCES[2:]:
+        offsets = {0} | {-c*b+d*a for c,d in g.ENTRY}
+        require(offsets == set(range(min(offsets),max(offsets)+1)))
+        require(len(offsets) == (5 if name in ("u-v","u+v") else 7))
+    # Coefficient proof of the row quartic after substituting s_i=q_i*z_i^2.
+    matrix = ((1,-1,1), (1,1,-1), (-1,1,1))
+    gram = [[sum(row[i]*row[j] for row in matrix) for j in range(3)] for i in range(3)]
+    require(gram == [[3,-1,-1],[-1,3,-1],[-1,-1,3]])
+    for z in ((Q(0),Q(0),Q(0)), (Q(1),Q(2,3),Q(-1,5))):
+        row = g.triangle_row_from_cover(z)
+        require(sum(a*a for a in row)-3 == g.triangle_row_quartic(z))
+        require(tuple(row[i]+row[j] for i,j in g.TRIANGLE_EDGES)
+                == tuple(2*q*x*x for q,x in zip(g.TRIANGLE_Q,z)))
+        a,b,c = row
+        u,v = a*a-1,b*b-1
+        extras = {(-1,0):2-a*a, (0,-1):2-b*b, (1,1):2-c*c,
+                  (1,-1):1+a*a-b*b, (-1,1):1-a*a+b*b}
+        require(set(extras) | set(g.ROOT_TRIANGLE) == set(g.ENTRY))
+        require(not set(extras) & set(g.ROOT_TRIANGLE))
+        for (i,j), value in extras.items():
+            residual = value-(1+i*u+j*v)
+            require(residual == (-g.triangle_row_quartic(z) if (i,j)==(1,1) else 0))
+    # Positive control: untwisted row data lift a full degenerate square.
+    require(g.triangle_row_quartic((1,0,0),q=(1,1,1)) == 0)
+    row = g.triangle_row_from_cover((1,0,0),q=(1,1,1))
+    require(row == (1,1,-1))
+    ctx.note("all 64 mod-4 cases; projective opposite pairs; six AP directions; exact row quartic coefficient matrix")
