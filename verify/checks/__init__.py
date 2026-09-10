@@ -27,6 +27,7 @@ MODULES = [
     "a6_bounds",
     "a3_zi",
     "a3_cancellation",
+    "research_global_obstructions",
 ]
 
 
