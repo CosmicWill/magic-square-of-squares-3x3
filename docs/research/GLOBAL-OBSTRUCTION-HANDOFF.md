@@ -46,24 +46,50 @@ Full proofs, status distinctions, sources, and maps are in
 [global-obstructions.md](global-obstructions.md). All labels are local
 to this research note, not replacements for the repository's A-series.
 
+## Universal reduction continuation
+
+The owner asked to make the universal reduction the lead question.
+[universal-twist-reduction.md](universal-twist-reduction.md) records:
+
+- UT.1, **PROVEN:** the exact eight-element root-sign orbit of the product
+  class T. The four noncentral frames account for D4 symmetry.
+- UT.2, **PROVEN:** every hypothetical MSS3 reaches a cover with signed
+  odd squarefree q_i, sum(q_i)=3 mod 8, and z_i 2-adic units. There are
+  16 residue triples, but infinitely many numerical labels. Every triple
+  in this family has full admissible local lifts at 2; the normalization
+  does not create a new local obstruction.
+- UT.3, **PROVEN:** the triple gcd of the labels divides the squarefree
+  center; pairwise shared primes come from the center or gcd(U,V); center
+  primes 5 mod 8 occur in all labels or none according to center parity.
+  More precisely q1*q2*q3=m*H times a rational square, with H supported
+  only on primitive-direction differences. Once that direction is fixed,
+  H has finitely many possibilities independently of m and gcd(U,V).
+- UT.4, **PROVEN:** a full admissible Q_401 configuration has nonsquare
+  product class in all four frames and all eight sign choices. Thus the
+  earlier product-one restriction is not forced locally or algebraically
+  by the square equations and symmetries. This does not refute a possible
+  additional global theorem solely about rational admissible points.
+
 ## Next concrete task
 
-Start with the row quartic in GB.8 and derive an explicit fibration or
-candidate Brauer class. Retain all five additional square conditions;
-test whether a class survives their pullback before evaluating it.
-Then certify ramification on a specified smooth model and local evaluations.
-The selected cover's rational-point set is still unknown. Removing the
-rational-boundary explanation for GB.3 does not prove a Brauer obstruction.
+Combine the four frames' UT.1/UT.3 constraints using their common center
+and primitive direction. Seek a norm or reciprocity condition on the
+product class, or a descent preserving the full grid. Keep all parameters
+unbounded. If computing a Brauer class on GB.8's quartic, track general
+signed q_i and test survival after restoring the five square roots.
 
-Before any larger campaign, establish a necessary restriction on the full
-twist family. This one twist does not cover every hypothetical MSS3;
-neither q3=q1*q2 nor these three constants have been shown necessary.
+The UT.2 family still includes twists with smooth rational boundary
+points, so the GB.3 barrier remains relevant. The selected fixed cover's
+rational-point set is also still unknown. No uniform global contradiction
+or finite reduction of the numerical twist labels has been proved.
 
 ## Reproduce
 
 ```text
 python -m compute.global_obstruction_probe --ap-bound 100
 python -m compute.global_obstruction_probe --boundary-certificate
+python -m compute.universal_twist_probe --precision 8
+python -m verify --only ut.
 python -m verify --only gb.
 python -m verify --fast --only a5.
 python -m verify --fast --only f5.
@@ -72,14 +98,27 @@ python -m verify --fast --only f4.
 python -m verify --only gauntlet
 ```
 
-The 11 branch checks passed at FULL bounds (three added since 2c91f31).
+At checkpoint bfd894a, the 11 gb branch checks passed at FULL bounds
+(three added since 2c91f31).
 The complete count certificate and the separate GP quotient diagnostic
-also ran successfully. The suite has 233 registered checks in this worktree.
+also ran successfully. That checkpoint had 233 registered checks.
 Five existing f4 checks at FAST bounds and both gauntlet checks at FULL
 were rerun and passed: 18 checks passed in this continuation.
 At the preceding checkpoint, 18 related existing checks passed (a5, f5,
 f1, f4 at FAST bounds; the two gauntlet checks at FULL). This is not a
 replay of the full suite or other branches' computations.
+
+The universal continuation adds five ut checks (238 registered total).
+Their FULL run passed: 277 canonical AP controls x 4 frames, 199 support
+controls x 4 frames, 19 full square-grid lifts to 2^24, and the complete
+32-product residue certificate with all nine roots lifted to 401^8.
+The all-precision local statements follow from the written lifting proofs.
+The support check also uses 12 admissible local grids x 4 frames x 8
+sign choices, independently checking cancellation of a common offset prime.
+The 11 gb checks and both gauntlet checks also passed at FULL bounds in
+this continuation, along with the five f4 checks at FAST bounds: 23
+relevant checks passed in total. The strengthened product support identity
+was followed by another successful run of all five ut checks.
 
 Optional PARI diagnostic, using the actual executable rather than the
 PowerShell `gp` alias:

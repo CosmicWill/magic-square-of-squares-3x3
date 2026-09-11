@@ -12,11 +12,20 @@ finite certificate. Together with GB.7 and the projective-image audit,
 this gives a smooth proper model with no rational boundary points.
 No MSS3 or campaign classes were newly excluded.
 
-Resume with the explicit row quartic and its five additional square
-conditions at the end of GB.8. Seek a fibration or Brauer class and test
-its survival on the full cover. Its rational points remain unknown.
-The full twist family must be controlled for a universal impossibility
-proof. See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
+Current priority, explicitly approved by the owner: the universal
+reduction, not additional isolated twists. The new
+[universal-twist note](docs/research/universal-twist-reduction.md) proves
+that every hypothetical solution reaches a signed odd squarefree triple
+with sum 3 mod 8 and unit lift coordinates at 2. It couples the labels'
+prime factors to the center and primitive direction. A full 401-adic
+control shows signs and D4 symmetry do not locally force the earlier
+product-square subfamily.
+
+Resume by combining the four frames' product-class and prime-support
+constraints, or by deriving a norm/Brauer condition with general twist
+parameters. Retain all five additional entry squares. The universal
+family remains infinite and no global contradiction is established.
+See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
 
 ## Workspace
 

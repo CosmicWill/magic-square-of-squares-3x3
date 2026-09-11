@@ -28,6 +28,7 @@ MODULES = [
     "a3_zi",
     "a3_cancellation",
     "research_global_obstructions",
+    "research_universal_twists",
 ]
 
 

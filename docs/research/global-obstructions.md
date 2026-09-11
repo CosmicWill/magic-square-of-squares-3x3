@@ -20,6 +20,12 @@ a smooth proper model of this twist has no rational boundary points.
 Its admissible rational points remain unknown. No cover has yet been
 certified to give an obstruction, and no campaign verdict is changed.
 
+**Current continuation:** [universal-twist-reduction.md](universal-twist-reduction.md).
+The owner prioritized the universal reduction. UT.2 gives an explicit
+infinite family covering every hypothetical solution; UT.3 constrains its
+prime support. UT.4 shows that signs and grid symmetry do not locally force
+the product-square subfamily used to select (17,89,1513).
+
 ## Model and scope
 
 Work in characteristic zero. Normalize the center root to 1 and put
@@ -653,12 +659,13 @@ and all nonzero/distinctness conditions. Dropping these square conditions
 only enlarges the target. A class found on the row quartic must be tested
 after their pullback; GB.1 warns that pullback can split a symbol.
 
-The next bounded task is to derive an explicit fibration or candidate
-Brauer class on this row model, then check nontriviality after restoring
-the five square roots, ramification on a specified smooth model, and
-local evaluations. Before any larger twist campaign, determine a
-necessary restriction on the full twist family. Neither this chosen
-twist nor q_3=q_1q_2 is known to be forced by an MSS3.
+The row model remains a candidate for a fibration or Brauer calculation,
+with nontriviality checked after restoring the five square roots. The
+owner subsequently prioritized the universal family: UT.2--UT.4 in the
+companion note now give a necessary reduction and reject local forcing
+of q_3=q_1q_2. Further class calculations should track the general twist
+parameters. Neither this chosen twist nor q_3=q_1q_2 is known to be forced
+by an MSS3.
 
 ## Reproduction and evidence boundaries
 
