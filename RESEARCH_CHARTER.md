@@ -28,11 +28,20 @@ the center and common offset factor. All four are 1 mod 8 under canonical
 signs. An infinite permitted subfamily still has smooth rational boundary,
 so an unrestricted finite-Brauer exclusion cannot handle the entire family.
 
-Resume by seeking a global compatibility condition that retains the
-canonical domain at 2, or a further cover/descent. A prospective Brauer
-class needs an explicit ramification and survival audit on the full cover.
-Retain all nine square conditions. The universal family remains infinite
-and no global contradiction is established.
+The [finite-descent audit](docs/research/finite-descent-barrier.md) now
+extends the barrier to the canonical domain at 2. Demeio's rational-boundary
+lifting theorem, combined with Harari's formal lemma, leaves a surviving
+twist after any fixed finite torsor/finite-Brauer step. Adding another
+finite cover alone cannot complete that universal proof template.
+
+Resume with arithmetic on the surviving branch. When the corner label is
+1, n^2=(ai+cg)/2 is a positive odd integer square with n<m. Determine
+whether all nine equations permit a transformation producing another
+admissible grid with a smaller integer invariant. No such transformation
+is known; replacing the center alone fails. The nontrivial corner classes
+also remain unbounded. An alternative integral or height restriction must
+be justified for every candidate in its scope. No global contradiction
+is established.
 See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
 
 ## Workspace

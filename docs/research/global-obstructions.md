@@ -25,6 +25,10 @@ The owner prioritized the universal reduction. UT.2 gives an explicit
 infinite family covering every hypothetical solution; UT.3 constrains its
 prime support. UT.4 shows that signs and grid symmetry do not locally force
 the product-square subfamily used to select (17,89,1513).
+The later [finite-descent audit](finite-descent-barrier.md) shows that a
+fixed finite-torsor/finite-Brauer endgame still retains some twist even
+with canonical roots at 2. A complete proof needs an additional arithmetic
+argument on that surviving branch, or another justified kind of restriction.
 
 ## Model and scope
 

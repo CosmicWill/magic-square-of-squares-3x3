@@ -328,6 +328,11 @@ only on the primitive direction, independently of m and G, and are all
 rational boundary. The next global test must retain the required local
 normalization or use a further descent; unrestricted finite Brauer tests
 cannot exclude that entire family.
+The subsequent [finite-descent audit](finite-descent-barrier.md) proves
+that retaining canonical roots at 2 still leaves a surviving twist for
+any fixed finite torsor followed by finite Brauer tests. The proposed
+further descent now needs an arithmetic decrease or another independently
+justified exclusion of that branch, not merely another finite cover.
 
 ## Reproduction and provenance
 

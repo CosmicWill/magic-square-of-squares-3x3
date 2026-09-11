@@ -1,4 +1,4 @@
-# Global-obstruction checkpoint, 2026-09-10
+# Global-obstruction checkpoint, 2026-09-11
 
 Source: main `a719b635e7ca969ef62a805d85c0a9d6b5fbc17e`, through entry 140.
 Branch: `research/proof-alternatives`. Calculations ran locally; primary
@@ -88,11 +88,29 @@ The [coupled-cycle continuation](coupled-cycle-descent.md) proves:
   ordinary Brauer tests cannot exclude these twists. This does not settle
   the canonical 2-adic subdomain or another justified integral restriction.
 
-Seek a global compatibility condition retaining canonical roots and unit
-lift coordinates at 2, or a further descent preserving the full grid.
-Keep the primitive direction unbounded. If computing a Brauer class,
-audit its ramification on a proper model and survival after all original
-and cycle square roots are restored. Merely testing a quotient is insufficient.
+The [finite-descent audit](finite-descent-barrier.md) then establishes:
+
+- FD.1, CITED: Demeio's Theorem 3.2.1, frozen arXiv:2112.00843v3, lifts a
+  rational boundary point to a smooth model of some twist of any finite
+  torsor. The paper and its proof, credited to Wittenberg, were read.
+- FD.2, CITED deduction: some twist retains nonempty finite-Brauer adelic
+  sets even with canonical roots at 2. This extends to finite collections
+  and finite adaptive towers. No claim about the full possibly infinite
+  etale-Brauer intersection is made.
+- FD.3: an explicit rational Laurent-series construction verifies the
+  square-root case, including ramification and poles. The canonical
+  root-sum and cycle branches have trivial labels and unit lifts.
+- FD.4: symbols with products of the CC twist constants in their first
+  slots split at 2. For the CC.4 boundary family, finite subgroups of this
+  type cannot exclude the canonical local domain either.
+
+Resume with a genuine arithmetic descent or another justified global
+restriction. In the corner-label-1 branch, n^2=(ai+cg)/2 supplies an odd
+integer 0<n<m. The note re-expresses all nine equations in half-sum
+coordinates, but no new admissible grid is constructed. The m=5,n=3 AP
+control shows that merely replacing the center is not a descent. The
+other corner labels remain unbounded. Further finite covers may organize
+the arithmetic, but cannot alone close the finite-Brauer endgame.
 
 The UT.2 family still includes twists with smooth rational boundary
 points, so the GB.3 barrier remains relevant. The selected fixed cover's
@@ -106,6 +124,8 @@ python -m compute.global_obstruction_probe --ap-bound 100
 python -m compute.global_obstruction_probe --boundary-certificate
 python -m compute.universal_twist_probe --precision 8
 python -m compute.coupled_cycle_probe
+python -m compute.formal_boundary_probe
+python -m verify --only fdb.
 python -m verify --only cce.
 python -m verify --only ut.
 python -m verify --only gb.
@@ -147,6 +167,17 @@ resolved boundary point, and nine admissible local lifts on the rescaled
 degree-16 cover. An initial broad substring filter also ran and passed
 the seven existing a7cc checks; the new prefix is now cce to avoid that
 unrelated match. This was not a replay of the full verification suite.
+
+The finite-descent continuation adds five fdb checks (248 registered total).
+All five fdb, five cce, five ut, eleven gb and two gauntlet checks passed
+at FULL bounds: 28 targeted checks. The new controls include all nine
+formal square equations through t^17, 18 Laurent-series lift certificates,
+six canonical full grids to 2^24 with seven unit cover lifts to 2^20,
+twist-first-slot splitting controls, and 179 exact AP controls for the
+smaller-integer identities. The first local test attempted to lift the
+untwisted three-sum cover on too large a canonical neighborhood; it now
+uses u=2^e,v=3*2^e with e>=5 and retains e=3 as a negative control.
+The cited lifting and formal-lemma theorems are not replaced by these checks.
 
 Optional PARI diagnostic, using the actual executable rather than the
 PowerShell `gp` alias:
