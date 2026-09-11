@@ -21,10 +21,18 @@ prime factors to the center and primitive direction. A full 401-adic
 control shows signs and D4 symmetry do not locally force the earlier
 product-square subfamily.
 
-Resume by combining the four frames' product-class and prime-support
-constraints, or by deriving a norm/Brauer condition with general twist
-parameters. Retain all five additional entry squares. The universal
-family remains infinite and no global contradiction is established.
+The [coupled-cycle continuation](docs/research/coupled-cycle-descent.md)
+now combines the frames into four independent even-cycle parameters.
+Their support depends only on the primitive direction, independently of
+the center and common offset factor. All four are 1 mod 8 under canonical
+signs. An infinite permitted subfamily still has smooth rational boundary,
+so an unrestricted finite-Brauer exclusion cannot handle the entire family.
+
+Resume by seeking a global compatibility condition that retains the
+canonical domain at 2, or a further cover/descent. A prospective Brauer
+class needs an explicit ramification and survival audit on the full cover.
+Retain all nine square conditions. The universal family remains infinite
+and no global contradiction is established.
 See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
 
 ## Workspace

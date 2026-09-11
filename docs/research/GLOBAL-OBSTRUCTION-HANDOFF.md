@@ -72,11 +72,27 @@ The owner asked to make the universal reduction the lead question.
 
 ## Next concrete task
 
-Combine the four frames' UT.1/UT.3 constraints using their common center
-and primitive direction. Seek a norm or reciprocity condition on the
-product class, or a descent preserving the full grid. Keep all parameters
-unbounded. If computing a Brauer class on GB.8's quartic, track general
-signed q_i and test survival after restoring the five square roots.
+The [coupled-cycle continuation](coupled-cycle-descent.md) proves:
+
+- CC.1: four even-cycle parameters are signed odd squarefree and 1 mod 8;
+  their support depends only on the primitive direction, independently of
+  m and G. The first two labels have gcd dividing 5.
+- CC.2: the corner-cycle class is (ai+cg)/(2m^2); four independent divisor
+  valuations certify that the combined cover has geometric degree 16.
+  A full Q_97 point has nonsquare corner class under every sign and D4 choice.
+- CC.3: every single corner double cover has a smooth rational boundary
+  point on an explicit blowup chart, regardless of its coefficient.
+- CC.4: an infinite subfamily of the simultaneous permitted covers has
+  smooth rational boundary too. The first explicit tuple is
+  (-119,-15,1,-7), with direction (1,8). By GB.3, unrestricted finite
+  ordinary Brauer tests cannot exclude these twists. This does not settle
+  the canonical 2-adic subdomain or another justified integral restriction.
+
+Seek a global compatibility condition retaining canonical roots and unit
+lift coordinates at 2, or a further descent preserving the full grid.
+Keep the primitive direction unbounded. If computing a Brauer class,
+audit its ramification on a proper model and survival after all original
+and cycle square roots are restored. Merely testing a quotient is insufficient.
 
 The UT.2 family still includes twists with smooth rational boundary
 points, so the GB.3 barrier remains relevant. The selected fixed cover's
@@ -89,6 +105,8 @@ or finite reduction of the numerical twist labels has been proved.
 python -m compute.global_obstruction_probe --ap-bound 100
 python -m compute.global_obstruction_probe --boundary-certificate
 python -m compute.universal_twist_probe --precision 8
+python -m compute.coupled_cycle_probe
+python -m verify --only cce.
 python -m verify --only ut.
 python -m verify --only gb.
 python -m verify --fast --only a5.
@@ -119,6 +137,16 @@ The 11 gb checks and both gauntlet checks also passed at FULL bounds in
 this continuation, along with the five f4 checks at FAST bounds: 23
 relevant checks passed in total. The strengthened product support identity
 was followed by another successful run of all five ut checks.
+
+The coupled-cycle continuation adds five cce checks (243 registered total).
+All five cce, five ut, eleven gb and two gauntlet checks passed at FULL
+bounds: 23 targeted checks. The new certificates include four independent
+valuation rows, all 16 canonical offset residues modulo 32, 400 signed
+corner identities, a complete 97-adic sign certificate, the explicit
+resolved boundary point, and nine admissible local lifts on the rescaled
+degree-16 cover. An initial broad substring filter also ran and passed
+the seven existing a7cc checks; the new prefix is now cce to avoid that
+unrelated match. This was not a replay of the full verification suite.
 
 Optional PARI diagnostic, using the actual executable rather than the
 PowerShell `gp` alias:

@@ -321,6 +321,14 @@ The existing GB.3 limitation still applies to any twist with a suitable
 smooth rational boundary point. The universal family includes such twists;
 UT.2 does not eliminate that difficulty.
 
+The [coupled-cycle continuation](coupled-cycle-descent.md) carries out the
+four-frame combination. Four even-cycle labels have prime support depending
+only on the primitive direction, independently of m and G, and are all
+1 mod 8 canonically. It also exhibits an infinite subfamily with smooth
+rational boundary. The next global test must retain the required local
+normalization or use a further descent; unrestricted finite Brauer tests
+cannot exclude that entire family.
+
 ## Reproduction and provenance
 
 ```text
