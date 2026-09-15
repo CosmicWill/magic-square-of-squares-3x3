@@ -43,12 +43,25 @@ numerators over a common linear denominator reduce projectively to a
 linear formula; the apparent n scale cancels on primitive normalization.
 These are restrictions on constructions, not exclusions of solutions.
 
-Resume with a nonlinear correspondence preserving all five divisor-model
-square tests and a strictly decreasing primitive integer invariant, or
-a uniform arithmetic exclusion of that system. No such construction or
-exclusion is known. The nontrivial corner labels remain unbounded and
-need a universal argument as well. Any alternative integral or height
-restriction must be justified for every candidate in its scope.
+The [nonlinear continuation](docs/research/nonlinear-descent-fibers.md)
+identifies n -> rs/n as a reflected rescaling: it preserves all five
+tests but leaves the primitive center unchanged. At every admissible
+rational ratio k=r/s, the full five-square fiber is a degree-32 cover
+with 20 simple branch points, hence genus 129 by Riemann--Hurwitz.
+Elliptic multiplication cannot lift to a rational self-map of that full
+fiber. These genus and map-degree statements are CITED deductions from
+classical curve theory, supported by exact branch certificates. Each
+fiber retains 128 rational AP boundary points; its rational interior
+is unclassified.
+
+Resume with a point-dependent change of divisor ratio or a multivalued
+arithmetic correspondence with a justified rational branch. It must
+preserve the five square tests, retain an iteratable domain and strictly
+decrease the primitive integer invariant. A uniform arithmetic exclusion
+of the divisor system is another option. No such construction or exclusion
+is known. The nontrivial corner labels remain unbounded and need a universal
+argument as well. Any alternative integral or height restriction must be
+justified for every candidate in its scope.
 See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
 
 ## Workspace

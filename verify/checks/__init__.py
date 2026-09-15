@@ -32,6 +32,7 @@ MODULES = [
     "research_coupled_cycles",
     "research_finite_descent",
     "research_arithmetic_descent",
+    "research_nonlinear_descent",
 ]
 
 

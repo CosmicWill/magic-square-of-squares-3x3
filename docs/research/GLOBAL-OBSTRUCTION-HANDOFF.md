@@ -142,12 +142,50 @@ target from 7ab300b. Its new results are local to the corner-label-1 branch:
   exactly the six magic quadrics and ai+cg. The restrictions do not
   cover higher-degree or arithmetic-subset constructions.
 
-Resume from the five square equations of AD.1. A nonlinear correspondence
-must preserve them, stay in a branch where it can be iterated, and decrease
+At that checkpoint the next target was the five square equations of AD.1.
+A nonlinear correspondence must preserve them, stay in a branch where it
+can be iterated, and decrease
 the primitive integer invariant after clearing denominators. Alternatively,
 a uniform exclusion of that divisor system would settle this branch.
 Neither is known; the other corner labels still need a universal argument.
 No new MSS3 or campaign exclusion has been made.
+
+## Nonlinear continuation, 2026-09-14
+
+The [nonlinear-descent fiber audit](nonlinear-descent-fibers.md) continues
+from cc54456:
+
+- ND.1, **PROVEN:** n -> rs/n preserves all five square equations but
+  acts on the grid as vertical reflection times rs/n^2. Primitive integer
+  normalization restores the original center. The apparent nonlinear
+  decrease is a symmetry and a scale change.
+- ND.2, **PROVEN:** fixing k=r/s gives five explicit quartic square
+  equations in t=n/s. The center quartic maps to an elliptic cubic, but
+  ordinary doubling can lose its rational t-lift: at k=3 the section
+  (10,100) doubles to (16,-136), requiring t^2=8/5.
+- ND.3: **PROVEN** discriminant and resultant identities show that the
+  five quartics have 20 disjoint simple roots for every rational
+  k!=0,+/-1. The connected square-root cover has degree 32 and is
+  unramified at infinity. Its genus is 129, a **CITED deduction** from
+  Riemann--Hurwitz. This covers every admissible positive ratio.
+- ND.4, **CITED deduction:** a nonconstant rational map between any two
+  such full fibers has degree one. Consequently elliptic multiplication
+  of degree >1 cannot lift to a full fixed-ratio rational self-map.
+  Point-dependent ratio changes and multivalued correspondences are
+  outside this argument.
+- ND.5: each fiber has 128 explicit rational AP points over t=+/-1,+/-k.
+  They are all of its rational degenerate points, a **CITED deduction**
+  from the classical four-square AP theorem, with zero and infinity
+  audited. Rational interior points remain unclassified. A full local
+  interior point at k=3,t=13 is verified through precision 401^8.
+
+Resume with a point-dependent change of ratio or a multivalued arithmetic
+correspondence and a justified rational branch. Preserve all five square
+tests and an iteratable domain, and prove a decrease after denominator
+clearing and primitive normalization. A uniform exclusion of the relevant
+rational interior is another possible target. None is established; the
+other canonical corner labels also remain unbounded. No new MSS3 or
+campaign class has been excluded.
 
 ## Reproduce
 
@@ -158,6 +196,8 @@ python -m compute.universal_twist_probe --precision 8
 python -m compute.coupled_cycle_probe
 python -m compute.formal_boundary_probe
 python -m compute.arithmetic_descent_probe
+python -m compute.nonlinear_descent_probe
+python -m verify --only nlf.
 python -m verify --only ard.
 python -m verify --only fdb.
 python -m verify --only cce.
@@ -223,6 +263,18 @@ rational quadratic-evaluation rows of rank 38. Five rescalings of an
 unequal AP grid verify the constant-shape and primitive-normalization
 distinction. The standalone probe also ran successfully. This was not a
 replay of the complete verification suite.
+
+The nonlinear continuation adds seven nlf checks (261 registered total).
+The new checks passed at FULL bounds: 179 full AP reciprocity controls,
+175 divisor/fiber comparisons, 495 exact determinants certifying all
+five discriminants and ten resultants, the complete rational exceptional
+set, genus bookkeeping, 128 rational boundary points on each of seven
+control fibers, the exact failed doubling lift, and a full local interior
+grid through 401^8. These finite checks do not replace the cited curve
+theorems or classify rational interior points.
+All 34 existing ard, fdb, cce, ut, gb and gauntlet checks also passed at
+FULL bounds: 41 targeted checks passed in this continuation. The standalone
+nonlinear probe ran successfully. The complete suite was not replayed.
 
 Optional PARI diagnostic, using the actual executable rather than the
 PowerShell `gp` alias:

@@ -271,6 +271,14 @@ labels remain unbounded and outside this case.
 
 ## Verification and source check
 
+Continuation: [ND.1--ND.5](nonlinear-descent-fibers.md) identifies divisor
+reciprocity as a reflected rescaling and audits elliptic operations at
+fixed r/s. The full fiber has genus 129 for every admissible rational
+ratio; multiplication on its elliptic quotient cannot lift to a rational
+self-map preserving all five tests. Those geometric conclusions retain
+CITED status. Point-dependent ratio changes and multivalued arithmetic
+correspondences remain outside the audit.
+
 ```text
 python -m compute.arithmetic_descent_probe
 python -m verify --only ard.

@@ -134,3 +134,15 @@ These sources support explicitly CITED deductions in
 | PARI/GP, [elliptic-curve manual](https://pari.math.u-bordeaux.fr/dochtml/ref-stable/Elliptic_curves.html), ellfromeqn, ellrank, elltors. | **READ**, relevant entries; version 2.17.4 run. Independent diagnostic in GB.8, not a dependency of the exclusion. |
 | J.-L. Colliot-Thelene, A. N. Skorobogatov, [The Brauer--Grothendieck Group, author manuscript](https://www.imo.universite-paris-saclay.fr/~jean-louis.colliot-thelene/BGgroup_book.pdf). | **READ**, relevant portions of sections 9.5.1, 12.6 and 1.5; formal lemma and local constancy CITED in GB.3. |
 | D. Harari, "Methode des fibrations et obstruction de Manin," Duke Math. J. 75 (1994), 221--260. [Author PDF](https://www.imo.universite-paris-saclay.fr/~david.harari/articles/duke.pdf). | **READ**, formal lemma 2.6.1 and local-density discussion. Original source behind GB.3. |
+
+## Nonlinear divisor-fiber audit (2026-09-14)
+
+These inputs support the explicitly CITED geometric deductions in
+[ND.3--ND.4](research/nonlinear-descent-fibers.md). The polynomial branch
+certificates and reciprocity identities are checked separately in-repo.
+
+| Ref | Provenance |
+|---|---|
+| Stacks Project, [Section 53.12, Riemann--Hurwitz, Lemma 53.12.2](https://stacks.math.columbia.edu/tag/0C1B). | **READ** 2026-09-14, formula, hypotheses and proof discussion; used for genus and map degree. |
+| Stacks Project, [Section 53.2, Lemma 53.2.2](https://stacks.math.columbia.edu/tag/0BXX). | **READ** 2026-09-14; rational maps from normal curves to proper varieties extend to morphisms. |
+| A. Sutherland, [MIT 18.783 Lecture 5 slides, 14 February 2022](https://math.mit.edu/classes/18.783/2022/LectureSlides5.pdf#page=24). | **READ** 2026-09-14, final-slide degree and separability statement for multiplication-by-n; degree n^2 remains CITED. |
