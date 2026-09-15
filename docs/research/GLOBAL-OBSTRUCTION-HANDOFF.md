@@ -1,4 +1,4 @@
-# Global-obstruction checkpoint, 2026-09-11
+# Global-obstruction checkpoint, 2026-09-14
 
 Source: main `a719b635e7ca969ef62a805d85c0a9d6b5fbc17e`, through entry 140.
 Branch: `research/proof-alternatives`. Calculations ran locally; primary
@@ -104,8 +104,8 @@ The [finite-descent audit](finite-descent-barrier.md) then establishes:
   slots split at 2. For the CC.4 boundary family, finite subgroups of this
   type cannot exclude the canonical local domain either.
 
-Resume with a genuine arithmetic descent or another justified global
-restriction. In the corner-label-1 branch, n^2=(ai+cg)/2 supplies an odd
+The next target at the September 11 checkpoint was a genuine arithmetic
+descent. In the corner-label-1 branch, n^2=(ai+cg)/2 supplies an odd
 integer 0<n<m. The note re-expresses all nine equations in half-sum
 coordinates, but no new admissible grid is constructed. The m=5,n=3 AP
 control shows that merely replacing the center is not a descent. The
@@ -117,6 +117,38 @@ points, so the GB.3 barrier remains relevant. The selected fixed cover's
 rational-point set is also still unknown. No uniform global contradiction
 or finite reduction of the numerical twist labels has been proved.
 
+## Arithmetic continuation, 2026-09-14
+
+The [arithmetic-descent audit](arithmetic-descent-audit.md) resumes that
+target from 7ab300b. Its new results are local to the corner-label-1 branch:
+
+- AD.1, **PROVEN:** an exact divisor model r,s dividing n^2, with five
+  square equations retaining the center and all four sides. Positivity,
+  distinctness and gcd(n,y,w)=1 complete the reconstruction conditions.
+  Fixed n gives finitely many divisor inputs and 2m^2<=n^4+1; n itself
+  remains unbounded. A positive, distinct five-square control at
+  n=399,m=4225 shows that the corner equations do not imply the side
+  conditions; all four sides fail there.
+- AD.2, **PROVEN:** a homogeneous linear root formula centered at n,
+  satisfying the full equations identically, has constant projective
+  shape. The certificate is the exact Gram matrix 128*I_9 of signed
+  all-equal n=0 boundary points. Constant shape does not mean all entries
+  equal, and does not exclude a possible constant MSS3 solution.
+- AD.3, **PROVEN with an exact finite certificate:** quadratic output
+  roots with center nD, D linear, all have a common factor n modulo the
+  defining quadrics. Quadratic-over-linear formulas centered at n reduce
+  projectively to linear ones, so the apparent scale cancels on primitive
+  normalization. The boundary evaluation kernel has dimension seven:
+  exactly the six magic quadrics and ai+cg. The restrictions do not
+  cover higher-degree or arithmetic-subset constructions.
+
+Resume from the five square equations of AD.1. A nonlinear correspondence
+must preserve them, stay in a branch where it can be iterated, and decrease
+the primitive integer invariant after clearing denominators. Alternatively,
+a uniform exclusion of that divisor system would settle this branch.
+Neither is known; the other corner labels still need a universal argument.
+No new MSS3 or campaign exclusion has been made.
+
 ## Reproduce
 
 ```text
@@ -125,6 +157,8 @@ python -m compute.global_obstruction_probe --boundary-certificate
 python -m compute.universal_twist_probe --precision 8
 python -m compute.coupled_cycle_probe
 python -m compute.formal_boundary_probe
+python -m compute.arithmetic_descent_probe
+python -m verify --only ard.
 python -m verify --only fdb.
 python -m verify --only cce.
 python -m verify --only ut.
@@ -178,6 +212,17 @@ smaller-integer identities. The first local test attempted to lift the
 untwisted three-sum cover on too large a canonical neighborhood; it now
 uses u=2^e,v=3*2^e with e>=5 and retains e=3 as a negative control.
 The cited lifting and formal-lemma theorems are not replaced by these checks.
+
+The arithmetic continuation adds six ard checks (254 registered total).
+All six ard, five fdb, five cce, five ut, eleven gb and two gauntlet
+checks passed at FULL bounds during this continuation: 34 targeted checks.
+The new certificates include exact divisor identities, 179 canonical AP
+round-trips, the positive five-square control, the rank-nine linear
+boundary matrix, and 384 real algebraic boundary points yielding 284
+rational quadratic-evaluation rows of rank 38. Five rescalings of an
+unequal AP grid verify the constant-shape and primitive-normalization
+distinction. The standalone probe also ran successfully. This was not a
+replay of the complete verification suite.
 
 Optional PARI diagnostic, using the actual executable rather than the
 PowerShell `gp` alias:

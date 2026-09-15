@@ -245,7 +245,12 @@ Thus the smaller number need not even satisfy the existing necessary
 prime condition for a primitive center. A construction would have to
 account for normalization and degeneracies, not silently reuse n.
 
-This is the next concrete target within the cover track. The other
+This was the next concrete target at this checkpoint. The later
+[arithmetic-descent audit](arithmetic-descent-audit.md) gives a complete
+divisor reformulation with all four side tests retained, and shows that
+linear formulas centered at n have constant projective shape. Quadratic
+numerators over a linear denominator also reduce to linear formulas
+after cancelling a common factor. No decreasing map is obtained. The other
 corner classes remain unbounded and would also require a universal
 argument. Neither the smaller integer nor this case split proves MSS3.
 

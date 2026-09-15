@@ -34,14 +34,21 @@ lifting theorem, combined with Harari's formal lemma, leaves a surviving
 twist after any fixed finite torsor/finite-Brauer step. Adding another
 finite cover alone cannot complete that universal proof template.
 
-Resume with arithmetic on the surviving branch. When the corner label is
-1, n^2=(ai+cg)/2 is a positive odd integer square with n<m. Determine
-whether all nine equations permit a transformation producing another
-admissible grid with a smaller integer invariant. No such transformation
-is known; replacing the center alone fails. The nontrivial corner classes
-also remain unbounded. An alternative integral or height restriction must
-be justified for every candidate in its scope. No global contradiction
-is established.
+The [arithmetic continuation](docs/research/arithmetic-descent-audit.md)
+now gives an exact divisor model for the corner-label-1 branch:
+n^2=(ai+cg)/2, with r,s dividing n^2, and five retained square tests for
+the center and four sides. It also proves that a homogeneous linear
+formula centered at n has constant projective shape. Quadratic
+numerators over a common linear denominator reduce projectively to a
+linear formula; the apparent n scale cancels on primitive normalization.
+These are restrictions on constructions, not exclusions of solutions.
+
+Resume with a nonlinear correspondence preserving all five divisor-model
+square tests and a strictly decreasing primitive integer invariant, or
+a uniform arithmetic exclusion of that system. No such construction or
+exclusion is known. The nontrivial corner labels remain unbounded and
+need a universal argument as well. Any alternative integral or height
+restriction must be justified for every candidate in its scope.
 See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
 
 ## Workspace
