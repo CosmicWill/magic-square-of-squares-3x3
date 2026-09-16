@@ -6767,6 +6767,192 @@ def _(ctx):
              "no map over Q to a curve of genus 1 or 2 (witness primes %s)" % (n_members, n_comp, n_poly, "; ".join("%s: %s" % (f_, ",".join(str(v) for v in sorted(set(F_["witness"].values())))) for f_, F_ in sorted(T["families"].items()))))
 
 
+@check("a3.open_census_143", DOC)
+def _(ctx):
+    """THE CENSUS OF THE OPEN CLASSES (entry 143; ROADMAP R.16;
+    compute/data_open_census_143.json; compute/qc/magma_tower143.m).  For
+    each of the 256 open classes the entry-140 records (every endpoint of
+    every finite component on every live frame) give, per frame, the
+    smallest endpoint genus reachable by ALL its components; the best frame
+    minimises it.  By that measure: genus 0 (rational curves) 24, genus 1
+    (three rank-1 elliptic curves) 16, genus 2 (A139 rank 3: 16 classes,
+    D139 rank 3: 8, I139 rank 2-3: 8) 32, genus 3 40, genus 4 24, genus 5
+    32, no endpoint at all 88.  E140 and F140 touch no open class.  The 64
+    classes reaching genus 3 or 4 are covered by FIVE hyperelliptic curves
+    R1-R5 (three of genus 3 for the 40 (2,1,1) classes, two of genus 4 for
+    the 24 (3,1,1) classes), extracted with the module's analyse and the
+    classical quotients of its route models; R3 and R5 are even in x and
+    split further (R3: an elliptic curve of rank 3 and a genus-2 curve; R5:
+    two genus-2 curves).  The Magma programme magma_tower143.m (prepared, not
+    run) carries their rank bounds and the analytic ranks of the three
+    blocking genus-2 curves.  Verifies: the tallies and the open set against
+    the ledgers, the status and best-genus distributions re-derived from the
+    entry-140 records, the classes touching each undecided genus-2 curve
+    (by the normal forms of the recorded cores), the five curves' classes
+    open and the cover complete, a sample of covering curves re-derived from
+    the module (all in full mode), the even splittings, the programme's
+    hash and block list."""
+    import gzip, json, hashlib
+    from collections import Counter
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import frame_factors
+    from compute import symmetry_tower as ST
+    with open(os.path.join(DATA, "data_open_census_143.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    with open(os.path.join(DATA, "data_symmetry_tower_frames_140.json"), encoding="utf-8") as fh:
+        T140 = json.load(fh)
+    require(T["entry"] == 143 and T["n_open"] == 256 and len(T["classes"]) == 256, "the data file")
+    led = {}
+    for box, path in (("211", "data_omega3_box211.json.gz"), ("311", "data_omega3_box311.json.gz")):
+        with gzip.open(os.path.join(DATA, path), "rt", encoding="utf-8") as fh:
+            led[box] = json.load(fh)
+        require(T["tallies"][box] == {"dead": led[box]["tally"]["dead"], "finite": led[box]["tally"]["finite"]}, (box, "the tally"))
+    open_set = {(box, r["index"]) for box in ("211", "311") for r in T140["boxes"][box]["classes"] if led[box]["classes"][r["index"]]["v"] == "finite"}
+    require({(c["box"], c["index"]) for c in T["classes"]} == open_set and len(open_set) == 256, "the open set = the open entry-140 records")
+
+    def normal(core_str):
+        expr = sp.sympify(core_str)
+        var = next(iter(expr.free_symbols))
+        P = sp.Poly(expr, var)
+        c0 = [sp.Rational(c) for c in P.all_coeffs()]
+        den = 1
+        for c in c0:
+            den = sp.ilcm(den, c.q)
+        c0 = [sp.Integer(c * den ** 2) for c in c0]
+        g_ = 0
+        for c in c0:
+            g_ = sp.igcd(g_, int(c))
+        sq = 1
+        for p_, e_ in sp.factorint(g_).items():
+            sq *= p_ ** (2 * (e_ // 2))
+        return [int(c // sq) for c in c0]
+
+    def rev(cs, n):
+        cs7 = [0] * (n - len(cs)) + list(cs)
+        rc = cs7[::-1]
+        while len(rc) > 1 and rc[0] == 0:
+            rc.pop(0)
+        return rc
+
+    def hgnormal(core_str):
+        cs = normal(core_str)
+        deg_even = len(cs) - 1 if (len(cs) - 1) % 2 == 0 else len(cs)
+        return min(cs, rev(cs, deg_even + 1))
+    G2 = {k: v["coefficients"] for k, v in T["undecided_genus2_curves"].items()}
+    # re-derive the best-endpoint-genus distribution, the status by box and the classes touching each undecided curve
+    diff = Counter()
+    status = Counter()
+    touch = {k: set() for k in G2}
+    order = {"G2-hinge": 0, "mixed": 1, "elliptic": 2, "no-route": 3, "no-finite-components": 4, "dead": 5}
+    for box in ("211", "311"):
+        for r in T140["boxes"][box]["classes"]:
+            if (box, r["index"]) not in open_set:
+                continue
+            best = None
+            ftypes = []
+            for f, fr in r["frames"].items():
+                if fr["status"] == "dead":
+                    ftypes.append("dead")
+                    continue
+                comps = [cc for cc in fr["components"] if cc["engine"] == "finite"]
+                if not comps:
+                    ftypes.append("no-finite-components")
+                    continue
+                worst = 0
+                kinds_all = []
+                for cc in comps:
+                    degs = [ep["degree"] for ep in (cc.get("endpoints") or []) if ep.get("degree")]
+                    m = min(degs) if degs else None
+                    if m is None:
+                        worst = None
+                    elif worst is not None:
+                        worst = max(worst, m)
+                    kinds = set()
+                    for ep in cc.get("endpoints") or []:
+                        if ep.get("degree") in (3, 4):
+                            kinds.add("E")
+                        elif ep.get("degree") in (5, 6) and ep.get("core"):
+                            n = normal(ep["core"])
+                            nm = next((k for k, cs in G2.items() if n == cs or n == rev(cs, 7)), None)
+                            if ep.get("known"):
+                                kinds.add("G2decided")
+                            elif nm:
+                                kinds.add("G2open")
+                                touch[nm].add((box, r["index"]))
+                            else:
+                                kinds.add("G2other")
+                    kinds_all.append(kinds)
+                if worst is not None and (best is None or worst < best):
+                    best = worst
+                if any(not k for k in kinds_all):
+                    ftypes.append("no-route")
+                elif all("G2open" in k for k in kinds_all):
+                    ftypes.append("G2-hinge")
+                elif all(k == {"E"} for k in kinds_all):
+                    ftypes.append("elliptic")
+                else:
+                    ftypes.append("mixed")
+            diff[(box, "none" if best is None else "degree %d (genus %d)" % (best, (best - 1) // 2))] += 1
+            status["%s:%s" % (box, min(ftypes, key=lambda t: order[t]))] += 1
+            rec = next(c for c in T["classes"] if c["box"] == box and c["index"] == r["index"])
+            require(rec["best_endpoint_degree"] == best, (box, r["index"], "the best endpoint degree"))
+    require({b: dict(v) for b, v in T["best_endpoint_genus_by_box"].items()} == {b: {k: n for (bb, k), n in diff.items() if bb == b} for b in ("211", "311")}, ("the best-genus distribution", dict(diff)))
+    require(dict(status) == T["status_by_box"], ("the status by box", dict(status)))
+    require({k: len(v) for k, v in touch.items()} == {k: v["n_classes"] for k, v in T["undecided_genus2_curves"].items()} == {"A139": 16, "D139/B140": 8, "I139/C140": 8, "E140": 0, "F140": 0}, ("the classes touching each undecided curve", {k: len(v) for k, v in touch.items()}))
+    require(T["best_endpoint_genus_by_box"]["211"] == {"degree 6 (genus 2)": 16, "degree 8 (genus 3)": 40, "none": 76} and T["best_endpoint_genus_by_box"]["311"]["none"] == 12 and T["best_endpoint_genus_by_box"]["311"]["degree 10 (genus 4)"] == 24, "the pinned distribution")
+    # the five higher-genus curves: classes open, the cover complete, the even splittings
+    H = T["higher_genus"]
+    cover = [list(k) for k in H["cover"]["211_genus_le_3"]["curves"]] + [list(k) for k in H["cover"]["311_genus_le_4"]["curves"]]
+    require(len(H["cover"]["211_genus_le_3"]["curves"]) == 3 and H["cover"]["211_genus_le_3"]["n_classes"] == 40 and len(H["cover"]["311_genus_le_4"]["curves"]) == 2 and H["cover"]["311_genus_le_4"]["n_classes"] == 24
+            and H["n_targets"] == 64 == len(H["classes_covered"]), "the five-curve cover")
+    targets = {(c["box"], c["index"]) for c in T["classes"] if c["best_endpoint_degree"] in (7, 8, 9, 10)}
+    require({(c["box"], c["index"]) for c in H["classes_covered"]} == targets, "the covered classes are the genus-3/4 targets")
+    for cv in H["curves"]:
+        require(all(tuple(x) in open_set for x in map(tuple, cv["classes"])) and cv["n_classes"] == len(cv["classes"]) and (cv["degree"] - 1) // 2 == cv["genus"], (cv["normal"], "an open class list"))
+        require(hgnormal(cv["core_example"]) == cv["normal"], (cv["normal"], "the normal form of the example core"))
+    for c in H["classes_covered"]:
+        require(c["components"] and all(cp["covering_curve"] in cover for cp in c["components"]), (c["box"], c["index"], "every component covered"))
+    x, t = sp.symbols("x t")
+    R3 = x ** 8 - 57 * x ** 6 + 596 * x ** 4 - 688 * x ** 2 + 192
+    R5 = x ** 10 - 112 * x ** 8 + 2400 * x ** 6 - 6912 * x ** 4 - 3840 * x ** 2 + 16384
+    require([1, 0, -57, 0, 596, 0, -688, 0, 192] in cover and [1, 0, -112, 0, 2400, 0, -6912, 0, -3840, 0, 16384] in cover, "R3, R5 in the cover")
+    require(sp.expand(R3.subs(x, sp.sqrt(t)) - (t ** 4 - 57 * t ** 3 + 596 * t ** 2 - 688 * t + 192)) == 0 and sp.expand(R5.subs(x, sp.sqrt(t)) - (t ** 5 - 112 * t ** 4 + 2400 * t ** 3 - 6912 * t ** 2 - 3840 * t + 16384)) == 0, "the even quotients")
+    # the programme
+    with open(os.path.join(DATA, "qc", "magma_tower143.m"), encoding="utf-8") as fh:
+        ma = fh.read()
+    require(hashlib.sha256(ma.encode()).hexdigest() == T["magma_programme"]["sha256"] and [l.split(":")[0].replace("// ===== ", "") for l in ma.splitlines() if l.startswith("// ===== block")] == T["magma_programme"]["blocks"]
+            and T["magma_programme"]["blocks"] == ["block L1", "block L2", "block L3", "block R1", "block R2", "block R3", "block R4", "block R5", "block G1", "block G2", "block G3"], "the Magma programme")
+    # a sample of covering curves re-derived from the module: the classical quotients of the routes' hyperelliptic models
+    n_ver = 0
+    sample = H["classes_covered"] if ctx.bound(full=1, fast=0) else [next(c for c in H["classes_covered"] if c["box"] == "211"), next(c for c in H["classes_covered"] if c["box"] == "311")]
+    for c in sample:
+        box = c["box"]
+        O.set_box({"211": (2, 1, 1), "311": (3, 1, 1)}[box])
+        cl = led[box]["classes"][c["index"]]
+        cand = json.loads(cl["cand"]) if isinstance(cl["cand"], str) else cl["cand"]
+        cand = tuple(tuple(v) for v in cand[:4]) + tuple(cand[4:])
+        curves, live = frame_factors(cand, c["frame"])
+        fin = [(phi, dg, dh) for phi, dg, dh in curves if O.decide_component(phi, dg, dh, cand, c["frame"])[0] == "finite"]
+        require(sorted([dg, dh] for _, dg, dh in fin) == sorted(cp["deg"] for cp in c["components"]), (box, c["index"], "the finite components"))
+        for phi, dg, dh in fin:
+            cp = next(cp for cp in c["components"] if cp["deg"] == [dg, dh])
+            s_ = ST.analyse(phi.subs({O.tg: ST.g, O.th: ST.h}), want_all=True)
+            forms = set()
+            for r_ in s_["routes"]:
+                if not r_.get("core"):
+                    continue
+                core = sp.sympify(r_["core"])
+                o = next(iter(core.free_symbols))
+                forms.add(tuple(hgnormal(str(core))))
+                for name, Pq, var, stc in ST.classical_quotients(core, o):
+                    if sp.Poly(Pq, var).degree() <= 10:
+                        forms.add(tuple(hgnormal(str(sp.Poly(Pq, var).as_expr()))))
+            require(tuple(cp["covering_curve"]) in forms, (box, c["index"], [dg, dh], "the covering curve is a classical quotient of a route model"))
+            n_ver += 1
+    ctx.note("entry 143: 256 open classes classified (%s); five higher-genus curves cover 64; %d covering curves re-derived from the module" % (", ".join("%s %d" % kv for kv in sorted(T["status_by_box"].items())), n_ver))
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

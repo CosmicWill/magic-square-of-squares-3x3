@@ -7359,3 +7359,75 @@ L-polynomial from the recorded place counts and every quotient from the
 module. Tallies unchanged: (2,1,1) 79236 / 132, (3,1,1) 288759 / 124; 256 open; the
 route-less 88 now split 16 (proven beyond every quotient through genus
 <= 2) + 72 (larger components, untested).
+
+## 2026-09-15 — Entry 143: THE CENSUS OF THE OPEN CLASSES — what each of the 256 waits on; five hyperelliptic curves of genus 3–4 cover 64 of them; the Magma programme prepared; the review (ROADMAP R.16)
+
+THE QUESTION. After entry 142 the user asked for a list of what the Magma
+calculator can still do and for a review of the state of the research.
+Both need one fact the log had only in pieces: for every open class, what
+would decide it. The entry-140 records hold every endpoint (any degree)
+of every finite component on every live frame of every open class, so the
+census is a pure re-reading of recorded data (scratch open_census143.py,
+hg_extract.py, hg_aggregate.py; compute/data_open_census_143.json).
+
+THE MEASURE. A frame kills a class only if every finite component dies,
+and a component dies through an endpoint with finitely many known points.
+So for each live frame take the smallest endpoint genus reachable by ALL
+its components (none if some component has no endpoint), and for each
+class the best frame. Genus 0 is a rational curve (useless), genus 1 a
+positive-rank elliptic curve (the rank-0 ones killed already), genus 2 one
+of the undecided curves, genus >= 3 a hyperelliptic model beyond the
+tower's decision tools but not beyond Chabauty–Coleman.
+
+THE CENSUS (132 + 124 = 256 open classes).
+  (2,1,1): genus 2 (A139, rank 3) 16; genus 3 40; no endpoint 76.
+  (3,1,1): genus 0 24; genus 1 (three rank-1 elliptic curves and their
+  reciprocals: -8y^3 + 33y^2 + 6y + 1, y^4 - 16y^3 + 126y^2 + 80y + 1,
+  y^4 - 80y^3 + 126y^2 + 16y + 1) 16; genus 2 (D139 = B140, rank 3: 8;
+  I139 = C140, rank 2 or 3: 8) 16; genus 4 24; genus 5 32; no endpoint 12.
+  E140 and F140 touch no open class: their eight classes died with D140 in
+  entry 141. The 88 with no endpoint are the route-less classes of entry
+  140; sixteen of them are the entry-142 families.
+
+THE FIVE CURVES. For the 64 classes reaching genus 3 or 4 the endpoint
+models (cores are recorded only to degree 6, so the module's analyse was
+re-run with cores kept to degree 12 on every finite component of the best
+frame) were normalised (primitive, square content removed, reciprocals
+merged) and covered greedily: THREE genus-3 curves cover all 40 (2,1,1)
+classes and TWO genus-4 curves all 24 (3,1,1) classes, every component of
+every best frame reaching one of them:
+  R1: y^2 = 1 x^8 + 124 x^7 - 1428 x^6 + 3220 x^5 + 7614 x^4 - 9500 x^3 + 3516 x^2 - 500 x + 25  (genus 3; 16 classes of the (2,1,1) box)
+  R2: y^2 = 1 x^8 - 296 x^7 + 5564 x^6 - 20952 x^5 + 24582 x^4 - 11800 x^3 + 2236 x^2 - 104 x + 1  (genus 3; 16 classes of the (2,1,1) box)
+  R3: y^2 = 1 x^8 - 57 x^6 + 596 x^4 - 688 x^2 + 192  (genus 3; 8 classes of the (2,1,1) box)
+  R4: y^2 = 1 x^10 + 370 x^9 - 11515 x^8 + 101912 x^7 - 125518 x^6 - 356820 x^5 + 684194 x^4 - 218728 x^3 + 26765 x^2 - 1358 x + 25  (genus 4; 16 classes of the (3,1,1) box)
+  R5: y^2 = 1 x^10 - 112 x^8 + 2400 x^6 - 6912 x^4 - 3840 x^2 + 16384  (genus 4; 8 classes of the (3,1,1) box)
+R3 and R5 are even in x and split one level further (the tower applies
+the classical quotients once): R3's even quotient y^2 = t^4 - 57t^3 +
+596t^2 - 688t + 192 is an elliptic curve of rank 3 (PARI: conductor
+33424, no torsion — useless), its odd companion w^2 = t f(t) has genus 2;
+R5's even quotient y^2 = t^5 - 112t^4 + 2400t^3 - 6912t^2 - 3840t +
+16384 and odd companion w^2 = t g(t) both have genus 2. A piece with
+finitely many known points determines the x-coordinates of R3 or R5 up to
+sign; folding such a verdict needs a second-level quotient in the module
+(entry 144 if the arithmetic pays).
+
+THE MAGMA PROGRAMME (compute/qc/magma_tower143.m, eleven blocks, prepared,
+not run): L1–L3 the analytic ranks of A139, D139, I139 (heuristic: rank
+3 > genus leaves no Chabauty method, rank 2 = genus leaves quadratic
+Chabauty) and the Euler factors of D139 against I139 (same conductor
+663087); R1–R5 the 2-descent rank bounds of the five curves (a bound
+below the genus makes Chabauty–Coleman possible with the
+Balakrishnan–Tuitman package on a licensed Magma; a bound of 0 decides the
+curve outright); G1–G3 the standard genus-2 blocks for the three derived
+pieces. Everything else the calculator used to do — genera, quotients,
+point counts, L-polynomials — runs locally (Sage, PARI) since entry 142.
+PARI's genus2red puts the blocking genus-2 curves outside the LMFDB's
+range (entry 142), so no database route exists for them.
+
+THE REVIEW is ROADMAP R.16: what is proven, what the open set waits on,
+the paths, the tools, the recommendation. Check a3.open_census_143 (suite
+225) re-derives the distributions from the entry-140 records and the
+ledgers, the classes touching each undecided curve, the cover, a sample
+of covering curves from the module (all in full mode), the even
+splittings and the programme's hash. Tallies unchanged: (2,1,1) 79236 / 132,
+(3,1,1) 288759 / 124.
