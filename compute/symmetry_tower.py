@@ -57,6 +57,15 @@ KNOWN_GENUS2 = {
 # (entry 143).  Even in x: its odd companion w^2 = t f(t), t = x^2 (block G1 of compute/qc/magma_tower143.m) has rank 0 and J(Q) =
 # Z/2 + Z/2 proved (Magma), hence exactly the three points oo, (0,0), (12,0); t = 0 gives y^2 = 192 (not a square), t = 12 gives
 # x^2 = 12 (irrational): R3(Q) = its two points at infinity (leading coefficient 1).
+# The largest endpoint degree whose model is written into the endpoint record (entry 140: 6, the atlas of genus <= 2 endpoints;
+# compute/second_level_census.py sets it to 100 to feed the recursive classical quotients of entry 145).
+CORE_RECORD_DEGREE = 6
+# The depth of the classical quotients (entry 146): 1 = the tower of entries 138-144 (one level); the census of entry 145 found that
+# iterating them (even, odd companion, reciprocal, reciprocal twist on the quotients themselves) reaches genus-2 curves for sixteen
+# open classes at level 3.  Deeper endpoints get fresh variable names per level; their twist roots are pulled back through the
+# composed maps of their own variables.
+CLASSICAL_DEPTH = 4
+
 KNOWN_HYPERELLIPTIC = {
     "R3_143": ([1, 0, -57, 0, 596, 0, -688, 0, 192], [], "entry 144 (Magma block G1 of magma_tower143.m: the odd companion has rank 0 and J(Q) = Z/2 + Z/2 proved; R3(Q) = the two points at infinity)"),
 }
@@ -553,13 +562,52 @@ def analyse(phi, want_all=False):
                         w_ = var
                         tw2["roots"] = list(tw["roots"]) + [o0 for w0 in rational_roots(sp.expand(w_ ** 2 - 4 * stc["kappa"]), w_) for o0 in rational_roots(sp.expand(hm["o"] ** 2 - w0 * hm["o"] + stc["kappa"]), hm["o"])]
                     endpoints.append((tlabel + " -> " + name, steps + [stc], curves + [yvar ** 2 - Pq], Pq, var, yvar, tw2))
+        # the deeper levels of the classical quotients (entry 146; the census of entry 145): every endpoint whose last step is a
+        # classical quotient and whose degree exceeds 6 is quotiented again, up to CLASSICAL_DEPTH levels
+        frontier = [ep for ep in endpoints if ep[1] and ep[1][-1].get("kind") in ("even", "odd", "reciprocal")]
+        seen_deep = {(ep[0], sp.Poly(ep[3], ep[4]).degree()) for ep in endpoints}
+        level = 2
+        while frontier and level <= CLASSICAL_DEPTH:
+            nxt = []
+            for elabel, esteps, ecurves, core, var, yvar, tw in frontier:
+                if sp.Poly(core, var).degree() <= 6:
+                    continue
+                omap_prev = endpoint_variable(esteps, var)
+                pulls_prev = (list(tw.get("pulls", [])) + [(tw["omap"], r) for r in tw.get("roots", [])]) if tw else []
+                for name, Pq, var2, stc in classical_quotients(core, var):
+                    key = (elabel + " -> " + name, sp.Poly(Pq, var2).degree())
+                    if key in seen_deep:
+                        continue
+                    seen_deep.add(key)
+                    # fresh names per level: the quotient's variable var2 (z or w) and its y-variable become var2<level>, y<level>
+                    fvar = sp.Symbol(str(var2) + str(level))
+                    fy = sp.Symbol("y" + str(level) + ("t" if stc.get("twist") else "") + name[0])
+                    yprev = yvar
+                    ren = {var2: fvar, stc["new"][1]: fy, yy: yprev}
+                    stc2 = dict(stc, old=(var, yprev), new=(fvar, fy), relations=[sp.sympify(r).subs(ren, simultaneous=True) for r in stc["relations"]])
+                    Pq2 = sp.expand(Pq.subs(var2, fvar))
+                    roots = []
+                    if name == "odd":
+                        roots = [sp.Integer(0)]
+                    elif stc.get("twist"):
+                        roots = [o0 for w0 in rational_roots(sp.expand(var2 ** 2 - 4 * stc["kappa"]), var2) for o0 in rational_roots(sp.expand(var ** 2 - w0 * var + stc["kappa"]), var)]
+                    tw2 = {"factors": list(tw.get("factors", []) if tw else []) + (["z"] if name == "odd" else ([stc["twist"]] if stc.get("twist") else [])),
+                           "kinds": sorted(set(tw.get("kinds", []) if tw else []) | ({"rational"} if (name == "odd" or stc.get("twist")) else set())),
+                           "roots": roots, "omap": omap_prev, "pulls": pulls_prev, "level": level}
+                    ep2 = (elabel + " -> " + name, esteps + [stc2], ecurves + [fy ** 2 - Pq2], Pq2, fvar, fy, tw2)
+                    endpoints.append(ep2)
+                    nxt.append(ep2)
+            frontier = nxt
+            level += 1
         for elabel, esteps, ecurves, core, var, yvar, tw in endpoints:
             deg = sp.Poly(core, var).degree()
             e = {"endpoint": elabel, "degree": deg}
+            if tw and tw.get("level"):
+                e["level"] = tw["level"]
             if tw:
-                e["twist"] = {"factors": tw["factors"], "kinds": tw["kinds"], "roots": [str(r) for r in tw.get("roots", [])]}
-            if deg <= 6:
-                e["core"] = str(sp.Poly(core, var).as_expr())      # the endpoint's model, for the atlas (entry 140)
+                e["twist"] = {"factors": tw["factors"], "kinds": tw["kinds"], "roots": [str(r) for r in tw.get("roots", [])], "pulls": [str(r) for _, r in tw.get("pulls", [])]}
+            if deg <= CORE_RECORD_DEGREE:
+                e["core"] = str(sp.Poly(core, var).as_expr())      # the endpoint's model, for the atlas (entry 140; the census of entry 145 raises the bound)
             values = None
             if deg in (3, 4):
                 coeffs = [int(c) for c in sp.Poly(core, var).all_coeffs()] if all(sp.Rational(c).is_integer for c in sp.Poly(core, var).all_coeffs()) else None
@@ -596,6 +644,17 @@ def analyse(phi, want_all=False):
                     for o0 in sorted(set(tw["roots"]), key=str):
                         pts = fiber_points(phi, tw["omap"], o0)
                         key = "root " + str(o0)
+                        if pts is None:
+                            fib[key] = "infinite"
+                            ok = False
+                            break
+                        fib[key] = [(str(a), str(b)) for a, b in pts]
+                        lifts += pts
+                # the twist roots of the earlier levels of a chain (entry 146), through the composed maps of their own variables
+                if ok and tw and tw.get("pulls"):
+                    for omap2, o0 in tw["pulls"]:
+                        pts = fiber_points(phi, omap2, o0)
+                        key = "pull " + str(o0)
                         if pts is None:
                             fib[key] = "infinite"
                             ok = False

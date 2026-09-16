@@ -1,0 +1,55 @@
+Magma online calculator output for compute/qc/magma_tower145.m (run by the user, 2026-09-16), verbatim.
+
+block T5: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (0 : -256 :
+1), (0 : 256 : 1), (-4 : 0 : 1), (4 : -4096 : 3), (4 : 4096 : 3), (12 : -4096 :
+1), (12 : 4096 : 1) @}
+rank bounds: 2 2
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+Reading.  T5: y^2 = (z + 4) G2(z) (the even quotient of the rationality twist of R5's reciprocal model; the second-level quotient
+census of entry 145) has rank exactly 2 (the bounds meet), trivial torsion and nine small points -- rank = genus, no classical
+Chabauty.  It is the LMFDB curve 230224.a.920896.1 (equal Igusa-Clebsch invariants; there: Mordell-Weil rank 2 proved, analytic
+rank 2, nine known points, completeness unknown), and Magma's bounds confirm the rank on our model itself (a twist could have
+differed).  With G2 (rank 3) and G3 (rank 2) this closes every genus-2 piece of R5's family: the second-level path yields no
+decidable curve.
+
+block U1: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (-2 : -2048 :
+1), (-2 : 2048 : 1), (42 : -13312 : 19), (42 : 13312 : 19) @}
+rank bounds: 0 4
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+block U2: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (-4 : -2048 :
+1), (-4 : 2048 : 1), (4 : -13312 : 19), (4 : 13312 : 19) @}
+rank bounds: 1 4
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+Reading (blocks U1, U2: the level-3 endpoints of the U family, 281716-281719 and 282105-282108).  Six rational points each (the
+four affine ones PARI found and the two at infinity), trivial torsion, rank bounds 0 4 (U1) and 1 4 (U2): the 2-descent bound is
+4 on both (sextic models without a rational Weierstrass point), the lower bound 1 comes from U2's points.  The two curves have the
+same conductor 5 * 13 * 1490039 and reach the same frames through commuting chains, so they are presumably isomorphic and share a
+rank between 1 and 4.  UNDECIDED: neither closed by rank nor decidable by the calculator's 2-descent; a rank bound of 1 (a
+Richelot-isogenous Jacobian, or a licensed Magma's sharper descent) would make Chabauty and the dry-run kill of all eight classes
+available.  Follow-up: block U1b.
+
+block U1b: U1 isomorphic to U2 over Q: true
+2-Selmer group of J(U1):
+Abelian Group isomorphic to Z/2 + Z/2 + Z/2 + Z/2
+Defined on 4 generators
+Relations:
+    2*S.1 = 0
+    2*S.2 = 0
+    2*S.3 = 0
+    2*S.4 = 0
+Richelot-isogenous surfaces: 0
+
+Reading (block U1b).  U1 and U2 are one curve over Q (the two level-3 chains commute); its 2-Selmer group is (Z/2)^4, so the
+2-descent bound is 4 with no rational 2-torsion to subtract, and there is no Richelot-isogenous surface to try a smaller bound on.
+The rank is between 1 (U2's point of infinite order) and 4.  UNDECIDED by the calculator: a rank bound of 1 would need a sharper
+descent (Cassels-Tate on the Selmer group, a 4-descent) or an analytic rank, both beyond the calculator; then Chabauty and the
+dry-run kill of the eight classes would follow.  Entry 145 records the family as undecided.

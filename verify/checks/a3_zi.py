@@ -7060,6 +7060,137 @@ def _(ctx):
              + str(T["boxes"]["211"]["n_killed"]) + " dead; " + str(n_ver) + " kills re-derived with the module")
 
 
+@check("a3.second_level_census_145", DOC)
+def _(ctx):
+    """THE SECOND-LEVEL QUOTIENT CENSUS AND THE CHAINED CLASSICAL QUOTIENTS
+    (entry 145; doc 2.68; compute/second_level_census.py; compute/symmetry_tower.py
+    CLASSICAL_DEPTH; compute/data_second_level_census_145.json;
+    compute/qc/magma_tower145.m and its transcript).  The tower applied the
+    classical quotients once; R3 (entry 144) fell to a second application.
+    The census applied them recursively (levels 2-4) to every level-1
+    endpoint core of every finite component of every live frame of the 248
+    open classes: sixteen (3,1,1) classes gain a genus-2 endpoint at level
+    3 -- R5's eight through G2 (rank 3), G3 (rank 2) and T5 = (z + 4) G2
+    (rank 2, the LMFDB curve 230224.a.920896.1), all closed by rank, and
+    eight more through two new curves U1, U2 (the data file records Magma's
+    verdicts and, if they were decided, the fold).  The module now chains
+    the quotients to depth 4 with the twist roots of every level pulled
+    back through their own composed maps.  Verifies the data file against
+    the ledger, the pinned outcomes and the recorded frame degrees, the five
+    curves, T5's identity and discriminant, the transcripts, the module's
+    constants, the level-3 endpoints U1/U2 re-derived from the installed
+    module on the family's first class (all in full mode), and the fold when
+    present (every kill through a decided curve, no admissible lift, finite
+    fibers, re-derived with the module)."""
+    import gzip, json, hashlib
+    from collections import Counter
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import frame_factors
+    from compute import symmetry_tower as ST
+    with open(os.path.join(DATA, "data_second_level_census_145.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    require(T["entry"] == 145 and T["n_open"] == 248 and len(T["classes"]) == 248 and ST.CORE_RECORD_DEGREE == 6 and ST.CLASSICAL_DEPTH == 4, "the data file / the module constants")
+    led = {}
+    for box, path in (("211", "data_omega3_box211.json.gz"), ("311", "data_omega3_box311.json.gz")):
+        with gzip.open(os.path.join(DATA, path), "rt", encoding="utf-8") as fh:
+            led[box] = json.load(fh)
+        require(T["tallies_before"][box] == {"211": {"dead": 79244, "finite": 124}, "311": {"dead": 288759, "finite": 124}}[box], (box, "the tally before entry 145"))
+        require(led[box]["tally"]["dead"] >= T["tallies_before"][box]["dead"] and led[box]["tally"]["finite"] <= T["tallies_before"][box]["finite"], (box, "the ledger has only moved forward"))
+    for c in T["classes"]:
+        cl = led[c["box"]]["classes"][c["index"]]
+        require(cl["v"] == "finite" or (cl["v"] == "dead" and cl.get("stf", {}).get("entry", 0) >= 145), (c["box"], c["index"], "open before entry 145"))
+    by = Counter((c["box"], c["outcome"]) for c in T["classes"])
+    require({"%s | %s" % k: v for k, v in by.items()} == T["by_outcome"], ("the outcome distribution", dict(by)))
+    require(T["by_outcome"] == {"211 | genus<=2 at level 1": 16, "211 | no genus<=2 endpoint at any level": 108,
+                                "311 | gains genus<=2 at a deeper level": 16, "311 | genus<=2 at level 1": 56, "311 | no genus<=2 endpoint at any level": 52}, ("the pinned outcomes", T["by_outcome"]))
+    for c in T["classes"]:
+        l1 = [fr["frame_degree_level1"] for fr in c["frames"].values() if fr.get("frame_degree_level1") is not None]
+        la = [fr["frame_degree_any_level"] for fr in c["frames"].values() if fr.get("frame_degree_any_level") is not None]
+        b1 = min(l1) if l1 else None
+        ba = min(la) if la else None
+        require(b1 == c["best_degree_level1"] and ba == c["best_degree_any_level"], (c["box"], c["index"], "the best degrees"))
+        want = "genus<=2 at level 1" if b1 is not None and b1 <= 6 else ("gains genus<=2 at a deeper level" if ba is not None and ba <= 6 else "no genus<=2 endpoint at any level")
+        require(want == c["outcome"] and (bool(c["gaining_frames"]) == (want == "gains genus<=2 at a deeper level")), (c["box"], c["index"], "the outcome"))
+        for f, fr in c["frames"].items():
+            if "components" not in fr:
+                continue
+            m1 = [cc["min_degree_level1"] for cc in fr["components"]]
+            ma = [min([d for d in (cc["min_degree_level1"], cc["min_degree_deeper"]) if d is not None], default=None) for cc in fr["components"]]
+            require(fr["frame_degree_level1"] == (None if any(d is None for d in m1) else max(m1)) and fr["frame_degree_any_level"] == (None if any(d is None for d in ma) else max(ma)), (c["box"], c["index"], f, "the frame degrees"))
+    gaining = sorted((g["box"], g["index"]) for g in T["gaining_classes"])
+    R5 = sorted(("311", i) for i in (220302, 220303, 220304, 220305, 220306, 220307, 220308, 220309))
+    UF = sorted(("311", i) for i in (281716, 281717, 281718, 281719, 282105, 282106, 282107, 282108))
+    require(gaining == sorted(R5 + UF), ("the gaining classes", gaining))
+    z = sp.Symbol("z")
+    G2 = z ** 5 - 112 * z ** 4 + 2400 * z ** 3 - 6912 * z ** 2 - 3840 * z + 16384
+    T5c = T["families"]["R5"]["curves"]["T5"]["coefficients"]
+    T5 = sum(c * z ** (len(T5c) - 1 - i) for i, c in enumerate(T5c))
+    require(T5c == [1, -108, 1952, 2688, -31488, 1024, 65536] and sp.expand(T5 - (z + 4) * G2) == 0 and {p_: e_ for p_, e_ in sp.factorint(abs(sp.Poly(T5, z).discriminant())).items() if p_ != 2} == {14389: 1}, "T5 = (z + 4) G2, its discriminant (odd part 14389)")
+    U1c, U2c = T["families"]["U"]["curves"]["U1"]["coefficients"], T["families"]["U"]["curves"]["U2"]["coefficients"]
+    require(U1c == [1, -157, 5890, -70088, 351008, -764944, 600352] and U2c == [1, -145, 4380, -29088, 59520, -25856, 3072], "U1, U2")
+    norms = {tuple(cv["normal"]) for cv in T["new_curves"]}
+    require(norms == {(1, -112, 2400, -6912, -3840, 16384), (1, -112, 2400, -6912, -3840, 16384, 0), tuple(T5c), tuple(U1c), tuple(U2c)} and all(cv["n_classes"] == 8 for cv in T["new_curves"]), ("the five curves", norms))
+    with open(os.path.join(DATA, "qc", "magma_tower145.out.txt"), encoding="utf-8") as fh:
+        mo = fh.read()
+    require("block T5: points of height <= 10^4:" in mo and "rank bounds: 2 2" in mo and hashlib.sha256(mo.encode()).hexdigest() == T["magma"]["sha256_of_output"], "the transcript")
+    require(T["families"]["R5"]["curves"]["T5"]["lmfdb"]["label"] == "230224.a.920896.1" and T["families"]["R5"]["curves"]["T5"]["lmfdb"]["mw_rank"] == 2, "the LMFDB record as recorded")
+    for nm in ("U1", "U2"):
+        v = T["families"]["U"]["curves"][nm]["magma"]
+        require(("block %s: points of height <= 10^4:" % nm) in mo and ("rank bounds: %d %d" % tuple(v["rank_bounds"])) in mo, (nm, "the transcript"))
+    # the level-3 endpoints U1/U2 re-derived from the installed module (depth 4) on the family's classes
+    n_ver = 0
+    sample = UF if ctx.bound(full=1, fast=0) else UF[:1]
+    for box, idx in sample:
+        O.set_box((3, 1, 1))
+        cl = led[box]["classes"][idx]
+        cand = json.loads(cl["cand"]) if isinstance(cl["cand"], str) else cl["cand"]
+        cand = tuple(tuple(v) for v in cand[:4]) + tuple(cand[4:])
+        rec = next(c for c in T["classes"] if c["box"] == box and c["index"] == idx)
+        f = int(rec["gaining_frames"][0])
+        curves, live = frame_factors(cand, f)
+        found = set()
+        for phi, dg, dh in curves:
+            if O.decide_component(phi, dg, dh, cand, f)[0] != "finite":
+                continue
+            s_ = ST.analyse(phi.subs({O.tg: ST.g, O.th: ST.h}), want_all=True)
+            for r_ in s_["routes"]:
+                for ep in r_.get("endpoints", []) or []:
+                    if ep.get("level") and ep.get("degree") == 6 and ep.get("core"):
+                        core = sp.sympify(ep["core"])
+                        var = next(iter(core.free_symbols))
+                        cs = [int(c) for c in sp.Poly(core, var).all_coeffs()]
+                        if cs == U1c:
+                            found.add("U1")
+                        if cs == U2c:
+                            found.add("U2")
+        require(found == {"U1", "U2"}, (box, idx, "U1 and U2 as chained endpoints of the installed module", found))
+        n_ver += 1
+    # the fold, when the entry decided a curve
+    n_kill = 0
+    if T.get("fold"):
+        F = T["fold"]
+        for name in F["decided"]:
+            require(name in ST.KNOWN_GENUS2 and list(ST.KNOWN_GENUS2[name][0]) == F["decided"][name]["coefficients"], (name, "the known curve"))
+        d = led["311"]
+        S = d.get("symmetry_tower_frames_145")
+        require(S and S["entry"] == 145 and S["n_killed"] == F["n_killed"] and S["n_rerun"] == F["n_rerun"] == len(F["subset"]) and S["module_sha256"] == F["module_sha256"], "the ledger block")
+        killed = [c for c in d["classes"] if c.get("stf", {}).get("kind") == "symmetry tower frames" and c["stf"].get("entry") == 145]
+        require(len(killed) == F["n_killed"] and all(c["v"] == "dead" and c.get("stfb") == "finite" and c["stf"].get("rederived") for c in killed), "the kills")
+        require(sorted(F["subset"]) == [i for b, i in UF], "the subset is the U family")
+        for r in F["classes"]:
+            if r["dead_frame"] is None:
+                continue
+            fr = r["frames"][str(r["dead_frame"])]
+            require(fr["status"] == "dead" and not fr["live"] and all(cc["engine"] == "dead" or (cc["engine"] == "finite" and cc.get("kill")) for cc in fr["components"]), (r["index"], "the dead frame"))
+            for cc in fr["components"]:
+                if cc.get("kill"):
+                    k = cc["kill"]
+                    require(k["known"] in F["decided"] and k["lifts"] is not None and all(not ST.admissible((sp.Rational(a_), sp.Rational(b_))) for a_, b_ in k["lifts"]) and k.get("fibers") and "infinite" not in k["fibers"].values(), (r["index"], "the kill"))
+            n_kill += 1
+    ctx.note("entry 145: the second-level census of 248 open classes -- 16 gaining classes (R5's and the U family); U1/U2 re-derived on %d class(es); %d kills verified" % (n_ver, n_kill))
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

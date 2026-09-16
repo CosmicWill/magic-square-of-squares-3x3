@@ -7519,3 +7519,64 @@ calculator, curve arithmetic on the shape survivors is exhausted; what
 remains is quadratic Chabauty where the rank equals the genus (G3; R1 and
 R2 if their ranks are exactly 3) with research code on a licensed Magma,
 and the theory path. Transcript: compute/qc/magma_tower143.out.txt.
+
+## 2026-09-16 — Entry 145: THE SECOND-LEVEL QUOTIENT CENSUS — the classical quotients iterated on every endpoint model of the 248 open classes: sixteen (3,1,1) classes gain a genus-2 curve at level 3; R5's eight are closed by rank (T5 = (z+4)G2 has rank 2); the new curves U1, U2 undecided (2-Selmer bound 4, rank >= 1): the first genus-2 endpoints left open by the descent rather than by rank
+
+THE QUESTION. R3 (entry 144) was decided by applying the classical
+quotients (even, odd companion, reciprocal, reciprocal twist) a second
+time, by hand, to a level-1 endpoint model. The tower applied them once.
+How many of the 248 open classes gain an endpoint of genus <= 2 when the
+quotients are iterated?
+
+THE CENSUS (compute/second_level_census.py; the module's constant
+CORE_RECORD_DEGREE, 6 by default, raised to 100 so that every endpoint
+model enters the record; compute/data_second_level_census_145.json). For
+every open class, every live frame and every finite component the tower
+ran with want_all=True and the classical quotients were applied
+recursively (levels 2, 3, 4) to every level-1 endpoint core until no
+symmetry remained or the degree fell to <= 6. A frame's degree is the
+largest, over its finite components, of the smallest endpoint degree the
+component reaches; a class's is the smallest over its frames; a class
+GAINS when some frame reaches degree <= 6 only through the deeper levels.
+(The engine call on a (24,24) component of one class ran for over an
+hour; for the last 23 (3,1,1) classes the engine verdicts were taken from
+the entry-140 records, where they are the same verdicts.) Outcomes: 211 | genus<=2 at level 1 16, 211 | no genus<=2 endpoint at any level 108, 311 | gains genus<=2 at a deeper level 16, 311 | genus<=2 at level 1 56, 311 | no genus<=2 endpoint at any level 52.
+
+THE RESULT. Sixteen (3,1,1) classes gain, in two families of eight, both
+on frames 1 and 2 through their (12,4) components, both at level 3.
+(i) R5's family 220302-220309: R5's even quotient G2 (rank 3) and odd
+companion G3 (rank 2, entry 144) and one curve the tower had never
+produced, T5 = y^2 = (z + 4) G2(z) = z^6 - 108z^5 + 1952z^4 + 2688z^3 -
+31488z^2 + 1024z + 65536, the even quotient of the rationality twist of
+R5's reciprocal model -- the admissibility-twist pattern of D140 and E140.
+T5 has minimal discriminant 920896, inside the LMFDB's range: its
+Igusa-Clebsch invariants (Sage) match the LMFDB curve 230224.a.920896.1
+(Mordell-Weil rank 2 proved, analytic rank 2, trivial torsion, nine known
+points), and Magma on our model (compute/qc/magma_tower145.m, block T5)
+gives rank bounds 2 2, trivial torsion, nine points of height <= 10^4.
+Rank = genus: no classical Chabauty; the family is closed by rank.
+(ii) A second family, 281716-281719 and 282105-282108, reaches two curves
+new to the record: U1: y^2 = x^6 - 157x^5 + 5890x^4 - 70088x^3 + 351008x^2
+- 764944x + 600352 through 'inversion h (s=-1) -> even -> reciprocal' and
+U2: y^2 = x^6 - 145x^5 + 4380x^4 - 29088x^3 + 59520x^2 - 25856x + 3072
+through '-> reciprocal -> even' (PARI: both of conductor 5 13 1490039,
+outside the LMFDB's range, four small affine points each). A dry run
+with those points as the complete point set kills the frame (the fibers
+over the points are empty, the fiber over infinity holds the degenerate
+points (0,0), (0,+-1) only). Magma: U1 rank bounds 0 4, U2 rank bounds 1 4, trivial torsion, six rational points each -- the 2-descent bound is 4 on both (sextic models without a rational Weierstrass point), the points give rank >= 1; the two curves share their conductor and reach the same frames through commuting chains, so they are one curve: block U1b finds U1 isomorphic to U2 over Q, the 2-Selmer group (Z/2)^4 and no Richelot-isogenous surface, so the calculator's descent cannot take the bound below 4; the rank is between 1 and 4. UNDECIDED: not closed by rank, not decidable here. A rank bound of 1 -- a licensed Magma's sharper descent (Cassels-Tate, a 4-descent) or an analytic rank with more time -- would make Chabauty and the dry-run kill of all eight classes available. The module keeps the chained quotients (CLASSICAL_DEPTH = 4) as a permanent mechanism, so the fold is one known-curve entry away.
+
+Everywhere else the deeper levels reach the degrees of level 1 (the R1/R2
+families stay at 8, R4's at 10, the (12,4) components of the rest at 12)
+or nothing at all (the route-less 88).
+
+THE MODULE. CLASSICAL_DEPTH = 4: every endpoint whose last step is a
+classical quotient and whose degree exceeds 6 is quotiented again, with
+fresh variable names per level (classical_quotients reuses the symbols z,
+w) and the twist roots of every level pulled back through the composed
+map of their own variable ("pulls", added to the lifts); the endpoint
+records carry the level. The entry-144 kill of R3's classes re-derives
+unchanged, and the whole fast suite passed with the deeper module before
+this entry's data entered.
+
+Check a3.second_level_census_145 (suite 227). Frontier: (2,1,1) 124,
+(3,1,1) 124 open.
