@@ -7264,3 +7264,98 @@ the re-run subset is exactly the set of open classes whose entry-140
 records meet D. The frontier is unchanged in kind: 88 classes with no
 hyperelliptic route, the rest over positive-rank elliptic endpoints or
 the five undecided genus-2 curves A, B, C, E, F.
+
+## 2026-09-15 — Entry 142: THE PRYM TEST — sixteen of the 88 route-less (2,1,1) classes have components with NO map over Q to any curve of genus 1 or 2 (Sage, validated against Magma); the L-polynomial work moved off the Magma calculator; tallies unchanged
+
+THE QUESTION. Entry 140 left 88 open (2,1,1) classes with no hyperelliptic
+route: no coordinate system of the symmetry tower gives their components,
+or any quotient by their sign-and-inversion group, a model quadratic in a
+coordinate. A census of them (scratch, after entry 141) found that the
+sixteen with the smallest components -- one component of bidegree (7,3) or
+(8,4) on one frame -- fall into four families A-D of four classes, each
+family sharing one full quotient Gamma/G by the group G = {1, joint,
+diag(1,1), diag(-1,-1)} = (Z/2)^2 (joint: (g,h) -> (-g,-h); diag(s,s):
+(g,h) -> (s/g, s/h); joint o diag(1,1) = diag(-1,-1)), and every member's
+component the representative's under (g,h) -> (g,h) or (g,-1/h), an
+isomorphism over Q. Could a hidden structure -- an elliptic factor of the
+Jacobian, an involution beyond the monomial ones -- still give a route?
+
+MAGMA (the user, the online calculator; compute/qc/magma_tower142.m and
+magma_tower142b.m, transcripts in the .out.txt files). The twelve full
+quotients as the module writes them (three coordinate systems per family)
+are all non-hyperelliptic: genus-3 plane quartics (A) and genus-4 canonical
+curves (B, C, D). The L-polynomial of A's full quotient is irreducible of
+degree 6 at p = 5, 13, 17, 19, 23 and B's irreducible of degree 8 at 11,
+13, 17, 19: an isogeny factor of dimension e over Q would give a factor of
+degree 2e at every good prime, so both Jacobians are simple over Q (and
+over Q(i): 5, 13, 17 split). Neither has a map over Q to a curve of genus
+1 or 2, and the automorphism question is moot (a rational involution of a
+non-hyperelliptic curve has a positive-genus quotient, a Jacobian factor).
+Where the L-polynomial has full degree 2g the reduction keeps its genus,
+so the Jacobian has good reduction there (the abelian rank of the
+reduction is at least the geometric genus of any component of the special
+fibre of any model) and the polynomial is the characteristic polynomial of
+Frobenius; the degree drops at 7 and 11 for A and at 3 for B are primes of
+bad reduction.
+
+THE PRYM TEST (Sage, local; compute/qc/prym_test.sage;
+compute/data_prym_test_142.json). The full quotient sees only part of
+J(Gamma): by Kani-Rosen, J(Gamma) x J(Gamma/G)^2 ~ J(Gamma/H1) x
+J(Gamma/H2) x J(Gamma/H3) over the three index-2 subgroups, and
+J(Gamma/H) ~ J(Gamma/G) x P_H with P_H the Prym part -- genera (Sage) A:
+12 + 2*3 = 6 + 6 + 6, B, C, D: 19 + 2*4 = 9 + 9 + 9. Every simple factor
+of J(Gamma) over Q is therefore a factor of J(Gamma/G) (dimension 3 or 4)
+or of a Prym part (dimension 3 or 5). Their L-polynomials come from the
+function field over GF(p): the numbers of places of degree <= d determine
+the characteristic polynomial of Frobenius on a d-dimensional piece
+(Newton's identities and the functional equation; for P_H the full
+quotient's power sums are subtracted), so a genus-9 quotient needs places
+of degree <= 5 only. The genus of every reduction used equals the genus
+over Q and the exact constant field is GF(p) (checked). Validation three
+ways: the Newton code agrees with Sage's own L_polynomial(); Sage's factor
+degrees agree with Magma's at every common prime (A at 5 and 13, B at 5
+and 7; Magma's degree drops are Sage's genus drops); and for family A at
+p = 5 the full L-polynomial of each genus-6 quotient, counted
+independently up to degree 6, equals L(Gamma/G) L(P_H).
+
+RESULT (primes 3, 5, 7, 11, 13; 44 L-polynomials; the witness prime and the factor
+degrees of each piece):
+  A (component (7, 3), genus 12; quotients 6, 6, 6; full quotient genus 3; classes 69319 f2, 69321 f2, 70010 f2, 70011 f2): full: p = 5, (6); joint: p = 5, (6); diag(1,1): p = 5, (6); diag(-1,-1): p = 5, (6)
+  B (component (8, 4), genus 19; quotients 9, 9, 9; full quotient genus 4; classes 69318 f2, 69320 f2, 70012 f2, 70013 f2): full: p = 11, (8); joint: p = 5, (10); diag(1,1): p = 5, (10); diag(-1,-1): p = 5, (10)
+  C (component (8, 4), genus 19; quotients 9, 9, 9; full quotient genus 4; classes 75216 f1, 75218 f1, 75547 f2, 75548 f2): full: p = 7, (8); joint: p = 5, (10); diag(1,1): p = 5, (10); diag(-1,-1): p = 5, (10)
+  D (component (8, 4), genus 19; quotients 9, 9, 9; full quotient genus 4; classes 75217 f1, 75219 f1, 75549 f2, 75550 f2): full: p = 7, (8); joint: p = 5, (10); diag(1,1): p = 5, (10); diag(-1,-1): p = 5, (10)
+Accidental splittings at small primes occur -- B's full quotient is
+(2)(6) at 5 and 7, the third Prym part of B, C, D is (2)(8) at 7 and
+that of C, D again at 11, A's third Prym part is (2)^2(2) at 13 -- and
+are harmless: one good prime
+with no irreducible factor of degree <= 4 excludes every factor of
+dimension <= 2 over Q.
+
+THEOREM (entry 142). For each of the sixteen classes 69318, 69319, 69320, 69321, 70010, 70011, 70012, 70013, 75216, 75217, 75218, 75219, 75547, 75548, 75549, 75550 the component
+Gamma of the recorded bidegree on the recorded frame has a Jacobian with
+no isogeny factor of dimension 1 or 2 over Q; hence there is no
+non-constant map over Q from Gamma to any curve of genus 1 or 2. No
+quotient route of any kind through an elliptic or genus-2 curve --
+hyperelliptic models, hidden involutions, correspondences -- can decide
+these classes. What remains for them is Chabauty-Coleman on the genus-3/4
+full quotient itself (a simple Jacobian; it needs the rank, which for a
+plane quartic or a canonical curve is beyond the calculator's descent) or
+the theory path.
+
+TOOLS. This entry moved the L-polynomial work from the Magma calculator
+(one 120-second block at a time, pasted by hand) to Sage's function
+fields, free and local: at p <= 11 the pipeline does in minutes (the
+genus-9 quotients at 11 in about eight minutes each) what the prepared
+magma_tower142c.m (kept, not run) would have needed fifteen pastes for;
+the p = 13 Prym parts were abandoned as too slow (see the data file's
+notes).
+PARI's genus2red on the five undecided genus-2 curves (A139, D139 = B140,
+I139 = C140, E140, F140) gives minimal discriminants of about 1.0e7,
+2.1e7, 2.1e7, 8.5e10 and 1.4e8, all outside the LMFDB's completeness range
+|disc| <= 10^6, so the database cannot decide them; the calculator's
+2-descent and Chabauty remain the only tools for those (Sage has neither
+for genus 2). Check a3.prym_test_142 (suite 224) re-derives every
+L-polynomial from the recorded place counts and every quotient from the
+module. Tallies unchanged: (2,1,1) 79236 / 132, (3,1,1) 288759 / 124; 256 open; the
+route-less 88 now split 16 (proven beyond every quotient through genus
+<= 2) + 72 (larger components, untested).

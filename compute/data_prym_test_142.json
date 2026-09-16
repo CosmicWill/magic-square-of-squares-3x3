@@ -1,0 +1,2138 @@
+{
+ "entry": 142,
+ "date": "2026-09-15",
+ "box": "211",
+ "description": "The Prym test on the route-less families with small components (entry 142).  For each family the component Gamma (a plane curve in the frame ratios g, h) carries the sign-and-inversion group G = {1, joint, diag(1,1), diag(-1,-1)} = (Z/2)^2 (joint: (g,h) -> (-g,-h); diag(s,s): (g,h) -> (s/g, s/h); joint o diag(1,1) = diag(-1,-1)).  Kani-Rosen: J(Gamma) x J(Gamma/G)^2 ~ J(Gamma/H1) x J(Gamma/H2) x J(Gamma/H3) over Q, and J(Gamma/H) ~ J(Gamma/G) x P_H with P_H the Prym part; so every simple isogeny factor of J(Gamma) over Q is a factor of J(Gamma/G) or of one of the three P_H.  For a prime p at which the reduction of a curve keeps its genus (checked), its Jacobian has good reduction and the characteristic polynomial of Frobenius is the L-polynomial computed from the numbers of places of degree <= d of the function field over GF(p) (d = the genus, or the dimension of the Prym part after subtracting the power sums of the full quotient's Frobenius eigenvalues); an isogeny factor of dimension e over Q would give a factor of degree 2e over Q of that polynomial.  Result: at the witness primes every piece has no irreducible factor of degree <= 4, so J(Gamma) has no isogeny factor of dimension 1 or 2 over Q, and Gamma has no non-constant map over Q to any curve of genus 1 or 2.",
+ "tools": "SageMath 10.7 (function fields over GF(p): genus, exact constant field, places by degree; compute/qc/prym_test.sage), the Magma online calculator for the hyperellipticity and the first L-polynomials (compute/qc/magma_tower142.out.txt, magma_tower142b.out.txt)",
+ "families": {
+  "A": {
+   "representative": {
+    "index": 69319,
+    "frame": 2,
+    "deg": [
+     7,
+     3
+    ]
+   },
+   "members": [
+    {
+     "index": 69319,
+     "frame": 2,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 69321,
+     "frame": 2,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "-1"
+    },
+    {
+     "index": 70010,
+     "frame": 2,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 70011,
+     "frame": 2,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "-1"
+    }
+   ],
+   "curves": {
+    "component": "5*g**7*h**2 - 7*g**7 - 17*g**6*h**3 + 35*g**6*h - 89*g**5*h**2 + 67*g**5 + 101*g**4*h**3 - 191*g**4*h + 191*g**3*h**2 - 101*g**3 - 67*g**2*h**3 + 89*g**2*h - 35*g*h**2 + 17*g + 7*h**3 - 5*h",
+    "joint": "-7*X**5 + 5*X**4*Y**2 + 35*X**4*Y + 67*X**4 - 17*X**3*Y**3 - 89*X**3*Y**2 - 191*X**3*Y - 101*X**3 + 101*X**2*Y**3 + 191*X**2*Y**2 + 89*X**2*Y + 17*X**2 - 67*X*Y**3 - 35*X*Y**2 - 5*X*Y + 7*Y**3",
+    "diag(1,1)": "35*U**7*V**2 - 144*U**7 - 119*U**6*V**3 + 512*U**6*V - 608*U**5*V**2 + 2048*U**5 + 2560*U**4*V**3 - 10240*U**4*V + 3328*U**3*V**2 - 8192*U**3 - 17408*U**2*V**3 + 65536*U**2*V - 4096*U*V**2 + 36864*V**3 - 131072*V",
+    "diag(-1,-1)": "35*U**7*V**2 - 4*U**7 - 119*U**6*V**3 + 148*U**6*V - 1308*U**5*V**2 + 208*U**5 + 1132*U**4*V**3 - 3344*U**4*V + 7312*U**3*V**2 - 2240*U**3 - 2640*U**2*V**3 + 11200*U**2*V - 9024*U*V**2 + 3840*U + 576*V**3 - 6912*V",
+    "full": "49*U2**5 - 35*U2**4*V2**2 - 245*U2**4*V2 - 868*U2**4 + 119*U2**3*V2**3 + 958*U2**3*V2**2 + 3500*U2**3*V2 + 4992*U2**3 - 1846*U2**2*V2**3 - 8260*U2**2*V2**2 - 14592*U2**2*V2 - 7760*U2**2 + 8596*U2*V2**3 + 26024*U2*V2**2 + 14672*U2*V2 - 7952*U2 - 11336*V2**3 - 29568*V2**2 + 4944*V2 + 37760"
+   },
+   "genera": {
+    "component": 12,
+    "joint": 6,
+    "diag(1,1)": 6,
+    "diag(-1,-1)": 6,
+    "full": 3
+   },
+   "primes": {
+    "3": {
+     "bad": "full: genus of the reduction 2 (over Q 3), exact constant field degree 1"
+    },
+    "5": {
+     "curves": {
+      "full": {
+       "genus": 3,
+       "places_by_degree": [
+        8,
+        14,
+        43
+       ],
+       "N": [
+        8,
+        36,
+        137
+       ],
+       "L": [
+        1,
+        2,
+        7,
+        15,
+        35,
+        50,
+        125
+       ],
+       "L_str": "125*t^6 + 50*t^5 + 35*t^4 + 15*t^3 + 7*t^2 + 2*t + 1",
+       "factor_degrees": [
+        [
+         6,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 0.4
+      },
+      "joint": {
+       "genus": 6,
+       "dim_prym": 3,
+       "places_by_degree": [
+        6,
+        16,
+        48
+       ],
+       "N": [
+        6,
+        38,
+        150
+       ],
+       "weil": "ok",
+       "seconds": 0.5,
+       "L_prym": [
+        1,
+        -2,
+        3,
+        1,
+        15,
+        -50,
+        125
+       ],
+       "L_prym_str": "125*t^6 - 50*t^5 + 15*t^4 + t^3 + 3*t^2 - 2*t + 1",
+       "factor_degrees": [
+        [
+         6,
+         1
+        ]
+       ],
+       "validation": {
+        "L_full_quotient_times_L_prym_equals_L_curve": true,
+        "seconds": 21.5
+       }
+      },
+      "diag(1,1)": {
+       "genus": 6,
+       "dim_prym": 3,
+       "places_by_degree": [
+        8,
+        19,
+        50
+       ],
+       "N": [
+        8,
+        46,
+        158
+       ],
+       "weil": "ok",
+       "seconds": 0.6,
+       "L_prym": [
+        1,
+        0,
+        5,
+        7,
+        25,
+        0,
+        125
+       ],
+       "L_prym_str": "125*t^6 + 25*t^4 + 7*t^3 + 5*t^2 + 1",
+       "factor_degrees": [
+        [
+         6,
+         1
+        ]
+       ],
+       "validation": {
+        "L_full_quotient_times_L_prym_equals_L_curve": true,
+        "seconds": 23.4
+       }
+      },
+      "diag(-1,-1)": {
+       "genus": 6,
+       "dim_prym": 3,
+       "places_by_degree": [
+        8,
+        19,
+        36
+       ],
+       "N": [
+        8,
+        46,
+        116
+       ],
+       "weil": "ok",
+       "seconds": 0.7,
+       "L_prym": [
+        1,
+        0,
+        5,
+        -7,
+        25,
+        0,
+        125
+       ],
+       "L_prym_str": "125*t^6 + 25*t^4 - 7*t^3 + 5*t^2 + 1",
+       "factor_degrees": [
+        [
+         6,
+         1
+        ]
+       ],
+       "validation": {
+        "L_full_quotient_times_L_prym_equals_L_curve": true,
+        "seconds": 23.0
+       }
+      }
+     },
+     "seconds": 70.9
+    },
+    "7": {
+     "bad": "full: genus of the reduction 2 (over Q 3), exact constant field degree 1"
+    },
+    "11": {
+     "bad": "full: genus of the reduction 2 (over Q 3), exact constant field degree 1"
+    },
+    "13": {
+     "curves": {
+      "full": {
+       "genus": 3,
+       "places_by_degree": [
+        23,
+        81,
+        731
+       ],
+       "N": [
+        23,
+        185,
+        2216
+       ],
+       "L": [
+        1,
+        9,
+        48,
+        195,
+        624,
+        1521,
+        2197
+       ],
+       "L_str": "2197*t^6 + 1521*t^5 + 624*t^4 + 195*t^3 + 48*t^2 + 9*t + 1",
+       "factor_degrees": [
+        [
+         6,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 7.6
+      },
+      "joint": {
+       "genus": 6,
+       "dim_prym": 3,
+       "places_by_degree": [
+        28,
+        86,
+        754
+       ],
+       "N": [
+        28,
+        200,
+        2290
+       ],
+       "weil": "ok",
+       "seconds": 9.0,
+       "L_prym": [
+        1,
+        5,
+        20,
+        83,
+        260,
+        845,
+        2197
+       ],
+       "L_prym_str": "2197*t^6 + 845*t^5 + 260*t^4 + 83*t^3 + 20*t^2 + 5*t + 1",
+       "factor_degrees": [
+        [
+         6,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 6,
+       "dim_prym": 3,
+       "places_by_degree": [
+        20,
+        92,
+        734
+       ],
+       "N": [
+        20,
+        204,
+        2222
+       ],
+       "weil": "ok",
+       "seconds": 13.7,
+       "L_prym": [
+        1,
+        -3,
+        14,
+        -31,
+        182,
+        -507,
+        2197
+       ],
+       "L_prym_str": "2197*t^6 - 507*t^5 + 182*t^4 - 31*t^3 + 14*t^2 - 3*t + 1",
+       "factor_degrees": [
+        [
+         6,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 6,
+       "dim_prym": 3,
+       "places_by_degree": [
+        28,
+        92,
+        778
+       ],
+       "N": [
+        28,
+        212,
+        2362
+       ],
+       "weil": "ok",
+       "seconds": 15.6,
+       "L_prym": [
+        1,
+        5,
+        26,
+        137,
+        338,
+        845,
+        2197
+       ],
+       "L_prym_str": "2197*t^6 + 845*t^5 + 338*t^4 + 137*t^3 + 26*t^2 + 5*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         2,
+         2
+        ]
+       ]
+      }
+     },
+     "seconds": 52.4
+    }
+   },
+   "witness": {
+    "full": 5,
+    "joint": 5,
+    "diag(1,1)": 5,
+    "diag(-1,-1)": 5
+   },
+   "bad_primes_seen": [
+    3,
+    7,
+    11
+   ],
+   "conclusion": "no isogeny factor of dimension <= 2 over Q; no non-constant map over Q to a curve of genus 1 or 2"
+  },
+  "B": {
+   "representative": {
+    "index": 69318,
+    "frame": 2,
+    "deg": [
+     8,
+     4
+    ]
+   },
+   "members": [
+    {
+     "index": 69318,
+     "frame": 2,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 69320,
+     "frame": 2,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "1"
+    },
+    {
+     "index": 70012,
+     "frame": 2,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 70013,
+     "frame": 2,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "1"
+    }
+   ],
+   "curves": {
+    "component": "3*g**8*h**3 - g**8*h - 3*g**7*h**4 + 56*g**7*h**2 - 5*g**7 - 150*g**6*h**3 + 90*g**6*h + 31*g**5*h**4 - 392*g**5*h**2 + 25*g**5 + 268*g**4*h**3 - 268*g**4*h - 25*g**3*h**4 + 392*g**3*h**2 - 31*g**3 - 90*g**2*h**3 + 150*g**2*h + 5*g*h**4 - 56*g*h**2 + 3*g + h**3 - 3*h",
+    "joint": "-X**5*Y - 5*X**5 + 3*X**4*Y**3 + 56*X**4*Y**2 + 90*X**4*Y + 25*X**4 - 3*X**3*Y**4 - 150*X**3*Y**3 - 392*X**3*Y**2 - 268*X**3*Y - 31*X**3 + 31*X**2*Y**4 + 268*X**2*Y**3 + 392*X**2*Y**2 + 150*X**2*Y + 3*X**2 - 25*X*Y**4 - 90*X*Y**3 - 56*X*Y**2 - 3*X*Y + 5*Y**4 + Y**3",
+    "diag(1,1)": "3*U**8*V**2 - 16*U**8 + 12*U**7*V**3 - 144*U**7*V - 15*U**6*V**4 + 64*U**6*V**2 - 2048*U**6 - 608*U**5*V**3 + 6656*U**5*V + 320*U**4*V**4 + 6912*U**4*V**2 + 8192*U**4 + 4352*U**3*V**3 - 57344*U**3*V - 2048*U**2*V**4 - 61440*U**2*V**2 - 8192*U*V**3 + 131072*U*V + 4096*V**4 + 131072*V**2",
+    "diag(-1,-1)": "3*U**8*V**2 - 4*U**8 - 18*U**7*V**3 + 184*U**7*V + 15*U**6*V**4 - 784*U**6*V**2 + 2512*U**6 + 1000*U**5*V**3 - 11360*U**5*V - 140*U**4*V**4 + 15136*U**4*V**2 - 20672*U**4 - 3424*U**3*V**3 + 47744*U**3*V + 208*U**2*V**4 - 16640*U**2*V**2 + 24320*U**2 + 1920*U*V**3 - 8704*U*V - 64*V**4 + 768*V**2",
+    "full": "5*U2**5*V2 + 26*U2**5 - 15*U2**4*V2**3 - 283*U2**4*V2**2 - 486*U2**4*V2 + 136*U2**4 + 15*U2**3*V2**4 + 828*U2**3*V2**3 + 3720*U2**3*V2**2 + 6712*U2**3*V2 + 5056*U2**3 - 230*U2**2*V2**4 - 5424*U2**2*V2**3 - 26184*U2**2*V2**2 - 52112*U2**2*V2 - 39456*U2**2 + 948*U2*V2**4 + 12944*U2*V2**3 + 75040*U2*V2**2 + 170192*U2*V2 + 127840*U2 - 1160*V2**4 - 11088*V2**3 - 71344*V2**2 - 175968*V2 - 137216"
+   },
+   "genera": {
+    "component": 19,
+    "joint": 9,
+    "diag(1,1)": 9,
+    "diag(-1,-1)": 9,
+    "full": 4
+   },
+   "primes": {
+    "5": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        11,
+        12,
+        34,
+        165
+       ],
+       "N": [
+        11,
+        35,
+        113,
+        695
+       ],
+       "L": [
+        1,
+        5,
+        17,
+        39,
+        88,
+        195,
+        425,
+        625,
+        625
+       ],
+       "L_str": "625*t^8 + 625*t^7 + 425*t^6 + 195*t^5 + 88*t^4 + 39*t^3 + 17*t^2 + 5*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         6,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 2.6
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        12,
+        15,
+        24,
+        184,
+        640
+       ],
+       "N": [
+        12,
+        42,
+        84,
+        778,
+        3212
+       ],
+       "weil": "ok",
+       "seconds": 11.3,
+       "L_prym": [
+        1,
+        1,
+        4,
+        -6,
+        19,
+        -6,
+        95,
+        -150,
+        500,
+        625,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 625*t^9 + 500*t^8 - 150*t^7 + 95*t^6 - 6*t^5 + 19*t^4 - 6*t^3 + 4*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        10,
+        14,
+        42,
+        163,
+        650
+       ],
+       "N": [
+        10,
+        38,
+        136,
+        690,
+        3260
+       ],
+       "weil": "ok",
+       "seconds": 12.6,
+       "L_prym": [
+        1,
+        -1,
+        2,
+        6,
+        -7,
+        30,
+        -35,
+        150,
+        250,
+        -625,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 - 625*t^9 + 250*t^8 + 150*t^7 - 35*t^6 + 30*t^5 - 7*t^4 + 6*t^3 + 2*t^2 - t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        12,
+        13,
+        26,
+        195,
+        668
+       ],
+       "N": [
+        12,
+        38,
+        90,
+        818,
+        3352
+       ],
+       "weil": "ok",
+       "seconds": 13.3,
+       "L_prym": [
+        1,
+        1,
+        2,
+        -6,
+        25,
+        50,
+        125,
+        -150,
+        250,
+        625,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 625*t^9 + 250*t^8 - 150*t^7 + 125*t^6 + 50*t^5 + 25*t^4 - 6*t^3 + 2*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 41.5
+    },
+    "7": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        12,
+        24,
+        112,
+        601
+       ],
+       "N": [
+        12,
+        60,
+        348,
+        2464
+       ],
+       "L": [
+        1,
+        4,
+        13,
+        32,
+        84,
+        224,
+        637,
+        1372,
+        2401
+       ],
+       "L_str": "2401*t^8 + 1372*t^7 + 637*t^6 + 224*t^5 + 84*t^4 + 32*t^3 + 13*t^2 + 4*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         6,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 9.1
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        18,
+        122,
+        634,
+        3460
+       ],
+       "N": [
+        16,
+        52,
+        382,
+        2588,
+        17316
+       ],
+       "weil": "ok",
+       "seconds": 50.6,
+       "L_prym": [
+        1,
+        4,
+        4,
+        6,
+        63,
+        236,
+        441,
+        294,
+        1372,
+        9604,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 + 9604*t^9 + 1372*t^8 + 294*t^7 + 441*t^6 + 236*t^5 + 63*t^4 + 6*t^3 + 4*t^2 + 4*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        12,
+        26,
+        110,
+        647,
+        3432
+       ],
+       "N": [
+        12,
+        64,
+        342,
+        2652,
+        17172
+       ],
+       "weil": "ok",
+       "seconds": 56.8,
+       "L_prym": [
+        1,
+        0,
+        2,
+        -2,
+        49,
+        36,
+        343,
+        -98,
+        686,
+        0,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 + 686*t^8 - 98*t^7 + 343*t^6 + 36*t^5 + 49*t^4 - 2*t^3 + 2*t^2 + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        4,
+        30,
+        112,
+        631,
+        3408
+       ],
+       "N": [
+        4,
+        64,
+        340,
+        2588,
+        17044
+       ],
+       "weil": "ok",
+       "seconds": 53.4,
+       "L_prym": [
+        1,
+        -8,
+        34,
+        -104,
+        289,
+        -784,
+        2023,
+        -5096,
+        11662,
+        -19208,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 - 19208*t^9 + 11662*t^8 - 5096*t^7 + 2023*t^6 - 784*t^5 + 289*t^4 - 104*t^3 + 34*t^2 - 8*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         8,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 177.3
+    },
+    "11": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        16,
+        62,
+        457,
+        3741
+       ],
+       "N": [
+        16,
+        140,
+        1387,
+        15104
+       ],
+       "L": [
+        1,
+        4,
+        17,
+        65,
+        312,
+        715,
+        2057,
+        5324,
+        14641
+       ],
+       "L_str": "14641*t^8 + 5324*t^7 + 2057*t^6 + 715*t^5 + 312*t^4 + 65*t^3 + 17*t^2 + 4*t + 1",
+       "factor_degrees": [
+        [
+         8,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 44.3
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        24,
+        78,
+        434,
+        3786,
+        31884
+       ],
+       "N": [
+        24,
+        180,
+        1326,
+        15324,
+        159444
+       ],
+       "weil": "ok",
+       "seconds": 496.8,
+       "L_prym": [
+        1,
+        8,
+        52,
+        225,
+        903,
+        2966,
+        9933,
+        27225,
+        69212,
+        117128,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 117128*t^9 + 69212*t^8 + 27225*t^7 + 9933*t^6 + 2966*t^5 + 903*t^4 + 225*t^3 + 52*t^2 + 8*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        20,
+        74,
+        460,
+        3857,
+        31770
+       ],
+       "N": [
+        20,
+        168,
+        1400,
+        15596,
+        158870
+       ],
+       "weil": "ok",
+       "seconds": 980.9,
+       "L_prym": [
+        1,
+        4,
+        22,
+        71,
+        361,
+        1026,
+        3971,
+        8591,
+        29282,
+        58564,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 58564*t^9 + 29282*t^8 + 8591*t^7 + 3971*t^6 + 1026*t^5 + 361*t^4 + 71*t^3 + 22*t^2 + 4*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        80,
+        432,
+        3783,
+        31910
+       ],
+       "N": [
+        16,
+        176,
+        1312,
+        15308,
+        159566
+       ],
+       "weil": "ok",
+       "seconds": 503.8,
+       "L_prym": [
+        1,
+        0,
+        18,
+        -25,
+        213,
+        -422,
+        2343,
+        -3025,
+        23958,
+        0,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 23958*t^8 - 3025*t^7 + 2343*t^6 - 422*t^5 + 213*t^4 - 25*t^3 + 18*t^2 + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 2056.2
+    }
+   },
+   "witness": {
+    "joint": 5,
+    "diag(1,1)": 5,
+    "diag(-1,-1)": 5,
+    "full": 11
+   },
+   "bad_primes_seen": [],
+   "conclusion": "no isogeny factor of dimension <= 2 over Q; no non-constant map over Q to a curve of genus 1 or 2"
+  },
+  "C": {
+   "representative": {
+    "index": 75216,
+    "frame": 1,
+    "deg": [
+     8,
+     4
+    ]
+   },
+   "members": [
+    {
+     "index": 75216,
+     "frame": 1,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 75218,
+     "frame": 1,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "-1"
+    },
+    {
+     "index": 75547,
+     "frame": 2,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 75548,
+     "frame": 2,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "-1"
+    }
+   ],
+   "curves": {
+    "component": "3*g**8*h**3 + 3*g**8*h + 3*g**7*h**4 + 40*g**7*h**2 + 5*g**7 - 90*g**6*h**3 + 38*g**6*h - 31*g**5*h**4 - 280*g**5*h**2 - 25*g**5 + 128*g**4*h**3 - 128*g**4*h + 25*g**3*h**4 + 280*g**3*h**2 + 31*g**3 - 38*g**2*h**3 + 90*g**2*h - 5*g*h**4 - 40*g*h**2 - 3*g - 3*h**3 - 3*h",
+    "joint": "3*X**5*Y + 5*X**5 + 3*X**4*Y**3 + 40*X**4*Y**2 + 38*X**4*Y - 25*X**4 + 3*X**3*Y**4 - 90*X**3*Y**3 - 280*X**3*Y**2 - 128*X**3*Y + 31*X**3 - 31*X**2*Y**4 + 128*X**2*Y**3 + 280*X**2*Y**2 + 90*X**2*Y - 3*X**2 + 25*X*Y**4 - 38*X*Y**3 - 40*X*Y**2 - 3*X*Y - 5*Y**4 - 3*Y**3",
+    "diag(1,1)": "9*U**8*V**2 + 24*U**7*V**3 + 192*U**7*V + 15*U**6*V**4 + 32*U**6*V**2 + 1024*U**6 - 672*U**5*V**3 - 3840*U**5*V - 320*U**4*V**4 - 7424*U**4*V**2 - 4096*U**4 + 4352*U**3*V**3 + 28672*U**3*V + 2048*U**2*V**4 + 61440*U**2*V**2 - 8192*U*V**3 - 65536*U*V - 4096*V**4 - 131072*V**2",
+    "diag(-1,-1)": "9*U**8*V**2 + 36*U**8 - 6*U**7*V**3 - 24*U**7*V - 15*U**6*V**4 - 464*U**6*V**2 - 2640*U**6 + 504*U**5*V**3 + 6112*U**5*V + 140*U**4*V**4 - 1056*U**4*V**2 + 18112*U**4 - 1824*U**3*V**3 - 23680*U**3*V - 208*U**2*V**4 - 4352*U**2*V**2 - 30464*U**2 + 640*U*V**3 + 2560*U*V + 64*V**4 + 256*V**2",
+    "full": "15*U2**5*V2 + 34*U2**5 + 15*U2**4*V2**3 + 209*U2**4*V2**2 + 190*U2**4*V2 - 440*U2**4 + 15*U2**3*V2**4 - 516*U2**3*V2**3 - 2616*U2**3*V2**2 + 776*U2**3*V2 + 8192*U2**3 - 230*U2**2*V2**4 + 2944*U2**2*V2**3 + 6424*U2**2*V2**2 - 24304*U2**2*V2 - 45088*U2**2 + 948*U2*V2**4 - 6128*U2*V2**3 + 2336*U2*V2**2 + 94960*U2*V2 + 114144*U2 - 1160*V2**4 + 4368*V2**3 - 12528*V2**2 - 102432*V2 - 107520"
+   },
+   "genera": {
+    "component": 19,
+    "joint": 9,
+    "diag(1,1)": 9,
+    "diag(-1,-1)": 9,
+    "full": 4
+   },
+   "primes": {
+    "5": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        13,
+        10,
+        37,
+        155
+       ],
+       "N": [
+        13,
+        33,
+        124,
+        653
+       ],
+       "L": [
+        1,
+        7,
+        28,
+        81,
+        194,
+        405,
+        700,
+        875,
+        625
+       ],
+       "L_str": "625*t^8 + 875*t^7 + 700*t^6 + 405*t^5 + 194*t^4 + 81*t^3 + 28*t^2 + 7*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         6,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 2.8
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        13,
+        36,
+        145,
+        640
+       ],
+       "N": [
+        16,
+        42,
+        124,
+        622,
+        3216
+       ],
+       "weil": "ok",
+       "seconds": 10.4,
+       "L_prym": [
+        1,
+        3,
+        9,
+        18,
+        26,
+        54,
+        130,
+        450,
+        1125,
+        1875,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 1875*t^9 + 1125*t^8 + 450*t^7 + 130*t^6 + 54*t^5 + 26*t^4 + 18*t^3 + 9*t^2 + 3*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        17,
+        40,
+        147,
+        636
+       ],
+       "N": [
+        16,
+        50,
+        136,
+        638,
+        3196
+       ],
+       "weil": "ok",
+       "seconds": 12.1,
+       "L_prym": [
+        1,
+        3,
+        13,
+        34,
+        86,
+        210,
+        430,
+        850,
+        1625,
+        1875,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 1875*t^9 + 1625*t^8 + 850*t^7 + 430*t^6 + 210*t^5 + 86*t^4 + 34*t^3 + 13*t^2 + 3*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        14,
+        12,
+        30,
+        152,
+        564
+       ],
+       "N": [
+        14,
+        38,
+        104,
+        646,
+        2834
+       ],
+       "weil": "ok",
+       "seconds": 13.8,
+       "L_prym": [
+        1,
+        1,
+        3,
+        -4,
+        -4,
+        -70,
+        -20,
+        -100,
+        375,
+        625,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 625*t^9 + 375*t^8 - 100*t^7 - 20*t^6 - 70*t^5 - 4*t^4 - 4*t^3 + 3*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 40.8
+    },
+    "7": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        13,
+        22,
+        129,
+        595
+       ],
+       "N": [
+        13,
+        57,
+        400,
+        2437
+       ],
+       "L": [
+        1,
+        5,
+        16,
+        57,
+        178,
+        399,
+        784,
+        1715,
+        2401
+       ],
+       "L_str": "2401*t^8 + 1715*t^7 + 784*t^6 + 399*t^5 + 178*t^4 + 57*t^3 + 16*t^2 + 5*t + 1",
+       "factor_degrees": [
+        [
+         8,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 10.3
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        23,
+        134,
+        636,
+        3336
+       ],
+       "N": [
+        16,
+        62,
+        418,
+        2606,
+        16696
+       ],
+       "weil": "ok",
+       "seconds": 49.4,
+       "L_prym": [
+        1,
+        3,
+        7,
+        18,
+        78,
+        242,
+        546,
+        882,
+        2401,
+        7203,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 + 7203*t^9 + 2401*t^8 + 882*t^7 + 546*t^6 + 242*t^5 + 78*t^4 + 18*t^3 + 7*t^2 + 3*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        14,
+        24,
+        118,
+        574,
+        3200
+       ],
+       "N": [
+        14,
+        62,
+        368,
+        2358,
+        16014
+       ],
+       "weil": "ok",
+       "seconds": 53.8,
+       "L_prym": [
+        1,
+        1,
+        3,
+        -8,
+        -26,
+        -134,
+        -182,
+        -392,
+        1029,
+        2401,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 + 2401*t^9 + 1029*t^8 - 392*t^7 - 182*t^6 - 134*t^5 - 26*t^4 - 8*t^3 + 3*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        4,
+        29,
+        118,
+        604,
+        3332
+       ],
+       "N": [
+        4,
+        62,
+        358,
+        2478,
+        16664
+       ],
+       "weil": "ok",
+       "seconds": 58.9,
+       "L_prym": [
+        1,
+        -9,
+        43,
+        -158,
+        514,
+        -1474,
+        3598,
+        -7742,
+        14749,
+        -21609,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 - 21609*t^9 + 14749*t^8 - 7742*t^7 + 3598*t^6 - 1474*t^5 + 514*t^4 - 158*t^3 + 43*t^2 - 9*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         8,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 179.7
+    },
+    "11": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        23,
+        52,
+        466,
+        3566
+       ],
+       "N": [
+        23,
+        127,
+        1421,
+        14391
+       ],
+       "L": [
+        1,
+        11,
+        63,
+        279,
+        1028,
+        3069,
+        7623,
+        14641,
+        14641
+       ],
+       "L_str": "14641*t^8 + 14641*t^7 + 7623*t^6 + 3069*t^5 + 1028*t^4 + 279*t^3 + 63*t^2 + 11*t + 1",
+       "factor_degrees": [
+        [
+         8,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 46.6
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        28,
+        53,
+        466,
+        3623,
+        32408
+       ],
+       "N": [
+        28,
+        134,
+        1426,
+        14626,
+        162068
+       ],
+       "weil": "ok",
+       "seconds": 499.2,
+       "L_prym": [
+        1,
+        5,
+        16,
+        40,
+        143,
+        694,
+        1573,
+        4840,
+        21296,
+        73205,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 73205*t^9 + 21296*t^8 + 4840*t^7 + 1573*t^6 + 694*t^5 + 143*t^4 + 40*t^3 + 16*t^2 + 5*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        30,
+        48,
+        494,
+        3665,
+        32178
+       ],
+       "N": [
+        30,
+        126,
+        1512,
+        14786,
+        160920
+       ],
+       "weil": "ok",
+       "seconds": 476.7,
+       "L_prym": [
+        1,
+        7,
+        24,
+        84,
+        399,
+        1546,
+        4389,
+        10164,
+        31944,
+        102487,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 102487*t^9 + 31944*t^8 + 10164*t^7 + 4389*t^6 + 1546*t^5 + 399*t^4 + 84*t^3 + 24*t^2 + 7*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        24,
+        49,
+        436,
+        3624,
+        32364
+       ],
+       "N": [
+        24,
+        122,
+        1332,
+        14618,
+        161844
+       ],
+       "weil": "ok",
+       "seconds": 496.7,
+       "L_prym": [
+        1,
+        1,
+        -2,
+        -32,
+        29,
+        318,
+        319,
+        -3872,
+        -2662,
+        14641,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 14641*t^9 - 2662*t^8 - 3872*t^7 + 319*t^6 + 318*t^5 + 29*t^4 - 32*t^3 - 2*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         8,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 1545.1
+    }
+   },
+   "witness": {
+    "joint": 5,
+    "diag(1,1)": 5,
+    "diag(-1,-1)": 5,
+    "full": 7
+   },
+   "bad_primes_seen": [],
+   "conclusion": "no isogeny factor of dimension <= 2 over Q; no non-constant map over Q to a curve of genus 1 or 2"
+  },
+  "D": {
+   "representative": {
+    "index": 75217,
+    "frame": 1,
+    "deg": [
+     8,
+     4
+    ]
+   },
+   "members": [
+    {
+     "index": 75217,
+     "frame": 1,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 75219,
+     "frame": 1,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "-1"
+    },
+    {
+     "index": 75549,
+     "frame": 2,
+     "map_from_representative": "(g, h)",
+     "constant": "1"
+    },
+    {
+     "index": 75550,
+     "frame": 2,
+     "map_from_representative": "(g, -1/h)",
+     "constant": "-1"
+    }
+   ],
+   "curves": {
+    "component": "g**8*h**3 + g**8*h + 17*g**7*h**4 - 8*g**7*h**2 + 7*g**7 + 66*g**6*h**3 - 62*g**6*h - 101*g**5*h**4 + 56*g**5*h**2 - 67*g**5 - 128*g**4*h**3 + 128*g**4*h + 67*g**3*h**4 - 56*g**3*h**2 + 101*g**3 + 62*g**2*h**3 - 66*g**2*h - 7*g*h**4 + 8*g*h**2 - 17*g - h**3 - h",
+    "joint": "X**5*Y + 7*X**5 + X**4*Y**3 - 8*X**4*Y**2 - 62*X**4*Y - 67*X**4 + 17*X**3*Y**4 + 66*X**3*Y**3 + 56*X**3*Y**2 + 128*X**3*Y + 101*X**3 - 101*X**2*Y**4 - 128*X**2*Y**3 - 56*X**2*Y**2 - 66*X**2*Y - 17*X**2 + 67*X*Y**4 + 62*X*Y**3 + 8*X*Y**2 - X*Y - 7*Y**4 - Y**3",
+    "diag(1,1)": "U**8*V**2 + 24*U**7*V**3 - 64*U**7*V + 119*U**6*V**4 - 672*U**6*V**2 + 1024*U**6 - 928*U**5*V**3 + 3328*U**5*V - 2560*U**4*V**4 + 9984*U**4*V**2 - 4096*U**4 + 7424*U**3*V**3 - 28672*U**3*V + 17408*U**2*V**4 - 61440*U**2*V**2 - 16384*U*V**3 + 65536*U*V - 36864*V**4 + 131072*V**2",
+    "diag(-1,-1)": "U**8*V**2 + 4*U**8 + 10*U**7*V**3 + 40*U**7*V - 119*U**6*V**4 - 272*U**6*V**2 - 208*U**6 - 1480*U**5*V**3 - 1824*U**5*V + 1132*U**4*V**4 - 1056*U**4*V**2 + 2240*U**4 + 6112*U**3*V**3 + 8064*U**3*V - 2640*U**2*V**4 - 7424*U**2*V**2 - 3840*U**2 - 384*U*V**3 - 1536*U*V + 576*V**4 + 2304*V**2",
+    "full": "7*U2**5*V2 + 50*U2**5 + 7*U2**4*V2**3 - 55*U2**4*V2**2 - 530*U2**4*V2 - 952*U2**4 + 119*U2**3*V2**4 + 412*U2**3*V2**3 + 456*U2**3*V2**2 + 4424*U2**3*V2 + 8192*U2**3 - 1846*U2**2*V2**4 - 6400*U2**2*V2**3 - 1576*U2**2*V2**2 + 912*U2**2*V2 - 12064*U2**2 + 8596*U2*V2**4 + 22928*U2*V2**3 - 9440*U2*V2**2 - 50576*U2*V2 - 17184*U2 - 11336*V2**4 - 23664*V2**3 + 24720*V2**2 + 70368*V2 + 30720"
+   },
+   "genera": {
+    "component": 19,
+    "joint": 9,
+    "diag(1,1)": 9,
+    "diag(-1,-1)": 9,
+    "full": 4
+   },
+   "primes": {
+    "5": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        13,
+        10,
+        37,
+        155
+       ],
+       "N": [
+        13,
+        33,
+        124,
+        653
+       ],
+       "L": [
+        1,
+        7,
+        28,
+        81,
+        194,
+        405,
+        700,
+        875,
+        625
+       ],
+       "L_str": "625*t^8 + 875*t^7 + 700*t^6 + 405*t^5 + 194*t^4 + 81*t^3 + 28*t^2 + 7*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         6,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 2.7
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        17,
+        40,
+        147,
+        636
+       ],
+       "N": [
+        16,
+        50,
+        136,
+        638,
+        3196
+       ],
+       "weil": "ok",
+       "seconds": 11.1,
+       "L_prym": [
+        1,
+        3,
+        13,
+        34,
+        86,
+        210,
+        430,
+        850,
+        1625,
+        1875,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 1875*t^9 + 1625*t^8 + 850*t^7 + 430*t^6 + 210*t^5 + 86*t^4 + 34*t^3 + 13*t^2 + 3*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        13,
+        36,
+        145,
+        640
+       ],
+       "N": [
+        16,
+        42,
+        124,
+        622,
+        3216
+       ],
+       "weil": "ok",
+       "seconds": 13.7,
+       "L_prym": [
+        1,
+        3,
+        9,
+        18,
+        26,
+        54,
+        130,
+        450,
+        1125,
+        1875,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 1875*t^9 + 1125*t^8 + 450*t^7 + 130*t^6 + 54*t^5 + 26*t^4 + 18*t^3 + 9*t^2 + 3*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        14,
+        12,
+        30,
+        152,
+        564
+       ],
+       "N": [
+        14,
+        38,
+        104,
+        646,
+        2834
+       ],
+       "weil": "ok",
+       "seconds": 16.3,
+       "L_prym": [
+        1,
+        1,
+        3,
+        -4,
+        -4,
+        -70,
+        -20,
+        -100,
+        375,
+        625,
+        3125
+       ],
+       "L_prym_str": "3125*t^10 + 625*t^9 + 375*t^8 - 100*t^7 - 20*t^6 - 70*t^5 - 4*t^4 - 4*t^3 + 3*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 46.6
+    },
+    "7": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        13,
+        22,
+        129,
+        595
+       ],
+       "N": [
+        13,
+        57,
+        400,
+        2437
+       ],
+       "L": [
+        1,
+        5,
+        16,
+        57,
+        178,
+        399,
+        784,
+        1715,
+        2401
+       ],
+       "L_str": "2401*t^8 + 1715*t^7 + 784*t^6 + 399*t^5 + 178*t^4 + 57*t^3 + 16*t^2 + 5*t + 1",
+       "factor_degrees": [
+        [
+         8,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 8.7
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        14,
+        24,
+        118,
+        574,
+        3200
+       ],
+       "N": [
+        14,
+        62,
+        368,
+        2358,
+        16014
+       ],
+       "weil": "ok",
+       "seconds": 46.5,
+       "L_prym": [
+        1,
+        1,
+        3,
+        -8,
+        -26,
+        -134,
+        -182,
+        -392,
+        1029,
+        2401,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 + 2401*t^9 + 1029*t^8 - 392*t^7 - 182*t^6 - 134*t^5 - 26*t^4 - 8*t^3 + 3*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        16,
+        23,
+        134,
+        636,
+        3336
+       ],
+       "N": [
+        16,
+        62,
+        418,
+        2606,
+        16696
+       ],
+       "weil": "ok",
+       "seconds": 51.6,
+       "L_prym": [
+        1,
+        3,
+        7,
+        18,
+        78,
+        242,
+        546,
+        882,
+        2401,
+        7203,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 + 7203*t^9 + 2401*t^8 + 882*t^7 + 546*t^6 + 242*t^5 + 78*t^4 + 18*t^3 + 7*t^2 + 3*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        4,
+        29,
+        118,
+        604,
+        3332
+       ],
+       "N": [
+        4,
+        62,
+        358,
+        2478,
+        16664
+       ],
+       "weil": "ok",
+       "seconds": 55.2,
+       "L_prym": [
+        1,
+        -9,
+        43,
+        -158,
+        514,
+        -1474,
+        3598,
+        -7742,
+        14749,
+        -21609,
+        16807
+       ],
+       "L_prym_str": "16807*t^10 - 21609*t^9 + 14749*t^8 - 7742*t^7 + 3598*t^6 - 1474*t^5 + 514*t^4 - 158*t^3 + 43*t^2 - 9*t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         8,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 172.6
+    },
+    "11": {
+     "curves": {
+      "full": {
+       "genus": 4,
+       "places_by_degree": [
+        23,
+        52,
+        466,
+        3566
+       ],
+       "N": [
+        23,
+        127,
+        1421,
+        14391
+       ],
+       "L": [
+        1,
+        11,
+        63,
+        279,
+        1028,
+        3069,
+        7623,
+        14641,
+        14641
+       ],
+       "L_str": "14641*t^8 + 14641*t^7 + 7623*t^6 + 3069*t^5 + 1028*t^4 + 279*t^3 + 63*t^2 + 11*t + 1",
+       "factor_degrees": [
+        [
+         8,
+         1
+        ]
+       ],
+       "weil": "ok",
+       "matches_sage_L_polynomial": true,
+       "seconds": 44.0
+      },
+      "joint": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        30,
+        48,
+        494,
+        3665,
+        32178
+       ],
+       "N": [
+        30,
+        126,
+        1512,
+        14786,
+        160920
+       ],
+       "weil": "ok",
+       "seconds": 500.0,
+       "L_prym": [
+        1,
+        7,
+        24,
+        84,
+        399,
+        1546,
+        4389,
+        10164,
+        31944,
+        102487,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 102487*t^9 + 31944*t^8 + 10164*t^7 + 4389*t^6 + 1546*t^5 + 399*t^4 + 84*t^3 + 24*t^2 + 7*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(1,1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        28,
+        53,
+        466,
+        3623,
+        32408
+       ],
+       "N": [
+        28,
+        134,
+        1426,
+        14626,
+        162068
+       ],
+       "weil": "ok",
+       "seconds": 479.3,
+       "L_prym": [
+        1,
+        5,
+        16,
+        40,
+        143,
+        694,
+        1573,
+        4840,
+        21296,
+        73205,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 73205*t^9 + 21296*t^8 + 4840*t^7 + 1573*t^6 + 694*t^5 + 143*t^4 + 40*t^3 + 16*t^2 + 5*t + 1",
+       "factor_degrees": [
+        [
+         10,
+         1
+        ]
+       ]
+      },
+      "diag(-1,-1)": {
+       "genus": 9,
+       "dim_prym": 5,
+       "places_by_degree": [
+        24,
+        49,
+        436,
+        3624,
+        32364
+       ],
+       "N": [
+        24,
+        122,
+        1332,
+        14618,
+        161844
+       ],
+       "weil": "ok",
+       "seconds": 487.7,
+       "L_prym": [
+        1,
+        1,
+        -2,
+        -32,
+        29,
+        318,
+        319,
+        -3872,
+        -2662,
+        14641,
+        161051
+       ],
+       "L_prym_str": "161051*t^10 + 14641*t^9 - 2662*t^8 - 3872*t^7 + 319*t^6 + 318*t^5 + 29*t^4 - 32*t^3 - 2*t^2 + t + 1",
+       "factor_degrees": [
+        [
+         2,
+         1
+        ],
+        [
+         8,
+         1
+        ]
+       ]
+      }
+     },
+     "seconds": 1539.9
+    }
+   },
+   "witness": {
+    "joint": 5,
+    "diag(1,1)": 5,
+    "diag(-1,-1)": 5,
+    "full": 7
+   },
+   "bad_primes_seen": [],
+   "conclusion": "no isogeny factor of dimension <= 2 over Q; no non-constant map over Q to a curve of genus 1 or 2"
+  }
+ },
+ "magma": {
+  "tower142": {
+   "non_hyperelliptic_blocks": 12,
+   "sha256": "ea02bb0592312226c511baa10ecb84b4aa4d9fab9615ae4956b013ab0b5fc4ff"
+  },
+  "tower142b": {
+   "A2": {
+    "5": [
+     [
+      6,
+      1
+     ]
+    ],
+    "7": [
+     [
+      4,
+      1
+     ]
+    ],
+    "11": [
+     [
+      4,
+      1
+     ]
+    ],
+    "13": [
+     [
+      6,
+      1
+     ]
+    ],
+    "17": [
+     [
+      6,
+      1
+     ]
+    ],
+    "19": [
+     [
+      6,
+      1
+     ]
+    ],
+    "23": [
+     [
+      6,
+      1
+     ]
+    ]
+   },
+   "B2": {
+    "3": [
+     [
+      4,
+      1
+     ]
+    ],
+    "5": [
+     [
+      2,
+      1
+     ],
+     [
+      6,
+      1
+     ]
+    ],
+    "7": [
+     [
+      2,
+      1
+     ],
+     [
+      6,
+      1
+     ]
+    ],
+    "11": [
+     [
+      8,
+      1
+     ]
+    ],
+    "13": [
+     [
+      8,
+      1
+     ]
+    ],
+    "17": [
+     [
+      8,
+      1
+     ]
+    ],
+    "19": [
+     [
+      8,
+      1
+     ]
+    ]
+   },
+   "sha256": "15f9765189c4f0201eb4aef11cbdec438798bcf269e840b6a929bc77c75061f6"
+  }
+ },
+ "notes": [
+  "Primes recorded: A at 5 and 13 (3, 7, 11 are primes of bad reduction of its full quotient); B, C, D at 5, 7, 11.  At p = 13 the full quotients of B, C, D were also computed (L-polynomials irreducible of degree 8, Sage agreeing with its own L_polynomial(); Magma B2 at 13: [<8,1>]) but the run was stopped during the Prym parts (about 17 minutes for a joint part, the diagonal parts far slower); those p = 13 observations are in the scratch logs only and are not part of the record.",
+  "Witness primes: the smallest good prime at which a piece has no irreducible factor of degree <= 4; one such prime excludes every isogeny factor of dimension <= 2 over Q.  Accidental small factors at other primes (B full at 5, 7; the third Prym part of B, C, D at 7 and of C, D at 11; A's third Prym part at 13) are consistent with simplicity over Q."
+ ]
+}

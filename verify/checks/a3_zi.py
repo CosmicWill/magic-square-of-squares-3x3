@@ -6610,6 +6610,163 @@ def _(ctx):
              + str(T["boxes"]["311"]["n_killed"]) + " dead; " + str(n_ver) + " kills re-derived with the module")
 
 
+@check("a3.prym_test_142", DOC)
+def _(ctx):
+    """THE PRYM TEST ON THE ROUTE-LESS FAMILIES (entry 142; doc 2.66;
+    compute/data_prym_test_142.json; compute/qc/prym_test.sage;
+    compute/qc/magma_tower142.m, magma_tower142b.m and their transcripts).
+    Sixteen of the 88 open classes with no hyperelliptic route sit in four
+    families A-D of four classes each, one (7,3) or (8,4) component per
+    class on the frame recorded, every member's component a monomial image
+    (g,h) -> (g,h) or (g,-1/h) of the family's representative.  The
+    sign-and-inversion group G = {1, joint, diag(1,1), diag(-1,-1)} is
+    (Z/2)^2; Magma found the full quotients Gamma/G non-hyperelliptic (genus
+    3 plane quartics, genus 4 canonical curves) and their L-polynomials
+    irreducible at good primes for A and B.  Kani-Rosen: J(Gamma) x
+    J(Gamma/G)^2 ~ J(Gamma/H1) x J(Gamma/H2) x J(Gamma/H3), so every simple
+    factor of J(Gamma) over Q lies in J(Gamma/G) or in a Prym part P_H =
+    J(Gamma/H)/J(Gamma/G).  Sage (function fields over GF(p)): where the
+    reduction keeps the genus the Jacobian has good reduction and the
+    L-polynomial follows from the numbers of places of degree <= dim
+    (Newton's identities, the functional equation, the full quotient's
+    power sums subtracted for the Prym parts); at the witness primes every
+    piece has no irreducible factor of degree <= 4, so J(Gamma) has no
+    isogeny factor of dimension 1 or 2 over Q: NO NON-CONSTANT MAP OVER Q
+    FROM THE COMPONENT TO ANY CURVE OF GENUS 1 OR 2 -- the sixteen classes
+    are beyond every quotient route through elliptic or genus-2 curves.
+    Verifies the transcripts, the group and the quotients from the module,
+    the members' components (representatives in fast mode, all in full),
+    that the members are open, re-derives every L-polynomial from the
+    recorded place counts, their factorisations, the Weil condition, the
+    witnesses, and Magma's factor degrees against Sage's."""
+    import gzip, json
+    from fractions import Fraction
+    import sympy as sp
+    from compute import omega3 as O
+    from compute.omega3 import frame_factors
+    from compute import symmetry_tower as ST
+    with open(os.path.join(DATA, "data_prym_test_142.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    require(T["entry"] == 142 and T["box"] == "211" and set(T["families"]) == {"A", "B", "C", "D"}, "the data file")
+    with open(os.path.join(DATA, "qc", "magma_tower142.out.txt"), encoding="utf-8") as fh:
+        ma = fh.read()
+    with open(os.path.join(DATA, "qc", "magma_tower142b.out.txt"), encoding="utf-8") as fh:
+        mb = fh.read()
+    require(ma.count("hyperelliptic? false") == 12 and "hyperelliptic? true" not in ma
+            and all(("block %s: genus %d" % (b, g_)) in ma for b, g_ in zip("ABCDEFGHIJKL", [3, 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4])), "the magma_tower142 transcript")
+    require("block A2: genus 3" in mb and "p = 5 : L-polynomial factors [ <6, 1> ]" in mb and "p = 13 : L-polynomial factors [ <6, 1> ]" in mb
+            and "block B2: genus 4" in mb and "p = 11 : L-polynomial factors [ <8, 1> ]" in mb and "p = 5 : L-polynomial factors [ <2, 1>, <6, 1> ]" in mb, "the magma_tower142b transcript")
+    with gzip.open(os.path.join(DATA, "data_omega3_box211.json.gz"), "rt", encoding="utf-8") as fh:
+        d = json.load(fh)
+    O.set_box((2, 1, 1))
+    g, h = ST.g, ST.h
+    X, Y, U, V, U2, V2, t = sp.symbols("X Y U V U2 V2 t")
+    PIECES = ["full", "joint", "diag(1,1)", "diag(-1,-1)"]
+
+    def L_from_power_sums(s, dim, q):
+        a = [Fraction(1)]
+        for i in range(1, dim + 1):
+            a.append(-sum(s[j - 1] * a[i - j] for j in range(1, i + 1)) / i)
+        for i in range(dim + 1, 2 * dim + 1):
+            a.append(Fraction(q) ** (i - dim) * a[2 * dim - i])
+        return a
+
+    def power_sums(a, kmax):
+        s = []
+        for i in range(1, kmax + 1):
+            ai = a[i] if i < len(a) else 0
+            s.append(-i * ai - sum(s[j - 1] * (a[i - j] if i - j < len(a) else 0) for j in range(1, i)))
+        return s
+
+    def counts(B):
+        return [sum(k * B[k - 1] for k in sp.divisors(m)) for m in range(1, len(B) + 1)]
+
+    def factor_degrees(a):
+        P = sp.Poly([int(c) for c in reversed(a)], t)
+        return sorted((int(f.degree()), int(e)) for f, e in P.factor_list()[1])
+
+    def weil(a, q):
+        P = sp.Poly([int(c) for c in reversed(a)], t)
+        sf = sp.Poly(sp.sqf_part(P.as_expr()), t)
+        rts = sf.nroots(n=15, maxsteps=200)
+        return len(rts) == sf.degree() and all(abs(abs(r) - sp.sqrt(sp.Rational(1, q)).evalf(15)) < 1e-6 for r in rts)
+    n_members = n_comp = n_poly = 0
+    for fam, F in sorted(T["families"].items()):
+        rep, gen, deg = F["representative"], F["genera"], tuple(F["representative"]["deg"])
+        require(len(F["members"]) == 4 and F["members"][0]["index"] == rep["index"] and F["members"][0]["frame"] == rep["frame"], (fam, "the representative is the first member"))
+        require(gen["component"] + 2 * gen["full"] == gen["joint"] + gen["diag(1,1)"] + gen["diag(-1,-1)"] and gen["full"] in (3, 4), (fam, "the Kani-Rosen genera"))
+        require(F["conclusion"].startswith("no isogeny factor of dimension <= 2") and all(pc in F["witness"] for pc in PIECES), (fam, "the witnesses"))
+        Frep = sp.sympify(F["curves"]["component"], locals={"g": g, "h": h})
+        require(ST.is_symmetry(Frep, g, h, {g: -g, h: -h}) and ST.is_symmetry(Frep, g, h, {g: 1 / g, h: 1 / h}) and ST.is_symmetry(Frep, g, h, {g: -1 / g, h: -1 / h}), (fam, "the group (Z/2)^2"))
+        j = ST.step_joint(Frep, g, h, X, Y)
+        require(j and sp.expand(j[0] - sp.sympify(F["curves"]["joint"], locals={"X": X, "Y": Y})) == 0, (fam, "the joint quotient"))
+        for s_ in (1, -1):
+            dd = ST.step_double_inversion(Frep, g, h, s_, s_, U, V)
+            require(dd and sp.expand(dd[0] - sp.sympify(F["curves"]["diag(%d,%d)" % (s_, s_)], locals={"U": U, "V": V})) == 0, (fam, "the diagonal quotient", s_))
+        full = ST.step_double_inversion(j[0], X, Y, 1, 1, U2, V2)
+        require(full and sp.expand(full[0] - sp.sympify(F["curves"]["full"], locals={"U2": U2, "V2": V2})) == 0, (fam, "the full quotient"))
+        for i, m in enumerate(F["members"]):
+            c = d["classes"][m["index"]]
+            require(c["v"] == "finite", (fam, m["index"], "open in the ledger"))
+            n_members += 1
+            if i == 0 or ctx.bound(full=1, fast=0):
+                cand = json.loads(c["cand"]) if isinstance(c["cand"], str) else c["cand"]
+                cand = tuple(tuple(v) for v in cand[:4]) + tuple(cand[4:])
+                curves, live = frame_factors(cand, m["frame"])
+                comps = [phi for phi, dg, dh in curves if (dg, dh) == deg]
+                require(len(comps) == 1, (fam, m["index"], "one component of the bidegree"))
+                Fm = sp.expand(comps[0].subs({O.tg: g, O.th: h}))
+                mp = m["map_from_representative"]
+                pair = sp.sympify(mp.replace(" swapped", ""), locals={"g": g, "h": h})
+                a_, b_ = (pair[1], pair[0]) if "swapped" in mp else (pair[0], pair[1])
+                num = sp.expand(sp.fraction(sp.together(Frep.subs({g: a_, h: b_}, simultaneous=True)))[0])
+                q_ = sp.cancel(num / Fm)
+                require(q_.free_symbols == set() and q_ != 0 and sp.sympify(m["constant"]) == q_, (fam, m["index"], "the component is a monomial image of the representative's"))
+                n_comp += 1
+        for p_s, R in F["primes"].items():
+            p = int(p_s)
+            if "bad" in R:
+                require(p in F["bad_primes_seen"], (fam, p, "bad prime listed"))
+                continue
+            C = R["curves"]
+            e = C["full"]
+            gf = gen["full"]
+            require(e["genus"] == gf and len(e["places_by_degree"]) == gf and counts(e["places_by_degree"]) == e["N"], (fam, p, "the full quotient's counts"))
+            s_full = [p ** k + 1 - e["N"][k - 1] for k in range(1, gf + 1)]
+            a = L_from_power_sums([Fraction(x) for x in s_full], gf, p)
+            require(all(x.denominator == 1 for x in a) and [int(x) for x in a] == e["L"] and factor_degrees(a) == [tuple(x) for x in e["factor_degrees"]] and weil(a, p) and e["weil"] == "ok",
+                    (fam, p, "the full quotient's L-polynomial"))
+            n_poly += 1
+            sf = power_sums(a, 8)
+            for piece in PIECES[1:]:
+                e2 = C.get(piece)
+                if not e2 or "bad" in e2:
+                    continue
+                dP = gen[piece] - gf
+                require(e2["genus"] == gen[piece] and e2["dim_prym"] == dP and len(e2["places_by_degree"]) == dP and counts(e2["places_by_degree"]) == e2["N"], (fam, p, piece, "counts"))
+                s2 = [Fraction(p ** k + 1 - e2["N"][k - 1]) for k in range(1, dP + 1)]
+                aP = L_from_power_sums([s2[k] - sf[k] for k in range(dP)], dP, p)
+                require("L_prym" in e2 and e2["weil"] == "ok", (fam, p, piece, "the Weil check passed when recorded"))
+                require(all(x.denominator == 1 for x in aP) and [int(x) for x in aP] == e2["L_prym"] and factor_degrees(aP) == [tuple(x) for x in e2["factor_degrees"]] and weil(aP, p),
+                        (fam, p, piece, "the Prym part's L-polynomial"))
+                if "validation" in e2:
+                    require(e2["validation"]["L_full_quotient_times_L_prym_equals_L_curve"] is True, (fam, p, piece, "the validation against the full count"))
+                n_poly += 1
+        for piece in PIECES:
+            w = F["primes"][str(F["witness"][piece])]["curves"][piece]
+            require(all(dg >= 5 for dg, _ in w["factor_degrees"]) and sum(dg * e_ for dg, e_ in w["factor_degrees"]) == 2 * (gen["full"] if piece == "full" else gen[piece] - gen["full"]), (fam, piece, "the witness prime"))
+        blk = {"A": "A2", "B": "B2"}.get(fam)
+        if blk:
+            for p_s, fd in T["magma"]["tower142b"][blk].items():
+                R = F["primes"].get(p_s)
+                if R and "curves" in R:
+                    require([list(x) for x in R["curves"]["full"]["factor_degrees"]] == fd, (fam, p_s, "Magma's factor degrees against Sage's"))
+                elif R:
+                    require(sum(dg for dg, _ in fd) < 2 * gen["full"], (fam, p_s, "Magma's degree at a prime Sage calls bad"))
+    ctx.note("entry 142: the Prym test on the four route-less families (%d classes): %d components checked, %d L-polynomials re-derived; "
+             "no map over Q to a curve of genus 1 or 2 (witness primes %s)" % (n_members, n_comp, n_poly, "; ".join("%s: %s" % (f_, ",".join(str(v) for v in sorted(set(F_["witness"].values())))) for f_, F_ in sorted(T["families"].items()))))
+
+
 @check("a3.prime_column", DOC)
 def _(ctx):
     """THE PRIME-COLUMN LEMMA (Theorem A3.PC; entry 120; doc 2.49; proposed by the

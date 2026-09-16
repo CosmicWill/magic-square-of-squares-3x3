@@ -1,0 +1,85 @@
+Magma online calculator output for compute/qc/magma_tower142.m (run by the user, 2026-09-09/10), verbatim, one block at a time.
+The twelve blocks are the full quotients (the quotient by the whole sign-and-inversion group: the joint sign change and the
+diagonal double inversion in either order) of the components of route-less (2,1,1) classes; the member classes are listed in
+the script.  The "Identifier 'H'" error is a scripting slip: IsHyperelliptic returns one value when it is false, so the model
+variable is never assigned; the else-branch (the canonical model) was not reached.  Every curve is NOT hyperelliptic.
+
+block A: genus 3
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block B: genus 4
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block C: genus 4
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block D: genus 4
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block E: genus 3
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block F: genus 3
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block G: genus 3
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block H: genus 3
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block I: genus 4
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block J: genus 4
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+
+block K: genus 4
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+block L: genus 4
+hyperelliptic? false
+
+>>     print "model:", H;
+                       ^
+User error: Identifier 'H' has not been declared or assigned
+
+Reading.  Magma confirms Sage's genera (3 for A, E, F, G, H; 4 for B, C, D, I, J, K, L) and finds none of the twelve hyperelliptic:
+the genus-3 ones are plane quartics, the genus-4 ones canonical curves in P^3.  The tower's coordinate models are exhausted on this
+family; what remains testable is (i) automorphisms beyond the monomial maps (CurveQuotient by an involution would give a lower-genus
+curve) and (ii) the splitting of the Jacobians (L-polynomials at small primes): an elliptic factor of rank 0 would give a map to a
+curve with finitely many known points.  Follow-up: compute/qc/magma_tower142b.m.

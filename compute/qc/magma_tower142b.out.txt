@@ -1,0 +1,39 @@
+Magma online calculator output for compute/qc/magma_tower142b.m (run by the user, 2026-09-10), verbatim, one block at a time.
+Blocks A2 and B2 only; the run was stopped after them (see the reading).  The automorphism step of A2 failed on a scripting slip
+(AutomorphismGroup of a curve returns one value; the script expected two); block B2 hit the calculator's time limit after its
+L-polynomial at p = 19 (the message "The computation exceeded the time limit and so was terminated prematurely.").
+
+block A2: genus 3
+p = 3 : bad reduction or error
+p = 5 : L-polynomial factors [ <6, 1> ]
+p = 7 : L-polynomial factors [ <4, 1> ]
+p = 11 : L-polynomial factors [ <4, 1> ]
+p = 13 : L-polynomial factors [ <6, 1> ]
+p = 17 : L-polynomial factors [ <6, 1> ]
+p = 19 : L-polynomial factors [ <6, 1> ]
+p = 23 : L-polynomial factors [ <6, 1> ]
+automorphism group: error Runtime error in :=: Expected to assign 2 value(s) but
+only computed 1 value(s)
+
+block B2: genus 4
+p = 3 : L-polynomial factors [ <4, 1> ]
+p = 5 : L-polynomial factors [ <2, 1>, <6, 1> ]
+p = 7 : L-polynomial factors [ <2, 1>, <6, 1> ]
+p = 11 : L-polynomial factors [ <8, 1> ]
+p = 13 : L-polynomial factors [ <8, 1> ]
+p = 17 : L-polynomial factors [ <8, 1> ]
+p = 19 : L-polynomial factors [ <8, 1> ]
+The computation exceeded the time limit and so was terminated prematurely.
+
+Reading.  Where the L-polynomial of the reduced model has full degree 2g (the geometric genus of the reduction equals the genus of the
+curve), the Jacobian has good reduction at p and Magma's L-polynomial is the characteristic polynomial of Frobenius on it (the
+abelian rank of the reduction of the Jacobian is at least the geometric genus of a component of the special fibre of any model, so it
+equals g).  An isogeny factor over Q of dimension d would give a degree-2d factor over Q of that polynomial at every good prime.
+A2: irreducible of degree 6 at p = 5, 13, 17, 19, 23 (degree 4 at 7 and 11 = the reduction loses genus there): the Jacobian is simple
+over Q.  B2: irreducible of degree 8 at p = 11, 13, 17, 19 (the degree-2 factors at 5 and 7 are accidents of small fields; degree 4 at
+3): simple over Q.  Consequences: neither curve has a non-constant map over Q to any curve of genus 1, 2 or 3 (for B2) -- an elliptic
+factor, a genus-2 quotient, or an involution with a positive-genus quotient would all be isogeny factors -- so the automorphism
+step is moot for both (a rational involution of a non-hyperelliptic curve has a positive-genus quotient).  The two curves carry
+eight of the 88 route-less classes (four each).  What is not yet excluded: elliptic (or genus-2) factors in the Prym parts of the
+intermediate quotients (joint only, diagonal only), which are not seen by the full quotient; tested next by the L-polynomials of the
+components and of their index-2 quotients (magma_tower142c.m).
