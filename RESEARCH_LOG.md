@@ -7502,3 +7502,20 @@ Igusa-Clebsch invariants are identical, so the two curves are isomorphic
 over the algebraic closure and their Jacobians isogenous: I139 has rank 3
 like D139, and its eight (3,1,1) classes join the rank-3 pile. Pending:
 R2 (sixteen (2,1,1) classes) and R4 (sixteen (3,1,1) classes).
+
+OUTCOME OF THE BATCH (entry 144, addendum, later on 2026-09-15). The
+remaining blocks came in: R2 (genus 3, sixteen (2,1,1) classes) has rank
+bounds 3 4, trivial torsion and twelve small points; R4 (genus 4, sixteen
+(3,1,1) classes) has rank bounds 4 5, trivial torsion and ten small
+points; R3's own block shows only its two points at infinity (rank
+bounds 1 3, torsion bound 32), consistent with the decision. The Moebius
+search of the branch points finds no involution beyond the identity for
+R1, R2 and R4 (R3 and R5 have x -> -x), so nothing splits them as R3
+split. Of the five curves covering the 64 genus-3/4 classes, one is
+decided (R3, eight classes dead) and four are closed by rank (rank >=
+genus): the (2,1,1) classes over R1, R2 (32) and the (3,1,1) classes over
+R4, R5 (24) are beyond Chabauty-Coleman on these frames. With the
+calculator, curve arithmetic on the shape survivors is exhausted; what
+remains is quadratic Chabauty where the rank equals the genus (G3; R1 and
+R2 if their ranks are exactly 3) with research code on a licensed Magma,
+and the theory path. Transcript: compute/qc/magma_tower143.out.txt.
