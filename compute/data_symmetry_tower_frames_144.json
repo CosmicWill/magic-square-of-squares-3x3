@@ -1,0 +1,1567 @@
+{
+ "entry": 144,
+ "note": "entry 144: R3 = y^2 = x^8 - 57x^6 + 596x^4 - 688x^2 + 192 (the reciprocal endpoint of the (8,4) components of eight (2,1,1) classes on frame 1, entry 143's census) is decided through its odd companion G1 = w^2 = t f(t) (Magma block G1 of magma_tower143.m: rank 0, J(Q) = Z/2 + Z/2 proved, hence G1(Q) = {oo, (0,0), (12,0)} and R3(Q) = its two points at infinity).  R3_143 joined KNOWN_HYPERELLIPTIC (the tower's known curves of genus 3: the matcher generalised to any even degree, the kill loop extended to degree-7/8 endpoints) and the eight classes were re-run on all their frames; every kill re-derived with the installed module.",
+ "module_sha256": "7b55fe9b8280a280171560d18ed02b159fe9dbfb9d55205f8742b7e5398b861a",
+ "known_curves": [
+  "G1",
+  "F1",
+  "C_a",
+  "C_b",
+  "C_c",
+  "K",
+  "B139",
+  "C139",
+  "G139",
+  "H139",
+  "J139",
+  "D140"
+ ],
+ "known_hyperelliptic": [
+  "R3_143"
+ ],
+ "magma": {
+  "script": "compute/qc/magma_tower143.m",
+  "output": "compute/qc/magma_tower143.out.txt",
+  "run_by": "the user, 2026-09-15, the Magma online calculator",
+  "decided": {
+   "R3_143": {
+    "block": "G1 (the odd companion of R3)",
+    "curve": "R3: y^2 = x^8 - 57x^6 + 596x^4 - 688x^2 + 192 (even in x); G1: w^2 = t^5 - 57t^4 + 596t^3 - 688t^2 + 192t, t = x^2, w = x y",
+    "coefficients": [
+     1,
+     0,
+     -57,
+     0,
+     596,
+     0,
+     -688,
+     0,
+     192
+    ],
+    "G1": {
+     "points": "oo, (0,0), (12,0)",
+     "rank_bounds": [
+      0,
+      0
+     ],
+     "torsion": "Z/2 + Z/2",
+     "mordell_weil": "Z/2 + Z/2 (rank proved, group proved)",
+     "argument": "P -> [P - oo] embeds G1(Q) in J(Q) = Z/2 + Z/2, so at most four points, one per class; oo, (0,0), (12,0) fill three classes and the fourth, [(0,0) + (12,0) - 2 oo], is not represented by a point (two distinct effective degree-2 divisors on a genus-2 curve are linearly equivalent only inside the hyperelliptic pencil); G1(Q) = {oo, (0,0), (12,0)}"
+    },
+    "pull_back": "t = x^2: t = 0 gives y^2 = 192 (no), t = 12 gives x^2 = 12 (no), t = oo gives the two points at infinity of R3 (leading coefficient 1): R3(Q) = {oo+, oo-}",
+    "points": [],
+    "points_at_infinity": 2
+   }
+  }
+ },
+ "subset": {
+  "211": [
+   75302,
+   75303,
+   75304,
+   75305,
+   75559,
+   75560,
+   75561,
+   75562
+  ],
+  "311": []
+ },
+ "boxes": {
+  "211": {
+   "n_open_before": 132,
+   "subset": [
+    75302,
+    75303,
+    75304,
+    75305,
+    75559,
+    75560,
+    75561,
+    75562
+   ],
+   "n_rerun": 8,
+   "n_killed": 8,
+   "rejected": [],
+   "by_frame": {
+    "1": 8
+   },
+   "by_endpoint": {
+    "inversion h (s=-1) -> reciprocal | R3_143": 8
+   },
+   "by_curve": {
+    "R3_143": 8
+   },
+   "tally_after": {
+    "dead": 79244,
+    "finite": 124
+   },
+   "classes": [
+    {
+     "index": 75302,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       2,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    },
+    {
+     "index": 75303,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       2,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    },
+    {
+     "index": 75304,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       2,
+       1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    },
+    {
+     "index": 75305,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       2,
+       1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    },
+    {
+     "index": 75559,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       2,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      -1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    },
+    {
+     "index": 75560,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       2,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      -1,
+      -1,
+      1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    },
+    {
+     "index": 75561,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       2,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      -1,
+      -1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    },
+    {
+     "index": 75562,
+     "cand": [
+      [
+       2,
+       -1,
+       -1
+      ],
+      [
+       2,
+       1,
+       1
+      ],
+      [
+       2,
+       -1,
+       1
+      ],
+      [
+       1,
+       1,
+       -1
+      ],
+      1,
+      1,
+      1,
+      -1
+     ],
+     "engine_frame": 1,
+     "frames": {
+      "0": {
+       "status": "open",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          16,
+          16
+         ],
+         "engine": "unknown"
+        }
+       ],
+       "error": null
+      },
+      "1": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": {
+           "oo": [
+            [
+             "0",
+             "-1"
+            ],
+            [
+             "0",
+             "0"
+            ],
+            [
+             "0",
+             "1"
+            ]
+           ]
+          }
+         }
+        }
+       ],
+       "error": null
+      },
+      "2": {
+       "status": "dead",
+       "live": [],
+       "components": [
+        {
+         "deg": [
+          8,
+          4
+         ],
+         "engine": "finite",
+         "group_order": 4,
+         "kill": {
+          "route": "inversion h (s=-1)",
+          "endpoint": "inversion h (s=-1) -> reciprocal",
+          "elliptic": null,
+          "known": "R3_143",
+          "twist": null,
+          "lifts": [
+           [
+            "0",
+            "-1"
+           ],
+           [
+            "0",
+            "0"
+           ],
+           [
+            "0",
+            "1"
+           ]
+          ],
+          "fibers": null
+         }
+        }
+       ],
+       "error": null
+      }
+     },
+     "dead_frame": 1,
+     "dead_frames": [
+      1,
+      2
+     ],
+     "rederived": [
+      {
+       "deg": [
+        8,
+        4
+       ],
+       "endpoint": "inversion h (s=-1) -> reciprocal",
+       "known": "R3_143",
+       "lifts": [
+        [
+         "0",
+         "-1"
+        ],
+        [
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1"
+        ]
+       ],
+       "fibers": {
+        "oo": [
+         [
+          "0",
+          "-1"
+         ],
+         [
+          "0",
+          "0"
+         ],
+         [
+          "0",
+          "1"
+         ]
+        ]
+       },
+       "twist": null
+      }
+     ]
+    }
+   ]
+  },
+  "311": {
+   "n_open_before": 124,
+   "subset": [],
+   "n_rerun": 0,
+   "n_killed": 0,
+   "rejected": [],
+   "by_frame": {},
+   "by_endpoint": {},
+   "by_curve": {},
+   "tally_after": {
+    "dead": 288759,
+    "finite*": 1181,
+    "finite": 124
+   },
+   "classes": []
+  }
+ }
+}

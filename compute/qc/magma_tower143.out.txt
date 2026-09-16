@@ -1,0 +1,91 @@
+Magma online calculator output for compute/qc/magma_tower143.m (run by the user, 2026-09-15), verbatim, one block at a time.
+
+block G1: points of height <= 10^4: {@ (1 : 0 : 0), (0 : 0 : 1), (12 : 0 : 1) @}
+rank bounds: 0 0
+torsion:
+Abelian Group isomorphic to Z/2 + Z/2
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    2*P[2] = 0
+Mapping from: Abelian Group isomorphic to Z/2 + Z/2
+Defined on 2 generators
+Relations:
+    2*P[1] = 0
+    2*P[2] = 0 to JacHyp: J given by a rule [no inverse]
+MW group:
+Abelian Group isomorphic to Z/2 + Z/2
+Defined on 2 generators
+Relations:
+    2*G.1 = 0
+    2*G.2 = 0
+rank proved: true group proved: true
+
+Reading (block G1 = the odd companion of R3, w^2 = t^5 - 57t^4 + 596t^3 - 688t^2 + 192t, genus 2).  Rank 0 and the Mordell-Weil
+group proved: J(Q) = Z/2 + Z/2.  The curve has a rational point, so P -> [P - oo] embeds C(Q) in J(Q) (P - oo ~ Q - oo forces P = Q
+on a curve of positive genus): #C(Q) <= 4, one point per class at most.  The classes: 0 = oo; [(0,0) - oo] and [(12,0) - oo]
+(2-torsion: (0,0) and (12,0) are Weierstrass points); their sum [(0,0) + (12,0) - 2 oo].  A point P in the last class would give
+P + oo ~ (0,0) + (12,0); on a genus-2 curve two distinct effective divisors of degree 2 are linearly equivalent only if both lie in
+the hyperelliptic pencil, and (0,0) + (12,0) does not (different t), so P + oo = (0,0) + (12,0) as divisors -- impossible.  Hence
+C(Q) = { oo, (0,0), (12,0) } exactly (the three points found).  Chabauty was not needed (no free generator); Magma's Chabauty0(J)
+is the built-in form of the same argument.
+Consequence for R3: y^2 = x^8 - 57x^6 + 596x^4 - 688x^2 + 192 (even in x).  A rational point (x, y) of R3 maps to (t, w) = (x^2, x y)
+on G1 (w^2 = t f(t) with f(t) = t^4 - 57t^3 + 596t^2 - 688t + 192 = R3(sqrt t)).  t = 0 forces x = 0 and y^2 = 192 (not a square);
+t = 12 forces x^2 = 12 (irrational); t = oo is x = oo.  R3 has leading coefficient 1, a square, so it has exactly two rational
+points at infinity.  R3(Q) = { the two points at infinity }: DECIDED.  Fold: entry 144 (R3 as a known curve of the tower; the
+fibers of the composed map over infinity for the eight classes 75302-75305, 75559-75562 on their recorded frames).
+
+block G2: points of height <= 10^4: {@ (1 : 0 : 0), (0 : -128 : 1), (0 : 128 :
+1), (1 : -89 : 1), (1 : 89 : 1), (4 : -128 : 1), (4 : 128 : 1), (12 : -1024 :
+1), (12 : 1024 : 1) @}
+rank bounds: 3 3
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+block G3: points of height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (0 : 0 : 1),
+(1 : -89 : 1), (1 : 89 : 1), (-4 : -1024 : 1), (-4 : 1024 : 1), (4 : -256 : 1),
+(4 : 256 : 1), (4 : -2048 : 3), (4 : 2048 : 3), (8 : -1664 : 1), (8 : 1664 : 1)
+@}
+rank bounds: 2 2
+torsion:
+Abelian Group of order 1
+Mapping from: Abelian Group of order 1 to JacHyp: J given by a rule [no inverse]
+
+Reading (blocks G2, G3 = the even quotient and the odd companion of R5).  G2: rank 3 (proved by the bounds), trivial torsion, nine
+small points -- rank above the genus, no Chabauty method.  G3: rank 2 = genus, trivial torsion, thirteen small points -- classical
+Chabauty impossible, only quadratic Chabauty (research code) could apply.  J(R5) ~ J(G2) x J(G3) up to isogeny (the even/odd
+decomposition), so J(R5) has rank 5 > genus 4: Chabauty-Coleman on R5 itself is impossible too.  R5 and its eight (3,1,1) classes
+(220302-220309) stay open; the census's genus-4 route for them is closed by rank.  Blocks R1-R5 and L1-L3 pending.
+
+block R5: genus 4
+points of naive height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (-1 : -89 : 1),
+(-1 : 89 : 1), (0 : -128 : 1), (0 : 128 : 1), (1 : -89 : 1), (1 : 89 : 1), (-2 :
+-128 : 1), (-2 : 128 : 1), (2 : -128 : 1), (2 : 128 : 1) @}
+rank bounds: 4 5
+torsion bound (primes 3..31): 1
+
+Reading (block R5, genus 4).  Twelve small points; rank bounds 4 5 (the 2-descent ran within the calculator's limit on a genus-4
+Jacobian), torsion trivial.  Consistent with J(R5) ~ J(G2) x J(G3) of rank 3 + 2 = 5.  Rank >= 4 = genus: Chabauty-Coleman is
+impossible on R5; with G2 (rank 3) and G3 (rank 2 = genus) the genus-4 route of the eight (3,1,1) classes 220302-220309 is closed by
+rank on every piece.  Those classes stay open.
+
+Blocks L1-L3 (the analytic ranks): exceeded the calculator's time limit (the user, 2026-09-15); dropped -- they were for the record
+only.  The Euler-factor comparison of D139 against I139 (the second half of L3) was offered separately as block L3b.
+
+block R1: genus 3
+points of naive height <= 10^4: {@ (1 : -1 : 0), (1 : 1 : 0), (-1 : -128 : 1),
+(-1 : 128 : 1), (0 : -5 : 1), (0 : 5 : 1), (3 : -640 : 1), (3 : 640 : 1), (1 :
+-128 : 3), (1 : 128 : 3), (5 : -16000 : 3), (5 : 16000 : 3) @}
+rank bounds: 3 4
+torsion bound (primes 3..31): 1
+
+Reading (block R1, genus 3; 16 (2,1,1) classes).  Twelve small points (x = oo, -1, 0, 3, 1/3, 5/3), rank bounds 3 4, torsion trivial:
+rank >= genus, no Chabauty-Coleman on R1 itself.  What could still decide it is an extra involution (a Moebius map permuting the
+eight branch points) whose quotient or Prym has rank below its genus, as for R3; searched locally (scratch r1_involutions.py).
+
+block L3b (the Euler factors of D139 against I139 at p = 5, 7, 11, 13, 17, 19, 23, 29, 31, 37): equal at every prime, e.g.
+p = 5 : 25 T^4 + 10 T^3 + 7 T^2 + 2 T + 1 (both);  p = 29 : 841 T^4 - 10 T^2 + 1 (both);  p = 37 : 1369 T^4 + 296 T^3 + 62 T^2 + 8 T + 1 (both).
+(The full printout is in the chat transcript of 2026-09-15; the factors are Magma's L_p with $.1 = T.)
+Reading: the two Jacobians have the same conductor 663087 and equal Euler factors at ten good primes -- evidence of isogeny, and
+in fact the Igusa-Clebsch invariants show the curves isomorphic (see the log, entry 145 material); then rank(I139) = rank(D139) = 3
+and I139's eight (3,1,1) classes join the rank-3 pile (no Chabauty method).

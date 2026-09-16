@@ -7431,3 +7431,74 @@ ledgers, the classes touching each undecided curve, the cover, a sample
 of covering curves from the module (all in full mode), the even
 splittings and the programme's hash. Tallies unchanged: (2,1,1) 79236 / 132,
 (3,1,1) 288759 / 124.
+
+## 2026-09-15 — Entry 144: THE GENUS-3 ENDPOINT R3 DECIDED (Magma on its genus-2 companion: rank 0, the group proved) — 8 of the 8 (2,1,1) classes that meet it dead; the tower's known curves extended to genus 3
+
+THE MAGMA RUN. Block G1 of compute/qc/magma_tower143.m (the output in
+magma_tower143.out.txt): the odd companion of R3, G1: w^2 = t^5 - 57t^4
++ 596t^3 - 688t^2 + 192t, has points {oo, (0,0), (12,0)} up to height
+10^4, rank bounds 0 0, torsion Z/2 + Z/2, and MordellWeilGroupGenus2
+returns Z/2 + Z/2 with the rank and the group proved. No Chabauty is
+needed: P -> [P - oo] embeds G1(Q) in J(Q) (P - oo ~ Q - oo forces P = Q
+on a curve of positive genus), so G1 has at most four rational points,
+one per class of J(Q); oo, (0,0) and (12,0) fill three classes ((0,0) and
+(12,0) are Weierstrass points, so they give the two 2-torsion generators),
+and the fourth class [(0,0) + (12,0) - 2 oo] is not represented by a
+point: P + oo ~ (0,0) + (12,0) would need two distinct effective divisors
+of degree 2 to be linearly equivalent, which on a genus-2 curve happens
+only inside the hyperelliptic pencil, and (0,0) + (12,0) is not a fibre of
+t. Hence G1(Q) = {oo, (0,0), (12,0)} exactly.
+
+THE PULL-BACK. R3: y^2 = x^8 - 57x^6 + 596x^4 - 688x^2 + 192 is even in
+x, and (x, y) -> (t, w) = (x^2, x y) maps R3 to G1 (w^2 = x^2 y^2 = t
+f(t) with f(t) = R3(sqrt t)). So a rational point of R3 has t in {0, 12,
+oo}: t = 0 needs y^2 = 192, not a square; t = 12 needs x^2 = 12,
+irrational; t = oo is x = oo, and R3 has leading coefficient 1, a square,
+so exactly two rational points at infinity. R3(Q) = {oo+, oo-}: DECIDED.
+This is the first endpoint of genus 3 decided in the project, and it was
+decided by the second level of the classical quotients, which the tower
+does not take itself (entry 143 found it by hand).
+
+THE MODULE. KNOWN_HYPERELLIPTIC, a table of decided endpoint models of
+genus >= 3 in the convention of KNOWN_GENUS2 (R3_143: no affine points;
+the points at infinity are always among the lifts); the matcher
+match_known(core, o, table, d_even) generalises match_known_genus2 to any
+even degree (the reciprocal model x^d core(lam / x), a point (x, y) of the
+known curve becoming (lam / x, y sqrt(c) / x^(d/2)); d = 6 reproduces the
+genus-2 behaviour exactly, checked on D140); the kill loop treats
+degree-7/8 endpoints as it treats degree-5/6 ones. Module sha256 7b55fe9b8280a280.
+
+THE FOLD. The entry-143 census extracted every endpoint of degree <= 10
+of the 64 classes whose best frame reaches genus 3 or 4, so the classes
+meeting R3 are known exactly: the 8 (2,1,1) classes 75302-75305 and
+75559-75562 (frame 1, the (8,4) component, route 'inversion h (s=-1) ->
+reciprocal'). They were re-run on all their frames with the patched
+module and every kill re-derived with the installed module: 8 of 8 dead
+(frame 1: 8) -- by endpoint: inversion h (s=-1) -> reciprocal | R3_143 (8); rejected: none. Tally (2,1,1) dead 79244 / finite 124;
+(3,1,1) unchanged 288759 / 124. Open after this entry: 124 + 124 = 248.
+
+Data: compute/data_symmetry_tower_frames_144.json; the ledger carries the
+kills as stf records with entry 144 and the block
+symmetry_tower_frames_144. Check a3.symmetry_tower_frames_144 (suite 226)
+verifies the transcript, the argument's arithmetic, the matcher, that the
+subset is exactly the set of classes whose census meets R3, and
+re-derives the kills; the entry-143 census check now pins its tallies to
+the entry-143 state and accepts later kills.
+
+THE OTHER BLOCKS (magma_tower143.out.txt). G2 and G3, the even quotient
+and the odd companion of R5, have ranks 3 and 2 (proved by the bounds,
+trivial torsion), so J(R5) ~ J(G2) x J(G3) has rank 5 > genus 4, and
+block R5 itself gives rank bounds 4 5 with twelve small points: no
+Chabauty method reaches R5 or its pieces (classical needs rank < genus;
+G3 has rank 2 = genus, the only quadratic-Chabauty candidate). Its eight
+(3,1,1) classes stay open. R1 (genus 3, sixteen (2,1,1) classes): rank
+bounds 3 4, torsion trivial, twelve small points -- rank >= genus -- and
+a numerical search of the Moebius maps permuting its eight branch points
+finds only the identity (R3 as the control finds x -> -x), so no hidden
+involution can split it as R3 split: closed by rank. L1-L3 (the analytic
+ranks) exceeded the calculator's limit and were dropped; L3b showed the
+Euler factors of D139 and I139 equal at the ten primes 5..37, and Sage's
+Igusa-Clebsch invariants are identical, so the two curves are isomorphic
+over the algebraic closure and their Jacobians isogenous: I139 has rank 3
+like D139, and its eight (3,1,1) classes join the rank-3 pile. Pending:
+R2 (sixteen (2,1,1) classes) and R4 (sixteen (3,1,1) classes).

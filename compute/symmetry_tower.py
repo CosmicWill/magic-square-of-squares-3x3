@@ -50,6 +50,16 @@ KNOWN_GENUS2 = {
     # certified by IsDivisibleBy (magma_tower140b.m), Chabauty: C(Q) = {(0, 0), oo}
     "D140": ([25, -656, 3808, 11008, 256, 0], [(0, 0)], "entry 141 (Magma block D of 140: rank 1, the index prime to 3 certified, Chabauty)"),
 }
+
+# Decided endpoint models of genus >= 3 (entry 144): the same convention as KNOWN_GENUS2 -- coefficients of y^2 = f(x) (highest
+# degree first), the affine rational points (x, y), the source; the points at infinity are always included in the lifts.
+# R3: y^2 = x^8 - 57x^6 + 596x^4 - 688x^2 + 192, the reciprocal endpoint of the (8,4) components of eight (2,1,1) classes on frame 1
+# (entry 143).  Even in x: its odd companion w^2 = t f(t), t = x^2 (block G1 of compute/qc/magma_tower143.m) has rank 0 and J(Q) =
+# Z/2 + Z/2 proved (Magma), hence exactly the three points oo, (0,0), (12,0); t = 0 gives y^2 = 192 (not a square), t = 12 gives
+# x^2 = 12 (irrational): R3(Q) = its two points at infinity (leading coefficient 1).
+KNOWN_HYPERELLIPTIC = {
+    "R3_143": ([1, 0, -57, 0, 596, 0, -688, 0, 192], [], "entry 144 (Magma block G1 of magma_tower143.m: the odd companion has rank 0 and J(Q) = Z/2 + Z/2 proved; R3(Q) = the two points at infinity)"),
+}
 LAMBDAS = [sp.Rational(n, d) * s for n in (1, 2, 4, 5, 10, 20, 25, 50, 100) for d in (1, 2, 4, 5, 10, 20, 25, 50, 100) for s in (1, -1)]
 
 
@@ -312,10 +322,23 @@ def elliptic_endpoint(coeffs):
 def match_known_genus2(core, o):
     """Is y^2 = core(o) one of the known genus-2 curves up to o = lam x or o = lam / x and a square scaling of y?
     Returns (name, transform, points in the (o, y) coordinates) or None."""
+    return match_known(core, o, KNOWN_GENUS2, 6)
+
+
+def match_known_hyperelliptic(core, o):
+    """The same for the known curves of genus 3 (degree 7/8 models; entry 144)."""
+    return match_known(core, o, KNOWN_HYPERELLIPTIC, 8)
+
+
+def match_known(core, o, table, d_even):
+    """Is y^2 = core(o) one of the curves of the table up to o = lam x or o = lam / x and a square scaling of y?  d_even is the
+    even degree of the models (6 for genus 2, 8 for genus 3): the reciprocal model is x^d_even core(lam / x) and a point (x, y)
+    of the known curve becomes (lam / x, y sqrt(c) / x^(d_even / 2)).  Returns (name, transform, points) or None."""
     P = sp.Poly(core, o)
     d = P.degree()
     x = sp.Symbol("xx")
-    for name, (kc, kpts, src) in KNOWN_GENUS2.items():
+    half = d_even // 2
+    for name, (kc, kpts, src) in table.items():
         K = sum(c * x ** (len(kc) - 1 - i) for i, c in enumerate(kc))
         for lam in LAMBDAS:
             for kind in ("scale", "reciprocal"):
@@ -323,7 +346,7 @@ def match_known_genus2(core, o):
                 if kind == "scale":
                     T = sp.expand(core.subs(o, lam * x))
                 else:
-                    T = sp.expand(sp.cancel(core.subs(o, lam / x) * x ** (6 if len(kc) == 7 else 6)))
+                    T = sp.expand(sp.cancel(core.subs(o, lam / x) * x ** d_even))
                 Tp = sp.Poly(T, x)
                 Kp = sp.Poly(K, x)
                 if Tp.degree() != Kp.degree() and not (kind == "reciprocal"):
@@ -343,7 +366,7 @@ def match_known_genus2(core, o):
                     else:
                         if px == 0:
                             continue          # o = infinity: degenerate
-                        pts.append((lam / px, py * sp.sqrt(c) / px ** 3))
+                        pts.append((lam / px, py * sp.sqrt(c) / px ** half))
                 return {"name": name, "kind": kind, "lambda": str(lam), "c": str(c), "points": [(str(a), str(b)) for a, b in pts], "source": src}
     return None
 
@@ -547,8 +570,8 @@ def analyse(phi, want_all=False):
                 e["elliptic"] = ed
                 if ed and ed.get("complete"):
                     values = [sp.Rational(a) for a, b in ed["points"]] + [None]
-            elif deg in (5, 6):
-                km = match_known_genus2(core, var)
+            elif deg in (5, 6, 7, 8):
+                km = match_known_genus2(core, var) if deg in (5, 6) else match_known_hyperelliptic(core, var)
                 e["known"] = km
                 if km:
                     # the x-values of the known points transported to the endpoint variable; the point at infinity always;

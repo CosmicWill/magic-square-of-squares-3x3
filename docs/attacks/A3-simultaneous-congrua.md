@@ -3337,6 +3337,12 @@ Of the 88 open $(2,1,1)$ classes with no hyperelliptic route (2.64), the sixteen
 
 **Theorem (entry 142).** For these sixteen classes $J(\Gamma)$ has no isogeny factor of dimension 1 or 2 over $\mathbb Q$; hence $\Gamma$ has no non-constant map over $\mathbb Q$ to any curve of genus 1 or 2, and no quotient route through an elliptic or genus-2 curve can decide them.  What remains is Chabauty–Coleman on the genus-3/4 full quotient (rank needed) or the theory path.  Tallies unchanged: $(2,1,1)$ 132, $(3,1,1)$ 124 open.
 
+## 2.67 The genus-3 endpoint $R_3$ decided through its genus-2 companion (entry 144)
+
+*(2026-09-15; entry 144; `compute/data_symmetry_tower_frames_144.json`; `compute/qc/magma_tower143.m` block G1 and its output; check `a3.symmetry_tower_frames_144`.)*
+
+$R_3:\ y^2 = x^8 - 57x^6 + 596x^4 - 688x^2 + 192$ is the reciprocal endpoint of the $(8,4)$ components of eight $(2,1,1)$ classes on frame 1 (2.66's census).  It is even in $x$, so $(x,y)\mapsto(t,w)=(x^2,xy)$ maps it to $G_1:\ w^2 = t f(t)$, $f(t)=R_3(\sqrt t)$, of genus 2.  Magma: $J(G_1)(\mathbb Q)=\mathbb Z/2\oplus\mathbb Z/2$, rank and group proved.  The embedding $P\mapsto[P-\infty]$ bounds $\#G_1(\mathbb Q)\le 4$; $\infty$, $(0,0)$, $(12,0)$ fill three classes and the fourth, $[(0,0)+(12,0)-2\infty]$, is not a point (distinct effective divisors of degree 2 are linearly equivalent only inside the hyperelliptic pencil).  So $G_1(\mathbb Q)=\{\infty,(0,0),(12,0)\}$; $t=0$ needs $y^2=192$ and $t=12$ needs $x^2=12$, both impossible; $R_3(\mathbb Q)$ is its two points at infinity.  The tower now carries a table of known curves of genus $\ge 3$ (`KNOWN_HYPERELLIPTIC`, the matcher generalised to any even degree), and the eight classes re-run on all frames give 8 dead.  Frontier: $(2,1,1)$ 124, $(3,1,1)$ 124 open.
+
 ## 3. The descent gap: why $\mathbb{Q}(i, \sqrt n)$ succeeds (Theorem A3.K, derived independently)
 
 Center-zero magic squares make the mechanism transparent. With $c = 0$
