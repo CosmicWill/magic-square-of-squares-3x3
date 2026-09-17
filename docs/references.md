@@ -127,3 +127,27 @@ honestly:
 | M. Schütt, "K3 surfaces with Picard rank 20 over $\mathbb Q$," Algebra & Number Theory 4 (2010). The singular K3 surfaces over $\mathbb Q$ are those whose transcendental lattice has discriminant $d$ with 2-elementary class group $\mathrm{Cl}(-d)$; in particular CM by $\mathbb Q(\sqrt{-6})$ (class number 2) occurs. Entry 147: the piece F, attached to the weight-3 form of level 24 rather than to any elliptic curve. | SUMMARY-ONLY |
 | N. Elkies, M. Schütt, "Modular forms and K3 surfaces," Adv. Math. 240 (2013). K3 surfaces over $\mathbb Q$ of Picard rank 19: the transcendental representation is $\operatorname{Sym}^2$ of the representation of a weight-2 newform up to twist, an elliptic curve over $\mathbb Q$ only when the Shioda–Inose structure descends; otherwise a $\mathbb Q$-curve. Entry 147: the five classes of rank 19 not attached to a curve over $\mathbb Q$. | SUMMARY-ONLY |
 | B. Singer, [companion repository to Auel–Singer](https://github.com/BenSinger2005/A-Geometric-Approach-to-3-x-3-Magic-Squares-of-Squares). `IntersectionMatrix.m`, archived with its full SHA-256 in `papers/auel-singer-2026/`. Entry 148: a principal minor has two positive directions, contradicting its interpretation as a divisor Gram matrix. | READ; source bytes and exact witness replayed by `a3.picard_module_148`; full rational congruence available via `compute.picard_matrix_audit --full` |
+## Independent global-obstruction track (2026-09-10)
+
+These sources support explicitly CITED deductions in
+[GB.3--GB.8](research/global-obstructions.md), not a headline impossibility proof.
+
+| Ref | Provenance |
+|---|---|
+| J. B. Tunnell, "A Classical Diophantine Problem and Modular Forms of Weight 3/2," Invent. Math. 72 (1983), 323--334. [Original scan](https://sites.math.rutgers.edu/~zeilberg/EM22/JT1983.pdf). | **READ**, printed pp.323--325 visually inspected. The unconditional necessary condition and its ternary counts are used in GB.8; modular-form proof CITED. |
+| Stacks Project, [Theorem 54.14.5](https://stacks.math.columbia.edu/tag/0BGP), [surface-resolution introduction](https://stacks.math.columbia.edu/tag/0ADX). | **READ**, statements and context; resolution existence in GB.8 is CITED. No explicit blowup sequence computed. |
+| PARI/GP, [elliptic-curve manual](https://pari.math.u-bordeaux.fr/dochtml/ref-stable/Elliptic_curves.html), ellfromeqn, ellrank, elltors. | **READ**, relevant entries; version 2.17.4 run. Independent diagnostic in GB.8, not a dependency of the exclusion. |
+| J.-L. Colliot-Thelene, A. N. Skorobogatov, [The Brauer--Grothendieck Group, author manuscript](https://www.imo.universite-paris-saclay.fr/~jean-louis.colliot-thelene/BGgroup_book.pdf). | **READ**, relevant portions of sections 9.5.1, 12.6 and 1.5; formal lemma and local constancy CITED in GB.3. |
+| D. Harari, "Methode des fibrations et obstruction de Manin," Duke Math. J. 75 (1994), 221--260. [Author PDF](https://www.imo.universite-paris-saclay.fr/~david.harari/articles/duke.pdf). | **READ**, formal lemma 2.6.1 and local-density discussion. Original source behind GB.3. |
+
+## Nonlinear divisor-fiber audit (2026-09-14)
+
+These inputs support the explicitly CITED geometric deductions in
+[ND.3--ND.4](research/nonlinear-descent-fibers.md). The polynomial branch
+certificates and reciprocity identities are checked separately in-repo.
+
+| Ref | Provenance |
+|---|---|
+| Stacks Project, [Section 53.12, Riemann--Hurwitz, Lemma 53.12.2](https://stacks.math.columbia.edu/tag/0C1B). | **READ** 2026-09-14, formula, hypotheses and proof discussion; used for genus and map degree. |
+| Stacks Project, [Section 53.2, Lemma 53.2.2](https://stacks.math.columbia.edu/tag/0BXX). | **READ** 2026-09-14; rational maps from normal curves to proper varieties extend to morphisms. |
+| A. Sutherland, [MIT 18.783 Lecture 5 slides, 14 February 2022](https://math.mit.edu/classes/18.783/2022/LectureSlides5.pdf#page=24). | **READ** 2026-09-14, final-slide degree and separability statement for multiplication-by-n; degree n^2 remains CITED. |

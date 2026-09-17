@@ -27,6 +27,13 @@ MODULES = [
     "a6_bounds",
     "a3_zi",
     "a3_cancellation",
+    "research_global_obstructions",
+    "research_universal_twists",
+    "research_coupled_cycles",
+    "research_finite_descent",
+    "research_arithmetic_descent",
+    "research_nonlinear_descent",
+    "research_root_reciprocity",
 ]
 
 

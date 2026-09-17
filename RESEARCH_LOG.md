@@ -8037,3 +8037,144 @@ NEXT. Recompute the geometric intersections and assemble an integral
 Galois-stable lattice; prove the proposed K3 identifications or obtain
 independent rank certificates; then address H¹(Q, Pic). The Brauer
 group and the covers ramified along the removed divisors remain open.
+
+## 2026-09-17 — Entry 149: THE PROOF-ALTERNATIVES BRANCH INTEGRATED — the other agent's global-obstruction and descent research (notes GB, UT, CC, FD, AD, ND, RR with 42 checks) merged into main; its central result for the Brauer–Manin programme: no finite Brauer or finite-descent test on the open surface can exclude rational points
+
+WHAT IS INTEGRATED. The branch research/proof-alternatives (worktree
+.worktrees/proof-alternatives, forked from main at entry 140, commit
+a719b63; charter RESEARCH_CHARTER.md; handoff
+docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md) was the other agent's
+independent track, approved by the owner on 2026-09-09: arithmetic
+obstructions on the magic-square surface and on auxiliary covers
+carrying the retained square conditions. Its session ended for lack of
+usage with one item untracked (the reciprocity evaluator, finished as
+RR below); the owner asked for the branch to be integrated. This entry
+is the integration note its charter asks for: statements with their
+status tags, tests, changed files, and remaining gaps. The labels GB,
+UT, CC, FD, AD, ND, RR stay local to the research notes; no A-series
+theorem number is assigned, no campaign ledger changes, no headline
+predicate changes.
+
+THE RESULTS, BY NOTE (docs/research/*.md; status tags as in the notes:
+PROVEN = proved in the note with in-repo certificates, CITED = a
+deduction from a named external theorem whose hypotheses are verified,
+FAILED-ATTEMPT = a mechanism shown not to work, with the failure certified).
+
+  global-obstructions.md (GB.1–GB.8; checks gb., 11).
+  GB.1, GB.2 PROVEN: entry-monomial quaternion classes pull back to
+  constants and the original square cover has trivial twist label at
+  every full rational square configuration — no separation from these.
+  GB.3 CITED (Harari's formal lemma, Colliot-Thélène–Skorobogatov
+  Thm 12.6.3, with the hypotheses verified for the normalized surface):
+  for every finite subgroup B of Br(U), U(A_Q)^B is non-empty, with the
+  real component positive and distinct; the adeles are those of the
+  open U (integrality at almost all primes). So a finite Brauer
+  computation on U can constrain points but never finish with an empty
+  set. GB.4 PROVEN: a root-dependent quaternion is nontrivial yet regular
+  at the all-equal point; fourth-power local controls. GB.5–GB.6 PROVEN
+  (one CITED step): the homogeneous direction covers always carry a
+  smooth rational boundary point. GB.7 PROVEN: the degree-eight root-sum
+  cover 34z₁² = A + B, 178z₂² = B + C, 3026z₃² = C + A is geometrically
+  integral, locally soluble everywhere, with no rational signed
+  all-equal fibre. GB.8 CITED (Tunnell's theorem, with the complete
+  ternary counts N₈ = 48, N₃₂ = 20 as the finite certificate that 89 is
+  not congruent): the u = 0 genus-three boundary has no rational points;
+  a smooth proper model of the cover has no rational boundary points at
+  all. Its rational interior is unknown.
+
+  universal-twist-reduction.md (UT.1–UT.4; checks ut., 5). PROVEN:
+  the exact eight-element sign orbit of the product class; every
+  hypothetical square of squares reaches a cover with signed odd
+  squarefree labels q_i, Σq_i ≡ 3 (mod 8), 2-adic unit coordinates, and
+  full admissible lifts at 2 (16 residue triples, infinitely many
+  labels); the labels' primes come from the centre, gcd(U, V) and the
+  primitive direction, with q₁q₂q₃ = mH times a square; a full Q₄₀₁
+  configuration has nonsquare product class in every frame and sign, so
+  the earlier product-one family is not forced (FAILED-ATTEMPT recorded).
+
+  coupled-cycle-descent.md (CC.1–CC.4; checks cce., 5). PROVEN: four
+  even-cycle labels, 1 mod 8 under canonical signs, with support
+  depending only on the primitive direction; the corner-cycle class
+  (ai + cg)/(2m²) and a degree-16 combined cover; every single corner
+  double cover, and an infinite subfamily of the simultaneous covers
+  (first tuple (−119, −15, 1, −7), direction (1, 8)), have smooth
+  rational boundary points — so, by GB.3, unrestricted finite Brauer
+  tests cannot exclude that family.
+
+  finite-descent-barrier.md (FD.1–FD.4; checks fdb., 5). FD.1 CITED
+  (Demeio's Theorem 3.2.1, arXiv:2112.00843v3, proof read): a rational
+  boundary point lifts to a smooth model of some twist of any finite
+  torsor. FD.2 CITED deduction: even with canonical roots at 2, some
+  twist retains non-empty finite-Brauer adelic sets, for finite
+  collections and finite adaptive towers of torsors. FD.3, FD.4 PROVEN:
+  explicit Laurent-series lifting along the base arc; twist-first-slot
+  norm symbols split at 2. The finite-descent endgame is therefore closed
+  as a template: another finite cover alone cannot complete it.
+
+  arithmetic-descent-audit.md (AD.1–AD.3; checks ard., 6). PROVEN: in
+  the corner-label-1 branch an exact divisor model (n² = (ai + cg)/2,
+  r, s | n², five retained square tests; fixed n leaves finitely many
+  inputs, n unbounded); a homogeneous linear root formula centred at n
+  has constant projective shape (Gram matrix 128·I₉ of the 128 signed
+  all-equal boundary points); quadratic-over-linear formulas reduce to
+  linear ones. FAILED-ATTEMPT: replacing the centre by n is not a
+  descent (the m = 5, n = 3 control).
+
+  nonlinear-descent-fibers.md (ND.1–ND.5; checks nlf., 7). PROVEN:
+  the divisor reciprocity n ↦ rs/n is a reflected rescaling preserving
+  the five tests but not the primitive centre; at every admissible
+  rational ratio the full five-square fibre is a degree-32 cover with
+  20 simple branch points; the boundary keeps 128 rational sections.
+  CITED (Riemann–Hurwitz, curve theory): the fibres have genus 129 and
+  elliptic multiplication on the quotient cannot lift to a rational
+  self-map. FAILED-ATTEMPT: reciprocal exchange and quotient
+  multiplication give no primitive decrease.
+
+  root-functions-and-reciprocity.md (RR.1–RR.4; checks rr., 3; this
+  session, completing the untracked module). PROVEN: the grids with
+  square cross entries are the circle family entries(1, x² − 1, X² − 1);
+  the local Hilbert symbol of the root ratios (r₀/r₄, r₂/r₄) from
+  residues; a full Q₁₁₃ point with symbol −1 and fourth-power local
+  configurations at 2, 3, 113 with symbol +1. FAILED-ATTEMPT: reciprocity
+  of the root ratios excludes nothing, since the local value is not
+  forced.
+
+WHAT IT MEANS FOR THE PROGRAMME (ROADMAP R.17, branch 3, updated).
+Auel–Singer's proposal is the étale Brauer–Manin obstruction on the open
+U of squares with distinct entries. GB.3 and FD.2 say precisely what
+cannot work: any finite subgroup of Br(U), and any finite torsor tower
+followed by finite Brauer tests, leaves a non-empty adelic set, with the
+positive real component intact. An obstruction, if there is one, must
+use the full (infinite) étale-Brauer set, a justified integral
+restriction of denominators that covers every primitive candidate, or
+an arithmetic descent with a genuine decrease — and the branch's
+descent attempts (AD, ND) show the natural corner-label-1 descents fail
+with certificates. This sharpens R.17: the K3 atlas and the Picard
+module (entries 147–148) are inputs to a Brauer group that, by GB.3,
+cannot by itself finish; the integral lattice and the covers ramified
+along the complement of U remain the objects to build.
+
+INTEGRATION MECHANICS. Merge commit of research/proof-alternatives
+(its last commit the RR checkpoint) into main; the only conflict,
+docs/references.md, resolved by keeping both sides (main's rows on
+Auel–Singer, Morrison, Livné, Schütt, Elkies–Schütt and the companion
+repository; the branch's two provenance tables for the CITED inputs).
+The registry gains the seven research modules: 229 → 271 checks, all
+run in the fast profile before this commit. Files: RESEARCH_CHARTER.md,
+docs/research/ (eight notes and the handoff), compute/*_probe.py (six
+probes and compute/root_reciprocity.py), compute/global_boundary_quotients.gp,
+verify/checks/research_*.py (seven modules), verify/checks/__init__.py.
+The untracked copy of the reciprocity module in the primary checkout
+was removed once the branch carried it. The independent-cofactors
+worktree's uncommitted drafts of 2026-09-08 (IC.1–IC.2) are not part of
+this integration and stay where they are.
+
+REMAINING GAPS (the handoff's next targets, unchanged). A point-dependent
+change of divisor ratio or a multivalued arithmetic correspondence for
+the corner-label-1 branch that preserves the five tests and decreases
+the primitive invariant; a uniform argument for the other corner
+labels; or a proof that the 128 boundary points exhaust the rational
+domain of a fibre. The rational interior of the GB.7 cover is unknown.
+None of the branch's results excludes a magic square of squares.
+
+No ledger change; suite 271.
