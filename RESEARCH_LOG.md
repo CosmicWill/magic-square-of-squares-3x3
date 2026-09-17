@@ -7918,3 +7918,51 @@ counts over F_p and F_{p²} and verifies the four identities. Ten of
 the fourteen K3 types — 60 of the 84 pieces — are now identified
 exactly with modular objects, none of which is a tower curve except
 128a and 32a. No ledger change; suite 228.
+
+## 2026-09-17 — Entry 147, second addendum: the last Q-curve family — the Picard-rank-19 classes of Auel–Singer's orbits 10, 12 and 1 (16 pieces) are Sym² of the level-384 form with nebentypus χ_24 (the level-768 form with coefficient field Q(√−2)); thirteen of the fourteen K3 types (76 of the 84 pieces) now identified exactly
+
+THE LISTING CONTINUED (scratch si_w2dump.sage to level 1024, match_w2.py,
+r384.sage). The fingerprint of orbits 1, 10 and 12 (r_5 = 8, r_7 = 8,
+r_11 = 4, r_13 = 16, r_17 = 32, r_19 = 8) is returned by the two
+level-384 newforms with nebentypus χ_24 (coefficient field
+x⁴ − 8x² + 144, the field of the level-96 form of the first addendum;
+inner twists by χ_2, χ_3, χ_6; not CM) and by four level-768 forms with
+nebentypus χ_12 and coefficient field Q(√−2) (form 0: x² + 2x + 3,
+inner twist χ_3, a_5 = ±2√−2, a_7 = ∓2√−2, a_11 = −2, a_13 = −4): the
+same square invariant r_p = a_p²/ψ(p) at every prime to 241, i.e. one
+Q-curve up to twist. The exact identities hold at all 51 primes
+5 ≤ p ≤ 241:
+
+  K (8 pieces, t3 = 2, orbit 10, ρ = 19):
+      u_p = χ_3(p)(r_p − p) + p;
+  L (4 pieces, t3 = 2, orbit 12, ρ = 19):
+      u_p = χ_{−6}(p)(r_p − p) + χ_{−2}(p) p;
+  M (4 pieces, t3 = 1, orbit 1, ρ = 19):
+      u_p = χ_{−6}(p)(r_p − p) + p(1 + χ_3(p)).
+
+The extra algebraic classes are one over Q (K), one over Q(√−2) (L),
+and two, over Q and over Q(√3) (M); the transcendental parts of K and
+of L, M are twists of each other by χ_{−2}, as entry 147 read off at
+p = 5, 7. The entry's fingerprints for this family (r_5 ∈ {8, 12},
+r_7 ∈ {8, 20}, r_17 ∈ {32, 36}, r_19 ∈ {8, 68}) are resolved as
+8, 8, 32, 8: the coefficient field is Q(√−2), the inner-twist
+character χ_3, as the entry inferred from the rational a_11, a_13.
+
+THE ONE REMAINING TYPE. Auel–Singer's orbit 9 (8 pieces, t3 = 1,
+ρ = 18): the tensor-induction pattern over Q(√2) with the split-prime
+coefficients 2 ± 2√2 at 7 and 4, 4 at 17 needs a Hilbert modular form
+over Q(√2) with coefficients in Q(√2); the LMFDB's listing of those
+forms could not be fetched (every request refused after the paced
+elliptic-curve fetch), so the type stays open, with its fingerprint on
+record in the data file (the Frobenius polynomials at 5 ≤ p ≤ 19).
+
+The first addendum's commit (746bf4b) is titled "two more K3 types
+identified" although its content records four (G, H and the Asai
+classes I, J); this note corrects the title. The data file carries
+the pinned r_p of the level-384 form; the check verifies the three
+identities. Thirteen of the fourteen K3 types — 76 of the 84 pieces —
+are identified exactly: three with elliptic curves over Q (A: 128a;
+B: 32a; C, D: 256a), two with the CM curve 36a1 and the weight-3
+level-24 form (E, F), five with two Q-curve forms (G, H: level 96;
+K, L, M: level 384/768), two with elliptic curves over Q(√3) and
+Q(√6) (I, J). No ledger change; suite 228.

@@ -7622,7 +7622,11 @@ def _(ctx):
     (tensor-induction) representations of the elliptic curves
     2.2.12.1-1024.1-a1 over Q(sqrt 3) and 2.2.24.1-128.1-a1 over Q(sqrt 6),
     whose traces the check recomputes by point counts over F_p and F_{p^2}
-    from the pinned a-invariants: A (8
+    from the pinned a-invariants; and K (8), L (4), M (4), rho 19, through
+    the level-384 newform with nebentypus chi_24 (= the level-768 form with
+    nebentypus chi_12 and coefficient field Q(sqrt -2)), pinned r_p (second
+    addendum).  Only Auel-Singer's orbit 9 (8 pieces, rho 18, a Hilbert
+    modular form over Q(sqrt 2)) is unidentified: A (8
     pieces, rho 19): Sym^2 of the isogeny class 128a twisted by chi_{-2};
     B (6): the singular K3 with CM by Q(i) through 32a2; C, D (4 + 4): CM by
     Q(sqrt -2) through 256a1; E (2, Bremner's smooth octic): CM by
@@ -7753,9 +7757,11 @@ def _(ctx):
     require(sorted(c["pieces"] for c in T["classes"]) == [2, 4, 4, 4, 4, 4, 4, 6, 8, 8, 8, 8, 8, 12], "the class sizes")
     require(sum(c["pieces"] for c in T["classes"] if c["good_reduction_at_3"]) == 22, "22 pieces have good reduction at 3")
     ident = {c["identification"]["tag"]: c for c in T["classes"] if c.get("identification")}
-    require(sorted(ident) == ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"], "the ten identified classes")
+    require(sorted(ident) == ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], "the thirteen identified classes")
     require(all(ident[t]["good_reduction_at_3"] for t in "ABCD") and not ident["E"]["good_reduction_at_3"] and not ident["F"]["good_reduction_at_3"], "A-D are the good-at-3 classes")
-    require([ident[t]["pieces"] for t in "ABCDEFGHIJ"] == [8, 6, 4, 4, 2, 4, 12, 4, 8, 8] and [ident[t]["t3"] for t in "ABCDEFGHIJ"] == [3, 2, 3, 3, 0, 1, 2, 1, 2, 2], "the identified classes' sizes and t3")
+    require([ident[t]["pieces"] for t in "ABCDEFGHIJKLM"] == [8, 6, 4, 4, 2, 4, 12, 4, 8, 8, 8, 4, 4] and [ident[t]["t3"] for t in "ABCDEFGHIJKLM"] == [3, 2, 3, 3, 0, 1, 2, 1, 2, 2, 2, 2, 1], "the identified classes' sizes and t3")
+    rK = {int(q): int(v) for q, v in ident["K"]["identification"]["r"].items()}
+    require(all(rK == {int(q): int(v) for q, v in ident[t]["identification"]["r"].items()} for t in "LM") and sorted(rK) == [q for q in PR if q >= 5] and rK[5] == 8 and rK[7] == 8 and rK[11] == 4 and rK[13] == 16, "the pinned square invariants of the level-384 form")
     rG = {int(q): int(v) for q, v in ident["G"]["identification"]["r"].items()}
     require(rG == {int(q): int(v) for q, v in ident["H"]["identification"]["r"].items()} and sorted(rG) == [q for q in PR if q >= 5] and rG[5] == 8 and rG[7] == 4 and rG[19] == 36, "the pinned square invariants of the level-96 form")
 
@@ -7844,6 +7850,14 @@ def _(ctx):
             if p not in rG:
                 return None
             return kron(-3, p) * (rG[p] - p) + (p if tag == "G" else p * (1 + kron(-3, p)))
+        if tag in ("K", "L", "M"):
+            if p not in rK:
+                return None
+            if tag == "K":
+                return kron(3, p) * (rK[p] - p) + p
+            if tag == "L":
+                return kron(-6, p) * (rK[p] - p) + kron(-2, p) * p
+            return kron(-6, p) * (rK[p] - p) + p * (1 + kron(3, p))
         if tag in ("I", "J"):
             ainv, d = AINV[tag]
             t = asai_trace(ainv, d, p)
@@ -7907,4 +7921,4 @@ def _(ctx):
             require(D[a["orbit"]]["rho"] == a["rho"] and a["nodes"] == 4 * c["t3"] and a["orbit"] in c["auel_singer_mod_p_matches"], (cid, "the resolved orbit"))
         require(all(any(oc["example"] == c["example"] for oc in D[o]["our_classes"]) for o in c["auel_singer_mod_p_matches"]), (cid, "the mod-p matches"))
     require(sorted(len(c["auel_singer"]) for c in T["classes"]) == [1] * 12 + [2, 2], "the dictionary is one-to-one except the pair of orbits 4 and 6")
-    ctx.note("Shioda-Inose atlas: 84 K3 pieces, 14 classes (Auel-Singer's 14 octic K3s), u_p recomputed for all pieces to p = %d; ten classes (60 pieces) identified exactly on %d prime checks to p = %d: A = Sym^2(128a) x chi_-2 (rho 19), B = CM Q(i) via 32a2, C, D = CM Q(sqrt-2) via 256a1, E = CM Q(sqrt-3) via 36a1, F = CM Q(sqrt-6) via the level-24 weight-3 form, G, H = Sym^2 of the level-96 Q-curve form x chi_-3 (rho 19), I, J = the Asai representations of 2.2.12.1-1024.1-a1 over Q(sqrt 3) and 2.2.24.1-128.1-a1 over Q(sqrt 6) x chi_-2 (rho 18)" % (P_all, n_checked, P_id))
+    ctx.note("Shioda-Inose atlas: 84 K3 pieces, 14 classes (Auel-Singer's 14 octic K3s), u_p recomputed for all pieces to p = %d; thirteen classes (76 pieces) identified exactly on %d prime checks to p = %d: A = Sym^2(128a) x chi_-2 (rho 19), B = CM Q(i) via 32a2, C, D = CM Q(sqrt-2) via 256a1, E = CM Q(sqrt-3) via 36a1, F = CM Q(sqrt-6) via the level-24 weight-3 form, G, H = Sym^2 of the level-96 Q-curve form x chi_-3 (rho 19), I, J = the Asai representations of 2.2.12.1-1024.1-a1 over Q(sqrt 3) and 2.2.24.1-128.1-a1 over Q(sqrt 6) x chi_-2 (rho 18), K, L, M = Sym^2 of the level-384 (= level-768) Q-curve form (rho 19)" % (P_all, n_checked, P_id))
