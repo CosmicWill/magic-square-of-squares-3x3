@@ -66,3 +66,5 @@ digestion status tracked in `docs/references.md`):
 | Thanos–Bonsangue–Laarman, "Quantum algorithms for magic square Diophantine equations", arXiv:2605.04106 | `2605.04106-quantum-magic-square-diophantine.pdf` | acquired; tangential (periodicity/QFT viewpoint) |
 | "Quartic reductions and elliptic obstructions for perfect Euler bricks", arXiv:2604.09328 | `2604.09328-euler-bricks-elliptic-obstructions.pdf` | acquired; cuboid-adjacent context |
 | "There are infinitely many Hilbert cubes of dimension 3 in the set of squares", arXiv:2604.05459 | `2604.05459-hilbert-cubes-of-squares.pdf` | acquired; additive-structure-of-squares context |
+
+**Acquired 2026-09-16:** Auel–Singer, arXiv:2609.09351 (8 Sep 2026), "The algebraic geometry of 3×3 magic squares of squares" — `2609.09351-auel-singer.pdf`; READ (introduction and theorems), digested in RESEARCH_LOG entry 146 and ROADMAP R.17.

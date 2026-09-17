@@ -7580,3 +7580,86 @@ this entry's data entered.
 
 Check a3.second_level_census_145 (suite 227). Frontier: (2,1,1) 124,
 (3,1,1) 124 open.
+
+## 2026-09-16 — Entry 146: THE THEORY PIVOT — the real-multiplication test closes quadratic Chabauty for every blocking curve; the surface's invariants re-derived and matched against Auel–Singer (arXiv:2609.09351, this month); the theory branches ranked (ROADMAP R.17)
+
+THE DECISION. After entries 142–145 the user asked what the computation
+is for and whether a genuinely different branch of mathematics could
+help; the two-prime theorem was set aside as a clean result that does
+not move the main problem. This entry records the facts gathered for
+that decision, all outside the ledger.
+
+THE REAL-MULTIPLICATION TEST (scratch rm_test.sage; the LMFDB for T5).
+Quadratic Chabauty, the one method for a curve whose Jacobian has rank
+equal to its genus, needs a Jacobian with real multiplication (Picard
+number of the Jacobian above 1). For I139 = D139, T5, U1, A139 and G3
+the Frobenius polynomials at the good primes below 200 are irreducible
+quartics with generic splitting fields (degree 8 at 34–42 of the primes)
+and factor over no common quadratic field; the LMFDB gives T5's
+endomorphism algebra as Q, geometrically Q, Sato–Tate group USp(4). Every
+blocking genus-2 Jacobian is generic: quadratic Chabauty applies to none
+of them, and the rank = genus cases would need Chabauty–Kim beyond depth
+2, which is not available for generic Jacobians. The RM avenue is closed.
+
+THE SURFACE, RE-DERIVED AND MATCHED. Writing the entries as C, C ± a,
+C ± b, C ± (a + b), C ± (a − b), a magic square of squares is a 3×3 grid
+of squares in a two-dimensional arithmetic progression, and the variety
+of solutions is a complete intersection of six quadrics in P^8 with
+canonical class O(3): general type, degree 64, K^2 = 576, c_2 = 768,
+chi(O) = 112, p_g = 111 (two independent counts: the Hilbert function
+165 − 54, and the character decomposition 84 K3 pieces + 9 Horikawa
+double planes = 84 + 27), q = 0, singular exactly in the 256 nodes over
+the eight triple points of the nine-line arrangement. These agree with
+A5/A7/A8 (August) and, independently, with Auel–Singer (see below).
+Consequences drawn this evening: no map to a curve of positive genus
+(q = 0), so the Albanese/Faltings route to finiteness is closed; K^2 <
+c_2, so Bogomolov's numerical bound on low-genus curves does not apply
+(BTVA's node-corrected bound does, A7 §7); K^2/c_2 = 3/4, so no étale
+cover is a product of curves. Two curves carry infinitely many rational
+points, {a = 0} and {b = 0} (three squares in progression); every other
+coincidence of entries forces four or more squares in progression. The
+sharpest intermediate problem is the nine Horikawa surfaces (eight of
+the nine entries squares; K^2 = 2, p_g = 3, on the Noether line), also
+open.
+
+AUEL–SINGER, arXiv:2609.09351 (8 September 2026; papers/). The same
+surface V: geometric automorphism group D_4 ⋉ μ_2^9/μ_2 of order 2048,
+nothing beyond the obvious symmetries; the Hodge diamond 1, 111, 544,
+111, 1 with b_2 = 766, simply connected, torsion-free cohomology,
+c_1^2 = 576, c_2 = 768; geometric Picard rank 518 ≤ ρ ≤ 544 from 1204
+explicit divisors (the 256 exceptional curves, 416 split hyperplane
+sections over number fields, 532 preimages of lines on quartic del Pezzo
+and cubic surfaces dominated by V); no lines over the algebraic closure
+(our Theorem A7.3 goes further: no genus ≤ 1 curve with line or conic
+image); Bremner's K3 surfaces of six squares, one with Picard rank 19,
+quartic del Pezzos of five squares, Enriques surfaces; new biquadratic
+squares over Q(i, √5). They do not treat class curves, Chabauty, or the
+enumeration of low-genus curves, so the two programs are complementary.
+Their proposal: since finding a square with distinct entries is finding
+a rational point on an open U ⊂ V, the étale Brauer–Manin obstruction on
+U could settle the problem; V being simply connected, any such
+obstruction must come from covers ramified along the complement of U;
+their work "provides the first steps". This is the one route in the
+literature to an unconditional nonexistence proof.
+
+THE BRANCHES (ROADMAP R.17, ranked). (1) Conjecture A2.C — no algebraic
+family of magic squares of squares — through the keystone P3: BTVA make
+the genus ≤ 1 curves on V finitely many (non-effectively, via
+Jouanolou), A7 removed the lines and conics, the images of degree ≥ 3
+remain and need an effective degree bound; a new idea is required there,
+and it is the one unconditional theorem of a new kind within sight. (2)
+The Shioda–Inose atlas: the K3 pieces of V (ρ ≥ 17–20) carry Shioda–
+Inose structures attached to specific elliptic curves; the hypothesis
+that the fifteen killer curves of the tower are those curves (or their
+twists) is testable with the existing L-polynomial pipeline and would
+turn the atlas into a theorem about what the tower can and cannot
+reach. (3) The étale Brauer–Manin programme of Auel–Singer: the only
+visible path to a proof; enormous; our possible contributions are the
+Galois-module structure of the Picard lattice (their 1204 divisors and
+our character atlas), the algebraic Brauer group H^1(Gal, Pic), and the
+local evaluations, where F5 already holds local solubility everywhere.
+(4) Chabauty–Kim beyond depth 2 for generic Jacobians: not ours to
+build. Deprioritised: the uniform two-prime theorem, the next boxes.
+
+Also this evening: ROADMAP R.16's "every ω ≤ 2 shape" corrected to the
+exact record (commit 6ab0e6e). No ledger change; suite unchanged (227).

@@ -153,6 +153,21 @@ For each experiment, record the exact question, hypotheses, expected artifact, r
 
 Large sweeps should answer a stated structural question, apply A3.PC first, and use a measured budget. The next immediate work is small coupled-unit systems alongside the retained-lift tower inspection and the foliation probe. Free-frame/content-2 closure and the sixteen C2 classes are completed tasks, not future projects.
 
+## R.17 The theory programme (2026-09-16, after entry 146): what the computation is for, and the branches worth a proof attempt
+
+**What the computation is for.**  Not the proof.  It turns the problem into explicit arithmetic (per shape: which curves, which ranks), proves infinite families of centres impossible, finds the structure a proof must explain (the atlas, the degenerate-points principle, the minor formula), and closes roads for good.  Its residue is a benchmark: decide the rational points of $I_{139}$, $T_5$ or $U_1$, genus-2 curves of rank equal to their genus with generic Jacobians (entry 146: no real multiplication anywhere).
+
+**The surface.**  $V\subset\mathbb P^8$, six quadrics, general type, $K^2 = 576$, $c_2 = 768$, $p_g = 111$, $q = 0$, 256 nodes; algebraically quasi-hyperbolic (BTVA, A7 §7); $518\le\rho\le 544$ (Auel–Singer, arXiv:2609.09351, September 2026).  Bombieri–Lang predicts finitely many non-degenerate squares; nothing known proves it.  No map to a curve of positive genus; not a product-quotient; the geometric Bombieri–Lang results (varieties with finite maps to abelian varieties) do not reach it.
+
+**The branches, ranked by the chance of a theorem of a new kind.**
+
+1. **Conjecture A2.C, no algebraic family of magic squares of squares** — the keystone P3 of A5: enumerate the finitely many genus $\le 1$ curves on $V$ and show each degenerate.  Lines and conics are done (A7.3, A7.6); images of degree $\ge 3$ need an effective degree bound that BTVA's Jouanolou argument does not give.  The new idea has to live here: an effective symmetric-differential locus on a quotient with fewer nodes, or a budget lemma uniform in the degree from the K3 and Horikawa quotients.
+2. **The Shioda–Inose atlas** — explain the fifteen killer curves by the elliptic curves attached to the K3 pieces of $V$ (Picard rank 17–20 ⇒ Shioda–Inose structure); testable now with the L-polynomial pipeline (entry 142).  A positive answer is a structural theorem about the tower's reach and a uniform prediction of which classes no quotient route can ever decide.
+3. **The étale Brauer–Manin programme** (Auel–Singer's proposal) — the only visible route to an unconditional proof.  Contributions within reach: the Galois-module structure of the Picard lattice (their 1204 divisors, our 84 + 9 character atlas), $H^1(\mathrm{Gal},\mathrm{Pic})$, the local evaluations (F5).  Needs their paper digested in full and a licensed Magma for their scripts.
+4. **Chabauty–Kim beyond depth 2 for generic Jacobians** — the method the residue would need; research frontier, not ours to build.
+
+**Deprioritised.**  The uniform two-prime theorem (a clean result that does not move the main problem), the next boxes (evidence, not proof), the calculator (only $U_1$ would still pay, on a licensed Magma).
+
 ## R.16 The 2026-09-15 review after entry 142: what is proven, what each open class waits on, where a proof can come from
 
 **What is proven (durable, suite-verified).**
