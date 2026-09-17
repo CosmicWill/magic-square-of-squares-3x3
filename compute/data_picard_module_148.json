@@ -1,0 +1,9008 @@
+{
+  "entry": 148,
+  "construction": "H^2 of the resolved magic-square surface under G = (Z/2)^8: eigenspaces indexed by the even subsets T of the nine Lucas lines; |T| = 0: hyperplane + 8 node sums; |T| = 2, 4, 6: node classes over the triple points (character of sqrt(prod L_l(P))); |T| = 4: the del Pezzo class (78 subsets without a concurrent triple; character from point counts); |T| = 6: the K3 pieces (entry 147); |T| = 8: the Horikawa pieces (rank 15 - t3').",
+  "b2": 766,
+  "b2_bookkeeping": 766,
+  "eigenspace_ranks": {
+    "|T|=0": 9,
+    "|T|=2 (node classes)": 120,
+    "|T|=4 (node classes)": 120,
+    "|T|=4 (del Pezzo)": 78,
+    "|T|=6 (node classes)": 8,
+    "|T|=6 (K3 remaining parts)": 344,
+    "|T|=8 (Horikawa remaining parts)": 87
+  },
+  "node_sums": [
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "character": 1
+    }
+  ],
+  "node_classes": [
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L3+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L3+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L3+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L3+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L3-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L3-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L4+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L1+",
+        "L1-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 6,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L3+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L3+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L3+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L3+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L3-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L3-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L4+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L2+",
+        "L2-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 6,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L2+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L2-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L2+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L2+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L2+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L2-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L2-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L4+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1-",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        -1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L3+",
+        "L3-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "size": 6,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2+"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L3+"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L2-",
+        "L3+"
+      ],
+      "size": 2,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L2-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L3+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": -2
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        1,
+        0
+      ],
+      "lines_through_P": [
+        "L0",
+        "L4+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "size": 6,
+      "character": -1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L2+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L2+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L2+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L2-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L2-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L3-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2+",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        -1
+      ],
+      "lines_through_P": [
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "size": 6,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L2-",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L2-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L3+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2+",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        1,
+        0,
+        1
+      ],
+      "lines_through_P": [
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "size": 6,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L2-",
+        "L3-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L2-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L3-",
+        "L4+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1+",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        -1
+      ],
+      "lines_through_P": [
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "size": 6,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L1-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L2+",
+        "L3+"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L2+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L3+",
+        "L4-"
+      ],
+      "size": 2,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1-",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 1
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1+",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "size": 4,
+      "character": 2
+    },
+    {
+      "P": [
+        0,
+        1,
+        1
+      ],
+      "lines_through_P": [
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "size": 6,
+      "character": 2
+    }
+  ],
+  "del_pezzo": [
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -3
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -3
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -2
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -3
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -3
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -2
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -2
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": -2
+    },
+    {
+      "T": [
+        "L0",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L0",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L0",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1+",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1+",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1+",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 3
+    },
+    {
+      "T": [
+        "L1-",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1-",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 6
+    },
+    {
+      "T": [
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1-",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L1-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L1-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L2+",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L2+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    },
+    {
+      "T": [
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": true,
+      "rank": 0
+    },
+    {
+      "T": [
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "concurrent_triple": false,
+      "rank": 1,
+      "character": 1
+    }
+  ],
+  "k3": [
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4+"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 1,
+      "tag": "G",
+      "orbit": [
+        "7,14"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4+"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "class": 2,
+      "tag": "I",
+      "orbit": [
+        "8"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 3,
+      "tag": "J",
+      "orbit": [
+        "15"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 4,
+      "tag": "A",
+      "orbit": [
+        "11"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": []
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 5,
+      "tag": "K",
+      "orbit": [
+        "10"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 6,
+      "tag": null,
+      "orbit": [
+        "9"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 4,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L4-"
+      ],
+      "class": 7,
+      "tag": "B",
+      "orbit": [
+        "2,13"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        -1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "class": 7,
+      "tag": "B",
+      "orbit": [
+        "2,13"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        -1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "class": 7,
+      "tag": "B",
+      "orbit": [
+        "2,13"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        -1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "class": 7,
+      "tag": "B",
+      "orbit": [
+        "2,13"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        -1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 7,
+      "tag": "B",
+      "orbit": [
+        "2,13"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        -1
+      ]
+    },
+    {
+      "T": [
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 7,
+      "tag": "B",
+      "orbit": [
+        "2,13"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        -1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 8,
+      "tag": "F",
+      "orbit": [
+        "5"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 8,
+      "tag": "F",
+      "orbit": [
+        "5"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 8,
+      "tag": "F",
+      "orbit": [
+        "5"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 8,
+      "tag": "F",
+      "orbit": [
+        "5"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "class": 9,
+      "tag": "C",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 9,
+      "tag": "C",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "class": 9,
+      "tag": "C",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 9,
+      "tag": "C",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "class": 10,
+      "tag": "H",
+      "orbit": [
+        "16"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        -3
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "class": 10,
+      "tag": "H",
+      "orbit": [
+        "16"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        -3
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+"
+      ],
+      "class": 10,
+      "tag": "H",
+      "orbit": [
+        "16"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        -3
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "class": 10,
+      "tag": "H",
+      "orbit": [
+        "16"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        -3
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 11,
+      "tag": "L",
+      "orbit": [
+        "12"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 11,
+      "tag": "L",
+      "orbit": [
+        "12"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 11,
+      "tag": "L",
+      "orbit": [
+        "12"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 11,
+      "tag": "L",
+      "orbit": [
+        "12"
+      ],
+      "t3": 2,
+      "rank_R": 4,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        -2
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3-",
+        "L4+"
+      ],
+      "class": 12,
+      "tag": "M",
+      "orbit": [
+        "1"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        3
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L4-"
+      ],
+      "class": 12,
+      "tag": "M",
+      "orbit": [
+        "1"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        3
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4-"
+      ],
+      "class": 12,
+      "tag": "M",
+      "orbit": [
+        "1"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        3
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+"
+      ],
+      "class": 12,
+      "tag": "M",
+      "orbit": [
+        "1"
+      ],
+      "t3": 1,
+      "rank_R": 5,
+      "rank_T_from_atlas": 3,
+      "candidate_algebraic_characters": [
+        1,
+        3
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1+",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 13,
+      "tag": "D",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L1-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 13,
+      "tag": "D",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 13,
+      "tag": "D",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L0",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 13,
+      "tag": "D",
+      "orbit": [
+        "4",
+        "6"
+      ],
+      "t3": 3,
+      "rank_R": 3,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-"
+      ],
+      "class": 14,
+      "tag": "E",
+      "orbit": [
+        "3"
+      ],
+      "t3": 0,
+      "rank_R": 6,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        1,
+        -1,
+        3
+      ]
+    },
+    {
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L4+",
+        "L4-"
+      ],
+      "class": 14,
+      "tag": "E",
+      "orbit": [
+        "3"
+      ],
+      "t3": 0,
+      "rank_R": 6,
+      "rank_T_from_atlas": 2,
+      "candidate_algebraic_characters": [
+        1,
+        1,
+        -1,
+        3
+      ]
+    }
+  ],
+  "horikawa": [
+    {
+      "omitted": "L0",
+      "T": [
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "t3": 4,
+      "rank_R": 11,
+      "u": {
+        "3": 1,
+        "5": -1,
+        "7": 1,
+        "11": 5,
+        "13": -1,
+        "17": 51,
+        "19": -27,
+        "23": 41,
+        "29": 71,
+        "31": -23,
+        "37": 135,
+        "41": 59,
+        "43": 13,
+        "47": 209,
+        "53": 15,
+        "59": -43,
+        "61": 143,
+        "67": 181,
+        "71": -7,
+        "73": 99,
+        "79": -455,
+        "83": -67,
+        "89": -309,
+        "97": 299,
+        "101": 287,
+        "103": -95,
+        "107": 37,
+        "109": 543,
+        "113": 83,
+        "127": -375,
+        "131": 653,
+        "137": 347,
+        "139": -83,
+        "149": 47,
+        "151": -527,
+        "157": 431,
+        "163": -171,
+        "167": -103,
+        "173": 119,
+        "179": -35,
+        "181": 567,
+        "191": 833,
+        "193": 203,
+        "197": -193,
+        "199": 577,
+        "211": 37,
+        "223": 553,
+        "227": 173,
+        "229": 455,
+        "233": 635,
+        "239": 17,
+        "241": -37
+      },
+      "frobenius": {
+        "5": {
+          "power_sums": [
+            -1,
+            83,
+            -409,
+            6107,
+            7439
+          ],
+          "structures": [
+            [
+              1,
+              0,
+              [
+                -10.0,
+                -10.0,
+                2.0,
+                2.0,
+                10.0
+              ],
+              [
+                1,
+                6,
+                -136,
+                -560,
+                3600,
+                -4000
+              ]
+            ],
+            [
+              1,
+              2,
+              [
+                -10.0,
+                2.0,
+                2.0,
+                10.0
+              ],
+              [
+                1,
+                -4,
+                -96,
+                400,
+                -400
+              ]
+            ],
+            [
+              1,
+              4,
+              [
+                2.0,
+                2.0,
+                10.0
+              ],
+              [
+                1,
+                -14,
+                44,
+                -40
+              ]
+            ],
+            [
+              3,
+              0,
+              [
+                -10.0,
+                -10.0,
+                2.0,
+                2.0
+              ],
+              [
+                1,
+                16,
+                24,
+                -320,
+                400
+              ]
+            ],
+            [
+              3,
+              2,
+              [
+                -10.0,
+                2.0,
+                2.0
+              ],
+              [
+                1,
+                6,
+                -36,
+                40
+              ]
+            ],
+            [
+              3,
+              4,
+              [
+                2.0,
+                2.0
+              ],
+              [
+                1,
+                -4,
+                4
+              ]
+            ]
+          ]
+        },
+        "7": {
+          "power_sums": [
+            1,
+            155,
+            -2255,
+            6443,
+            -78239
+          ],
+          "structures": [
+            [
+              1,
+              0,
+              [
+                -14.0,
+                -14.0,
+                2.0,
+                10.0,
+                10.0
+              ],
+              [
+                1,
+                6,
+                -280,
+                -592,
+                21840,
+                -39200
+              ]
+            ],
+            [
+              1,
+              2,
+              [
+                -14.0,
+                2.0,
+                10.0,
+                10.0
+              ],
+              [
+                1,
+                -8,
+                -168,
+                1760,
+                -2800
+              ]
+            ],
+            [
+              1,
+              4,
+              [
+                2.0,
+                10.0,
+                10.0
+              ],
+              [
+                1,
+                -22,
+                140,
+                -200
+              ]
+            ]
+          ]
+        },
+        "11": {
+          "power_sums": [
+            5,
+            755,
+            8669,
+            48155
+          ],
+          "structures": [
+            [
+              1,
+              2,
+              [
+                -14.0,
+                -14.0,
+                22.0,
+                22.0
+              ],
+              [
+                1,
+                -16,
+                -552,
+                4928,
+                94864
+              ]
+            ],
+            [
+              3,
+              0,
+              [
+                -22.0,
+                -14.0,
+                -14.0,
+                22.0
+              ],
+              [
+                1,
+                28,
+                -288,
+                -13552,
+                -94864
+              ]
+            ],
+            [
+              3,
+              2,
+              [
+                -14.0,
+                -14.0,
+                22.0
+              ],
+              [
+                1,
+                6,
+                -420,
+                -4312
+              ]
+            ],
+            [
+              5,
+              0,
+              [
+                -22.0,
+                -14.0,
+                -14.0
+              ],
+              [
+                1,
+                50,
+                812,
+                4312
+              ]
+            ],
+            [
+              5,
+              2,
+              [
+                -14.0,
+                -14.0
+              ],
+              [
+                1,
+                28,
+                196
+              ]
+            ]
+          ]
+        }
+      },
+      "algebraic_characters": [
+        1,
+        -1,
+        3
+      ],
+      "rank_T_candidate": 8,
+      "candidate_decompositions": [
+        {
+          "pieces": [
+            "CM:Q(sqrt-3)a",
+            "Sym2:level96",
+            "Sym2:level96"
+          ],
+          "etas": [
+            1,
+            3,
+            3
+          ],
+          "rank_T": 8,
+          "algebraic_characters": [
+            1,
+            -1,
+            3
+          ],
+          "e_values": [
+            -1,
+            1,
+            3
+          ]
+        },
+        {
+          "pieces": [
+            "CM:Q(sqrt-3)a",
+            "Sym2:level96",
+            "Sym2:level96"
+          ],
+          "etas": [
+            -3,
+            3,
+            3
+          ],
+          "rank_T": 8,
+          "algebraic_characters": [
+            1,
+            -1,
+            3
+          ],
+          "e_values": [
+            -1,
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "omitted": "L1+",
+      "T": [
+        "L0",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "t3": 6,
+      "rank_R": 9,
+      "u": {
+        "3": 1,
+        "5": -1,
+        "7": 5,
+        "11": 3,
+        "13": -5,
+        "17": -11,
+        "19": -9,
+        "23": 9,
+        "29": 7,
+        "31": -19,
+        "37": -29,
+        "41": -19,
+        "43": 47,
+        "47": 81,
+        "53": -49,
+        "59": 51,
+        "61": 11,
+        "67": -121,
+        "71": -39,
+        "73": -79,
+        "79": -3,
+        "83": 11,
+        "89": -131,
+        "97": 105,
+        "101": 159,
+        "103": 101,
+        "107": -29,
+        "109": -37,
+        "113": 53,
+        "127": 205,
+        "131": 187,
+        "137": 77,
+        "139": -145,
+        "149": -17,
+        "151": -75,
+        "157": -277,
+        "163": -313,
+        "167": -135,
+        "173": -137,
+        "179": -21,
+        "181": 147,
+        "191": -191,
+        "193": 233,
+        "197": 447,
+        "199": -187,
+        "211": 599,
+        "223": 301,
+        "227": 219,
+        "229": -541,
+        "233": -179,
+        "239": -623,
+        "241": -231
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    },
+    {
+      "omitted": "L1-",
+      "T": [
+        "L0",
+        "L1+",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "t3": 6,
+      "rank_R": 9,
+      "u": {
+        "3": 1,
+        "5": -1,
+        "7": 5,
+        "11": 3,
+        "13": -5,
+        "17": -11,
+        "19": -9,
+        "23": 9,
+        "29": 7,
+        "31": -19,
+        "37": -29,
+        "41": -19,
+        "43": 47,
+        "47": 81,
+        "53": -49,
+        "59": 51,
+        "61": 11,
+        "67": -121,
+        "71": -39,
+        "73": -79,
+        "79": -3,
+        "83": 11,
+        "89": -131,
+        "97": 105,
+        "101": 159,
+        "103": 101,
+        "107": -29,
+        "109": -37,
+        "113": 53,
+        "127": 205,
+        "131": 187,
+        "137": 77,
+        "139": -145,
+        "149": -17,
+        "151": -75,
+        "157": -277,
+        "163": -313,
+        "167": -135,
+        "173": -137,
+        "179": -21,
+        "181": 147,
+        "191": -191,
+        "193": 233,
+        "197": 447,
+        "199": -187,
+        "211": 599,
+        "223": 301,
+        "227": 219,
+        "229": -541,
+        "233": -179,
+        "239": -623,
+        "241": -231
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    },
+    {
+      "omitted": "L2+",
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "t3": 6,
+      "rank_R": 9,
+      "u": {
+        "3": 1,
+        "5": -1,
+        "7": 5,
+        "11": 3,
+        "13": -5,
+        "17": -11,
+        "19": -9,
+        "23": 9,
+        "29": 7,
+        "31": -19,
+        "37": -29,
+        "41": -19,
+        "43": 47,
+        "47": 81,
+        "53": -49,
+        "59": 51,
+        "61": 11,
+        "67": -121,
+        "71": -39,
+        "73": -79,
+        "79": -3,
+        "83": 11,
+        "89": -131,
+        "97": 105,
+        "101": 159,
+        "103": 101,
+        "107": -29,
+        "109": -37,
+        "113": 53,
+        "127": 205,
+        "131": 187,
+        "137": 77,
+        "139": -145,
+        "149": -17,
+        "151": -75,
+        "157": -277,
+        "163": -313,
+        "167": -135,
+        "173": -137,
+        "179": -21,
+        "181": 147,
+        "191": -191,
+        "193": 233,
+        "197": 447,
+        "199": -187,
+        "211": 599,
+        "223": 301,
+        "227": 219,
+        "229": -541,
+        "233": -179,
+        "239": -623,
+        "241": -231
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    },
+    {
+      "omitted": "L2-",
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L3+",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "t3": 6,
+      "rank_R": 9,
+      "u": {
+        "3": 1,
+        "5": -1,
+        "7": 5,
+        "11": 3,
+        "13": -5,
+        "17": -11,
+        "19": -9,
+        "23": 9,
+        "29": 7,
+        "31": -19,
+        "37": -29,
+        "41": -19,
+        "43": 47,
+        "47": 81,
+        "53": -49,
+        "59": 51,
+        "61": 11,
+        "67": -121,
+        "71": -39,
+        "73": -79,
+        "79": -3,
+        "83": 11,
+        "89": -131,
+        "97": 105,
+        "101": 159,
+        "103": 101,
+        "107": -29,
+        "109": -37,
+        "113": 53,
+        "127": 205,
+        "131": 187,
+        "137": 77,
+        "139": -145,
+        "149": -17,
+        "151": -75,
+        "157": -277,
+        "163": -313,
+        "167": -135,
+        "173": -137,
+        "179": -21,
+        "181": 147,
+        "191": -191,
+        "193": 233,
+        "197": 447,
+        "199": -187,
+        "211": 599,
+        "223": 301,
+        "227": 219,
+        "229": -541,
+        "233": -179,
+        "239": -623,
+        "241": -231
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    },
+    {
+      "omitted": "L3+",
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3-",
+        "L4+",
+        "L4-"
+      ],
+      "t3": 5,
+      "rank_R": 10,
+      "u": {
+        "3": 1,
+        "5": 0,
+        "7": -6,
+        "11": 4,
+        "13": -10,
+        "17": -28,
+        "19": -2,
+        "23": 0,
+        "29": 0,
+        "31": 10,
+        "37": 6,
+        "41": 4,
+        "43": -18,
+        "47": 0,
+        "53": 64,
+        "59": 36,
+        "61": -170,
+        "67": 126,
+        "71": 128,
+        "73": -102,
+        "79": 106,
+        "83": -156,
+        "89": 36,
+        "97": -54,
+        "101": -64,
+        "103": -70,
+        "107": -156,
+        "109": 182,
+        "113": 196,
+        "127": 10,
+        "131": -124,
+        "137": -124,
+        "139": 78,
+        "149": -64,
+        "151": 26,
+        "157": -298,
+        "163": 30,
+        "167": 0,
+        "173": 128,
+        "179": 68,
+        "181": -26,
+        "191": -256,
+        "193": -182,
+        "197": 192,
+        "199": 58,
+        "211": -226,
+        "223": 74,
+        "227": -92,
+        "229": 134,
+        "233": 228,
+        "239": 0,
+        "241": 42
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    },
+    {
+      "omitted": "L3-",
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L4+",
+        "L4-"
+      ],
+      "t3": 5,
+      "rank_R": 10,
+      "u": {
+        "3": 1,
+        "5": 0,
+        "7": -6,
+        "11": 4,
+        "13": -10,
+        "17": -28,
+        "19": -2,
+        "23": 0,
+        "29": 0,
+        "31": 10,
+        "37": 6,
+        "41": 4,
+        "43": -18,
+        "47": 0,
+        "53": 64,
+        "59": 36,
+        "61": -170,
+        "67": 126,
+        "71": 128,
+        "73": -102,
+        "79": 106,
+        "83": -156,
+        "89": 36,
+        "97": -54,
+        "101": -64,
+        "103": -70,
+        "107": -156,
+        "109": 182,
+        "113": 196,
+        "127": 10,
+        "131": -124,
+        "137": -124,
+        "139": 78,
+        "149": -64,
+        "151": 26,
+        "157": -298,
+        "163": 30,
+        "167": 0,
+        "173": 128,
+        "179": 68,
+        "181": -26,
+        "191": -256,
+        "193": -182,
+        "197": 192,
+        "199": 58,
+        "211": -226,
+        "223": 74,
+        "227": -92,
+        "229": 134,
+        "233": 228,
+        "239": 0,
+        "241": 42
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    },
+    {
+      "omitted": "L4+",
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4-"
+      ],
+      "t3": 5,
+      "rank_R": 10,
+      "u": {
+        "3": 1,
+        "5": 0,
+        "7": -6,
+        "11": 4,
+        "13": -10,
+        "17": -28,
+        "19": -2,
+        "23": 0,
+        "29": 0,
+        "31": 10,
+        "37": 6,
+        "41": 4,
+        "43": -18,
+        "47": 0,
+        "53": 64,
+        "59": 36,
+        "61": -170,
+        "67": 126,
+        "71": 128,
+        "73": -102,
+        "79": 106,
+        "83": -156,
+        "89": 36,
+        "97": -54,
+        "101": -64,
+        "103": -70,
+        "107": -156,
+        "109": 182,
+        "113": 196,
+        "127": 10,
+        "131": -124,
+        "137": -124,
+        "139": 78,
+        "149": -64,
+        "151": 26,
+        "157": -298,
+        "163": 30,
+        "167": 0,
+        "173": 128,
+        "179": 68,
+        "181": -26,
+        "191": -256,
+        "193": -182,
+        "197": 192,
+        "199": 58,
+        "211": -226,
+        "223": 74,
+        "227": -92,
+        "229": 134,
+        "233": 228,
+        "239": 0,
+        "241": 42
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    },
+    {
+      "omitted": "L4-",
+      "T": [
+        "L0",
+        "L1+",
+        "L1-",
+        "L2+",
+        "L2-",
+        "L3+",
+        "L3-",
+        "L4+"
+      ],
+      "t3": 5,
+      "rank_R": 10,
+      "u": {
+        "3": 1,
+        "5": 0,
+        "7": -6,
+        "11": 4,
+        "13": -10,
+        "17": -28,
+        "19": -2,
+        "23": 0,
+        "29": 0,
+        "31": 10,
+        "37": 6,
+        "41": 4,
+        "43": -18,
+        "47": 0,
+        "53": 64,
+        "59": 36,
+        "61": -170,
+        "67": 126,
+        "71": 128,
+        "73": -102,
+        "79": 106,
+        "83": -156,
+        "89": 36,
+        "97": -54,
+        "101": -64,
+        "103": -70,
+        "107": -156,
+        "109": 182,
+        "113": 196,
+        "127": 10,
+        "131": -124,
+        "137": -124,
+        "139": 78,
+        "149": -64,
+        "151": 26,
+        "157": -298,
+        "163": 30,
+        "167": 0,
+        "173": 128,
+        "179": 68,
+        "181": -26,
+        "191": -256,
+        "193": -182,
+        "197": 192,
+        "199": 58,
+        "211": -226,
+        "223": 74,
+        "227": -92,
+        "229": 134,
+        "233": 228,
+        "239": 0,
+        "241": 42
+      },
+      "rank_T_candidate": null,
+      "candidate_decompositions": []
+    }
+  ],
+  "transcendental_rank": {
+    "k3_unconditional_minimum": 168,
+    "k3_from_atlas": 256,
+    "horikawa_minimum_per_piece": 6,
+    "horikawa_candidate_pieces": 1,
+    "unconditional_lower_bound": 222,
+    "conditional_lower_bound_k3_atlas": 310,
+    "conditional_lower_bound_with_horikawa_candidate": 312
+  },
+  "rho_geometric_upper_bound": 544,
+  "rho_bound_note": "Only 544 is unconditional here. Bounds 456 and 454 require the stated rank and motivic identifications; finite trace agreement alone does not prove them.",
+  "auel_singer_intersection_matrix": {
+    "file": "IntersectionMatrix.m",
+    "sha256": "9e019c79166b152939bb1d57e8f03ff720d5ba88a1b2e39fc15efda57b0af075",
+    "size_bytes": 3109801,
+    "n": 1204,
+    "rank": 518,
+    "inertia": {
+      "positive": 63,
+      "negative": 455,
+      "zero": 686
+    },
+    "smallest_positive_eigenvalue": 2.4913,
+    "diagonal_distribution": {
+      "-16": 688,
+      "-8": 128,
+      "-12": 16,
+      "-2": 256,
+      "0": 116
+    },
+    "witness_rows_1based": [
+      321,
+      642,
+      704,
+      710,
+      812
+    ],
+    "witness_gram": [
+      [
+        -16,
+        4,
+        0,
+        0,
+        8
+      ],
+      [
+        4,
+        -16,
+        4,
+        4,
+        8
+      ],
+      [
+        0,
+        4,
+        -16,
+        16,
+        0
+      ],
+      [
+        0,
+        4,
+        16,
+        -16,
+        0
+      ],
+      [
+        8,
+        8,
+        0,
+        0,
+        0
+      ]
+    ],
+    "witness_charpoly": "x^5 + 64 x^4 + 1104 x^3 - 512 x^2 - 96256 x + 65536",
+    "witness_positive_roots": 2,
+    "source": "https://github.com/BenSinger2005/A-Geometric-Approach-to-3-x-3-Magic-Squares-of-Squares (branch main, pushed 2026-08-16)",
+    "witness_charpoly_coeffs": [
+      1,
+      64,
+      1104,
+      -512,
+      -96256,
+      65536
+    ],
+    "archived_file": "papers/auel-singer-2026/IntersectionMatrix.m.gz",
+    "retrieved": "2026-09-17",
+    "download_url": "https://raw.githubusercontent.com/BenSinger2005/A-Geometric-Approach-to-3-x-3-Magic-Squares-of-Squares/main/IntersectionMatrix.m",
+    "witness_diagonal_congruence": [
+      "-16",
+      "-15",
+      "-224/15",
+      "32/7",
+      "4"
+    ],
+    "rank_status": "Exact rational congruence replayed 2026-09-17: rank 518. Modular invertibility certifies the rational change of basis; rank modulo a prime is not being used as a rank upper bound.",
+    "inertia_status": "Exact: 63 positive, 455 negative, 686 zero, by the verified rational congruence.",
+    "full_audit": {
+      "command": "python -m compute.picard_matrix_audit --full",
+      "output": "compute/qc/picard_matrix148.audit.json",
+      "engine": "PARI/GP qfgaussred(M, 1)",
+      "identity": "M = U^t diag(d) U, checked exactly over Q",
+      "invertibility_certificate": "det(U mod 1000003) != 0",
+      "date": "2026-09-17"
+    }
+  },
+  "hodge_index": "the intersection form on NS of a smooth projective surface has signature (1, rho - 1): a Gram matrix of divisor classes has at most one positive eigenvalue",
+  "evidence_status": {
+    "matrix_witness": "PROVEN: extracted from the archived source; exact rational congruence and Sturm count",
+    "trace_matches": "VERIFIED(5 <= p <= 241): finite trace agreement does not establish an isomorphism of motives",
+    "k3_rank_transfer": "CONJECTURED in this artifact: entry 147 matches the Table 2 models by finite point counts; a geometric identification or independent rank certificate is still needed",
+    "picard_module": "The 335 hyperplane, node and del Pezzo dimensions are separated from the 88 candidate K3 algebraic dimensions; no integral lattice is constructed"
+  },
+  "conditional_rho_upper_bounds": {
+    "assuming_k3_atlas_ranks": 456,
+    "also_assuming_horikawa_candidate": 454
+  },
+  "algebraic_rank_from_k3_atlas_outside_horikawa": 423,
+  "candidate_trivial_character_rank_outside_horikawa": 221,
+  "candidate_character_multiplicities_outside_horikawa": {
+    "-3": 8,
+    "-2": 28,
+    "-1": 56,
+    "1": 221,
+    "2": 84,
+    "3": 18,
+    "6": 8
+  },
+  "horikawa_candidate_algebraic_characters": [
+    1,
+    -1,
+    3
+  ],
+  "certified_character_multiplicities": {
+    "-3": 4,
+    "-2": 20,
+    "-1": 48,
+    "1": 163,
+    "2": 80,
+    "3": 12,
+    "6": 8
+  },
+  "algebraic_rank_certified": 335,
+  "trivial_character_rank_certified": 163
+}

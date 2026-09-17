@@ -7922,3 +7922,248 @@ def _(ctx):
         require(all(any(oc["example"] == c["example"] for oc in D[o]["our_classes"]) for o in c["auel_singer_mod_p_matches"]), (cid, "the mod-p matches"))
     require(sorted(len(c["auel_singer"]) for c in T["classes"]) == [1] * 12 + [2, 2], "the dictionary is one-to-one except the pair of orbits 4 and 6")
     ctx.note("Shioda-Inose atlas: 84 K3 pieces, 14 classes (Auel-Singer's 14 octic K3s), u_p recomputed for all pieces to p = %d; thirteen classes (76 pieces) identified exactly on %d prime checks to p = %d: A = Sym^2(128a) x chi_-2 (rho 19), B = CM Q(i) via 32a2, C, D = CM Q(sqrt-2) via 256a1, E = CM Q(sqrt-3) via 36a1, F = CM Q(sqrt-6) via the level-24 weight-3 form, G, H = Sym^2 of the level-96 Q-curve form x chi_-3 (rho 19), I, J = the Asai representations of 2.2.12.1-1024.1-a1 over Q(sqrt 3) and 2.2.24.1-128.1-a1 over Q(sqrt 6) x chi_-2 (rho 18), K, L, M = Sym^2 of the level-384 (= level-768) Q-curve form (rho 19)" % (P_all, n_checked, P_id))
+
+
+@check("a3.picard_module_148", DOC)
+def _(ctx):
+    """THE PICARD MODULE OF THE MAGIC-SQUARE SURFACE (entry 148; doc 2.70;
+    compute/data_picard_module_148.json): step 1 of the Brauer-Manin
+    programme.  H^2 of the resolved surface decomposes under the sign group
+    G = (Z/2)^8 into eigenspaces indexed by the even subsets T of the nine
+    Lucas lines: the hyperplane and the 8 node sums (|T| = 0), the 248 node
+    classes over the triple points (|T| = 2, 4, 6; Galois character that of
+    sqrt(prod_{l in T} L_l(P))), the 78 del Pezzo classes (|T| = 4 without a
+    concurrent triple; character from point counts), the K3 remaining parts
+    (|T| = 6, entry 147) and the Horikawa remaining parts (|T| = 8, rank
+    15 - t3').  The ranks add to b2 = 766.  The proposed K3 and Horikawa
+    identifications imply rho <= 456 and 454 respectively, but finite
+    trace matches do not establish those identifications.  The unconditional
+    bound retained here is 544.  Independently, the published 1204 x 1204
+    intersection matrix violates the Hodge index theorem: a 5 x 5
+    principal minor extracted from its archived bytes has two positive
+    directions by exact rational congruence and Sturm count. Verifies from
+    scratch: the arrangement and its 8 triple points, the node characters,
+    the del Pezzo characters by point counts on small primes (and the rank-0
+    subsets), the eigenspace bookkeeping, the K3 ranks against the entry-147
+    data file, the Horikawa traces by point counts on small primes, the
+    candidate Horikawa decompositions (trace identities on the recomputed
+    primes), conditional rank bookkeeping, and the source-to-witness link.
+    It does not certify the full matrix's rank or inertia (use the separate
+    optional PARI audit for those)."""
+    import itertools, json, math
+    from collections import Counter
+    import sympy as sp
+    with open(os.path.join(DATA, "data_picard_module_148.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    with open(os.path.join(DATA, "data_shioda_inose_147.json"), encoding="utf-8") as fh:
+        K = json.load(fh)
+    require(T["entry"] == 148 and T["b2"] == 766 and T["b2_bookkeeping"] == 766, "the data file")
+    LINES = {k: tuple(v) for k, v in K["lines"].items()}
+    NAMES = list(LINES)
+    require({abs(int(sp.Matrix(lines).det())) for lines in itertools.combinations(LINES.values(), 3)}
+            == {0, 1, 2, 3, 4}, "the arrangement introduces no bad prime beyond 2 and 3")
+
+    def inter(a, b):
+        from math import gcd
+        x, y, z = a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]
+        g = gcd(gcd(abs(x), abs(y)), abs(z))
+        x, y, z = x // g, y // g, z // g
+        s = next(c for c in (x, y, z) if c)
+        return (x, y, z) if s > 0 else (-x, -y, -z)
+
+    pts = {}
+    for i, j in itertools.combinations(NAMES, 2):
+        pts.setdefault(inter(LINES[i], LINES[j]), set()).update([i, j])
+    triple = {P: sorted(s) for P, s in pts.items() if len(s) == 3}
+    require(len(triple) == 8, "eight triple points")
+
+    def kron(d, p):
+        d %= p
+        return 0 if d == 0 else (1 if pow(d, (p - 1) // 2, p) == 1 else -1)
+
+    def sqfree(n):
+        s = -1 if n < 0 else 1
+        n = abs(n)
+        q = 2
+        while q * q <= n:
+            while n % (q * q) == 0:
+                n //= q * q
+            q += 1
+        return s * n
+
+    # node classes: recomputed from the arrangement
+    want = {}
+    for P, through in triple.items():
+        off = [n for n in NAMES if n not in through]
+        vals = {n: sum(c * x for c, x in zip(LINES[n], P)) for n in off}
+        for k in (2, 4, 6):
+            for S in itertools.combinations(off, k):
+                prod = 1
+                for n in S:
+                    prod *= vals[n]
+                want[(P, S)] = sqfree(prod)
+    got = {(tuple(x["P"]), tuple(x["T"])): x["character"] for x in T["node_classes"]}
+    require(got == want, "the node classes and their characters")
+    require(len(T["node_classes"]) == len(want) == 248, "no repeated node records")
+    require(len(T["node_sums"]) == 8 and {tuple(x["P"]) for x in T["node_sums"]} == set(triple)
+            and all(x["character"] == 1 for x in T["node_sums"]), "the node sums")
+    require(T["eigenspace_ranks"] == {"|T|=0": 9, "|T|=2 (node classes)": 120, "|T|=4 (node classes)": 120, "|T|=4 (del Pezzo)": 78, "|T|=6 (node classes)": 8, "|T|=6 (K3 remaining parts)": 344, "|T|=8 (Horikawa remaining parts)": 87}, "the eigenspace ranks")
+    require(sum(T["eigenspace_ranks"].values()) == 766, "b2")
+
+    def chi_table(p):
+        chi = [0] * p
+        for x in range(1, p):
+            chi[x * x % p] = 1
+        return [0] + [c if c else -1 for c in chi[1:]]
+
+    def sum_chi(S, p):
+        chi = chi_table(p)
+        coeffs = [LINES[n] for n in S]
+        total = 0
+        points = [(x, y, 1) for x in range(p) for y in range(p)] + [(x, 1, 0) for x in range(p)] + [(1, 0, 0)]
+        for (x, y, z) in points:
+            f = 1
+            for (cx, cy, cz) in coeffs:
+                v = (cx * x + cy * y + cz * z) % p
+                if v == 0:
+                    f = 0
+                    break
+                f = f * v % p
+            total += chi[f]
+        return total
+
+    # del Pezzo classes: the 48 subsets with a concurrent triple have rank 0, the 78 others a character read from point counts
+    P_dp = ctx.bound(full=31, fast=13)
+    small = [p for p in (5, 7, 11, 13, 17, 19, 23, 29, 31) if p <= P_dp]
+    dp = {tuple(x["T"]): x for x in T["del_pezzo"]}
+    require(len(dp) == len(T["del_pezzo"]) == 126, "126 distinct four-subsets")
+    # A rational one-dimensional algebraic representation unramified outside
+    # 2 and 3 is one of these eight quadratic characters.  The tested primes
+    # distinguish them; the good-reduction assertion is explained in doc 2.70.
+    characters = (-6, -3, -2, -1, 1, 2, 3, 6)
+    require(len({tuple(kron(d, p) for p in small) for d in characters}) == 8,
+            "the prime sample distinguishes the eight possible characters")
+    n0 = n1 = 0
+    for S in itertools.combinations(NAMES, 4):
+        conc = any(set(th) <= set(S) for th in triple.values())
+        rec = dp[S]
+        require(rec["concurrent_triple"] == conc and rec["rank"] == (0 if conc else 1), (S, "the del Pezzo rank"))
+        if not conc:
+            require(rec["character"] in characters, (S, "a quadratic character unramified outside 2,3"))
+        for p in small:
+            v = sum_chi(S, p)
+            if conc:
+                require(v == 0, (S, p, "a concurrent triple gives no class"))
+            else:
+                require(v == p * kron(rec["character"], p), (S, p, "the del Pezzo character"))
+        n0 += conc
+        n1 += not conc
+    require(n0 == 48 and n1 == 78, "48 + 78")
+    certified_chars = Counter([1] * 9)
+    certified_chars.update(x["character"] for x in T["node_classes"])
+    certified_chars.update(x["character"] for x in T["del_pezzo"] if x["rank"])
+    require(dict(certified_chars) == {int(k): v for k, v in T["certified_character_multiplicities"].items()}
+            and sum(certified_chars.values()) == T["algebraic_rank_certified"] == 335
+            and certified_chars[1] == T["trivial_character_rank_certified"] == 163,
+            "the 335 dimensions independent of the K3 and Horikawa identifications")
+    # K3 ranks are transferred by the candidate dictionary of entry 147.
+    # This is bookkeeping, not an independent geometric Picard-rank proof.
+    k3 = {tuple(x["T"]): x for x in T["k3"]}
+    require(len(k3) == len(T["k3"]) == 84, "84 distinct K3 pieces")
+    cls = {c["id"]: c for c in K["classes"]}
+    for r in K["pieces"]:
+        x = k3[tuple(r["S"])]
+        c = cls[r["class"]]
+        rho = c["auel_singer"][0]["rho"]
+        require(x["class"] == r["class"] and x["t3"] == r["t3"]
+                and x["rank_R"] == 6 - r["t3"] and x["rank_T_from_atlas"] == 22 - rho
+                and len(x["candidate_algebraic_characters"]) == x["rank_R"] - x["rank_T_from_atlas"],
+                (r["S"], "the candidate K3 ranks"))
+    require(sum(x["rank_T_from_atlas"] for x in k3.values()) == 256
+            and sum(x["rank_R"] for x in k3.values()) == 344, "conditional K3 rank bookkeeping")
+    candidate_chars = certified_chars.copy()
+    for x in k3.values():
+        candidate_chars.update(x["candidate_algebraic_characters"])
+    require(dict(candidate_chars) == {int(k): v for k, v in T["candidate_character_multiplicities_outside_horikawa"].items()}
+            and sum(candidate_chars.values()) == T["algebraic_rank_from_k3_atlas_outside_horikawa"] == 423
+            and candidate_chars[1] == T["candidate_trivial_character_rank_outside_horikawa"] == 221,
+            "candidate characters recomputed from the pieces")
+    # Horikawa pieces: ranks and traces
+    P_h = ctx.bound(full=241, fast=13)
+    primes_h = [p for p in range(5, P_h + 1) if all(p % q for q in range(2, math.isqrt(p) + 1))]
+    hor = T["horikawa"]
+    require(len(hor) == 9 and sorted(h["rank_R"] for h in hor) == [9, 9, 9, 9, 10, 10, 10, 10, 11], "the Horikawa ranks")
+    require({h["omitted"] for h in hor} == set(NAMES), "each omitted line occurs exactly once")
+    rankT_h = 0
+    for h in hor:
+        S = h["T"]
+        require(len(S) == 8 and sorted(set(NAMES) - set(S)) == [h["omitted"]], "an eight-subset")
+        t3p = sum(1 for th in triple.values() if set(th) <= set(S))
+        require(h["t3"] == t3p and h["rank_R"] == 15 - t3p, (h["omitted"], "rank 15 - t3'"))
+        for p in primes_h:
+            require(h["u"][str(p)] == sum_chi(S, p), (h["omitted"], p, "the Horikawa trace"))
+        if h["rank_T_candidate"] is None:
+            rankT_h += 6
+        else:
+            rankT_h += h["rank_T_candidate"]
+            require(h["rank_T_candidate"] >= 6 and h["candidate_decompositions"], (h["omitted"], "a candidate rank has a candidate decomposition"))
+    ranks = T["transcendental_rank"]
+    require(ranks["unconditional_lower_bound"] == 2 * len(k3) + 6 * len(hor) == 222
+            and ranks["k3_unconditional_minimum"] == 168
+            and T["rho_geometric_upper_bound"] == 766 - 222 == 544, "the unconditional Hodge bound")
+    require(ranks["k3_from_atlas"] == 256 and ranks["conditional_lower_bound_k3_atlas"] == 310
+            and ranks["conditional_lower_bound_with_horikawa_candidate"] == 256 + rankT_h == 312
+            and T["conditional_rho_upper_bounds"] == {"assuming_k3_atlas_ranks": 456, "also_assuming_horikawa_candidate": 454},
+            "conditional bounds are kept separate from established bounds")
+    # the identified Horikawa decomposition(s): recompute the CM trace of Q(sqrt -3) (type a) and the Sym^2 traces from the pinned level-96 invariants
+    r96 = {int(q): int(v) for q, v in next(c for c in K["classes"] if (c.get("identification") or {}).get("tag") == "G")["identification"]["r"].items()}
+
+    def rep(p, m):
+        for y in range(0, int(p ** 0.5) + 2):
+            r = p - m * y * y
+            if r < 0:
+                break
+            x = int(round(r ** 0.5))
+            if x * x == r:
+                return x, y
+        return None
+
+    def cm3a(p):
+        r = rep(p, 3)
+        return 2 * (r[0] ** 2 - 3 * r[1] ** 2) if r else 0
+
+    for h in hor:
+        if h["rank_T_candidate"] is None:
+            continue
+        dec = h["candidate_decompositions"][0]
+        require(dec["pieces"] == ["CM:Q(sqrt-3)a", "Sym2:level96", "Sym2:level96"] and dec["etas"][1:] == [3, 3] and dec["rank_T"] == 8, (h["omitted"], "the recorded decomposition"))
+        require(set(primes_h) <= set(r96), "the level-96 trace data cover every replay prime")
+        for p in primes_h:
+            tr = kron(dec["etas"][0], p) * cm3a(p) + 2 * kron(3, p) * (r96[p] - p)
+            e = (h["u"][str(p)] - tr)
+            require(e % p == 0 and e // p == sum(kron(d, p) for d in dec["algebraic_characters"]), (h["omitted"], p, "the Horikawa identity"))
+    # Extract the witness from the archived source: a handwritten matrix alone
+    # would not certify that it occurs in the published file.
+    SM = T["auel_singer_intersection_matrix"]
+    from compute.picard_matrix_audit import load_matrix, witness, SOURCE_SHA256, WITNESS_ROWS
+    matrix = load_matrix()
+    require(SM["n"] == len(matrix) and SM["sha256"] == SOURCE_SHA256
+            and SM["witness_rows_1based"] == list(WITNESS_ROWS)
+            and SM["witness_gram"] == witness(matrix), "the source hash and extracted principal minor")
+    with open(os.path.join(DATA, "qc", "picard_matrix148.audit.json"), encoding="utf-8") as fh:
+        audit = json.load(fh)
+    require(audit["source_sha256"] == SOURCE_SHA256 and audit["witness_gram"] == witness(matrix)
+            and audit["full_inertia"] == SM["inertia"] == {"positive": 63, "negative": 455, "zero": 686}
+            and audit["full_rank"] == SM["rank"] == 518,
+            "the saved full-audit report is consistent (the full congruence is replayed separately)")
+    x = sp.symbols("x")
+    G = sp.Matrix(SM["witness_gram"])
+    require(G.shape == (5, 5) and G == G.T, "a symmetric 5 x 5 minor")
+    lower, diagonal = G.LDLdecomposition(hermitian=False)
+    require(lower * diagonal * lower.T == G and lower.det() == 1
+            and [str(diagonal[i, i]) for i in range(5)] == SM["witness_diagonal_congruence"]
+            == ["-16", "-15", "-224/15", "32/7", "4"], "exact congruence: three negative and two positive directions")
+    cp = sp.Poly(G.charpoly(x).as_expr(), x)
+    require([int(c) for c in cp.all_coeffs()] == SM["witness_charpoly_coeffs"] == [1, 64, 1104, -512, -96256, 65536], "the witness characteristic polynomial")
+    require(sp.count_roots(cp, 0, sp.oo) == 2 and SM["witness_positive_roots"] == 2, "two positive eigenvalues in a principal minor: impossible for divisor classes on a surface (Hodge index)")
+    ctx.note("Picard bookkeeping: b2 = 766; 335 algebraic dimensions independent of the candidate K3/Horikawa identifications; conditional rho bounds 456/454, unconditional Hodge bound 544. Horikawa trace identities replayed at %d primes through %d. Published matrix witness extracted from its full archived source and certified to have two positive directions; full rank/inertia not replayed by this check." % (len(primes_h), P_h))

@@ -3484,3 +3484,141 @@ is the trace of Frobenius on the remaining part $R$ of $H^2$, of rank $6 - t_3$,
 Here $a_p(f) = 0$ at the primes inert in $\mathbb Q(\sqrt{-6})$, $a_p(f) = 2(x^2 - 6y^2)$ when $p = x^2 + 6y^2$ and $a_p(f) = x^2 - 6y^2$ when $2p = x^2 + 6y^2$ (the Hecke character $\psi((\alpha)) = \alpha^2$, $\psi(\mathfrak p_2) = 2$).  The check recomputes $u_p$ from the point counts, the $a_p$ by point counts on the four curves and by this rule, and the identities.  The one remaining class (Auel–Singer's orbit 9, 8 pieces; eight classes before the addenda) matches no $\operatorname{Sym}^2$ of an elliptic curve over $\mathbb Q$ with good reduction outside $\{2,3\}$ (all 752, every twist ramified at 2, 3), no product, and — over the searched levels — no weight-2 form of trivial character with rational $a_p^2$ and no weight-3 form with rational or quadratic coefficients; their Frobenius polynomials on $R$ (point counts over $\mathbb F_{p^k}$, $k \le 3$) have the shape $\operatorname{Sym}^2(W)\otimes\eta$ with $a_5(W)^2 = \pm 8$ or $\pm 12$ for the five classes of Picard rank 19 (a $\mathbb Q$-curve $W$, not a curve over $\mathbb Q$) and the tensor-induction (Asai) shape $\{p, -p, \alpha, \beta\}$ at the inert primes / two conjugate pairs at the split primes for the three classes of Picard rank 18, the fields being $\mathbb Q(\sqrt 3)$ (orbit 8), $\mathbb Q(\sqrt 6)$ (orbit 15) and $\mathbb Q(\sqrt 2)$ (orbit 9, with coefficients $2 \pm 2\sqrt 2$ above 7): representations induced from quadratic fields.
 
 **What it says about the atlas hypothesis.**  An elliptic curve over $\mathbb Q$ attached to a K3 piece has conductor $2^a3^b$, because every piece has good reduction outside $\{2,3\}$; eleven of the fifteen tower killers of entry 112 have conductors divisible by 5, 7 or 11 and cannot be attached to any piece, and of the four with conductor $2^a3^b$ only 32a2 is.  The strong hypothesis of R.17 is false.  For the pieces with good reduction at 3 it is exactly right (128a, 32a, 256a — twists of the killer 128c2, the Legendre killer $\lambda = 2$, and the control quotient 256d1); the rest of the surface's K3 motives live over $\mathbb Q(\sqrt{-3})$, $\mathbb Q(\sqrt{-6})$ and quadratic fields the tower never sees.  The killers come from $H^1$ of the tower's curves on $V$, not from $H^2(V)$.
+
+## 2.70 Picard-module bookkeeping and an exact intersection-matrix obstruction (entry 148)
+
+*(2026-09-17; `compute/data_picard_module_148.json`; check
+`a3.picard_module_148`; matrix replay: `python -m compute.picard_matrix_audit`.)*
+
+### The eigenspaces and their evidence
+
+**PROVEN-CLASSICAL (decomposition); VERIFIED (arrangement bookkeeping).**
+The sign group $G=(\mathbb Z/2)^8$ acts on the resolution $\widetilde V$.
+Its characters are the 256 even subsets $T$ of the nine Lucas lines.
+The rational cohomology decomposes into these eigenspaces; the same
+decomposition of étale cohomology is Galois-stable. Galois characters
+of divisor classes below use the Tate twist $H^2_{\mathrm{et}}(1)$.
+
+The $T$-part away from the exceptional curves is the anti-invariant
+cohomology of the singular double plane $w^2=\prod_{i\in T}L_i$.
+Resolving a double point of its branch arrangement contributes an $A_1$
+configuration of rank 1, and resolving a triple point contributes $D_4$
+of rank 4. For $n=4,6,8$ branch lines, the exceptional rank is therefore
+$\binom n2+t_3$; subtract it and the invariant hyperplane class from
+the resolved double plane's $b_2=8,22,44$, respectively. This gives the
+remaining ranks $1-t_3$, $6-t_3$, $15-t_3$.
+
+| Contribution | Rank |
+|---|---:|
+| Hyperplane and eight node sums ($T=\varnothing$) | 9 |
+| Other node classes ($|T|=2,4,6$) | $120+120+8=248$ |
+| Del Pezzo parts ($|T|=4$) | 78 |
+| K3 remaining parts ($|T|=6$) | 344 |
+| Horikawa remaining parts ($|T|=8$) | 87 |
+| Total | 766 |
+
+Over each triple point $P$, the 32 nodes form the regular representation
+of $(\mathbb Z/2)^5$. The class in character $T$ carries the quadratic
+Galois character of $\prod_{l\in T}L_l(P)$. The check reconstructs all
+248 nontrivial node characters from these values. Of the 126 four-line
+subsets, 48 contain a concurrent triple and have remaining rank zero;
+the other 78 have rank one and are algebraic.
+
+For those rank-one parts, point counts give
+$\sum_{P\in\mathbb P^2(\mathbb F_p)}\chi(\prod_{i\in T}L_i(P))=p\psi_T(p)$.
+The line arrangement and its resolution have good reduction outside
+$\{2,3\}$: all nonzero three-line determinants have prime factors only
+2 and 3. A rational rank-one algebraic representation is quadratic, so
+$\psi_T$ is one of the eight characters represented by $\pm1,\pm2,\pm3,\pm6$.
+The tested primes distinguish all eight. FULL replays these counts at
+$5\le p\le31$, FAST at $5\le p\le13$.
+
+These arguments supply **335 algebraic dimensions**, independently of
+the proposed K3 and Horikawa identifications. Their character multiplicities
+are $1:163$, $-1:48$, $2:80$, $-2:20$, $3:12$, $-3:4$, $6:8$.
+This is a rational representation; no integral Picard lattice is supplied.
+
+### Conditional rank deductions and the Horikawa trace match
+
+**CONJECTURED (identifications); VERIFIED($5\le p\le241$) (trace match).**
+Entry 147's dictionary to Auel–Singer's Table 2 was obtained from finite
+point counts. Transferring the table's Picard ranks gives a *candidate*
+K3 transcendental rank 256 and 88 additional algebraic dimensions.
+Together with the 335 above this proposes 423 dimensions with the
+characters stored in the data file. Finite trace agreement does not prove
+the geometric rank transfer or determine the whole Galois module.
+
+The Horikawa part omitting $L_0$ has remaining rank 11. Its traces at all
+51 primes $5\le p\le241$ agree with the candidate transcendental part
+
+$$\mathrm{CM}_{\mathbb Q(\sqrt{-3})}\ \oplus\
+ \bigl(\operatorname{Sym}^2(f_{96})\otimes\chi_3\bigr)^{\oplus2},$$
+
+of rank 8, plus three Tate classes of characters $1,-1,3$.
+Here the level-96 symmetric-square trace is normalized as $r_p-p$,
+$r_p=a_p(f_{96})^2/\chi_{12}(p)$, as in entry 147.
+FULL recomputes the point counts for **all nine** Horikawa pieces through
+241 and checks this trace identity; FAST stops at 13. The other eight
+pieces have no recorded candidate decomposition. These computations do
+not prove a decomposition of motives. The earlier exploratory claim of
+a $\mathbb Q(\sqrt2)$-coefficient factor has no replayable extension-field
+certificate in this artifact and remains a lead for further work.
+
+For a dominant generically finite map of smooth projective surfaces,
+pullback injects transcendental cohomology: pushforward composed with
+pullback multiplies by the degree, and the projection formula makes the
+pullback orthogonal to divisor classes. Distinct sign characters give
+independent summands. Thus the proposed K3 ranks would imply
+$\rho\le766-256-9\cdot6=456$. If the Horikawa candidate also identifies
+its transcendental part, the bound becomes $\rho\le454$.
+**Both bounds are conditional here.** The unconditional bounds supplied
+by this section are $335\le\rho\le544$: each K3 contributes at least 2
+transcendental dimensions, each Horikawa piece at least $2p_g=6$.
+
+### The published matrix: an independent exact obstruction
+
+**PROVEN (for the archived matrix; classical Hodge index theorem).**
+The [companion repository](https://github.com/BenSinger2005/A-Geometric-Approach-to-3-x-3-Magic-Squares-of-Squares/blob/main/IntersectionMatrix.m)
+publishes a $1204\times1204$ matrix used for the lower bound in
+[Auel–Singer, Theorem 3 and §5](https://arxiv.org/html/2609.09351v1#S5).
+The complete source is archived in
+`papers/auel-singer-2026/IntersectionMatrix.m.gz`, with uncompressed SHA-256
+`9e019c79166b152939bb1d57e8f03ff720d5ba88a1b2e39fc15efda57b0af075`.
+The verifier checks that digest and extracts rows and columns
+321, 642, 704, 710, 812 (one-based), obtaining
+
+$$G=\begin{pmatrix}
+-16&4&0&0&8\\4&-16&4&4&8\\0&4&-16&16&0\\
+0&4&16&-16&0\\8&8&0&0&0
+\end{pmatrix}.$$
+
+Exact elimination gives $G=L D L^t$, with $L$ unit lower triangular and
+
+$$D=\operatorname{diag}(-16,-15,-224/15,32/7,4).$$
+
+The verifier multiplies this identity back. Therefore $G$ has two
+positive directions. Independently, its characteristic polynomial is
+$x^5+64x^4+1104x^3-512x^2-96256x+65536$, and an exact Sturm count finds
+two positive roots. A Gram matrix of divisor classes on a smooth
+projective surface has at most one positive direction by Hodge index.
+Consequently **this published matrix cannot be that divisor intersection
+matrix**. It does not establish the claimed lower bound 518. This
+obstruction is independent of every K3/Horikawa identification and does
+not by itself prove that the numerical inequality $\rho\ge518$ is false.
+
+The full audit also **confirmed rank 518 and inertia $(63,455,686)$ exactly**
+on 2026-09-17; its output is `compute/qc/picard_matrix148.audit.json`.
+These larger calculations are unnecessary for the Hodge-index obstruction.
+`python -m compute.picard_matrix_audit --full`
+replays a PARI rational congruence for the full matrix, checks it
+by multiplication, and certifies that its change of basis is invertible
+modulo 1000003. Rank modulo primes alone would give only a lower bound
+on rational rank. The small witness is part of the ordinary verifier;
+the full audit is a separate optional calculation.
+
+**Next work.** Audit the intersection numbers geometrically, construct an
+integral Galois-stable lattice, and prove or independently certify the
+candidate K3 rank transfers. The rational module alone does not compute
+$H^1(\mathbb Q,\mathrm{Pic})$, the transcendental Brauer group, or the
+ramified covers needed on the open locus of distinct squares. No new
+class exclusion or resolution of the magic-square problem is claimed.

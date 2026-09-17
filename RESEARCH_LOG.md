@@ -7966,3 +7966,74 @@ B: 32a; C, D: 256a), two with the CM curve 36a1 and the weight-3
 level-24 form (E, F), five with two Q-curve forms (G, H: level 96;
 K, L, M: level 384/768), two with elliptic curves over Q(√3) and
 Q(√6) (I, J). No ledger change; suite 228.
+
+## 2026-09-17 — Entry 148: PICARD-MODULE BOOKKEEPING AND A SOURCE-VERIFIED HODGE-INDEX OBSTRUCTION
+
+The pending Picard-module calculation is recorded in
+compute/data_picard_module_148.json and A3 §2.70, with check
+a3.picard_module_148 (registry 229). No exclusion ledger changes.
+
+THE STRUCTURE. H² of the resolved surface splits under the sign group
+into eigenspaces indexed by the 256 even subsets of the nine Lucas
+lines. The hyperplane and node sums contribute 9 dimensions; the other
+node classes 248; the del Pezzo parts 78; the K3 remaining parts 344;
+and the Horikawa remaining parts 87. Total: b₂ = 766. The node
+characters are reconstructed from products of the nonzero line values
+at each triple point. The 78 rank-one del Pezzo characters are determined
+by point counts among the eight quadratic characters unramified outside
+2 and 3. These give 335 algebraic dimensions, 163 Galois-trivial,
+without a K3 or Horikawa identification. The calculation gives a
+rational representation, not an integral lattice.
+
+THE EVIDENCE AUDIT. The incoming draft treated finite Frobenius-trace
+matches as proved motivic identifications. Entry 147's dictionary to
+the published K3 models is itself based on finite point counts. Its
+rank transfer proposes K3 transcendental rank 256 and 88 further
+algebraic dimensions; the Horikawa piece omitting L0 has a rank-8
+candidate whose traces match at all 51 primes 5 <= p <= 241. Neither
+finite agreement alone proves the corresponding geometric or motivic
+identification. The data and verifier now distinguish these candidates
+from established facts: rho <= 456 assumes the K3 rank transfer, and
+rho <= 454 additionally assumes the Horikawa candidate. This entry's
+unconditional bounds remain 335 <= rho <= 544. FULL replays the
+Horikawa point counts for all nine pieces through 241; FAST through 13.
+The scratch claim of a Q(sqrt 2)-coefficient factor remains an
+exploratory lead without a stored extension-field certificate.
+
+THE MATRIX OBSTRUCTION (PROVEN for the archived source). The published
+IntersectionMatrix.m was downloaded again from Auel–Singer's companion
+repository. Its 3,109,801 bytes have exactly the draft's SHA-256:
+9e019c79166b152939bb1d57e8f03ff720d5ba88a1b2e39fc15efda57b0af075.
+Those complete bytes are now archived in
+papers/auel-singer-2026/IntersectionMatrix.m.gz. The verifier checks the
+hash and extracts the principal minor at one-based rows
+321, 642, 704, 710, 812:
+
+    [[-16, 4, 0, 0, 8], [4, -16, 4, 4, 8], [0, 4, -16, 16, 0],
+     [0, 4, 16, -16, 0], [8, 8, 0, 0, 0]].
+
+An exact LDLᵗ congruence has diagonal (-16, -15, -224/15, 32/7, 4),
+so there are two positive directions. Its characteristic polynomial
+is x⁵ + 64x⁴ + 1104x³ - 512x² - 96256x + 65536; an independent exact
+Sturm count also gives two positive roots. Hodge index permits at most
+one positive direction in a divisor Gram matrix. Thus the archived
+matrix cannot be the asserted intersection matrix and cannot establish
+the claimed lower bound 518. This does not depend on the proposed K3
+or Horikawa identifications, does not prove rho < 518, and does not
+identify which geometric intersection calculations need correction.
+No message has been sent to the authors.
+
+REPRODUCTION. python -m compute.picard_matrix_audit checks the archived
+source and the exact witness offline. Its optional --full mode computes
+a rational congruence for the whole matrix in PARI, multiplies it back,
+and certifies invertibility of the change of basis modulo 1000003.
+The full replay passed: rank 518, with exactly 63 positive, 455 negative
+and 686 zero directions (compute/qc/picard_matrix148.audit.json).
+The draft's modular ranks alone would only have proved a lower bound
+on rational rank; the small exact witness already settles the
+intersection-matrix obstruction without any full-rank assertion.
+
+NEXT. Recompute the geometric intersections and assemble an integral
+Galois-stable lattice; prove the proposed K3 identifications or obtain
+independent rank certificates; then address H¹(Q, Pic). The Brauer
+group and the covers ramified along the removed divisors remain open.

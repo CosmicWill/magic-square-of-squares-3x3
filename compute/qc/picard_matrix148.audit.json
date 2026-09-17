@@ -1,0 +1,65 @@
+{
+  "source_sha256": "9e019c79166b152939bb1d57e8f03ff720d5ba88a1b2e39fc15efda57b0af075",
+  "witness_rows_1based": [
+    321,
+    642,
+    704,
+    710,
+    812
+  ],
+  "witness_gram": [
+    [
+      -16,
+      4,
+      0,
+      0,
+      8
+    ],
+    [
+      4,
+      -16,
+      4,
+      4,
+      8
+    ],
+    [
+      0,
+      4,
+      -16,
+      16,
+      0
+    ],
+    [
+      0,
+      4,
+      16,
+      -16,
+      0
+    ],
+    [
+      8,
+      8,
+      0,
+      0,
+      0
+    ]
+  ],
+  "witness_diagonal_congruence": [
+    "-16",
+    "-15",
+    "-224/15",
+    "32/7",
+    "4"
+  ],
+  "witness_inertia": {
+    "positive": 2,
+    "negative": 3,
+    "zero": 0
+  },
+  "full_inertia": {
+    "positive": 63,
+    "negative": 455,
+    "zero": 686
+  },
+  "full_rank": 518
+}
