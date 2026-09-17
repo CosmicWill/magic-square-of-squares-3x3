@@ -7614,7 +7614,15 @@ def _(ctx):
     classes = the D4-orbits of 6-subsets with the two isomorphic pairs
     merged = Auel-Singer's 14 magic octic K3 surfaces (their Table 2; the
     dictionary by point counts of their octic models mod p).  Six classes
-    (28 pieces) are IDENTIFIED EXACTLY at every prime 5 <= p <= 241: A (8
+    (28 pieces) are IDENTIFIED EXACTLY at every prime 5 <= p <= 241, and four
+    more at the same primes (the addendum): G (12 pieces) and H (4), both
+    rho 19, through the weight-2 newform of level 96 with nebentypus chi_12
+    (a Q-curve, quartic coefficient field), whose square invariants r_p =
+    a_p^2 / chi_12(p) are pinned; I (8) and J (8), rho 18, through the Asai
+    (tensor-induction) representations of the elliptic curves
+    2.2.12.1-1024.1-a1 over Q(sqrt 3) and 2.2.24.1-128.1-a1 over Q(sqrt 6),
+    whose traces the check recomputes by point counts over F_p and F_{p^2}
+    from the pinned a-invariants: A (8
     pieces, rho 19): Sym^2 of the isogeny class 128a twisted by chi_{-2};
     B (6): the singular K3 with CM by Q(i) through 32a2; C, D (4 + 4): CM by
     Q(sqrt -2) through 256a1; E (2, Bremner's smooth octic): CM by
@@ -7745,9 +7753,63 @@ def _(ctx):
     require(sorted(c["pieces"] for c in T["classes"]) == [2, 4, 4, 4, 4, 4, 4, 6, 8, 8, 8, 8, 8, 12], "the class sizes")
     require(sum(c["pieces"] for c in T["classes"] if c["good_reduction_at_3"]) == 22, "22 pieces have good reduction at 3")
     ident = {c["identification"]["tag"]: c for c in T["classes"] if c.get("identification")}
-    require(sorted(ident) == ["A", "B", "C", "D", "E", "F"], "the six identified classes")
+    require(sorted(ident) == ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"], "the ten identified classes")
     require(all(ident[t]["good_reduction_at_3"] for t in "ABCD") and not ident["E"]["good_reduction_at_3"] and not ident["F"]["good_reduction_at_3"], "A-D are the good-at-3 classes")
-    require([ident[t]["pieces"] for t in "ABCDEF"] == [8, 6, 4, 4, 2, 4] and [ident[t]["t3"] for t in "ABCDEF"] == [3, 2, 3, 3, 0, 1], "the identified classes' sizes and t3")
+    require([ident[t]["pieces"] for t in "ABCDEFGHIJ"] == [8, 6, 4, 4, 2, 4, 12, 4, 8, 8] and [ident[t]["t3"] for t in "ABCDEFGHIJ"] == [3, 2, 3, 3, 0, 1, 2, 1, 2, 2], "the identified classes' sizes and t3")
+    rG = {int(q): int(v) for q, v in ident["G"]["identification"]["r"].items()}
+    require(rG == {int(q): int(v) for q, v in ident["H"]["identification"]["r"].items()} and sorted(rG) == [q for q in PR if q >= 5] and rG[5] == 8 and rG[7] == 4 and rG[19] == 36, "the pinned square invariants of the level-96 form")
+
+    def asai_trace(ainv, d, p):
+        """The Asai trace of y^2 = x^3 + a2 x^2 + a4 x + a6 over Q(sqrt d) (a_i = x + y sqrt d) at p: a_P a_P' for p split,
+        p^2 + 1 - #E(F_{p^2}) for p inert (F_{p^2} = F_p[t]/(t^2 - d), irreducible exactly when p is inert)."""
+        if (2 * d) % p == 0:
+            return None
+        chi = chi_table(p)
+        if kron(d, p) == 1:
+            s0 = next(x for x in range(p) if x * x % p == d % p)
+            t = 1
+            for sg in (s0, p - s0):
+                a2, a4, a6 = [(x + y * sg) % p for (x, y) in ainv]
+                t *= -sum(chi[(x ** 3 + a2 * x * x + a4 * x + a6) % p] for x in range(p))
+            return t
+        e = (p * p - 1) // 2
+
+        def mul(a, b):
+            return ((a[0] * b[0] + d * a[1] * b[1]) % p, (a[0] * b[1] + a[1] * b[0]) % p)
+
+        def add(a, b):
+            return ((a[0] + b[0]) % p, (a[1] + b[1]) % p)
+
+        def chi2(z):
+            if z == (0, 0):
+                return 0
+            r, n, b = (1, 0), e, z
+            while n:
+                if n & 1:
+                    r = mul(r, b)
+                b = mul(b, b)
+                n >>= 1
+            return 1 if r == (1, 0) else -1
+
+        a2, a4, a6 = [(x % p, y % p) for (x, y) in ainv]
+        S = 0
+        for x0 in range(p):
+            for x1 in range(p):
+                x = (x0, x1)
+                x2 = mul(x, x)
+                f = add(add(add(mul(x2, x), mul(a2, x2)), mul(a4, x)), a6)
+                S += chi2(f)
+        return -S
+
+    def ainv_of(tag):
+        cv = ident[tag]["identification"]["curve_over_K"]
+        from fractions import Fraction
+        prs = [[Fraction(v) for v in pair] for pair in cv["ainvs_in_basis_1_sqrtd"]]
+        require(len(prs) == 5 and prs[0] == [0, 0] and prs[2] == [0, 0] and all(v.denominator == 1 for pr in prs for v in pr), (tag, "a short Weierstrass model with integral a-invariants"))
+        return [(int(pr[0]), int(pr[1])) for pr in (prs[1], prs[3], prs[4])], cv["d"]
+    AINV = {t: ainv_of(t) for t in ("I", "J")}
+    require(AINV["I"][1] == 3 and AINV["J"][1] == 6 and AINV["I"][0] == [(-1, -1), (2, 0), (0, 0)] and AINV["J"][0] == [(-1, -1), (-2, 0), (2, 2)], "the two curves over Q(sqrt 3) and Q(sqrt 6)")
+    TRp = {t: {int(q): int(v) for q, v in ident[t]["identification"]["asai_trace"].items()} for t in ("I", "J")}
 
     def ap(f, p):
         chi = chi_table(p)
@@ -7778,6 +7840,17 @@ def _(ctx):
             return kron(-2, p) * (a * a - p)
         if tag == "F":
             return a24(p) + p * (2 + kron(2, p))
+        if tag in ("G", "H"):
+            if p not in rG:
+                return None
+            return kron(-3, p) * (rG[p] - p) + (p if tag == "G" else p * (1 + kron(-3, p)))
+        if tag in ("I", "J"):
+            ainv, d = AINV[tag]
+            t = asai_trace(ainv, d, p)
+            if t is None:
+                return None
+            require(TRp[tag].get(p) == t, (tag, p, "the pinned Asai trace", TRp[tag].get(p), t))
+            return kron(-2, p) * t
         curve, K, alg = {"B": ("32a2", -4, lambda p: p * (1 + kron(-1, p))), "C": ("256a1", -8, lambda p: p * kron(-2, p)),
                          "D": ("256a1", -8, lambda p: p), "E": ("36a1", -3, lambda p: p * (2 + kron(-1, p) + kron(3, p)))}[tag]
         a = ap(CURVES[curve], p)
@@ -7790,6 +7863,8 @@ def _(ctx):
         for p in PR:
             if 5 <= p <= P_id:
                 want = predicted(tag, p)
+                if want is None:
+                    continue
                 require(all(r["u"][str(p)] == want for r in recs), (tag, p, "the exact identity", want, recs[0]["u"][str(p)]))
                 n_checked += 1
                 if p <= P_all:
@@ -7832,4 +7907,4 @@ def _(ctx):
             require(D[a["orbit"]]["rho"] == a["rho"] and a["nodes"] == 4 * c["t3"] and a["orbit"] in c["auel_singer_mod_p_matches"], (cid, "the resolved orbit"))
         require(all(any(oc["example"] == c["example"] for oc in D[o]["our_classes"]) for o in c["auel_singer_mod_p_matches"]), (cid, "the mod-p matches"))
     require(sorted(len(c["auel_singer"]) for c in T["classes"]) == [1] * 12 + [2, 2], "the dictionary is one-to-one except the pair of orbits 4 and 6")
-    ctx.note("Shioda-Inose atlas: 84 K3 pieces, 14 classes (Auel-Singer's 14 octic K3s), u_p recomputed for all pieces to p = %d; six classes (28 pieces) identified exactly on %d prime checks to p = %d: A = Sym^2(128a) x chi_-2 (rho 19), B = CM Q(i) via 32a2, C, D = CM Q(sqrt-2) via 256a1, E = CM Q(sqrt-3) via 36a1, F = CM Q(sqrt-6) via the level-24 weight-3 form" % (P_all, n_checked, P_id))
+    ctx.note("Shioda-Inose atlas: 84 K3 pieces, 14 classes (Auel-Singer's 14 octic K3s), u_p recomputed for all pieces to p = %d; ten classes (60 pieces) identified exactly on %d prime checks to p = %d: A = Sym^2(128a) x chi_-2 (rho 19), B = CM Q(i) via 32a2, C, D = CM Q(sqrt-2) via 256a1, E = CM Q(sqrt-3) via 36a1, F = CM Q(sqrt-6) via the level-24 weight-3 form, G, H = Sym^2 of the level-96 Q-curve form x chi_-3 (rho 19), I, J = the Asai representations of 2.2.12.1-1024.1-a1 over Q(sqrt 3) and 2.2.24.1-128.1-a1 over Q(sqrt 6) x chi_-2 (rho 18)" % (P_all, n_checked, P_id))

@@ -7846,3 +7846,75 @@ fourteen K3 types and the structural classification of the other eight,
 which is the content Auel–Singer's Remark 4.10 asks for.
 
 No ledger change; tallies unchanged; suite 228 (the new check).
+
+## 2026-09-16 — Entry 147 addendum: four more K3 types identified — the Picard-rank-19 classes of Auel–Singer's orbits 7/14 and 16 are Sym² of the level-96 Q-curve form, and the Picard-rank-18 classes of orbits 8 and 15 are the Asai representations of elliptic curves over Q(√3) and Q(√6); ten of the fourteen types (60 of the 84 pieces) now identified exactly
+
+THE SEARCH WITH CHARACTERS (scratch si_w2dump.sage, match_w2.py,
+verify96.py, r96.sage). The weight-2 newforms of level 2^a3^b ≤ 1152
+with every even nebentypus of order ≤ 4 were listed with their square
+invariant r_p = a_p²/ψ(p) (rational for the forms that can carry a
+rank-3 K3 representation) and matched against the exact fingerprints
+read off the Frobenius polynomials of entry 147. Control: the class A
+fingerprint (r_5 = 4, r_7 = 16, r_11 = r_13 = r_17 = r_19 = 4) returns
+exactly the four level-128 forms, 128a1's isogeny class and its twists.
+The fingerprint of orbits 7/14 and 16 (r_5 = 8, r_7 = 4, r_11 = 8,
+r_13 = 4, r_17 = 0, r_19 = 36) returns one form and its twist: the
+newform of level 96 with nebentypus χ_12 (Sage: Newforms(χ, 2), form 0;
+coefficient field Q(a), a⁴ − 2a² + 9 = 0; inner twists by χ_{−1},
+χ_3 and χ_{−3}; not CM — the Q-curve predicted by the entry, with the
+non-trivial nebentypus that the trivial-character search could not
+see) and the level-192 form 1 with the same invariants. The exact
+identities hold at all 51 primes 5 ≤ p ≤ 241:
+
+  G (12 pieces, t3 = 2, orbit 7/14, ρ = 19):
+      u_p = χ_{−3}(p)(r_p − p) + p;
+  H (4 pieces, t3 = 1, orbit 16, ρ = 19):
+      u_p = χ_{−3}(p)(r_p − p) + p(1 + χ_{−3}(p)).
+
+So the transcendental part of both is Sym²(W) ⊗ χ_12^{-1}χ_{−3} for W
+the Galois representation of the level-96 form, with one further
+algebraic class over Q (G) and two, over Q and over Q(√−3) (H).
+
+THE ASAI TEST (scratch fetch_ecnf.py, si_asai.sage, asai241.sage). The
+entry read the Picard-rank-18 classes as tensor inductions from Q(√3)
+(orbit 8), Q(√6) (orbit 15) and Q(√2) (orbit 9). The LMFDB's elliptic
+curves over those fields with conductor norm 2^a3^b were fetched
+(paced; about forty norms per field were still refused) and their Asai
+traces — a_P a_P′ at a split prime p = PP′, p² + 1 − #E(F_{p²}) at an
+inert prime — compared with u_p; for t3 = 2 the remaining part is the
+transcendental lattice itself, so the identity has no algebraic term.
+Exact at all 51 primes 5 ≤ p ≤ 241:
+
+  I (8 pieces, t3 = 2, orbit 8, ρ = 18):
+      u_p = χ_{−2}(p) tr_p(As E), E = 2.2.12.1-1024.1-a1 over Q(√3):
+      y² = x³ − (1 + √3)x² + 2x, conductor (32), norm 1024,
+      j = 512 − 512√3, no CM (a second curve, 2.2.12.1-1152.1-a1,
+      y² = x³ + √3x² + (3√3 + 6)x, matches with η = χ_{−3}: its Asai
+      traces are those of the first twisted by χ_6);
+  J (8 pieces, t3 = 2, orbit 15, ρ = 18):
+      u_p = χ_{−2}(p) tr_p(As E), E = 2.2.24.1-128.1-a1 over Q(√6):
+      y² = x³ − (1 + √6)x² − 2x + (2√6 + 2), conductor norm 128,
+      j = 834464 − 339904√6, no CM.
+
+The transcendental lattice of each is that of the Weil restriction of
+E to Q — the Kummer-type structure of a simple abelian surface with
+no extra endomorphisms, which is why the entry's Sym² and product tests
+could not see them. For orbit 9 no curve over Q(√2) matches, as the
+entry predicted from its irrational split-prime coefficients 2 ± 2√2:
+a Hilbert modular form over Q(√2) with coefficients in Q(√2) is the
+candidate (its LMFDB listing is being fetched). The remaining
+unidentified family, orbits 1, 10, 12 (r_11 = 4, r_13 = 16), is a
+second Q-curve whose form is above level 1152 or outside the
+characters searched.
+
+The trivial-character search of entry 147 finished at level 2304 with
+no further Sym² identification: its only hits, three level-2304 forms
+with coefficient field Q(√2) or a quartic field, are for class F, i.e.
+CM Q-curve forms with CM by Q(√−6) whose Sym² contains F's weight-3
+form — a consistency check, not a new identification. The data file
+carries the pinned r_p of the level-96 form, the two curves' a-invariants
+and their Asai traces; the check recomputes the Asai traces by point
+counts over F_p and F_{p²} and verifies the four identities. Ten of
+the fourteen K3 types — 60 of the 84 pieces — are now identified
+exactly with modular objects, none of which is a tower curve except
+128a and 32a. No ledger change; suite 228.
