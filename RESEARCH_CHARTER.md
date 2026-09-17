@@ -62,6 +62,10 @@ of the divisor system is another option. No such construction or exclusion
 is known. The nontrivial corner labels remain unbounded and need a universal
 argument as well. Any alternative integral or height restriction must be
 justified for every candidate in its scope.
+The [root-reciprocity note](docs/research/root-functions-and-reciprocity.md)
+(2026-09-17) closes the last untracked item of the previous session: the
+exact Hilbert-symbol evaluator on the root ratios, with local controls
+showing the symbol is not locally forced; a failed attempt as an exclusion.
 See the [handoff](docs/research/GLOBAL-OBSTRUCTION-HANDOFF.md).
 
 ## Workspace

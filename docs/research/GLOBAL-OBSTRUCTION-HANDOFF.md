@@ -287,3 +287,32 @@ The new checks cover explicit algebra and finite calculations. They do
 not reprove Harari, Lang--Weil, Hasse--Minkowski, Riemann--Hurwitz, Tunnell,
 or surface resolution. No
 candidate nonexistence proof or new MSS3 exclusion is asserted.
+
+## Root-function reciprocity, 2026-09-17
+
+The previous session left `compute/root_reciprocity.py` untracked in the
+primary checkout with its note unwritten. The module is now on this branch
+with [root-functions-and-reciprocity.md](root-functions-and-reciprocity.md)
+and the checks `rr.`:
+
+- RR.1, **PROVEN:** the grids with square cross entries are exactly
+  `entries(1, x^2-1, X^2-1)` for two rational points of x^2+y^2=2, up to a
+  square scale; the classical five-square control is replayed.
+- RR.2, **PROVEN (trivial):** Hilbert reciprocity for the root ratios
+  (r_0/r_4, r_2/r_4) holds for every rational pair, so it rejects nothing
+  by itself; the control (113/114, 17/114) has symbol -1 at 3 and 113 only.
+- RR.3, **PROVEN:** the local symbol is determined by the roots modulo a
+  sufficient prime power; the evaluator refuses insufficient data.
+- RR.4, **PROVEN by exact controls:** a full Q_113 point (three exact
+  roots, six Hensel lifts) has symbol -1, while fourth-power local
+  configurations at 2, 3, 113 have symbol +1. The local value is not forced
+  at any tested place. **FAILED-ATTEMPT** as an exclusion: reciprocity of
+  the root ratios cannot constrain rational MSS3 without a global
+  restriction of the realized local profiles, and GB.3 bars finite
+  Brauer-type restrictions on the open surface.
+
+No campaign ledger or headline predicate changes. The resumed next
+targets are unchanged: a point-dependent divisor-ratio change or a
+multivalued arithmetic correspondence for the corner-label-1 branch, a
+uniform argument for the other corner labels, or a proof that the 128
+boundary points exhaust the rational domain.
