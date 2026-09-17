@@ -7663,3 +7663,186 @@ build. Deprioritised: the uniform two-prime theorem, the next boxes.
 
 Also this evening: ROADMAP R.16's "every ω ≤ 2 shape" corrected to the
 exact record (commit 6ab0e6e). No ledger change; suite unchanged (227).
+
+## 2026-09-16 — Entry 147: THE SHIODA–INOSE ATLAS TEST — the 84 K3 pieces of V computed at every prime to 241, sorted into Auel–Singer's 14 octic K3 surfaces, and six of the fourteen identified exactly with modular forms (Sym² of 128a; CM by Q(i), Q(√−2), Q(√−3), Q(√−6)); the strong atlas hypothesis refuted: the K3 motives have conductor 2^a3^b, eleven of the fifteen killers do not
+
+THE QUESTION (ROADMAP R.17, branch 2). Entry 146 proposed that the
+fifteen rank-0 killer curves of the symmetry tower are the elliptic
+curves attached, through Shioda–Inose structures, to the K3 pieces of
+the magic-square surface V. This entry tests it. The answer is no in
+the strong form and yes for exactly the pieces one would expect; the
+by-product is an identification of the transcendental motives of six
+of the fourteen K3 types, which Auel–Singer's Remark 4.10 asks for.
+
+THE PIECES (scratch si_counts.py, si_counts250.py → the data file).
+The Lucas plane has coordinates (x, y, z); the nine entries are the
+lines L0 = z, L1± = z ± x, L2± = z ± y, L3± = z ± (x + y), L4± =
+z ± (x − y), with 8 triple points and no quadruple point. For every
+6-subset S the double plane Y_S: w² = ∏_{i∈S} L_i is a K3 surface with
+A1 nodes over the double points and D4 points over the t3(S) triple
+points inside S (15 − 3t3 nodes, 4t3 exceptional curves, all rational).
+The classes we know on the resolution — the hyperplane and the
+15 + t3 exceptional curves, 16 + t3 in all — have Frobenius trace
+p(16 + t3), so
+
+    u_p(S) := #Ỹ_S(F_p) − 1 − p² − p(16 + t3)
+
+is the trace of Frobenius on the remaining part R of H², of rank
+6 − t3, which contains the transcendental lattice. Computed for all 84
+pieces and all 52 primes 3 ≤ p ≤ 241 by counting P²(F_p). The t3
+distribution is {0: 2, 1: 20, 2: 46, 3: 16}. The 84 trace sequences
+fall into 14 classes; they are the 16 orbits of the dihedral group of
+the square on 6-subsets with two pairs of orbits merged (sizes
+12 = 8 + 4 and 6 = 4 + 2) — Auel–Singer's Proposition 4.11 (fourteen
+magic octic K3 surfaces up to automorphism, orbits 7 ≅ 14 and 2 ≅ 13).
+
+THE DICTIONARY WITH AUEL–SINGER'S TABLE 2 (scratch as_octic_dict.py).
+Their magic octic K3 X_S ⊂ P⁵ (three diagonal quadrics, the image of
+V under the projection to the six coordinates of S) is the (Z/2)⁵-cover
+of the Lucas plane branched along the six lines, and Y_S is its
+quotient by the even sign changes; the transcendental parts agree as
+Galois modules, so #X_S(F_p) − 1 ≡ u_p(S) (mod p). Counting their
+fourteen models at p ≤ 47 fixes the dictionary: their orbit 11 (nodes
+12, ρ = 19) is our class of 8 pieces with t3 = 3; 2/13 (ρ = 20) our
+class of 6; 3 (Bremner's smooth octic) our t3 = 0 pair; 5 (ρ = 20) our
+class of 4 with t3 = 1 containing L0, L1+, L2+, L3−, L4+, L4−; and so
+on (the table is in the data file; their node count is 4t3; their
+"triple points" column refers to the Gale-dual branch sextic of the
+Mukai discriminant cover, not to S). Only orbits 4 and 6 — both t3 = 3,
+both ρ = 20 — are matched as a pair (our classes C and D in one order).
+Three pairs of their orbits share the transcendental representation:
+(1, 12), (4, 6), (7/14, 16) — the traces u_p differ by multiples of p.
+
+REDUCTION AT 3. The coefficient vectors have entries 0, ±1, so three
+lines that are not concurrent over Q become concurrent mod p only when
+p divides a 3 × 3 determinant, which takes the values 0, ±1, ±2, ±3,
+±4: four triples — (L1+, L2+, L3−), (L1+, L2−, L4−), (L1−, L2+, L4+),
+(L1−, L2−, L3+) — meet mod 3. Sixty-two pieces contain one of them and
+have bad reduction at 3; twenty-two do not. The twenty-two are exactly
+the classes identified with curves of 2-power conductor below.
+
+THE IDENTIFICATIONS (scratch si_match.sage, si_match2.sage,
+si_match3.sage, si_exact.sage, si_exact250.sage, si_w3.sage). For a
+Shioda–Inose K3 attached to E the remaining part contains
+Sym² H¹(E) ⊗ χ (rank 3, trace χ(p)(a_p² − p)); for a singular K3 with
+CM by an imaginary quadratic field the transcendental part has rank 2
+and trace χ(p)(a_p² − 2p) at split primes and 0 at inert primes when
+the CM form is ψ_E² for an elliptic curve E; the remaining algebraic
+classes contribute p times a sum of quadratic-character values. The
+tests were run mod p first (u_p ≡ ±a_p² against every atlas curve, then
+against all 752 elliptic curves over Q with good reduction outside
+{2, 3} — Sage's egros, since the LMFDB rate-limited the fetch — with
+every twist character ramified at 2 and 3 only, and the product test
+u_p ≡ ±a_p(E)a_p(E′)), then exactly. Six classes, 28 pieces, satisfy an
+exact identity at all 51 primes 5 ≤ p ≤ 241:
+
+  A (8 pieces, t3 = 3, A–S orbit 11, ρ = 19):
+      u_p = χ_{−2}(p) (a_p(128a1)² − p).
+      The remaining part is Sym² H¹ of the isogeny class 128a
+      (y² = x³ + x² + x + 1, j = 128, rank 1) twisted by χ_{−2}:
+      a non-CM Shioda–Inose K3 of Picard rank 19, as Auel–Singer found
+      (their Proposition 4.8 is orbit 7; their Table 2 gives 11 ρ = 19).
+      128c2, the twist of 128a1 by −1 (rank 0), is one of the eight
+      rank-0 quotient killers of entry 100's towers; 128a2 is a
+      positive-rank quotient.
+  B (6 pieces, t3 = 2, orbit 2/13, ρ = 20):
+      u_p = (a_p(32a2)² − 2p) [p ≡ 1 mod 4] + p(1 + χ_{−1}(p)).
+      CM by Q(i) through y² = x³ − x, the Legendre curve λ = 2 (a tower
+      killer); two further algebraic classes conjugate over Q(i).
+  C (4 pieces, t3 = 3, orbit 4 or 6, ρ = 20):
+      u_p = (a_p(256a1)² − 2p) [p ≡ 1, 3 mod 8] + p χ_{−2}(p).
+  D (4 pieces, t3 = 3, orbit 6 or 4, ρ = 20):
+      u_p = (a_p(256a1)² − 2p) [p ≡ 1, 3 mod 8] + p.
+      CM by Q(√−2) through 256a1 (y² = x³ + x² − 3x + 1, j = 8000); the
+      extra algebraic class is defined over Q(√−2) for C and over Q for
+      D. 256d1, the twist by −1 (rank 0), is the rank-0 quotient of
+      y² = x⁵ + x in entry 140's controls.
+  E (2 pieces, t3 = 0, orbit 3 = Bremner's smooth octic, ρ = 20):
+      u_p = (a_p(36a1)² − 2p) [p ≡ 1 mod 3] + p(2 + χ_{−1}(p) + χ_3(p)).
+      CM by Q(√−3) through y² = x³ + 1; four further algebraic classes,
+      two over Q, one over Q(i), one over Q(√3). Bad reduction at 3.
+  F (4 pieces, t3 = 1, orbit 5, ρ = 20):
+      u_p = a_p(f) + p(2 + χ_2(p)),
+      where f is the weight-3 newform of level 24 and character χ_{−24}
+      with a_5 = −2, a_7 = −10, a_11 = 10, CM by Q(√−6): a_p = 0 for p
+      inert in Q(√−6), a_p = 2(x² − 6y²) when p = x² + 6y², and
+      a_p = x² − 6y² when 2p = x² + 6y² (the Hecke character ψ((α)) =
+      α², ψ(𝔭₂) = 2; verified against Sage's q-expansion to 241).
+      Q(√−6) has class number 2, so no elliptic curve over Q carries this
+      CM: the piece is a singular K3 whose CM field has no atlas curve at
+      all. (Schütt's classification allows singular K3 surfaces over Q
+      with CM by fields of 2-elementary class group, of which Q(√−6) is
+      one; SUMMARY-ONLY in references.md.)
+
+The mod-p test found A–D among the twelve conductor-2^a curves at 28
+informative primes each and E, F at the first pass over conductors
+2^a3^b (E) and weight-3 forms (F); the exact identities were then
+verified to 241 with no failure (compute/data_shioda_inose_147.json;
+check a3.shioda_inose_147 recomputes u_p, the a_p by point counts on
+the four curves and by the Hecke rule, and the identities).
+
+THE EIGHT REMAINING CLASSES (56 pieces). No Sym² of any elliptic curve
+over Q with good reduction outside {2, 3}, with any twist ramified at 2
+and 3; no product; no weight-3 newform with rational or quadratic
+coefficients and odd quadratic character at levels 2^a3^b ≤ 512
+(F was found at 24; the run to 1152 was still going when this entry
+was written); no weight-2 newform of trivial character and rational
+a_p² at levels 2^a3^b ≤ 2187 (the Q-curve test). The Frobenius
+polynomials on R (scratch si_zeta.py: point counts over F_p, F_{p²},
+F_{p³}, the structure read off through Poincaré duality) explain why:
+
+  ρ = 19 (A–S orbits 7/14, 16, 10, 1, 12): at every prime 5 ≤ p ≤ 19
+  the polynomial is (x ∓ p)(x² − t x + p²) times the algebraic roots,
+  the signature of Sym²(W) ⊗ η for a two-dimensional W of weight 2, and
+  the square invariant r_p = a_p(W)²/ψ(p) read off from it (r_p = εt +
+  2p, ε the sign of the fixed root) is, for orbits 1, 10 and 12 (one W
+  up to twist): r_5 ∈ {8, 12}, r_7 ∈ {8, 20}, r_11 = 4, r_13 = 16,
+  r_17 ∈ {32, 36}, r_19 ∈ {8, 68}; for orbits 7/14 and 16 (one W):
+  r_5 ∈ {8, 12}, r_7 = 4, r_11 ∈ {8, 36}, r_13 = 4, r_17 ∈ {0, 68},
+  r_19 = 36. In both families a_5 is irrational: W is a Q-curve (a
+  newform with an inner twist), not an elliptic curve over Q —
+  consistent with Auel–Singer's degree-2 model of orbit 7, whose branch
+  cubics are conjugate over Q(√2). The rational a_p sit exactly at the
+  primes with χ_3(p) = 1 (orbits 1, 10, 12: a_11 = ±2, a_13 = ±4) and
+  χ_{−3}(p) = 1 (orbits 7/14, 16: a_7 = ±2, a_13 = ±2, a_19 = ±6), the
+  irrational ones in Q(√2) (a_5 = ±2√2 in both families). The forms
+  were not found among the trivial-character newforms of level
+  2^a3^b ≤ 2187: the level is larger or the nebentypus is not trivial
+  (the search with characters was still running).
+  ρ = 18 (orbits 8, 9, 15; T of rank 4): at the primes 5 ≤ p ≤ 19 the
+  eigenvalues are {p, −p, α, β} at the primes inert in a quadratic
+  field K and two conjugate pairs at the split primes — the
+  tensor-induction (Asai) pattern of a rank-2 representation over K,
+  i.e. the transcendental lattice of the Weil restriction of an
+  elliptic curve or Hilbert modular form over K: orbit 8, K = Q(√3)
+  (inert 5, 7, 17, 19; split 11, 13, with coefficients {6, −2} above
+  both); orbit 15, K = Q(√6) (split 5, 19 with coefficients {0, ±4} and
+  {6, −2}; inert 7, 11, 13, 17); orbit 9, K = Q(√2) (inert 5, 11, 13,
+  19; split 7, 17 with coefficients 2 ± 2√2 and 4, 4 — irrational at 7,
+  so a Hilbert modular form over Q(√2) with coefficients in Q(√2)
+  rather than an elliptic curve). These are objects over quadratic
+  fields; the tower, which works over Q, never produces them.
+
+THE ANSWER TO THE HYPOTHESIS. (1) Every K3 piece has good reduction
+outside {2, 3}, so an elliptic curve over Q attached to one has
+conductor 2^a3^b. Eleven of the fifteen killers of entry 112 (15a3,
+30a1, 30a2, 56a2, 80a1, 120b2, 240b1, 240b2, 240d2, 240d4, 528j2) have
+conductors divisible by 5, 7 or 11: they cannot be Shioda–Inose
+partners of any K3 piece. Of the four with conductor 2^a3^b, 32a2 is
+one (class B); 24a1, 48a1 and 48a3 are attached to no identified piece
+(the bad-at-3 pieces identified so far have CM by Q(√−3) and Q(√−6),
+the rest are not over Q). The strong hypothesis is false. (2) For the pieces with good reduction at 3 it is
+exactly right: their partners are 128a (a twist of entry 100's
+quotient killer 128c2),
+32a (the Legendre killer λ = 2) and 256a (a twist of the control's
+rank-0 quotient 256d1). (3) The bad-at-3 pieces are attached to
+Q(√−3) (36a1, not a tower curve), to Q(√−6) (no curve), and — for the
+eight classes carrying 56 of the 84 pieces — to Q-curves and to
+representations induced from quadratic fields. The killers come from
+the Jacobians of the tower's curves on V, i.e. from H¹ of curves, not
+from H² of the surface; the K3 atlas does not explain them. What the
+test produced instead is the modular identification of six of the
+fourteen K3 types and the structural classification of the other eight,
+which is the content Auel–Singer's Remark 4.10 asks for.
+
+No ledger change; tallies unchanged; suite 228 (the new check).

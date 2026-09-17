@@ -7601,3 +7601,235 @@ def _(ctx):
     else:
         ctx.note("PARI/GP not found: quotient kills not re-run (data-file consistency verified)")
     ctx.note("quotient kills: 72 classes dead through rank-0 genus-1 quotients and 36 more through the two-step route; box tally (entry 106) dead 1484, finite 1460 (entry 115: 1492 / 1452), unknown 0")
+
+
+@check("a3.shioda_inose_147", DOC)
+def _(ctx):
+    """THE SHIODA-INOSE ATLAS TEST (entry 147; doc 2.69;
+    compute/data_shioda_inose_147.json).  The 84 K3 pieces of the
+    magic-square surface are the double planes Y_S: w^2 = prod_{i in S} L_i
+    over the Lucas plane, S a 6-subset of the nine lines; u_p(S) =
+    #Y~_S(F_p) - 1 - p^2 - p(16 + t3) is the trace of Frobenius on the
+    remaining part R of H^2 (rank 6 - t3).  The 84 pieces fall into 14
+    classes = the D4-orbits of 6-subsets with the two isomorphic pairs
+    merged = Auel-Singer's 14 magic octic K3 surfaces (their Table 2; the
+    dictionary by point counts of their octic models mod p).  Six classes
+    (28 pieces) are IDENTIFIED EXACTLY at every prime 5 <= p <= 241: A (8
+    pieces, rho 19): Sym^2 of the isogeny class 128a twisted by chi_{-2};
+    B (6): the singular K3 with CM by Q(i) through 32a2; C, D (4 + 4): CM by
+    Q(sqrt -2) through 256a1; E (2, Bremner's smooth octic): CM by
+    Q(sqrt -3) through 36a1; F (4): CM by Q(sqrt -6) through the weight-3
+    CM newform of level 24 (class number 2 -- no elliptic curve).  Verifies
+    from scratch: the nine lines, the 8 triple points, t3 and the A1 count
+    of every piece, u_p for every piece on the small primes and for the six
+    identified classes on the identity range (pure-Python point counts),
+    the 14 classes and their D4-orbit sizes, the four mod-3-concurrent
+    triples (62 pieces bad at 3, the 22 good ones exactly the classes A-D),
+    the six identities with a_p recomputed by point counts on the curves
+    and by the Hecke rule for the level-24 form, and the dictionary's octic
+    counts."""
+    import itertools, json
+    with open(os.path.join(DATA, "data_shioda_inose_147.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    require(T["entry"] == 147 and len(T["pieces"]) == 84 and len(T["classes"]) == 14, "the data file")
+    LINES = {k: tuple(v) for k, v in T["lines"].items()}
+    require(LINES == {"L0": (0, 0, 1), "L1+": (1, 0, 1), "L1-": (-1, 0, 1), "L2+": (0, 1, 1), "L2-": (0, -1, 1),
+                      "L3+": (1, 1, 1), "L3-": (-1, -1, 1), "L4+": (1, -1, 1), "L4-": (-1, 1, 1)}, "the nine Lucas lines")
+    NAMES = list(LINES)
+
+    def inter(a, b):
+        from math import gcd
+        x, y, z = a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]
+        g = gcd(gcd(abs(x), abs(y)), abs(z))
+        x, y, z = x // g, y // g, z // g
+        s = next(c for c in (x, y, z) if c)
+        return (x, y, z) if s > 0 else (-x, -y, -z)
+
+    pts = {}
+    for i, j in itertools.combinations(NAMES, 2):
+        pts.setdefault(inter(LINES[i], LINES[j]), set()).update([i, j])
+    triple = {P: s for P, s in pts.items() if len(s) == 3}
+    require(len(triple) == 8 and all(len(s) <= 3 for s in pts.values()), "the arrangement has 8 triple points and no quadruple point")
+
+    def det(a, b, c):
+        return a[0] * (b[1] * c[2] - b[2] * c[1]) - a[1] * (b[0] * c[2] - b[2] * c[0]) + a[2] * (b[0] * c[1] - b[1] * c[0])
+
+    bad3 = [set(t) for t in itertools.combinations(NAMES, 3) if abs(det(*[LINES[n] for n in t])) == 3]
+    require(len(bad3) == 4 and sorted(sorted(t) for t in bad3) == sorted(sorted(t) for t in T["mod3_concurrent_triples"]), "the mod-3-concurrent triples")
+    seen = set()
+    for r in T["pieces"]:
+        S = r["S"]
+        require(len(S) == 6 and set(S) <= set(NAMES) and tuple(S) not in seen, ("a piece", S))
+        seen.add(tuple(S))
+        t3 = sum(1 for s in triple.values() if s <= set(S))
+        require(r["t3"] == t3 and r["n_a1"] == 15 - 3 * t3, (S, "t3 / A1 count"))
+    require(len(seen) == 84 and {t: sum(1 for r in T["pieces"] if r["t3"] == t) for t in range(4)} == {0: 2, 1: 20, 2: 46, 3: 16}, "the t3 distribution")
+    PR = [int(p) for p in T["primes"]]
+    require(PR[0] == 3 and PR[-1] == 241 and all(all(p % q for q in range(2, int(p ** 0.5) + 1)) for p in PR), "the prime list")
+
+    def chi_table(p):
+        chi = [0] * p
+        for x in range(1, p):
+            chi[x * x % p] = 1
+        return [0] + [c if c else -1 for c in chi[1:]]
+
+    def u_of(S, p):
+        chi = chi_table(p)
+        coeffs = [LINES[n] for n in S]
+        total = 0
+        points = [(x, y, 1) for x in range(p) for y in range(p)] + [(x, 1, 0) for x in range(p)] + [(1, 0, 0)]
+        for (x, y, z) in points:
+            f = 1
+            for (cx, cy, cz) in coeffs:
+                v = (cx * x + cy * y + cz * z) % p
+                if v == 0:
+                    f = 0
+                    break
+                f = f * v % p
+            total += 1 if f == 0 else 1 + chi[f]
+        t3 = sum(1 for s in triple.values() if s <= set(S))
+        return total + p * (15 - 3 * t3) + 4 * p * t3 - 1 - p * p - p * (16 + t3)
+
+    P_all = ctx.bound(full=61, fast=19)
+    for r in T["pieces"]:
+        for p in PR:
+            if 5 <= p <= P_all:
+                require(r["u"][str(p)] == u_of(r["S"], p), (r["S"], p, "u_p recomputed"))
+    key = {tuple(r["S"]): tuple(r["u"][str(p)] for p in PR) for r in T["pieces"]}
+    classes = {}
+    for r in T["pieces"]:
+        classes.setdefault(key[tuple(r["S"])], []).append(r)
+    require(len(classes) == 14, "14 distinct trace sequences")
+    for recs in classes.values():
+        require(len({r["class"] for r in recs}) == 1, "a class id per trace sequence")
+    require(len({r["class"] for r in T["pieces"]}) == 14, "14 class ids")
+    rot = [[0, 1, 0], [-1, 0, 0], [0, 0, 1]]
+    ref = [[0, 1, 0], [1, 0, 0], [0, 0, 1]]
+
+    def norm(c):
+        s = next(v for v in c if v)
+        return c if s > 0 else tuple(-x for x in c)
+
+    inv = {norm(v): k for k, v in LINES.items()}
+    gens = [{k: inv[norm(tuple(sum(g[j][i] * v[j] for j in range(3)) for i in range(3)))] for k, v in LINES.items()} for g in (rot, ref)]
+    G = [{k: k for k in LINES}]
+    frontier = list(G)
+    while frontier:
+        new = []
+        for g in frontier:
+            for h in gens:
+                gh = {k: h[g[k]] for k in LINES}
+                if gh not in G:
+                    G.append(gh)
+                    new.append(gh)
+        frontier = new
+    require(len(G) == 8, "the dihedral group of the square on the nine lines")
+    orbit_id = {}
+    orbits = []
+    for S in itertools.combinations(NAMES, 6):
+        if frozenset(S) in orbit_id:
+            continue
+        orb = {frozenset(g[k] for k in S) for g in G}
+        for o in orb:
+            orbit_id[o] = len(orbits)
+        orbits.append(orb)
+    require(len(orbits) == 16, "16 D4-orbits of 6-subsets")
+    by_id = {c["id"]: c for c in T["classes"]}
+    for cid, c in by_id.items():
+        recs = [r for r in T["pieces"] if r["class"] == cid]
+        require(c["pieces"] == len(recs) and c["example"] in [r["S"] for r in recs] and all(r["t3"] == c["t3"] for r in recs), (cid, "the class record"))
+        ids = sorted({orbit_id[frozenset(r["S"])] for r in recs})
+        require(sorted(c["d4_orbit_sizes"]) == sorted(len(orbits[o]) for o in ids) and sum(c["d4_orbit_sizes"]) == len(recs), (cid, "the D4 orbits"))
+        g3 = {not any(t <= set(r["S"]) for t in bad3) for r in recs}
+        require(g3 == {c["good_reduction_at_3"]}, (cid, "good reduction at 3"))
+    require(sorted(c["pieces"] for c in T["classes"]) == [2, 4, 4, 4, 4, 4, 4, 6, 8, 8, 8, 8, 8, 12], "the class sizes")
+    require(sum(c["pieces"] for c in T["classes"] if c["good_reduction_at_3"]) == 22, "22 pieces have good reduction at 3")
+    ident = {c["identification"]["tag"]: c for c in T["classes"] if c.get("identification")}
+    require(sorted(ident) == ["A", "B", "C", "D", "E", "F"], "the six identified classes")
+    require(all(ident[t]["good_reduction_at_3"] for t in "ABCD") and not ident["E"]["good_reduction_at_3"] and not ident["F"]["good_reduction_at_3"], "A-D are the good-at-3 classes")
+    require([ident[t]["pieces"] for t in "ABCDEF"] == [8, 6, 4, 4, 2, 4] and [ident[t]["t3"] for t in "ABCDEF"] == [3, 2, 3, 3, 0, 1], "the identified classes' sizes and t3")
+
+    def ap(f, p):
+        chi = chi_table(p)
+        return -sum(chi[f(x) % p] for x in range(p))
+
+    CURVES = {"128a1": lambda x: x ** 3 + x ** 2 + x + 1, "32a2": lambda x: x ** 3 - x, "256a1": lambda x: x ** 3 + x ** 2 - 3 * x + 1, "36a1": lambda x: x ** 3 + 1}
+
+    def kron(d, p):
+        d %= p
+        return 0 if d == 0 else (1 if pow(d, (p - 1) // 2, p) == 1 else -1)
+
+    def a24(p):
+        if kron(-6, p) == -1:
+            return 0
+        for x in range(0, int(p ** 0.5) + 1):
+            for y in range(0, int(p ** 0.5) + 1):
+                if x * x + 6 * y * y == p:
+                    return 2 * (x * x - 6 * y * y)
+        for x in range(0, int((2 * p) ** 0.5) + 1):
+            for y in range(0, int((2 * p) ** 0.5) + 1):
+                if x * x + 6 * y * y == 2 * p:
+                    return x * x - 6 * y * y
+        raise AssertionError(p)
+
+    def predicted(tag, p):
+        if tag == "A":
+            a = ap(CURVES["128a1"], p)
+            return kron(-2, p) * (a * a - p)
+        if tag == "F":
+            return a24(p) + p * (2 + kron(2, p))
+        curve, K, alg = {"B": ("32a2", -4, lambda p: p * (1 + kron(-1, p))), "C": ("256a1", -8, lambda p: p * kron(-2, p)),
+                         "D": ("256a1", -8, lambda p: p), "E": ("36a1", -3, lambda p: p * (2 + kron(-1, p) + kron(3, p)))}[tag]
+        a = ap(CURVES[curve], p)
+        return (a * a - 2 * p if kron(K, p) == 1 else 0) + alg(p)
+
+    P_id = ctx.bound(full=113, fast=61)
+    n_checked = 0
+    for tag, c in ident.items():
+        recs = [r for r in T["pieces"] if r["class"] == c["id"]]
+        for p in PR:
+            if 5 <= p <= P_id:
+                want = predicted(tag, p)
+                require(all(r["u"][str(p)] == want for r in recs), (tag, p, "the exact identity", want, recs[0]["u"][str(p)]))
+                n_checked += 1
+                if p <= P_all:
+                    require(u_of(c["example"], p) == want, (tag, p, "recomputed"))
+    require(T["exact_identities"]["primes_checked"].startswith("5 <= p <= 241") and all(v["failures"] == [] for v in T["exact_identities"]["results"].values()), "the recorded identity checks")
+    D = T["dictionary"]["table"]
+    require(len(D) == 14 and sum(1 for d in D.values() if d["rho"] == 19) == 6 and sum(1 for d in D.values() if d["rho"] == 20) == 5 and sum(1 for d in D.values() if d["rho"] == 18) == 3, "Table 2's Picard ranks")
+
+    def octic_count(M, p):
+        piv = []
+        for row in M:
+            cands = [j for j in range(6) if row[j] != 0 and all(M[k][j] == 0 for k in range(3) if M[k] is not row) and j not in piv]
+            piv.append(cands[0])
+        free = [j for j in range(6) if j not in piv]
+        chi = chi_table(p)
+        aff = 0
+        for g in itertools.product(range(p), repeat=3):
+            f = 1
+            for k, row in enumerate(M):
+                R = (-sum(row[j] * g[t] * g[t] for t, j in enumerate(free))) % p
+                f *= 1 if R == 0 else 1 + chi[R * row[piv[k]] % p]
+            aff += f
+        require((aff - 1) % (p - 1) == 0)
+        return (aff - 1) // (p - 1)
+
+    P_oct = ctx.bound(full=23, fast=7)
+    for orb, d in D.items():
+        require(d["our_classes"], (orb, "no class matched"))
+        for p in (5, 7, 11, 13, 17, 19, 23):
+            if p <= P_oct:
+                v = octic_count(d["equations"], p) - 1
+                require(v == d["count_minus_one"][str(p)], (orb, p, "the octic count"))
+                for oc in d["our_classes"]:
+                    cl = next(c for c in T["classes"] if c["example"] == oc["example"])
+                    rec = next(r for r in T["pieces"] if r["S"] == cl["example"])
+                    require((rec["u"][str(p)] - v) % p == 0, (orb, p, "the dictionary congruence"))
+    for cid, c in by_id.items():
+        require(c["auel_singer"], (cid, "an Auel-Singer orbit"))
+        for a in c["auel_singer"]:
+            require(D[a["orbit"]]["rho"] == a["rho"] and a["nodes"] == 4 * c["t3"] and a["orbit"] in c["auel_singer_mod_p_matches"], (cid, "the resolved orbit"))
+        require(all(any(oc["example"] == c["example"] for oc in D[o]["our_classes"]) for o in c["auel_singer_mod_p_matches"]), (cid, "the mod-p matches"))
+    require(sorted(len(c["auel_singer"]) for c in T["classes"]) == [1] * 12 + [2, 2], "the dictionary is one-to-one except the pair of orbits 4 and 6")
+    ctx.note("Shioda-Inose atlas: 84 K3 pieces, 14 classes (Auel-Singer's 14 octic K3s), u_p recomputed for all pieces to p = %d; six classes (28 pieces) identified exactly on %d prime checks to p = %d: A = Sym^2(128a) x chi_-2 (rho 19), B = CM Q(i) via 32a2, C, D = CM Q(sqrt-2) via 256a1, E = CM Q(sqrt-3) via 36a1, F = CM Q(sqrt-6) via the level-24 weight-3 form" % (P_all, n_checked, P_id))
