@@ -8167,3 +8167,277 @@ def _(ctx):
     require([int(c) for c in cp.all_coeffs()] == SM["witness_charpoly_coeffs"] == [1, 64, 1104, -512, -96256, 65536], "the witness characteristic polynomial")
     require(sp.count_roots(cp, 0, sp.oo) == 2 and SM["witness_positive_roots"] == 2, "two positive eigenvalues in a principal minor: impossible for divisor classes on a surface (Hodge index)")
     ctx.note("Picard bookkeeping: b2 = 766; 335 algebraic dimensions independent of the candidate K3/Horikawa identifications; conditional rho bounds 456/454, unconditional Hodge bound 544. Horikawa trace identities replayed at %d primes through %d. Published matrix witness extracted from its full archived source and certified to have two positive directions; full rank/inertia not replayed by this check." % (len(primes_h), P_h))
+
+
+@check("a3.horikawa_w3_148", DOC)
+def _(ctx):
+    """Entry 148 addendum -- the weight-3 newform atlas test for the two
+    unidentified Horikawa trace types (compute/data_horikawa_w3_148.json).
+
+    The archived dump (weight 3, levels 2^a 3^b <= 1152, odd quadratic
+    characters, coefficient degree <= 4, a_p for 5 <= p <= 113) is checked
+    for shape; the traces to Q of its degree <= 2 forms are re-derived with
+    an independent parser (Newton power sums of the field polynomial) and
+    compared with the pinned table; the real quadratic coefficient fields are
+    exactly Q(sqrt 2), Q(sqrt 3), Q(sqrt 6).  The decomposition search of the
+    addendum is then replayed in full: candidate pieces = the dump forms
+    (rational: rank 2; quadratic pair: rank 4) plus the nine atlas pieces
+    recomputed from the entry-147 data, twists by the eight characters,
+    three h^{2,0} = 1 pieces or one pair plus one piece, mod-p prefilter at
+    5 <= p <= 113 and the exact test with an algebraic residual.  Required:
+    the no-L0 type has exactly the pinned ten decompositions including the
+    entry-148 one; the rank-9 and rank-10 types have none.  A trace identity
+    is a candidate, never a proof of modularity; an empty search is a
+    negative result for this finite candidate set only.
+    """
+    import itertools, json, math, re
+    from fractions import Fraction
+    with open(os.path.join(DATA, "data_horikawa_w3_148.json"), encoding="utf-8") as fh:
+        D = json.load(fh)
+    with open(os.path.join(DATA, "data_picard_module_148.json"), encoding="utf-8") as fh:
+        T = json.load(fh)
+    with open(os.path.join(DATA, "data_shioda_inose_147.json"), encoding="utf-8") as fh:
+        K = json.load(fh)
+    require(D["entry"] == "148 addendum" and T["entry"] == 148 and K["entry"] == 147, "the data files")
+    dump = D["dump"]
+    PR = [p for p in range(5, 114) if all(p % q for q in range(2, math.isqrt(p) + 1))]
+    require(dump["primes"] == PR and len(PR) == 28 and dump["weight"] == 3 and dump["coefficient_degree_max"] == 4, "the dump primes")
+    levels = sorted(2 ** a * 3 ** b for a in range(0, 12) for b in range(0, 8) if 8 <= 2 ** a * 3 ** b <= 1152)
+    require(dump["levels"] == levels and len(levels) == 37, "the 37 levels 2^a 3^b in [8, 1152]")
+    forms = dump["forms"]
+    require(len(forms) == dump["form_count"] == 252, "the form count")
+    counts = {}
+    for f in forms:
+        require(f["level"] in levels and f["level"] % f["char_conductor"] == 0 and f["deg"] in (1, 2, 4), "a form record")
+        require(sorted(int(p) for p in f["ap"]) == PR, "a form records a_p at every dump prime")
+        require(all((v is None) == (f["level"] % p == 0) for p, v in ((int(p), v) for p, v in f["ap"].items())), "a_p missing exactly at p | N")
+        counts[str(f["level"])] = counts.get(str(f["level"]), 0) + 1
+    require(counts == dump["counts_by_level"] and sum(counts.values()) == 252, "the counts by level")
+    require({d: sum(1 for f in forms if f["deg"] == int(d)) for d in ("1", "2", "4")} == dump["counts_by_degree"] == {"1": 32, "2": 115, "4": 105}, "the counts by degree")
+
+    def parse_poly(s, var):
+        """{exponent: Fraction} of a polynomial written as Sage prints it (terms c*var^k, c a rational)."""
+        s = s.replace(" ", "").replace("-", "+-")
+        names = set(re.findall(r"[A-Za-z_]\w*", s))
+        require(names <= ({var} if var else set()), ("unexpected symbols", s, var))
+        out = {}
+        for term in s.split("+"):
+            if not term:
+                continue
+            if var is None or var not in term:
+                out[0] = out.get(0, Fraction(0)) + Fraction(term)
+                continue
+            coef, _, rest = term.partition(var)
+            coef = coef.rstrip("*")
+            c = Fraction(1) if coef in ("", "+") else (Fraction(-1) if coef == "-" else Fraction(coef))
+            k = int(rest[1:]) if rest.startswith("^") else 1
+            require(rest == "" or rest.startswith("^"), ("term", term))
+            out[k] = out.get(k, Fraction(0)) + c
+        return out
+
+    def power_sums(field):
+        P = parse_poly(field, "x")
+        n = max(P)
+        require(P[n] == 1, "a monic field polynomial")
+        e = [Fraction(0)] * (n + 1)
+        for k in range(1, n + 1):
+            e[k] = (-1) ** k * P.get(n - k, Fraction(0))
+        S = [Fraction(n)]
+        for k in range(1, n):
+            acc = Fraction(0)
+            for i in range(1, k):
+                acc += (-1) ** (i - 1) * e[i] * S[k - i]
+            acc += (-1) ** (k - 1) * k * e[k]
+            S.append(acc)
+        return S
+
+    def sqfree(n):
+        s = -1 if n < 0 else 1
+        n = abs(n)
+        out, d = 1, 2
+        while d * d <= n:
+            while n % (d * d) == 0:
+                n //= d * d
+            if n % d == 0:
+                out *= d
+                n //= d
+            d += 1
+        return s * out * n
+
+    # traces to Q, independently re-derived, and the quadratic coefficient fields
+    traces = {}
+    fields = set()
+    for i, f in enumerate(forms):
+        if f["deg"] > 2:
+            continue
+        if f["deg"] == 1:
+            require(f["field"] == "Q", "a rational form")
+            tr = {p: (int(f["ap"][str(p)]) if f["ap"][str(p)] is not None else None) for p in PR}
+        else:
+            S = power_sums(f["field"])
+            P = parse_poly(f["field"], "x")
+            fields.add(sqfree(int(P.get(1, 0)) ** 2 - 4 * int(P.get(0, 0))))
+            tr = {}
+            for p in PR:
+                s = f["ap"][str(p)]
+                if s is None:
+                    tr[p] = None
+                    continue
+                gens = set(re.findall(r"[A-Za-z_]\w*", s))
+                require(len(gens) <= 1 and all(re.fullmatch(r"a\d*", g) for g in gens), (i, p, "one generator a<k>"))
+                v = sum(c * S[k] for k, c in parse_poly(s, gens.pop() if gens else None).items())
+                require(v.denominator == 1, (i, p, "an integral trace"))
+                tr[p] = int(v)
+        require({str(p): v for p, v in tr.items()} == D["traces_to_Q"][str(i)], (i, "the pinned trace table"))
+        traces[i] = tr
+    require(len(traces) == 147, "147 forms of degree <= 2")
+    Q = D["quadratic_coefficient_fields"]
+    require(sorted(d for d in fields if d > 0) == Q["squarefree_discriminants_real"] == [2, 3, 6]
+            and sorted(d for d in fields if d < 0) == Q["squarefree_discriminants_imaginary"], "the quadratic coefficient fields")
+
+    # the Horikawa traces (pinned in the entry-148 data) and their three trace classes
+    PRALL = [p for p in range(5, 242) if all(p % q for q in range(2, math.isqrt(p) + 1))]
+    hor = {h["omitted"]: h for h in T["horikawa"]}
+    require(all(str(p) in h["u"] for h in hor.values() for p in PRALL), "the Horikawa traces cover 5 <= p <= 241")
+    classes = []
+    for om in ["L0", "L1+", "L1-", "L2+", "L2-", "L3+", "L3-", "L4+", "L4-"]:
+        key = tuple(hor[om]["u"][str(p)] for p in PRALL)
+        for c in classes:
+            if c["key"] == key:
+                c["omitted"].append(om)
+                break
+        else:
+            classes.append({"key": key, "omitted": [om], "rank_R": hor[om]["rank_R"]})
+    require([c["omitted"] for c in classes] == [["L0"], ["L1+", "L1-", "L2+", "L2-"], ["L3+", "L3-", "L4+", "L4-"]]
+            and [c["rank_R"] for c in classes] == [11, 9, 10], "three trace classes of ranks 11, 9, 10")
+    require([r["omitted"] for r in D["results"]] == [c["omitted"] for c in classes] and [r["rank_R"] for r in D["results"]] == [11, 9, 10], "the pinned result classes")
+
+    # the candidate pieces: dump forms (merged by trace vector) and the nine atlas pieces from the entry-147 data
+    def kron(d, p):
+        d %= p
+        return 0 if d == 0 else (1 if pow(d, (p - 1) // 2, p) == 1 else -1)
+
+    def rep(p, m):
+        for y in range(0, math.isqrt(p // m) + 2):
+            r = p - m * y * y
+            if r < 0:
+                break
+            x = math.isqrt(r)
+            if x * x == r:
+                return x, y
+        return None
+
+    def cm(p, kind):
+        if kind == "Q(i)":
+            r = rep(p, 1)
+            return 2 * (r[0] ** 2 - r[1] ** 2) if r else 0
+        if kind == "Q(sqrt-2)":
+            r = rep(p, 2)
+            return 2 * (r[0] ** 2 - 2 * r[1] ** 2) if r else 0
+        if kind == "Q(sqrt-3)a":
+            r = rep(p, 3)
+            return 2 * (r[0] ** 2 - 3 * r[1] ** 2) if r else 0
+        if kind == "Q(sqrt-6)":
+            if kron(-6, p) == -1:
+                return 0
+            r = rep(p, 6)
+            if r:
+                return 2 * (r[0] ** 2 - 6 * r[1] ** 2)
+            for y in range(0, math.isqrt(2 * p // 6) + 2):
+                rr = 2 * p - 6 * y * y
+                if rr < 0:
+                    break
+                x = math.isqrt(rr)
+                if x * x == rr:
+                    return x * x - 6 * y * y
+            require(False, (p, "a representation of 2p by x^2 + 6y^2"))
+        require(False, kind)
+
+    def ap128(p):
+        return -sum(kron(x ** 3 + x * x + x + 1, p) for x in range(p))
+
+    def ident(tag):
+        return next(c for c in K["classes"] if (c.get("identification") or {}).get("tag") == tag)["identification"]
+
+    r96 = {int(q): int(v) for q, v in ident("G")["r"].items()}
+    r384 = {int(q): int(v) for q, v in ident("K")["r"].items()}
+    asai3 = {int(q): int(v) for q, v in ident("I")["asai_trace"].items()}
+    asai6 = {int(q): int(v) for q, v in ident("J")["asai_trace"].items()}
+    require(all(set(PRALL) <= set(d) for d in (r96, r384, asai3, asai6)), "the atlas invariants cover 5 <= p <= 241")
+    pieces = {}
+    seen = set()
+    for i, tr in traces.items():
+        key = tuple(tr[p] for p in PR)
+        if key in seen:
+            continue
+        seen.add(key)
+        f = forms[i]
+        full = {p: (tr[p] if p <= 113 else None) for p in PRALL}
+        pieces["w3:%d.%d.%d(deg%d%s)" % (f["level"], f["char_conductor"], f["form"], f["deg"], ",CM" if f["cm"] else "")] = (full, 2 * f["deg"], f["deg"])
+    require(len(pieces) == D["search"]["dump_pieces_after_merging"] == 147, "147 distinct dump trace vectors")
+    for kind in ("Q(i)", "Q(sqrt-2)", "Q(sqrt-3)a", "Q(sqrt-6)"):
+        pieces["CM:" + kind] = ({p: cm(p, kind) for p in PRALL}, 2, 1)
+    pieces["Sym2:128a"] = ({p: ap128(p) ** 2 - p for p in PRALL}, 3, 1)
+    pieces["Sym2:level96"] = ({p: r96[p] - p for p in PRALL}, 3, 1)
+    pieces["Sym2:level384"] = ({p: r384[p] - p for p in PRALL}, 3, 1)
+    pieces["Asai:Q(sqrt3)"] = ({p: asai3[p] for p in PRALL}, 4, 1)
+    pieces["Asai:Q(sqrt6)"] = ({p: asai6[p] for p in PRALL}, 4, 1)
+    require(len(pieces) == D["search"]["candidate_pieces_total"] == 156, "156 candidate pieces")
+    CH = D["search"]["twists"]
+    require(CH == [1, -1, 2, -2, 3, -3, 6, -6], "the twist set")
+    h1 = [n for n in pieces if pieces[n][2] == 1]
+    h2 = [n for n in pieces if pieces[n][2] == 2]
+    combos = [tuple(c) for c in itertools.combinations_with_replacement(h1, 3)] + [(a, b) for a in h2 for b in h1]
+
+    def search(u, r):
+        found = []
+        for combo in combos:
+            rankT = sum(pieces[n][1] for n in combo)
+            nalg = r - rankT
+            if nalg < 0:
+                continue
+            vals = [pieces[n][0] for n in combo]
+            for etas in itertools.product(CH, repeat=len(combo)):
+                if any(combo[i] == combo[i + 1] and etas[i] > etas[i + 1] for i in range(len(combo) - 1)):
+                    continue
+                ok = True
+                for p in PR:
+                    if any(v[p] is None for v in vals):
+                        continue
+                    s = sum(kron(e, p) * v[p] for v, e in zip(vals, etas))
+                    if (u[p] - s) % p:
+                        ok = False
+                        break
+                if not ok:
+                    continue
+                e = {}
+                for p in PRALL:
+                    if any(v[p] is None for v in vals):
+                        continue
+                    val = u[p] - sum(kron(ee, p) * v[p] for v, ee in zip(vals, etas))
+                    if val % p or abs(val // p) > nalg:
+                        ok = False
+                        break
+                    e[p] = val // p
+                if not ok:
+                    continue
+                chars = None
+                for cs in itertools.combinations_with_replacement(CH, nalg):
+                    if all(sum(kron(d, p) for d in cs) == e[p] for p in e):
+                        chars = cs
+                        break
+                found.append({"pieces": list(combo), "etas": list(etas), "rank_T": rankT, "algebraic_characters": list(chars) if chars else None})
+        return found
+
+    for c, res in zip(classes, D["results"]):
+        u = {p: hor[c["omitted"][0]]["u"][str(p)] for p in PRALL}
+        found = search(u, c["rank_R"])
+        require(len(found) == res["exact_decompositions"], (c["omitted"], "the number of exact decompositions", len(found)))
+        if c["omitted"] == ["L0"]:
+            require(len(found) == 10 and all(f["algebraic_characters"] == [1, -1, 3] and f["rank_T"] == 8 for f in found)
+                    and {"pieces": ["CM:Q(sqrt-3)a", "Sym2:level96", "Sym2:level96"], "etas": [1, 3, 3], "rank_T": 8, "algebraic_characters": [1, -1, 3]} in found
+                    and all({k: f[k] for k in ("pieces", "etas", "rank_T", "algebraic_characters")} in [{k: g[k] for k in ("pieces", "etas", "rank_T", "algebraic_characters")} for g in res["decompositions"]] for f in found),
+                    "the no-L0 type: the ten pinned decompositions (all rank 8, characters 1, -1, 3), including the entry-148 one")
+        else:
+            require(found == [] and res["decompositions"] == [], (c["omitted"], "no decomposition"))
+    ctx.note("Weight-3 dump archived: 252 newforms, levels 2^a 3^b <= 1152, degrees 1/2/4 = 32/115/105, a_p to 113; real quadratic coefficient fields exactly Q(sqrt 2), Q(sqrt 3), Q(sqrt 6). Search replayed over 156 candidate pieces and 8 twists: the no-L0 Horikawa type has its ten (equivalent) decompositions, the rank-9 and rank-10 types none. Candidates and negatives are finite trace statements, not modularity proofs.")

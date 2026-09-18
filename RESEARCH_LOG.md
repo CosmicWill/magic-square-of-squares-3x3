@@ -8178,3 +8178,63 @@ domain of a fibre. The rational interior of the GB.7 cover is unknown.
 None of the branch's results excludes a magic square of squares.
 
 No ledger change; suite 271.
+
+## 2026-09-17 — Entry 148 addendum: THE WEIGHT-3 NEWFORM TEST FOR THE TWO OPEN HORIKAWA TYPES — no decomposition into atlas pieces and weight-3 newforms of level 2^a·3^b ≤ 1152 with Hecke field of degree ≤ 2; the no-L₀ candidate reproduced (recorded after entry 149)
+
+WHAT WAS TESTED. Entry 148 left two of the three Horikawa trace
+types unidentified: the remaining parts of H² for the eight-line
+subsets omitting one of L1±, L2± (rank 9) and one of L3±, L4± (rank
+10). The no-L₀ type (rank 11) had the candidate T = CM(√−3) ⊕
+Sym²(f₉₆)⊗χ₃ ⊕ Sym²(f₉₆)⊗χ₃ (rank 8). None of the three is a sum of
+atlas pieces alone except the no-L₀ one (entry 148). This addendum
+enlarges the candidate set by the natural home of a rank-2 or rank-4
+piece with h^{2,0} = 1 or 2 and conductor supported at 2 and 3: every
+weight-3 newform of level N = 2^a·3^b, 8 ≤ N ≤ 1152, with an odd
+quadratic Dirichlet character and Hecke eigenvalue field of degree
+≤ 4 (Sage 10.7 Newforms; 252 forms: 32 rational, 115 quadratic, 105
+quartic; a_p recorded for 5 ≤ p ≤ 113). The dump is archived in
+compute/data_horikawa_w3_148.json.
+
+THE SEARCH (replayed in full by the check a3.horikawa_w3_148, 56 s).
+Candidate pieces: the 147 distinct trace vectors of the dump forms of
+degree ≤ 2 (rational form: rank 2, h^{2,0} = 1; quadratic
+Galois-conjugate pair: rank 4, h^{2,0} = 2, trace Tr a_p) and the
+nine atlas pieces of entry 147 recomputed from its pinned data (CM by
+Q(i), Q(√−2), Q(√−3), Q(√−6); Sym² of 128a1, of the level-96 and the
+level-384 forms; Asai over Q(√3) and Q(√6)). A decomposition is three
+h^{2,0} = 1 pieces or one pair plus one piece (p_g = 3 for a double
+plane along eight lines), each twisted by one of ±1, ±2, ±3, ±6, with
+u_p = Σ(twisted traces) + p·(a sum of rank_R − rank_T characters):
+prefilter mod p at 5 ≤ p ≤ 113, then the exact test at every prime
+with data (dump pieces to 113, atlas pieces to 241). The traces to Q
+of the quadratic forms are derived twice, by sympy when the file was
+built and by an independent parser inside the check.
+
+RESULT. The no-L₀ type: exactly ten decompositions, all the same
+motive in different twist presentations of the CM(√−3) piece (the
+level-12 CM form, its level-48 and level-192 twists, and the
+representation-theoretic CM trace); the entry-148 candidate is among
+them (positive control). The rank-9 type: no decomposition. The
+rank-10 type: no decomposition. Pinned as a further structural fact:
+the real quadratic Hecke fields occurring in the dump are exactly
+Q(√2), Q(√3), Q(√6).
+
+READING (the Frobenius structures at p = 5 are a scratch computation,
+recorded in the data file as unpinned). The rank-9 type has at p = 5
+a quartic Frobenius factor with pair-traces −2 ± 4√2, −2, 10; the
+rank-10 type the factor x⁴ − 72x² + 1040 with pair-traces ±2√5, ±2√13.
+A newform with a fixed Hecke field gives one splitting field at every
+prime, so these types are not weight-3 newforms of level ≤ 1152 with
+small Hecke fields, consistent with the empty search. The remaining
+natural candidates are Asai (tensor-induction) pieces of Hilbert
+modular forms over Q(√2), Q(√3), Q(√6), the class of the open orbit 9
+of entry 147, or forms of level above 1152.
+
+STATUS. Nothing here changes entry 148: the K3 and Horikawa
+identifications stay candidates, the ρ bounds 456/454 stay conditional
+on them, 335 ≤ ρ ≤ 544 stays the unconditional statement, and no
+motive is proved modular by a trace match or excluded by a finite
+search. Files: compute/data_horikawa_w3_148.json (dump, traces,
+search description, results, unpinned observations),
+verify/checks/a3_zi.py (a3.horikawa_w3_148). Registry 271 → 272. No
+ledger change.
