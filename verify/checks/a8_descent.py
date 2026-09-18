@@ -967,3 +967,85 @@ def _(ctx):
     require(sp.cancel(Q.subs(c, 0) / (v * (v ** 2 - 1) * x ** 3 * y)).is_number, "along c = 0: own direction triple, dv = 0 fourth")
     require(sp.cancel(Q.subs(v, 0) / (c * (c ** 2 - 1) * y ** 2 * (3 * x ** 2 - y ** 2))).is_number, "along v = 0: own direction double, transversal slopes +-1/sqrt3")
     ctx.note("Lemma T: at each of the eight triple points every branch of an eta*-integral curve is tangent to one of the integral lines through the point (4 at A/B, 5 at D); u^2-divisibility = regularity along u = 0; the u<->v symmetry of the web is exact")
+
+
+@check("a8.web_cubics_152", DOC)
+def _(ctx):
+    """Entry 152 -- Theorem: no eta*-integral irreducible rational cubic;
+    hence no complete genus-0 curve on X has a cubic Lucas image (M12-C
+    closed) and A2.C holds through degree 3.  Inputs: A8.11 (integrality),
+    A8.15 (>= 3 triple points), Lemma T (entry 151).  A rational curve
+    with cubic image is a birational degree-3 map (p:q:r): P^1 -> P^2 with
+    three triple points at t = 0, 1, infinity and admissible branch
+    tangents there; point and tangency conditions are linear, and the
+    integrality identity E(t) = T(p,q,r; p',q',r') = 0 defines an ideal I
+    in the family parameters.  Per sub-case the theorem needs: the family
+    is empty, or every point of V(I) is a map of rank <= 2 onto a line
+    (each 3x3 minor of the coefficient matrix lies in rad I, by
+    Rabinowitsch), or I = 0 with all minors identically zero.  The
+    4,280 sub-cases reduce to 597 D4-orbit representatives.  Pinned:
+    the exact Sage/Singular run over Q(sqrt3) (75 s) and the modular run
+    (GF(32003), 23 s) in compute/data_web_cubics_152.json, both with
+    26 empty families, family dimensions 548/19/4, verdicts 775 + 129
+    'rank <= 2', no rank-3 point.  Replayed here in pure Python
+    (compute/web_cubics_param.py, sympy over Q[r]/(r^2-3)): the
+    coordinate-free form T is recomputed and shown D4-invariant, the
+    orbit enumeration is recomputed (4280 -> 597, same representatives),
+    the pinned summaries are recounted from the entries, and the verdict
+    is recomputed for the pinned six-representative sample in the fast
+    profile and for all 597 in the full profile.  Skips without sympy.
+    """
+    try:
+        import sympy as sp
+    except ImportError:
+        raise Skip("sympy unavailable")
+    import collections, json, os
+    from compute import web_cubics_param as W
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "compute")
+    with open(os.path.join(data_dir, "data_web_cubics_152.json"), encoding="utf-8") as fh:
+        D = json.load(fh)
+    require(D["entry"] == 152 and D["subcases"] == 4280 and D["representatives"] == 597, "the data file")
+    # T and its D4-invariance (integrality is D4-invariant, so orbit representatives suffice)
+    Tp = W.T_form()
+    c, u, v, dc, du, dv = W.c, W.u, W.v, W.dc, W.du, W.dv
+    Texpr = Tp.as_expr()
+    for e1 in (1, -1):
+        for e2 in (1, -1):
+            for swap in (False, True):
+                M = sp.Matrix([[1, 0, 0], [0, e1, 0], [0, 0, e2]])
+                if swap:
+                    M = M * sp.Matrix([[1, 0, 0], [0, 0, 1], [0, 1, 0]])
+                X = M * sp.Matrix([c, u, v])
+                DX = M * sp.Matrix([dc, du, dv])
+                Tm = sp.expand(Texpr.subs({c: X[0], u: X[1], v: X[2], dc: DX[0], du: DX[1], dv: DX[2]}, simultaneous=True))
+                require(sp.expand(Tm - Texpr) == 0 or sp.expand(Tm + Texpr) == 0, ("T is D4-invariant up to sign", e1, e2, swap))
+    # the enumeration of sub-cases and orbit representatives
+    subs, reps = W.subcases_and_representatives()
+    require(len(subs) == 4280 and len(reps) == 597, "4280 sub-cases, 597 representatives")
+    entries = {int(k.split("|")[0]): (k, rec) for k, rec in D["results"].items()}
+    require(sorted(entries) == sorted(reps), "the pinned entries are exactly the representatives")
+    for idx, (k, rec) in entries.items():
+        cfg, choice = subs[idx]
+        require(k == "%d|%s|%s" % (idx, " ".join(cfg), " ".join(choice)), ("the pinned key matches the enumeration", idx))
+    # recount the pinned summaries
+    fam = collections.Counter(rec.get("family_dim") for k, rec in entries.values())
+    verd = collections.Counter(r.get("verdict") for k, rec in entries.values() for r in rec.get("results", []))
+    r3 = sum(len(r.get("rank3_points", [])) for k, rec in entries.values() for r in rec.get("results", []))
+    require({str(a): b for a, b in fam.items()} == {"-1": 26, "2": 548, "3": 19, "4": 4} == D["exact_run"]["summary"]["family_dims"], "the family dimensions")
+    require(dict(verd) == {"rank<=2 (maps onto lines)": 775, "rank<=2 everywhere (the whole family maps onto lines)": 129} == D["exact_run"]["summary"]["verdicts"], "the verdicts")
+    require(r3 == 0 and D["exact_run"]["summary"]["rank3_points"] == 0 and D["modular_run"]["summary"] == D["exact_run"]["summary"], "no rank-3 point; the modular run agrees with the exact run")
+    require(all(("error" not in rec) and (rec.get("family_dim") == -1 or (rec["results"] and all(r["verdict"].startswith("rank<=2") for r in rec["results"])))
+                for k, rec in entries.values()), "every representative is empty or maps onto lines")
+    # replay
+    sample = D["fast_sample_representatives"]
+    require(len(sample) == 6 and set(sample) <= set(reps) and {entries[i][1]["family_dim"] for i in sample} == {2, 3, 4, -1}, "the sample covers the family types")
+    todo = reps if ctx.bound(full=597, fast=6) == 597 else sample
+    for idx in todo:
+        cfg, choice = subs[idx]
+        vd, info = W.verdict(cfg, choice, Tp)
+        rec = entries[idx][1]
+        if rec["family_dim"] == -1:
+            require(vd == "empty", (idx, "an empty family replays as empty"))
+        else:
+            require(vd == "lines" and info["family_dim"] == rec["family_dim"], (idx, "replayed verdict", vd, info))
+    ctx.note("Theorem: no eta*-integral irreducible rational cubic. 4280 sub-cases, 597 D4 representatives, 26 empty families, every integral member a map onto a line; exact over Q(sqrt3) and mod 32003 (pinned), replayed on %d representatives here" % len(todo))

@@ -263,7 +263,7 @@ What we know:
    $k(t)$-MSS3 has plane image of degree ≥ 2 for
    $\operatorname{char} k \notin \{2,3\}$, and **degree ≥ 3 in
    characteristic 0**: A2.C is now a statement about images of degree
-   ≥ 3.
+   ≥ 3. **Update (entry 152, Theorem A8.20, 2026-09-18): the cubic level is closed by Lemma T and the parametrized web campaign — no rational curve on $X$ has a cubic Lucas image — so A2.C is now a statement about images of degree $\ge 4$ in characteristic 0.**
 2. **Why Lemma A2.L does not finish it.** The lemma's mechanism needs
    binary forms (two variables) so that conics factor into linear
    pieces. The MSS3 system is (after eliminating $u, v$)

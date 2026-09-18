@@ -8422,3 +8422,82 @@ compatible with every d.
 
 Files: verify/checks/a8_descent.py (a8.web_tangency); A8 §13;
 ROADMAP W1; PROGRESS 274 checks. No ledger change; suite 274.
+
+## 2026-09-18 — Entry 152: THEOREM A8.20 — NO η⋆-INTEGRAL IRREDUCIBLE RATIONAL CUBIC: no complete curve of geometric genus 0 on X has a cubic Lucas image; M12-C closed; Conjecture A2.C holds through degree 3 — a nonconstant magic square of squares over k(t), char k = 0, has plane image of degree at least 4
+
+THEOREM A8.20 (PROVEN; check a8.web_cubics_152; data
+compute/data_web_cubics_152.json; replay compute/web_cubics_param.py).
+There is no irreducible rational cubic in the Lucas plane that is
+η⋆-integral. Consequently (A8.11) no complete curve of geometric genus
+0 on X has a cubic Lucas image, the M12-C campaign is closed, and A2.C
+is established for images of degree ≤ 3: every nonconstant MSS3 over
+k(t), k of characteristic 0, has Lucas image of degree ≥ 4 (degrees 1
+and 2 were A7.3, A7.6). Elliptic plane cubics are not concerned: the
+web catches genus-0 curves only (S⁴Ω on an elliptic curve is trivial).
+
+PROOF. Let C be such a curve, φ = (p : q : r): P¹ → C ⊂ P² a
+birational parametrization of degree 3. By A8.15 the image passes
+through at least three distinct triple points P₀, P₁, P_∞; choose
+parameter values mapping to them (distinct, since the points are) and
+move them to t = 0, 1, ∞ by a Möbius transformation. By Lemma T
+(entry 151) the branch of C at each of the three points is tangent to
+an integral line through that point: four choices at the A- and
+B-points, five at the D-points; a cuspidal branch satisfies the same
+tangency condition trivially. The conditions φ(0) = P₀,
+φ(1) = λ₁P₁, (p₃, q₃, r₃) = λ_∞P_∞ and the three tangencies
+det[P_i, W_i, φ′(t_i)] = 0 (at t = ∞ with the second coefficients) are
+linear in the twelve coefficients of p, q, r and in λ₁, λ_∞; their
+solution set is empty or an affine space of dimension 2 (in 19 cases
+3, in 4 cases 4, when the conditions are dependent). Integrality is
+the polynomial identity E(t) = T(p, q, r; p′, q′, r′) = 0, where T is
+the coordinate-free form of η⋆ times the nine lines (entry 151), so
+the integral members form the variety V(I) of the ideal I of the
+coefficients of E. Since T is D₄-invariant (verified up to sign for
+the eight symmetries), it suffices to treat one representative of
+each D₄-orbit of (three points, three tangent choices): 4,280
+sub-cases, 597 representatives. For each representative one of the
+following holds, and the check verifies which: (i) the linear system
+is inconsistent — 26 cases; (ii) every point of V(I) is a map whose
+3 × 4 coefficient matrix has rank ≤ 2, i.e. each of the four 3 × 3
+minors lies in the radical of I (Rabinowitsch), or I = 0 and the
+minors vanish identically — 571 cases, with 904 components in all,
+775 of them proper subvarieties and 129 the whole family. A map of
+rank ≤ 2 has image a line, never an irreducible cubic. Hence no
+representative, and no sub-case, contains a birational parametrization
+of an integral cubic. ∎
+
+THE COMPUTATION. Exact over Q(√3) (the field of the √3-lines) in
+SageMath 10.7 / Singular: 597 representatives in 75 s; modulo 32003,
+where 253² ≡ 3: 23 s, identical structure; both pinned. The pure
+Python replay (sympy over Q[r]/(r² − 3)) recomputes T and its
+D₄-invariance, the enumeration (4,280 → 597, the same representatives
+in the same order), the summaries, and the verdict of six pinned
+representatives covering the family dimensions 2, 3, 4 and an empty
+family in the fast profile, of all 597 in the full profile (4 to 75 s
+each). Two earlier formulations are recorded for honesty: the
+six-parameter implicit systems (cubics through three points, 26
+equations of degree 10) did not finish in Singular in an hour even
+modulo a prime; the four-parameter implicit systems with prescribed
+tangents ran at about 30 s per sub-case modulo a prime but produced
+positive-dimensional spurious components, the products (integral
+line)·M² with a moving line M, on which the divisibility test
+g | Q(g_v, −g_c) is vacuous — each such component was proven
+non-reduced over its function field, and every isolated solution was
+a product of integral lines (185 sub-cases, partial); the parametrized
+formulation has no such artefact because a squared line is not a
+birational image.
+
+WHAT IT CHANGES. The function-field problem: A2.C, "no nonconstant
+magic square of squares over k(t)", is now a statement about plane
+images of degree ≥ 4 (ROADMAP W1). The degree-by-degree closure has a
+uniform engine: Lemma T plus the parametrized integrality identity
+works at every degree d with the same three linear anchors and the
+same 597 representatives, the family having dimension 3d − 7 and E(t)
+degree 9d − 4; the quartic level has five free parameters per family
+and E of degree 32. What it does not change: the degree
+bound of W1 stays open, and no rational point is excluded or found.
+
+Files: compute/web_cubics_param.py, compute/data_web_cubics_152.json,
+verify/checks/a8_descent.py (a8.web_cubics_152); A8 §14; A2 §5;
+ROADMAP W1 and the M12-C row; PROGRESS 275 checks. No ledger change;
+suite 275.
