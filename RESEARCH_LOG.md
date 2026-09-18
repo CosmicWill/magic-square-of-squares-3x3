@@ -8501,3 +8501,59 @@ Files: compute/web_cubics_param.py, compute/data_web_cubics_152.json,
 verify/checks/a8_descent.py (a8.web_cubics_152); A8 §14; A2 §5;
 ROADMAP W1 and the M12-C row; PROGRESS 275 checks. No ledger change;
 suite 275.
+
+## 2026-09-18 — Entry 152 addendum: THE QUARTIC LEVEL — modular evidence that no rational curve on X has a quartic Lucas image, and the exact certificate that would not finish (a FAILED-ATTEMPT recorded)
+
+THE RUN (check a8.web_quartics_152b; data
+compute/data_web_quartics_152b.json). The parametrized engine of
+entry 152 is degree-general: with the image degree d, the same three
+anchors t = 0, 1, ∞, the same twelve linear conditions and the same
+597 D₄-orbit representatives, the family has dimension 3d − 7 and the
+identity E(t) = T(p, q, r; p′, q′, r′) has degree 9d − 4. At d = 4
+(five parameters per family, six in 4 representatives, no
+empty family) the modular run over GF(32003), √3 = 253, took
+13184 s for all 597 representatives: family dimension 5 in 593 and 6 in 4 representatives; 1950 components, 1927 of them proper subvarieties of their family and 23 the whole family, all consisting of maps of rank ≤ 2; 0 rank-3 points; 0 errors. So modulo 32003
+every integral member of every family is a map of rank ≤ 2, whose
+image is a line, and no rank-3 member exists.
+
+WHAT THIS IS AND IS NOT. A rank-3 integral member over Q̄ with both
+anchor scalars nonzero would be a birational quartic or a map with a
+base point elsewhere, which reduces to an integral cubic and is
+excluded by Theorem A8.20; such a member, being a point of the
+integrality locus defined over a number field, specializes to a
+rank-3 member modulo all but finitely many primes. One prime was
+used, so the statement "no rational curve on X has a quartic Lucas
+image" is EVIDENCE at the level of a single prime, not a theorem. The
+same engine that proved the cubic level exactly in 75 s did not
+finish the quartic level exactly:
+
+  - the decomposition over Q(√3): four slices, no representative
+    finished in 20 minutes, memory growing past 1 GB each; stopped;
+  - the decomposition over Q for representatives without a √3
+    tangent: the first did not finish in 9 minutes; stopped;
+  - the emptiness certificate 1 ∈ I + (1 − y·m·λ₁λ_∞) per 3 × 3
+    minor m, which needs no decomposition: the first representative
+    did not finish in 9 minutes over Q; stopped;
+  - the modular lift: for representative 0 and its first minor,
+    (m·λ₁λ_∞)² ∈ I modulo 32003 with cofactors of 272,951 terms and
+    degree 26 (290 s), far beyond any rational reconstruction and
+    exact verification; abandoned.
+
+The obstruction is coefficient growth in Gröbner bases of the
+positive-dimensional integrality locus, whose components at degree 4
+are families of maps with base points onto lines. An exact closure
+of the quartic level therefore needs more structure — additional
+forced triple points or tangencies that cut the family to dimension
+≤ 3, or a formulation in which the degenerate components are removed
+before the Gröbner step — not more computing. The cubic level (entry
+152) stands as the theorem; A2.C remains a statement about plane
+images of degree ≥ 4.
+
+Files: compute/data_web_quartics_152b.json (the 597 modular verdicts,
+the attempts), verify/checks/a8_descent.py (a8.web_quartics_152b:
+the entries are exactly the entry-152 representatives, every verdict
+rank ≤ 2, the summary recounted, the degree-4 linear families rebuilt
+in pure Python on the six sample representatives in the fast profile
+and the degree-32 identity as well in the full profile, where it costs
+about eighteen minutes per representative); compute/web_cubics_param.py
+generalized to the image degree. PROGRESS 276 checks. No ledger change; suite 276.

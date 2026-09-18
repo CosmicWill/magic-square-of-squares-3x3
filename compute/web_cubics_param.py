@@ -15,7 +15,7 @@ from fractions import Fraction
 import sympy as sp
 
 r, t, y = sp.symbols("r t y")
-a0, a1, a2, a3 = sp.symbols("a0 a1 a2 a3")
+AVARS = sp.symbols("a0:12")
 c, u, v, dc, du, dv = sp.symbols("c u v dc du dv")
 SQ3 = r  # the symbol r stands for sqrt(3); every polynomial is reduced modulo r^2 - 3
 
@@ -103,33 +103,35 @@ def subcases_and_representatives():
     return subs, reps
 
 
-# the linear family of parametrized maps
-NAMES = ["p%d" % i for i in range(4)] + ["q%d" % i for i in range(4)] + ["r%d" % i for i in range(4)] + ["l1", "linf"]
-UNK = sp.symbols(NAMES)
-P_, Q_, R_ = UNK[0:4], UNK[4:8], UNK[8:12]
-L1, LINF = UNK[12], UNK[13]
+# the linear family of parametrized maps of degree deg
+def _unknowns(deg):
+    nc = deg + 1
+    names = ["p%d" % i for i in range(nc)] + ["q%d" % i for i in range(nc)] + ["r%d" % i for i in range(nc)] + ["l1", "linf"]
+    unk = sp.symbols(names)
+    return unk, unk[0:nc], unk[nc:2 * nc], unk[2 * nc:3 * nc], unk[3 * nc], unk[3 * nc + 1]
 
 
 def _val(coefs, t0):
-    return sum(coefs[i] * t0 ** i for i in range(4))
+    return sum(coefs[i] * t0 ** i for i in range(len(coefs)))
 
 
 def _der(coefs, t0):
-    return sum(i * coefs[i] * t0 ** (i - 1) for i in range(1, 4))
+    return sum(i * coefs[i] * t0 ** (i - 1) for i in range(1, len(coefs)))
 
 
-def linear_family(cfg, choice):
+def linear_family(cfg, choice, deg=3):
     """returns None if the linear system is inconsistent; else (particular solution, kernel basis) as lists over Q(sqrt3)"""
+    UNK, P_, Q_, R_, L1, LINF = _unknowns(deg)
     eqs = []
     P0, P1, Pinf = [sp.Matrix(PTS[n]) for n in cfg]
     W0, W1, Winf = [sp.Matrix(dirs(n)[ch]) for n, ch in zip(cfg, choice)]
     for k, coefs in enumerate((P_, Q_, R_)):
         eqs.append(_val(coefs, 0) - P0[k])
         eqs.append(_val(coefs, 1) - L1 * P1[k])
-        eqs.append(coefs[3] - LINF * Pinf[k])
+        eqs.append(coefs[deg] - LINF * Pinf[k])
     eqs.append(sp.Matrix([list(P0), list(W0), [_der(P_, 0), _der(Q_, 0), _der(R_, 0)]]).det())
     eqs.append(sp.Matrix([list(P1), list(W1), [_der(P_, 1), _der(Q_, 1), _der(R_, 1)]]).det())
-    eqs.append(sp.Matrix([list(Pinf), list(Winf), [P_[2], Q_[2], R_[2]]]).det())
+    eqs.append(sp.Matrix([list(Pinf), list(Winf), [P_[deg - 1], Q_[deg - 1], R_[deg - 1]]]).det())
     eqs = [red(sp.expand(e)) for e in eqs]
     A = sp.Matrix([[sp.Poly(e, *UNK).coeff_monomial(x) for x in UNK] for e in eqs])
     b = sp.Matrix([-sp.Poly(e, *UNK).coeff_monomial(1) for e in eqs])
@@ -192,14 +194,15 @@ def _rref_q3(M):
     return M, pivots
 
 
-def integrality_polys(part, ker, Tp):
-    """the coefficients of E(t) = T(p,q,r; p',q',r') as polynomials in the family parameters"""
+def integrality_polys(part, ker, Tp, deg=3):
+    """the coefficients of E(t) = T(p,q,r; dp,dq,dr) as polynomials in the family parameters"""
     n = len(ker)
-    avars = [a0, a1, a2, a3][:n]
-    coefs = [red(part[i] + sum(avars[k] * ker[k][i] for k in range(n))) for i in range(14)]
-    p = sum(coefs[i] * t ** i for i in range(4))
-    q = sum(coefs[4 + i] * t ** i for i in range(4))
-    rr = sum(coefs[8 + i] * t ** i for i in range(4))
+    nc = deg + 1
+    avars = list(AVARS[:n])
+    coefs = [red(part[i] + sum(avars[k] * ker[k][i] for k in range(n))) for i in range(3 * nc + 2)]
+    p = sum(coefs[i] * t ** i for i in range(nc))
+    q = sum(coefs[nc + i] * t ** i for i in range(nc))
+    rr = sum(coefs[2 * nc + i] * t ** i for i in range(nc))
     dp, dq, dr = sp.diff(p, t), sp.diff(q, t), sp.diff(rr, t)
     E = sp.Integer(0)
     for (ec, eu, ev, edc, edu, edv), cval in Tp.terms():
@@ -210,19 +213,21 @@ def integrality_polys(part, ker, Tp):
     return coefs, avars, eqs
 
 
-def minors_of(coefs):
-    Mc = sp.Matrix([coefs[0:4], coefs[4:8], coefs[8:12]])
-    return [red(Mc.extract([0, 1, 2], list(cols)).det()) for cols in itertools.combinations(range(4), 3)]
+def minors_of(coefs, deg=3):
+    nc = deg + 1
+    Mc = sp.Matrix([coefs[0:nc], coefs[nc:2 * nc], coefs[2 * nc:3 * nc]])
+    return [red(Mc.extract([0, 1, 2], list(cols)).det()) for cols in itertools.combinations(range(nc), 3)]
 
 
-def verdict(cfg, choice, Tp):
-    """'empty' | 'lines' (every integral member has rank <= 2) | 'CANDIDATE' (a rank-3 integral member may exist)"""
-    fam = linear_family(cfg, choice)
+def verdict(cfg, choice, Tp, deg=3, modulus=None):
+    """'empty' | 'lines' (every integral member has rank <= 2) | 'CANDIDATE' (a rank-3 integral member may exist);
+    with modulus = p the Rabinowitsch tests run over GF(p)[r]/(r^2-3) (a diagnostic, exact only over Q)"""
+    fam = linear_family(cfg, choice, deg)
     if fam is None:
         return "empty", {"family_dim": -1}
     part, ker = fam
-    coefs, avars, eqs = integrality_polys(part, ker, Tp)
-    mins = minors_of(coefs)
+    coefs, avars, eqs = integrality_polys(part, ker, Tp, deg)
+    mins = minors_of(coefs, deg)
     info = {"family_dim": len(ker), "n_eqs": len(eqs)}
     if not eqs:
         return ("lines" if all(m == 0 for m in mins) else "CANDIDATE"), info
@@ -230,7 +235,7 @@ def verdict(cfg, choice, Tp):
     for m in mins:
         if m == 0:
             continue
-        G = sp.groebner(gens + [1 - y * m], y, r, *avars, order="grevlex", domain="QQ")
+        G = sp.groebner(gens + [1 - y * m], y, r, *avars, order="grevlex", **({"modulus": modulus} if modulus else {"domain": "QQ"}))
         if not (len(G.exprs) == 1 and G.exprs[0] == 1):
             return "CANDIDATE", dict(info, minor=str(m))
     return "lines", info

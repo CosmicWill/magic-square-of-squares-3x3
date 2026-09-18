@@ -1049,3 +1049,66 @@ def _(ctx):
         else:
             require(vd == "lines" and info["family_dim"] == rec["family_dim"], (idx, "replayed verdict", vd, info))
     ctx.note("Theorem: no eta*-integral irreducible rational cubic. 4280 sub-cases, 597 D4 representatives, 26 empty families, every integral member a map onto a line; exact over Q(sqrt3) and mod 32003 (pinned), replayed on %d representatives here" % len(todo))
+
+
+@check("a8.web_quartics_152b", DOC)
+def _(ctx):
+    """Entry 152 addendum -- the quartic level of the parametrized web
+    campaign, modular evidence only.  compute/data_web_quartics_152b.json
+    pins the run of the degree-4 engine (family dimension 5 or 6, the
+    identity E(t) of degree 32) over the same 597 D4-orbit representatives
+    modulo 32003: every component of the integrality locus consists of maps
+    of rank <= 2 and no rank-3 member exists.  This is NOT a proof: the
+    exact certificates (decomposition over Q(sqrt3) and over Q, the
+    emptiness certificate, the modular lift with 272,951-term cofactors)
+    did not finish, and the file records each attempt.  Verified here: the
+    data file's entries are exactly the 597 representatives of the
+    entry-152 enumeration with matching keys; every verdict is 'rank <= 2'
+    and no rank-3 point or error is recorded; the pinned summary is
+    recounted; and for the six sample representatives of entry 152 the
+    degree-4 linear family is rebuilt in pure Python with the pinned
+    dimension (5 or 6; no empty family at degree 4); in the full profile
+    the degree-32 identity is rebuilt as well (about 18 minutes per
+    representative in sympy).  Skips without sympy.
+    """
+    try:
+        import sympy as sp
+    except ImportError:
+        raise Skip("sympy unavailable")
+    import collections, json, os
+    from compute import web_cubics_param as W
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "compute")
+    with open(os.path.join(data_dir, "data_web_quartics_152b.json"), encoding="utf-8") as fh:
+        D = json.load(fh)
+    with open(os.path.join(data_dir, "data_web_cubics_152.json"), encoding="utf-8") as fh:
+        C = json.load(fh)
+    require(D["entry"] == "152 addendum" and D["modular_run"]["field"].startswith("GF(32003)"), "the data file")
+    entries = {int(k.split("|")[0]): (k, rec) for k, rec in D["results"].items()}
+    cub = {int(k.split("|")[0]): k for k in C["results"]}
+    require(sorted(entries) == sorted(cub) and len(entries) == 597, "the quartic entries are the 597 representatives of entry 152")
+    require(all(entries[i][0] == cub[i] for i in entries), "the keys match")
+    fam = collections.Counter(rec.get("family_dim") for k, rec in entries.values())
+    verd = collections.Counter(r.get("verdict") for k, rec in entries.values() for r in rec.get("results", []))
+    r3 = sum(len(r.get("rank3_points", [])) for k, rec in entries.values() for r in rec.get("results", []))
+    S = D["modular_run"]["summary"]
+    require({str(a): b for a, b in fam.items()} == S["family_dims"] and set(fam) <= {5, 6}, "family dimensions 5 or 6, no empty family")
+    require(dict(verd) == S["verdicts"] and all(v.startswith("rank<=2") for v in verd), "every verdict is rank <= 2")
+    require(r3 == 0 == S["rank3_points"] and S["errors"] == 0 and all("error" not in rec and rec["results"] for k, rec in entries.values()), "no rank-3 point, no error")
+    # replay the linear part and the identity construction at degree 4 on the entry-152 sample
+    subs, reps = W.subcases_and_representatives()
+    Tp = W.T_form()
+    n_identity = ctx.bound(full=6, fast=0)   # the degree-32 identity construction takes about 18 minutes per representative in sympy
+    for pos, idx in enumerate(C["fast_sample_representatives"]):
+        cfg, choice = subs[idx]
+        fam4 = W.linear_family(cfg, choice, deg=4)
+        require(fam4 is not None, (idx, "no empty family at degree 4"))
+        part, ker = fam4
+        require(len(ker) == entries[idx][1]["family_dim"], (idx, "the pinned family dimension", len(ker)))
+        if pos >= n_identity:
+            continue
+        coefs, avars, eqs = W.integrality_polys(part, ker, Tp, deg=4)
+        require(all(sp.Poly(e, *avars).total_degree() <= 9 for e in eqs) and len(eqs) <= 33, (idx, "the identity: at most 33 coefficients of degree <= 9"))
+        n_eqs = entries[idx][1]["results"][0].get("n_eqs")
+        if n_eqs is not None:
+            require(len(eqs) == n_eqs, (idx, "the pinned number of nonzero coefficients"))
+    ctx.note("quartic level: modular evidence only (597 representatives mod 32003, all components rank <= 2, no rank-3 member); exact certificates did not finish; linear families replayed on the six sample representatives; the identity in the full profile")
