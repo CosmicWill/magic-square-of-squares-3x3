@@ -8348,3 +8348,77 @@ quasi-hyperbolic surface" that ROADMAP W1 asks for.
 
 Files: verify/checks/a8_descent.py (a8.eta_star_web); A8 §12;
 ROADMAP W1; PROGRESS 273 checks. No ledger change; suite 273.
+
+## 2026-09-18 — Entry 151: LEMMA T (TANGENCY AT THE TRIPLE POINTS) — every branch of an η⋆-integral curve through a triple point is tangent there to one of the integral lines through that point; the u ↔ v symmetry of the web is exact; the cubic campaign collapses from six parameters per configuration to three
+
+STATEMENT (PROVEN; check a8.web_tangency, 0.2 s). Let P be one of
+the eight triple points and let γ be an analytic branch of an
+η⋆-integral curve through P with tangent direction d. Then d is the
+direction of one of the integral lines of A8.17 through P: the three
+entry lines and the pencil carrier at the A- and B-points (four
+directions, the carrier's counted double), the three entry lines and
+the two √3-lines at the D-points (five directions). In the chart
+u = 1, with x = dc, y = dv, the leading forms are
+
+  A₀, A±, B₀, B± :  L_P ∝ x y² (x − y)(x + y),
+  D±             :  L_P ∝ x (x − y)(x + y)(3x² − y²),
+
+(the B-points in the chart v = 1, where the reduced quartic is Q
+with v renamed u — the u ↔ v symmetry holds exactly).
+
+PROOF. The reduced quartic Q of entry 150 vanishes identically at
+every triple point, so for a branch γ(s) = P + s d + O(s²) the
+direction γ′(s) = d + O(s) and Q(γ(s); γ′(s)) = s · L_P(d) + O(s²)
+with L_P(d) = (d·∇)Q(P; d), because the variation of the direction
+enters only through ∇_dir Q(P; ·) = 0. Integrality forces L_P(d) = 0.
+For a cusp γ(s) = P + s²d + O(s³) the same conclusion follows from
+the homogeneity of Q in the direction. The forms L_P are computed
+exactly at the five visible points; for the B-points the homogeneous
+form Q_hom = u³Q(c/u, v/u; ·, ·) with X = u dc − c du, Y = u dv − v du
+is used: u² divides Q_hom(c, u, v; X, Y) (this is the regularity of
+η⋆ along the pencil carrier u = 0, the geometric meaning of the
+radial square (v dc − c dv)² in the top form of entry 150), and the
+quotient restricted to v = 1 is Q(c, u; dc, du) exactly. The roots of
+the leading forms are the slopes 0, ±1, ∞ at the A/B-points and
+0, ±1, ±1/√3 at the D-points, which are precisely the integral lines
+through the point. ∎
+
+ALONG THE LINES (pinned). At a generic point of the entry line c = 0
+the web has the line's own direction as a triple direction and
+dv = 0 as the fourth: a curve crossing c = 0 away from the triple
+points is either tangent to it or crosses it in the direction of the
+pencil through the all-equal point (1:0:0). Along v = 0 the own
+direction is double and the two transversal directions have slopes
+dc/dv = ±1/√3, the directions of the √3-lines. (Along c = 1 and along
+c = v the own direction is double and the two others vary with the
+point.)
+
+WHAT IT CHANGES. The M12-C cubic campaign: a rational curve with
+cubic Lucas image passes through at least three triple points
+(A8.15) and is η⋆-integral (A8.11); by Lemma T, at each of three
+chosen triple points its branch is tangent to one of the (four or
+five) integral lines there. Cubics through the three points with the
+prescribed tangents form a linear system of projective dimension 3,
+against 6 for cubics through the points alone; the Darboux condition
+g | Q(c, v; g_v, −g_c) of entry 150 becomes a homogeneous system in
+four unknowns. The 56 configurations split into 4,280 sub-cases
+(1,280 + 2,400 + 600 by the number of D-points involved), fewer up
+to the D₄ symmetry; each expected zero-dimensional, containing the
+reducible integral cubics (products of three integral lines through
+the configuration, and nothing else reducible, since a product is
+integral iff each coprime factor is). Any solution that is not such a
+product would be a new integral cubic. The brute-force six-parameter
+systems (26 equations of degree 10) did not finish in Singular in an
+hour even modulo a prime; the three-parameter systems are the
+campaign. Lemma T applies verbatim at every degree.
+
+WHAT IT DOES NOT CHANGE. No curve is excluded or found; the degree
+bound of W1 stays open. A degree bound would need a global count that
+Lemma T feeds — the tangents at the triple points, the crossing
+directions along the entry lines and the carriers, Bézout on the
+fifteen integral lines — and no such count closes yet: the
+horizontal-tangency budget 2d − 2 of a rational curve of degree d is
+compatible with every d.
+
+Files: verify/checks/a8_descent.py (a8.web_tangency); A8 §13;
+ROADMAP W1; PROGRESS 274 checks. No ledger change; suite 274.

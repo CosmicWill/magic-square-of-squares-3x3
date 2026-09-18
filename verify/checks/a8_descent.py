@@ -902,3 +902,68 @@ def _(ctx):
     D = sp.Rational(sp.discriminant(gm, s))
     require(D != 0 and not sp.sqrt(D).is_rational, "the specialized discriminant is not a rational square")
     ctx.note("eta* web: reduced quartic Q of degree 3 in (c,v); top form (v dc - c dv)^2 * quadratic; discriminant of Q: c v^2 (lines) B, B a binodal quartic (genus 1) with nodes at D+-; 14 chart lines of A8.17 integral by the Darboux criterion; Galois group S4 over Q(c,v) and geometrically: an absolutely irreducible 4-web, no splitting into foliations")
+
+
+@check("a8.web_tangency", DOC)
+def _(ctx):
+    """Entry 151, Lemma T (tangency at the triple points).  Q vanishes
+    identically at every triple point, and for a branch through a
+    triple point P with tangent direction d the expansion
+    Q(P + s d; d) = s * L_P(d) + O(s^2) forces L_P(d) = 0 for every
+    analytic branch (cusps included, by homogeneity).  Pinned: at the
+    A- and B-points L_P is a nonzero constant times
+    dc dv^2 (dc - dv)(dc + dv) [resp. dc du^2 (dc - du)(dc + du)], at the
+    D-points a constant times dc (dc - dv)(dc + dv)(3dc^2 - dv^2): the
+    admissible tangent directions are EXACTLY the integral lines of
+    A8.17 through the point (four at A/B, five at D).  The B-points are
+    reached by the homogeneous form: with Q_hom = u^3 Q(c/u, v/u; .,.),
+    X = u dc - c du, Y = u dv - v du, u^2 divides Q_hom(c,u,v; X, Y)
+    (regularity of eta* along the pencil carrier u = 0, the geometric
+    content of the radial square in the top form), and the quotient
+    restricted to v = 1 is Q with v renamed u -- the u <-> v symmetry
+    holds exactly.  Also pinned: along the entry line c = 0 the web has
+    the line's own direction as a triple direction and dv = 0 as the
+    fourth; along v = 0 the own direction is double and the two
+    transversal directions are dc/dv = +-1/sqrt3.  Skips without sympy.
+    """
+    try:
+        import sympy as sp
+    except ImportError:
+        raise Skip("sympy unavailable")
+    c, u, v, x, y, dc, du, dv, s = sp.symbols("c u v x y dc du dv s")
+    Q = 3 * c * v ** 2 * x ** 4 - 2 * v * (3 * c ** 2 + v ** 2 - 1) * x ** 3 * y + 3 * c * (c ** 2 + v ** 2 - 1) * x ** 2 * y ** 2 + c * (1 - c ** 2) * y ** 4
+    LA = x * y ** 2 * (x - y) * (x + y)
+    LD = x * (x - y) * (x + y) * (3 * x ** 2 - y ** 2)
+
+    def leading(Qc, pt, a, b):
+        expr = sp.expand(Qc.subs({a: pt[0] + s * x, b: pt[1] + s * y}))
+        P = sp.Poly(expr, s)
+        require(P.coeff_monomial(1) == 0, ("Q vanishes at the triple point", pt))
+        return sp.expand(P.coeff_monomial(s))
+
+    for pt, model in (((0, 0), LA), ((-1, 0), LA), ((1, 0), LA), ((0, 1), LD), ((0, -1), LD)):
+        L = leading(Q, pt, c, v)
+        ratio = sp.cancel(L / model)
+        require(ratio.is_number and ratio != 0, ("the leading form at", pt, ratio))
+    # the homogeneous form, regularity along u = 0, the chart v = 1 and the B-points
+    Qhom = sp.expand(u ** 3 * Q.subs({c: c / u, v: v / u}))
+    require(all(sum(m) == 3 for m in sp.Poly(Qhom, c, u, v).monoms()), "Q_hom is a cubic form")
+    T = sp.expand(Qhom.subs({x: u * dc - c * du, y: u * dv - v * du}))
+    Tq, Tr = sp.div(sp.Poly(T, u), sp.Poly(u ** 2, u))
+    require(Tr.is_zero, "u^2 divides the homogeneous direction form")
+    Tq = Tq.as_expr()
+    require(sp.expand(Tq.subs({u: 1, du: 0}) - Q.subs({x: dc, y: dv})) == 0, "the chart u = 1 is recovered")
+    Qv = sp.expand(Tq.subs({v: 1, dv: 0}))
+    require(sp.expand(Qv - Q.subs({v: u, x: dc, y: du})) == 0, "the chart v = 1 quartic is Q with v renamed u")
+    Qv_xy = Qv.subs({dc: x, du: y})
+    for pt in ((0, 0), (-1, 0), (1, 0)):
+        L = leading(Qv_xy, pt, c, u)
+        ratio = sp.cancel(L / LA)
+        require(ratio.is_number and ratio != 0, ("the leading form at the B-point", pt, ratio))
+    # the admissible directions are the integral lines through the point: slopes {0, +-1, infinity} at A, {0, +-1, +-1/sqrt3} at D
+    require(set(sp.roots(sp.Poly(LA.subs(y, 1), x))) == {0, 1, -1} and sp.rem(sp.Poly(LA, y), sp.Poly(y, y)).is_zero, "A-type directions")
+    require(set(sp.roots(sp.Poly(LD.subs(y, 1), x))) == {0, 1, -1, sp.sqrt(3) / 3, -sp.sqrt(3) / 3} and not sp.rem(sp.Poly(LD, y), sp.Poly(y, y)).is_zero, "D-type directions")
+    # along the lines
+    require(sp.cancel(Q.subs(c, 0) / (v * (v ** 2 - 1) * x ** 3 * y)).is_number, "along c = 0: own direction triple, dv = 0 fourth")
+    require(sp.cancel(Q.subs(v, 0) / (c * (c ** 2 - 1) * y ** 2 * (3 * x ** 2 - y ** 2))).is_number, "along v = 0: own direction double, transversal slopes +-1/sqrt3")
+    ctx.note("Lemma T: at each of the eight triple points every branch of an eta*-integral curve is tangent to one of the integral lines through the point (4 at A/B, 5 at D); u^2-divisibility = regularity along u = 0; the u<->v symmetry of the web is exact")
