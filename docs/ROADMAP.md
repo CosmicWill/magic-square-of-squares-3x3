@@ -935,6 +935,8 @@ give exactly this shape; attempt it) or the Bruin–Ilten–Xu local
 $\chi$ machinery to force contradiction for all degrees ≥ some $d_0$.
 This is a real theorem-shaped wall, not a fog: attack it.
 
+**Entry 150 (2026-09-17): the web made explicit.** In the chart $u = 1$ the direction quartic of $\eta_\star$ is $\prod \ell_{(a,b)}$ times $Q = 3cv^2\,dc^4 - 2v(3c^2 + v^2 - 1)\,dc^3dv + 3c(c^2 + v^2 - 1)\,dc^2dv^2 + c(1 - c^2)\,dv^4$; absolutely irreducible with monodromy $S_4$ (no splitting into foliations over any cover); branch curve the binodal quartic $(v^2 + c^2 - 1)^2 = 4c^2(c^2 - 1)$ of genus 1 with nodes at $D_\pm$; top form $(v\,dc - c\,dv)^2\cdot$quadratic, so the top-degree Darboux condition is Euler-vacuous; the Darboux criterion $g \mid Q(c,v; g_v, -g_c)$ reproduces the fifteen integral lines (`a8.eta_star_web`, A8 §12). Carnicer-type bounds are ruled out; the wall lives on the direction surface $S$ with its tautological foliation. First actions updated: M12-C through the Darboux systems (six parameters per configuration); the extactic first-integral test on $S$; Brunella's index formulas at the eight triple points.
+
 ### W2 — The motive atlas of $X$ (make the surface modular)
 
 **Target.** Compute $\operatorname{Pic}(\widetilde X)$ **with Galois

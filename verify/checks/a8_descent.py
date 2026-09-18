@@ -809,3 +809,96 @@ def _(ctx):
              f"all-zero-so-far={zero}, candidates={len(nonzero)}"
              f"{' — COMPLETE' if len(done) == len(orbits) else ''}; "
              f"merge + lock guards hold")
+
+
+@check("a8.eta_star_web", DOC)
+def _(ctx):
+    """Entry 150 (W1 resumed): the eta*-web made explicit.  The
+    direction quartic of eta* = eta_4 factors over Q as a constant
+    times the product of the nine entry lines times a REDUCED quartic
+    Q(c, v; dc, dv) = 3 c v^2 dc^4 - 2 v (3c^2 + v^2 - 1) dc^3 dv
+    + 3 c (c^2 + v^2 - 1) dc^2 dv^2 + c (1 - c^2) dv^4, of degree 3 in
+    (c, v) with only odd-degree parts.  Pinned facts, all recomputed
+    from the certified generators: (1) the factorization and Q; (2) the
+    top form Q_3 = (v dc - c dv)^2 (3c dc^2 - 2v dc dv - c dv^2) -- the
+    square of the A_0-pencil form, so by Euler's identity the
+    top-degree Darboux condition is vacuous -- and the low form
+    Q_1 = dv (2v dc^3 - 3c dc^2 dv + c dv^3); (3) the discriminant of Q in
+    s = dc/dv is a constant times c v^2 (nine lines) B (for the full
+    quartic with the line factors: (nine lines)^6 more) with B the
+    quartic (v^2 + c^2 - 1)^2 - 4c^2(c^2 - 1), irreducible over Q, with
+    exactly two singular points, ordinary nodes at (c, v) = (0, +-1),
+    the diagonal triple points D_+-, hence of geometric genus 1;
+    (4) the Darboux criterion g | Q(c, v; g_v, -g_c) reproduces the
+    integral lines of A8.17 in the chart (nine entry lines, v = 0,
+    sqrt3 c = +-1 +- v) and rejects controls; (5) the Galois group of
+    Q over Q(c, v) is S4: at the pinned point (-3/2, 5/4) the
+    specialized quartic is irreducible with irreducible resolvent cubic
+    and non-square discriminant; since the discriminant polynomial has
+    the nine lines to an odd power it is not a square in Qbar(c, v), so
+    the geometric monodromy is a normal subgroup of S4 not inside A4,
+    i.e. S4 itself: the web is absolutely irreducible and does not
+    split into foliations over any cover, so Carnicer-type degree
+    bounds do not apply to it directly.  Skips without sympy.
+    """
+    try:
+        import sympy as sp
+    except ImportError:
+        raise Skip("sympy unavailable")
+    from compute.special_locus import numerator_forms
+    c, v, x, y, s, z = sp.symbols("c v x y s z")
+    Ns = numerator_forms()[3]
+    Fq = sp.expand(sum(sum(sp.Rational(val) * c ** i * v ** j for (i, j), val in coeffs.items()) * x ** k * y ** (4 - k)
+                       for k, coeffs in enumerate(Ns)))
+    lines = [c + aa + bb * v for aa in (-1, 0, 1) for bb in (-1, 0, 1)]
+    Lp = sp.prod(lines)
+    Qp, rem = sp.div(sp.Poly(Fq, x, y, c, v), sp.Poly(Lp, x, y, c, v))
+    require(rem.is_zero, "the nine entry lines divide the direction quartic")
+    Q = 3 * c * v ** 2 * x ** 4 - 2 * v * (3 * c ** 2 + v ** 2 - 1) * x ** 3 * y + 3 * c * (c ** 2 + v ** 2 - 1) * x ** 2 * y ** 2 + c * (1 - c ** 2) * y ** 4
+    lead = sp.Poly(Qp.as_expr(), x, y, c, v).coeff_monomial(c * v ** 2 * x ** 4)
+    require(lead != 0 and sp.expand(Qp.as_expr() * 3 / lead - Q) == 0, "the reduced quartic Q")
+    P = sp.Poly(Q, c, v)
+    require(sorted(set(i + j for (i, j), _ in P.terms())) == [1, 3], "only degrees 1 and 3 in (c, v)")
+    top = sum(coef * c ** i * v ** j for (i, j), coef in P.terms() if i + j == 3)
+    low = sum(coef * c ** i * v ** j for (i, j), coef in P.terms() if i + j == 1)
+    require(sp.expand(top - (v * x - c * y) ** 2 * (3 * c * x ** 2 - 2 * v * x * y - c * y ** 2)) == 0, "the top form")
+    require(sp.expand(low - y * (2 * v * x ** 3 - 3 * c * x ** 2 * y + c * y ** 3)) == 0, "the low form")
+    # (3) the discriminant and the branch quartic
+    G = sp.Poly(sp.expand(Q.subs({x: s, y: 1})), s)
+    require(G.degree() == 4, "degree four in s")
+    disc = sp.expand(sp.discriminant(G, s))
+    B = (v ** 2 + c ** 2 - 1) ** 2 - 4 * c ** 2 * (c ** 2 - 1)
+    require(sp.expand(B - (-3 * c ** 4 + 2 * c ** 2 * v ** 2 + 2 * c ** 2 + v ** 4 - 2 * v ** 2 + 1)) == 0, "B written two ways")
+    model = c * v ** 2 * Lp * B
+    ratio = sp.cancel(disc / model)
+    require(ratio.is_number and ratio != 0, ("the discriminant of Q is a constant times c v^2 (lines) B", ratio))
+    fl = sp.factor_list(B)[1]
+    require(len(fl) == 1 and fl[0][1] == 1 and sp.Poly(fl[0][0], c, v).total_degree() == 4, "B irreducible over Q")
+    sing = sp.solve([B, sp.diff(B, c), sp.diff(B, v)], [c, v], dict=True)
+    require(sorted((sol[c], sol[v]) for sol in sing) == [(0, -1), (0, 1)], "two singular points at the diagonal triple points")
+    for v0 in (1, -1):
+        H = sp.hessian(B, (c, v)).subs({c: 0, v: v0})
+        require(H.det() != 0, "an ordinary node (nondegenerate Hessian)")
+    w = sp.Symbol("w")
+    Bh = sp.expand(B.subs({c: c / w, v: v / w}) * w ** 4)
+    inf = sp.solve([Bh.subs(w, 0), sp.diff(Bh, c).subs(w, 0), sp.diff(Bh, v).subs(w, 0), sp.diff(Bh, w).subs(w, 0)], [c, v], dict=True)
+    require(all(sol[c] == 0 and sol[v] == 0 for sol in inf), "no singular point at infinity")
+    # (4) the Darboux criterion on lines
+    def integral(g):
+        expr = sp.expand(Q.subs({x: sp.diff(g, v), y: -sp.diff(g, c)}))
+        return sp.div(sp.Poly(expr, c, v), sp.Poly(g, c, v))[1].is_zero
+    r3 = sp.sqrt(3)
+    good = lines + [v] + [r3 * c - e1 - e2 * v for e1 in (1, -1) for e2 in (1, -1)]
+    require(all(integral(g) for g in good), "the fourteen chart lines of A8.17 are integral")
+    require(not any(integral(g) for g in (v - 1, c - 2 * v, c - r3 * v / 3, c + v - 2)), "controls are not integral")
+    # (5) the Galois group
+    pt = {c: sp.Rational(-3, 2), v: sp.Rational(5, 4)}
+    g = sp.Poly(sp.expand(Q.subs({x: s, y: 1}).subs(pt)), s)
+    require(g.degree() == 4 and len(sp.factor_list(g.as_expr(), s)[1]) == 1, "the specialized quartic is irreducible over Q")
+    gm = sp.Poly(g.as_expr() / g.LC(), s)
+    b3, b2, b1, b0 = [gm.nth(k) for k in (3, 2, 1, 0)]
+    R = sp.Poly(z ** 3 - b2 * z ** 2 + (b3 * b1 - 4 * b0) * z - (b3 ** 2 * b0 - 4 * b2 * b0 + b1 ** 2), z)
+    require(len(sp.factor_list(R.as_expr(), z)[1]) == 1 and R.degree() == 3, "the resolvent cubic is irreducible over Q")
+    D = sp.Rational(sp.discriminant(gm, s))
+    require(D != 0 and not sp.sqrt(D).is_rational, "the specialized discriminant is not a rational square")
+    ctx.note("eta* web: reduced quartic Q of degree 3 in (c,v); top form (v dc - c dv)^2 * quadratic; discriminant of Q: c v^2 (lines) B, B a binodal quartic (genus 1) with nodes at D+-; 14 chart lines of A8.17 integral by the Darboux criterion; Galois group S4 over Q(c,v) and geometrically: an absolutely irreducible 4-web, no splitting into foliations")

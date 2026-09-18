@@ -8238,3 +8238,113 @@ search. Files: compute/data_horikawa_w3_148.json (dump, traces,
 search description, results, unpinned observations),
 verify/checks/a3_zi.py (a3.horikawa_w3_148). Registry 271 → 272. No
 ledger change.
+
+## 2026-09-17 — Entry 150: IDEA 3 IS WORKSTREAM W1 — THE η⋆-WEB MADE EXPLICIT: the reduced direction quartic, its S₄ monodromy, the genus-1 branch curve, the Darboux criterion for integral curves, and the wall restated in foliation language
+
+CONTEXT. The owner asked for ambitious directions and chose the
+third of ten: the geometric special set (no rational or elliptic
+curve on the surface off the boundary, the function-field case
+first, with a Hurwitz–Radon remark on parametric identities). On
+inspection this is the existing workstream W1: A2.C is exactly "no
+nondegenerate rational curves"; A7.4 and A7.6 closed the line and
+conic levels; A8 built the symmetric-differential machinery (six
+invariant quartic differentials on X minus the nodes, the unique
+one η⋆ = η₄ on the resolution, node passage A8.8, universal
+integrality A8.11, spectral rigidity A8.18, the fifteen integral
+lines A8.17, the graph cubics A8.19, the M12-C cubic manifest).
+The Hurwitz–Radon remark adds nothing beyond the trivial fact that
+a bilinear parametrization dies on one opposite pair (x₁₊² + x₁₋²
+= 2x₀² forces proportional linear forms). So this entry resumes W1
+at its recorded wall — no degree bound for η⋆-integral curves —
+and records what the earlier phase did not: the explicit structure
+of the web. Nothing below excludes a curve that was not excluded,
+and no new curve is found.
+
+THE WEB (check a8.eta_star_web, 0.4 s, every fact recomputed from
+the certified generators of compute/data_m4_generators.py). In the
+chart u = 1 with entry lines ℓ_(a,b) = c + a + bv, the direction
+quartic of η⋆ is a constant times the product of the nine entry
+lines times the reduced quartic
+
+  Q(c, v; dc, dv) = 3cv² dc⁴ − 2v(3c² + v² − 1) dc³dv
+                    + 3c(c² + v² − 1) dc²dv² + c(1 − c²) dv⁴,
+
+of degree 3 in (c, v) with only odd-degree parts (the sign
+symmetry of D₄).
+
+  (1) Top and low forms. Q₃ = (v dc − c dv)² · (3c dc² − 2v dc dv
+  − c dv²): the square of the A₀-pencil form times a quadratic
+  irreducible over Q(c, v). By Euler's identity v g_v + c g_c = d·g
+  on the top form of a curve g of degree d, the top-degree part of
+  the Darboux condition below holds automatically (its cofactor is
+  d²·g_d·R): the web is radial to second order along u = 0, the
+  chart's line at infinity, itself an integral line. Q₁ = dv (2v dc³
+  − 3c dc² dv + c dv³): at the triple point A₀ the integral radial
+  directions are exactly the three entry lines c = 0, c = ±v.
+
+  (2) The branch curve. The discriminant of Q in s = dc/dv is a
+  constant times c v² ∏ℓ_(a,b) B (the full quartic with the line
+  factors carries six more powers of the lines), where
+      B: (v² + c² − 1)² = 4c²(c² − 1),
+  a quartic irreducible over Q, Q(i), Q(√2), Q(√3), with exactly
+  two singular points, ordinary nodes at (c, v) = (0, ±1) — the
+  diagonal triple points D₊, D₋ — and none at infinity: B has
+  geometric genus 1. The direction cover S → P² (pairs of a point
+  and a web direction) is therefore a 4-fold cover branched along
+  an elliptic quartic, degenerate along the nine lines and v = 0.
+
+  (3) Monodromy. At (c, v) = (−3/2, 5/4) the specialized quartic is
+  irreducible over Q with irreducible resolvent cubic and
+  non-square discriminant, so its Galois group is S₄ and hence
+  Gal(Q / Q(c, v)) = S₄. The discriminant polynomial contains each
+  line to an odd power, so it is not a square in Q̄(c, v); the
+  geometric monodromy group is a normal subgroup of S₄ not inside
+  A₄, that is S₄ itself. Consequences: the web is absolutely
+  irreducible; it does not split into foliations over Q̄(c, v), nor
+  over the function field of X or of any (Z/2)-tower above the
+  plane (a 2-extension cannot kill a 3-cycle). The Carnicer and
+  Cerveau–Lins Neto degree bounds for invariant curves of plane
+  foliations therefore do not apply to η⋆ directly.
+
+  (4) The Darboux criterion. A curve g(c, v) = 0 is η⋆-integral iff
+  g divides Q(c, v; g_v, −g_c). It reproduces A8.17 exactly: the
+  nine entry lines, v = 0 and the four lines √3 c = ±1 ± v are
+  integral (u = 0 is the other chart), the controls v = 1, c = 2v,
+  c = v/√3, c + v = 2 are not, and the same criterion solved on the
+  family c = a + bv returns precisely the thirteen chart solutions.
+  For cubics through three triple points (A8.15) it is a polynomial
+  system in six parameters per configuration — the implicit
+  machinery that M13-E asked for, in closed form.
+
+WHAT THIS CHANGES. The wall of W1 is now stated in the language
+where it can be attacked. An η⋆-integral curve of degree d is a
+Darboux polynomial of an absolutely irreducible planar 4-web with
+cofactor of degree 3d − 1 and forced top form; equivalently, its
+lift is an invariant curve of the tautological foliation F_S on the
+direction surface S. A degree bound cannot come from the degree at
+infinity (Euler-vacuous) and must come from the singular locus of
+the web: the eight triple points, where η⋆ vanishes to order ≥ 4,
+and the pencil carriers u = 0, v = 0 — the dicritical structure
+that defeats the Carnicer mechanism. The tools available on S are
+Jouanolou's theorem (finitely many algebraic invariant curves
+unless a rational first integral), Pereira's extactic curves for
+degree-by-degree certification, and McQuillan's Zariski
+decomposition of the canonical bundle of F_S. Note also that the
+K3 quotients cannot supply the differential: a K3 surface has no
+symmetric differentials, and η⋆ has poles on every intermediate
+quotient, living only where all nine square roots are taken.
+
+NEXT (W1, in order). (a) Run the cubic campaign M12-C with the
+Darboux systems (23 Klein orbits of triple-point triples, six
+parameters each, Gröbner over Q with √3 admitted). (b) Build the
+direction surface S: its singularities over the lines and the
+triple points, the foliation F_S, its canonical bundle, and the
+extactic test for a rational first integral — if F_S had one every
+integral curve would be algebraic and the fifteen lines would sit
+in special fibres. (c) Attempt the degree bound on S through
+Brunella's index formulas at the eight triple points, the honest
+form of "a degree bound for integral curves of a web on a
+quasi-hyperbolic surface" that ROADMAP W1 asks for.
+
+Files: verify/checks/a8_descent.py (a8.eta_star_web); A8 §12;
+ROADMAP W1; PROGRESS 273 checks. No ledger change; suite 273.
